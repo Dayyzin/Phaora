@@ -1,379 +1,404 @@
-#!/usr/bin/env python3
-"""
-Clean index.html: remove duplicate <style> blocks, dedupe @keyframes and rules
-(keep last), minify CSS and inline JS. Does not alter HTML structure outside
-<style>/<script> bodies.
-"""
-from __future__ import annotations
-
-import argparse
-import re
-import sys
-
-from _jsmin_embed import jsmin
-
-# ---------------------------------------------------------------------------
-# CSS helpers (balanced braces, strings)
-# ---------------------------------------------------------------------------
-
-
-def _skip_css_string(s: str, i: int) -> int:
-    """Skip quoted string starting at i (i points at opening quote)."""
-    q = s[i]
-    i += 1
-    n = len(s)
-    while i < n:
-        c = s[i]
-        if c == "\\":
-            i += 2
-            continue
-        if c == q:
-            return i + 1
-        i += 1
-    return n
-
-
-def find_unquoted(s: str, char: str, start: int) -> int:
-    """Find first char at or after start, not inside CSS strings."""
-    i = start
-    n = len(s)
-    while i < n:
-        c = s[i]
-        if c in "\"'":
-            i = _skip_css_string(s, i)
-            continue
-        if c == char:
-            return i
-        i += 1
-    return -1
-
-
-def find_matching_brace(s: str, open_idx: int) -> int:
-    """Matching `}` for `{` at open_idx (depth 0 at open_idx)."""
-    assert s[open_idx] == "{"
-    depth = 0
-    i = open_idx
-    n = len(s)
-    while i < n:
-        c = s[i]
-        if c in "\"'":
-            i = _skip_css_string(s, i)
-            continue
-        if c == "{":
-            depth += 1
-        elif c == "}":
-            depth -= 1
-            if depth == 0:
-                return i
-        i += 1
-    raise ValueError("unbalanced braces in CSS block")
-
-
-def strip_css_comments(css: str) -> str:
-    """Remove /* ... */ outside strings."""
-    out: list[str] = []
-    i = 0
-    n = len(css)
-    while i < n:
-        c = css[i]
-        if c in "\"'":
-            start = i
-            j = _skip_css_string(css, i)
-            out.append(css[start:j])
-            i = j
-            continue
-        if c == "/" and i + 1 < n and css[i + 1] == "*":
-            end = css.find("*/", i + 2)
-            if end == -1:
-                out.append(css[i:])
-                break
-            i = end + 2
-            continue
-        out.append(c)
-        i += 1
-    return "".join(out)
-
-
-# ---------------------------------------------------------------------------
-# @keyframes: extract all, last wins per name, remove then append at end
-# ---------------------------------------------------------------------------
-
-KF_RE = re.compile(r"@(-webkit-|-moz-|-o-|-ms-)?keyframes\s+([-\w]+)\s*\{", re.I)
-
-
-def dedupe_keyframes_block(css: str) -> str:
-    """Within one stylesheet block: keep last @keyframes per animation name."""
-    positions: list[tuple[int, int, str]] = []
-    for m in KF_RE.finditer(css):
-        name = m.group(2)
-        open_brace = m.end() - 1
-        try:
-            close = find_matching_brace(css, open_brace)
-        except ValueError:
-            continue
-        start = m.start()
-        end = close + 1
-        positions.append((start, end, name))
-
-    if not positions:
-        return css
-
-    last_by_name: dict[str, str] = {}
-    for start, end, name in positions:
-        last_by_name[name] = css[start:end]
-
-    # remove from end to start
-    new_css = css
-    for start, end, _ in sorted(positions, key=lambda x: x[0], reverse=True):
-        new_css = new_css[:start] + new_css[end:]
-
-    new_css = new_css.rstrip()
-    append = "".join(f"\n{block}" for block in last_by_name.values())
-    return (new_css + append).strip()
-
-
-# ---------------------------------------------------------------------------
-# Rule deduplication: parse top-level rules, recurse into @media
-# ---------------------------------------------------------------------------
-
-
-def _skip_ws(css: str, i: int) -> int:
-    n = len(css)
-    while i < n and css[i] in " \t\n\r":
-        i += 1
-    return i
-
-
-def parse_style_rule(css: str, i: int) -> tuple[tuple[str, str, str], int]:
-    """Return (('style', selector, body), next_index)."""
-    j = find_unquoted(css, "{", i)
-    if j < 0:
-        raise ValueError("expected { in style rule")
-    selector = css[i:j].strip()
-    close = find_matching_brace(css, j)
-    body = css[j + 1 : close]
-    return ("style", selector, body), close + 1
-
-
-def parse_at_rule_block(css: str, i: int) -> tuple[tuple[str, str, str], int]:
-    """Block at-rule: @media ... { ... } etc."""
-    j = find_unquoted(css, "{", i)
-    if j < 0:
-        raise ValueError("expected { in at-rule")
-    header = css[i:j].strip()
-    close = find_matching_brace(css, j)
-    body = css[j + 1 : close]
-    return ("block_at", header, body), close + 1
-
-
-def parse_at_rule_semicolon(css: str, i: int) -> tuple[tuple[str, str], int]:
-    """@import ... ; @charset ... ;"""
-    j = css.find(";", i)
-    if j < 0:
-        # malformed: take rest
-        return ("semi_at", css[i:].strip()), len(css)
-    return ("semi_at", css[i:j].strip() + ";"), j + 1
-
-
-def parse_top_level_rules(css: str) -> list:
-    """List of tuples: ('style', sel, body) | ('block_at', header, body) | ('semi_at', text)."""
-    css = strip_css_comments(css)
-    rules: list = []
-    i = 0
-    n = len(css)
-    while i < n:
-        i = _skip_ws(css, i)
-        if i >= n:
-            break
-        if css[i] == "@":
-            j = find_unquoted(css, "{", i)
-            k = css.find(";", i)
-            if j >= 0 and (k < 0 or j < k):
-                rule, ni = parse_at_rule_block(css, i)
-                rules.append(rule)
-                i = ni
-            else:
-                rule, ni = parse_at_rule_semicolon(css, i)
-                rules.append(rule)
-                i = ni
-            continue
-        rule, ni = parse_style_rule(css, i)
-        rules.append(rule)
-        i = ni
-    return rules
-
-
-def dedupe_rule_list(rules: list) -> list:
-    """Keep last style rule per selector; keep last block_at with same header; keep last semi_at."""
-    last_style: dict[str, int] = {}
-    last_block: dict[str, int] = {}
-    last_semi: dict[str, int] = {}
-    for idx, r in enumerate(rules):
-        if r[0] == "style":
-            last_style[r[1]] = idx
-        elif r[0] == "block_at":
-            last_block[r[1]] = idx
-        elif r[0] == "semi_at":
-            last_semi[r[1]] = idx
-    out = []
-    for idx, r in enumerate(rules):
-        if r[0] == "style":
-            if last_style[r[1]] != idx:
-                continue
-            out.append(r)
-        elif r[0] == "block_at":
-            if last_block[r[1]] != idx:
-                continue
-            hdr, body = r[1], r[2]
-            inner = process_css_block(body)
-            out.append(("block_at", hdr, inner))
-        elif r[0] == "semi_at":
-            if last_semi[r[1]] != idx:
-                continue
-            out.append(r)
-    return out
-
-
-def serialize_rules(rules: list) -> str:
-    parts: list[str] = []
-    for r in rules:
-        if r[0] == "style":
-            sel, body = r[1], r[2]
-            parts.append(f"{sel}{{{body}}}")
-        elif r[0] == "block_at":
-            hdr, body = r[1], r[2]
-            parts.append(f"{hdr}{{{body}}}")
-        elif r[0] == "semi_at":
-            parts.append(r[1])
-    return "\n".join(parts)
-
-
-def process_css_block(css: str) -> str:
-    """Dedupe keyframes, then rules, recursively for nested blocks."""
-    css = css.strip()
-    if not css:
-        return css
-    css = dedupe_keyframes_block(css)
-    try:
-        rules = parse_top_level_rules(css)
-    except ValueError:
-        return css
-    rules = dedupe_rule_list(rules)
-    return serialize_rules(rules)
-
-
-def process_stylesheet(css: str) -> str:
-    """Full pipeline on one <style> body."""
-    css = process_css_block(css)
-    return minify_css(css)
-
-
-def minify_css(css: str) -> str:
-    css = strip_css_comments(css)
-    css = re.sub(r"/\*[\s\S]*?\*/", "", css)
-    css = re.sub(r"\s+", " ", css)
-    css = re.sub(r"\s*([{}:;,>+~])\s*", r"\1", css)
-    css = re.sub(r"\s*,\s*", ",", css)
-    css = re.sub(r";\s*}", "}", css)
-    return css.strip()
-
-
-# ---------------------------------------------------------------------------
-# Duplicate <style> blocks (identical content, whitespace-normalized)
-# ---------------------------------------------------------------------------
-
-
-def normalize_for_style_compare(s: str) -> str:
-    return re.sub(r"\s+", " ", s.strip())
-
-
-STYLE_BLOCK_RE = re.compile(
-    r"<style(?P<attrs>[^>]*)>(?P<body>[\s\S]*?)</style\s*>", re.IGNORECASE
-)
-
-
-def remove_duplicate_style_blocks(html: str) -> str:
-    seen: set[str] = set()
-
-    def repl(m: re.Match) -> str:
-        body = m.group("body")
-        key = normalize_for_style_compare(body)
-        if key in seen:
-            return ""
-        seen.add(key)
-        return m.group(0)
-
-    return STYLE_BLOCK_RE.sub(repl, html)
-
-
-# ---------------------------------------------------------------------------
-# <script> inline minify (no src)
-# ---------------------------------------------------------------------------
-
-SCRIPT_RE = re.compile(r"<script([^>]*)>([\s\S]*?)</script\s*>", re.IGNORECASE)
-
-
-def minify_inline_scripts(html: str) -> str:
-    _js_types = frozenset(
-        {
-            "text/javascript",
-            "application/javascript",
-            "application/ecmascript",
-            "module",
-            "text/ecmascript",
-        }
-    )
-
-    def repl(m: re.Match) -> str:
-        attrs, body = m.group(1), m.group(2)
-        if re.search(r"\bsrc\s*=", attrs, re.I):
-            return m.group(0)
-        tm = re.search(r'\btype\s*=\s*["\']?([^"\'>\s]+)', attrs, re.I)
-        if tm:
-            t = tm.group(1).lower().split(";")[0].strip()
-            if t and t not in _js_types and not t.startswith("text/javascript"):
-                return m.group(0)
-        try:
-            new_body = jsmin(body)
-        except Exception:
-            new_body = body
-        return f"<script{attrs}>{new_body}</script>"
-
-    return SCRIPT_RE.sub(repl, html)
-
-
-# ---------------------------------------------------------------------------
-# Main
-# ---------------------------------------------------------------------------
-
-
-def clean_html(html: str) -> str:
-    html = remove_duplicate_style_blocks(html)
-
-    def style_repl(m: re.Match) -> str:
-        attrs, body = m.group(1), m.group(2)
-        try:
-            new_body = process_stylesheet(body)
-        except Exception:
-            new_body = minify_css(strip_css_comments(body))
-        return f"<style{attrs}>{new_body}</style>"
-
-    html = STYLE_BLOCK_RE.sub(style_repl, html)
-    html = minify_inline_scripts(html)
-    return html
-
-
-def main() -> None:
-    from pathlib import Path
-
-    ap = argparse.ArgumentParser()
-    ap.add_argument("path", nargs="?", default="index.html", type=Path)
-    args = ap.parse_args()
-    p: Path = args.path
-    html = p.read_text(encoding="utf-8")
-    p.write_text(clean_html(html), encoding="utf-8")
-    print("ok", file=sys.stderr)
-
-
-if __name__ == "__main__":
-    main()
+
+
+
+
+
+
+
+PHAÖRA
+
+FROM THE EARTH TO YOUR ESTATE
+TOUCH TO ENTER
+
+
+
+✕
+PIECE DETAILS
+CERTIFICATE
+DIGITAL RECORD
+AUTHENTICATION
+
+
+
+
+
+
+INQUIRE ABOUT THIS PIECE
+VIEW CERTIFICATE →
+Inquiry Received
+We'll be in touch within 24 hours.
+PHAÖRA
+	•	STORY
+	•	COLLECTION
+	•	JOURNAL
+	•	HARDSCAPE
+	•	CONTACT
+BEGIN DIALOGUE
+♡
+￼
+
+
+
+
+MINAS GERAIS  ·  BOCA RATON  ·  BY APPOINTMENT
+
+One of one. From the earth. Never to exist again.
+ENTER THE COLLECTION
+BEGIN A PRIVATE DIALOGUE
+DESCEND
+
+HAND-MINED · MINAS GERAIS, BRAZIL
+FORTY YEARS OF MASTERY
+ONE OF ONE — NEVER TO EXIST AGAIN
+BEGIN A PRIVATE DIALOGUE
+FROM THE EARTH TO YOUR ESTATE
+BOCA RATON · PALM BEACH · SOUTH FLORIDA
+CERTIFIED NATURAL CRYSTAL
+SOURCED FROM THE WORLD'S RAREST DEPOSITS
+HEIRLOOM QUALITY · LIFETIMES OF BEAUTY
+EACH PIECE A LIVING WORK OF EARTH
+NO TWO ALIKE · EVER
+DESIGNED FOR THE DISCERNING FEW
+PRIVATE COMMISSION AVAILABLE
+LUXURY BEYOND COMPARE
+RAW · RARE · REFINED
+BORN IN THE EARTH'S CORE
+VETTED BY MASTER GEMOLOGISTS
+TRUSTED BY COLLECTORS WORLDWIDE
+AGED MILLIONS OF YEARS · ARRIVED FOR YOU
+ESTATE-READY PRESENTATION
+UNALTERED BY HUMAN HANDS
+NATURE'S MOST PERFECT CREATION
+A LEGACY PIECE FOR GENERATIONS
+THE RAREST MINERAL FORMATIONS ON EARTH
+ACQUISITION BY APPOINTMENT
+WHITE-GLOVE DELIVERY WORLDWIDE
+ULTRA-PREMIUM NATURAL STONE
+INVESTMENT-GRADE SPECIMENS
+SCULPTURAL · SPIRITUAL · SUBLIME
+CRYSTAL FORMATIONS OF EXTRAORDINARY SCALE
+THE STANDARD OF EXCELLENCE
+SOURCED · CURATED · DELIVERED
+WHERE EARTH MEETS ESTATE
+MINERALS OF TRANSCENDENT BEAUTY
+PROVENANCE GUARANTEED
+COLLECTOR-GRADE · MUSEUM-QUALITY
+AN OBJECT OF PERMANENCE
+TIMELESS · IRREPLACEABLE · YOURS
+THE ART OF NATURAL STONE
+EXCEPTIONAL BY NATURE
+RESERVED FOR THE RARIFIED
+TRUE LUXURY HAS NO SUBSTITUTE
+HANDPICKED AT THE SOURCE
+GEOLOGICAL WONDER · DOMESTIC GRANDEUR
+SOUTH FLORIDA'S PREMIER CRYSTAL HOUSE
+HAND-MINED · MINAS GERAIS, BRAZIL
+FORTY YEARS OF MASTERY
+ONE OF ONE — NEVER TO EXIST AGAIN
+BEGIN A PRIVATE DIALOGUE
+FROM THE EARTH TO YOUR ESTATE
+BOCA RATON · PALM BEACH · SOUTH FLORIDA
+CERTIFIED NATURAL CRYSTAL
+SOURCED FROM THE WORLD'S RAREST DEPOSITS
+HEIRLOOM QUALITY · LIFETIMES OF BEAUTY
+EACH PIECE A LIVING WORK OF EARTH
+NO TWO ALIKE · EVER
+DESIGNED FOR THE DISCERNING FEW
+PRIVATE COMMISSION AVAILABLE
+LUXURY BEYOND COMPARE
+RAW · RARE · REFINED
+BORN IN THE EARTH'S CORE
+VETTED BY MASTER GEMOLOGISTS
+TRUSTED BY COLLECTORS WORLDWIDE
+AGED MILLIONS OF YEARS · ARRIVED FOR YOU
+ESTATE-READY PRESENTATION
+UNALTERED BY HUMAN HANDS
+NATURE'S MOST PERFECT CREATION
+A LEGACY PIECE FOR GENERATIONS
+THE RAREST MINERAL FORMATIONS ON EARTH
+ACQUISITION BY APPOINTMENT
+WHITE-GLOVE DELIVERY WORLDWIDE
+ULTRA-PREMIUM NATURAL STONE
+INVESTMENT-GRADE SPECIMENS
+SCULPTURAL · SPIRITUAL · SUBLIME
+CRYSTAL FORMATIONS OF EXTRAORDINARY SCALE
+THE STANDARD OF EXCELLENCE
+SOURCED · CURATED · DELIVERED
+WHERE EARTH MEETS ESTATE
+MINERALS OF TRANSCENDENT BEAUTY
+PROVENANCE GUARANTEED
+COLLECTOR-GRADE · MUSEUM-QUALITY
+AN OBJECT OF PERMANENCE
+TIMELESS · IRREPLACEABLE · YOURS
+THE ART OF NATURAL STONE
+EXCEPTIONAL BY NATURE
+RESERVED FOR THE RARIFIED
+TRUE LUXURY HAS NO SUBSTITUTE
+HANDPICKED AT THE SOURCE
+GEOLOGICAL WONDER · DOMESTIC GRANDEUR
+SOUTH FLORIDA'S PREMIER CRYSTAL HOUSE
+HAND-MINED · MINAS GERAIS, BRAZIL
+FORTY YEARS OF MASTERY
+ONE OF ONE — NEVER TO EXIST AGAIN
+BEGIN A PRIVATE DIALOGUE
+FROM THE EARTH TO YOUR ESTATE
+BOCA RATON · PALM BEACH · SOUTH FLORIDA
+CERTIFIED NATURAL CRYSTAL
+SOURCED FROM THE WORLD'S RAREST DEPOSITS
+HEIRLOOM QUALITY · LIFETIMES OF BEAUTY
+EACH PIECE A LIVING WORK OF EARTH
+NO TWO ALIKE · EVER
+DESIGNED FOR THE DISCERNING FEW
+PRIVATE COMMISSION AVAILABLE
+LUXURY BEYOND COMPARE
+RAW · RARE · REFINED
+BORN IN THE EARTH'S CORE
+VETTED BY MASTER GEMOLOGISTS
+TRUSTED BY COLLECTORS WORLDWIDE
+AGED MILLIONS OF YEARS · ARRIVED FOR YOU
+ESTATE-READY PRESENTATION
+UNALTERED BY HUMAN HANDS
+NATURE'S MOST PERFECT CREATION
+A LEGACY PIECE FOR GENERATIONS
+THE RAREST MINERAL FORMATIONS ON EARTH
+ACQUISITION BY APPOINTMENT
+WHITE-GLOVE DELIVERY WORLDWIDE
+ULTRA-PREMIUM NATURAL STONE
+INVESTMENT-GRADE SPECIMENS
+SCULPTURAL · SPIRITUAL · SUBLIME
+CRYSTAL FORMATIONS OF EXTRAORDINARY SCALE
+THE STANDARD OF EXCELLENCE
+SOURCED · CURATED · DELIVERED
+WHERE EARTH MEETS ESTATE
+MINERALS OF TRANSCENDENT BEAUTY
+PROVENANCE GUARANTEED
+COLLECTOR-GRADE · MUSEUM-QUALITY
+AN OBJECT OF PERMANENCE
+TIMELESS · IRREPLACEABLE · YOURS
+THE ART OF NATURAL STONE
+EXCEPTIONAL BY NATURE
+RESERVED FOR THE RARIFIED
+TRUE LUXURY HAS NO SUBSTITUTE
+HANDPICKED AT THE SOURCE
+GEOLOGICAL WONDER · DOMESTIC GRANDEUR
+SOUTH FLORIDA'S PREMIER CRYSTAL HOUSE
+
+
+PHAÖRA
+
+MASTER CRAFTSMAN
+Fabiano
+MINAS GERAIS, BRAZIL · EST. 1985
+
+THE CRAFTSMAN
+Forty Years In The Stone
+
+Deep in the mountains of Minas Gerais, crystals form over millions of years in complete silence. Fabiano — who has spent forty years learning to hear what each stone asks to become — extracts them by hand.  He does not manufacture. He reveals.  PHAÖRA brings these singular objects into the estates of South Florida. For those who understand that the most extraordinary things on earth cannot be ordered. Only discovered.
+40+
+YEARS OF MASTERY
+35
+SINGULAR WORKS
+0
+DUPLICATES EVER
+∞
+YEARS IN THE EARTH
+THE MAGNITUDE
+YEARS IN THE EARTH
+65M
+Before Fabiano found them
+YEARS OF MASTERY
+40+
+One craftsman. No apprentices.
+WORKS AVAILABLE
+35
+Each unrepeatable
+DUPLICATES — EVER
+0
+The earth does not repeat itself
+HOW IT HAPPENS
+From The Mountain To Your Estate
+
+
+01 · THE MINE
+Deep Extraction
+In the mountains of Minas Gerais, Fabiano descends by hand. He chooses only what the earth offers willingly.
+
+02 · THE SELECTION
+One in a Thousand
+Of every stone extracted, only a fraction becomes a sculpture. Fabiano selects by intuition built over forty years.
+
+03 · THE CRAFT
+Weeks of Work
+No machines. No shortcuts. Each piece is shaped by hand over days or weeks. The stone decides when it is finished.
+
+04 · THE ESTATE
+White Glove Delivery
+PHAÖRA handles placement personally. The piece arrives with its Certificate of Authenticity and Digital Record.
+THE COLLECTION
+Each One Unrepeatable.
+
+These objects took millions of years to form and forty years of mastery to reveal. Each one exists once. Tap any piece to begin.
+ALL PIECES
+ATELIER $100–$8,500
+ENTRY $8,500–$12,500
+MID $18,500–$35,000
+STATEMENT $75,000+
+      — Price Range —
+      Under $500
+      $500 – $1,000
+      $1,000 – $2,500
+      $2,500 – $5,000
+      $5,000 – $8,500
+      $8,500 – $18,500
+      $18,500 – $35,000
+      $35,000 – $75,000
+      $75,000+
+    
+      — Category —
+      Raw Specimens
+      Birds & Sculptures
+      Geodes & Clusters
+      Decorative Objects
+      Crystal Towers
+    
+
+←
+→
+← DRAG TO EXPLORE THE COLLECTION →
+SKU REGISTRY
+⌕
+All Pieces ↓
+
+FOR REAL ESTATE
+The Listing Remembered
+
+A buyer walks into a property and sees a crystal sculpture unlike anything they have encountered. They stop. They photograph it. They ask the agent about it. The listing becomes unforgettable — and so does the agent who placed it.
+01
+A Conversation Begins
+You have a $3M+ listing. We curate the perfect crystal sculpture for the space — entrance hall, living room, master suite.
+02
+The Sculpture Arrives
+PHAÖRA delivers and places each piece with precision. A buyer card sits beside it: "Scan to discover the story."
+03
+The Room Changes
+Every buyer scans the QR. They see Fabiano's story. They photograph the piece. The listing becomes unforgettable.
+04
+A Commission You Did Not Expect
+Buyers ask to purchase the piece. PHAÖRA handles the transaction. You earn a referral commission on the sculpture sale.
+PARTNER WITH PHAÖRA
+
+
+"
+A room with a PHAÖRA sculpture is not a room with a decoration. It is a room with a story. And stories close listings.
+PHAÖRA  •  BOCA RATON, FLORIDA  •  2026
+✦ PHAÖRA · HARDSCAPE
+The Earth, Shaped to Last
+The same reverence we bring to every crystal we source, we bring to every stone we set. PHAÖRA Hardscape transforms the grounds of South Florida estates into permanent, considered landscapes — built to endure generations, designed to arrest the eye the moment you arrive.
+```
+VIEW FULL GALLERY →
+```
+
+
+
+
+
+
+
+
+
+
+
+
++53
+VIEW ALL
+BEGIN A PRIVATE DIALOGUE
+Begin the Dialogue
+
+Each acquisition begins with a conversation. Whether you are a collector, an estate owner, or a luxury real estate agent seeking a singular advantage — we respond personally within 24 hours.
+"I started PHAÖRA because I believe that the most extraordinary objects on earth should not sit in warehouses. They should live in homes — where people can wake up to them every morning and be reminded that the world is ancient, and magnificent, and generous.  I respond to every inquiry personally. Tell me about your space."
+David Vaz
+FOUNDER · PHAÖRA · BOCA RATON
+
+LOCATION
+Boca Raton, Florida
+PHONE
+(954) 871-9991
+✦ PREFER TO TEXT? MESSAGE DAVID DIRECTLY → ✦ ARRANGE A PRIVATE VIEWING
+SERVING
+Boca Raton · Palm Beach · South Florida
+PARENT COMPANY
+StyleArtStoneCraft
+YOUR NAME
+
+EMAIL
+
+PHONE
+
+I AM A
+Select...Luxury Real Estate AgentEstate Owner / CollectorInterior DesignerReal Estate BrokerOther
+PIECE OF INTEREST
+Select a piece...
+MESSAGE
+BEGIN THE DIALOGUE
+THE JOURNAL
+From The Studio
+BOCA RATON · 2026
+BEHIND THE SCENES · MARCH 2026
+Forty Years in the Stone:
+A Morning with Fabiano
+Before dawn, Fabiano's hands are already moving. Not searching — listening. Each stone tells him what it wants to become.
+READ THE FULL STORY →
+STAGING GUIDE · FEBRUARY 2026
+How One Crystal Sculpture
+Changed the Showing
+A $4.2M listing in Boca Raton had been sitting. Three weeks after a PHAÖRA sculpture was placed in the entryway, it sold.
+READ THE FULL STORY →
+ORIGIN STORY · JANUARY 2026
+Minas Gerais: The Mountain
+That Makes Everything
+There is a place in Brazil where the earth gives up its most extraordinary secrets. Fabiano has spent forty years listening to it.
+READ THE FULL STORY →
+PRIVATE LIST
+Be First. When New Works Arrive.
+
+New sculptures arrive from Minas Gerais without announcement. Members of the private list are notified first — before the collection updates.
+
+
+REQUEST PRIVATE ACCESS →
+
+✦ PHAÖRA · BOCA RATON · BY APPOINTMENT
+"PHAÖRA receives collectors by appointment. There is no storefront. There is no rush. There is only the work — and the right home for it."
+MINAS GERAIS, BRAZIL · FORTY YEARS OF MASTERY
+(954) 871-9991 · DAVID@PHAORA.COM
+A STYLEARTSTONECRAFT COMPANY
+PHAÖRA
+From The Earth
+To Your Estate
+
+BOCA RATON, FLORIDA
+(954) 871-9991
+DAVID@PHAORA.COM
+COLLECTION
+	•	All Pieces
+	•	SKU Registry
+	•	Statement Pieces
+	•	Commission a Piece
+SERVICES
+	•	Real Estate Staging
+	•	Agent Portal
+	•	Begin a Private Dialogue
+STUDIO
+	•	The Craftsman
+	•	The Journal
+	•	Contact David
+© 2026 PHAÖRA · ALL RIGHTS RESERVED
+A STYLEARTSTONECRAFT COMPANY · BOCA RATON, FLORIDA
+✦ PIECE OF THE DAY
+
+
+VIEW FULL IDENTITY →
+✦ PIECE OF THE DAY
+RECENTLY VIEWED
+✕
+
+♪ AMBIENCE
