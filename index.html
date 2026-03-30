@@ -2724,8 +2724,9 @@ P.forEach(function(p,idx){
   c.className='w-card';
   c.style.zIndex=P.length-idx;
   c.innerHTML='<div class="w-card-strip"><div class="w-strip-l"><div class="w-strip-sku">'+p.sku+'</div><div class="w-strip-name">'+p.name+'</div></div><div class="w-strip-r"><div class="w-strip-price">'+p.price+'</div><button class="w-expand-btn" onclick="event.stopPropagation();this.closest(\'.w-card\').click()">Expand</button><span class="w-chevron">▾</span></div></div>'
-    +'<div class="w-body"><div class="w-body-inner">'
-    +'<div class="w-body-stone">'+p.stone+(p.base&&p.base!==p.stone?' · '+p.base:'')+'</div>'
+    +'<div class="w-body"><div class="w-body-inner" style="display:flex;gap:14px;align-items:flex-start">'
+    +'<img src="'+p.img+'" alt="'+p.name+'" style="width:90px;height:90px;object-fit:cover;flex-shrink:0;border:1px solid rgba(201,168,76,0.15)">'
+    +'<div style="flex:1"><div class="w-body-stone">'+p.stone+(p.base&&p.base!==p.stone?' · '+p.base:'')+'</div>'
     +'<div class="w-body-grid">'
     +'<div><div class="w-bl">Origin</div><div class="w-bv">'+p.origin+'</div></div>'
     +'<div><div class="w-bl">Weight</div><div class="w-bv">'+p.weight+'</div></div>'
@@ -2734,7 +2735,7 @@ P.forEach(function(p,idx){
     +'</div>'
     +'<div class="w-body-foot"><span class="w-big-price">'+p.price+'</span>'
     +'<button class="w-btn" onclick="openModal(\''+p.sku+'\',0);event.stopPropagation()">Full Identity →</button>'
-    +'</div></div></div>';
+    +'</div></div></div></div>';
   c.onclick=function(){
     if(wActiveCard&&wActiveCard!==c){wActiveCard.classList.remove('w-open');}
     c.classList.toggle('w-open');

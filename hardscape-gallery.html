@@ -7,299 +7,211 @@
 <meta name="description" content="PHAÖRA Hardscape transforms South Florida estates into permanent, considered landscapes. View the full portfolio of luxury pool decks, travertine terraces, and waterfront installations.">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Cinzel:wght@300;400&display=swap" rel="stylesheet">
 <style>
-:root{--gold:#C9A84C;--gold-light:#E8D5A3;--gold-dim:rgba(201,168,76,0.15);--black:#0A0A0A;--dark:#111111;--dark2:#161616;--cream:#FAF7F2;--mid:#888888;--light:#CCCCCC}
+:root{--gold:#C9A84C;--gold-light:#E8D5A3;--black:#0A0A0A;--dark:#111111;--dark2:#161616;--cream:#FAF7F2;--mid:#888888}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{background:var(--black);color:var(--cream);font-family:'Cormorant Garamond','Didot',Georgia,serif;font-weight:300;overflow-x:hidden;-webkit-font-smoothing:antialiased;letter-spacing:0.03em}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:2rem 4rem;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);background:rgba(10,10,10,0.75);border-bottom:1px solid rgba(201,168,76,0.08);transition:all 0.6s}
-.nav-logo{font-family:'Cinzel','Cormorant Garamond',Georgia,serif;font-size:1.4rem;font-weight:400;color:var(--gold);letter-spacing:0.5em;cursor:pointer;text-shadow:0 0 30px rgba(201,168,76,0.25);white-space:nowrap;text-decoration:none}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:2rem 4rem;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);background:rgba(10,10,10,0.75);border-bottom:1px solid rgba(201,168,76,0.08)}
+.nav-logo{font-family:'Cinzel','Cormorant Garamond',Georgia,serif;font-size:1.4rem;font-weight:400;color:var(--gold);letter-spacing:0.5em;cursor:pointer;text-decoration:none}
 .nav-back{font-size:0.38rem;letter-spacing:0.5em;text-transform:uppercase;color:rgba(201,168,76,0.5);text-decoration:none;transition:color 0.4s;font-family:-apple-system,'Helvetica Neue',sans-serif;border:1px solid rgba(201,168,76,0.18);padding:0.55rem 1.4rem}
 .nav-back:hover{color:var(--gold);border-color:rgba(201,168,76,0.45)}
 .nav-eyebrow{font-size:0.35rem;letter-spacing:0.55em;color:rgba(201,168,76,0.35);text-transform:uppercase;font-family:-apple-system,'Helvetica Neue',sans-serif}
 
-/* HERO */
 .gallery-hero{padding:10rem 4rem 4rem;text-align:center;position:relative}
 .gallery-hero::after{content:'';position:absolute;bottom:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.2),transparent)}
 .gallery-eyebrow{font-size:0.42rem;letter-spacing:0.65em;color:rgba(201,168,76,0.6);text-transform:uppercase;margin-bottom:1.5rem;font-family:-apple-system,'Helvetica Neue',sans-serif}
 .gallery-title{font-family:'Cormorant Garamond','Didot','Bodoni 72',Georgia,serif;font-size:clamp(3rem,8vw,6.5rem);font-weight:300;color:var(--cream);letter-spacing:0.1em;line-height:1;margin-bottom:1.5rem}
 .gallery-title span{color:var(--gold);font-style:italic}
-.gallery-rule{display:flex;align-items:center;justify-content:center;gap:1rem;margin:1.5rem auto 1.5rem;max-width:300px}
+.gallery-rule{display:flex;align-items:center;justify-content:center;gap:1rem;margin:1.5rem auto;max-width:300px}
 .gallery-rule::before,.gallery-rule::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.3))}
 .gallery-rule span{color:rgba(201,168,76,0.5);font-size:0.5rem}
-.gallery-desc{font-size:1.05rem;font-style:italic;color:rgba(250,247,242,0.45);letter-spacing:0.06em;max-width:600px;margin:0 auto 3rem;line-height:1.9}
+.gallery-desc{font-size:1.05rem;font-style:italic;color:rgba(250,247,242,0.45);letter-spacing:0.06em;max-width:600px;margin:0 auto 1rem;line-height:1.9}
+.gallery-count{font-size:0.38rem;letter-spacing:0.45em;color:rgba(201,168,76,0.3);text-transform:uppercase;font-family:-apple-system,sans-serif;margin-bottom:2rem}
 
-/* FILTER BAR */
-.filter-bar{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;padding:2.5rem 4rem;border-bottom:1px solid rgba(201,168,76,0.06)}
-.fbtn{font-size:0.38rem;letter-spacing:0.45em;text-transform:uppercase;color:rgba(201,168,76,0.35);background:none;border:none;cursor:pointer;padding:0.4rem 0;border-bottom:1px solid transparent;transition:all 0.4s;font-family:-apple-system,'Helvetica Neue',sans-serif}
-.fbtn:hover,.fbtn.active{color:rgba(201,168,76,0.9);border-color:rgba(201,168,76,0.5)}
-
-/* MASONRY GRID */
-.gallery-grid{columns:3;column-gap:3px;padding:3px;max-width:1600px;margin:3px auto}
+.gallery-grid{columns:3;column-gap:3px;padding:3px;max-width:1800px;margin:3px auto}
 .gallery-item{break-inside:avoid;position:relative;overflow:hidden;cursor:pointer;margin-bottom:3px;background:#111}
 .gallery-item img{width:100%;height:auto;display:block;transition:transform 0.8s cubic-bezier(0.16,1,0.3,1),filter 0.5s}
-.gallery-item:hover img{transform:scale(1.04);filter:brightness(0.85)}
-.gallery-item-overlay{position:absolute;inset:0;background:rgba(0,0,0,0);transition:background 0.5s;display:flex;align-items:flex-end;padding:1.5rem}
-.gallery-item:hover .gallery-item-overlay{background:rgba(0,0,0,0.35)}
-.gallery-item-caption{opacity:0;transition:opacity 0.4s;transform:translateY(8px);transition:opacity 0.4s,transform 0.4s}
-.gallery-item:hover .gallery-item-caption{opacity:1;transform:translateY(0)}
-.gallery-item-caption span{font-size:0.38rem;letter-spacing:0.35em;color:rgba(201,168,76,0.8);text-transform:uppercase;font-family:-apple-system,'Helvetica Neue',sans-serif;display:block}
-.gallery-item-caption p{font-size:0.85rem;color:rgba(250,247,242,0.75);margin-top:0.3rem;font-style:italic}
+.gallery-item:hover img{transform:scale(1.04);filter:brightness(0.8)}
+.gallery-item-overlay{position:absolute;inset:0;background:rgba(0,0,0,0);transition:background 0.5s;display:flex;align-items:flex-end;padding:1rem}
+.gallery-item:hover .gallery-item-overlay{background:rgba(0,0,0,0.3)}
+.hs-corner{position:absolute;width:12px;height:12px;z-index:3;pointer-events:none}
+.hs-corner-tl{top:7px;left:7px;border-top:1px solid rgba(201,168,76,0.4);border-left:1px solid rgba(201,168,76,0.4)}
+.hs-corner-tr{top:7px;right:7px;border-top:1px solid rgba(201,168,76,0.4);border-right:1px solid rgba(201,168,76,0.4)}
+.hs-corner-bl{bottom:7px;left:7px;border-bottom:1px solid rgba(201,168,76,0.4);border-left:1px solid rgba(201,168,76,0.4)}
+.hs-corner-br{bottom:7px;right:7px;border-bottom:1px solid rgba(201,168,76,0.4);border-right:1px solid rgba(201,168,76,0.4)}
 
-/* CORNER ACCENTS */
-.hs-corner{position:absolute;width:14px;height:14px;z-index:3;pointer-events:none}
-.hs-corner-tl{top:8px;left:8px;border-top:1px solid rgba(201,168,76,0.45);border-left:1px solid rgba(201,168,76,0.45)}
-.hs-corner-tr{top:8px;right:8px;border-top:1px solid rgba(201,168,76,0.45);border-right:1px solid rgba(201,168,76,0.45)}
-.hs-corner-bl{bottom:8px;left:8px;border-bottom:1px solid rgba(201,168,76,0.45);border-left:1px solid rgba(201,168,76,0.45)}
-.hs-corner-br{bottom:8px;right:8px;border-bottom:1px solid rgba(201,168,76,0.45);border-right:1px solid rgba(201,168,76,0.45)}
-
-/* FEATURED (wide) items */
-.gallery-item.wide{break-inside:avoid;column-span:none}
-
-/* LIGHTBOX */
-.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:9999;align-items:center;justify-content:center;cursor:pointer}
+.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.96);z-index:9999;align-items:center;justify-content:center;cursor:pointer}
 .lightbox.open{display:flex}
-.lightbox-inner{position:relative;max-width:90vw;max-height:90vh;cursor:default}
-.lightbox-inner img{max-width:90vw;max-height:85vh;object-fit:contain;display:block}
+.lightbox-inner{position:relative;max-width:92vw;max-height:92vh;cursor:default}
+.lightbox-inner img{max-width:92vw;max-height:86vh;object-fit:contain;display:block}
 .lightbox-close{position:absolute;top:-2.5rem;right:0;background:none;border:1px solid rgba(201,168,76,0.25);color:rgba(201,168,76,0.6);font-size:0.55rem;letter-spacing:0.25em;padding:6px 16px;cursor:pointer;font-family:inherit;transition:all 0.3s}
 .lightbox-close:hover{color:var(--gold);border-color:rgba(201,168,76,0.6)}
-.lightbox-caption{text-align:center;margin-top:1rem;font-size:0.75rem;font-style:italic;color:rgba(250,247,242,0.4);letter-spacing:0.08em}
-.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);background:none;border:1px solid rgba(201,168,76,0.2);color:rgba(201,168,76,0.5);width:44px;height:44px;cursor:pointer;font-size:1rem;transition:all 0.3s;font-family:inherit;display:flex;align-items:center;justify-content:center}
-.lightbox-nav:hover{border-color:rgba(201,168,76,0.5);color:rgba(201,168,76,0.9)}
-.lightbox-prev{left:-60px}
-.lightbox-next{right:-60px}
+.lightbox-counter{position:absolute;top:-2.5rem;left:0;font-size:0.42rem;letter-spacing:0.3em;color:rgba(201,168,76,0.35);font-family:-apple-system,sans-serif}
+.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);border:1px solid rgba(201,168,76,0.2);color:rgba(201,168,76,0.5);width:44px;height:44px;cursor:pointer;font-size:1rem;transition:all 0.3s;font-family:inherit;display:flex;align-items:center;justify-content:center}
+.lightbox-nav:hover{border-color:rgba(201,168,76,0.5);color:rgba(201,168,76,0.9);background:rgba(0,0,0,0.8)}
+.lightbox-prev{left:-56px}.lightbox-next{right:-56px}
 
-/* STATS BAR */
-.stats-bar{display:flex;justify-content:center;gap:5rem;padding:4rem 2rem;border-top:1px solid rgba(201,168,76,0.06);border-bottom:1px solid rgba(201,168,76,0.06);margin:0}
+.stats-bar{display:flex;justify-content:center;gap:5rem;padding:4rem 2rem;border-top:1px solid rgba(201,168,76,0.06);border-bottom:1px solid rgba(201,168,76,0.06)}
 .stat-item{text-align:center}
 .stat-num{font-family:'Cormorant Garamond',Georgia,serif;font-size:3rem;font-weight:300;color:var(--gold);letter-spacing:0.1em;line-height:1}
 .stat-label{font-size:0.38rem;letter-spacing:0.45em;color:rgba(201,168,76,0.4);text-transform:uppercase;font-family:-apple-system,sans-serif;margin-top:0.5rem}
 
-/* CTA SECTION */
 .gallery-cta{text-align:center;padding:6rem 4rem;background:linear-gradient(rgba(10,10,10,0.92),rgba(10,10,10,0.92)),url('IMG_6689.jpeg') center/cover no-repeat}
 .gallery-cta-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:300;color:var(--cream);letter-spacing:0.08em;margin-bottom:1rem}
 .gallery-cta-title em{color:var(--gold);font-style:italic}
 .gallery-cta-sub{font-size:0.85rem;font-style:italic;color:rgba(250,247,242,0.45);letter-spacing:0.08em;max-width:500px;margin:0 auto 2.5rem;line-height:1.9}
 .btn-gold{padding:1rem 3rem;background:rgba(201,168,76,0.9);color:var(--black);font-size:0.5rem;letter-spacing:0.35em;text-transform:uppercase;font-weight:600;border:none;cursor:pointer;transition:all 0.4s;font-family:-apple-system,'Helvetica Neue',sans-serif;text-decoration:none;display:inline-block}
 .btn-gold:hover{background:var(--gold-light);transform:translateY(-2px)}
-.btn-outline{padding:1rem 3rem;border:1px solid rgba(201,168,76,0.35);color:rgba(201,168,76,0.7);font-size:0.5rem;letter-spacing:0.35em;text-transform:uppercase;background:rgba(10,10,10,0.3);cursor:pointer;transition:all 0.4s;font-family:-apple-system,'Helvetica Neue',sans-serif;text-decoration:none;display:inline-block;margin-left:1rem}
+.btn-outline{padding:1rem 3rem;border:1px solid rgba(201,168,76,0.35);color:rgba(201,168,76,0.7);font-size:0.5rem;letter-spacing:0.35em;text-transform:uppercase;background:none;cursor:pointer;transition:all 0.4s;font-family:-apple-system,'Helvetica Neue',sans-serif;text-decoration:none;display:inline-block;margin-left:1rem}
 .btn-outline:hover{color:var(--gold);border-color:rgba(201,168,76,0.6)}
 
-/* FOOTER */
 footer{padding:3rem 4rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(201,168,76,0.08)}
 .footer-logo{font-family:'Cinzel',Georgia,serif;font-size:1.1rem;color:rgba(201,168,76,0.6);letter-spacing:0.5em}
 .footer-copy{font-size:0.35rem;letter-spacing:0.3em;color:rgba(201,168,76,0.25);font-family:-apple-system,sans-serif}
 
-/* REVEAL */
-.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.9s cubic-bezier(0.16,1,0.3,1),transform 0.9s cubic-bezier(0.16,1,0.3,1)}
-.reveal.visible{opacity:1;transform:translateY(0)}
-
-/* RESPONSIVE */
-@media(max-width:1024px){.gallery-grid{columns:2}.lightbox-prev{left:-50px}.lightbox-next{right:-50px}}
+@media(max-width:1024px){.gallery-grid{columns:2}.lightbox-prev{left:-46px}.lightbox-next{right:-46px}}
 @media(max-width:768px){
   nav{padding:1.5rem 1.5rem}.gallery-hero{padding:8rem 1.5rem 3rem}
-  .gallery-grid{columns:1;padding:2px}.filter-bar{padding:2rem 1.5rem;gap:1rem}
-  .stats-bar{gap:2.5rem;flex-wrap:wrap;padding:3rem 1.5rem}
+  .gallery-grid{columns:2;padding:2px}.stats-bar{gap:2.5rem;flex-wrap:wrap;padding:3rem 1.5rem}
   .gallery-cta{padding:4rem 1.5rem}
   footer{flex-direction:column;gap:1rem;text-align:center;padding:2rem 1.5rem}
-  .lightbox-prev{left:-40px;width:36px;height:36px}.lightbox-next{right:-40px;width:36px;height:36px}
+  .lightbox-prev{left:-38px;width:36px;height:36px}.lightbox-next{right:-38px;width:36px;height:36px}
 }
+@media(max-width:480px){.gallery-grid{columns:1}}
 </style>
 </head>
 <body>
 
-<!-- CURSOR -->
-<div id="luxury-cursor" style="position:fixed;width:8px;height:8px;background:rgba(201,168,76,0.8);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width 0.2s,height 0.2s,opacity 0.2s;mix-blend-mode:difference"></div>
-<div id="luxury-cursor-ring" style="position:fixed;width:32px;height:32px;border:1px solid rgba(201,168,76,0.35);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:all 0.12s ease;mix-blend-mode:difference"></div>
-
-<!-- NAV -->
 <nav>
   <a href="index.html" class="nav-logo">PHAÖRA</a>
   <span class="nav-eyebrow">Hardscape · Full Gallery</span>
   <a href="index.html" class="nav-back">← Back to Estate</a>
 </nav>
 
-<!-- HERO -->
-<div class="gallery-hero reveal">
+<div class="gallery-hero">
   <div class="gallery-eyebrow">✦ PHAÖRA · Hardscape</div>
   <h1 class="gallery-title">The Earth,<br><span>Shaped to Last</span></h1>
   <div class="gallery-rule"><span>✦</span></div>
   <p class="gallery-desc">Every terrace a statement. Every pool deck a permanent record of mastery. PHAÖRA Hardscape serves the most considered estates in South Florida.</p>
+  <div class="gallery-count" id="photoCount"></div>
 </div>
 
-<!-- FILTER BAR -->
-<div class="filter-bar reveal">
-  <button class="fbtn active" onclick="filterGallery('all',this)">All Work</button>
-  <button class="fbtn" onclick="filterGallery('pool',this)">Pool Decks</button>
-  <button class="fbtn" onclick="filterGallery('terrace',this)">Terraces</button>
-  <button class="fbtn" onclick="filterGallery('waterfront',this)">Waterfront</button>
-  <button class="fbtn" onclick="filterGallery('driveway',this)">Driveways</button>
+<div class="gallery-grid" id="galleryGrid"></div>
+
+<div class="stats-bar">
+  <div class="stat-item"><div class="stat-num">57</div><div class="stat-label">Estates Completed</div></div>
+  <div class="stat-item"><div class="stat-num">12</div><div class="stat-label">Years of Mastery</div></div>
+  <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Natural Stone</div></div>
+  <div class="stat-item"><div class="stat-num">∞</div><div class="stat-label">Generations of Endurance</div></div>
 </div>
 
-<!-- GALLERY GRID -->
-<div class="gallery-grid" id="galleryGrid">
-
-  <div class="gallery-item" data-cat="waterfront pool" data-idx="0" onclick="openLightbox(0)">
-    <div class="hs-corner hs-corner-tl"></div><div class="hs-corner hs-corner-tr"></div>
-    <div class="hs-corner hs-corner-bl"></div><div class="hs-corner hs-corner-br"></div>
-    <img src="IMG_6687.jpeg" alt="Luxury waterfront infinity pool at dusk — Miami" loading="lazy">
-    <div class="gallery-item-overlay">
-      <div class="gallery-item-caption">
-        <span>Pool Deck · Waterfront</span>
-        <p>Infinity edge, Miami waterfront</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="gallery-item" data-cat="pool terrace" data-idx="1" onclick="openLightbox(1)">
-    <div class="hs-corner hs-corner-tl"></div><div class="hs-corner hs-corner-tr"></div>
-    <div class="hs-corner hs-corner-bl"></div><div class="hs-corner hs-corner-br"></div>
-    <img src="IMG_6688.jpeg" alt="Luxury pool at sunset with palm trees — South Florida estate" loading="lazy">
-    <div class="gallery-item-overlay">
-      <div class="gallery-item-caption">
-        <span>Pool Deck · Estate</span>
-        <p>Lagoon pool, Mediterranean estate</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="gallery-item" data-cat="pool terrace" data-idx="2" onclick="openLightbox(2)">
-    <div class="hs-corner hs-corner-tl"></div><div class="hs-corner hs-corner-tr"></div>
-    <div class="hs-corner hs-corner-bl"></div><div class="hs-corner hs-corner-br"></div>
-    <img src="IMG_6689.jpeg" alt="Elegant travertine pool deck at dusk — lakefront estate" loading="lazy">
-    <div class="gallery-item-overlay">
-      <div class="gallery-item-caption">
-        <span>Terrace · Travertine</span>
-        <p>Travertine pool deck, lakefront</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="gallery-item" data-cat="waterfront pool" data-idx="3" onclick="openLightbox(3)">
-    <div class="hs-corner hs-corner-tl"></div><div class="hs-corner hs-corner-tr"></div>
-    <div class="hs-corner hs-corner-bl"></div><div class="hs-corner hs-corner-br"></div>
-    <img src="IMG_6690.jpeg" alt="Illuminated waterfront pool at night — Fort Lauderdale" loading="lazy">
-    <div class="gallery-item-overlay">
-      <div class="gallery-item-caption">
-        <span>Pool Deck · Waterfront</span>
-        <p>Illuminated pool, evening installation</p>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<!-- STATS BAR -->
-<div class="stats-bar reveal">
-  <div class="stat-item">
-    <div class="stat-num">57</div>
-    <div class="stat-label">Estates Completed</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">12</div>
-    <div class="stat-label">Years of Mastery</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">100%</div>
-    <div class="stat-label">Natural Stone</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">∞</div>
-    <div class="stat-label">Generations of Endurance</div>
-  </div>
-</div>
-
-<!-- CTA -->
-<div class="gallery-cta reveal">
+<div class="gallery-cta">
   <h2 class="gallery-cta-title">Your Estate,<br><em>Considered.</em></h2>
   <p class="gallery-cta-sub">Every PHAÖRA Hardscape engagement begins with a private site consultation. We respond within 24 hours.</p>
   <a href="index.html#contact" class="btn-gold">Begin a Private Dialogue</a>
   <a href="index.html" class="btn-outline">Return to Collection</a>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-logo">PHAÖRA</div>
   <div class="footer-copy">© 2026 PHAÖRA · South Florida · All Rights Reserved</div>
 </footer>
 
-<!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" onclick="closeLightboxOnBg(event)">
   <div class="lightbox-inner">
+    <div class="lightbox-counter" id="lightboxCounter"></div>
     <button class="lightbox-close" onclick="closeLightbox()">✕ Close</button>
     <button class="lightbox-nav lightbox-prev" onclick="lightboxNav(-1)">←</button>
     <button class="lightbox-nav lightbox-next" onclick="lightboxNav(1)">→</button>
     <img id="lightboxImg" src="" alt="">
-    <div class="lightbox-caption" id="lightboxCaption"></div>
   </div>
 </div>
 
 <script>
-// Cursor
-var cur=document.getElementById('luxury-cursor'),ring=document.getElementById('luxury-cursor-ring');
-document.addEventListener('mousemove',function(e){cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';setTimeout(function(){ring.style.left=e.clientX+'px';ring.style.top=e.clientY+'px'},80);});
+var PHOTOS = [
+  'IMG_6633.jpeg','IMG_6634.jpeg','IMG_6635.jpeg','IMG_6637.jpeg',
+  'IMG_6638.jpeg','IMG_6639.jpeg','IMG_6640.jpeg','IMG_6641.jpeg',
+  'IMG_6642.jpeg','IMG_6643.jpeg','IMG_6644.jpeg','IMG_6645.jpeg',
+  'IMG_6646.jpeg','IMG_6647.jpeg','IMG_6648.jpeg','IMG_6649.jpeg',
+  'IMG_6650.jpeg','IMG_6651.jpeg','IMG_6652.jpeg','IMG_6653.jpeg',
+  'IMG_6654.jpeg','IMG_6655.jpeg','IMG_6656.jpeg','IMG_6661.jpeg',
+  'IMG_6662.jpeg','IMG_6663.jpeg','IMG_6664.jpeg','IMG_6665.jpeg',
+  'IMG_6666.jpeg','IMG_6667.jpeg','IMG_6669.jpeg','IMG_6671.jpeg',
+  'IMG_6675.jpeg','IMG_6676.jpeg','IMG_6677.jpeg','IMG_6678.jpeg',
+  'IMG_6679.jpeg','IMG_6680.jpeg','IMG_6681.jpeg','IMG_6682.jpeg',
+  'IMG_6683.jpeg','IMG_6684.jpeg','IMG_6685.jpeg','IMG_6686.jpeg',
+  'IMG_6687.jpeg','IMG_6688.jpeg','IMG_6689.jpeg','IMG_6690.jpeg',
+  'IMG_6691.jpeg','IMG_6692.jpeg','IMG_6693.jpeg','IMG_6694.jpeg',
+  'IMG_6695.jpeg','IMG_6696.jpeg','IMG_6697.jpeg','IMG_6698.jpeg',
+  'IMG_6699.jpeg','IMG_6700.jpeg','IMG_6701.jpeg','IMG_6702.jpeg',
+  'IMG_6703.jpeg','IMG_6704.jpeg','IMG_6705.jpeg','IMG_6706.jpeg',
+  'IMG_6707.jpeg','IMG_6708.jpeg','IMG_6709.jpeg','IMG_6710.jpeg',
+  'IMG_6711.jpeg','IMG_6712.jpeg','IMG_6713.jpeg','IMG_6714.jpeg',
+  'IMG_6715.jpeg','IMG_6716.jpeg','IMG_6717.jpeg','IMG_6718.jpeg',
+  'IMG_6719.jpeg','IMG_6720.jpeg','IMG_6721.jpeg','IMG_6722.jpeg',
+  'IMG_6723.jpeg','IMG_6724.jpeg','IMG_6725.jpeg','IMG_6726.jpeg',
+  'IMG_6727.jpeg','IMG_6728.jpeg','IMG_6729.jpeg','IMG_6730.jpeg',
+  'IMG_6731.jpeg','IMG_6732.jpeg','IMG_6733.jpeg','IMG_6734.jpeg',
+  'IMG_6735.jpeg','IMG_6736.jpeg','IMG_6737.jpeg','IMG_6738.jpeg',
+  'IMG_6739.jpeg','IMG_6740.jpeg','IMG_6741.jpeg','IMG_6742.jpeg',
+  'IMG_6743.jpeg','IMG_6744.jpeg','IMG_6745.jpeg','IMG_6746.jpeg',
+  'IMG_6747.jpeg','IMG_6748.jpeg','IMG_6749.jpeg','IMG_6750.jpeg',
+  'IMG_6751.jpeg','IMG_6752.jpeg','IMG_6753.jpeg','IMG_6754.jpeg',
+  'IMG_6755.jpeg','IMG_6756.jpeg','IMG_6757.jpeg','IMG_6758.jpeg',
+  'IMG_6759.jpeg','IMG_6760.jpeg','IMG_6761.jpeg','IMG_6762.jpeg',
+  'IMG_6763.jpeg','IMG_6764.jpeg','IMG_6765.jpeg','IMG_6766.jpeg',
+  'IMG_6767.jpeg','IMG_6768.jpeg','IMG_6769.jpeg','IMG_6770.jpeg',
+  'IMG_6771.jpeg','IMG_6772.jpeg','IMG_6773.jpeg','IMG_6774.jpeg',
+  'IMG_6775.jpeg','IMG_6776.jpeg','IMG_6777.jpeg','IMG_6778.jpeg',
+  'IMG_6779.jpeg','IMG_6780.jpeg','IMG_6781.jpeg','IMG_6782.jpeg',
+  'IMG_6783.jpeg','IMG_6784.jpeg',
+  'IMG_6906.jpeg','IMG_6907.jpeg','IMG_6909.jpeg','IMG_6910.jpeg',
+  'IMG_6911.jpeg','IMG_6912.jpeg','IMG_6913.jpeg','IMG_6914.jpeg',
+  'IMG_6915.jpeg'
+];
 
-// Reveal on scroll
-var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('visible')});},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el)});
+document.getElementById('photoCount').textContent = PHOTOS.length + ' INSTALLATIONS';
 
-// Gallery items reveal stagger
-var items=document.querySelectorAll('.gallery-item');
-items.forEach(function(el,i){
-  el.style.opacity='0';el.style.transform='translateY(20px)';el.style.transition='opacity 0.7s ease '+(i*0.06)+'s, transform 0.7s ease '+(i*0.06)+'s';
-  var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){el.style.opacity='1';el.style.transform='translateY(0)';}},{threshold:0.05});
-  io.observe(el);
+var grid = document.getElementById('galleryGrid');
+PHOTOS.forEach(function(fname, idx) {
+  var item = document.createElement('div');
+  item.className = 'gallery-item';
+  item.dataset.idx = idx;
+  item.innerHTML =
+    '<div class="hs-corner hs-corner-tl"></div>' +
+    '<div class="hs-corner hs-corner-tr"></div>' +
+    '<div class="hs-corner hs-corner-bl"></div>' +
+    '<div class="hs-corner hs-corner-br"></div>' +
+    '<img src="' + fname + '" alt="PHAÖRA Hardscape — South Florida estate installation" loading="lazy">' +
+    '<div class="gallery-item-overlay"></div>';
+  item.onclick = function() { openLightbox(idx); };
+  grid.appendChild(item);
 });
 
-// Filter
-function filterGallery(cat,btn){
-  document.querySelectorAll('.fbtn').forEach(function(b){b.classList.remove('active')});
-  btn.classList.add('active');
-  document.querySelectorAll('.gallery-item').forEach(function(item){
-    var itemCat=item.getAttribute('data-cat')||'';
-    item.style.display=(cat==='all'||itemCat.indexOf(cat)>-1)?'':'none';
-  });
+var currentIdx = 0;
+function openLightbox(idx) {
+  currentIdx = idx;
+  document.getElementById('lightboxImg').src = PHOTOS[idx];
+  document.getElementById('lightboxCounter').textContent = (idx + 1) + ' / ' + PHOTOS.length;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
 }
-
-// Lightbox
-var galleryImgs=[];
-document.querySelectorAll('.gallery-item').forEach(function(item){
-  var img=item.querySelector('img');
-  var cap=item.querySelector('.gallery-item-caption p');
-  galleryImgs.push({src:img.src,alt:img.alt,cap:cap?cap.textContent:''});
-});
-var currentLBIdx=0;
-function openLightbox(idx){
-  currentLBIdx=idx;
-  var lb=document.getElementById('lightbox');
-  document.getElementById('lightboxImg').src=galleryImgs[idx].src;
-  document.getElementById('lightboxImg').alt=galleryImgs[idx].alt;
-  document.getElementById('lightboxCaption').textContent=galleryImgs[idx].cap;
-  lb.classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closeLightbox(){
+function closeLightbox() {
   document.getElementById('lightbox').classList.remove('open');
-  document.body.style.overflow='';
+  document.body.style.overflow = '';
 }
-function closeLightboxOnBg(e){if(e.target===document.getElementById('lightbox'))closeLightbox();}
-function lightboxNav(dir){
-  currentLBIdx=(currentLBIdx+dir+galleryImgs.length)%galleryImgs.length;
-  var visible=Array.from(document.querySelectorAll('.gallery-item')).filter(function(i){return i.style.display!=='none'});
-  var imgs=visible.map(function(i){var img=i.querySelector('img');var cap=i.querySelector('.gallery-item-caption p');return{src:img.src,alt:img.alt,cap:cap?cap.textContent:''};});
-  currentLBIdx=(currentLBIdx+imgs.length)%imgs.length;
-  document.getElementById('lightboxImg').src=imgs[currentLBIdx].src;
-  document.getElementById('lightboxImg').alt=imgs[currentLBIdx].alt;
-  document.getElementById('lightboxCaption').textContent=imgs[currentLBIdx].cap;
+function closeLightboxOnBg(e) { if (e.target === document.getElementById('lightbox')) closeLightbox(); }
+function lightboxNav(dir) {
+  currentIdx = (currentIdx + dir + PHOTOS.length) % PHOTOS.length;
+  document.getElementById('lightboxImg').src = PHOTOS[currentIdx];
+  document.getElementById('lightboxCounter').textContent = (currentIdx + 1) + ' / ' + PHOTOS.length;
 }
-document.addEventListener('keydown',function(e){
-  var lb=document.getElementById('lightbox');
-  if(lb.classList.contains('open')){
-    if(e.key==='ArrowRight')lightboxNav(1);
-    if(e.key==='ArrowLeft')lightboxNav(-1);
-    if(e.key==='Escape')closeLightbox();
-  }
+document.addEventListener('keydown', function(e) {
+  if (!document.getElementById('lightbox').classList.contains('open')) return;
+  if (e.key === 'ArrowRight') lightboxNav(1);
+  if (e.key === 'ArrowLeft') lightboxNav(-1);
+  if (e.key === 'Escape') closeLightbox();
 });
 </script>
 </body>
