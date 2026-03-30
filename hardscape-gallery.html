@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>PHAÖRA · Hardscape Gallery — South Florida Estate Landscapes</title>
+<meta name="description" content="PHAÖRA Hardscape transforms South Florida estates into permanent, considered landscapes. View the full portfolio of luxury pool decks, travertine terraces, and waterfront installations.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Cinzel:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#C9A84C;--gold-light:#E8D5A3;--gold-dim:rgba(201,168,76,0.15);--black:#0A0A0A;--dark:#111111;--dark2:#161616;--cream:#FAF7F2;--mid:#888888;--light:#CCCCCC}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--cream);font-family:'Cormorant Garamond','Didot',Georgia,serif;font-weight:300;overflow-x:hidden;-webkit-font-smoothing:antialiased;letter-spacing:0.03em}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:2rem 4rem;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);background:rgba(10,10,10,0.75);border-bottom:1px solid rgba(201,168,76,0.08);transition:all 0.6s}
+.nav-logo{font-family:'Cinzel','Cormorant Garamond',Georgia,serif;font-size:1.4rem;font-weight:400;color:var(--gold);letter-spacing:0.5em;cursor:pointer;text-shadow:0 0 30px rgba(201,168,76,0.25);white-space:nowrap;text-decoration:none}
+.nav-back{font-size:0.38rem;letter-spacing:0.5em;text-transform:uppercase;color:rgba(201,168,76,0.5);text-decoration:none;transition:color 0.4s;font-family:-apple-system,'Helvetica Neue',sans-serif;border:1px solid rgba(201,168,76,0.18);padding:0.55rem 1.4rem}
+.nav-back:hover{color:var(--gold);border-color:rgba(201,168,76,0.45)}
+.nav-eyebrow{font-size:0.35rem;letter-spacing:0.55em;color:rgba(201,168,76,0.35);text-transform:uppercase;font-family:-apple-system,'Helvetica Neue',sans-serif}
+
+/* HERO */
+.gallery-hero{padding:10rem 4rem 4rem;text-align:center;position:relative}
+.gallery-hero::after{content:'';position:absolute;bottom:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.2),transparent)}
+.gallery-eyebrow{font-size:0.42rem;letter-spacing:0.65em;color:rgba(201,168,76,0.6);text-transform:uppercase;margin-bottom:1.5rem;font-family:-apple-system,'Helvetica Neue',sans-serif}
+.gallery-title{font-family:'Cormorant Garamond','Didot','Bodoni 72',Georgia,serif;font-size:clamp(3rem,8vw,6.5rem);font-weight:300;color:var(--cream);letter-spacing:0.1em;line-height:1;margin-bottom:1.5rem}
+.gallery-title span{color:var(--gold);font-style:italic}
+.gallery-rule{display:flex;align-items:center;justify-content:center;gap:1rem;margin:1.5rem auto 1.5rem;max-width:300px}
+.gallery-rule::before,.gallery-rule::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.3))}
+.gallery-rule span{color:rgba(201,168,76,0.5);font-size:0.5rem}
+.gallery-desc{font-size:1.05rem;font-style:italic;color:rgba(250,247,242,0.45);letter-spacing:0.06em;max-width:600px;margin:0 auto 3rem;line-height:1.9}
+
+/* FILTER BAR */
+.filter-bar{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;padding:2.5rem 4rem;border-bottom:1px solid rgba(201,168,76,0.06)}
+.fbtn{font-size:0.38rem;letter-spacing:0.45em;text-transform:uppercase;color:rgba(201,168,76,0.35);background:none;border:none;cursor:pointer;padding:0.4rem 0;border-bottom:1px solid transparent;transition:all 0.4s;font-family:-apple-system,'Helvetica Neue',sans-serif}
+.fbtn:hover,.fbtn.active{color:rgba(201,168,76,0.9);border-color:rgba(201,168,76,0.5)}
+
+/* MASONRY GRID */
+.gallery-grid{columns:3;column-gap:3px;padding:3px;max-width:1600px;margin:3px auto}
+.gallery-item{break-inside:avoid;position:relative;overflow:hidden;cursor:pointer;margin-bottom:3px;background:#111}
+.gallery-item img{width:100%;height:auto;display:block;transition:transform 0.8s cubic-bezier(0.16,1,0.3,1),filter 0.5s}
+.gallery-item:hover img{transform:scale(1.04);filter:brightness(0.85)}
+.gallery-item-overlay{position:absolute;inset:0;background:rgba(0,0,0,0);transition:background 0.5s;display:flex;align-items:flex-end;padding:1.5rem}
+.gallery-item:hover .gallery-item-overlay{background:rgba(0,0,0,0.35)}
+.gallery-item-caption{opacity:0;transition:opacity 0.4s;transform:translateY(8px);transition:opacity 0.4s,transform 0.4s}
+.gallery-item:hover .gallery-item-caption{opacity:1;transform:translateY(0)}
+.gallery-item-caption span{font-size:0.38rem;letter-spacing:0.35em;color:rgba(201,168,76,0.8);text-transform:uppercase;font-family:-apple-system,'Helvetica Neue',sans-serif;display:block}
+.gallery-item-caption p{font-size:0.85rem;color:rgba(250,247,242,0.75);margin-top:0.3rem;font-style:italic}
+
+/* CORNER ACCENTS */
+.hs-corner{position:absolute;width:14px;height:14px;z-index:3;pointer-events:none}
+.hs-corner-tl{top:8px;left:8px;border-top:1px solid rgba(201,168,76,0.45);border-left:1px solid rgba(201,168,76,0.45)}
+.hs-corner-tr{top:8px;right:8px;border-top:1px solid rgba(201,168,76,0.45);border-right:1px solid rgba(201,168,76,0.45)}
+.hs-corner-bl{bottom:8px;left:8px;border-bottom:1px solid rgba(201,168,76,0.45);border-left:1px solid rgba(201,168,76,0.45)}
+.hs-corner-br{bottom:8px;right:8px;border-bottom:1px solid rgba(201,168,76,0.45);border-right:1px solid rgba(201,168,76,0.45)}
+
+/* FEATURED (wide) items */
+.gallery-item.wide{break-inside:avoid;column-span:none}
+
+/* LIGHTBOX */
+.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:9999;align-items:center;justify-content:center;cursor:pointer}
+.lightbox.open{display:flex}
+.lightbox-inner{position:relative;max-width:90vw;max-height:90vh;cursor:default}
+.lightbox-inner img{max-width:90vw;max-height:85vh;object-fit:contain;display:block}
+.lightbox-close{position:absolute;top:-2.5rem;right:0;background:none;border:1px solid rgba(201,168,76,0.25);color:rgba(201,168,76,0.6);font-size:0.55rem;letter-spacing:0.25em;padding:6px 16px;cursor:pointer;font-family:inherit;transition:all 0.3s}
+.lightbox-close:hover{color:var(--gold);border-color:rgba(201,168,76,0.6)}
+.lightbox-caption{text-align:center;margin-top:1rem;font-size:0.75rem;font-style:italic;color:rgba(250,247,242,0.4);letter-spacing:0.08em}
+.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);background:none;border:1px solid rgba(201,168,76,0.2);color:rgba(201,168,76,0.5);width:44px;height:44px;cursor:pointer;font-size:1rem;transition:all 0.3s;font-family:inherit;display:flex;align-items:center;justify-content:center}
+.lightbox-nav:hover{border-color:rgba(201,168,76,0.5);color:rgba(201,168,76,0.9)}
+.lightbox-prev{left:-60px}
+.lightbox-next{right:-60px}
+
+/* STATS BAR */
+.stats-bar{display:flex;justify-content:center;gap:5rem;padding:4rem 2rem;border-top:1px solid rgba(201,168,76,0.06);border-bottom:1px solid rgba(201,168,76,0.06);margin:0}
+.stat-item{text-align:center}
+.stat-num{font-family:'Cormorant Garamond',Georgia,serif;font-size:3rem;font-weight:300;color:var(--gold);letter-spacing:0.1em;line-height:1}
+.stat-label{font-size:0.38rem;letter-spacing:0.45em;color:rgba(201,168,76,0.4);text-transform:uppercase;font-family:-apple-system,sans-serif;margin-top:0.5rem}
+
+/* CTA SECTION */
+.gallery-cta{text-align:center;padding:6rem 4rem;background:linear-gradient(rgba(10,10,10,0.92),rgba(10,10,10,0.92)),url('IMG_6689.jpeg') center/cover no-repeat}
+.gallery-cta-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:300;color:var(--cream);letter-spacing:0.08em;margin-bottom:1rem}
+.gallery-cta-title em{color:var(--gold);font-style:italic}
+.gallery-cta-sub{font-size:0.85rem;font-style:italic;color:rgba(250,247,242,0.45);letter-spacing:0.08em;max-width:500px;margin:0 auto 2.5rem;line-height:1.9}
+.btn-gold{padding:1rem 3rem;background:rgba(201,168,76,0.9);color:var(--black);font-size:0.5rem;letter-spacing:0.35em;text-transform:uppercase;font-weight:600;border:none;cursor:pointer;transition:all 0.4s;font-family:-apple-system,'Helvetica Neue',sans-serif;text-decoration:none;display:inline-block}
+.btn-gold:hover{background:var(--gold-light);transform:translateY(-2px)}
+.btn-outline{padding:1rem 3rem;border:1px solid rgba(201,168,76,0.35);color:rgba(201,168,76,0.7);font-size:0.5rem;letter-spacing:0.35em;text-transform:uppercase;background:rgba(10,10,10,0.3);cursor:pointer;transition:all 0.4s;font-family:-apple-system,'Helvetica Neue',sans-serif;text-decoration:none;display:inline-block;margin-left:1rem}
+.btn-outline:hover{color:var(--gold);border-color:rgba(201,168,76,0.6)}
+
+/* FOOTER */
+footer{padding:3rem 4rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(201,168,76,0.08)}
+.footer-logo{font-family:'Cinzel',Georgia,serif;font-size:1.1rem;color:rgba(201,168,76,0.6);letter-spacing:0.5em}
+.footer-copy{font-size:0.35rem;letter-spacing:0.3em;color:rgba(201,168,76,0.25);font-family:-apple-system,sans-serif}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.9s cubic-bezier(0.16,1,0.3,1),transform 0.9s cubic-bezier(0.16,1,0.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:1024px){.gallery-grid{columns:2}.lightbox-prev{left:-50px}.lightbox-next{right:-50px}}
+@media(max-width:768px){
+  nav{padding:1.5rem 1.5rem}.gallery-hero{padding:8rem 1.5rem 3rem}
+  .gallery-grid{columns:1;padding:2px}.filter-bar{padding:2rem 1.5rem;gap:1rem}
+  .stats-bar{gap:2.5rem;flex-wrap:wrap;padding:3rem 1.5rem}
+  .gallery-cta{padding:4rem 1.5rem}
+  footer{flex-direction:column;gap:1rem;text-align:center;padding:2rem 1.5rem}
+  .lightbox-prev{left:-40px;width:36px;height:36px}.lightbox-next{right:-40px;width:36px;height:36px}
+}
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="luxury-cursor" style="position:fixed;width:8px;height:8px;background:rgba(201,168,76,0.8);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width 0.2s,height 0.2s,opacity 0.2s;mix-blend-mode:difference"></div>
+<div id="luxury-cursor-ring" style="position:fixed;width:32px;height:32px;border:1px solid rgba(201,168,76,0.35);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:all 0.12s ease;mix-blend-mode:difference"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">PHAÖRA</a>
+  <span class="nav-eyebrow">Hardscape · Full Gallery</span>
+  <a href="index.html" class="nav-back">← Back to Estate</a>
+</nav>
+
+<!-- HERO -->
+<div class="gallery-hero reveal">
+  <div class="gallery-eyebrow">✦ PHAÖRA · Hardscape</div>
+  <h1 class="gallery-title">The Earth,<br><span>Shaped to Last</span></h1>
+  <div class="gallery-rule"><span>✦</span></div>
+  <p class="gallery-desc">Every terrace a statement. Every pool deck a permanent record of mastery. PHAÖRA Hardscape serves the most considered estates in South Florida.</p>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar reveal">
+  <button class="fbtn active" onclick="filterGallery('all',this)">All Work</button>
+  <button class="fbtn" onclick="filterGallery('pool',this)">Pool Decks</button>
+  <button class="fbtn" onclick="filterGallery('terrace',this)">Terraces</button>
+  <button class="fbtn" onclick="filterGallery('waterfront',this)">Waterfront</button>
+  <button class="fbtn" onclick="filterGallery('driveway',this)">Driveways</button>
+</div>
+
+<!-- GALLERY GRID -->
+<div class="gallery-grid" id="galleryGrid">
+
+  <div class="gallery-item" data-cat="waterfront pool" data-idx="0" onclick="openLightbox(0)">
+    <div class="hs-corner hs-corner-tl"></div><div class="hs-corner hs-corner-tr"></div>
+    <div class="hs-corner hs-corner-bl"></div><div class="hs-corner hs-corner-br"></div>
+    <img src="IMG_6687.jpeg" alt="Luxury waterfront infinity pool at dusk — Miami" loading="lazy">
+    <div class="gallery-item-overlay">
+      <div class="gallery-item-caption">
+        <span>Pool Deck · Waterfront</span>
+        <p>Infinity edge, Miami waterfront</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="gallery-item" data-cat="pool terrace" data-idx="1" onclick="openLightbox(1)">
+    <div class="hs-corner hs-corner-tl"></div><div class="hs-corner hs-corner-tr"></div>
+    <div class="hs-corner hs-corner-bl"></div><div class="hs-corner hs-corner-br"></div>
+    <img src="IMG_6688.jpeg" alt="Luxury pool at sunset with palm trees — South Florida estate" loading="lazy">
+    <div class="gallery-item-overlay">
+      <div class="gallery-item-caption">
+        <span>Pool Deck · Estate</span>
+        <p>Lagoon pool, Mediterranean estate</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="gallery-item" data-cat="pool terrace" data-idx="2" onclick="openLightbox(2)">
+    <div class="hs-corner hs-corner-tl"></div><div class="hs-corner hs-corner-tr"></div>
+    <div class="hs-corner hs-corner-bl"></div><div class="hs-corner hs-corner-br"></div>
+    <img src="IMG_6689.jpeg" alt="Elegant travertine pool deck at dusk — lakefront estate" loading="lazy">
+    <div class="gallery-item-overlay">
+      <div class="gallery-item-caption">
+        <span>Terrace · Travertine</span>
+        <p>Travertine pool deck, lakefront</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="gallery-item" data-cat="waterfront pool" data-idx="3" onclick="openLightbox(3)">
+    <div class="hs-corner hs-corner-tl"></div><div class="hs-corner hs-corner-tr"></div>
+    <div class="hs-corner hs-corner-bl"></div><div class="hs-corner hs-corner-br"></div>
+    <img src="IMG_6690.jpeg" alt="Illuminated waterfront pool at night — Fort Lauderdale" loading="lazy">
+    <div class="gallery-item-overlay">
+      <div class="gallery-item-caption">
+        <span>Pool Deck · Waterfront</span>
+        <p>Illuminated pool, evening installation</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar reveal">
+  <div class="stat-item">
+    <div class="stat-num">57</div>
+    <div class="stat-label">Estates Completed</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">12</div>
+    <div class="stat-label">Years of Mastery</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">100%</div>
+    <div class="stat-label">Natural Stone</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">∞</div>
+    <div class="stat-label">Generations of Endurance</div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="gallery-cta reveal">
+  <h2 class="gallery-cta-title">Your Estate,<br><em>Considered.</em></h2>
+  <p class="gallery-cta-sub">Every PHAÖRA Hardscape engagement begins with a private site consultation. We respond within 24 hours.</p>
+  <a href="index.html#contact" class="btn-gold">Begin a Private Dialogue</a>
+  <a href="index.html" class="btn-outline">Return to Collection</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">PHAÖRA</div>
+  <div class="footer-copy">© 2026 PHAÖRA · South Florida · All Rights Reserved</div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightboxOnBg(event)">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" onclick="closeLightbox()">✕ Close</button>
+    <button class="lightbox-nav lightbox-prev" onclick="lightboxNav(-1)">←</button>
+    <button class="lightbox-nav lightbox-next" onclick="lightboxNav(1)">→</button>
+    <img id="lightboxImg" src="" alt="">
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+</div>
+
+<script>
+// Cursor
+var cur=document.getElementById('luxury-cursor'),ring=document.getElementById('luxury-cursor-ring');
+document.addEventListener('mousemove',function(e){cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';setTimeout(function(){ring.style.left=e.clientX+'px';ring.style.top=e.clientY+'px'},80);});
+
+// Reveal on scroll
+var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('visible')});},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el)});
+
+// Gallery items reveal stagger
+var items=document.querySelectorAll('.gallery-item');
+items.forEach(function(el,i){
+  el.style.opacity='0';el.style.transform='translateY(20px)';el.style.transition='opacity 0.7s ease '+(i*0.06)+'s, transform 0.7s ease '+(i*0.06)+'s';
+  var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){el.style.opacity='1';el.style.transform='translateY(0)';}},{threshold:0.05});
+  io.observe(el);
+});
+
+// Filter
+function filterGallery(cat,btn){
+  document.querySelectorAll('.fbtn').forEach(function(b){b.classList.remove('active')});
+  btn.classList.add('active');
+  document.querySelectorAll('.gallery-item').forEach(function(item){
+    var itemCat=item.getAttribute('data-cat')||'';
+    item.style.display=(cat==='all'||itemCat.indexOf(cat)>-1)?'':'none';
+  });
+}
+
+// Lightbox
+var galleryImgs=[];
+document.querySelectorAll('.gallery-item').forEach(function(item){
+  var img=item.querySelector('img');
+  var cap=item.querySelector('.gallery-item-caption p');
+  galleryImgs.push({src:img.src,alt:img.alt,cap:cap?cap.textContent:''});
+});
+var currentLBIdx=0;
+function openLightbox(idx){
+  currentLBIdx=idx;
+  var lb=document.getElementById('lightbox');
+  document.getElementById('lightboxImg').src=galleryImgs[idx].src;
+  document.getElementById('lightboxImg').alt=galleryImgs[idx].alt;
+  document.getElementById('lightboxCaption').textContent=galleryImgs[idx].cap;
+  lb.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow='';
+}
+function closeLightboxOnBg(e){if(e.target===document.getElementById('lightbox'))closeLightbox();}
+function lightboxNav(dir){
+  currentLBIdx=(currentLBIdx+dir+galleryImgs.length)%galleryImgs.length;
+  var visible=Array.from(document.querySelectorAll('.gallery-item')).filter(function(i){return i.style.display!=='none'});
+  var imgs=visible.map(function(i){var img=i.querySelector('img');var cap=i.querySelector('.gallery-item-caption p');return{src:img.src,alt:img.alt,cap:cap?cap.textContent:''};});
+  currentLBIdx=(currentLBIdx+imgs.length)%imgs.length;
+  document.getElementById('lightboxImg').src=imgs[currentLBIdx].src;
+  document.getElementById('lightboxImg').alt=imgs[currentLBIdx].alt;
+  document.getElementById('lightboxCaption').textContent=imgs[currentLBIdx].cap;
+}
+document.addEventListener('keydown',function(e){
+  var lb=document.getElementById('lightbox');
+  if(lb.classList.contains('open')){
+    if(e.key==='ArrowRight')lightboxNav(1);
+    if(e.key==='ArrowLeft')lightboxNav(-1);
+    if(e.key==='Escape')closeLightbox();
+  }
+});
+</script>
+</body>
+</html>
