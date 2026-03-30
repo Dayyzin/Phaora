@@ -474,6 +474,11 @@ footer{background:var(--dark2);border-top:1px solid rgba(201,168,76,0.15);paddin
 .story-vis{position:relative;aspect-ratio:3/4;background:linear-gradient(135deg,#0d0d0b 0%,#16140f 50%,#0d0d0b 100%);border:1px solid rgba(201,168,76,0.08);overflow:hidden;display:flex;align-items:center;justify-content:center}
 .story-vis-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.03) 1px,transparent 1px);background-size:30px 30px}
 .story-vis-glow{position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 60%,rgba(201,168,76,0.07) 0%,transparent 70%)}
+@keyframes fabFloat{0%,100%{transform:translateY(0) scale(1);box-shadow:0 0 0 1.5px rgba(201,168,76,0.75),0 0 0 6px rgba(201,168,76,0.07),0 0 35px rgba(201,168,76,0.28),0 0 70px rgba(201,168,76,0.10),0 28px 55px rgba(0,0,0,0.9)}50%{transform:translateY(-18px) scale(1.02);box-shadow:0 0 0 1.5px rgba(201,168,76,0.95),0 0 0 8px rgba(201,168,76,0.12),0 0 55px rgba(201,168,76,0.42),0 0 100px rgba(201,168,76,0.16),0 44px 75px rgba(0,0,0,0.65)}}
+@keyframes fabGlow{0%,100%{opacity:0.55}50%{opacity:1}}
+.fabiano-portrait{width:70%;aspect-ratio:1;border-radius:50%;object-fit:cover;object-position:center 12%;filter:contrast(1.32) brightness(0.75) saturate(0.55);animation:fabFloat 7s ease-in-out infinite;position:relative;z-index:2}
+.fabiano-space-bg{position:absolute;inset:0;background:radial-gradient(ellipse 52% 48% at 50% 44%,rgba(201,168,76,0.05) 0%,transparent 65%),radial-gradient(ellipse 38% 60% at 50% 48%,rgba(25,15,50,0.18) 0%,transparent 70%);z-index:1}
+.fabiano-halo{position:absolute;top:50%;left:50%;transform:translate(-50%,-58%);width:75%;aspect-ratio:1;border-radius:50%;background:radial-gradient(ellipse at center,rgba(201,168,76,0.09) 0%,transparent 70%);animation:fabGlow 7s ease-in-out infinite;z-index:1;pointer-events:none}
 .story-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:3rem;border:1px solid rgba(201,168,76,0.08)}
 .story-stat-item{padding:1.5rem;border-right:1px solid rgba(201,168,76,0.08);border-bottom:1px solid rgba(201,168,76,0.08);transition:background 0.3s}
 .story-stat-item:nth-child(2n){border-right:none}
@@ -2056,10 +2061,13 @@ HARDSCAPE SECTION
 
 <section id="story">
   <div class="two-col reveal">
-    <div class="story-vis">
-      <img src="IMG_6908.jpeg" alt="Miner extracting amethyst geodes in Minas Gerais, Brazil" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.85;filter:brightness(0.8) saturate(1.1)">
-      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,0.7) 0%,transparent 60%);z-index:1"></div>
-      <div class="story-vis-cap" style="z-index:2">
+    <div class="story-vis" style="overflow:visible;background:linear-gradient(135deg,#070709 0%,#0e0c0a 50%,#070709 100%)">
+      <div class="story-vis-grid"></div>
+      <div class="story-vis-glow"></div>
+      <div class="fabiano-space-bg"></div>
+      <div class="fabiano-halo"></div>
+      <img src="fabiano.jpeg" alt="Fabiano — Master Craftsman, Minas Gerais, Brazil" class="fabiano-portrait" loading="lazy">
+      <div class="story-vis-cap" style="z-index:3">
         <div class="story-vis-lbl">Master Craftsman</div>
         <div class="story-vis-name">Fabiano · Minas Gerais, Brazil</div>
       </div>
