@@ -415,9 +415,7 @@ footer{background:var(--dark2);border-top:1px solid rgba(201,168,76,0.15);paddin
 .gold-rule .rule-diamond{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(0) rotate(45deg);width:4px;height:4px;background:rgba(201,168,76,0.7);opacity:0;transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1) 0.9s,opacity 0.4s ease 0.9s}
 .gold-rule.drawn .rule-diamond{transform:translate(-50%,-50%) scale(1) rotate(45deg);opacity:1}
 
-#commissionOverlay{position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9000;display:none;align-items:center;justify-content:center;backdrop-filter:blur(10px)}
-#commissionOverlay.open{display:flex}
-.commission-modal{background:#0e0e0e;border:1px solid rgba(201,168,76,0.15);max-width:560px;width:90%;max-height:85vh;overflow-y:auto;padding:3rem;position:relative}
+/* #commissionOverlay removed — commission is now an inline section */
 .commission-step{display:none}.commission-step.active{display:block}
 .commission-step-num{font-size:0.45rem;letter-spacing:0.5em;color:rgba(201,168,76,0.4);text-transform:uppercase;font-family:-apple-system,sans-serif;margin-bottom:1rem}
 .commission-title{font-family:‘Cormorant Garamond’,Georgia,serif;font-size:2rem;font-weight:300;color:var(–cream);margin-bottom:0.5rem;line-height:1.2}
@@ -440,6 +438,79 @@ footer{background:var(--dark2);border-top:1px solid rgba(201,168,76,0.15);paddin
 .commission-next:hover{background:var(–gold)}
 .commission-close{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;color:rgba(201,168,76,0.3);cursor:pointer;font-size:1rem;transition:color 0.3s}
 .commission-close:hover{color:rgba(201,168,76,0.7)}
+
+/* ===== COMMISSION SECTION (INLINE) ===== */
+@keyframes csStep{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.commission-section{background:#060605;padding:0;position:relative;overflow:hidden}
+.commission-section::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0}
+.cs-intro{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem;position:relative;z-index:1}
+.cs-intro-note{font-size:0.4rem;letter-spacing:0.45em;color:rgba(201,168,76,0.28);text-transform:uppercase;font-family:-apple-system,sans-serif;margin-top:2rem}
+.cs-form{display:none;min-height:100vh;align-items:flex-start;justify-content:center;padding:5.5rem 2rem 6rem;position:relative;z-index:1}
+.cs-form.active{display:flex}
+.cs-prog-wrap{position:absolute;top:0;left:0;right:0;height:1px;background:rgba(201,168,76,0.08);z-index:2}
+.cs-prog-fill{height:100%;background:linear-gradient(90deg,rgba(201,168,76,0.35),rgba(201,168,76,0.8));transition:width 0.65s cubic-bezier(0.16,1,0.3,1);width:0%}
+.cs-card{width:100%;max-width:720px}
+.cs-step-label{font-size:0.4rem;letter-spacing:0.52em;color:rgba(201,168,76,0.28);text-transform:uppercase;font-family:-apple-system,sans-serif}
+.cs-step-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2.2rem,5vw,3.4rem);font-weight:300;color:#FAF7F2;line-height:1.08;margin-bottom:0.5rem}
+.cs-step-body{font-family:'Cormorant Garamond',Georgia,serif;font-size:1rem;color:rgba(160,148,130,0.7);font-style:italic;line-height:1.75;margin-bottom:2.5rem;max-width:500px}
+.cs-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:2.5rem}
+.cs-stones{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:2.5rem}
+@media(max-width:640px){.cs-grid-3{grid-template-columns:repeat(2,1fr)}.cs-stones{grid-template-columns:repeat(2,1fr)}}
+.cs-opt-card{position:relative;border:1px solid rgba(201,168,76,0.09);padding:1.15rem 1rem 1rem;cursor:pointer;transition:border-color 0.3s,background 0.3s;overflow:hidden;background:#0b0a08}
+.cs-opt-card:hover{border-color:rgba(201,168,76,0.32)}
+.cs-opt-card.selected{border-color:rgba(201,168,76,0.55);background:#0f0d0a}
+.cs-opt-card.selected::after{content:'✦';position:absolute;top:7px;right:9px;font-size:0.38rem;color:rgba(201,168,76,0.65)}
+.cs-opt-name{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.05rem;color:#FAF7F2;margin-bottom:3px;line-height:1.2}
+.cs-opt-sub{font-size:0.34rem;letter-spacing:0.18em;color:rgba(201,168,76,0.3);text-transform:uppercase;font-family:-apple-system,sans-serif}
+.cs-stone-card{aspect-ratio:1;position:relative;border:1px solid rgba(201,168,76,0.07);cursor:pointer;overflow:hidden;transition:border-color 0.3s,transform 0.25s}
+.cs-stone-card:hover{border-color:rgba(201,168,76,0.38);transform:scale(1.025)}
+.cs-stone-card.selected{border-color:rgba(201,168,76,0.65);transform:scale(1.025)}
+.cs-stone-card.selected::after{content:'✦';position:absolute;top:8px;right:10px;font-size:0.48rem;color:rgba(201,168,76,0.88);z-index:3}
+.cs-stone-bg{position:absolute;inset:0;opacity:0.55;transition:opacity 0.3s}
+.cs-stone-card:hover .cs-stone-bg,.cs-stone-card.selected .cs-stone-bg{opacity:0.78}
+.cs-stone-label{position:absolute;bottom:0;left:0;right:0;padding:0.8rem 0.7rem 0.65rem;background:linear-gradient(transparent,rgba(0,0,0,0.88));z-index:1}
+.cs-stone-name{font-family:'Cormorant Garamond',Georgia,serif;font-size:0.88rem;color:#FAF7F2;display:block;line-height:1.2}
+.cs-stone-sub{font-size:0.3rem;letter-spacing:0.18em;color:rgba(201,168,76,0.38);text-transform:uppercase;font-family:-apple-system,sans-serif}
+.cs-size-card{display:flex;align-items:center;gap:1.5rem;padding:1.4rem 1.75rem;border:1px solid rgba(201,168,76,0.09);cursor:pointer;transition:all 0.3s;margin-bottom:8px;background:#0b0a08;position:relative}
+.cs-size-card:hover{border-color:rgba(201,168,76,0.28)}
+.cs-size-card.selected{border-color:rgba(201,168,76,0.55);background:#0f0d0a}
+.cs-size-card.selected::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:rgba(201,168,76,0.6)}
+.cs-size-roman{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.8rem;font-weight:300;color:rgba(201,168,76,0.18);min-width:2.2rem;transition:color 0.3s}
+.cs-size-card.selected .cs-size-roman{color:rgba(201,168,76,0.55)}
+.cs-size-info{flex:1}
+.cs-size-name{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.15rem;color:#FAF7F2;margin-bottom:3px}
+.cs-size-dims{font-size:0.35rem;letter-spacing:0.22em;color:rgba(201,168,76,0.3);text-transform:uppercase;font-family:-apple-system,sans-serif}
+.cs-size-price{font-family:'Cormorant Garamond',Georgia,serif;font-size:0.85rem;color:rgba(201,168,76,0.4);text-align:right;transition:color 0.3s;white-space:nowrap}
+.cs-size-card.selected .cs-size-price{color:rgba(201,168,76,0.75)}
+.cs-fields{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem 2rem;margin-bottom:1rem}
+@media(max-width:640px){.cs-fields{grid-template-columns:1fr}}
+.cs-field-full{grid-column:1/-1}
+.cs-field{display:flex;flex-direction:column;gap:0.35rem}
+.cs-field label{font-size:0.4rem;letter-spacing:0.38em;color:rgba(201,168,76,0.38);text-transform:uppercase;font-family:-apple-system,sans-serif}
+.cs-field input,.cs-field select,.cs-field textarea{background:transparent;border:none;border-bottom:1px solid rgba(201,168,76,0.16);color:#FAF7F2;font-size:0.95rem;padding:0.45rem 0;font-family:'Cormorant Garamond',Georgia,serif;outline:none;transition:border-color 0.3s;width:100%;resize:none}
+.cs-field input:focus,.cs-field select:focus,.cs-field textarea:focus{border-bottom-color:rgba(201,168,76,0.5)}
+.cs-field select{-webkit-appearance:none;cursor:pointer;background:#060605}
+.cs-timeline-check{display:flex;align-items:center;gap:0.75rem;margin-top:0.75rem;cursor:pointer}
+.cs-timeline-check input[type=checkbox]{width:13px;height:13px;accent-color:rgba(201,168,76,0.7);cursor:pointer;flex-shrink:0}
+.cs-timeline-check span{font-family:'Cormorant Garamond',Georgia,serif;font-size:0.85rem;color:rgba(201,168,76,0.4);font-style:italic}
+.cs-summary-box{border:1px solid rgba(201,168,76,0.13);padding:2rem 1.75rem 1.5rem;margin-bottom:1.25rem;position:relative;background:#090807}
+.cs-summary-box::before{content:'COMMISSION BRIEF';position:absolute;top:-0.55rem;left:1.5rem;font-size:0.34rem;letter-spacing:0.5em;color:rgba(201,168,76,0.4);text-transform:uppercase;font-family:-apple-system,sans-serif;background:#060605;padding:0 0.5rem}
+.cs-summary-row{display:flex;justify-content:space-between;align-items:baseline;padding:0.55rem 0;border-bottom:1px solid rgba(201,168,76,0.05)}
+.cs-summary-row:last-child{border-bottom:none}
+.cs-summary-key{font-size:0.36rem;letter-spacing:0.3em;color:rgba(201,168,76,0.3);text-transform:uppercase;font-family:-apple-system,sans-serif}
+.cs-summary-val{font-family:'Cormorant Garamond',Georgia,serif;font-size:1rem;color:#FAF7F2}
+.cs-estimate-range{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.85rem;font-weight:300;color:rgba(201,168,76,0.72);text-align:center;margin:1.25rem 0 0.4rem}
+.cs-estimate-note{font-size:0.34rem;letter-spacing:0.25em;color:rgba(201,168,76,0.22);text-transform:uppercase;font-family:-apple-system,sans-serif;text-align:center;margin-bottom:1.5rem}
+.cs-thankyou{display:none;text-align:center;padding:5rem 2rem;position:relative;z-index:1;min-height:70vh;align-items:center;justify-content:center;flex-direction:column}
+.cs-thankyou.active{display:flex}
+.cs-thankyou-glyph{font-size:2.4rem;color:rgba(201,168,76,0.5);margin-bottom:2rem;animation:fabGlow 3s ease-in-out infinite}
+.cs-thankyou-note{font-size:0.38rem;letter-spacing:0.42em;color:rgba(201,168,76,0.25);text-transform:uppercase;font-family:-apple-system,sans-serif;margin-top:1.5rem}
+.cs-nav{display:flex;justify-content:space-between;align-items:center;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid rgba(201,168,76,0.06)}
+.commission-step.active{animation:csStep 0.42s ease both}
+/* SKU minimized strip */
+.sku-strip{display:flex;align-items:center;justify-content:space-between;padding:0.85rem 0;cursor:pointer;border-bottom:1px solid rgba(201,168,76,0.05);transition:opacity 0.2s}
+.sku-strip:hover{opacity:0.8}
+#skuRegistryWrap{max-height:0;overflow:hidden;transition:max-height 0.65s cubic-bezier(0.16,1,0.3,1)}
 
 /* MAGNETIC CARD TILT */
 .pc{transform-style:preserve-3d;will-change:transform}
@@ -1931,7 +2002,7 @@ transition:background 0.3s;
   <a onclick="mobileGo('hardscape');closeMobileMenu()">Hardscape</a>
   <a onclick="openJournalModal();closeMobileMenu()">Journal</a>
   <a onclick="mobileGo('contact')">Contact</a>
-  <a onclick="closeMobileMenu();openCommission()" style="color:rgba(201,168,76,0.7)">Commission a Piece</a>
+  <a onclick="mobileGo('commission')" style="color:rgba(201,168,76,0.7)">Commission a Piece</a>
   <a onclick="openAgentPortal();closeMobileMenu()" style="color:var(--gold)">✦ Agent Portal</a>
   <a onclick="toggleWishlistPanel(event);closeMobileMenu()">♡ Saved Pieces</a>
 
@@ -2209,16 +2280,285 @@ HARDSCAPE SECTION
 </div>
 </section>
 
-<section class="sku-bg" id="sku" style="padding:1.5rem 2.5rem 2.5rem;border-top:1px solid rgba(201,168,76,0.08)">
-  <div style="max-width:460px;margin:0 auto">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem">
-      <div style="font-size:0.52rem;letter-spacing:0.28em;color:rgba(201,168,76,0.45)">SKU REGISTRY · <span id="walletCount"></span></div>
-      <div style="position:relative">
-        <input id="skuSearchInput" type="text" placeholder="Search — PHR-001 or stone name" oninput="skuSearch(this.value)" style="background:rgba(255,255,255,0.03);border:1px solid rgba(201,168,76,0.2);color:#FAF7F2;font-size:0.72rem;padding:5px 2rem 5px 10px;font-family:inherit;outline:none;letter-spacing:0.04em;width:200px;border-radius:4px"/>
-        <span style="position:absolute;right:0.6rem;top:50%;transform:translateY(-50%);color:rgba(201,168,76,0.35);font-size:0.7rem">⌕</span>
+<!-- ============================================================ -->
+<!-- COMMISSION A PIECE — INLINE SECTION -->
+<!-- ============================================================ -->
+<section id="commission" class="commission-section">
+
+  <!-- Ambient glows -->
+  <div style="position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden">
+    <div style="position:absolute;top:15%;left:-8%;width:480px;height:480px;border-radius:50%;background:radial-gradient(ellipse,rgba(201,168,76,0.028) 0%,transparent 68%)"></div>
+    <div style="position:absolute;bottom:15%;right:-8%;width:560px;height:400px;border-radius:50%;background:radial-gradient(ellipse,rgba(201,168,76,0.022) 0%,transparent 68%)"></div>
+  </div>
+
+  <!-- INTRO STATE -->
+  <div class="cs-intro" id="cs-intro">
+    <div class="eyebrow" style="display:block;margin-bottom:1.5rem">Commission · PHAÖRA</div>
+    <h2 class="sec-title" style="text-align:center">A Piece Made<br><em>For Your Estate.</em></h2>
+    <div class="gold-rule" style="margin:1.5rem auto 2rem"><span class="rule-diamond"></span></div>
+    <p class="sec-body" style="max-width:460px;margin:0 auto 2.5rem;text-align:center">Fabiano accepts a limited number of private commissions each year. Each piece is conceived in conversation with its collector — one stone, one vision, one home.</p>
+    <button class="btn-gold" onclick="startCommission()">Begin My Commission</button>
+    <div class="cs-intro-note">Six commissions accepted per year &nbsp;·&nbsp; From $8,500 &nbsp;·&nbsp; Private Inquiry</div>
+  </div>
+
+  <!-- FORM STATE -->
+  <div class="cs-form" id="cs-form-wrap">
+    <div class="cs-prog-wrap"><div class="cs-prog-fill" id="csProgFill"></div></div>
+
+    <div class="cs-card">
+      <!-- Header: step counter + back -->
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2.75rem">
+        <div class="cs-step-label" id="csStepLabel">01 &nbsp;/&nbsp; 06</div>
+        <button onclick="csBack()" style="background:none;border:none;font-size:0.4rem;letter-spacing:0.38em;color:rgba(201,168,76,0.3);cursor:pointer;font-family:-apple-system,sans-serif;text-transform:uppercase;transition:color 0.2s;padding:0" onmouseover="this.style.color='rgba(201,168,76,0.65)'" onmouseout="this.style.color='rgba(201,168,76,0.3)'">← Back</button>
+      </div>
+
+      <!-- Step 1: Bird Species -->
+      <div class="commission-step active" id="cs1">
+        <div class="cs-step-title">Which Bird<br><em>Calls to You?</em></div>
+        <p class="cs-step-body">Every PHAÖRA sculpture begins with a bird. Each species carries its own presence — choose the one that belongs in your space.</p>
+        <div class="cs-grid-3">
+          <div class="cs-opt-card" style="background:linear-gradient(160deg,#0d1a3a,#0a1428);border-top:1px solid rgba(50,90,210,0.22)" onclick="csSelectOpt(this,'species','Hyacinth Macaw')">
+            <div class="cs-opt-name">Hyacinth Macaw</div>
+            <div class="cs-opt-sub">Cobalt &nbsp;·&nbsp; The rarest</div>
+          </div>
+          <div class="cs-opt-card" style="background:linear-gradient(160deg,#3a0d0d,#280909);border-top:1px solid rgba(200,45,45,0.18)" onclick="csSelectOpt(this,'species','Scarlet Macaw')">
+            <div class="cs-opt-name">Scarlet Macaw</div>
+            <div class="cs-opt-sub">Crimson &amp; Gold &nbsp;·&nbsp; Fire</div>
+          </div>
+          <div class="cs-opt-card" style="background:linear-gradient(160deg,#1a1a1a,#121212);border-top:1px solid rgba(140,140,140,0.12)" onclick="csSelectOpt(this,'species','African Grey')">
+            <div class="cs-opt-name">African Grey</div>
+            <div class="cs-opt-sub">Pewter &nbsp;·&nbsp; Ancient stillness</div>
+          </div>
+          <div class="cs-opt-card" style="background:linear-gradient(160deg,#1e1a0a,#14120a);border-top:1px solid rgba(200,190,120,0.18)" onclick="csSelectOpt(this,'species','Cockatoo')">
+            <div class="cs-opt-name">Cockatoo</div>
+            <div class="cs-opt-sub">Ivory &amp; Gold &nbsp;·&nbsp; Pure form</div>
+          </div>
+          <div class="cs-opt-card" style="background:linear-gradient(160deg,#0a1e0a,#081408);border-top:1px solid rgba(40,160,40,0.14)" onclick="csSelectOpt(this,'species','Rose-Ringed Parakeet')">
+            <div class="cs-opt-name">Rose-Ringed Parakeet</div>
+            <div class="cs-opt-sub">Emerald &nbsp;·&nbsp; Rare precision</div>
+          </div>
+          <div class="cs-opt-card" style="background:linear-gradient(160deg,#0e0c08,#0a0908);border-top:1px solid rgba(201,168,76,0.1)" onclick="csSelectOpt(this,'species','Custom Species')">
+            <div class="cs-opt-name">Custom Species</div>
+            <div class="cs-opt-sub">Your vision &nbsp;·&nbsp; Anything</div>
+          </div>
+        </div>
+        <div class="cs-nav">
+          <span></span>
+          <button class="commission-next" onclick="csNext()">Continue →</button>
+        </div>
+      </div>
+
+      <!-- Step 2: Crystal Base -->
+      <div class="commission-step" id="cs2">
+        <div class="cs-step-title">Choose Your<br><em>Crystal.</em></div>
+        <p class="cs-step-body">The stone is the soul of the piece. Some collectors wait years for the right formation. Tell us what moves you.</p>
+        <div class="cs-stones">
+          <div class="cs-stone-card" onclick="csSelectOpt(this,'crystal','Amethyst Cluster')">
+            <div class="cs-stone-bg" style="background:linear-gradient(135deg,#2a1454,#3d1a6e,#1e0e42)"></div>
+            <div class="cs-stone-label"><span class="cs-stone-name">Amethyst</span><span class="cs-stone-sub">Protection &amp; calm</span></div>
+          </div>
+          <div class="cs-stone-card" onclick="csSelectOpt(this,'crystal','Rose Quartz')">
+            <div class="cs-stone-bg" style="background:linear-gradient(135deg,#9a6878,#c49090,#806070)"></div>
+            <div class="cs-stone-label"><span class="cs-stone-name">Rose Quartz</span><span class="cs-stone-sub">Warmth &amp; grace</span></div>
+          </div>
+          <div class="cs-stone-card" onclick="csSelectOpt(this,'crystal','Clear Quartz')">
+            <div class="cs-stone-bg" style="background:linear-gradient(135deg,#6878a0,#90a0c0,#5870a0)"></div>
+            <div class="cs-stone-label"><span class="cs-stone-name">Clear Quartz</span><span class="cs-stone-sub">Clarity &amp; light</span></div>
+          </div>
+          <div class="cs-stone-card" onclick="csSelectOpt(this,'crystal','Smoky Quartz')">
+            <div class="cs-stone-bg" style="background:linear-gradient(135deg,#3a3028,#2a2018,#4a3830)"></div>
+            <div class="cs-stone-label"><span class="cs-stone-name">Smoky Quartz</span><span class="cs-stone-sub">Depth &amp; mystery</span></div>
+          </div>
+          <div class="cs-stone-card" onclick="csSelectOpt(this,'crystal','Fluorite')">
+            <div class="cs-stone-bg" style="background:linear-gradient(135deg,#1a3d4a,#2d1e5c,#1a3a28)"></div>
+            <div class="cs-stone-label"><span class="cs-stone-name">Fluorite</span><span class="cs-stone-sub">Duality &amp; flow</span></div>
+          </div>
+          <div class="cs-stone-card" onclick="csSelectOpt(this,'crystal','Green Emerald Matrix')">
+            <div class="cs-stone-bg" style="background:linear-gradient(135deg,#0a2a18,#1e4a2a,#0a1e10)"></div>
+            <div class="cs-stone-label"><span class="cs-stone-name">Emerald Matrix</span><span class="cs-stone-sub">Abundance &amp; earth</span></div>
+          </div>
+          <div class="cs-stone-card" onclick="csSelectOpt(this,'crystal','Citrine')">
+            <div class="cs-stone-bg" style="background:linear-gradient(135deg,#3a2a08,#5a4010,#2a1e04)"></div>
+            <div class="cs-stone-label"><span class="cs-stone-name">Citrine</span><span class="cs-stone-sub">Energy &amp; warmth</span></div>
+          </div>
+          <div class="cs-stone-card" onclick="csSelectOpt(this,'crystal','Custom Stone')">
+            <div class="cs-stone-bg" style="background:linear-gradient(135deg,#0e0c09,#0a0908,#0e0c09)"></div>
+            <div class="cs-stone-label"><span class="cs-stone-name">Custom Stone</span><span class="cs-stone-sub">Describe your vision</span></div>
+          </div>
+        </div>
+        <div class="cs-nav">
+          <button class="commission-back" onclick="csBack()">← Back</button>
+          <button class="commission-next" onclick="csNext()">Continue →</button>
+        </div>
+      </div>
+
+      <!-- Step 3: Sculpture Size -->
+      <div class="commission-step" id="cs3">
+        <div class="cs-step-title">Scale of<br><em>Presence.</em></div>
+        <p class="cs-step-body">How much space should it command? Each size tier changes the raw material requirements, craftsmanship hours, and the way a room responds to it.</p>
+        <div style="margin-bottom:1.75rem">
+          <div class="cs-size-card" data-price="$8,500 — $18,500" onclick="csSelectOpt(this,'size','Intimate')">
+            <div class="cs-size-roman">I</div>
+            <div class="cs-size-info">
+              <div class="cs-size-name">Intimate</div>
+              <div class="cs-size-dims">8 – 14 inches &nbsp;·&nbsp; Shelf · Side table · Desk</div>
+            </div>
+            <div class="cs-size-price">From $8,500</div>
+          </div>
+          <div class="cs-size-card" data-price="$18,500 — $45,000" onclick="csSelectOpt(this,'size','Statement')">
+            <div class="cs-size-roman">II</div>
+            <div class="cs-size-info">
+              <div class="cs-size-name">Statement</div>
+              <div class="cs-size-dims">16 – 26 inches &nbsp;·&nbsp; Entry · Console · Pedestal</div>
+            </div>
+            <div class="cs-size-price">From $18,500</div>
+          </div>
+          <div class="cs-size-card" data-price="$45,000 — $120,000+" onclick="csSelectOpt(this,'size','Monumental')">
+            <div class="cs-size-roman">III</div>
+            <div class="cs-size-info">
+              <div class="cs-size-name">Monumental</div>
+              <div class="cs-size-dims">30 + inches &nbsp;·&nbsp; Floor · Lobby · Gallery</div>
+            </div>
+            <div class="cs-size-price">From $45,000</div>
+          </div>
+        </div>
+        <div class="cs-nav">
+          <button class="commission-back" onclick="csBack()">← Back</button>
+          <button class="commission-next" onclick="csNext()">Continue →</button>
+        </div>
+      </div>
+
+      <!-- Step 4: Base Material -->
+      <div class="commission-step" id="cs4">
+        <div class="cs-step-title">The Foundation<br><em>Beneath.</em></div>
+        <p class="cs-step-body">The base grounds the sculpture in its space. Each material changes the weight, light interaction, and permanence of the piece.</p>
+        <div class="cs-grid-3">
+          <div class="cs-opt-card" style="background:linear-gradient(160deg,#080808,#0a0a0a);border-left:2px solid rgba(60,60,60,0.4)" onclick="csSelectOpt(this,'base','Black Marble')">
+            <div class="cs-opt-name">Black Marble</div>
+            <div class="cs-opt-sub">Absolute &nbsp;·&nbsp; Noir</div>
+          </div>
+          <div class="cs-opt-card" style="background:linear-gradient(160deg,#1c1a12,#181610);border-left:2px solid rgba(220,200,155,0.2)" onclick="csSelectOpt(this,'base','White Onyx')">
+            <div class="cs-opt-name">White Onyx</div>
+            <div class="cs-opt-sub">Luminous &nbsp;·&nbsp; Translucent</div>
+          </div>
+          <div class="cs-opt-card" style="background:linear-gradient(160deg,#12100c,#0e0c08);border-left:2px solid rgba(120,100,70,0.2)" onclick="csSelectOpt(this,'base','Raw Stone')">
+            <div class="cs-opt-name">Raw Stone</div>
+            <div class="cs-opt-sub">Organic &nbsp;·&nbsp; Unfinished edge</div>
+          </div>
+          <div class="cs-opt-card" style="background:linear-gradient(160deg,#101214,#0c0e10);border-left:2px solid rgba(120,140,160,0.15)" onclick="csSelectOpt(this,'base','Rotating Pedestal')">
+            <div class="cs-opt-name">Rotating Pedestal</div>
+            <div class="cs-opt-sub">360° reveal &nbsp;·&nbsp; Steel</div>
+          </div>
+          <div class="cs-opt-card" style="background:linear-gradient(160deg,#0e0c08,#0a0908);border-left:2px solid rgba(201,168,76,0.1)" onclick="csSelectOpt(this,'base','Custom Base')">
+            <div class="cs-opt-name">Custom</div>
+            <div class="cs-opt-sub">Your specification</div>
+          </div>
+        </div>
+        <div class="cs-nav">
+          <button class="commission-back" onclick="csBack()">← Back</button>
+          <button class="commission-next" onclick="csNext()">Continue →</button>
+        </div>
+      </div>
+
+      <!-- Step 5: Contact + Vision -->
+      <div class="commission-step" id="cs5">
+        <div class="cs-step-title">Your Details<br><em>&amp; Vision.</em></div>
+        <p class="cs-step-body">A private conversation begins here. We respond personally within 24 hours — no sales calls, no pressure, only a considered dialogue.</p>
+        <div class="cs-fields">
+          <div class="cs-field">
+            <label>First Name</label>
+            <input id="cs-fname" type="text" placeholder="First name" autocomplete="given-name" />
+          </div>
+          <div class="cs-field">
+            <label>Last Name</label>
+            <input id="cs-lname" type="text" placeholder="Last name" autocomplete="family-name" />
+          </div>
+          <div class="cs-field">
+            <label>Email</label>
+            <input id="cs-email" type="email" placeholder="Where may we reach you" autocomplete="email" />
+          </div>
+          <div class="cs-field">
+            <label>Phone (optional)</label>
+            <input id="cs-phone" type="tel" placeholder="+1 (000) 000-0000" autocomplete="tel" />
+          </div>
+          <div class="cs-field cs-field-full">
+            <label>Country</label>
+            <select id="cs-country">
+              <option value="">Select your country</option>
+              <option>United States</option>
+              <option>United Kingdom</option>
+              <option>Canada</option>
+              <option>France</option>
+              <option>Germany</option>
+              <option>Italy</option>
+              <option>Spain</option>
+              <option>Switzerland</option>
+              <option>United Arab Emirates</option>
+              <option>Saudi Arabia</option>
+              <option>Australia</option>
+              <option>Brazil</option>
+              <option>Mexico</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="cs-field cs-field-full">
+            <label>Your Vision (optional)</label>
+            <textarea id="cs-vision" rows="3" placeholder="Describe anything specific — scale, placement, the feeling you want the piece to evoke…"></textarea>
+          </div>
+        </div>
+        <label class="cs-timeline-check">
+          <input type="checkbox" id="cs-timeline" />
+          <span>I require delivery within 90 days</span>
+        </label>
+        <div class="cs-nav">
+          <button class="commission-back" onclick="csBack()">← Back</button>
+          <button class="commission-next" onclick="csNext()">Review Brief →</button>
+        </div>
+      </div>
+
+      <!-- Step 6: Summary + Submit -->
+      <div class="commission-step" id="cs6">
+        <div class="cs-step-title">Your Commission<br><em>Brief.</em></div>
+        <p class="cs-step-body">Review your selections. When you submit, Fabiano receives this brief personally and begins the conversation.</p>
+        <div class="cs-summary-box">
+          <div id="csSummaryRows"></div>
+        </div>
+        <div class="cs-estimate-range" id="csEstimateRange">—</div>
+        <div class="cs-estimate-note">Estimated investment range &nbsp;·&nbsp; Final pricing discussed in private consultation</div>
+        <div class="cs-nav">
+          <button class="commission-back" onclick="csBack()">← Back</button>
+          <button class="commission-next" onclick="csSubmit()">Submit Commission →</button>
+        </div>
+      </div>
+
+    </div><!-- end cs-card -->
+  </div><!-- end cs-form-wrap -->
+
+  <!-- THANK YOU STATE -->
+  <div class="cs-thankyou" id="cs-thankyou">
+    <div class="cs-thankyou-glyph">✦</div>
+    <div class="eyebrow" style="display:block;margin-bottom:1rem">Commission Received</div>
+    <h2 class="sec-title" style="text-align:center">Your Brief<br><em>Is With Fabiano.</em></h2>
+    <div class="gold-rule" style="margin:1.5rem auto 2rem"><span class="rule-diamond"></span></div>
+    <p class="sec-body" style="max-width:420px;margin:0 auto;text-align:center">David Vaz will reach out within 24 hours to begin the private conversation. We look forward to creating something singular for your estate.</p>
+    <div class="cs-thankyou-note">A confirmation has been noted &nbsp;·&nbsp; PHAÖRA &nbsp;·&nbsp; Boca Raton</div>
+  </div>
+
+</section>
+
+<!-- SKU REGISTRY (MINIMIZED) -->
+<section class="sku-bg" id="sku" style="border-top:1px solid rgba(201,168,76,0.06)">
+  <div style="max-width:480px;margin:0 auto;padding:0 2.5rem">
+    <div class="sku-strip" onclick="toggleSkuRegistry()">
+      <div style="font-size:0.46rem;letter-spacing:0.32em;color:rgba(201,168,76,0.38);text-transform:uppercase;font-family:-apple-system,sans-serif">SKU Registry &nbsp;·&nbsp; <span id="walletCount"></span></div>
+      <div style="display:flex;align-items:center;gap:1rem">
+        <input id="skuSearchInput" type="text" placeholder="Search pieces…" oninput="skuSearch(this.value)" onclick="event.stopPropagation()" style="background:rgba(255,255,255,0.02);border:1px solid rgba(201,168,76,0.14);color:#FAF7F2;font-size:0.65rem;padding:4px 10px;font-family:inherit;outline:none;letter-spacing:0.03em;width:148px;border-radius:3px"/>
+        <span id="skuToggleArrow" style="color:rgba(201,168,76,0.28);font-size:0.55rem;transition:transform 0.35s;display:inline-block">▾</span>
       </div>
     </div>
-    <div class="wallet-outer" id="skuRegistry"></div>
+    <div id="skuRegistryWrap">
+      <div class="wallet-outer" id="skuRegistry" style="padding-bottom:1.5rem"></div>
+    </div>
   </div>
 </section>
 
@@ -2546,7 +2886,7 @@ HARDSCAPE SECTION
       <div style="margin-top:1.5rem;font-size:0.42rem;letter-spacing:0.3em;color:rgba(136,136,136,0.3);text-transform:uppercase;font-family:-apple-system,sans-serif;line-height:2">Boca Raton, Florida<br>(954) 871-9991<br>david@phaora.com</div>
     </div>
     <div class="flinks">
-      <div class="fcol"><h4>Collection</h4><ul><li><a onclick="go('collection')">All Pieces</a></li><li><a onclick="go('sku')">SKU Registry</a></li><li><a onclick="go('collection')">Statement Pieces</a></li><li><a onclick="openCommission()">Commission a Piece</a></li></ul></div>
+      <div class="fcol"><h4>Collection</h4><ul><li><a onclick="go('collection')">All Pieces</a></li><li><a onclick="go('sku')">SKU Registry</a></li><li><a onclick="go('collection')">Statement Pieces</a></li><li><a onclick="go('commission')">Commission a Piece</a></li></ul></div>
       <div class="fcol"><h4>Services</h4><ul><li><a onclick="go('staging')">Real Estate Staging</a></li><li><a onclick="openAgentPortal()">Agent Portal</a></li><li><a onclick="go('contact')">Begin a Private Dialogue</a></li></ul></div>
       <div class="fcol"><h4>Studio</h4><ul><li><a onclick="go('story')">The Craftsman</a></li><li><a onclick="go('blog')">The Journal</a></li><li><a onclick="go('contact')">Contact David</a></li></ul></div>
     </div>
@@ -3568,63 +3908,112 @@ try{(function(){
 })();}catch(e){console.log('rule err',e);}
 
 // ============================================================
-// COMMISSION FLOW
+// COMMISSION FLOW (INLINE SECTION)
 // ============================================================
-var commissionStep=0;
-var commissionData={stone:'',setting:'',budget:'',notes:''};
+var csStep=0;
+var csData={species:'',crystal:'',size:'',base:'',name:'',email:'',phone:'',country:'',vision:'',timeline:false};
 
-function openCommission(){
-  commissionStep=0;
-  document.querySelectorAll('.commission-step').forEach(function(s){s.classList.remove('active');});
-  document.getElementById('cstep0').classList.add('active');
-  updateCommissionDots();
-  document.getElementById('commissionOverlay').classList.add('open');
-  document.body.style.overflow='hidden';
+function startCommission(){
+  csStep=1;
+  document.getElementById('cs-intro').style.display='none';
+  var form=document.getElementById('cs-form-wrap');
+  form.classList.add('active');
+  document.getElementById('cs1').classList.add('active');
+  updateCsProg();
+  document.getElementById('commission').scrollIntoView({behavior:'smooth',block:'start'});
 }
-function closeCommission(){
-  document.getElementById('commissionOverlay').classList.remove('open');
-  document.body.style.overflow='';
+function csNext(){
+  if(csStep>=6){csSubmit();return;}
+  var cur=document.getElementById('cs'+csStep);
+  if(cur)cur.classList.remove('active');
+  csStep++;
+  var nxt=document.getElementById('cs'+csStep);
+  if(nxt)nxt.classList.add('active');
+  updateCsProg();
+  if(csStep===6)buildCsSummary();
+  document.getElementById('commission').scrollIntoView({behavior:'smooth',block:'start'});
 }
-function commissionNext(){
-  var steps=['cstep0','cstep1','cstep2','cstep3','cstep4'];
-  if(commissionStep<steps.length-1){
-    document.getElementById(steps[commissionStep]).classList.remove('active');
-    commissionStep++;
-    document.getElementById(steps[commissionStep]).classList.add('active');
-    updateCommissionDots();
+function csBack(){
+  if(csStep<=1){
+    var cur=document.getElementById('cs'+csStep);
+    if(cur)cur.classList.remove('active');
+    document.getElementById('cs-form-wrap').classList.remove('active');
+    document.getElementById('cs-intro').style.display='';
+    csStep=0;
+    updateCsProg();
+    document.getElementById('commission').scrollIntoView({behavior:'smooth',block:'start'});
+    return;
   }
+  var cur=document.getElementById('cs'+csStep);
+  if(cur)cur.classList.remove('active');
+  csStep--;
+  var prv=document.getElementById('cs'+csStep);
+  if(prv)prv.classList.add('active');
+  updateCsProg();
+  document.getElementById('commission').scrollIntoView({behavior:'smooth',block:'start'});
 }
-function commissionBack(){
-  var steps=['cstep0','cstep1','cstep2','cstep3','cstep4'];
-  if(commissionStep>0){
-    document.getElementById(steps[commissionStep]).classList.remove('active');
-    commissionStep--;
-    document.getElementById(steps[commissionStep]).classList.add('active');
-    updateCommissionDots();
-  }
-}
-function updateCommissionDots(){
-  for(var i=0;i<5;i++){
-    var d=document.getElementById('cdot'+i);
-    if(d)d.classList.toggle('active',i<=commissionStep);
-  }
-}
-function selectOpt(el,field,val){
+function csSelectOpt(el,field,val){
   var parent=el.parentNode;
-  parent.querySelectorAll('.commission-opt').forEach(function(o){o.classList.remove('selected');});
+  parent.querySelectorAll('.cs-opt-card,.cs-stone-card,.cs-size-card').forEach(function(o){o.classList.remove('selected');});
   el.classList.add('selected');
-  commissionData[field]=val;
+  csData[field]=val;
+  if(field==='size')csData.sizePrice=el.getAttribute('data-price')||'';
 }
-function submitCommission(){
-  var name=document.getElementById('c-name').value.trim();
-  var email=document.getElementById('c-email').value.trim();
-  if(!name||!email)return;
-  commissionData.name=name;
-  commissionData.email=email;
-  commissionData.phone=document.getElementById('c-phone').value.trim();
-  document.getElementById('cstep4').classList.remove('active');
-  document.getElementById('cstep-confirm').classList.add('active');
-  document.querySelectorAll('.commission-dot').forEach(function(d){d.classList.add('active');});
+function updateCsProg(){
+  var pct=csStep<=0?0:Math.round((csStep/6)*100);
+  var fill=document.getElementById('csProgFill');
+  if(fill)fill.style.width=pct+'%';
+  var lbl=document.getElementById('csStepLabel');
+  if(lbl&&csStep>0)lbl.textContent='0'+csStep+' \u00a0/\u00a0 06';
+}
+function getCsEstimate(){
+  var s=csData.size;
+  if(s==='Intimate')return '$8,500 \u2014 $18,500';
+  if(s==='Statement')return '$18,500 \u2014 $45,000';
+  if(s==='Monumental')return '$45,000 \u2014 $120,000+';
+  return '$8,500 \u2014 $120,000+';
+}
+function buildCsSummary(){
+  csData.name=((document.getElementById('cs-fname')||{}).value||'')+' '+((document.getElementById('cs-lname')||{}).value||'');
+  csData.email=(document.getElementById('cs-email')||{}).value||'';
+  csData.phone=(document.getElementById('cs-phone')||{}).value||'';
+  csData.country=(document.getElementById('cs-country')||{}).value||'';
+  csData.vision=(document.getElementById('cs-vision')||{}).value||'';
+  csData.timeline=!!(document.getElementById('cs-timeline')||{}).checked;
+  var rows=[
+    ['Bird Species',csData.species||'\u2014'],
+    ['Crystal',csData.crystal||'\u2014'],
+    ['Size',csData.size||'\u2014'],
+    ['Base',csData.base||'\u2014'],
+    ['Contact',csData.name.trim()||csData.email||'\u2014']
+  ];
+  var html='';
+  rows.forEach(function(r){html+='<div class="cs-summary-row"><span class="cs-summary-key">'+r[0]+'</span><span class="cs-summary-val">'+r[1]+'</span></div>';});
+  var el=document.getElementById('csSummaryRows');
+  if(el)el.innerHTML=html;
+  var re=document.getElementById('csEstimateRange');
+  if(re)re.textContent=getCsEstimate();
+}
+function csSubmit(){
+  csData.email=(document.getElementById('cs-email')||{}).value||'';
+  if(!csData.email.trim()){var e=document.getElementById('cs-email');if(e)e.focus();return;}
+  document.getElementById('cs-form-wrap').classList.remove('active');
+  var ty=document.getElementById('cs-thankyou');
+  if(ty)ty.classList.add('active');
+  document.getElementById('commission').scrollIntoView({behavior:'smooth',block:'start'});
+}
+// Legacy stubs (for audio hook compatibility)
+function openCommission(){go('commission');}
+function closeCommission(){}
+
+// SKU toggle
+var skuOpen=false;
+function toggleSkuRegistry(){
+  skuOpen=!skuOpen;
+  var wrap=document.getElementById('skuRegistryWrap');
+  var arrow=document.getElementById('skuToggleArrow');
+  if(skuOpen){wrap.style.maxHeight='2200px';if(arrow)arrow.style.transform='rotate(180deg)';}
+  else{wrap.style.maxHeight='0';if(arrow)arrow.style.transform='rotate(0deg)';}
 }
 
 
@@ -4229,7 +4618,7 @@ function horizScroll(dir){
   // Wire up after DOM ready
   setTimeout(function(){
     addSwipeClose(document.querySelector('.modal'), closeModal);
-    addSwipeClose(document.querySelector('.commission-modal'), closeCommission);
+    // commission is now inline — no swipe-close needed
     addSwipeClose(document.querySelector('.appt-panel'), closeAppt);
   }, 500);
 })();
@@ -4253,123 +4642,7 @@ function horizScroll(dir){
   <div class="rb-items" id="rbItems"></div>
   <button class="rb-close" onclick="document.getElementById('recentBar').classList.remove('visible')">✕</button>
 </div>
-<div id="commissionOverlay" onclick="if(event.target===this)closeCommission()">
-  <div class="commission-modal">
-    <button class="commission-close" onclick="closeCommission()">✕</button>
-    <div class="commission-progress">
-      <div class="commission-dot active" id="cdot0"></div>
-      <div class="commission-dot" id="cdot1"></div>
-      <div class="commission-dot" id="cdot2"></div>
-      <div class="commission-dot" id="cdot3"></div>
-      <div class="commission-dot" id="cdot4"></div>
-    </div>
-
-```
-<!-- Step 0: Intro -->
-<div class="commission-step active" id="cstep0">
-  <div class="commission-step-num">Begin a Commission · PHAÖRA</div>
-  <h2 class="commission-title">A Piece Made<br>For Your Estate</h2>
-  <p class="commission-body">Fabiano works with a small number of private collectors each year to create one-of-one sculptures to specification. Tell us what you have in mind and we will begin a conversation.</p>
-  <div class="commission-nav">
-    <span></span>
-    <button class="commission-next" onclick="commissionNext()">Begin →</button>
-  </div>
-</div>
-
-<!-- Step 1: Stone preference -->
-<div class="commission-step" id="cstep1">
-  <div class="commission-step-num">Step 01 · Stone</div>
-  <h2 class="commission-title">Which Stone<br>Speaks to You?</h2>
-  <p class="commission-body">Each stone carries a different energy and visual presence. Select what draws you — or describe something specific below.</p>
-  <div class="commission-options">
-    <div class="commission-opt" onclick="selectOpt(this,'stone','Amethyst')">Amethyst</div>
-    <div class="commission-opt" onclick="selectOpt(this,'stone','Citrine')">Citrine</div>
-    <div class="commission-opt" onclick="selectOpt(this,'stone','Quartz')">Clear Quartz</div>
-    <div class="commission-opt" onclick="selectOpt(this,'stone','Pyrite')">Pyrite</div>
-    <div class="commission-opt" onclick="selectOpt(this,'stone','Rose Quartz')">Rose Quartz</div>
-    <div class="commission-opt" onclick="selectOpt(this,'stone','Open to Fabiano')">Open to Fabiano</div>
-  </div>
-  <div class="commission-field">
-    <label class="commission-label">Describe your vision (optional)</label>
-    <input class="commission-input" id="c-stone-notes" type="text" placeholder="e.g. something dark, dramatic, floor-standing…" />
-  </div>
-  <div class="commission-nav">
-    <button class="commission-back" onclick="commissionBack()">← Back</button>
-    <button class="commission-next" onclick="commissionNext()">Continue →</button>
-  </div>
-</div>
-
-<!-- Step 2: Estate style -->
-<div class="commission-step" id="cstep2">
-  <div class="commission-step-num">Step 02 · Setting</div>
-  <h2 class="commission-title">Where Will It<br>Live?</h2>
-  <p class="commission-body">Knowing the space helps Fabiano choose the right scale, base, and composition.</p>
-  <div class="commission-options">
-    <div class="commission-opt" onclick="selectOpt(this,'setting','Entryway')">Entryway</div>
-    <div class="commission-opt" onclick="selectOpt(this,'setting','Living Room')">Living Room</div>
-    <div class="commission-opt" onclick="selectOpt(this,'setting','Office')">Private Office</div>
-    <div class="commission-opt" onclick="selectOpt(this,'setting','Outdoor')">Outdoor / Terrace</div>
-    <div class="commission-opt" onclick="selectOpt(this,'setting','Master Suite')">Master Suite</div>
-    <div class="commission-opt" onclick="selectOpt(this,'setting','Gallery')">Art Gallery</div>
-  </div>
-  <div class="commission-nav">
-    <button class="commission-back" onclick="commissionBack()">← Back</button>
-    <button class="commission-next" onclick="commissionNext()">Continue →</button>
-  </div>
-</div>
-
-<!-- Step 3: Budget -->
-<div class="commission-step" id="cstep3">
-  <div class="commission-step-num">Step 03 · Investment</div>
-  <h2 class="commission-title">Your Investment<br>Range</h2>
-  <p class="commission-body">Custom commissions begin at $25,000. Pricing depends on stone rarity, scale, and craftsmanship time.</p>
-  <div class="commission-options">
-    <div class="commission-opt" onclick="selectOpt(this,'budget','$25,000 – $50,000')">$25K – $50K</div>
-    <div class="commission-opt" onclick="selectOpt(this,'budget','$50,000 – $100,000')">$50K – $100K</div>
-    <div class="commission-opt" onclick="selectOpt(this,'budget','$100,000 – $250,000')">$100K – $250K</div>
-    <div class="commission-opt" onclick="selectOpt(this,'budget','$250,000+')">$250K+</div>
-  </div>
-  <div class="commission-nav">
-    <button class="commission-back" onclick="commissionBack()">← Back</button>
-    <button class="commission-next" onclick="commissionNext()">Continue →</button>
-  </div>
-</div>
-
-<!-- Step 4: Contact -->
-<div class="commission-step" id="cstep4">
-  <div class="commission-step-num">Step 04 · Your Details</div>
-  <h2 class="commission-title">How Should<br>We Reach You?</h2>
-  <p class="commission-body">We respond personally within 24 hours. No sales calls — a private conversation to begin.</p>
-  <div class="commission-field">
-    <label class="commission-label">Your Name</label>
-    <input class="commission-input" id="c-name" type="text" placeholder="How shall we address you" />
-  </div>
-  <div class="commission-field">
-    <label class="commission-label">Email</label>
-    <input class="commission-input" id="c-email" type="email" placeholder="Where may we reach you" />
-  </div>
-  <div class="commission-field">
-    <label class="commission-label">Phone (optional)</label>
-    <input class="commission-input" id="c-phone" type="tel" placeholder="+1 (000) 000-0000" />
-  </div>
-  <div class="commission-nav">
-    <button class="commission-back" onclick="commissionBack()">← Back</button>
-    <button class="commission-next" onclick="submitCommission()">Submit Inquiry →</button>
-  </div>
-</div>
-
-<!-- Confirmation -->
-<div class="commission-step" id="cstep-confirm">
-  <div style="text-align:center;padding:2rem 0">
-    <div style="font-size:2rem;color:rgba(201,168,76,0.6);margin-bottom:1.5rem">✦</div>
-    <h2 class="commission-title" style="text-align:center">Your Inquiry<br><em>Has Been Received</em></h2>
-    <p class="commission-body" style="text-align:center;margin:0 auto">David Vaz will reach out personally within 24 hours to begin the conversation. We look forward to creating something singular for your estate.</p>
-  </div>
-</div>
-```
-
-  </div>
-</div>
+<!-- commissionOverlay removed — commission is now an inline section (#commission) -->
 
 <!-- BY APPOINTMENT MODAL -->
 
