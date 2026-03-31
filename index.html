@@ -1747,6 +1747,127 @@ transition:background 0.3s;
 
 </style>
 
+<style>
+/* ═══════════════ HERO REDESIGN LAYERS ═══════════════ */
+
+/* Majolica SVG */
+#majSvg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;overflow:visible}
+.maj-petal{transform-box:fill-box;transform-origin:50% 100%;animation:majPetalBloom 7s ease-in-out infinite;opacity:0}
+.maj-petal:nth-child(1){animation-delay:0s}
+.maj-petal:nth-child(2){animation-delay:0.4s}
+.maj-petal:nth-child(3){animation-delay:0.8s}
+.maj-petal:nth-child(4){animation-delay:1.2s}
+.maj-petal:nth-child(5){animation-delay:1.6s}
+.maj-petal:nth-child(6){animation-delay:2s}
+.maj-petal:nth-child(7){animation-delay:2.4s}
+.maj-petal:nth-child(8){animation-delay:2.8s}
+@keyframes majPetalBloom{
+  0%{opacity:0;transform:scale(0.12)}
+  30%{opacity:1;transform:scale(1)}
+  70%{opacity:0.7;transform:scale(1)}
+  100%{opacity:0;transform:scale(0.12)}
+}
+.maj-arm-path{fill:none;stroke-dasharray:300;stroke-dashoffset:300;animation:majVineDraw 9s ease-in-out infinite;opacity:0}
+.maj-arm-0{animation-delay:0s}
+.maj-arm-1{animation-delay:1.1s}
+.maj-arm-2{animation-delay:2.2s}
+.maj-arm-3{animation-delay:3.3s}
+.maj-arm-leaf{opacity:0;animation:majLeafPop 9s ease-in-out infinite}
+.maj-arm-leaf.al0{animation-delay:2.5s}
+.maj-arm-leaf.al1{animation-delay:3.6s}
+.maj-arm-leaf.al2{animation-delay:4.7s}
+.maj-arm-leaf.al3{animation-delay:5.8s}
+@keyframes majVineDraw{
+  0%{stroke-dashoffset:300;opacity:0}
+  8%{opacity:0.85}
+  78%{stroke-dashoffset:0;opacity:0.85}
+  92%{stroke-dashoffset:0;opacity:0}
+  100%{stroke-dashoffset:300;opacity:0}
+}
+@keyframes majLeafPop{
+  0%,25%{opacity:0;transform:scale(0)}
+  55%{opacity:0.7;transform:scale(1)}
+  88%{opacity:0.5;transform:scale(1)}
+  100%{opacity:0;transform:scale(0)}
+}
+.maj-leaf{transform-box:fill-box;transform-origin:50% 50%}
+.maj-corner-g{transform-box:fill-box;transform-origin:50% 50%;animation:majCornerPulse 5s ease-in-out infinite;opacity:0}
+.maj-corner-g:nth-child(1){animation-delay:0s}
+.maj-corner-g:nth-child(2){animation-delay:1.25s}
+.maj-corner-g:nth-child(3){animation-delay:2.5s}
+.maj-corner-g:nth-child(4){animation-delay:3.75s}
+@keyframes majCornerPulse{
+  0%{opacity:0;transform:scale(0.3) rotate(0deg)}
+  20%{opacity:0.6;transform:scale(1) rotate(45deg)}
+  55%{opacity:0.15;transform:scale(1) rotate(22deg)}
+  80%{opacity:0.6;transform:scale(1) rotate(45deg)}
+  100%{opacity:0;transform:scale(0.3) rotate(0deg)}
+}
+.maj-border-d{animation:majBorderFlutter 2.5s ease-in-out infinite;opacity:0}
+.maj-border-d:nth-child(odd){animation-delay:0s}
+.maj-border-d:nth-child(even){animation-delay:1.25s}
+@keyframes majBorderFlutter{
+  0%,100%{opacity:0}
+  30%{opacity:0.55}
+  70%{opacity:0.12}
+}
+#majBg{transition:opacity 2.5s ease}
+.maj-tile-cell{transition:transform 0.9s cubic-bezier(0.16,1,0.3,1),opacity 0.9s ease}
+
+/* Geo-grid */
+.hero-geo-grid{position:absolute;inset:0;pointer-events:none;z-index:2;
+  background-image:linear-gradient(rgba(201,168,76,0.022) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.022) 1px,transparent 1px);
+  background-size:80px 80px;
+  transform:perspective(600px) rotateX(15deg) scaleY(1.2);
+  transform-origin:center bottom;
+  animation:gridBreathe 8s ease-in-out infinite}
+@keyframes gridBreathe{0%,100%{opacity:0.35}50%{opacity:1}}
+
+/* Crystal shards */
+.shard{position:absolute;pointer-events:none;mix-blend-mode:screen;z-index:3;opacity:0;animation-fill-mode:both}
+@keyframes shardReveal{0%{opacity:0}100%{opacity:1}}
+@keyframes shardDrift1{0%{transform:translate(0,0) rotate(0deg)}25%{transform:translate(18px,-24px) rotate(12deg)}60%{transform:translate(-8px,16px) rotate(-7deg)}100%{transform:translate(0,0) rotate(0deg)}}
+@keyframes shardDrift2{0%{transform:translate(0,0) rotate(0deg)}33%{transform:translate(-22px,14px) rotate(-15deg)}66%{transform:translate(10px,-18px) rotate(8deg)}100%{transform:translate(0,0) rotate(0deg)}}
+@keyframes shardDrift3{0%{transform:translate(0,0) rotate(0deg)}40%{transform:translate(14px,20px) rotate(20deg)}80%{transform:translate(-6px,-12px) rotate(-5deg)}100%{transform:translate(0,0) rotate(0deg)}}
+@keyframes shardDrift4{0%{transform:translate(0,0) rotate(0deg)}30%{transform:translate(-16px,-20px) rotate(-18deg)}70%{transform:translate(12px,8px) rotate(10deg)}100%{transform:translate(0,0) rotate(0deg)}}
+@keyframes shardDrift5{0%{transform:translate(0,0) rotate(0deg)}45%{transform:translate(20px,-10px) rotate(14deg)}80%{transform:translate(-14px,18px) rotate(-9deg)}100%{transform:translate(0,0) rotate(0deg)}}
+@keyframes shardDrift6{0%{transform:translate(0,0) rotate(0deg)}35%{transform:translate(-10px,22px) rotate(-22deg)}70%{transform:translate(16px,-8px) rotate(6deg)}100%{transform:translate(0,0) rotate(0deg)}}
+@keyframes shardDrift7{0%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(8px,-26px) rotate(16deg)}85%{transform:translate(-18px,6px) rotate(-12deg)}100%{transform:translate(0,0) rotate(0deg)}}
+.shard-1{top:12%;left:8%;width:60px;animation:shardReveal 1s 1.5s forwards,shardDrift1 16s 2.5s ease-in-out infinite}
+.shard-2{top:22%;right:9%;width:88px;animation:shardReveal 1s 2s forwards,shardDrift2 22s 3s ease-in-out infinite}
+.shard-3{top:62%;left:4%;width:44px;animation:shardReveal 1s 2.5s forwards,shardDrift3 14s 3.5s ease-in-out infinite}
+.shard-4{top:68%;right:14%;width:108px;animation:shardReveal 1s 1.8s forwards,shardDrift4 19s 2.8s ease-in-out infinite}
+.shard-5{top:42%;left:2%;width:52px;animation:shardReveal 1s 3s forwards,shardDrift5 17s 4s ease-in-out infinite}
+.shard-6{top:16%;right:3%;width:74px;animation:shardReveal 1s 2.2s forwards,shardDrift6 21s 3.2s ease-in-out infinite}
+.shard-7{top:82%;left:18%;width:48px;animation:shardReveal 1s 1.2s forwards,shardDrift7 13s 2.2s ease-in-out infinite}
+@media(max-width:768px){.shard-2,.shard-4,.shard-6{display:none}}
+
+/* Ghost text */
+.hero-ghost-text{position:absolute;white-space:nowrap;font-family:'Cinzel',serif;font-size:0.45rem;letter-spacing:0.8em;pointer-events:none;z-index:5;text-transform:uppercase}
+.hero-ghost-text.gt1{top:28%;color:rgba(250,247,242,0.04);animation:ghostDrift1 90s linear infinite}
+.hero-ghost-text.gt2{top:56%;color:rgba(201,168,76,0.03);animation:ghostDrift2 110s linear infinite}
+@keyframes ghostDrift1{from{transform:rotate(-35deg) translateX(0%)}to{transform:rotate(-35deg) translateX(-40%)}}
+@keyframes ghostDrift2{from{transform:rotate(-35deg) translateX(-20%)}to{transform:rotate(-35deg) translateX(-60%)}}
+
+/* Eyebrow rotator */
+.hero-eyebrow-rotator{font-size:0.52rem;letter-spacing:0.6em;color:rgba(201,168,76,0.7);text-transform:uppercase;margin-bottom:3rem;position:relative;font-family:-apple-system,'Helvetica Neue',sans-serif;height:1.3em;overflow:hidden}
+.eyebrow-line{position:absolute;left:0;right:0;text-align:center;opacity:0;transform:translateY(10px);transition:opacity 0.7s ease,transform 0.7s ease;white-space:nowrap}
+.eyebrow-line.active{opacity:1;transform:translateY(0)}
+.eyebrow-line.exiting{opacity:0;transform:translateY(-10px)}
+
+/* Enhanced scroll indicator */
+.hero-scroll-new{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0.6rem;pointer-events:none;z-index:7}
+.hero-scroll-label{font-size:0.45rem;letter-spacing:0.4em;color:rgba(201,168,76,0.5);text-transform:uppercase;font-family:-apple-system,'Helvetica Neue',sans-serif}
+.scroll-lines{position:relative;width:22px;height:58px}
+.scroll-line-c{position:absolute;left:50%;transform:translateX(-50%);width:1px;height:58px;background:linear-gradient(to bottom,rgba(201,168,76,0.9),transparent);animation:scrollLinePulse 2s ease-in-out infinite}
+.scroll-line-l,.scroll-line-r{position:absolute;top:10px;width:1px;height:35px;background:linear-gradient(to bottom,rgba(201,168,76,0.4),transparent)}
+.scroll-line-l{left:5px;animation:scrollLinePulse 2.8s ease-in-out 0.4s infinite}
+.scroll-line-r{right:5px;animation:scrollLinePulse 2.8s ease-in-out 0.8s infinite}
+@keyframes scrollLinePulse{0%,100%{opacity:0.2}50%{opacity:1}}
+.scroll-diamond{position:absolute;left:50%;transform:translateX(-50%) rotate(45deg);width:5px;height:5px;background:var(--gold);animation:diamondSlide 2.4s ease-in-out infinite}
+@keyframes diamondSlide{0%{top:0;opacity:0}15%{opacity:1}88%{opacity:0.9}100%{top:50px;opacity:0}}
+</style>
+
 </head>
 <body>
 
@@ -2054,15 +2175,142 @@ HARDSCAPE SECTION
     <div class="hero-tub-overlay"></div>
   </div>
 
+  <!-- MAJOLICA SVG LAYER -->
+  <svg id="majSvg" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <symbol id="maj-tile" viewBox="0 0 200 200" overflow="visible">
+        <!-- Border diamonds -->
+        <g class="maj-border-group">
+          <rect class="maj-border-d" x="97" y="1" width="6" height="6" transform="rotate(45,100,4)" fill="rgba(201,168,76,0.6)"/>
+          <rect class="maj-border-d" x="147" y="1" width="6" height="6" transform="rotate(45,150,4)" fill="rgba(82,120,82,0.5)"/>
+          <rect class="maj-border-d" x="47"  y="1" width="6" height="6" transform="rotate(45,50,4)"  fill="rgba(82,120,82,0.5)"/>
+          <rect class="maj-border-d" x="193" y="47" width="6" height="6" transform="rotate(45,196,50)" fill="rgba(201,168,76,0.6)"/>
+          <rect class="maj-border-d" x="193" y="147" width="6" height="6" transform="rotate(45,196,150)" fill="rgba(201,168,76,0.6)"/>
+          <rect class="maj-border-d" x="97" y="193" width="6" height="6" transform="rotate(45,100,196)" fill="rgba(201,168,76,0.6)"/>
+          <rect class="maj-border-d" x="147" y="193" width="6" height="6" transform="rotate(45,150,196)" fill="rgba(82,120,82,0.5)"/>
+          <rect class="maj-border-d" x="47"  y="193" width="6" height="6" transform="rotate(45,50,196)"  fill="rgba(82,120,82,0.5)"/>
+          <rect class="maj-border-d" x="1"   y="47" width="6" height="6" transform="rotate(45,4,50)"   fill="rgba(201,168,76,0.6)"/>
+          <rect class="maj-border-d" x="1"   y="147" width="6" height="6" transform="rotate(45,4,150)" fill="rgba(201,168,76,0.6)"/>
+        </g>
+        <!-- Scrollwork arms -->
+        <!-- Top arm -->
+        <path class="maj-arm-path maj-arm-0" d="M 100 81 C 103 66 108 48 100 14" stroke="rgba(201,168,76,0.5)" stroke-width="1.1"/>
+        <path class="maj-arm-path maj-arm-0" d="M 100 14 C 96 8 91 4 95 0 C 99 -4 105 2 100 14" stroke="rgba(201,168,76,0.4)" stroke-width="0.8" fill="rgba(201,168,76,0.12)"/>
+        <g class="maj-leaf maj-arm-leaf al0">
+          <ellipse cx="104" cy="48" rx="7" ry="12" fill="rgba(82,120,82,0.4)" transform="rotate(-20,104,48)"/>
+          <ellipse cx="96"  cy="48" rx="7" ry="12" fill="rgba(82,120,82,0.4)" transform="rotate(20,96,48)"/>
+        </g>
+        <!-- Right arm -->
+        <path class="maj-arm-path maj-arm-1" d="M 119 100 C 134 103 152 108 186 100" stroke="rgba(201,168,76,0.5)" stroke-width="1.1"/>
+        <path class="maj-arm-path maj-arm-1" d="M 186 100 C 192 96 196 91 200 95 C 204 99 198 105 186 100" stroke="rgba(201,168,76,0.4)" stroke-width="0.8" fill="rgba(201,168,76,0.12)"/>
+        <g class="maj-leaf maj-arm-leaf al1">
+          <ellipse cx="152" cy="104" rx="12" ry="7" fill="rgba(82,120,82,0.4)" transform="rotate(-20,152,104)"/>
+          <ellipse cx="152" cy="96"  rx="12" ry="7" fill="rgba(82,120,82,0.4)" transform="rotate(20,152,96)"/>
+        </g>
+        <!-- Bottom arm -->
+        <path class="maj-arm-path maj-arm-2" d="M 100 119 C 103 134 108 152 100 186" stroke="rgba(201,168,76,0.5)" stroke-width="1.1"/>
+        <path class="maj-arm-path maj-arm-2" d="M 100 186 C 96 192 91 196 95 200 C 99 204 105 198 100 186" stroke="rgba(201,168,76,0.4)" stroke-width="0.8" fill="rgba(201,168,76,0.12)"/>
+        <g class="maj-leaf maj-arm-leaf al2">
+          <ellipse cx="104" cy="152" rx="7" ry="12" fill="rgba(82,120,82,0.4)" transform="rotate(20,104,152)"/>
+          <ellipse cx="96"  cy="152" rx="7" ry="12" fill="rgba(82,120,82,0.4)" transform="rotate(-20,96,152)"/>
+        </g>
+        <!-- Left arm -->
+        <path class="maj-arm-path maj-arm-3" d="M 81 100 C 66 103 48 108 14 100" stroke="rgba(201,168,76,0.5)" stroke-width="1.1"/>
+        <path class="maj-arm-path maj-arm-3" d="M 14 100 C 8 96 4 91 0 95 C -4 99 2 105 14 100" stroke="rgba(201,168,76,0.4)" stroke-width="0.8" fill="rgba(201,168,76,0.12)"/>
+        <g class="maj-leaf maj-arm-leaf al3">
+          <ellipse cx="48" cy="104" rx="12" ry="7" fill="rgba(82,120,82,0.4)" transform="rotate(20,48,104)"/>
+          <ellipse cx="48" cy="96"  rx="12" ry="7" fill="rgba(82,120,82,0.4)" transform="rotate(-20,48,96)"/>
+        </g>
+        <!-- Corner quarter-rosettes (TL, TR, BR, BL) -->
+        <g class="maj-corner-g">
+          <ellipse cx="10" cy="10" rx="5" ry="13" fill="rgba(43,91,168,0.28)" transform="rotate(45,10,10)"/>
+          <ellipse cx="10" cy="10" rx="5" ry="13" fill="rgba(43,91,168,0.28)" transform="rotate(90,10,10)"/>
+          <circle  cx="10" cy="10" r="5" fill="rgba(201,168,76,0.35)"/>
+          <circle  cx="10" cy="10" r="2" fill="rgba(250,247,242,0.2)"/>
+        </g>
+        <g class="maj-corner-g">
+          <ellipse cx="190" cy="10" rx="5" ry="13" fill="rgba(43,91,168,0.28)" transform="rotate(45,190,10)"/>
+          <ellipse cx="190" cy="10" rx="5" ry="13" fill="rgba(43,91,168,0.28)" transform="rotate(90,190,10)"/>
+          <circle  cx="190" cy="10" r="5" fill="rgba(201,168,76,0.35)"/>
+          <circle  cx="190" cy="10" r="2" fill="rgba(250,247,242,0.2)"/>
+        </g>
+        <g class="maj-corner-g">
+          <ellipse cx="190" cy="190" rx="5" ry="13" fill="rgba(43,91,168,0.28)" transform="rotate(45,190,190)"/>
+          <ellipse cx="190" cy="190" rx="5" ry="13" fill="rgba(43,91,168,0.28)" transform="rotate(90,190,190)"/>
+          <circle  cx="190" cy="190" r="5" fill="rgba(201,168,76,0.35)"/>
+          <circle  cx="190" cy="190" r="2" fill="rgba(250,247,242,0.2)"/>
+        </g>
+        <g class="maj-corner-g">
+          <ellipse cx="10" cy="190" rx="5" ry="13" fill="rgba(43,91,168,0.28)" transform="rotate(45,10,190)"/>
+          <ellipse cx="10" cy="190" rx="5" ry="13" fill="rgba(43,91,168,0.28)" transform="rotate(90,10,190)"/>
+          <circle  cx="10" cy="190" r="5" fill="rgba(201,168,76,0.35)"/>
+          <circle  cx="10" cy="190" r="2" fill="rgba(250,247,242,0.2)"/>
+        </g>
+        <!-- Center rosette -->
+        <circle cx="100" cy="100" r="9" fill="rgba(250,247,242,0.06)"/>
+        <ellipse class="maj-petal" cx="100" cy="83" rx="6" ry="16" fill="rgba(201,168,76,0.32)" transform="rotate(0,100,100)"/>
+        <ellipse class="maj-petal" cx="100" cy="83" rx="6" ry="16" fill="rgba(43,91,168,0.26)"  transform="rotate(45,100,100)"/>
+        <ellipse class="maj-petal" cx="100" cy="83" rx="6" ry="16" fill="rgba(82,120,82,0.28)"  transform="rotate(90,100,100)"/>
+        <ellipse class="maj-petal" cx="100" cy="83" rx="6" ry="16" fill="rgba(178,98,56,0.24)"  transform="rotate(135,100,100)"/>
+        <ellipse class="maj-petal" cx="100" cy="83" rx="6" ry="16" fill="rgba(201,168,76,0.32)" transform="rotate(180,100,100)"/>
+        <ellipse class="maj-petal" cx="100" cy="83" rx="6" ry="16" fill="rgba(43,91,168,0.26)"  transform="rotate(225,100,100)"/>
+        <ellipse class="maj-petal" cx="100" cy="83" rx="6" ry="16" fill="rgba(82,120,82,0.28)"  transform="rotate(270,100,100)"/>
+        <ellipse class="maj-petal" cx="100" cy="83" rx="6" ry="16" fill="rgba(178,98,56,0.24)"  transform="rotate(315,100,100)"/>
+        <circle cx="100" cy="100" r="6"  fill="rgba(201,168,76,0.42)"/>
+        <circle cx="100" cy="100" r="3"  fill="rgba(250,247,242,0.18)"/>
+      </symbol>
+      <pattern id="maj-pat" patternUnits="userSpaceOnUse" width="200" height="200">
+        <use href="#maj-tile" width="200" height="200"/>
+      </pattern>
+    </defs>
+    <!-- Patterned background rect — JS controls opacity -->
+    <rect id="majBg" width="100%" height="100%" fill="url(#maj-pat)" opacity="0"/>
+    <!-- Individual tile grid for shatter effect — JS populates -->
+    <g id="majTiles"></g>
+  </svg>
+
+  <!-- GEO-GRID -->
+  <div class="hero-geo-grid"></div>
+
+  <!-- CRYSTAL SHARDS -->
+  <div class="shard shard-1"><svg viewBox="0 0 60 80" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="30,2 58,35 44,78 14,72 2,30" fill="rgba(201,168,76,0.09)" stroke="rgba(201,168,76,0.22)" stroke-width="0.8"/><polygon points="30,14 48,36 38,62 20,58 10,34" fill="rgba(201,168,76,0.04)"/></svg></div>
+  <div class="shard shard-2"><svg viewBox="0 0 90 110" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="45,3 85,28 88,72 55,107 8,80 4,40" fill="rgba(43,91,168,0.07)" stroke="rgba(43,91,168,0.2)" stroke-width="0.7"/><polygon points="45,18 72,38 74,68 50,88 20,72 18,44" fill="rgba(43,91,168,0.03)"/></svg></div>
+  <div class="shard shard-3"><svg viewBox="0 0 44 60" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="22,2 42,20 36,58 6,52 2,22" fill="rgba(82,120,82,0.1)" stroke="rgba(82,120,82,0.25)" stroke-width="0.8"/></svg></div>
+  <div class="shard shard-4"><svg viewBox="0 0 108 130" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="54,4 104,30 100,90 68,126 18,110 4,55" fill="rgba(201,168,76,0.06)" stroke="rgba(201,168,76,0.18)" stroke-width="0.9"/><polygon points="54,22 86,44 82,84 58,106 24,90 16,54" fill="rgba(201,168,76,0.03)"/></svg></div>
+  <div class="shard shard-5"><svg viewBox="0 0 52 70" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="26,2 50,26 44,68 8,62 2,30" fill="rgba(178,98,56,0.08)" stroke="rgba(178,98,56,0.22)" stroke-width="0.7"/></svg></div>
+  <div class="shard shard-6"><svg viewBox="0 0 74 90" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="37,3 71,25 68,70 40,87 8,65 4,28" fill="rgba(250,247,242,0.05)" stroke="rgba(250,247,242,0.14)" stroke-width="0.7"/><polygon points="37,16 58,32 56,62 36,72 14,56 12,32" fill="rgba(250,247,242,0.02)"/></svg></div>
+  <div class="shard shard-7"><svg viewBox="0 0 48 60" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="24,2 46,22 40,58 8,54 2,26" fill="rgba(43,91,168,0.09)" stroke="rgba(43,91,168,0.2)" stroke-width="0.8"/></svg></div>
+
+  <!-- GHOST TEXT BANDS -->
+  <div class="hero-ghost-text gt1">ONE OF ONE &nbsp;·&nbsp; NEVER TO EXIST AGAIN &nbsp;·&nbsp; FROM THE EARTH &nbsp;·&nbsp; ONE OF ONE &nbsp;·&nbsp; NEVER TO EXIST AGAIN &nbsp;·&nbsp; FROM THE EARTH &nbsp;·&nbsp; ONE OF ONE &nbsp;·&nbsp; NEVER TO EXIST AGAIN &nbsp;·&nbsp; FROM THE EARTH &nbsp;·&nbsp; ONE OF ONE &nbsp;·&nbsp; NEVER TO EXIST AGAIN &nbsp;·&nbsp; FROM THE EARTH &nbsp;·&nbsp;</div>
+  <div class="hero-ghost-text gt2">MINAS GERAIS &nbsp;·&nbsp; BOCA RATON &nbsp;·&nbsp; BY APPOINTMENT &nbsp;·&nbsp; FORTY YEARS OF MASTERY &nbsp;·&nbsp; MINAS GERAIS &nbsp;·&nbsp; BOCA RATON &nbsp;·&nbsp; BY APPOINTMENT &nbsp;·&nbsp; FORTY YEARS OF MASTERY &nbsp;·&nbsp; MINAS GERAIS &nbsp;·&nbsp; BOCA RATON &nbsp;·&nbsp; BY APPOINTMENT &nbsp;·&nbsp;</div>
+
   <div class="hero-bg"></div><div class="hero-lines"></div>
-  <div class="hero-eyebrow f1">Minas Gerais &nbsp;·&nbsp; Boca Raton &nbsp;·&nbsp; By Appointment</div>
+
+  <!-- EYEBROW ROTATOR -->
+  <div class="hero-eyebrow-rotator f1" id="heroEyebrow">
+    <span class="eyebrow-line active">Minas Gerais &nbsp;·&nbsp; Boca Raton &nbsp;·&nbsp; By Appointment</span>
+    <span class="eyebrow-line">One of One &nbsp;·&nbsp; Hand-Mined &nbsp;·&nbsp; Never Duplicated</span>
+    <span class="eyebrow-line">Estate Objects &nbsp;·&nbsp; Forty Years of Mastery</span>
+  </div>
+
   <h1 class="hero-title f2" id="heroTitle" aria-label="PHAÖRA"></h1>
   <p class="hero-tagline f3">One of one. From the earth.<br><span style="font-size:0.75em;letter-spacing:0.2em;opacity:0.6">Never to exist again.</span></p>
   <div class="hero-ctas f4">
     <button class="btn-gold" onclick="go('collection')">Enter The Collection</button>
     <button class="btn-outline" onclick="go('contact')">Begin a Private Dialogue</button>
   </div>
-  <div class="hero-scroll f5"><span>Descend</span><div class="scroll-line"></div></div>
+
+  <!-- ENHANCED SCROLL INDICATOR -->
+  <div class="hero-scroll-new f5">
+    <span class="hero-scroll-label">Descend</span>
+    <div class="scroll-lines">
+      <div class="scroll-line-c"></div>
+      <div class="scroll-line-l"></div>
+      <div class="scroll-line-r"></div>
+      <div class="scroll-diamond"></div>
+    </div>
+  </div>
 </section>
 
 <div class="marquee-wrap"><div class="marquee-track">
@@ -4456,6 +4704,211 @@ function horizScroll(dir){
 
 <button id="soundPill" onclick="window.toggleAmbience()" ontouchstart="event.preventDefault();window.toggleAmbience()"><span class="sound-dot"></span><span id="soundPillLabel">♪ Ambience</span></button>
 <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+
+<script>
+// ─── MAJOLICA CONTROLLER ───
+(function(){
+  var majBg = document.getElementById('majBg');
+  var majSvg = document.getElementById('majSvg');
+  var majTiles = document.getElementById('majTiles');
+  var heroEl = document.getElementById('hero');
+  if(!majBg || !heroEl) return;
+
+  var isMobile = window.matchMedia('(max-width:768px)').matches;
+  var phase = 0;
+  var phaseTimer = null;
+  var breathRaf = null;
+  var shattered = false;
+  var TILE_W = 200, TILE_H = 200;
+
+  // Build the 4×4 individual tile grid for shatter
+  function buildTileGrid(){
+    majTiles.innerHTML = '';
+    var rect = heroEl.getBoundingClientRect();
+    var cols = Math.ceil(rect.width / TILE_W) + 1;
+    var rows = Math.ceil(rect.height / TILE_H) + 1;
+    for(var r = 0; r < rows; r++){
+      for(var c = 0; c < cols; c++){
+        var use = document.createElementNS('http://www.w3.org/2000/svg','use');
+        use.setAttributeNS('http://www.w3.org/1999/xlink','href','#maj-tile');
+        use.setAttribute('x', c * TILE_W);
+        use.setAttribute('y', r * TILE_H);
+        use.setAttribute('width', TILE_W);
+        use.setAttribute('height', TILE_H);
+        use.classList.add('maj-tile-cell');
+        use.dataset.row = r;
+        use.dataset.col = c;
+        use.style.opacity = '0';
+        majTiles.appendChild(use);
+      }
+    }
+  }
+
+  function setMajOpacity(v, dur){
+    majBg.style.transition = 'opacity ' + (dur||2.5) + 's ease';
+    majBg.style.opacity = v;
+  }
+
+  function stopBreath(){
+    if(breathRaf){ cancelAnimationFrame(breathRaf); breathRaf = null; }
+  }
+
+  function startBreath(){
+    stopBreath();
+    var t0 = performance.now();
+    function tick(now){
+      var t = (now - t0) / 1000;
+      var v = 0.35 + 0.05 * Math.sin(t * 0.7);
+      majBg.style.opacity = v;
+      breathRaf = requestAnimationFrame(tick);
+    }
+    breathRaf = requestAnimationFrame(tick);
+  }
+
+  function clearPhaseTimer(){ if(phaseTimer){ clearTimeout(phaseTimer); phaseTimer = null; } }
+
+  function runPhase(p){
+    phase = p;
+    clearPhaseTimer();
+    if(shattered) return;
+    if(p === 0){
+      // Arrival: fade bg to 0.12, corner medallions are already animating via CSS
+      stopBreath();
+      setMajOpacity('0.12', 5);
+      phaseTimer = setTimeout(function(){ runPhase(1); }, 5000);
+    } else if(p === 1){
+      // Drawing: vines start CSS-automatically, bump opacity
+      setMajOpacity('0.25', 4);
+      phaseTimer = setTimeout(function(){ runPhase(2); }, 7000);
+    } else if(p === 2){
+      // Bloom: petals CSS-automatically, push to peak
+      setMajOpacity('0.38', 3);
+      phaseTimer = setTimeout(function(){ runPhase(3); }, 5000);
+    } else if(p === 3){
+      // Shimmer: all groups running, breathe
+      startBreath();
+      phaseTimer = setTimeout(function(){ runPhase(4); }, 8000);
+    } else if(p === 4){
+      // Dissolution
+      stopBreath();
+      setMajOpacity('0.04', 4);
+      phaseTimer = setTimeout(function(){ runPhase(0); }, 5000);
+    }
+  }
+
+  // Scroll-triggered shatter
+  function shatter(){
+    if(shattered) return;
+    shattered = true;
+    clearPhaseTimer();
+    stopBreath();
+    // Show tile grid, animate outward
+    var cells = majTiles.querySelectorAll('.maj-tile-cell');
+    var rect = heroEl.getBoundingClientRect();
+    var cx = rect.width / 2;
+    var cy = rect.height / 2;
+    cells.forEach(function(cell){
+      var r = parseInt(cell.dataset.row);
+      var c = parseInt(cell.dataset.col);
+      var tx = (c * TILE_W + TILE_W/2) - cx;
+      var ty = (r * TILE_H + TILE_H/2) - cy;
+      var dist = Math.sqrt(tx*tx + ty*ty);
+      var angle = Math.atan2(ty, tx);
+      var push = 60 + dist * 0.2;
+      var dx = Math.cos(angle) * push;
+      var dy = Math.sin(angle) * push;
+      var delay = Math.min(dist * 0.0008, 0.5);
+      cell.style.opacity = parseFloat(majBg.style.opacity) || 0.2;
+      setTimeout(function(){
+        cell.style.transition = 'transform 0.85s cubic-bezier(0.16,1,0.3,1), opacity 0.85s ease';
+        cell.style.transform = 'translate(' + dx + 'px,' + dy + 'px) scale(1.12)';
+        cell.style.opacity = '0';
+      }, delay * 1000);
+    });
+    setMajOpacity('0', 0.8);
+  }
+
+  function unshatter(){
+    if(!shattered) return;
+    shattered = false;
+    var cells = majTiles.querySelectorAll('.maj-tile-cell');
+    cells.forEach(function(cell){
+      cell.style.transition = '';
+      cell.style.transform = '';
+      cell.style.opacity = '0';
+    });
+    runPhase(0);
+  }
+
+  // Mouse proximity glow (desktop only)
+  if(!isMobile){
+    var lastMx = -999, lastMy = -999, proxRaf = null;
+    heroEl.addEventListener('mousemove', function(e){
+      lastMx = e.clientX; lastMy = e.clientY;
+      if(!proxRaf) proxRaf = requestAnimationFrame(applyProx);
+    });
+    heroEl.addEventListener('mouseleave', function(){
+      lastMx = -999; lastMy = -999;
+      if(!proxRaf) proxRaf = requestAnimationFrame(applyProx);
+    });
+    function applyProx(){
+      proxRaf = null;
+      var cells = majTiles.querySelectorAll('.maj-tile-cell');
+      cells.forEach(function(cell){
+        var r = parseInt(cell.dataset.row);
+        var c = parseInt(cell.dataset.col);
+        var tcx = c * TILE_W + TILE_W/2;
+        var tcy = r * TILE_H + TILE_H/2;
+        var rect = heroEl.getBoundingClientRect();
+        var dist = Math.sqrt(Math.pow(lastMx - rect.left - tcx, 2) + Math.pow(lastMy - rect.top - tcy, 2));
+        var boost = Math.max(0, 1 - dist / 220) * 0.18;
+        if(boost > 0.01){
+          cell.style.opacity = String(Math.min(0.45, (parseFloat(majBg.style.opacity)||0) + boost));
+        } else {
+          cell.style.opacity = '0';
+        }
+      });
+    }
+  }
+
+  // Scroll listener
+  var scrollTicking = false;
+  window.addEventListener('scroll', function(){
+    if(!scrollTicking){
+      scrollTicking = true;
+      requestAnimationFrame(function(){
+        scrollTicking = false;
+        var sy = window.scrollY;
+        if(sy > 50 && !shattered) shatter();
+        if(sy < 8 && shattered) unshatter();
+      });
+    }
+  }, {passive:true});
+
+  // Init
+  buildTileGrid();
+  runPhase(0);
+  window.addEventListener('resize', function(){
+    buildTileGrid();
+  });
+})();
+
+// ─── EYEBROW ROTATOR ───
+(function(){
+  var lines = document.querySelectorAll('#heroEyebrow .eyebrow-line');
+  if(!lines.length) return;
+  var idx = 0;
+  setInterval(function(){
+    lines[idx].classList.remove('active');
+    lines[idx].classList.add('exiting');
+    var prev = idx;
+    idx = (idx + 1) % lines.length;
+    lines[idx].classList.remove('exiting');
+    lines[idx].classList.add('active');
+    setTimeout(function(){ lines[prev].classList.remove('exiting'); }, 800);
+  }, 5000);
+})();
+</script>
 
 </body>
 </html>
