@@ -2863,10 +2863,17 @@ function getRecordId(sku){var n=parseInt(sku.replace(/\D/g,''));return'PHR-'+('0
 function skuSearch(val){
   val=val.trim().toUpperCase();
   var cards=document.querySelectorAll('.w-card');
+  var expandBtn=document.getElementById('skuExpandBtn');
   if(!val){
-    cards.forEach(function(c){c.style.display='';});
+    if(!skuExpanded){
+      cards.forEach(function(c,i){c.style.display=i<5?'':'none';});
+      if(expandBtn)expandBtn.style.display='';
+    } else {
+      cards.forEach(function(c){c.style.display='';});
+    }
     return;
   }
+  if(expandBtn)expandBtn.style.display='none';
   cards.forEach(function(c){
     var sku=c.querySelector('.w-strip-sku');
     var nm=c.querySelector('.w-strip-name');
@@ -2969,10 +2976,12 @@ var reg=document.getElementById('skuRegistry');
 var walletCountEl=document.getElementById('walletCount');
 if(walletCountEl)walletCountEl.textContent=P.length+' PIECES';
 var wActiveCard=null;
+var skuExpanded=false;
 P.forEach(function(p,idx){
   var c=document.createElement('div');
   c.className='w-card';
   c.style.zIndex=P.length-idx;
+  if(idx>=5)c.style.display='none';
   c.innerHTML='<div class="w-card-strip"><div class="w-strip-l"><div class="w-strip-sku">'+p.sku+'</div><div class="w-strip-name">'+p.name+'</div></div><div class="w-strip-r"><div class="w-strip-price">'+p.price+'</div><button class="w-expand-btn" onclick="event.stopPropagation();this.closest(\'.w-card\').click()">Expand</button><span class="w-chevron">▾</span></div></div>'
     +'<div class="w-body"><div class="w-body-inner" style="display:flex;gap:14px;align-items:flex-start">'
     +'<img src="'+p.img+'" alt="'+p.name+'" style="width:90px;height:90px;object-fit:cover;flex-shrink:0;border:1px solid rgba(201,168,76,0.15)">'
@@ -2993,6 +3002,14 @@ P.forEach(function(p,idx){
   };
   reg.appendChild(c);
 });
+var skuExpandBtn=document.createElement('div');
+skuExpandBtn.id='skuExpandBtn';
+skuExpandBtn.style.cssText='text-align:center;padding:1rem 0 0.5rem;cursor:pointer;color:rgba(201,168,76,0.55);font-size:0.55rem;letter-spacing:0.22em;display:flex;align-items:center;justify-content:center;gap:0.5rem;border-top:1px solid rgba(201,168,76,0.08);margin-top:0.5rem;transition:color 0.2s';
+skuExpandBtn.innerHTML='<span>VIEW ALL '+P.length+' PIECES</span><span style="font-size:0.9rem;line-height:1">↓</span>';
+skuExpandBtn.onmouseenter=function(){this.style.color='rgba(201,168,76,0.9)';};
+skuExpandBtn.onmouseleave=function(){this.style.color='rgba(201,168,76,0.55)';};
+skuExpandBtn.onclick=function(){skuExpanded=true;document.querySelectorAll('.w-card').forEach(function(c){c.style.display='';});skuExpandBtn.style.display='none';};
+reg.appendChild(skuExpandBtn);
 
 function filterPieces(tier,btn){
   document.querySelectorAll('.fbtn').forEach(function(b){b.classList.remove('active')});
