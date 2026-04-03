@@ -1866,6 +1866,15 @@ transition:background 0.3s;
 @keyframes scrollLinePulse{0%,100%{opacity:0.2}50%{opacity:1}}
 .scroll-diamond{position:absolute;left:50%;transform:translateX(-50%) rotate(45deg);width:5px;height:5px;background:var(--gold);animation:diamondSlide 2.4s ease-in-out infinite}
 @keyframes diamondSlide{0%{top:0;opacity:0}15%{opacity:1}88%{opacity:0.9}100%{top:50px;opacity:0}}
+
+/* ── Plaster Relief Background ── */
+body::before{content:'';position:fixed;inset:0;z-index:-1;background:url('plaster-relief-bg.jpg') center/cover no-repeat;opacity:0.13;pointer-events:none;will-change:transform}
+/* Let texture breathe through solid-bg sections */
+.coll-bg{background:rgba(22,22,22,0.87)!important}
+.sku-bg{background:rgba(22,22,22,0.87)!important}
+.wishlist-bg{background:rgba(22,22,22,0.87)!important}
+.waitlist-section{background:rgba(17,17,17,0.84)!important}
+footer{background:rgba(22,22,22,0.91)!important}
 </style>
 
 </head>
