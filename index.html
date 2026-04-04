@@ -346,7 +346,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;background:url('Untitl
   <div class="model-gold-bar"></div>
 
   <div class="model-selector">
-    <button class="model-btn active" onclick="switchSculpture('bird.glb','Azure Macaw','Hand-carved crystal macaw on amethyst stone over midnight base', this)">Azure Macaw</button>
+    <button class="model-btn active" onclick="switchSculpture('Meshy_AI_Azure_Macaw_Perched_0403111927_texture.glb','Azure Macaw','Hand-carved crystal macaw on amethyst stone over midnight base', this)">Azure Macaw</button>
     <button class="model-btn" onclick="switchSculpture('Meshy_AI_Azure_Macaw_Perched_0403111927_texture.glb','Macaw II','Alternate azure macaw — textured variant on crystal base', this)">Macaw II</button>
     <button class="model-btn" onclick="switchSculpture('Meshy_AI_Azure_Macaw_Perched_0403114753_texture.glb','Macaw III','Third macaw variant with refined detail on crystal base', this)">Macaw III</button>
   </div>
@@ -410,7 +410,7 @@ const clock = new THREE.Clock();
 // Model files
 const STONE_GLB = 'Meshy_AI_A_thick_freestanding_0403222116_texture.compressed.glb';
 const BASE_GLB  = 'Meshy_AI_Midnight_base_0403113827_texture.glb';
-let currentBirdGLB = 'bird.glb';
+let currentBirdGLB = 'Meshy_AI_Azure_Macaw_Perched_0403111927_texture.glb';
 
 function updateLoadBar(pct) {
   var bar = document.getElementById('load-bar-inner');
@@ -460,6 +460,14 @@ function groundModel(obj) {
   obj.position.y -= box.min.y;
 }
 
+// ── NORMALIZE MODEL TO TARGET SIZE (largest dimension) ──
+function normalizeModel(obj, targetSize) {
+  var box = new THREE.Box3().setFromObject(obj);
+  var size = box.getSize(new THREE.Vector3());
+  var maxDim = Math.max(size.x, size.y, size.z);
+  if (maxDim > 0) obj.scale.setScalar(targetSize / maxDim);
+}
+
 // ── BUILD THE FULL SCULPTURE ──
 async function buildSculpture(birdUrl) {
   // Remove old sculpture group
@@ -493,18 +501,23 @@ async function buildSculpture(birdUrl) {
     var birdModel = await loadGLB(birdUrl);
     updateLoadBar(90);
 
+    // Normalize each piece to consistent sizes
+    normalizeModel(baseModel,  1.6);  // plinth — widest
+    normalizeModel(stoneModel, 1.2);  // crystal — medium
+    normalizeModel(birdModel,  1.4);  // macaw — focal piece
+
     // Ground each model (bottom at y=0, centered horizontally)
     groundModel(baseModel);
     groundModel(stoneModel);
     groundModel(birdModel);
 
-    // Stack: base at bottom, stone on top of base, bird on top of stone
-    var baseHeight = getModelHeight(baseModel);
+    // Stack: base → stone → bird, bird sinks slightly into stone top
+    var baseHeight  = getModelHeight(baseModel);
     var stoneHeight = getModelHeight(stoneModel);
 
-    baseModel.position.y = 0;
-    stoneModel.position.y = baseHeight;
-    birdModel.position.y = baseHeight + stoneHeight;
+    baseModel.position.y  = 0;
+    stoneModel.position.y = baseHeight * 0.95;
+    birdModel.position.y  = baseHeight * 0.95 + stoneHeight * 0.82;
 
     // Add to group
     sculptureGroup.add(baseModel);
