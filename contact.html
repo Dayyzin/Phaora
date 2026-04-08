@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PHAÖRA — Contact</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Montserrat:wght@200;300&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+–black: #080604;
+–gold: #c9a84c;
+–gold-pale: #e8d5a3;
+–gold-dim: #7a6530;
+–deep: #0f0d08;
+}
+
+body {
+background: var(–black);
+color: var(–gold-pale);
+font-family: ‘Montserrat’, sans-serif;
+font-weight: 200;
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+}
+
+/* NAV */
+nav {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 28px 52px;
+border-bottom: 0.5px solid rgba(201,168,76,0.15);
+}
+.nav-brand {
+font-family: ‘Cormorant Garamond’, serif;
+font-weight: 300;
+font-size: 18px;
+letter-spacing: 0.35em;
+color: var(–gold);
+text-decoration: none;
+}
+.nav-back {
+font-size: 8px;
+letter-spacing: 0.25em;
+color: var(–gold-dim);
+text-decoration: none;
+text-transform: uppercase;
+transition: color 0.3s;
+}
+.nav-back:hover { color: var(–gold); }
+
+/* MAIN */
+main {
+flex: 1;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+padding: 80px 24px;
+}
+
+/* CONFIRMATION STATE */
+.confirmation {
+text-align: center;
+max-width: 560px;
+animation: fadein 1s ease both;
+}
+@keyframes fadein {
+from { opacity: 0; transform: translateY(20px); }
+to   { opacity: 1; transform: translateY(0); }
+}
+
+.confirm-icon {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 48px;
+color: var(–gold);
+margin-bottom: 28px;
+display: block;
+opacity: 0.6;
+}
+
+.confirm-title {
+font-family: ‘Cormorant Garamond’, serif;
+font-weight: 300;
+font-size: 36px;
+letter-spacing: 0.1em;
+color: var(–gold);
+margin-bottom: 8px;
+}
+
+.confirm-sub {
+font-family: ‘Cormorant Garamond’, serif;
+font-style: italic;
+font-size: 18px;
+color: var(–gold-dim);
+margin-bottom: 32px;
+}
+
+.thin-rule {
+width: 60px;
+height: 0.5px;
+background: var(–gold);
+margin: 0 auto 32px;
+opacity: 0.5;
+}
+
+.confirm-body {
+font-size: 11px;
+line-height: 2.2;
+color: var(–gold-pale);
+margin-bottom: 40px;
+}
+
+/* Contact details box */
+.contact-box {
+border: 0.5px solid rgba(201,168,76,0.25);
+padding: 32px 40px;
+margin-bottom: 40px;
+text-align: left;
+}
+.contact-row {
+display: flex;
+align-items: baseline;
+gap: 16px;
+padding: 12px 0;
+border-bottom: 0.5px solid rgba(201,168,76,0.08);
+}
+.contact-row:last-child { border-bottom: none; }
+.contact-label {
+font-size: 7px;
+letter-spacing: 0.3em;
+color: var(–gold-dim);
+text-transform: uppercase;
+min-width: 80px;
+}
+.contact-value {
+font-size: 12px;
+color: var(–gold-pale);
+letter-spacing: 0.05em;
+}
+.contact-value a {
+color: var(–gold-pale);
+text-decoration: none;
+transition: color 0.3s;
+-webkit-text-fill-color: var(–gold-pale);
+}
+.contact-value a:hover {
+color: var(–gold);
+-webkit-text-fill-color: var(–gold);
+}
+a, a:visited, a:active {
+color: inherit;
+text-decoration: none;
+}
+
+/* CTA button */
+.cta-btn {
+display: inline-block;
+border: 0.5px solid var(–gold);
+padding: 14px 44px;
+font-size: 8px;
+letter-spacing: 0.3em;
+color: var(–gold);
+text-transform: uppercase;
+text-decoration: none;
+font-family: ‘Montserrat’, sans-serif;
+font-weight: 300;
+transition: background 0.4s, color 0.4s;
+}
+.cta-btn:hover {
+background: var(–gold);
+color: var(–black);
+}
+
+/* FOOTER */
+footer {
+border-top: 0.5px solid rgba(201,168,76,0.12);
+padding: 28px 52px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.footer-brand {
+font-family: ‘Cormorant Garamond’, serif;
+font-weight: 300;
+font-size: 14px;
+letter-spacing: 0.3em;
+color: var(–gold);
+}
+.footer-text {
+font-size: 7px;
+letter-spacing: 0.2em;
+color: var(–gold-dim);
+text-transform: uppercase;
+}
+
+@media (max-width: 600px) {
+nav { padding: 20px 24px; }
+footer { flex-direction: column; gap: 12px; text-align: center; }
+.contact-box { padding: 24px 20px; }
+}
+</style>
+
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-brand">P H A Ö R A</a>
+  <a href="/" class="nav-back">← Back to Collection</a>
+</nav>
+
+<main>
+  <div class="confirmation">
+
+```
+<span class="confirm-icon">✦</span>
+<h1 class="confirm-title">Thank You</h1>
+<p class="confirm-sub">Your inquiry has been received</p>
+<div class="thin-rule"></div>
+
+<p class="confirm-body">
+  We'll be in touch within 24 hours to discuss your piece.<br>
+  In the meantime, feel free to reach us directly below.
+</p>
+
+<div class="contact-box">
+  <div class="contact-row">
+    <span class="contact-label">Contact</span>
+    <span class="contact-value">David Vaz</span>
+  </div>
+  <div class="contact-row">
+    <span class="contact-label">Phone</span>
+    <span class="contact-value">
+      <a href="tel:+19548719991">+1 (954) 871-9991</a>
+    </span>
+  </div>
+  <div class="contact-row">
+    <span class="contact-label">Email</span>
+    <span class="contact-value">
+      <a href="/cdn-cgi/l/email-protection#6f060109002f1f070e001d0e410c0002"><span class="__cf_email__" data-cfemail="cea7a0a8a18ebea6afa1bcafe0ada1a3">[email&#160;protected]</span></a>
+    </span>
+  </div>
+  <div class="contact-row">
+    <span class="contact-label">Instagram</span>
+    <span class="contact-value">
+      <a href="https://instagram.com/phaora" target="_blank">@phaora</a>
+    </span>
+  </div>
+  <div class="contact-row">
+    <span class="contact-label">Trade</span>
+    <span class="contact-value">Trade pricing available · 20% off retail</span>
+  </div>
+  <div class="contact-row">
+    <span class="contact-label">Shipping</span>
+    <span class="contact-value">Ships worldwide · Direct from Brazil</span>
+  </div>
+</div>
+
+<a href="/" class="cta-btn">View the Collection</a>
+```
+
+  </div>
+</main>
+
+<footer>
+  <span class="footer-brand">P H A Ö R A</span>
+  <span class="footer-text"
