@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PHAÖRA — Agent Partner Portal</title>
+<meta name="description" content="Join the PHAÖRA Agent Partner Program. Earn referral commissions, get exclusive crystal pricing, and access your private portal.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Cinzel:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#C9A84C;--gold-light:#E8D5A3;--gold-dim:rgba(201,168,76,0.15);--black:#0D0B07;--dark:#141108;--dark2:#181409;--cream:#FAF7F2;--mid:#888888;--light:#CCCCCC}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:linear-gradient(160deg,#0d0b07 0%,#111009 40%,#0a0c0e 100%);background-attachment:fixed;color:var(--cream);font-family:'Cormorant Garamond','Didot',Georgia,serif;font-weight:300;overflow-x:hidden;-webkit-font-smoothing:antialiased;letter-spacing:0.03em}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:3rem 4rem;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);background:rgba(10,10,10,0.15);transition:all 0.6s}
+nav.scrolled{padding:1.25rem 3rem;background:rgba(10,10,10,0.9);border-bottom:1px solid rgba(201,168,76,0.06)}
+.nav-logo{font-family:‘Cinzel’,‘Cormorant Garamond’,Georgia,serif;font-size:1.4rem;font-weight:400;color:var(–gold);letter-spacing:0.5em;cursor:pointer;text-shadow:0 0 30px rgba(201,168,76,0.25);text-decoration:none}
+.nav-back{font-size:0.5rem;letter-spacing:0.35em;text-transform:uppercase;color:rgba(201,168,76,0.4);text-decoration:none;font-family:-apple-system,‘Helvetica Neue’,sans-serif;transition:color 0.3s}
+.nav-back:hover{color:var(–gold)}
+
+/* HERO */
+.hero{min-height:60vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:14rem 2.5rem 6rem;text-align:center}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0d0b07 0%,#181408 50%,#0d0b07 100%)}
+.hero-lines{position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.03) 1px,transparent 1px);background-size:60px 60px}
+.hero-glow{position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 60%,rgba(201,168,76,0.06) 0%,transparent 70%)}
+.f1{opacity:0;animation:fadeUp 1s ease 0.3s forwards}
+.f2{opacity:0;animation:fadeUp 1.2s ease 0.5s forwards}
+.f3{opacity:0;animation:fadeUp 1s ease 0.8s forwards}
+.f4{opacity:0;animation:fadeUp 1s ease 1s forwards}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.hero-eyebrow{font-size:0.52rem;letter-spacing:0.6em;color:rgba(201,168,76,0.6);text-transform:uppercase;margin-bottom:2rem;font-family:-apple-system,‘Helvetica Neue’,sans-serif;position:relative;z-index:1}
+.hero-title{font-family:‘Cormorant Garamond’,‘Didot’,Georgia,serif;font-size:clamp(3rem,9vw,7rem);font-weight:300;color:var(–cream);letter-spacing:0.1em;line-height:0.95;margin-bottom:1.5rem;position:relative;z-index:1}
+.hero-title em{color:var(–gold);font-style:italic}
+.hero-rule{width:40px;height:1px;background:linear-gradient(to right,transparent,rgba(201,168,76,0.7),transparent);margin:0 auto 1.5rem;position:relative;z-index:1}
+.hero-sub{font-family:‘Cormorant Garamond’,Georgia,serif;font-style:italic;font-size:1.1rem;color:rgba(250,247,242,0.5);letter-spacing:0.1em;position:relative;z-index:1}
+
+/* MARQUEE */
+.marquee-wrap{border-top:1px solid rgba(201,168,76,0.15);border-bottom:1px solid rgba(201,168,76,0.15);padding:1.2rem 0;overflow:hidden;background:var(–dark)}
+.marquee-track{display:flex;gap:3rem;animation:marquee 22s linear infinite;white-space:nowrap}
+.mi{display:flex;align-items:center;gap:3rem;flex-shrink:0}
+.mt{font-size:0.5rem;letter-spacing:0.45em;text-transform:uppercase;color:rgba(201,168,76,0.35);font-family:-apple-system,‘Helvetica Neue’,sans-serif}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* BENEFITS */
+.benefits{display:grid;grid-template-columns:repeat(3,1fr);background:var(–dark2);border-top:1px solid rgba(201,168,76,0.1);border-bottom:1px solid rgba(201,168,76,0.1)}
+.benefit-item{padding:3.5rem 2.5rem;border-right:1px solid rgba(201,168,76,0.08);text-align:center}
+.benefit-item:last-child{border-right:none}
+.benefit-icon{font-family:‘Cormorant Garamond’,Georgia,serif;font-size:2.5rem;color:var(–gold);display:block;margin-bottom:1.2rem;opacity:0.6}
+.benefit-title{font-size:0.52rem;letter-spacing:0.35em;color:var(–gold);text-transform:uppercase;margin-bottom:0.8rem;font-family:-apple-system,‘Helvetica Neue’,sans-serif}
+.benefit-body{font-size:0.85rem;color:var(–mid);line-height:1.9}
+
+/* EXCLUSIVITY NOTE */
+.excl-wrap{max-width:720px;margin:0 auto;padding:5rem 2.5rem}
+.excl-box{border:1px solid rgba(201,168,76,0.2);background:rgba(201,168,76,0.03);padding:2rem 2.5rem;display:flex;align-items:flex-start;gap:1.5rem}
+.excl-icon{font-family:‘Cormorant Garamond’,Georgia,serif;font-size:2rem;color:var(–gold);flex-shrink:0;margin-top:4px;opacity:0.7}
+.excl-title{font-size:0.52rem;letter-spacing:0.3em;color:var(–gold);text-transform:uppercase;margin-bottom:0.6rem;font-family:-apple-system,sans-serif}
+.excl-body{font-size:0.85rem;color:var(–mid);line-height:1.9}
+
+/* FORM */
+.form-section{padding:0 2.5rem 7rem;max-width:720px;margin:0 auto;width:100%}
+.eyebrow{font-size:0.5rem;letter-spacing:0.5em;color:rgba(201,168,76,0.6);text-transform:uppercase;margin-bottom:1.25rem;font-family:-apple-system,‘Helvetica Neue’,sans-serif}
+.sec-title{font-family:‘Cormorant Garamond’,‘Didot’,Georgia,serif;font-size:clamp(2.2rem,4vw,3.5rem);font-weight:300;color:var(–cream);line-height:1.05;margin-bottom:1rem;letter-spacing:0.05em}
+.sec-title em{color:var(–gold);font-style:italic}
+.gold-rule{width:40px;height:1px;background:linear-gradient(to right,transparent,rgba(201,168,76,0.7),transparent);margin-bottom:2.5rem}
+.form-grid{display:flex;flex-direction:column;gap:0}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.fg{display:flex;flex-direction:column;gap:0.4rem;margin-bottom:1.5rem}
+.fl{font-size:0.55rem;letter-spacing:0.25em;color:var(–gold);text-transform:uppercase;font-family:-apple-system,‘Helvetica Neue’,sans-serif}
+.fi{background:rgba(255,255,255,0.02);border:none;border-bottom:1px solid rgba(201,168,76,0.2);color:var(–cream);font-size:0.95rem;font-weight:300;padding:0.85rem 0;outline:none;transition:border-color 0.3s;width:100%;font-family:‘Cormorant Garamond’,Georgia,serif;letter-spacing:0.05em}
+.fi:focus{border-bottom-color:var(–gold)}
+.fi::placeholder{color:rgba(136,136,136,0.5);font-style:italic}
+select.fi{-webkit-appearance:none;background-image:url(“data:image/svg+xml,%3Csvg xmlns=‘http://www.w3.org/2000/svg’ width=‘10’ height=‘6’%3E%3Cpath d=‘M0 0l5 6 5-6z’ fill=’%23C9A84C’/%3E%3C/svg%3E”);background-repeat:no-repeat;background-position:right 4px center;cursor:pointer;background-color:transparent}
+select.fi option{background:#111;color:#FAF7F2}
+textarea.fi{resize:none;height:100px}
+.form-submit{margin-top:1rem;padding:1.1rem 3.5rem;background:rgba(201,168,76,0.9);color:var(–black);font-size:0.55rem;letter-spacing:0.35em;text-transform:uppercase;font-weight:600;border:none;cursor:pointer;transition:all 0.4s;font-family:-apple-system,‘Helvetica Neue’,sans-serif}
+.form-submit:hover{background:var(–gold-light);transform:translateY(-2px)}
+
+/* CONFIRM */
+.confirm-section{display:none;flex-direction:column;align-items:center;text-align:center;padding:7rem 2.5rem;max-width:680px;margin:0 auto;width:100%}
+.confirm-section.show{display:flex}
+.confirm-icon{font-family:‘Cormorant Garamond’,Georgia,serif;font-size:4rem;color:var(–gold);margin-bottom:1.5rem;opacity:0.6;line-height:1}
+.confirm-title{font-family:‘Cormorant Garamond’,‘Didot’,Georgia,serif;font-size:clamp(2.2rem,5vw,3.5rem);font-weight:300;color:var(–cream);margin-bottom:0.5rem}
+.confirm-sub{font-family:‘Cormorant Garamond’,Georgia,serif;font-style:italic;font-size:1.2rem;color:rgba(201,168,76,0.6);margin-bottom:2rem}
+.confirm-body{font-size:0.9rem;color:var(–mid);line-height:2;margin-bottom:2.5rem;max-width:480px}
+.confirm-details{border:1px solid rgba(201,168,76,0.15);padding:2rem 2.5rem;width:100%;text-align:left;margin-bottom:2.5rem;background:var(–dark)}
+.ci-item{padding:0.9rem 0;border-bottom:1px solid rgba(201,168,76,0.08)}
+.ci-item:last-child{border-bottom:none}
+.ci-label{font-size:0.55rem;letter-spacing:0.25em;color:var(–gold);text-transform:uppercase;margin-bottom:0.3rem;font-family:-apple-system,sans-serif}
+.ci-val{font-family:‘Cormorant Garamond’,Georgia,serif;font-size:1rem;color:var(–cream)}
+.countdown{font-size:0.55rem;letter-spacing:0.25em;color:var(–mid);text-transform:uppercase;margin-bottom:1rem;font-family:-apple-system,sans-serif}
+.countdown span{color:var(–gold)}
+.progress-bar{width:100%;height:1px;background:rgba(201,168,76,0.15);margin-bottom:2rem;overflow:hidden}
+.progress-fill{height:100%;width:0%;background:var(–gold);transition:width 3s linear}
+.btn-row{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-gold{padding:1rem 2.5rem;background:rgba(201,168,76,0.9);color:var(–black);font-size:0.55rem;letter-spacing:0.35em;text-transform:uppercase;font-weight:600;border:none;cursor:pointer;transition:all 0.4s;font-family:-apple-system,‘Helvetica Neue’,sans-serif;text-decoration:none;display:inline-block}
+.btn-gold:hover{background:var(–gold-light)}
+.btn-outline{padding:1rem 2.5rem;border:1px solid rgba(201,168,76,0.35);color:rgba(201,168,76,0.7);font-size:0.55rem;letter-spacing:0.35em;text-transform:uppercase;background:transparent;cursor:pointer;transition:all 0.4s;font-family:-apple-system,‘Helvetica Neue’,sans-serif;text-decoration:none;display:inline-block}
+.btn-outline:hover{border-color:var(–gold);color:var(–gold)}
+
+/* FOOTER */
+footer{background:var(–dark2);border-top:1px solid rgba(201,168,76,0.15);padding:3rem 4rem}
+.ft{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem}
+.fbrand{font-family:‘Cormorant Garamond’,‘Didot’,Georgia,serif;font-size:1.5rem;font-weight:300;color:var(–gold);letter-spacing:0.3em}
+.fcopy{font-size:0.58rem;color:rgba(136,136,136,0.5);font-family:-apple-system,sans-serif}
+.fback{font-size:0.52rem;letter-spacing:0.25em;color:rgba(201,168,76,0.35);text-transform:uppercase;font-family:-apple-system,sans-serif;text-decoration:none;transition:color 0.3s}
+.fback:hover{color:var(–gold)}
+
+@media(max-width:768px){
+nav{padding:1.5rem 1.5rem}
+.hero{padding:10rem 1.5rem 4rem}
+.benefits{grid-template-columns:1fr}
+.benefit-item{border-right:none;border-bottom:1px solid rgba(201,168,76,0.08)}
+.form-row{grid-template-columns:1fr}
+.excl-wrap{padding:3rem 1.5rem}
+.form-section{padding:0 1.5rem 5rem}
+footer{padding:2.5rem 1.5rem}
+.ft{flex-direction:column;text-align:center}
+}
+</style>
+
+</head>
+<body>
+
+<nav id="nav">
+  <a href="/" class="nav-logo">PHAÖRA</a>
+  <a href="/" class="nav-back">← Back to Collection</a>
+</nav>
+
+<!-- HERO -->
+
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-lines"></div>
+  <div class="hero-glow"></div>
+  <p class="hero-eyebrow f1">Exclusive · By Invitation Only</p>
+  <h1 class="hero-title f2">Agent Partner<br><em>Portal</em></h1>
+  <div class="hero-rule f3"></div>
+  <p class="hero-sub f4">Referral Commissions · Crystal Discount · Private Access</p>
+</div>
+
+<!-- MARQUEE -->
+
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <div class="mi">
+      <span class="mt">Referral Commissions</span>
+      <span class="mt">·</span>
+      <span class="mt">Crystal Discount</span>
+      <span class="mt">·</span>
+      <span class="mt">Private Portal Access</span>
+      <span class="mt">·</span>
+      <span class="mt">Limited Spots Per Zip Code</span>
+      <span class="mt">·</span>
+      <span class="mt">Luxury Hardscape</span>
+      <span class="mt">·</span>
+      <span class="mt">South Florida</span>
+      <span class="mt">·</span>
+      <span class="mt">$15K – $100K+ Projects</span>
+      <span class="mt">·</span>
+    </div>
+    <div class="mi">
+      <span class="mt">Referral Commissions</span>
+      <span class="mt">·</span>
+      <span class="mt">Crystal Discount</span>
+      <span class="mt">·</span>
+      <span class="mt">Private Portal Access</span>
+      <span class="mt">·</span>
+      <span class="mt">Limited Spots Per Zip Code</span>
+      <span class="mt">·</span>
+      <span class="mt">Luxury Hardscape</span>
+      <span class="mt">·</span>
+      <span class="mt">South Florida</span>
+      <span class="mt">·</span>
+      <span class="mt">$15K – $100K+ Projects</span>
+      <span class="mt">·</span>
+    </div>
+  </div>
+</div>
+
+<!-- BENEFITS -->
+
+<div class="benefits">
+  <div class="benefit-item">
+    <span class="benefit-icon">◇</span>
+    <p class="benefit-title">Referral Commissions</p>
+    <p class="benefit-body">Earn on every hardscape project you refer. Projects range from $15,000 to $100,000+. Track your commissions in real time through your private portal.</p>
+  </div>
+  <div class="benefit-item">
+    <span class="benefit-icon">✦</span>
+    <p class="benefit-title">Crystal Discount</p>
+    <p class="benefit-body">Approved partners receive exclusive pricing on PHAÖRA handcrafted Brazilian stone sculptures — rose quartz, amethyst, selenite. A meaningful perk for you and your clients.</p>
+  </div>
+  <div class="benefit-item">
+    <span class="benefit-icon">○</span>
+    <p class="benefit-title">Limited Spots</p>
+    <p class="benefit-body">We approve a limited number of partners per zip code. Once a territory is full, it closes. Apply now to secure your area before it fills.</p>
+  </div>
+</div>
+
+<!-- EXCLUSIVITY NOTE -->
+
+<div class="excl-wrap">
+  <div class="excl-box">
+    <span class="excl-icon">✦</span>
+    <div>
+      <p class="excl-title">Approval Required</p>
+      <p class="excl-body">Portal access is approved directly by PHAÖRA. We review every application and approve a limited number of partners per market. Once approved you'll receive your portal login within 24 hours. All applications are reviewed by David Vaz personally.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FORM / CONFIRM -->
+
+<div id="formWrap">
+  <div class="form-section" id="formSection">
+    <p class="eyebrow">Request Access</p>
+    <h2 class="sec-title">Join the<br><em>Partner Program</em></h2>
+    <div class="gold-rule"></div>
+
+```
+<form class="form-grid" id="agentForm">
+  <div class="form-row">
+    <div class="fg">
+      <label class="fl">First Name</label>
+      <input class="fi" type="text" placeholder="First name" required>
+    </div>
+    <div class="fg">
+      <label class="fl">Last Name</label>
+      <input class="fi" type="text" placeholder="Last name" required>
+    </div>
+  </div>
+
+  <div class="fg">
+    <label class="fl">Email Address</label>
+    <input class="fi" type="email" placeholder="your@email.com" required>
+  </div>
+
+  <div class="fg">
+    <label class="fl">Phone Number</label>
+    <input class="fi" type="tel" placeholder="+1 (000) 000-0000" required>
+  </div>
+
+  <div class="fg">
+    <label class="fl">Brokerage / Company</label>
+    <input class="fi" type="text" placeholder="Your brokerage or company name" required>
+  </div>
+
+  <div class="form-row">
+    <div class="fg">
+      <label class="fl">Your Role</label>
+      <select class="fi" required>
+        <option value="" disabled selected>Select role</option>
+        <option>Real Estate Agent</option>
+        <option>Realtor</option>
+        <option>Real Estate Advisor</option>
+        <option>Broker</option>
+        <option>Interior Designer</option>
+        <option>Architect</option>
+        <option>Property Manager</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="fg">
+      <label class="fl">Primary Zip Code</label>
+      <input class="fi" type="text" placeholder="Your market area" required>
+    </div>
+  </div>
+
+  <div class="fg">
+    <label class="fl">Instagram Handle (optional)</label>
+    <input class="fi" type="text" placeholder="@yourhandle">
+  </div>
+
+  <div class="fg">
+    <label class="fl">Tell us about your client base</label>
+    <textarea class="fi" placeholder="What kind of clients do you work with? Any current projects?"></textarea>
+  </div>
+
+  <button class="form-submit" type="submit">Request Portal Access</button>
+</form>
+```
+
+  </div>
+
+  <!-- CONFIRMATION -->
+
+  <div class="confirm-section" id="confirmSection">
+    <div class="confirm-icon">✦</div>
+    <h2 class="confirm-title">Application Received</h2>
+    <p class="confirm-sub">Thank you for applying</p>
+    <div class="gold-rule" style="margin:0 auto 1.5rem"></div>
+    <p class="confirm-body">
+      Your application has been sent to David Vaz directly at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1d797c6b74795d6d757c726f7c337e7270">[email&#160;protected]</a>.<br>
+      You'll hear back within 24 hours regarding your portal access and territory availability.
+    </p>
+    <div class="confirm-details">
+      <div class="ci-item">
+        <p class="ci-label">Reviewed By</p>
+        <p class="ci-val">David Vaz — PHAÖRA</p>
+      </div>
+      <div class="ci-item">
+        <p class="ci-label">Response Time</p>
+        <p class="ci-val">Within 24 hours</p>
+      </div>
+      <div class="ci-item">
+        <p class="ci-label">What Happens Next</p>
+        <p class="ci-val">Territory availability check · Portal access sent · Welcome call scheduled</p>
+      </div>
+      <div class="ci-item">
+        <p class="ci-label">Contact</p>
+        <p class="ci-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2b4f4a5d424f6b5b434a44594a05484446">[email&#160;protected]</a> · +1 (954) 871-9991</p>
+      </div>
+    </div>
+    <p class="countdown">Redirecting to PHAÖRA in <span id="countNum">3</span>...</p>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="btn-row">
+      <a href="/" class="btn-gold">Explore PHAÖRA</a>
+      <a href="/" class="btn-outline">Back to Home</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+
+<footer>
+  <div class="ft">
+    <span class="fbrand">PHAÖRA</span>
+    <span class="fcopy">© 2024 Phaöra · Agent Partner Program · Confidential</span>
+    <a href="/" class="fback">← phaora.com</a>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+
+// Nav scroll
+window.addEventListener(‘scroll’, () => {
+document.getElementById(‘nav’).classList.toggle(‘scrolled’, window.scrollY > 60);
+});
+
+// Form submit
+document.getElementById(‘agentForm’).addEventListener(‘submit’, function(e) {
+e.preventDefault();
+document.getElementById(‘formSection’).style.display = ‘none’;
+const confirm = document.getElementById(‘confirmSection’);
+confirm.classList.add(‘show’);
+window.scrollTo({ top: 0, behavior: ‘smooth’ });
+
+// Progress bar
+setTimeout(() => {
+document.getElementById(’prog
