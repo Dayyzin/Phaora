@@ -392,10 +392,15 @@ document.getElementById('modal').addEventListener('click',function(e){if(e.targe
 
 // Form
 function submitForm(){
-  var n=document.getElementById('fname').value,e=document.getElementById('femail').value;
+  var n=document.getElementById('fname').value,e=document.getElementById('femail').value,p=document.getElementById('fphone').value,pr=document.getElementById('fproject').value,m=document.getElementById('fmessage').value;
   if(n&&e){
-    document.getElementById('formContainer').classList.add('hidden');
-    document.getElementById('successMsg').classList.add('active');
+    fetch('https://formspree.io/f/mlgokvnjmy',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,email:e,phone:p,project:pr,message:m})}).then(function(){
+      document.getElementById('formContainer').classList.add('hidden');
+      document.getElementById('successMsg').classList.add('active');
+    }).catch(function(){
+      document.getElementById('formContainer').classList.add('hidden');
+      document.getElementById('successMsg').classList.add('active');
+    });
   }
 }
 </script>
