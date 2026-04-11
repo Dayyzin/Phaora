@@ -1,0 +1,377 @@
+import { useState, useEffect, useRef } from "react";
+
+const IMAGES = {
+  hero: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1400&q=80",
+  pool1: "https://images.unsplash.com/photo-1572331165267-854da2b021b1?w=800&q=80",
+  pool2: "https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?w=800&q=80",
+  patio: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80",
+  driveway: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80",
+  outdoor: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80",
+  detail: "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?w=800&q=80",
+};
+
+function useInView(threshold = 0.15) {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } }, { threshold });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [threshold]);
+  return [ref, visible];
+}
+
+function FadeIn({ children, delay = 0, className = "" }) {
+  const [ref, visible] = useInView();
+  return (
+    <div ref={ref} className={className} style={{ opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(40px)", transition: `opacity 0.9s ease ${delay}s, transform 0.9s ease ${delay}s` }}>
+      {children}
+    </div>
+  );
+}
+
+function StatItem({ number, label, delay }) {
+  const [ref, visible] = useInView();
+  return (
+    <div ref={ref} style={{ opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(30px)", transition: `all 0.8s ease ${delay}s`, textAlign: "center" }}>
+      <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2.5rem, 5vw, 4rem)", fontWeight: 300, color: "#c9a96e", lineHeight: 1 }}>{number}</div>
+      <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "0.75rem", letterSpacing: "3px", textTransform: "uppercase", color: "#888", marginTop: "8px" }}>{label}</div>
+    </div>
+  );
+}
+
+export default function PhaöraHardscape() {
+  const [scrollY, setScrollY] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [activeProject, setActiveProject] = useState(null);
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "", project: "", message: "" });
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const projects = [
+    { img: IMAGES.pool1, title: "Infinity Edge Pool Deck", location: "Boca Raton, FL", desc: "Travertine pool deck with custom infinity edge, built to frame the waterfront view.", sqft: "2,400 sq ft" },
+    { img: IMAGES.pool2, title: "Resort-Style Oasis", location: "Palm Beach, FL", desc: "Full outdoor living build — pool, spa, fire pit, and summer kitchen on natural limestone.", sqft: "3,800 sq ft" },
+    { img: IMAGES.patio, title: "Grand Patio & Loggia", location: "Coral Gables, FL", desc: "Hand-laid coral stone patio with covered loggia and integrated outdoor lighting.", sqft: "1,900 sq ft" },
+    { img: IMAGES.driveway, title: "Estate Motor Court", location: "Fort Lauderdale, FL", desc: "Belgian block and marble paver motor court designed for a 12,000 sq ft waterfront estate.", sqft: "4,200 sq ft" },
+    { img: IMAGES.outdoor, title: "Elevated Outdoor Living", location: "Delray Beach, FL", desc: "Multi-level terrace with premium porcelain pavers, built-in seating, and landscape integration.", sqft: "2,800 sq ft" },
+    { img: IMAGES.detail, title: "Sculpture Garden Walkway", location: "Boca Raton, FL", desc: "Meandering natural stone path through a private sculpture garden with LED uplighting.", sqft: "1,200 sq ft" },
+  ];
+
+  const scrollTo = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    setMenuOpen(false);
+  };
+
+  const handleSubmit = () => {
+    if (formData.name && formData.email) {
+      setFormSubmitted(true);
+    }
+  };
+
+  return (
+    <div style={{ background: "#0a0a0a", color: "#e8e4de", minHeight: "100vh", fontFamily: "'Cormorant Garamond', serif", overflowX: "hidden" }}>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        ::selection { background: #c9a96e; color: #0a0a0a; }
+        @keyframes breathe { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes expandLine { from { width: 0; } to { width: 80px; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes grain { 0%, 100% { transform: translate(0,0); } 10% { transform: translate(-5%,-10%); } 30% { transform: translate(3%,5%); } 50% { transform: translate(-8%,2%); } 70% { transform: translate(8%,-5%); } 90% { transform: translate(-3%,8%); } }
+        .nav-link { color: #888; text-decoration: none; font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; transition: color 0.3s; cursor: pointer; }
+        .nav-link:hover { color: #c9a96e; }
+        .cta-btn { background: transparent; border: 1px solid #c9a96e; color: #c9a96e; padding: 16px 40px; font-family: 'Cormorant Garamond', serif; font-size: 0.8rem; letter-spacing: 4px; text-transform: uppercase; cursor: pointer; transition: all 0.5s ease; position: relative; overflow: hidden; }
+        .cta-btn::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: #c9a96e; transition: left 0.5s ease; z-index: 0; }
+        .cta-btn:hover::before { left: 0; }
+        .cta-btn:hover { color: #0a0a0a; }
+        .cta-btn span { position: relative; z-index: 1; }
+        .project-card { position: relative; overflow: hidden; cursor: pointer; aspect-ratio: 4/5; }
+        .project-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s ease, filter 0.8s ease; filter: brightness(0.7) saturate(0.8); }
+        .project-card:hover img { transform: scale(1.08); filter: brightness(0.5) saturate(0.6); }
+        .project-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 30px; background: linear-gradient(transparent, rgba(0,0,0,0.9)); transform: translateY(20px); opacity: 0; transition: all 0.6s ease; }
+        .project-card:hover .project-overlay { transform: translateY(0); opacity: 1; }
+        .input-field { width: 100%; background: transparent; border: none; border-bottom: 1px solid #333; color: #e8e4de; padding: 14px 0; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; outline: none; transition: border-color 0.3s; }
+        .input-field:focus { border-bottom-color: #c9a96e; }
+        .input-field::placeholder { color: #555; }
+        select.input-field { appearance: none; border-radius: 0; }
+        select.input-field option { background: #0a0a0a; color: #e8e4de; }
+        .grain-overlay { position: fixed; top: -50%; left: -50%; width: 200%; height: 200%; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); animation: grain 8s steps(10) infinite; pointer-events: none; z-index: 9999; opacity: 0.5; }
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 1000; display: flex; align-items: center; justify-content: center; animation: slideDown 0.4s ease; }
+        .service-item { border-bottom: 1px solid #1a1a1a; padding: 28px 0; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s; }
+        .service-item:hover { padding-left: 12px; border-bottom-color: #c9a96e; }
+      `}</style>
+
+      <div className="grain-overlay" />
+
+      {/* NAV */}
+      <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, padding: "24px 40px", display: "flex", justifyContent: "space-between", alignItems: "center", background: scrollY > 80 ? "rgba(10,10,10,0.95)" : "transparent", backdropFilter: scrollY > 80 ? "blur(20px)" : "none", transition: "all 0.5s" }}>
+        <div style={{ cursor: "pointer" }} onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+          <div style={{ fontSize: "1.3rem", letterSpacing: "6px", fontWeight: 400, color: "#e8e4de" }}>PHAÖRA</div>
+          <div style={{ fontSize: "0.5rem", letterSpacing: "3px", color: "#c9a96e", textTransform: "uppercase", marginTop: "2px" }}>Hardscape</div>
+        </div>
+        <div style={{ display: "flex", gap: "32px", alignItems: "center" }}>
+          <span className="nav-link" onClick={() => scrollTo("work")} style={{ display: window.innerWidth < 768 ? "none" : "inline" }}>Projects</span>
+          <span className="nav-link" onClick={() => scrollTo("services")} style={{ display: window.innerWidth < 768 ? "none" : "inline" }}>Services</span>
+          <span className="nav-link" onClick={() => scrollTo("contact")} style={{ display: window.innerWidth < 768 ? "none" : "inline" }}>Contact</span>
+          <button className="cta-btn" onClick={() => scrollTo("contact")} style={{ padding: "10px 24px", fontSize: "0.65rem" }}>
+            <span>Book a Call</span>
+          </button>
+        </div>
+      </nav>
+
+      {/* HERO */}
+      <section style={{ height: "100vh", position: "relative", overflow: "hidden" }}>
+        <div style={{ position: "absolute", inset: 0 }}>
+          <img src={IMAGES.hero} alt="Luxury estate" style={{ width: "100%", height: "100%", objectFit: "cover", transform: `scale(${1 + scrollY * 0.0003})`, transition: "transform 0.1s linear", filter: "brightness(0.35) saturate(0.7)" }} />
+        </div>
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.1) 40%, rgba(10,10,10,0.8) 100%)" }} />
+        
+        <div style={{ position: "relative", height: "100%", display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "0 clamp(24px, 5vw, 80px)", paddingBottom: "clamp(60px, 10vh, 120px)" }}>
+          <div style={{ animation: "fadeInUp 1.2s ease 0.3s both" }}>
+            <div style={{ fontSize: "0.65rem", letterSpacing: "5px", color: "#c9a96e", textTransform: "uppercase", marginBottom: "20px" }}>PHAÖRA Hardscape · Boca Raton</div>
+          </div>
+          <h1 style={{ animation: "fadeInUp 1.2s ease 0.6s both", fontSize: "clamp(2.5rem, 7vw, 5.5rem)", fontWeight: 300, lineHeight: 1.05, maxWidth: "800px", letterSpacing: "-1px" }}>
+            The Ground<br />
+            <span style={{ fontStyle: "italic", color: "#c9a96e" }}>Beneath</span> Your<br />
+            Legacy
+          </h1>
+          <p style={{ animation: "fadeInUp 1.2s ease 0.9s both", fontSize: "clamp(0.9rem, 1.5vw, 1.15rem)", fontWeight: 300, color: "#999", maxWidth: "480px", marginTop: "24px", lineHeight: 1.7 }}>
+            Premium natural stone hardscape for South Florida's finest estates. Pool decks, motor courts, patios — built to endure generations.
+          </p>
+          <div style={{ animation: "fadeInUp 1.2s ease 1.2s both", marginTop: "40px", display: "flex", gap: "20px", flexWrap: "wrap" }}>
+            <button className="cta-btn" onClick={() => scrollTo("contact")}>
+              <span>Schedule a Consultation</span>
+            </button>
+            <button className="cta-btn" onClick={() => scrollTo("work")} style={{ borderColor: "#444", color: "#999" }}>
+              <span>View Projects</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Scroll indicator */}
+        <div style={{ position: "absolute", bottom: "24px", left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: "8px", animation: "breathe 2.5s ease infinite" }}>
+          <div style={{ fontSize: "0.55rem", letterSpacing: "3px", color: "#666", textTransform: "uppercase" }}>Scroll</div>
+          <div style={{ width: "1px", height: "30px", background: "linear-gradient(to bottom, #666, transparent)" }} />
+        </div>
+      </section>
+
+      {/* STATS BAR */}
+      <section style={{ padding: "60px clamp(24px, 5vw, 80px)", borderTop: "1px solid #1a1a1a", borderBottom: "1px solid #1a1a1a" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: "40px", maxWidth: "900px", margin: "0 auto" }}>
+          <StatItem number="150+" label="Projects Completed" delay={0} />
+          <StatItem number="40+" label="Years of Mastery" delay={0.15} />
+          <StatItem number="0" label="Corners Cut" delay={0.3} />
+          <StatItem number="∞" label="Years of Beauty" delay={0.45} />
+        </div>
+      </section>
+
+      {/* SERVICES */}
+      <section id="services" style={{ padding: "clamp(80px, 12vh, 140px) clamp(24px, 5vw, 80px)" }}>
+        <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+          <FadeIn>
+            <div style={{ fontSize: "0.65rem", letterSpacing: "5px", color: "#c9a96e", textTransform: "uppercase", marginBottom: "16px" }}>What We Build</div>
+            <h2 style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)", fontWeight: 300, marginBottom: "60px", lineHeight: 1.1 }}>
+              Every Stone <span style={{ fontStyle: "italic", color: "#c9a96e" }}>Placed</span><br />With Purpose
+            </h2>
+          </FadeIn>
+
+          {[
+            { name: "Pool Decks & Surrounds", detail: "Travertine · Limestone · Marble" },
+            { name: "Motor Courts & Driveways", detail: "Belgian Block · Marble Pavers · Coral Stone" },
+            { name: "Patios & Outdoor Living", detail: "Custom Design · Fire Features · Kitchens" },
+            { name: "Garden Walkways & Paths", detail: "Natural Stone · LED Integration" },
+            { name: "Retaining Walls & Terraces", detail: "Structural · Decorative · Multi-Level" },
+            { name: "Full Estate Exteriors", detail: "End-to-End Design & Build" },
+          ].map((s, i) => (
+            <FadeIn key={i} delay={i * 0.08}>
+              <div className="service-item">
+                <div>
+                  <div style={{ fontSize: "clamp(1.1rem, 2vw, 1.4rem)", fontWeight: 400 }}>{s.name}</div>
+                  <div style={{ fontSize: "0.75rem", color: "#666", letterSpacing: "1px", marginTop: "4px" }}>{s.detail}</div>
+                </div>
+                <div style={{ fontSize: "0.7rem", color: "#c9a96e", letterSpacing: "2px" }}>→</div>
+              </div>
+            </FadeIn>
+          ))}
+        </div>
+      </section>
+
+      {/* PROJECTS */}
+      <section id="work" style={{ padding: "clamp(80px, 12vh, 140px) clamp(24px, 5vw, 80px)", background: "#070707" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <FadeIn>
+            <div style={{ fontSize: "0.65rem", letterSpacing: "5px", color: "#c9a96e", textTransform: "uppercase", marginBottom: "16px" }}>Selected Work</div>
+            <h2 style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)", fontWeight: 300, marginBottom: "60px", lineHeight: 1.1 }}>
+              Built to <span style={{ fontStyle: "italic", color: "#c9a96e" }}>Endure</span>
+            </h2>
+          </FadeIn>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "16px" }}>
+            {projects.map((p, i) => (
+              <FadeIn key={i} delay={i * 0.1}>
+                <div className="project-card" onClick={() => setActiveProject(p)}>
+                  <img src={p.img} alt={p.title} />
+                  <div className="project-overlay">
+                    <div style={{ fontSize: "0.6rem", letterSpacing: "3px", color: "#c9a96e", textTransform: "uppercase", marginBottom: "6px" }}>{p.location}</div>
+                    <div style={{ fontSize: "1.2rem", fontWeight: 400 }}>{p.title}</div>
+                    <div style={{ fontSize: "0.75rem", color: "#888", marginTop: "4px" }}>{p.sqft}</div>
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* PROJECT MODAL */}
+      {activeProject && (
+        <div className="modal-overlay" onClick={() => setActiveProject(null)}>
+          <div onClick={(e) => e.stopPropagation()} style={{ maxWidth: "700px", width: "90%", maxHeight: "90vh", overflow: "auto" }}>
+            <img src={activeProject.img} alt={activeProject.title} style={{ width: "100%", aspectRatio: "16/10", objectFit: "cover" }} />
+            <div style={{ padding: "32px 0" }}>
+              <div style={{ fontSize: "0.6rem", letterSpacing: "3px", color: "#c9a96e", textTransform: "uppercase" }}>{activeProject.location} · {activeProject.sqft}</div>
+              <h3 style={{ fontSize: "1.8rem", fontWeight: 300, marginTop: "8px" }}>{activeProject.title}</h3>
+              <p style={{ fontSize: "1rem", color: "#888", marginTop: "12px", lineHeight: 1.7 }}>{activeProject.desc}</p>
+              <button className="cta-btn" style={{ marginTop: "28px" }} onClick={() => { setActiveProject(null); scrollTo("contact"); }}>
+                <span>Start Your Project</span>
+              </button>
+            </div>
+            <div onClick={() => setActiveProject(null)} style={{ position: "absolute", top: "20px", right: "20px", color: "#888", cursor: "pointer", fontSize: "1.5rem", fontWeight: 300 }}>✕</div>
+          </div>
+        </div>
+      )}
+
+      {/* QUOTE BAND */}
+      <section style={{ padding: "clamp(80px, 12vh, 120px) clamp(24px, 5vw, 80px)", textAlign: "center", borderTop: "1px solid #1a1a1a", borderBottom: "1px solid #1a1a1a" }}>
+        <FadeIn>
+          <div style={{ maxWidth: "700px", margin: "0 auto" }}>
+            <div style={{ fontSize: "clamp(1.5rem, 3vw, 2.2rem)", fontWeight: 300, fontStyle: "italic", lineHeight: 1.5, color: "#ccc" }}>
+              "The exterior of a home is the first promise you make to everyone who arrives. We make sure it's a promise worth keeping."
+            </div>
+            <div style={{ marginTop: "24px", fontSize: "0.7rem", letterSpacing: "3px", color: "#c9a96e", textTransform: "uppercase" }}>David Vaz · Founder</div>
+          </div>
+        </FadeIn>
+      </section>
+
+      {/* PROCESS */}
+      <section style={{ padding: "clamp(80px, 12vh, 140px) clamp(24px, 5vw, 80px)" }}>
+        <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+          <FadeIn>
+            <div style={{ fontSize: "0.65rem", letterSpacing: "5px", color: "#c9a96e", textTransform: "uppercase", marginBottom: "16px" }}>How It Works</div>
+            <h2 style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)", fontWeight: 300, marginBottom: "60px", lineHeight: 1.1 }}>
+              Four Steps to <span style={{ fontStyle: "italic", color: "#c9a96e" }}>Forever</span>
+            </h2>
+          </FadeIn>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "40px" }}>
+            {[
+              { num: "01", title: "The Call", desc: "We listen. You tell us about your property, your vision, and your timeline. 15 minutes is all we need." },
+              { num: "02", title: "The Visit", desc: "We come to you. We measure, photograph, and assess the site. No cost, no obligation." },
+              { num: "03", title: "The Design", desc: "You receive a custom proposal with stone selections, 3D renders, and transparent pricing." },
+              { num: "04", title: "The Build", desc: "Our crew builds it by hand. Premium materials, meticulous craft, white-glove cleanup." },
+            ].map((step, i) => (
+              <FadeIn key={i} delay={i * 0.12}>
+                <div style={{ borderTop: "1px solid #c9a96e", paddingTop: "24px" }}>
+                  <div style={{ fontSize: "0.7rem", color: "#c9a96e", letterSpacing: "2px", marginBottom: "12px" }}>{step.num}</div>
+                  <div style={{ fontSize: "1.3rem", fontWeight: 400, marginBottom: "10px" }}>{step.title}</div>
+                  <div style={{ fontSize: "0.9rem", color: "#777", lineHeight: 1.6 }}>{step.desc}</div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA / CONTACT */}
+      <section id="contact" style={{ padding: "clamp(80px, 12vh, 140px) clamp(24px, 5vw, 80px)", background: "#070707" }}>
+        <div style={{ maxWidth: "800px", margin: "0 auto" }}>
+          {formSubmitted ? (
+            <FadeIn>
+              <div style={{ textAlign: "center", padding: "60px 0" }}>
+                <div style={{ fontSize: "0.65rem", letterSpacing: "5px", color: "#c9a96e", textTransform: "uppercase", marginBottom: "20px" }}>✦ Received</div>
+                <h2 style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 300, marginBottom: "16px" }}>We'll Be in Touch</h2>
+                <p style={{ color: "#888", fontSize: "1rem", lineHeight: 1.7 }}>David will reach out personally within 24 hours to schedule your consultation.</p>
+              </div>
+            </FadeIn>
+          ) : (
+            <>
+              <FadeIn>
+                <div style={{ textAlign: "center", marginBottom: "50px" }}>
+                  <div style={{ fontSize: "0.65rem", letterSpacing: "5px", color: "#c9a96e", textTransform: "uppercase", marginBottom: "16px" }}>Begin</div>
+                  <h2 style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)", fontWeight: 300, lineHeight: 1.1 }}>
+                    Let's Build Something<br /><span style={{ fontStyle: "italic", color: "#c9a96e" }}>Permanent</span>
+                  </h2>
+                  <p style={{ color: "#777", fontSize: "1rem", marginTop: "16px", lineHeight: 1.7 }}>
+                    Tell us about your property. David responds personally within 24 hours.
+                  </p>
+                </div>
+              </FadeIn>
+
+              <FadeIn delay={0.15}>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px 40px" }}>
+                  <input className="input-field" placeholder="Your Name" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
+                  <input className="input-field" placeholder="Email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
+                  <input className="input-field" placeholder="Phone" value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })} />
+                  <select className="input-field" value={formData.project} onChange={(e) => setFormData({ ...formData, project: e.target.value })}>
+                    <option value="">Project Type</option>
+                    <option>Pool Deck</option>
+                    <option>Driveway / Motor Court</option>
+                    <option>Patio / Outdoor Living</option>
+                    <option>Full Estate Exterior</option>
+                    <option>Other</option>
+                  </select>
+                  <div style={{ gridColumn: "1 / -1" }}>
+                    <input className="input-field" placeholder="Tell us about your project" value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} />
+                  </div>
+                </div>
+
+                <div style={{ textAlign: "center", marginTop: "48px" }}>
+                  <button className="cta-btn" onClick={handleSubmit} style={{ padding: "18px 56px" }}>
+                    <span>Schedule My Consultation</span>
+                  </button>
+                  <div style={{ marginTop: "20px", fontSize: "0.75rem", color: "#555" }}>
+                    Or call directly: <a href="tel:+19548719991" style={{ color: "#c9a96e", textDecoration: "none" }}>(954) 871-9991</a>
+                  </div>
+                </div>
+              </FadeIn>
+            </>
+          )}
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer style={{ padding: "40px clamp(24px, 5vw, 80px)", borderTop: "1px solid #1a1a1a", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "16px" }}>
+        <div>
+          <div style={{ fontSize: "1rem", letterSpacing: "4px", fontWeight: 400 }}>PHAÖRA</div>
+          <div style={{ fontSize: "0.6rem", color: "#555", letterSpacing: "2px", marginTop: "4px" }}>From The Earth To Your Estate</div>
+        </div>
+        <div style={{ display: "flex", gap: "24px", alignItems: "center" }}>
+          <a href="https://www.instagram.com/byphaora" style={{ color: "#666", textDecoration: "none", fontSize: "0.7rem", letterSpacing: "2px", transition: "color 0.3s" }}>@byphaora</a>
+          <span style={{ color: "#333" }}>·</span>
+          <span style={{ color: "#666", fontSize: "0.7rem", letterSpacing: "2px" }}>Boca Raton, FL</span>
+          <span style={{ color: "#333" }}>·</span>
+          <a href="tel:+19548719991" style={{ color: "#666", textDecoration: "none", fontSize: "0.7rem", letterSpacing: "2px" }}>(954) 871-9991</a>
+        </div>
+        <div style={{ fontSize: "0.6rem", color: "#333", width: "100%", textAlign: "center", marginTop: "16px" }}>
+          © 2026 PHAÖRA · A StyleArtStoneCraft Company
+        </div>
+      </footer>
+
+      {/* FLOATING CTA */}
+      <div style={{ position: "fixed", bottom: "24px", right: "24px", zIndex: 90, opacity: scrollY > 600 ? 1 : 0, transform: scrollY > 600 ? "translateY(0)" : "translateY(20px)", transition: "all 0.5s" }}>
+        <button className="cta-btn" onClick={() => scrollTo("contact")} style={{ background: "#c9a96e", borderColor: "#c9a96e", color: "#0a0a0a", padding: "14px 28px", fontSize: "0.65rem", boxShadow: "0 4px 30px rgba(201,169,110,0.3)" }}>
+          <span>Book a Call</span>
+        </button>
+      </div>
+    </div>
+  );
+}
