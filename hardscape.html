@@ -156,10 +156,10 @@ footer{padding:40px clamp(24px,5vw,80px);border-top:1px solid #1a1a1a;display:fl
     <div style="font-size:.5rem;letter-spacing:3px;color:#c9a96e;text-transform:uppercase;margin-top:2px">Hardscape</div>
   </div>
   <div class="nav-links">
-    <a class="nav-link desktop" onclick="scrollTo('#work')">Projects</a>
-    <a class="nav-link desktop" onclick="scrollTo('#services')">Services</a>
-    <a class="nav-link desktop" onclick="scrollTo('#contact')">Contact</a>
-    <a class="cta-btn small" onclick="scrollTo('#contact')"><span>Book a Call</span></a>
+    <a class="nav-link desktop" onclick="goTo('#work')">Projects</a>
+    <a class="nav-link desktop" onclick="goTo('#services')">Services</a>
+    <a class="nav-link desktop" onclick="goTo('#contact')">Contact</a>
+    <a class="cta-btn small" onclick="goTo('#contact')"><span>Book a Call</span></a>
   </div>
 </nav>
 
@@ -174,8 +174,8 @@ footer{padding:40px clamp(24px,5vw,80px);border-top:1px solid #1a1a1a;display:fl
     <h1>The Ground<br><em>Beneath</em> Your<br>Legacy</h1>
     <p class="hero-desc">Premium natural stone hardscape for South Florida's finest estates. Pool decks, motor courts, patios — built to endure generations.</p>
     <div class="hero-buttons">
-      <a class="cta-btn" onclick="scrollTo('#contact')"><span>Schedule a Consultation</span></a>
-      <a class="cta-btn ghost" onclick="scrollTo('#work')"><span>View Projects</span></a>
+      <a class="cta-btn" onclick="goTo('#contact')"><span>Schedule a Consultation</span></a>
+      <a class="cta-btn ghost" onclick="goTo('#work')"><span>View Projects</span></a>
     </div>
   </div>
   <div class="scroll-indicator">
@@ -342,7 +342,7 @@ footer{padding:40px clamp(24px,5vw,80px);border-top:1px solid #1a1a1a;display:fl
 
 <!-- FLOATING CTA -->
 <div class="floating-cta" id="floatingCta">
-  <a class="cta-btn solid" onclick="scrollTo('#contact')" style="padding:14px 28px;font-size:.65rem"><span>Book a Call</span></a>
+  <a class="cta-btn solid" onclick="goTo('#contact')" style="padding:14px 28px;font-size:.65rem"><span>Book a Call</span></a>
 </div>
 
 <script>
@@ -357,7 +357,7 @@ const projects = [
 ];
 
 // Smooth scroll
-function scrollTo(sel){document.querySelector(sel)?.scrollIntoView({behavior:'smooth'})}
+function goTo(sel){document.querySelector(sel)?.scrollIntoView({behavior:'smooth'})}
 
 // Nav scroll effect
 window.addEventListener('scroll',function(){
