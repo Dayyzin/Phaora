@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PHAÖRA Hardscape — Luxury Natural Stone · Boca Raton</title>
+<meta name="description" content="Premium natural stone hardscape for South Florida's finest estates. Pool decks, motor courts, patios — built to endure generations. By appointment.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+::selection{background:#c9a96e;color:#0a0a0a}
+body{background:#0a0a0a;color:#e8e4de;font-family:'Cormorant Garamond',serif;overflow-x:hidden}
+
+/* GRAIN */
+.grain{position:fixed;top:-50%;left:-50%;width:200%;height:200%;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");animation:grain 8s steps(10) infinite;pointer-events:none;z-index:9999;opacity:.5}
+@keyframes grain{0%,100%{transform:translate(0,0)}10%{transform:translate(-5%,-10%)}30%{transform:translate(3%,5%)}50%{transform:translate(-8%,2%)}70%{transform:translate(8%,-5%)}90%{transform:translate(-3%,8%)}}
+
+/* ANIMATIONS */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:translateY(0)}}
+@keyframes breathe{0%,100%{opacity:.4}50%{opacity:1}}
+@keyframes expandLine{from{width:0}to{width:80px}}
+.fade-in{opacity:0;transform:translateY(40px);transition:opacity .9s ease,transform .9s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:24px 40px;display:flex;justify-content:space-between;align-items:center;transition:all .5s}
+nav.scrolled{background:rgba(10,10,10,.95);backdrop-filter:blur(20px)}
+.nav-links{display:flex;gap:32px;align-items:center}
+.nav-link{color:#888;text-decoration:none;font-size:.7rem;letter-spacing:3px;text-transform:uppercase;transition:color .3s;cursor:pointer}
+.nav-link:hover{color:#c9a96e}
+@media(max-width:768px){.nav-link.desktop{display:none}nav{padding:16px 20px}}
+
+/* CTA BUTTON */
+.cta-btn{background:transparent;border:1px solid #c9a96e;color:#c9a96e;padding:16px 40px;font-family:'Cormorant Garamond',serif;font-size:.8rem;letter-spacing:4px;text-transform:uppercase;cursor:pointer;transition:all .5s ease;position:relative;overflow:hidden;display:inline-block;text-decoration:none}
+.cta-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:#c9a96e;transition:left .5s ease;z-index:0}
+.cta-btn:hover::before{left:0}
+.cta-btn:hover{color:#0a0a0a}
+.cta-btn span{position:relative;z-index:1}
+.cta-btn.small{padding:10px 24px;font-size:.65rem}
+.cta-btn.solid{background:#c9a96e;border-color:#c9a96e;color:#0a0a0a;box-shadow:0 4px 30px rgba(201,169,110,.3)}
+.cta-btn.ghost{border-color:#444;color:#999}
+
+/* HERO */
+.hero{height:100vh;position:relative;overflow:hidden}
+.hero-img{width:100%;height:100%;object-fit:cover;filter:brightness(.35) saturate(.7);transition:transform .1s linear}
+.hero-gradient{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,.3) 0%,rgba(10,10,10,.1) 40%,rgba(10,10,10,.8) 100%)}
+.hero-content{position:relative;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:0 clamp(24px,5vw,80px);padding-bottom:clamp(60px,10vh,120px)}
+.hero-tag{font-size:.65rem;letter-spacing:5px;color:#c9a96e;text-transform:uppercase;margin-bottom:20px;animation:fadeInUp 1.2s ease .3s both}
+.hero h1{animation:fadeInUp 1.2s ease .6s both;font-size:clamp(2.5rem,7vw,5.5rem);font-weight:300;line-height:1.05;max-width:800px;letter-spacing:-1px}
+.hero h1 em{font-style:italic;color:#c9a96e}
+.hero-desc{animation:fadeInUp 1.2s ease .9s both;font-size:clamp(.9rem,1.5vw,1.15rem);font-weight:300;color:#999;max-width:480px;margin-top:24px;line-height:1.7}
+.hero-buttons{animation:fadeInUp 1.2s ease 1.2s both;margin-top:40px;display:flex;gap:20px;flex-wrap:wrap}
+.scroll-indicator{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;animation:breathe 2.5s ease infinite}
+.scroll-indicator span{font-size:.55rem;letter-spacing:3px;color:#666;text-transform:uppercase}
+.scroll-indicator div{width:1px;height:30px;background:linear-gradient(to bottom,#666,transparent)}
+
+/* STATS */
+.stats{padding:60px clamp(24px,5vw,80px);border-top:1px solid #1a1a1a;border-bottom:1px solid #1a1a1a}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:40px;max-width:900px;margin:0 auto}
+.stat{text-align:center}
+.stat-number{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:300;color:#c9a96e;line-height:1}
+.stat-label{font-size:.75rem;letter-spacing:3px;text-transform:uppercase;color:#888;margin-top:8px}
+
+/* SECTIONS */
+.section{padding:clamp(80px,12vh,140px) clamp(24px,5vw,80px)}
+.section.dark{background:#070707}
+.section-tag{font-size:.65rem;letter-spacing:5px;color:#c9a96e;text-transform:uppercase;margin-bottom:16px}
+.section-title{font-size:clamp(2rem,4vw,3.5rem);font-weight:300;margin-bottom:60px;line-height:1.1}
+.section-title em{font-style:italic;color:#c9a96e}
+.section-inner{max-width:1100px;margin:0 auto}
+.section-inner.wide{max-width:1200px}
+
+/* SERVICES */
+.service-item{border-bottom:1px solid #1a1a1a;padding:28px 0;display:flex;justify-content:space-between;align-items:center;transition:all .3s}
+.service-item:hover{padding-left:12px;border-bottom-color:#c9a96e}
+.service-name{font-size:clamp(1.1rem,2vw,1.4rem);font-weight:400}
+.service-detail{font-size:.75rem;color:#666;letter-spacing:1px;margin-top:4px}
+.service-arrow{font-size:.7rem;color:#c9a96e;letter-spacing:2px}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.project-card{position:relative;overflow:hidden;cursor:pointer;aspect-ratio:4/5}
+.project-card img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s ease,filter .8s ease;filter:brightness(.7) saturate(.8)}
+.project-card:hover img{transform:scale(1.08);filter:brightness(.5) saturate(.6)}
+.project-overlay{position:absolute;bottom:0;left:0;right:0;padding:30px;background:linear-gradient(transparent,rgba(0,0,0,.9));transform:translateY(20px);opacity:0;transition:all .6s ease}
+.project-card:hover .project-overlay{transform:translateY(0);opacity:1}
+.project-location{font-size:.6rem;letter-spacing:3px;color:#c9a96e;text-transform:uppercase;margin-bottom:6px}
+.project-title{font-size:1.2rem;font-weight:400}
+.project-sqft{font-size:.75rem;color:#888;margin-top:4px}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:1000;display:none;align-items:center;justify-content:center;animation:fadeInUp .4s ease}
+.modal-overlay.active{display:flex}
+.modal-content{max-width:700px;width:90%;max-height:90vh;overflow:auto;position:relative}
+.modal-content img{width:100%;aspect-ratio:16/10;object-fit:cover}
+.modal-body{padding:32px 0}
+.modal-close{position:absolute;top:20px;right:20px;color:#888;cursor:pointer;font-size:1.5rem;font-weight:300;background:none;border:none;z-index:10}
+
+/* QUOTE */
+.quote-section{padding:clamp(80px,12vh,120px) clamp(24px,5vw,80px);text-align:center;border-top:1px solid #1a1a1a;border-bottom:1px solid #1a1a1a}
+.quote{max-width:700px;margin:0 auto;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:300;font-style:italic;line-height:1.5;color:#ccc}
+.quote-author{margin-top:24px;font-size:.7rem;letter-spacing:3px;color:#c9a96e;text-transform:uppercase;font-style:normal}
+
+/* PROCESS */
+.process-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:40px}
+.process-step{border-top:1px solid #c9a96e;padding-top:24px}
+.process-num{font-size:.7rem;color:#c9a96e;letter-spacing:2px;margin-bottom:12px}
+.process-title{font-size:1.3rem;font-weight:400;margin-bottom:10px}
+.process-desc{font-size:.9rem;color:#777;line-height:1.6}
+
+/* CONTACT */
+.contact-center{max-width:800px;margin:0 auto}
+.contact-header{text-align:center;margin-bottom:50px}
+.contact-header p{color:#777;font-size:1rem;margin-top:16px;line-height:1.7}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px 40px}
+@media(max-width:600px){.form-grid{grid-template-columns:1fr}}
+.form-full{grid-column:1/-1}
+.input-field{width:100%;background:transparent;border:none;border-bottom:1px solid #333;color:#e8e4de;padding:14px 0;font-family:'Cormorant Garamond',serif;font-size:1.1rem;outline:none;transition:border-color .3s;border-radius:0;-webkit-appearance:none}
+.input-field:focus{border-bottom-color:#c9a96e}
+.input-field::placeholder{color:#555}
+select.input-field{appearance:none}
+select.input-field option{background:#0a0a0a;color:#e8e4de}
+.form-actions{text-align:center;margin-top:48px}
+.form-phone{margin-top:20px;font-size:.75rem;color:#555}
+.form-phone a{color:#c9a96e;text-decoration:none}
+.success-msg{text-align:center;padding:60px 0;display:none}
+.success-msg.active{display:block}
+.form-container.hidden{display:none}
+
+/* FOOTER */
+footer{padding:40px clamp(24px,5vw,80px);border-top:1px solid #1a1a1a;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-brand{font-size:1rem;letter-spacing:4px;font-weight:400}
+.footer-tagline{font-size:.6rem;color:#555;letter-spacing:2px;margin-top:4px}
+.footer-links{display:flex;gap:24px;align-items:center}
+.footer-links a,.footer-links span{color:#666;text-decoration:none;font-size:.7rem;letter-spacing:2px;transition:color .3s}
+.footer-links a:hover{color:#c9a96e}
+.footer-dot{color:#333}
+.footer-copy{font-size:.6rem;color:#333;width:100%;text-align:center;margin-top:16px}
+
+/* FLOATING CTA */
+.floating-cta{position:fixed;bottom:24px;right:24px;z-index:90;opacity:0;transform:translateY(20px);transition:all .5s;pointer-events:none}
+.floating-cta.show{opacity:1;transform:translateY(0);pointer-events:all}
+.floating-cta .cta-btn.solid{animation:glow 2.5s ease-in-out infinite}
+@keyframes glow{0%,100%{box-shadow:0 4px 20px rgba(201,169,110,.3),0 0 40px rgba(201,169,110,.1)}50%{box-shadow:0 4px 30px rgba(201,169,110,.6),0 0 60px rgba(201,169,110,.25),0 0 100px rgba(201,169,110,.1)}}
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div style="cursor:pointer" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <div style="font-size:1.3rem;letter-spacing:6px;font-weight:400;color:#e8e4de">PHAÖRA</div>
+    <div style="font-size:.5rem;letter-spacing:3px;color:#c9a96e;text-transform:uppercase;margin-top:2px">Hardscape</div>
+  </div>
+  <div class="nav-links">
+    <a class="nav-link desktop" onclick="scrollTo('#work')">Projects</a>
+    <a class="nav-link desktop" onclick="scrollTo('#services')">Services</a>
+    <a class="nav-link desktop" onclick="scrollTo('#contact')">Contact</a>
+    <a class="cta-btn small" onclick="scrollTo('#contact')"><span>Book a Call</span></a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div style="position:absolute;inset:0">
+    <img class="hero-img" id="heroImg" src="hardscape-hero.jpg" alt="Luxury estate">
+  </div>
+  <div class="hero-gradient"></div>
+  <div class="hero-content">
+    <div class="hero-tag">PHAÖRA Hardscape · Boca Raton</div>
+    <h1>The Ground<br><em>Beneath</em> Your<br>Legacy</h1>
+    <p class="hero-desc">Premium natural stone hardscape for South Florida's finest estates. Pool decks, motor courts, patios — built to endure generations.</p>
+    <div class="hero-buttons">
+      <a class="cta-btn" onclick="scrollTo('#contact')"><span>Schedule a Consultation</span></a>
+      <a class="cta-btn ghost" onclick="scrollTo('#work')"><span>View Projects</span></a>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div></div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="stats-grid">
+    <div class="stat fade-in"><div class="stat-number">150+</div><div class="stat-label">Projects Completed</div></div>
+    <div class="stat fade-in"><div class="stat-number">40+</div><div class="stat-label">Years of Mastery</div></div>
+    <div class="stat fade-in"><div class="stat-number">0</div><div class="stat-label">Corners Cut</div></div>
+    <div class="stat fade-in"><div class="stat-number">∞</div><div class="stat-label">Years of Beauty</div></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="section-inner">
+    <div class="fade-in">
+      <div class="section-tag">What We Build</div>
+      <h2 class="section-title">Every Stone <em>Placed</em><br>With Purpose</h2>
+    </div>
+    <div class="service-item fade-in"><div><div class="service-name">Pool Decks & Surrounds</div><div class="service-detail">Travertine · Limestone · Marble</div></div><div class="service-arrow">→</div></div>
+    <div class="service-item fade-in"><div><div class="service-name">Motor Courts & Driveways</div><div class="service-detail">Belgian Block · Marble Pavers · Coral Stone</div></div><div class="service-arrow">→</div></div>
+    <div class="service-item fade-in"><div><div class="service-name">Patios & Outdoor Living</div><div class="service-detail">Custom Design · Fire Features · Kitchens</div></div><div class="service-arrow">→</div></div>
+    <div class="service-item fade-in"><div><div class="service-name">Garden Walkways & Paths</div><div class="service-detail">Natural Stone · LED Integration</div></div><div class="service-arrow">→</div></div>
+    <div class="service-item fade-in"><div><div class="service-name">Retaining Walls & Terraces</div><div class="service-detail">Structural · Decorative · Multi-Level</div></div><div class="service-arrow">→</div></div>
+    <div class="service-item fade-in"><div><div class="service-name">Full Estate Exteriors</div><div class="service-detail">End-to-End Design & Build</div></div><div class="service-arrow">→</div></div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section dark" id="work">
+  <div class="section-inner wide">
+    <div class="fade-in">
+      <div class="section-tag">Selected Work</div>
+      <h2 class="section-title">Built to <em>Endure</em></h2>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card fade-in" onclick="openModal(0)">
+        <img src="hardscape-1.jpg" alt="Stone fireplace">
+        <div class="project-overlay"><div class="project-location">South Florida</div><div class="project-title">Outdoor Stone Fireplace</div><div class="project-sqft">Custom Build</div></div>
+      </div>
+      <div class="project-card fade-in" onclick="openModal(1)">
+        <img src="hardscape-2.jpg" alt="Fire pit">
+        <div class="project-overlay"><div class="project-location">South Florida</div><div class="project-title">Circular Fire Pit & Patio</div><div class="project-sqft">Bluestone · Natural Stone</div></div>
+      </div>
+      <div class="project-card fade-in" onclick="openModal(2)">
+        <img src="hardscape-3.jpg" alt="Pool deck">
+        <div class="project-overlay"><div class="project-location">South Florida</div><div class="project-title">Pool Deck & Paver Surround</div><div class="project-sqft">Full Renovation</div></div>
+      </div>
+      <div class="project-card fade-in" onclick="openModal(3)">
+        <img src="hardscape-4.jpg" alt="Grand steps">
+        <div class="project-overlay"><div class="project-location">South Florida</div><div class="project-title">Grand Entry Staircase</div><div class="project-sqft">Granite · Paver Landing</div></div>
+      </div>
+      <div class="project-card fade-in" onclick="openModal(4)">
+        <img src="hardscape-5.jpg" alt="Raised patio">
+        <div class="project-overlay"><div class="project-location">South Florida</div><div class="project-title">Raised Patio & Fire Pit</div><div class="project-sqft">Stone Wall · Paver Circle</div></div>
+      </div>
+      <div class="project-card fade-in" onclick="openModal(5)">
+        <img src="hardscape-hero.jpg" alt="Estate driveway">
+        <div class="project-overlay"><div class="project-location">South Florida</div><div class="project-title">Estate Driveway & Retaining Wall</div><div class="project-sqft">Full Exterior</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <img id="modalImg" src="" alt="">
+    <div class="modal-body">
+      <div class="project-location" id="modalLocation"></div>
+      <h3 style="font-size:1.8rem;font-weight:300;margin-top:8px" id="modalTitle"></h3>
+      <p style="font-size:1rem;color:#888;margin-top:12px;line-height:1.7" id="modalDesc"></p>
+      <a class="cta-btn" style="margin-top:28px" onclick="closeModal();scrollTo('#contact')"><span>Start Your Project</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- QUOTE -->
+<section class="quote-section">
+  <div class="fade-in">
+    <div class="quote">"The exterior of a home is the first promise you make to everyone who arrives. We make sure it's a promise worth keeping."</div>
+    <div class="quote-author">David Vaz · Founder</div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="section">
+  <div class="section-inner">
+    <div class="fade-in">
+      <div class="section-tag">How It Works</div>
+      <h2 class="section-title">Four Steps to <em>Forever</em></h2>
+    </div>
+    <div class="process-grid">
+      <div class="process-step fade-in"><div class="process-num">01</div><div class="process-title">The Call</div><div class="process-desc">We listen. You tell us about your property, your vision, and your timeline. 15 minutes is all we need.</div></div>
+      <div class="process-step fade-in"><div class="process-num">02</div><div class="process-title">The Visit</div><div class="process-desc">We come to you. We measure, photograph, and assess the site. No cost, no obligation.</div></div>
+      <div class="process-step fade-in"><div class="process-num">03</div><div class="process-title">The Design</div><div class="process-desc">You receive a custom proposal with stone selections, 3D renders, and transparent pricing.</div></div>
+      <div class="process-step fade-in"><div class="process-num">04</div><div class="process-title">The Build</div><div class="process-desc">Our crew builds it by hand. Premium materials, meticulous craft, white-glove cleanup.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section dark" id="contact">
+  <div class="contact-center">
+    <div class="form-container" id="formContainer">
+      <div class="contact-header fade-in">
+        <div class="section-tag">Begin</div>
+        <h2 class="section-title" style="margin-bottom:0">Let's Build Something<br><em>Permanent</em></h2>
+        <p>Tell us about your property. David responds personally within 24 hours.</p>
+      </div>
+      <div class="fade-in">
+        <div class="form-grid">
+          <input class="input-field" id="fname" placeholder="Your Name">
+          <input class="input-field" id="femail" placeholder="Email" type="email">
+          <input class="input-field" id="fphone" placeholder="Phone" type="tel">
+          <select class="input-field" id="fproject">
+            <option value="">Project Type</option>
+            <option>Pool Deck</option>
+            <option>Driveway / Motor Court</option>
+            <option>Patio / Outdoor Living</option>
+            <option>Full Estate Exterior</option>
+            <option>Other</option>
+          </select>
+          <div class="form-full">
+            <input class="input-field" id="fmessage" placeholder="Tell us about your project">
+          </div>
+        </div>
+        <div class="form-actions">
+          <a class="cta-btn" onclick="submitForm()" style="padding:18px 56px"><span>Schedule My Consultation</span></a>
+          <div class="form-phone">Or call directly: <a href="tel:+19548719991">(954) 871-9991</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="success-msg" id="successMsg">
+      <div class="section-tag">✦ Received</div>
+      <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:300;margin:16px 0">We'll Be in Touch</h2>
+      <p style="color:#888;font-size:1rem;line-height:1.7">David will reach out personally within 24 hours to schedule your consultation.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-brand">PHAÖRA</div>
+    <div class="footer-tagline">From The Earth To Your Estate</div>
+  </div>
+  <div class="footer-links">
+    <a href="https://www.instagram.com/byphaora" target="_blank">@byphaora</a>
+    <span class="footer-dot">·</span>
+    <span>Boca Raton, FL</span>
+    <span class="footer-dot">·</span>
+    <a href="tel:+19548719991">(954) 871-9991</a>
+  </div>
+  <div class="footer-copy">© 2026 PHAÖRA · A StyleArtStoneCraft Company</div>
+</footer>
+
+<!-- FLOATING CTA -->
+<div class="floating-cta" id="floatingCta">
+  <a class="cta-btn solid" onclick="scrollTo('#contact')" style="padding:14px 28px;font-size:.65rem"><span>Book a Call</span></a>
+</div>
+
+<script>
+// Projects data
+const projects = [
+  {img:"hardscape-1.jpg",title:"Outdoor Stone Fireplace",location:"South Florida · Custom Build",desc:"Hand-laid natural stone fireplace with brick interior, granite mantel, and integrated wood storage. Built to be the centerpiece of any outdoor living space."},
+  {img:"hardscape-2.jpg",title:"Circular Fire Pit & Patio",location:"South Florida · Bluestone",desc:"Custom circular fire pit with natural stone base and precision-cut bluestone patio. Designed for gathering, built to last."},
+  {img:"hardscape-3.jpg",title:"Pool Deck & Paver Surround",location:"South Florida · Full Renovation",desc:"Complete pool deck renovation with multi-tone pavers, contrasting border detail, and integrated steps. A backyard transformed."},
+  {img:"hardscape-4.jpg",title:"Grand Entry Staircase",location:"South Florida · Granite",desc:"Sweeping granite staircase with paver landing and natural stone retaining walls. Designed for scale and presence."},
+  {img:"hardscape-5.jpg",title:"Raised Patio & Fire Pit",location:"South Florida · Stone Wall",desc:"Elevated circular patio with fieldstone retaining wall, paver circle pattern, granite steps, and integrated fire pit."},
+  {img:"hardscape-hero.jpg",title:"Estate Driveway & Retaining Wall",location:"South Florida · Full Exterior",desc:"Curved asphalt driveway with natural stone retaining walls, granite curbing, and professional landscaping. Curb appeal redefined."}
+];
+
+// Smooth scroll
+function scrollTo(sel){document.querySelector(sel)?.scrollIntoView({behavior:'smooth'})}
+
+// Nav scroll effect
+window.addEventListener('scroll',function(){
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>80);
+  document.getElementById('floatingCta').classList.toggle('show',window.scrollY>600);
+  // Parallax hero
+  var h=document.getElementById('heroImg');
+  if(h)h.style.transform='scale('+(1+window.scrollY*.0003)+')';
+},{passive:true});
+
+// Fade in on scroll
+var observer=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}})
+},{threshold:0.15});
+document.querySelectorAll('.fade-in').forEach(function(el){observer.observe(el)});
+
+// Modal
+function openModal(i){
+  var p=projects[i],m=document.getElementById('modal');
+  document.getElementById('modalImg').src=p.img;
+  document.getElementById('modalTitle').textContent=p.title;
+  document.getElementById('modalLocation').textContent=p.location;
+  document.getElementById('modalDesc').textContent=p.desc;
+  m.classList.add('active');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  document.getElementById('modal').classList.remove('active');
+  document.body.style.overflow='';
+}
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal()});
+
+// Form
+function submitForm(){
+  var n=document.getElementById('fname').value,e=document.getElementById('femail').value,p=document.getElementById('fphone').value,pr=document.getElementById('fproject').value,m=document.getElementById('fmessage').value;
+  if(n&&e){
+    fetch('https://formspree.io/f/mlgokvnjmy',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,email:e,phone:p,project:pr,message:m})}).then(function(){
+      document.getElementById('formContainer').classList.add('hidden');
+      document.getElementById('successMsg').classList.add('active');
+    }).catch(function(){
+      document.getElementById('formContainer').classList.add('hidden');
+      document.getElementById('successMsg').classList.add('active');
+    });
+  }
+}
+</script>
+</body>
+</html>
