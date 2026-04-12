@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- 
+  ═══════════════════════════════════════════════════════════════
+  PHAÖRA · CINEMATIC PIECE PAGE TEMPLATE
+  ═══════════════════════════════════════════════════════════════
+  
+  HOW TO USE THIS FILE:
+  
+  1. This is a self-contained HTML template for individual piece pages.
+  2. For each piece, duplicate this file and update the PIECE_DATA object below.
+  3. Replace placeholder images with your actual piece photography.
+  4. Update the sold archive and similar pieces sections as inventory changes.
+  
+  FILE NAMING CONVENTION:
+    pieces/the-flamingo.html
+    pieces/the-heron.html
+    pieces/crystal-tower-iv.html
+  
+  CONVERSION TECHNIQUES USED (each is marked with 🔄 in comments):
+    - Story-first narrative (emotion before specs)
+    - Velocity social proof ("4 pieces acquired this quarter")
+    - Scarcity via sold archive
+    - Micro-commitment inquiry funnel
+    - Psychological ownership (room visualization)
+    - Certificate preview (trust building)
+    - Cross-sell with urgency badges
+    - Save/retarget capability
+    - Progressive reveal animations
+    - Single primary CTA principle
+  
+  ═══════════════════════════════════════════════════════════════
+-->
+
+<title>The Aerie — PHAÖRA</title>
+
+<!-- SEO Meta — 🔄 CONVERSION: Search click-through is the FIRST conversion event -->
+<meta name="description" content="One of one. A white quartz eagle commanding three smaller birds on an amethyst cathedral. Museum-quality. By appointment · Boca Raton.">
+<meta property="og:title" content="The Aerie — PHAÖRA">
+<meta property="og:description" content="One of one. An eagle and its flock. White quartz on amethyst. Never to exist again.">
+<meta property="og:image" content="https://phaora.com/IMG_6969.JPG">
+<meta property="og:type" content="product">
+<meta property="og:url" content="https://phaora.com/pieces/the-aerie">
+
+<!-- Fonts — matching your existing site -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Outfit:wght@200;300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════
+   DESIGN TOKENS
+   Match these to your existing site vars
+   ═══════════════════════════════════════ */
+:root {
+  --bg:           #080806;
+  --bg2:          #0e0e0b;
+  --bg3:          #151512;
+  --bg4:          #1c1c18;
+  --gold:         #c9a96e;
+  --gold-light:   #dfc48f;
+  --gold-dim:     #8a7a52;
+  --gold-faint:   rgba(201,169,110,0.06);
+  --cream:        #f2ede4;
+  --cream-dim:    #a89e8e;
+  --cream-faint:  #6b6358;
+  --border:       rgba(201,169,110,0.12);
+  --border-hover: rgba(201,169,110,0.3);
+  --border-active:rgba(201,169,110,0.5);
+  --green:        #5fa86b;
+  --green-bg:     rgba(95,168,107,0.08);
+  --green-border: rgba(95,168,107,0.2);
+  --red:          #c97070;
+  --red-bg:       rgba(201,112,112,0.08);
+  --red-border:   rgba(201,112,112,0.2);
+  
+  --f-display: 'Playfair Display', Georgia, serif;
+  --f-body:    'Cormorant Garamond', Garamond, serif;
+  --f-sans:    'Outfit', 'Helvetica Neue', sans-serif;
+  --f-mono:    'JetBrains Mono', monospace;
+}
+
+/* ═══════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--cream);
+  font-family: var(--f-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; }
+input, textarea {
+  font-family: var(--f-body);
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  color: var(--cream);
+  padding: 14px 16px;
+  font-size: 16px;
+  width: 100%;
+  transition: border-color 0.3s;
+  outline: none;
+}
+input:focus, textarea:focus { border-color: var(--gold); }
+textarea { resize: vertical; }
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 2px; }
+
+/* ═══════════════════════════════════════
+   ANIMATIONS
+   ═══════════════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes lineGrow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+@keyframes breathe {
+  0%, 100% { opacity: 0.4; }
+  50%      { opacity: 1; }
+}
+@keyframes shimmer {
+  0%   { background-position: -300% center; }
+  100% { background-position: 300% center; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 30px rgba(201,169,110,0.03); }
+  50%      { box-shadow: 0 0 60px rgba(201,169,110,0.1); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.94); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Scroll-triggered reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1),
+              transform 0.8s cubic-bezier(0.22,1,0.36,1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children */
+.reveal.visible .stagger:nth-child(1) { transition-delay: 0s; }
+.reveal.visible .stagger:nth-child(2) { transition-delay: 0.1s; }
+.reveal.visible .stagger:nth-child(3) { transition-delay: 0.2s; }
+.reveal.visible .stagger:nth-child(4) { transition-delay: 0.3s; }
+.stagger { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible .stagger { opacity: 1; transform: translateY(0); }
+
+/* ═══════════════════════════════════════
+   UTILITY CLASSES
+   ═══════════════════════════════════════ */
+.label {
+  font-family: var(--f-sans);
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+}
+.badge {
+  display: inline-block;
+  padding: 5px 14px;
+  background: var(--gold-faint);
+  border: 1px solid var(--border);
+  font-family: var(--f-sans);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+.badge--green {
+  background: var(--green-bg);
+  border-color: var(--green-border);
+  color: var(--green);
+}
+.badge--red {
+  background: var(--red-bg);
+  border-color: var(--red-border);
+  color: var(--red);
+}
+.gold-line {
+  height: 1px;
+  background: var(--border);
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 1s cubic-bezier(0.22,1,0.36,1);
+}
+.reveal.visible .gold-line { transform: scaleX(1); }
+
+.section { max-width: 900px; margin: 0 auto; padding: 56px 32px 0; }
+
+.btn-primary {
+  background: var(--gold);
+  border: none;
+  color: var(--bg);
+  padding: 18px 48px;
+  font-family: var(--f-sans);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  transition: background 0.3s;
+}
+.btn-primary:hover { background: var(--gold-light); }
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 14px 32px;
+  font-family: var(--f-sans);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: all 0.3s;
+}
+.btn-outline:hover { background: var(--gold); color: var(--bg); }
+
+/* ═══════════════════════════════════════
+   TOP BAR
+   ═══════════════════════════════════════ */
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(8,8,6,0.88);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border);
+  height: 50px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 24px;
+}
+.topbar__brand {
+  display: flex; align-items: center; gap: 12px;
+  font-family: var(--f-body); font-size: 13px; color: var(--cream-dim);
+}
+.topbar__brand span:first-child {
+  font-family: var(--f-sans); font-size: 11px;
+  letter-spacing: 0.3em; color: var(--gold-dim); font-weight: 300;
+}
+.topbar__brand .sep { color: var(--border); }
+.topbar__brand .current { color: var(--cream); font-weight: 400; }
+.topbar__actions { display: flex; align-items: center; gap: 16px; }
+
+/* 🔄 CONVERSION: Save button enables retargeting follow-up */
+.save-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--cream-dim);
+  padding: 6px 16px;
+  font-family: var(--f-sans); font-size: 10px;
+  letter-spacing: 0.12em;
+  transition: all 0.3s;
+}
+.save-btn.saved {
+  background: rgba(201,169,110,0.1);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+.topbar__phone {
+  font-family: var(--f-sans); font-size: 10px;
+  color: var(--cream-faint); letter-spacing: 0.1em;
+}
+
+/* ═══════════════════════════════════════
+   HERO SECTION
+   ═══════════════════════════════════════ */
+.hero { padding-top: 50px; position: relative; }
+.hero__image {
+  height: 560px; position: relative; overflow: hidden;
+  background: linear-gradient(160deg, var(--bg2) 0%, var(--bg3) 40%, var(--bg2) 100%);
+}
+.hero__image img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; opacity: 0;
+  animation: fadeIn 2s 0.3s ease forwards;
+}
+.hero__image-gradient-bottom {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 50%, var(--bg) 100%);
+}
+.hero__image-glow {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 40%, rgba(201,169,110,0.04) 0%, transparent 60%);
+}
+
+/* Status badges */
+.hero__badges {
+  position: absolute; top: 20px; left: 24px;
+  display: flex; gap: 8px;
+  opacity: 0; animation: fadeIn 0.6s 0.5s forwards;
+}
+
+/* 🔄 CONVERSION: Velocity signal — shows others are buying */
+.hero__velocity {
+  position: absolute; top: 20px; right: 24px;
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(8,8,6,0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  padding: 8px 16px;
+  opacity: 0; animation: fadeIn 0.6s 0.8s forwards;
+}
+.hero__velocity-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--gold);
+  animation: breathe 2.5s ease-in-out infinite;
+}
+.hero__velocity-text {
+  font-family: var(--f-sans); font-size: 10px;
+  color: var(--gold-dim); letter-spacing: 0.1em;
+}
+
+/* Thumbnail strip */
+.hero__thumbs {
+  position: absolute; bottom: 24px; left: 24px;
+  display: flex; gap: 8px;
+  opacity: 0; animation: fadeIn 0.6s 0.6s forwards;
+}
+.hero__thumb {
+  width: 64px; height: 64px;
+  border: 1px solid var(--border);
+  overflow: hidden; cursor: pointer;
+  opacity: 0.6; transition: all 0.3s;
+}
+.hero__thumb:hover, .hero__thumb.active {
+  opacity: 1; border-color: var(--gold);
+}
+.hero__thumb img { width: 100%; height: 100%; object-fit: cover; }
+.hero__thumb--360 {
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg4); font-family: var(--f-sans);
+  font-size: 9px; color: var(--cream-dim); letter-spacing: 0.1em;
+}
+
+/* Title + Price row */
+.hero__info {
+  max-width: 900px; margin: 0 auto; padding: 40px 32px 0;
+  display: flex; justify-content: space-between; align-items: flex-end;
+  flex-wrap: wrap; gap: 20px;
+}
+.hero__title-group { opacity: 0; animation: fadeUp 0.8s 0.3s forwards; }
+.hero__sku {
+  font-family: var(--f-sans); font-size: 10px;
+  letter-spacing: 0.25em; color: var(--gold-dim); margin-bottom: 10px;
+}
+.hero__title {
+  font-family: var(--f-display); font-size: 48px;
+  font-weight: 400; color: var(--cream); line-height: 1.15;
+}
+.hero__title em { color: var(--gold); font-style: italic; }
+.hero__price-group {
+  text-align: right;
+  opacity: 0; animation: fadeUp 0.8s 0.5s forwards;
+}
+.hero__price {
+  font-family: var(--f-display); font-size: 38px;
+  color: var(--gold); font-weight: 400;
+}
+.hero__price-note {
+  font-family: var(--f-body); font-size: 14px;
+  color: var(--cream-dim); font-style: italic; font-weight: 300; margin-top: 4px;
+}
+
+/* ═══════════════════════════════════════
+   ORIGIN STORY
+   🔄 CONVERSION: Story-first. Emotion 
+   lands BEFORE specs. This is the #1 
+   technique for high-ticket conversion.
+   ═══════════════════════════════════════ */
+.story { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 48px; }
+.story__narrative p {
+  font-family: var(--f-body); font-size: 19px;
+  color: var(--cream-dim); line-height: 1.85; font-weight: 300;
+  margin-bottom: 24px;
+}
+.story__craftsman-img {
+  width: 100%; height: 300px; object-fit: cover;
+  filter: brightness(0.7) contrast(1.1);
+  border: 1px solid var(--border);
+}
+.story__craftsman-overlay {
+  position: relative; margin-top: -60px; padding: 0 20px 20px;
+  background: linear-gradient(to top, rgba(8,8,6,0.95) 0%, transparent 100%);
+}
+.story__craftsman-name {
+  font-family: var(--f-display); font-size: 14px;
+  color: var(--cream); font-style: italic;
+}
+.story__craftsman-title {
+  font-family: var(--f-sans); font-size: 9px;
+  color: var(--gold-dim); letter-spacing: 0.15em; margin-top: 2px;
+}
+
+/* 🔄 CONVERSION: Craftsman quote deepens emotional investment */
+.story__quote {
+  margin-top: 24px; padding: 24px 28px;
+  border-left: 2px solid var(--gold);
+  background: var(--gold-faint);
+}
+.story__quote p {
+  font-family: var(--f-body); font-size: 17px;
+  color: var(--gold-light); font-style: italic;
+  line-height: 1.75; font-weight: 300;
+}
+.story__quote cite {
+  font-family: var(--f-sans); font-size: 9px;
+  color: var(--gold-dim); letter-spacing: 0.15em;
+  display: block; margin-top: 12px; font-style: normal;
+}
+
+/* ═══════════════════════════════════════
+   SPECS & EARTH TIMELINE
+   ═══════════════════════════════════════ */
+.stats-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: var(--border);
+}
+.stat {
+  background: var(--bg); padding: 28px 16px; text-align: center;
+}
+.stat__value {
+  font-family: var(--f-display); font-size: 28px;
+  color: var(--gold); font-weight: 400; margin-bottom: 6px;
+}
+.stat__label {
+  font-family: var(--f-sans); font-size: 9px;
+  letter-spacing: 0.2em; color: var(--cream-dim);
+}
+
+/* 🔄 CONVERSION: Reframes price — "65M years in the making" */
+.timeline {
+  margin-top: 40px; background: var(--bg2);
+  border: 1px solid var(--border); padding: 28px 32px;
+  position: relative; overflow: hidden;
+}
+.timeline__shimmer {
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 4s linear infinite;
+}
+.timeline__track {
+  display: flex; align-items: center; margin-top: 16px; height: 60px;
+}
+.timeline__step { display: flex; flex-direction: column; align-items: center; }
+.timeline__step-time {
+  font-family: var(--f-sans); font-size: 8px;
+  color: var(--gold-dim); letter-spacing: 0.1em; margin-bottom: 6px;
+}
+.timeline__step-bar { height: 2px; width: 100%; background: var(--gold); position: relative; }
+.timeline__step-bar::before {
+  content: ''; position: absolute; left: 0; top: -4px;
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--gold); border: 2px solid var(--bg2);
+}
+.timeline__step:last-child .timeline__step-bar::before {
+  animation: breathe 2s ease-in-out infinite;
+}
+.timeline__step-label {
+  font-family: var(--f-body); font-size: 11px;
+  color: var(--cream-dim); margin-top: 6px; text-align: center; font-weight: 300;
+}
+
+.details-table { margin-top: 32px; }
+.detail-row {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  padding: 16px 0; border-bottom: 1px solid var(--border); gap: 24px;
+}
+.detail-row__key {
+  font-family: var(--f-sans); font-size: 11px;
+  color: var(--cream-faint); letter-spacing: 0.1em;
+  flex-shrink: 0; min-width: 120px;
+}
+.detail-row__value {
+  font-family: var(--f-body); font-size: 16px;
+  color: var(--cream); font-weight: 400; text-align: right; line-height: 1.5;
+}
+
+/* ═══════════════════════════════════════
+   CERTIFICATE PREVIEW
+   🔄 CONVERSION: Builds trust. Makes 
+   acquisition feel official before inquiry.
+   ═══════════════════════════════════════ */
+.certificate {
+  border: 1px solid var(--border); padding: 48px 40px;
+  text-align: center; position: relative;
+  background: linear-gradient(180deg, var(--gold-faint) 0%, transparent 100%);
+}
+.certificate__corner {
+  position: absolute; width: 20px; height: 20px;
+}
+.certificate__corner--tl { top: 12px; left: 12px; border-top: 1px solid var(--gold-dim); border-left: 1px solid var(--gold-dim); }
+.certificate__corner--tr { top: 12px; right: 12px; border-top: 1px solid var(--gold-dim); border-right: 1px solid var(--gold-dim); }
+.certificate__corner--bl { bottom: 12px; left: 12px; border-bottom: 1px solid var(--gold-dim); border-left: 1px solid var(--gold-dim); }
+.certificate__corner--br { bottom: 12px; right: 12px; border-bottom: 1px solid var(--gold-dim); border-right: 1px solid var(--gold-dim); }
+.certificate__title {
+  font-family: var(--f-display); font-size: 24px;
+  color: var(--cream); margin: 20px 0 6px;
+}
+.certificate__divider {
+  width: 40px; height: 1px; background: var(--gold); margin: 20px auto;
+}
+.certificate__oath {
+  font-family: var(--f-body); font-size: 16px;
+  color: var(--gold-light); font-style: italic;
+  line-height: 1.75; max-width: 440px; margin: 0 auto 28px; font-weight: 300;
+}
+.certificate__signers {
+  display: flex; justify-content: center; gap: 64px;
+}
+.certificate__signer-name {
+  font-family: var(--f-display); font-size: 16px;
+  color: var(--cream); font-style: italic;
+}
+.certificate__signer-role {
+  font-family: var(--f-sans); font-size: 9px;
+  color: var(--gold-dim); letter-spacing: 0.12em; margin-top: 4px;
+}
+.certificate__badges {
+  margin-top: 28px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;
+}
+
+/* ═══════════════════════════════════════
+   LIFESTYLE / ROOM VISUALIZATION
+   🔄 CONVERSION: Psychological ownership.
+   The moment they click a room, they've
+   mentally placed it in their home.
+   ═══════════════════════════════════════ */
+.lifestyle__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.lifestyle__selector { display: flex; flex-direction: column; }
+.room-btn {
+  background: transparent; border: none;
+  border-left: 2px solid var(--border);
+  padding: 20px 24px; text-align: left;
+  transition: all 0.3s;
+}
+.room-btn.active {
+  background: var(--bg3);
+  border-left-color: var(--gold);
+}
+.room-btn__name {
+  font-family: var(--f-display); font-size: 18px;
+  color: var(--cream); font-weight: 400; margin-bottom: 4px;
+  transition: color 0.3s;
+}
+.room-btn.active .room-btn__name { color: var(--gold); font-weight: 500; }
+.room-btn__desc {
+  font-family: var(--f-body); font-size: 14px;
+  color: var(--cream-dim); font-weight: 300; line-height: 1.5;
+  max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
+}
+.room-btn.active .room-btn__desc { max-height: 60px; }
+
+.lifestyle__preview {
+  height: 320px; background: var(--bg3);
+  border: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+  animation: scaleIn 0.5s ease;
+}
+.lifestyle__preview-glow {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 70%, rgba(201,169,110,0.05) 0%, transparent 60%);
+}
+
+/* ═══════════════════════════════════════
+   INQUIRY FUNNEL
+   🔄 CONVERSION: Two-step micro-commitment.
+   Step 1 = "Why are you here?" (intent)
+   Step 2 = Contact form
+   By the time they reach the form, they've
+   already articulated their desire.
+   ═══════════════════════════════════════ */
+.inquiry { text-align: center; }
+.inquiry__heading {
+  font-family: var(--f-display); font-size: 32px;
+  color: var(--cream); font-weight: 400; margin-bottom: 8px;
+}
+.inquiry__heading em { color: var(--gold); font-style: italic; }
+.inquiry__sub {
+  font-family: var(--f-body); font-size: 15px;
+  color: var(--cream-dim); font-weight: 300;
+}
+
+/* Intent grid — Step 1 */
+.intent-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 10px; max-width: 520px; margin: 36px auto 0;
+}
+.intent-btn {
+  background: var(--bg3); border: 1px solid var(--border);
+  padding: 16px 20px; text-align: left;
+  font-family: var(--f-body); font-size: 15px;
+  color: var(--cream); font-weight: 400;
+  transition: all 0.3s;
+}
+.intent-btn:hover { border-color: var(--gold); }
+
+/* Contact form — Step 2 */
+.inquiry__form {
+  max-width: 480px; margin: 36px auto 0;
+  display: none; /* shown via JS */
+  flex-direction: column; gap: 16px; text-align: left;
+  animation: fadeUp 0.6s ease;
+}
+.inquiry__form.visible { display: flex; }
+
+.intent-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--gold-faint); border: 1px solid var(--border);
+  padding: 6px 16px; margin: 0 auto 24px;
+}
+.intent-badge__text {
+  font-family: var(--f-body); font-size: 13px; color: var(--gold);
+}
+.intent-badge__change {
+  background: none; border: none;
+  font-family: var(--f-sans); font-size: 9px;
+  color: var(--cream-faint); cursor: pointer;
+}
+
+.form-label {
+  font-family: var(--f-sans); font-size: 9px;
+  letter-spacing: 0.15em; color: var(--cream-dim);
+  display: block; margin-bottom: 6px;
+}
+.inquiry__piece-ref {
+  font-family: var(--f-body); font-size: 13px;
+  color: var(--cream-faint); text-align: center;
+  font-style: italic; font-weight: 300; margin-top: 8px;
+}
+
+/* Confirmation */
+.inquiry__confirmation {
+  display: none;
+  border: 1px solid var(--gold); padding: 48px 40px;
+  text-align: center; background: var(--gold-faint);
+  animation: scaleIn 0.6s ease;
+}
+.inquiry__confirmation.visible { display: block; }
+
+/* ═══════════════════════════════════════
+   SOLD ARCHIVE
+   🔄 CONVERSION: Scarcity + social proof.
+   "These are gone forever" creates urgency
+   for available pieces.
+   ═══════════════════════════════════════ */
+.sold-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+}
+.sold-card {
+  background: var(--bg2); border: 1px solid var(--border);
+  padding: 24px; position: relative;
+  opacity: 0.55; transition: opacity 0.3s;
+}
+.sold-card:hover { opacity: 0.75; }
+.sold-card__badge {
+  position: absolute; top: 12px; right: 12px;
+}
+.sold-card__name {
+  font-family: var(--f-display); font-size: 18px;
+  color: var(--cream); margin-bottom: 2px;
+}
+.sold-card__stone {
+  font-family: var(--f-body); font-size: 13px;
+  color: var(--cream-dim); font-weight: 300;
+}
+.sold-card__divider {
+  height: 1px; background: var(--border); margin: 14px 0;
+}
+.sold-card__meta {
+  display: flex; justify-content: space-between;
+  font-family: var(--f-sans); font-size: 10px; color: var(--cream-faint);
+}
+.sold-card__buyer {
+  font-family: var(--f-body); font-size: 12px;
+  color: var(--cream-faint); font-style: italic; margin-top: 6px;
+}
+
+/* ═══════════════════════════════════════
+   SIMILAR PIECES (CROSS-SELL)
+   🔄 CONVERSION: "Inquiry Pending" badge
+   creates competition urgency.
+   ═══════════════════════════════════════ */
+.similar-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+}
+.similar-card {
+  background: var(--bg2); border: 1px solid var(--border);
+  cursor: pointer; transition: all 0.3s; overflow: hidden;
+}
+.similar-card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+}
+.similar-card__image {
+  height: 180px; background: var(--bg3);
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+.similar-card__image-badge {
+  position: absolute; top: 10px; right: 10px;
+  background: rgba(201,169,110,0.1); border: 1px solid var(--border);
+  padding: 3px 8px;
+  font-family: var(--f-sans); font-size: 8px;
+  color: var(--gold); letter-spacing: 0.1em;
+}
+.similar-card__info { padding: 16px 20px; }
+.similar-card__name {
+  font-family: var(--f-display); font-size: 17px;
+  color: var(--cream); margin-bottom: 4px;
+}
+.similar-card__stone {
+  font-family: var(--f-body); font-size: 13px;
+  color: var(--cream-dim); font-weight: 300;
+}
+.similar-card__price {
+  font-family: var(--f-display); font-size: 16px;
+  color: var(--gold); margin-top: 10px;
+}
+
+/* ═══════════════════════════════════════
+   FOOTER CTA
+   ═══════════════════════════════════════ */
+.footer-cta { text-align: center; padding-bottom: 80px; }
+.footer-cta__quote {
+  font-family: var(--f-body); font-size: 18px;
+  color: var(--cream-dim); font-style: italic; font-weight: 300;
+  line-height: 1.8; max-width: 500px; margin: 48px auto 32px;
+}
+.footer-cta__buttons {
+  display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;
+}
+.footer-cta__colophon {
+  font-family: var(--f-sans); font-size: 10px;
+  color: var(--cream-faint); letter-spacing: 0.15em; margin-top: 24px;
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════ */
+@media (max-width: 768px) {
+  .hero__image { height: 400px; }
+  .hero__title { font-size: 32px; }
+  .hero__price { font-size: 28px; }
+  .hero__info { flex-direction: column; align-items: flex-start; }
+  .hero__price-group { text-align: left; }
+  .hero__thumbs { display: none; }
+  .hero__velocity { top: auto; bottom: 16px; right: 16px; }
+  .story { grid-template-columns: 1fr; gap: 32px; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .lifestyle__grid { grid-template-columns: 1fr; }
+  .sold-grid { grid-template-columns: 1fr; }
+  .similar-grid { grid-template-columns: 1fr; }
+  .intent-grid { grid-template-columns: 1fr; }
+  .certificate__signers { flex-direction: column; gap: 20px; }
+  .section { padding: 40px 20px 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     TOP BAR
+     ═══════════════════════════════════════ -->
+<nav class="topbar">
+  <div class="topbar__brand">
+    <span>PHAÖRA</span>
+    <span class="sep">·</span>
+    <span>Collection</span>
+    <span class="sep">›</span>
+    <span class="current">The Aerie</span>
+  </div>
+  <div class="topbar__actions">
+    <button class="save-btn" id="saveBtn" onclick="toggleSave()">♡ SAVE</button>
+    <a href="tel:+19548719991" class="topbar__phone">(954) 871-9991</a>
+  </div>
+</nav>
+
+
+<!-- ═══════════════════════════════════════
+     SECTION 1: HERO
+     ═══════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero__image">
+    <!-- 
+      TODO: Replace with your actual piece hero image.
+      Best: a dramatic, moody shot with the piece centered.
+      Ideal size: 1800x1000px, compressed to ~200kb.
+    -->
+    <img src="https://phaora.com/IMG_6969.JPG" alt="The Aerie — White Quartz & Amethyst by Fabiano">
+    <div class="hero__image-gradient-bottom"></div>
+    <div class="hero__image-glow"></div>
+    
+    <!-- 🔄 CONVERSION: Status badges — "Available" creates action urgency -->
+    <div class="hero__badges">
+      <span class="badge">One of One</span>
+      <span class="badge badge--green">Available</span>
+    </div>
+    
+    <!-- 🔄 CONVERSION: Velocity signal — proves demand exists -->
+    <div class="hero__velocity">
+      <div class="hero__velocity-dot"></div>
+      <span class="hero__velocity-text">4 PIECES ACQUIRED THIS QUARTER</span>
+    </div>
+    
+    <!-- Thumbnail strip — add your multi-angle photos here -->
+    <div class="hero__thumbs">
+      <div class="hero__thumb active">
+        <img src="https://phaora.com/IMG_6969.JPG" alt="Front view">
+      </div>
+      <div class="hero__thumb">
+        <img src="https://phaora.com/IMG_6969.JPG" alt="Side view" style="filter: hue-rotate(15deg) brightness(0.8);">
+      </div>
+      <div class="hero__thumb">
+        <img src="https://phaora.com/IMG_6969.JPG" alt="Detail view" style="filter: hue-rotate(30deg) brightness(0.7);">
+      </div>
+      <div class="hero__thumb hero__thumb--360">360°</div>
+    </div>
+  </div>
+  
+  <div class="hero__info">
+    <div class="hero__title-group">
+      <div class="hero__sku label">White Quartz & Amethyst · Bird Sculpture · Eagle & Flock · SKU-0002</div>
+      <h1 class="hero__title">The <em>Aerie</em></h1>
+    </div>
+    <div class="hero__price-group">
+      <div class="hero__price">$95,000</div>
+      <div class="hero__price-note">Acquisition by private inquiry</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     SECTION 2: ORIGIN STORY
+     🔄 Story-first. This section appears 
+     BEFORE specs. Emotion lands first.
+     ═══════════════════════════════════════ -->
+<div class="section reveal">
+  <div class="gold-line"></div>
+  
+  <div class="story">
+    <div class="story__narrative stagger">
+      <div class="label" style="margin-bottom: 16px;">The Origin</div>
+      <p>
+        Fabiano calls this piece 'the family.' A commanding white quartz eagle — wings fully extended — presides over three smaller birds that cling to the face of an amethyst cathedral. The eagle was carved from a single quartz formation that Fabiano extracted from 30 meters deep in Serra da Canastra. He spent two weeks on the wings alone.
+      </p>
+      <p>
+        The amethyst cathedral beneath the birds contains crystals of extraordinary depth — nearly black at the center, lightening to violet at the edges. The three smaller birds — a cockatoo, a songbird, and a fledgling — each required their own stone selection. The base is a raw crystal quartz formation that Fabiano left deliberately unpolished.
+      </p>
+    </div>
+    
+    <div class="stagger">
+      <div style="position: relative;">
+        <img src="https://phaora.com/IMG_7191.jpeg" alt="Fabiano — Master Craftsman" class="story__craftsman-img">
+        <div class="story__craftsman-overlay">
+          <div class="story__craftsman-name">Fabiano</div>
+          <div class="story__craftsman-title">MASTER CRAFTSMAN · 40+ YEARS</div>
+        </div>
+      </div>
+      
+      <div class="story__quote">
+        <p>"The eagle protects. That is what the stone told me. So I gave it something to protect."</p>
+        <cite>— FABIANO · MINAS GERAIS, BRAZIL</cite>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     SECTION 3: SPECS & EARTH TIMELINE
+     ═══════════════════════════════════════ -->
+<div class="section reveal">
+  <div class="stats-grid">
+    <div class="stat stagger">
+      <div class="stat__value">38"</div>
+      <div class="stat__label">HEIGHT</div>
+    </div>
+    <div class="stat stagger">
+      <div class="stat__value">28 kg</div>
+      <div class="stat__label">WEIGHT</div>
+    </div>
+    <div class="stat stagger">
+      <div class="stat__value">6 weeks</div>
+      <div class="stat__label">CRAFT TIME</div>
+    </div>
+    <div class="stat stagger">
+      <div class="stat__value">~70M yrs</div>
+      <div class="stat__label">FORMATION AGE</div>
+    </div>
+  </div>
+  
+  <!-- 🔄 CONVERSION: Earth Timeline — reframes price psychologically -->
+  <div class="timeline">
+    <div class="timeline__shimmer"></div>
+    <div class="label">Journey Through Time</div>
+    <div class="timeline__track">
+      <div class="timeline__step" style="flex: 5;">
+        <div class="timeline__step-time">65M years ago</div>
+        <div class="timeline__step-bar"></div>
+        <div class="timeline__step-label">Formed in Earth</div>
+      </div>
+      <div class="timeline__step" style="flex: 70;">
+        <div class="timeline__step-time">Dec 2025</div>
+        <div class="timeline__step-bar"></div>
+        <div class="timeline__step-label">Discovered by Fabiano</div>
+      </div>
+      <div class="timeline__step" style="flex: 15;">
+        <div class="timeline__step-time">3 weeks</div>
+        <div class="timeline__step-bar"></div>
+        <div class="timeline__step-label">Shaped by Hand</div>
+      </div>
+      <div class="timeline__step" style="flex: 10;">
+        <div class="timeline__step-time">Now</div>
+        <div class="timeline__step-bar"></div>
+        <div class="timeline__step-label">Ready for Your Estate</div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Detail rows -->
+  <div class="details-table">
+    <div class="detail-row stagger">
+      <span class="detail-row__key">Material</span>
+      <span class="detail-row__value">Natural White Quartz & Amethyst</span>
+    </div>
+    <div class="detail-row stagger">
+      <span class="detail-row__key">Origin</span>
+      <span class="detail-row__value">Serra da Canastra, Minas Gerais, Brazil</span>
+    </div>
+    <div class="detail-row stagger">
+      <span class="detail-row__key">Extraction Date</span>
+      <span class="detail-row__value">September 2025</span>
+    </div>
+    <div class="detail-row stagger">
+      <span class="detail-row__key">Dimensions</span>
+      <span class="detail-row__value">38" H × 30" W × 22" D</span>
+    </div>
+    <div class="detail-row stagger">
+      <span class="detail-row__key">Weight</span>
+      <span class="detail-row__value">28 kg (61.7 lbs)</span>
+    </div>
+    <div class="detail-row stagger">
+      <span class="detail-row__key">Base</span>
+      <span class="detail-row__value">Raw crystal quartz formation</span>
+    </div>
+    <div class="detail-row stagger">
+      <span class="detail-row__key">Includes</span>
+      <span class="detail-row__value">Certificate of Authenticity · Digital Provenance Record · Physical Hang Tag</span>
+    </div>
+    <div class="detail-row stagger">
+      <span class="detail-row__key">Delivery</span>
+      <span class="detail-row__value">White-glove, personally placed by PHAÖRA</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     SECTION 4: CERTIFICATE PREVIEW
+     ═══════════════════════════════════════ -->
+<div class="section reveal">
+  <div class="certificate">
+    <div class="certificate__corner certificate__corner--tl"></div>
+    <div class="certificate__corner certificate__corner--tr"></div>
+    <div class="certificate__corner certificate__corner--bl"></div>
+    <div class="certificate__corner certificate__corner--br"></div>
+    
+    <div class="label">PHAÖRA</div>
+    <div class="certificate__title">Certificate of Authenticity</div>
+    <div class="certificate__divider"></div>
+    <p class="certificate__oath">
+      "This piece is one of one. It was shaped by the earth
+      and finished by a master. It will never be recreated."
+    </p>
+    <div class="certificate__signers">
+      <div>
+        <div class="certificate__signer-name">Fabiano</div>
+        <div class="certificate__signer-role">MASTER CRAFTSMAN · BRAZIL</div>
+      </div>
+      <div>
+        <div class="certificate__signer-name">David Vaz</div>
+        <div class="certificate__signer-role">FOUNDER · PHAÖRA</div>
+      </div>
+    </div>
+    <div class="certificate__badges">
+      <span class="badge">Physical Certificate</span>
+      <span class="badge">Digital Provenance Record</span>
+      <span class="badge">NFT Coming Soon</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     SECTION 5: ROOM VISUALIZATION
+     ═══════════════════════════════════════ -->
+<div class="section reveal">
+  <div class="label" style="margin-bottom: 12px;">Envision the Placement</div>
+  <h2 style="font-family: var(--f-display); font-size: 32px; color: var(--cream); font-weight: 400; margin-bottom: 32px;">
+    Where will <em style="color: var(--gold); font-style: italic;">it live?</em>
+  </h2>
+  
+  <div class="lifestyle__grid">
+    <div class="lifestyle__selector">
+      <button class="room-btn active" onclick="selectRoom(this, 0)">
+        <div class="room-btn__name">Grand Entryway</div>
+        <div class="room-btn__desc">The first thing guests encounter — a statement of taste and permanence.</div>
+      </button>
+      <button class="room-btn" onclick="selectRoom(this, 1)">
+        <div class="room-btn__name">Living Space</div>
+        <div class="room-btn__desc">Where light, conversation, and beauty converge around a singular presence.</div>
+      </button>
+      <button class="room-btn" onclick="selectRoom(this, 2)">
+        <div class="room-btn__name">Private Study</div>
+        <div class="room-btn__desc">An intimate companion for reflection — visible from the desk, alive in morning light.</div>
+      </button>
+    </div>
+    
+    <div class="lifestyle__preview" id="lifestylePreview">
+      <div class="lifestyle__preview-glow"></div>
+      <!-- 
+        TODO: Replace with actual lifestyle photography.
+        Best: piece photographed in each room type.
+        These images convert harder than anything else on the page.
+      -->
+      <span style="font-family: var(--f-body); font-size: 14px; color: var(--cream-dim); font-style: italic;" id="previewLabel">
+        Grand Entryway Visualization
+      </span>
+      <span style="font-family: var(--f-sans); font-size: 9px; color: var(--cream-faint); letter-spacing: 0.15em; margin-top: 8px;">
+        LIFESTYLE PHOTO COMING SOON
+      </span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     SECTION 6: INQUIRY FUNNEL
+     ═══════════════════════════════════════ -->
+<div class="section reveal">
+  <div class="gold-line"></div>
+  
+  <div class="inquiry" style="margin-top: 48px;">
+    <div class="label" style="margin-bottom: 12px;">Begin the Acquisition</div>
+    <h2 class="inquiry__heading">Inquire About <em>The Aerie</em></h2>
+    <p class="inquiry__sub">David responds personally. No sales calls — a private conversation.</p>
+    
+    <!-- Step 1: Intent selection -->
+    <div id="intentStep">
+      <div class="label" style="margin-top: 36px; margin-bottom: 16px;">What brings you to this piece?</div>
+      <div class="intent-grid">
+        <button class="intent-btn" onclick="selectIntent(this)">I want this for my home</button>
+        <button class="intent-btn" onclick="selectIntent(this)">I'm furnishing a new property</button>
+        <button class="intent-btn" onclick="selectIntent(this)">I collect fine minerals</button>
+        <button class="intent-btn" onclick="selectIntent(this)">I'm a real estate agent</button>
+      </div>
+    </div>
+    
+    <!-- Step 2: Contact form (hidden until intent selected) -->
+    <div class="inquiry__form" id="inquiryForm">
+      <div style="text-align: center;">
+        <div class="intent-badge">
+          <span class="intent-badge__text" id="selectedIntent"></span>
+          <button class="intent-badge__change" onclick="resetIntent()">change</button>
+        </div>
+      </div>
+      
+      <div>
+        <label class="form-label">YOUR NAME</label>
+        <input type="text" name="name" id="fieldName" placeholder="How should David address you?" required>
+      </div>
+      <div>
+        <label class="form-label">EMAIL</label>
+        <input type="email" name="email" id="fieldEmail" placeholder="For David's personal response" required>
+      </div>
+      <div>
+        <label class="form-label">PHONE</label>
+        <input type="tel" name="phone" id="fieldPhone" placeholder="Optional — for text or call">
+      </div>
+      <div>
+        <label class="form-label">TELL US ABOUT YOUR SPACE</label>
+        <textarea rows="3" name="message" id="fieldMessage" placeholder="Describe the room, the feeling you want, or any questions..."></textarea>
+      </div>
+      
+      <!-- Hidden fields — sent to Formspree so David sees full context -->
+      <input type="hidden" name="piece" value="The Aerie">
+      <input type="hidden" name="sku" value="SKU-0002">
+      <input type="hidden" name="price" value="$95,000">
+      <input type="hidden" name="intent" id="fieldIntent" value="">
+      <input type="hidden" name="_subject" value="🔔 PHAÖRA Inquiry — The Aerie ($95,000)">
+      
+      <button class="btn-primary" id="submitBtn" onclick="submitInquiry()" style="width: 100%;">Begin the Dialogue</button>
+      <div class="inquiry__piece-ref">Piece: The Aerie · SKU-0002 · $95,000</div>
+    </div>
+    
+    <!-- Confirmation (hidden until submitted) -->
+    <div class="inquiry__confirmation" id="inquiryConfirm">
+      <h3 style="font-family: var(--f-display); font-size: 28px; color: var(--cream); margin-bottom: 12px;">
+        Your Inquiry Has Been <em style="color: var(--gold); font-style: italic;">Received</em>
+      </h3>
+      <p style="font-family: var(--f-body); font-size: 16px; color: var(--cream-dim); line-height: 1.7; font-weight: 300; max-width: 420px; margin: 0 auto;">
+        David Vaz has been notified personally about your interest in The Aerie.
+        He will reach out within 24 hours to begin the conversation.
+      </p>
+      <div class="label" style="margin-top: 24px;">PHAÖRA · BOCA RATON · BY APPOINTMENT</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     SECTION 7: SOLD ARCHIVE
+     ═══════════════════════════════════════ -->
+<div class="section reveal">
+  <div class="gold-line"></div>
+  
+  <div style="display: flex; justify-content: space-between; align-items: flex-end; margin: 40px 0 28px; flex-wrap: wrap; gap: 12px;">
+    <div>
+      <div class="label" style="margin-bottom: 8px;">Recently Placed</div>
+      <h3 style="font-family: var(--f-display); font-size: 26px; color: var(--cream); font-weight: 400;">
+        Works that found <em style="color: var(--gold); font-style: italic;">their home</em>
+      </h3>
+    </div>
+    <span style="font-family: var(--f-sans); font-size: 10px; color: var(--cream-faint); letter-spacing: 0.1em;">
+      These pieces are no longer available
+    </span>
+  </div>
+  
+  <div class="sold-grid">
+    <!-- 
+      TODO: Update these as pieces are acquired.
+      Each sold piece creates urgency for available ones.
+    -->
+    <div class="sold-card stagger">
+      <div class="sold-card__badge"><span class="badge badge--red">Placed</span></div>
+      <div class="sold-card__name">The Heron</div>
+      <div class="sold-card__stone">Clear Quartz</div>
+      <div class="sold-card__divider"></div>
+      <div class="sold-card__meta">
+        <span>Palm Beach</span>
+        <span>Feb 2026</span>
+      </div>
+      <div class="sold-card__buyer">Private Collection</div>
+    </div>
+    
+    <div class="sold-card stagger">
+      <div class="sold-card__badge"><span class="badge badge--red">Placed</span></div>
+      <div class="sold-card__name">Crystal Tower IV</div>
+      <div class="sold-card__stone">Citrine</div>
+      <div class="sold-card__divider"></div>
+      <div class="sold-card__meta">
+        <span>Boca Raton</span>
+        <span>Jan 2026</span>
+      </div>
+      <div class="sold-card__buyer">Estate Placement</div>
+    </div>
+    
+    <div class="sold-card stagger">
+      <div class="sold-card__badge"><span class="badge badge--red">Placed</span></div>
+      <div class="sold-card__name">Geode Altar</div>
+      <div class="sold-card__stone">Amethyst</div>
+      <div class="sold-card__divider"></div>
+      <div class="sold-card__meta">
+        <span>Coral Gables</span>
+        <span>Dec 2025</span>
+      </div>
+      <div class="sold-card__buyer">Private Collection</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     SECTION 8: SIMILAR PIECES
+     ═══════════════════════════════════════ -->
+<div class="section reveal">
+  <div class="label" style="margin-bottom: 8px;">Continue Exploring</div>
+  <h3 style="font-family: var(--f-display); font-size: 26px; color: var(--cream); font-weight: 400; margin-bottom: 28px;">
+    Works of similar <em style="color: var(--gold); font-style: italic;">magnitude</em>
+  </h3>
+  
+  <div class="similar-grid">
+    <!-- 
+      TODO: Link each card to its own piece page.
+      The "Inquiry Pending" badge on one piece creates competition urgency.
+    -->
+    <a href="#" class="similar-card stagger">
+      <div class="similar-card__image">
+        <!-- TODO: piece image -->
+      </div>
+      <div class="similar-card__info">
+        <div class="similar-card__name">The Egret</div>
+        <div class="similar-card__stone">Clear Quartz</div>
+        <div class="similar-card__price">$24,000</div>
+      </div>
+    </a>
+    
+    <a href="#" class="similar-card stagger">
+      <div class="similar-card__image">
+        <!-- TODO: piece image -->
+      </div>
+      <div class="similar-card__info">
+        <div class="similar-card__name">Rose Tower</div>
+        <div class="similar-card__stone">Rose Quartz</div>
+        <div class="similar-card__price">$12,500</div>
+      </div>
+    </a>
+    
+    <!-- 🔄 CONVERSION: "Inquiry Pending" badge = competition urgency -->
+    <a href="#" class="similar-card stagger">
+      <div class="similar-card__image">
+        <div class="similar-card__image-badge">INQUIRY PENDING</div>
+      </div>
+      <div class="similar-card__info">
+        <div class="similar-card__name">The Parrot</div>
+        <div class="similar-card__stone">Multi-crystal</div>
+        <div class="similar-card__price">$28,000</div>
+      </div>
+    </a>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     SECTION 9: FOOTER CTA
+     ═══════════════════════════════════════ -->
+<div class="section footer-cta reveal">
+  <div class="gold-line"></div>
+  <p class="footer-cta__quote">
+    "PHAÖRA receives collectors by appointment. There is no storefront. There is no rush.
+    There is only the work — and the right home for it."
+  </p>
+  <div class="footer-cta__buttons">
+    <a href="tel:+19548719991" class="btn-outline">Call (954) 871-9991</a>
+    <a href="sms:+19548719991" class="btn-primary" style="display: inline-block; text-decoration: none;">Text David Directly</a>
+  </div>
+  <div class="footer-cta__colophon">
+    PHAÖRA · BOCA RATON · BY APPOINTMENT · A STYLEARTSTONECRAFT COMPANY
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     JAVASCRIPT
+     ═══════════════════════════════════════════════════════════════ -->
+<script>
+// ─── Scroll-triggered reveal ───
+// Elements with class "reveal" animate in when they enter viewport
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ─── Save Button ───
+// 🔄 CONVERSION: Track saved pieces for follow-up
+function toggleSave() {
+  const btn = document.getElementById('saveBtn');
+  btn.classList.toggle('saved');
+  if (btn.classList.contains('saved')) {
+    btn.textContent = '♡ SAVED';
+    
+    // 🔄 CONVERSION: Notify David that someone saved this piece.
+    // This fires a silent Formspree submission so David can follow up.
+    // The visitor doesn't need to fill in anything — this is a signal.
+    fetch('https://formspree.io/f/mlgokvnj', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: '♡ Someone saved The Aerie (SKU-0002)',
+        piece: 'The Aerie',
+        sku: 'SKU-0002',
+        price: '$95,000',
+        action: 'piece_saved',
+        message: 'A visitor saved this piece to their collection. No contact info yet — they may inquire soon.',
+        timestamp: new Date().toISOString()
+      })
+    }).catch(() => {}); // silent — don't interrupt the visitor
+    
+  } else {
+    btn.textContent = '♡ SAVE';
+  }
+}
+
+// ─── Room Selector ───
+// 🔄 CONVERSION: Psychological ownership — they're placing it mentally
+const roomLabels = ['Grand Entryway', 'Living Space', 'Private Study'];
+function selectRoom(btn, index) {
+  document.querySelectorAll('.room-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('previewLabel').textContent = roomLabels[index] + ' Visualization';
+  // TODO: Swap lifestyle preview image here when you have room-specific photography
+}
+
+// ─── Inquiry Funnel ───
+// 🔄 CONVERSION: Two-step micro-commitment
+function selectIntent(btn) {
+  const intent = btn.textContent;
+  document.getElementById('selectedIntent').textContent = '"' + intent + '"';
+  document.getElementById('fieldIntent').value = intent;
+  document.getElementById('intentStep').style.display = 'none';
+  document.getElementById('inquiryForm').classList.add('visible');
+}
+
+function resetIntent() {
+  document.getElementById('intentStep').style.display = 'block';
+  document.getElementById('inquiryForm').classList.remove('visible');
+}
+
+async function submitInquiry() {
+  const btn = document.getElementById('submitBtn');
+  const name = document.getElementById('fieldName').value.trim();
+  const email = document.getElementById('fieldEmail').value.trim();
+  
+  // Basic validation
+  if (!name || !email) {
+    btn.textContent = 'PLEASE FILL IN NAME & EMAIL';
+    btn.style.background = 'var(--red)';
+    setTimeout(() => {
+      btn.textContent = 'Begin the Dialogue';
+      btn.style.background = 'var(--gold)';
+    }, 2000);
+    return;
+  }
+  
+  // Show sending state
+  btn.textContent = 'SENDING...';
+  btn.style.opacity = '0.7';
+  btn.disabled = true;
+  
+  // Gather all form data
+  const data = {
+    name:    name,
+    email:   email,
+    phone:   document.getElementById('fieldPhone').value.trim(),
+    message: document.getElementById('fieldMessage').value.trim(),
+    piece:   'The Aerie',
+    sku:     'SKU-0002',
+    price:   '$95,000',
+    intent:  document.getElementById('fieldIntent').value,
+    _subject: '🔔 PHAÖRA Inquiry — The Aerie ($95,000)'
+  };
+  
+  try {
+    const response = await fetch('https://formspree.io/f/mlgokvnj', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    
+    if (response.ok) {
+      // Success — show confirmation
+      document.getElementById('inquiryForm').classList.remove('visible');
+      document.getElementById('inquiryConfirm').classList.add('visible');
+    } else {
+      // Formspree error — fallback
+      btn.textContent = 'SOMETHING WENT WRONG — TRY AGAIN';
+      btn.style.background = 'var(--red)';
+      btn.style.opacity = '1';
+      btn.disabled = false;
+      setTimeout(() => {
+        btn.textContent = 'Begin the Dialogue';
+        btn.style.background = 'var(--gold)';
+      }, 3000);
+    }
+  } catch (err) {
+    // Network error — offer phone/text as fallback
+    btn.textContent = 'CONNECTION ERROR — CALL OR TEXT DAVID';
+    btn.style.background = 'var(--red)';
+    btn.style.opacity = '1';
+    btn.disabled = false;
+    setTimeout(() => {
+      btn.textContent = 'Begin the Dialogue';
+      btn.style.background = 'var(--gold)';
+    }, 4000);
+  }
+}
+
+// ─── Thumbnail gallery ───
+document.querySelectorAll('.hero__thumb').forEach(thumb => {
+  thumb.addEventListener('click', function() {
+    document.querySelectorAll('.hero__thumb').forEach(t => t.classList.remove('active'));
+    this.classList.add('active');
+    // TODO: Swap main hero image when you have multi-angle photography
+  });
+});
+</script>
+
+</body>
+</html>
