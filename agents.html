@@ -16,9 +16,9 @@ body{background:linear-gradient(160deg,#0d0b07 0%,#111009 40%,#0a0c0e 100%);back
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:3rem 4rem;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);background:rgba(10,10,10,0.15);transition:all 0.6s}
 nav.scrolled{padding:1.25rem 3rem;background:rgba(10,10,10,0.9);border-bottom:1px solid rgba(201,168,76,0.06)}
-.nav-logo{font-family:‘Cinzel’,‘Cormorant Garamond’,Georgia,serif;font-size:1.4rem;font-weight:400;color:var(–gold);letter-spacing:0.5em;cursor:pointer;text-shadow:0 0 30px rgba(201,168,76,0.25);text-decoration:none}
+.nav-logo{font-family:‘Cinzel’,‘Cormorant Garamond’,Georgia,serif;font-size:1.4rem;font-weight:400;color:var(--gold);letter-spacing:0.5em;cursor:pointer;text-shadow:0 0 30px rgba(201,168,76,0.25);text-decoration:none}
 .nav-back{font-size:0.5rem;letter-spacing:0.35em;text-transform:uppercase;color:rgba(201,168,76,0.4);text-decoration:none;font-family:-apple-system,‘Helvetica Neue’,sans-serif;transition:color 0.3s}
-.nav-back:hover{color:var(–gold)}
+.nav-back:hover{color:var(--gold)}
 
 /* HERO */
 .hero{min-height:60vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:14rem 2.5rem 6rem;text-align:center}
@@ -31,81 +31,81 @@ nav.scrolled{padding:1.25rem 3rem;background:rgba(10,10,10,0.9);border-bottom:1p
 .f4{opacity:0;animation:fadeUp 1s ease 1s forwards}
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 .hero-eyebrow{font-size:0.52rem;letter-spacing:0.6em;color:rgba(201,168,76,0.6);text-transform:uppercase;margin-bottom:2rem;font-family:-apple-system,‘Helvetica Neue’,sans-serif;position:relative;z-index:1}
-.hero-title{font-family:‘Cormorant Garamond’,‘Didot’,Georgia,serif;font-size:clamp(3rem,9vw,7rem);font-weight:300;color:var(–cream);letter-spacing:0.1em;line-height:0.95;margin-bottom:1.5rem;position:relative;z-index:1}
-.hero-title em{color:var(–gold);font-style:italic}
+.hero-title{font-family:‘Cormorant Garamond’,‘Didot’,Georgia,serif;font-size:clamp(3rem,9vw,7rem);font-weight:300;color:var(--cream);letter-spacing:0.1em;line-height:0.95;margin-bottom:1.5rem;position:relative;z-index:1}
+.hero-title em{color:var(--gold);font-style:italic}
 .hero-rule{width:40px;height:1px;background:linear-gradient(to right,transparent,rgba(201,168,76,0.7),transparent);margin:0 auto 1.5rem;position:relative;z-index:1}
 .hero-sub{font-family:‘Cormorant Garamond’,Georgia,serif;font-style:italic;font-size:1.1rem;color:rgba(250,247,242,0.5);letter-spacing:0.1em;position:relative;z-index:1}
 
 /* MARQUEE */
-.marquee-wrap{border-top:1px solid rgba(201,168,76,0.15);border-bottom:1px solid rgba(201,168,76,0.15);padding:1.2rem 0;overflow:hidden;background:var(–dark)}
+.marquee-wrap{border-top:1px solid rgba(201,168,76,0.15);border-bottom:1px solid rgba(201,168,76,0.15);padding:1.2rem 0;overflow:hidden;background:var(--dark)}
 .marquee-track{display:flex;gap:3rem;animation:marquee 22s linear infinite;white-space:nowrap}
 .mi{display:flex;align-items:center;gap:3rem;flex-shrink:0}
 .mt{font-size:0.5rem;letter-spacing:0.45em;text-transform:uppercase;color:rgba(201,168,76,0.35);font-family:-apple-system,‘Helvetica Neue’,sans-serif}
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* BENEFITS */
-.benefits{display:grid;grid-template-columns:repeat(3,1fr);background:var(–dark2);border-top:1px solid rgba(201,168,76,0.1);border-bottom:1px solid rgba(201,168,76,0.1)}
+.benefits{display:grid;grid-template-columns:repeat(3,1fr);background:var(--dark2);border-top:1px solid rgba(201,168,76,0.1);border-bottom:1px solid rgba(201,168,76,0.1)}
 .benefit-item{padding:3.5rem 2.5rem;border-right:1px solid rgba(201,168,76,0.08);text-align:center}
 .benefit-item:last-child{border-right:none}
-.benefit-icon{font-family:‘Cormorant Garamond’,Georgia,serif;font-size:2.5rem;color:var(–gold);display:block;margin-bottom:1.2rem;opacity:0.6}
-.benefit-title{font-size:0.52rem;letter-spacing:0.35em;color:var(–gold);text-transform:uppercase;margin-bottom:0.8rem;font-family:-apple-system,‘Helvetica Neue’,sans-serif}
-.benefit-body{font-size:0.85rem;color:var(–mid);line-height:1.9}
+.benefit-icon{font-family:‘Cormorant Garamond’,Georgia,serif;font-size:2.5rem;color:var(--gold);display:block;margin-bottom:1.2rem;opacity:0.6}
+.benefit-title{font-size:0.52rem;letter-spacing:0.35em;color:var(--gold);text-transform:uppercase;margin-bottom:0.8rem;font-family:-apple-system,‘Helvetica Neue’,sans-serif}
+.benefit-body{font-size:0.85rem;color:var(--mid);line-height:1.9}
 
 /* EXCLUSIVITY NOTE */
 .excl-wrap{max-width:720px;margin:0 auto;padding:5rem 2.5rem}
 .excl-box{border:1px solid rgba(201,168,76,0.2);background:rgba(201,168,76,0.03);padding:2rem 2.5rem;display:flex;align-items:flex-start;gap:1.5rem}
-.excl-icon{font-family:‘Cormorant Garamond’,Georgia,serif;font-size:2rem;color:var(–gold);flex-shrink:0;margin-top:4px;opacity:0.7}
-.excl-title{font-size:0.52rem;letter-spacing:0.3em;color:var(–gold);text-transform:uppercase;margin-bottom:0.6rem;font-family:-apple-system,sans-serif}
-.excl-body{font-size:0.85rem;color:var(–mid);line-height:1.9}
+.excl-icon{font-family:‘Cormorant Garamond’,Georgia,serif;font-size:2rem;color:var(--gold);flex-shrink:0;margin-top:4px;opacity:0.7}
+.excl-title{font-size:0.52rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-bottom:0.6rem;font-family:-apple-system,sans-serif}
+.excl-body{font-size:0.85rem;color:var(--mid);line-height:1.9}
 
 /* FORM */
 .form-section{padding:0 2.5rem 7rem;max-width:720px;margin:0 auto;width:100%}
 .eyebrow{font-size:0.5rem;letter-spacing:0.5em;color:rgba(201,168,76,0.6);text-transform:uppercase;margin-bottom:1.25rem;font-family:-apple-system,‘Helvetica Neue’,sans-serif}
-.sec-title{font-family:‘Cormorant Garamond’,‘Didot’,Georgia,serif;font-size:clamp(2.2rem,4vw,3.5rem);font-weight:300;color:var(–cream);line-height:1.05;margin-bottom:1rem;letter-spacing:0.05em}
-.sec-title em{color:var(–gold);font-style:italic}
+.sec-title{font-family:‘Cormorant Garamond’,‘Didot’,Georgia,serif;font-size:clamp(2.2rem,4vw,3.5rem);font-weight:300;color:var(--cream);line-height:1.05;margin-bottom:1rem;letter-spacing:0.05em}
+.sec-title em{color:var(--gold);font-style:italic}
 .gold-rule{width:40px;height:1px;background:linear-gradient(to right,transparent,rgba(201,168,76,0.7),transparent);margin-bottom:2.5rem}
 .form-grid{display:flex;flex-direction:column;gap:0}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
 .fg{display:flex;flex-direction:column;gap:0.4rem;margin-bottom:1.5rem}
-.fl{font-size:0.55rem;letter-spacing:0.25em;color:var(–gold);text-transform:uppercase;font-family:-apple-system,‘Helvetica Neue’,sans-serif}
-.fi{background:rgba(255,255,255,0.02);border:none;border-bottom:1px solid rgba(201,168,76,0.2);color:var(–cream);font-size:0.95rem;font-weight:300;padding:0.85rem 0;outline:none;transition:border-color 0.3s;width:100%;font-family:‘Cormorant Garamond’,Georgia,serif;letter-spacing:0.05em}
-.fi:focus{border-bottom-color:var(–gold)}
+.fl{font-size:0.55rem;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;font-family:-apple-system,‘Helvetica Neue’,sans-serif}
+.fi{background:rgba(255,255,255,0.02);border:none;border-bottom:1px solid rgba(201,168,76,0.2);color:var(--cream);font-size:0.95rem;font-weight:300;padding:0.85rem 0;outline:none;transition:border-color 0.3s;width:100%;font-family:‘Cormorant Garamond’,Georgia,serif;letter-spacing:0.05em}
+.fi:focus{border-bottom-color:var(--gold)}
 .fi::placeholder{color:rgba(136,136,136,0.5);font-style:italic}
 select.fi{-webkit-appearance:none;background-image:url(“data:image/svg+xml,%3Csvg xmlns=‘http://www.w3.org/2000/svg’ width=‘10’ height=‘6’%3E%3Cpath d=‘M0 0l5 6 5-6z’ fill=’%23C9A84C’/%3E%3C/svg%3E”);background-repeat:no-repeat;background-position:right 4px center;cursor:pointer;background-color:transparent}
 select.fi option{background:#111;color:#FAF7F2}
 textarea.fi{resize:none;height:100px}
-.form-submit{margin-top:1rem;padding:1.1rem 3.5rem;background:rgba(201,168,76,0.9);color:var(–black);font-size:0.55rem;letter-spacing:0.35em;text-transform:uppercase;font-weight:600;border:none;cursor:pointer;transition:all 0.4s;font-family:-apple-system,‘Helvetica Neue’,sans-serif}
-.form-submit:hover{background:var(–gold-light);transform:translateY(-2px)}
+.form-submit{margin-top:1rem;padding:1.1rem 3.5rem;background:rgba(201,168,76,0.9);color:var(--black);font-size:0.55rem;letter-spacing:0.35em;text-transform:uppercase;font-weight:600;border:none;cursor:pointer;transition:all 0.4s;font-family:-apple-system,‘Helvetica Neue’,sans-serif}
+.form-submit:hover{background:var(--gold-light);transform:translateY(-2px)}
 
 /* CONFIRM */
 .confirm-section{display:none;flex-direction:column;align-items:center;text-align:center;padding:7rem 2.5rem;max-width:680px;margin:0 auto;width:100%}
 .confirm-section.show{display:flex}
-.confirm-icon{font-family:‘Cormorant Garamond’,Georgia,serif;font-size:4rem;color:var(–gold);margin-bottom:1.5rem;opacity:0.6;line-height:1}
-.confirm-title{font-family:‘Cormorant Garamond’,‘Didot’,Georgia,serif;font-size:clamp(2.2rem,5vw,3.5rem);font-weight:300;color:var(–cream);margin-bottom:0.5rem}
+.confirm-icon{font-family:‘Cormorant Garamond’,Georgia,serif;font-size:4rem;color:var(--gold);margin-bottom:1.5rem;opacity:0.6;line-height:1}
+.confirm-title{font-family:‘Cormorant Garamond’,‘Didot’,Georgia,serif;font-size:clamp(2.2rem,5vw,3.5rem);font-weight:300;color:var(--cream);margin-bottom:0.5rem}
 .confirm-sub{font-family:‘Cormorant Garamond’,Georgia,serif;font-style:italic;font-size:1.2rem;color:rgba(201,168,76,0.6);margin-bottom:2rem}
-.confirm-body{font-size:0.9rem;color:var(–mid);line-height:2;margin-bottom:2.5rem;max-width:480px}
-.confirm-details{border:1px solid rgba(201,168,76,0.15);padding:2rem 2.5rem;width:100%;text-align:left;margin-bottom:2.5rem;background:var(–dark)}
+.confirm-body{font-size:0.9rem;color:var(--mid);line-height:2;margin-bottom:2.5rem;max-width:480px}
+.confirm-details{border:1px solid rgba(201,168,76,0.15);padding:2rem 2.5rem;width:100%;text-align:left;margin-bottom:2.5rem;background:var(--dark)}
 .ci-item{padding:0.9rem 0;border-bottom:1px solid rgba(201,168,76,0.08)}
 .ci-item:last-child{border-bottom:none}
-.ci-label{font-size:0.55rem;letter-spacing:0.25em;color:var(–gold);text-transform:uppercase;margin-bottom:0.3rem;font-family:-apple-system,sans-serif}
-.ci-val{font-family:‘Cormorant Garamond’,Georgia,serif;font-size:1rem;color:var(–cream)}
-.countdown{font-size:0.55rem;letter-spacing:0.25em;color:var(–mid);text-transform:uppercase;margin-bottom:1rem;font-family:-apple-system,sans-serif}
-.countdown span{color:var(–gold)}
+.ci-label{font-size:0.55rem;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;margin-bottom:0.3rem;font-family:-apple-system,sans-serif}
+.ci-val{font-family:‘Cormorant Garamond’,Georgia,serif;font-size:1rem;color:var(--cream)}
+.countdown{font-size:0.55rem;letter-spacing:0.25em;color:var(--mid);text-transform:uppercase;margin-bottom:1rem;font-family:-apple-system,sans-serif}
+.countdown span{color:var(--gold)}
 .progress-bar{width:100%;height:1px;background:rgba(201,168,76,0.15);margin-bottom:2rem;overflow:hidden}
-.progress-fill{height:100%;width:0%;background:var(–gold);transition:width 3s linear}
+.progress-fill{height:100%;width:0%;background:var(--gold);transition:width 3s linear}
 .btn-row{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-.btn-gold{padding:1rem 2.5rem;background:rgba(201,168,76,0.9);color:var(–black);font-size:0.55rem;letter-spacing:0.35em;text-transform:uppercase;font-weight:600;border:none;cursor:pointer;transition:all 0.4s;font-family:-apple-system,‘Helvetica Neue’,sans-serif;text-decoration:none;display:inline-block}
-.btn-gold:hover{background:var(–gold-light)}
+.btn-gold{padding:1rem 2.5rem;background:rgba(201,168,76,0.9);color:var(--black);font-size:0.55rem;letter-spacing:0.35em;text-transform:uppercase;font-weight:600;border:none;cursor:pointer;transition:all 0.4s;font-family:-apple-system,‘Helvetica Neue’,sans-serif;text-decoration:none;display:inline-block}
+.btn-gold:hover{background:var(--gold-light)}
 .btn-outline{padding:1rem 2.5rem;border:1px solid rgba(201,168,76,0.35);color:rgba(201,168,76,0.7);font-size:0.55rem;letter-spacing:0.35em;text-transform:uppercase;background:transparent;cursor:pointer;transition:all 0.4s;font-family:-apple-system,‘Helvetica Neue’,sans-serif;text-decoration:none;display:inline-block}
-.btn-outline:hover{border-color:var(–gold);color:var(–gold)}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
 
 /* FOOTER */
-footer{background:var(–dark2);border-top:1px solid rgba(201,168,76,0.15);padding:3rem 4rem}
+footer{background:var(--dark2);border-top:1px solid rgba(201,168,76,0.15);padding:3rem 4rem}
 .ft{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem}
-.fbrand{font-family:‘Cormorant Garamond’,‘Didot’,Georgia,serif;font-size:1.5rem;font-weight:300;color:var(–gold);letter-spacing:0.3em}
+.fbrand{font-family:‘Cormorant Garamond’,‘Didot’,Georgia,serif;font-size:1.5rem;font-weight:300;color:var(--gold);letter-spacing:0.3em}
 .fcopy{font-size:0.58rem;color:rgba(136,136,136,0.5);font-family:-apple-system,sans-serif}
 .fback{font-size:0.52rem;letter-spacing:0.25em;color:rgba(201,168,76,0.35);text-transform:uppercase;font-family:-apple-system,sans-serif;text-decoration:none;transition:color 0.3s}
-.fback:hover{color:var(–gold)}
+.fback:hover{color:var(--gold)}
 
 @media(max-width:768px){
 nav{padding:1.5rem 1.5rem}
@@ -219,38 +219,37 @@ footer{padding:2.5rem 1.5rem}
     <h2 class="sec-title">Join the<br><em>Partner Program</em></h2>
     <div class="gold-rule"></div>
 
-```
-<form class="form-grid" id="agentForm">
+<form class="form-grid" id="agentForm" action="https://formspree.io/f/xvzvnyal" method="POST">
   <div class="form-row">
     <div class="fg">
       <label class="fl">First Name</label>
-      <input class="fi" type="text" placeholder="First name" required>
+      <input class="fi" type="text" name="first_name" placeholder="First name" required>
     </div>
     <div class="fg">
       <label class="fl">Last Name</label>
-      <input class="fi" type="text" placeholder="Last name" required>
+      <input class="fi" type="text" name="last_name" placeholder="Last name" required>
     </div>
   </div>
 
   <div class="fg">
     <label class="fl">Email Address</label>
-    <input class="fi" type="email" placeholder="your@email.com" required>
+    <input class="fi" type="email" name="email" placeholder="your@email.com" required>
   </div>
 
   <div class="fg">
     <label class="fl">Phone Number</label>
-    <input class="fi" type="tel" placeholder="+1 (000) 000-0000" required>
+    <input class="fi" type="tel" name="phone" placeholder="+1 (000) 000-0000" required>
   </div>
 
   <div class="fg">
     <label class="fl">Brokerage / Company</label>
-    <input class="fi" type="text" placeholder="Your brokerage or company name" required>
+    <input class="fi" type="text" name="company" placeholder="Your brokerage or company name" required>
   </div>
 
   <div class="form-row">
     <div class="fg">
       <label class="fl">Your Role</label>
-      <select class="fi" required>
+      <select class="fi" name="role" required>
         <option value="" disabled selected>Select role</option>
         <option>Real Estate Agent</option>
         <option>Realtor</option>
@@ -264,23 +263,23 @@ footer{padding:2.5rem 1.5rem}
     </div>
     <div class="fg">
       <label class="fl">Primary Zip Code</label>
-      <input class="fi" type="text" placeholder="Your market area" required>
+      <input class="fi" type="text" name="zip_code" placeholder="Your market area" required>
     </div>
   </div>
 
   <div class="fg">
     <label class="fl">Instagram Handle (optional)</label>
-    <input class="fi" type="text" placeholder="@yourhandle">
+    <input class="fi" type="text" name="instagram" placeholder="@yourhandle">
   </div>
 
   <div class="fg">
     <label class="fl">Tell us about your client base</label>
-    <textarea class="fi" placeholder="What kind of clients do you work with? Any current projects?"></textarea>
+    <textarea class="fi" name="message" placeholder="What kind of clients do you work with? Any current projects?"></textarea>
   </div>
 
+  <input type="hidden" name="_subject" value="New Agent Partner Application — PHAÖRA">
   <button class="form-submit" type="submit">Request Portal Access</button>
 </form>
-```
 
   </div>
 
@@ -342,11 +341,29 @@ document.getElementById(‘nav’).classList.toggle(‘scrolled’, window.scrol
 // Form submit
 document.getElementById(‘agentForm’).addEventListener(‘submit’, function(e) {
 e.preventDefault();
-document.getElementById(‘formSection’).style.display = ‘none’;
-const confirm = document.getElementById(‘confirmSection’);
-confirm.classList.add(‘show’);
-window.scrollTo({ top: 0, behavior: ‘smooth’ });
-
-// Progress bar
-setTimeout(() => {
-document.getElementById(’prog
+const form = this;
+const btn = form.querySelector(‘.form-submit’);
+btn.textContent = ‘Sending…’;
+btn.style.pointerEvents = ‘none’;
+const data = new FormData(form);
+fetch(‘https://formspree.io/f/xvzvnyal’, {
+  method: ‘POST’,
+  body: data,
+  headers: { ‘Accept’: ‘application/json’ }
+}).then(response => {
+  if (response.ok) {
+    document.getElementById(‘formSection’).style.display = ‘none’;
+    const confirm = document.getElementById(‘confirmSection’);
+    confirm.classList.add(‘show’);
+    window.scrollTo({ top: 0, behavior: ‘smooth’ });
+  } else {
+    btn.textContent = ‘Request Portal Access’;
+    btn.style.pointerEvents = ‘’;
+    alert(‘Something went wrong. Please call us at (954) 871-9991.’);
+  }
+}).catch(() => {
+  btn.textContent = ‘Request Portal Access’;
+  btn.style.pointerEvents = ‘’;
+  alert(‘Something went wrong. Please call us at (954) 871-9991.’);
+});
+});
