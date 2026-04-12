@@ -147,8 +147,8 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
 .collection-card{position:relative;aspect-ratio:3/4;background:var(--surface);overflow:hidden;cursor:pointer}
 .collection-card::after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(10,9,7,.9));pointer-events:none;transition:opacity .4s}
 .collection-card:hover::after{opacity:.7}
-.collection-card:hover .cc-inner{transform:scale(1.05)}
-.cc-inner{width:100%;height:100%;display:flex;align-items:center;justify-content:center;transition:transform .8s var(--ease)}
+.collection-card img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.collection-card:hover img{transform:scale(1.05)}
 .collection-card-content{position:absolute;bottom:0;left:0;right:0;padding:24px;z-index:2;transform:translateY(8px);transition:transform .4s var(--ease);opacity:.9}
 .collection-card:hover .collection-card-content{transform:translateY(0);opacity:1}
 .collection-card-content h4{font-family:var(--serif);font-size:1.2rem;color:var(--cream);font-weight:400;margin-bottom:4px}
@@ -417,7 +417,7 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
       </div>
     </div>
     <div class="crystal-visual">
-      <img src="https://phaora.com/Photoroom_20260323_201053.png" alt="Crystal Quartz Soaking Tub" loading="lazy">
+      <img src="IMG_6972.JPG" alt="Blue Macaws on Amethyst Cathedral — Statement Sculpture" loading="lazy">
       <div class="crystal-badge">✦ Statement Piece</div>
     </div>
   </div>
@@ -427,18 +427,31 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
 <section class="collection reveal" id="crystal-pieces">
   <div class="collection-grid container">
     <div class="collection-card">
-      <div class="cc-inner" style="background:linear-gradient(135deg,#2a1f3d,#1a1528);display:flex;align-items:center;justify-content:center;font-family:var(--serif);color:var(--gold-dim);font-size:2rem">✦</div>
-      <div class="collection-card-content"><h4>Amethyst Cathedral</h4><div class="price">Statement · From $37,500</div></div>
+      <img src="IMG_6969.JPG" alt="White Cockatoos on Amethyst" loading="lazy">
+      <div class="collection-card-content"><h4>White Cockatoos on Amethyst</h4><div class="price">Statement · From $37,500</div></div>
       <div class="collection-card-tag">1 Available</div>
     </div>
     <div class="collection-card">
-      <div class="cc-inner" style="background:linear-gradient(135deg,#2d2520,#1a1510);display:flex;align-items:center;justify-content:center;font-family:var(--serif);color:var(--gold-dim);font-size:2rem">✦</div>
-      <div class="collection-card-content"><h4>Citrine Tower</h4><div class="price">Mid · $9,250 – $17,500</div></div>
+      <img src="IMG_7037.JPG" alt="Rose Quartz Macaws on Amethyst" loading="lazy">
+      <div class="collection-card-content"><h4>Rose Quartz Macaws</h4><div class="price">Statement · From $37,500</div></div>
     </div>
     <div class="collection-card">
-      <div class="cc-inner" style="background:linear-gradient(135deg,#2a2a2a,#151515);display:flex;align-items:center;justify-content:center;font-family:var(--serif);color:var(--gold-dim);font-size:2rem">✦</div>
-      <div class="collection-card-content"><h4>Pyrite Cluster</h4><div class="price">Entry · $4,250 – $6,250</div></div>
+      <img src="IMG_6974.JPG" alt="Scarlet Macaws on Quartz Cluster" loading="lazy">
+      <div class="collection-card-content"><h4>Scarlet Macaws on Quartz</h4><div class="price">Mid · $9,250 – $17,500</div></div>
       <div class="collection-card-tag">New Arrival</div>
+    </div>
+    <div class="collection-card">
+      <img src="IMG_7046.JPG" alt="Rose Quartz Eagle on Emerald" loading="lazy">
+      <div class="collection-card-content"><h4>Rose Quartz Eagle</h4><div class="price">Statement · From $37,500</div></div>
+    </div>
+    <div class="collection-card">
+      <img src="IMG_7041.JPG" alt="Amethyst Parrot on Smoky Quartz" loading="lazy">
+      <div class="collection-card-content"><h4>Amethyst Parrot</h4><div class="price">Mid · $9,250 – $17,500</div></div>
+    </div>
+    <div class="collection-card">
+      <img src="IMG_7048.JPG" alt="Rose Quartz Parrots on Amethyst" loading="lazy">
+      <div class="collection-card-content"><h4>Rose Quartz Pair</h4><div class="price">Entry · $4,250 – $6,250</div></div>
+      <div class="collection-card-tag">1 Available</div>
     </div>
   </div>
   <div class="collection-cta"><a href="https://phaora.com/collections/all" class="btn-secondary">View Full Collection →</a></div>
