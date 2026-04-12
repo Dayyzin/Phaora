@@ -88,14 +88,12 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
 .hs-card img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
 .hs-card:hover img{transform:scale(1.05)}
 .hs-card::after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 50%,rgba(10,9,7,.85));pointer-events:none}
-.hs-card.featured{grid-row:span 2;min-height:540px}
+.hs-card:first-child{grid-row:span 2;min-height:540px}
 .hs-card-label{position:absolute;bottom:20px;left:20px;z-index:2}
 .hs-card-label h4{font-family:var(--serif);font-size:1.2rem;color:var(--cream);font-weight:400}
 .hs-card-label span{font-size:.6rem;color:var(--gold);letter-spacing:.12em;text-transform:uppercase}
 .hs-counter{position:absolute;bottom:20px;right:20px;z-index:2;background:rgba(10,9,7,.7);backdrop-filter:blur(8px);padding:6px 14px;font-size:.6rem;color:var(--gold);letter-spacing:.1em;border:1px solid rgba(201,165,92,.15)}
 .hs-cta{text-align:center;margin-top:48px}
-.hs-grid-secondary{max-width:1200px;margin:12px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.hs-grid-tertiary{max-width:1200px;margin:12px auto 0;display:grid;grid-template-columns:1fr 2fr 1fr;gap:12px}
 
 /* SERVICES */
 .services{padding:100px 24px;background:var(--bg)}
@@ -244,8 +242,7 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
 @media(max-width:900px){
   .nav-links{display:none}
   .nav{background:rgba(10,9,7,.95);backdrop-filter:blur(20px);padding:12px 24px}
-  .hs-grid{grid-template-columns:1fr 1fr}.hs-card.featured{grid-row:auto}
-  .hs-grid-secondary,.hs-grid-tertiary{grid-template-columns:1fr 1fr}
+  .hs-grid{grid-template-columns:1fr 1fr}.hs-card:first-child{grid-row:auto}
   .services-grid,.crystal-intro,.staging-grid,.contact-grid{grid-template-columns:1fr}
   .crystal-intro{gap:32px}
   .crystal-visual{aspect-ratio:3/4;max-height:500px}
@@ -259,7 +256,6 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
   .hero h1{font-size:2.2rem}
   .hero-trust{flex-direction:row;gap:20px}
   .hs-grid{columns:1}
-  .hs-grid-secondary,.hs-grid-tertiary{grid-template-columns:1fr}
   .preview-grid{grid-template-columns:1fr}
   .crystal-intro{gap:24px}
   .crystal-visual{aspect-ratio:1/1;max-height:400px}
@@ -308,7 +304,7 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
 <!-- ========== HERO — HARDSCAPE LEAD ========== -->
 <section class="hero" id="hero">
   <div class="hero-bg">
-    <img src="IMG_6713.JPG" alt="Luxury estate pool at sunset">
+    <img src="https://phaora.com/IMG_6688.jpeg" alt="Luxury estate pool at sunset">
   </div>
   <div class="hero-content">
     <div class="hero-eyebrow">✦ PHAÖRA Hardscape · Boca Raton & Palm Beach</div>
@@ -358,56 +354,25 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
     <div class="eyebrow">Our Work</div>
     <h2>Permanent. Considered. <em>Unforgettable.</em></h2>
   </div>
-
-  <!-- ROW 1: Featured large + 2 stacked -->
   <div class="hs-grid container">
-    <div class="hs-card featured">
-      <img src="IMG_6713.JPG" alt="Luxury estate pool with travertine deck at twilight" loading="lazy">
-      <div class="hs-card-label"><h4>Estate Pool & Spa</h4><span>Boca Raton · Travertine Deck</span></div>
+    <div class="hs-card">
+      <img src="https://phaora.com/IMG_6687.jpeg" alt="Luxury waterfront pool estate" loading="lazy">
+      <div class="hs-card-label"><h4>Waterfront Infinity Pool</h4><span>Boca Raton · Travertine</span></div>
     </div>
     <div class="hs-card">
-      <img src="hardscape-1.jpg" alt="Custom stone outdoor fireplace with brick firebox" loading="lazy">
-      <div class="hs-card-label"><h4>Outdoor Fireplace</h4><span>Natural Stone · Custom Build</span></div>
+      <img src="https://phaora.com/IMG_6688.jpeg" alt="Estate pool at sunset" loading="lazy">
+      <div class="hs-card-label"><h4>Estate Pool at Sunset</h4><span>Palm Beach · Natural Stone</span></div>
     </div>
     <div class="hs-card">
-      <img src="hardscape-3.jpg" alt="Paver pool deck with diving board and steps" loading="lazy">
-      <div class="hs-card-label"><h4>Pool Deck & Steps</h4><span>Paver · Multi-Level Design</span></div>
-    </div>
-  </div>
-
-  <!-- ROW 2: Three equal cards -->
-  <div class="hs-grid-secondary container">
-    <div class="hs-card">
-      <img src="IMG_6748.JPG" alt="Close-up natural stone paver detail" loading="lazy">
-      <div class="hs-card-label"><h4>Stone Detail</h4><span>Natural Paver · French Pattern</span></div>
+      <img src="https://phaora.com/IMG_6689.jpeg" alt="Travertine pool deck at dusk" loading="lazy">
+      <div class="hs-card-label"><h4>Travertine Pool Deck</h4><span>Parkland · French Pattern</span></div>
     </div>
     <div class="hs-card">
-      <img src="hardscape-2.jpg" alt="Custom circular fire pit with stone paver surround" loading="lazy">
-      <div class="hs-card-label"><h4>Fire Pit Surround</h4><span>Circular Stone · Paver Deck</span></div>
-    </div>
-    <div class="hs-card">
-      <img src="IMG_6693.JPG" alt="Craftsman setting pavers at golden hour" loading="lazy">
-      <div class="hs-card-label"><h4>The Craft</h4><span>Every Stone Set by Hand</span></div>
-    </div>
-  </div>
-
-  <!-- ROW 3: Wide center + flanks -->
-  <div class="hs-grid-tertiary container">
-    <div class="hs-card">
-      <img src="IMG_6735.JPG" alt="Tropical retaining wall with palm landscaping" loading="lazy">
-      <div class="hs-card-label"><h4>Retaining Wall</h4><span>Natural Stone · Tropical Setting</span></div>
-    </div>
-    <div class="hs-card">
-      <img src="IMG_6695.JPG" alt="Luxury outdoor kitchen and bar with stone columns at dusk" loading="lazy">
-      <div class="hs-card-label"><h4>Outdoor Kitchen & Bar</h4><span>Full Build · Stone & Lighting</span></div>
-    </div>
-    <div class="hs-card">
-      <img src="hardscape-5.jpg" alt="Elevated circular patio with stone steps and fire pit" loading="lazy">
-      <div class="hs-card-label"><h4>Elevated Patio</h4><span>Paver · Retaining Wall · Fire Pit</span></div>
+      <img src="https://phaora.com/IMG_6690.jpeg" alt="Illuminated pool at night" loading="lazy">
+      <div class="hs-card-label"><h4>Night Lighting Design</h4><span>Fort Lauderdale · LED Integration</span></div>
       <div class="hs-counter">+53 Projects</div>
     </div>
   </div>
-
   <div class="hs-cta"><a href="hardscape-gallery.html" class="btn-primary">View Full Gallery ✦</a></div>
 </section>
 
@@ -532,7 +497,7 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
       <p>Whether you need a pool deck, a driveway, a crystal sculpture, or a staging partner — every conversation begins with David. No sales team. No call center. Within 24 hours.</p>
       <div class="contact-details">
         <div class="contact-detail"><div class="icon">✦</div><div class="info"><a href="tel:+19548719991">(954) 871-9991</a><small>Call or text David directly</small></div></div>
-        <div class="contact-detail"><div class="icon">◈</div><div class="info"><a href="/cdn-cgi/l/email-protection#3e5a5f48575a7e4e565f514c5f105d5153"><span class="__cf_email__" data-cfemail="86e2e7f0efe2c6f6eee7e9f4e7a8e5e9eb">[email&#160;protected]</span></a><small>Response within 24 hours</small></div></div>
+        <div class="contact-detail"><div class="icon">◈</div><div class="info"><a href="mailto:david@phaora.com">david@phaora.com</a><small>Response within 24 hours</small></div></div>
         <div class="contact-detail"><div class="icon">♛</div><div class="info">Boca Raton, Florida<small>Serving all of South Florida</small></div></div>
       </div>
     </div>
@@ -583,7 +548,7 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
   <div class="footer-inner">
     <div>
       <div class="footer-brand">PHAÖRA</div>
-      <div class="footer-tagline">The Earth, Shaped to Last.<br>Boca Raton, Florida<br>(954) 871-9991 · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="630702150a0723130b020c11024d000c0e">[email&#160;protected]</a><br><br>A StyleArtStoneCraft Company</div>
+      <div class="footer-tagline">The Earth, Shaped to Last.<br>Boca Raton, Florida<br>(954) 871-9991 · david@phaora.com<br><br>A StyleArtStoneCraft Company</div>
     </div>
     <div class="footer-col">
       <h5>Hardscape</h5>
@@ -630,7 +595,7 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 const nav=document.getElementById('nav');
 window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>60)});
 const floatingCta=document.getElementById('floatingCta');
@@ -647,4 +612,9 @@ const quotes=[
 ];
 let cq=0;const dots=document.querySelectorAll('.testimonial-dots span');
 dots.forEach((d,i)=>{d.addEventListener('click',()=>{cq=i;uq()})});
-function uq(){const q=quotes[cq];document.querySelector('.testimonial-inner blockquote').textContent=q.text;document.querySelector('.testimonial-inner cite').innerHTML=q.author+'<span>'+q.role+'</span>';dots.forEach((
+function uq(){const q=quotes[cq];document.querySelector('.testimonial-inner blockquote').textContent=q.text;document.querySelector('.testimonial-inner cite').innerHTML=q.author+'<span>'+q.role+'</span>';dots.forEach((d,i)=>d.classList.toggle('active',i===cq))}
+setInterval(()=>{cq=(cq+1)%quotes.length;uq()},6000);
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})});
+</script>
+</body>
+</html>
