@@ -28,11 +28,11 @@ html{scroll-behavior:smooth;font-size:16px;background:var(--bg)}
 body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 
 /* NAV — exact copy from index */
-.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;transition:all .5s var(--ease);backdrop-filter:blur(0px);background:transparent}
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:20px 32px;display:flex;align-items:center;justify-content:space-between;transition:all .5s var(--ease);backdrop-filter:blur(0px);background:transparent}
 .nav.scrolled{backdrop-filter:blur(20px) saturate(1.4);background:rgba(10,9,7,.88);border-bottom:1px solid rgba(201,165,92,.08);padding:12px 24px}
 .nav-logo{font-family:var(--serif);font-size:1.4rem;font-weight:300;letter-spacing:.15em;color:var(--cream);text-decoration:none}
-.nav-links{display:flex;gap:28px;align-items:center}
-.nav-links a{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cream2);text-decoration:none;transition:color .3s;font-weight:400}
+.nav-links{display:flex;gap:16px;align-items:center;justify-content:flex-end;flex:1;white-space:nowrap}
+.nav-links a{font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;color:var(--cream);text-decoration:none;transition:color .3s;font-weight:400}
 .nav-links a:hover{color:var(--gold)}
 .nav-cta{background:var(--gold);color:var(--bg)!important;padding:10px 22px;font-size:.68rem!important;letter-spacing:.14em!important;font-weight:500;border:none;cursor:pointer;transition:all .3s var(--ease)}
 .nav-cta:hover{background:var(--gold-light);transform:translateY(-1px)}
@@ -99,7 +99,7 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 
 @media(max-width:900px){
-  .nav-links{display:none}
+  
   .nav{background:rgba(10,9,7,.95);backdrop-filter:blur(20px);padding:12px 24px}
   .gg{grid-template-columns:1fr 1fr}
   .gi.featured{grid-column:span 2}
@@ -126,7 +126,6 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
     <a href="/#staging">Staging</a>
     <a href="/#contact">Contact</a>
     <a href="tel:+19548719991" class="nav-phone">✦ (954) 871-9991</a>
-    <a href="/#contact" class="nav-cta">Get a Quote</a>
   </div>
 </nav>
 
@@ -226,7 +225,7 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
   <div class="info">
     The Earth, Shaped to Last.<br>
     Boca Raton, Florida<br>
-    <a href="tel:+19548719991">(954) 871-9991</a> · <a href="mailto:david@phaora.com">david@phaora.com</a>
+    <a href="tel:+19548719991">(954) 871-9991</a> · <a href="/cdn-cgi/l/email-protection#3e5a5f48575a7e4e565f514c5f105d5153"><span class="__cf_email__" data-cfemail="ea8e8b9c838eaa9a828b85988bc4898587">[email&#160;protected]</span></a>
   </div>
 </footer>
 
@@ -247,7 +246,7 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // Nav scroll
 window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',window.scrollY>60)});
 
@@ -281,10 +280,4 @@ function closeLb(){document.getElementById('lb').classList.remove('open');docume
 function navLb(d){lbIdx=(lbIdx+d+lbItems.length)%lbItems.length;showLb()}
 document.querySelectorAll('.gi').forEach(i=>{i.addEventListener('click',()=>openLb(i))});
 document.getElementById('lb').addEventListener('click',e=>{if(e.target===document.getElementById('lb'))closeLb()});
-document.addEventListener('keydown',e=>{
-  if(!document.getElementById('lb').classList.contains('open'))return;
-  if(e.key==='Escape')closeLb();if(e.key==='ArrowRight')navLb(1);if(e.key==='ArrowLeft')navLb(-1);
-});
-</script>
-</body>
-</html>
+doc
