@@ -1100,22 +1100,29 @@ textarea { resize: vertical; }
       
       <div>
         <label class="form-label">YOUR NAME</label>
-        <input type="text" placeholder="How should David address you?">
+        <input type="text" name="name" id="fieldName" placeholder="How should David address you?" required>
       </div>
       <div>
         <label class="form-label">EMAIL</label>
-        <input type="email" placeholder="For David's personal response">
+        <input type="email" name="email" id="fieldEmail" placeholder="For David's personal response" required>
       </div>
       <div>
         <label class="form-label">PHONE</label>
-        <input type="tel" placeholder="Optional — for text or call">
+        <input type="tel" name="phone" id="fieldPhone" placeholder="Optional — for text or call">
       </div>
       <div>
         <label class="form-label">TELL US ABOUT YOUR SPACE</label>
-        <textarea rows="3" placeholder="Describe the room, the feeling you want, or any questions..."></textarea>
+        <textarea rows="3" name="message" id="fieldMessage" placeholder="Describe the room, the feeling you want, or any questions..."></textarea>
       </div>
       
-      <button class="btn-primary" onclick="submitInquiry()" style="width: 100%;">Begin the Dialogue</button>
+      <!-- Hidden fields — sent to Formspree so David sees full context -->
+      <input type="hidden" name="piece" value="The Flamingo">
+      <input type="hidden" name="sku" value="SKU-0024">
+      <input type="hidden" name="price" value="$18,500">
+      <input type="hidden" name="intent" id="fieldIntent" value="">
+      <input type="hidden" name="_subject" value="🔔 PHAÖRA Inquiry — The Flamingo ($18,500)">
+      
+      <button class="btn-primary" id="submitBtn" onclick="submitInquiry()" style="width: 100%;">Begin the Dialogue</button>
       <div class="inquiry__piece-ref">Piece: The Flamingo · SKU-0024 · $18,500</div>
     </div>
     
@@ -1289,10 +1296,24 @@ function toggleSave() {
   btn.classList.toggle('saved');
   if (btn.classList.contains('saved')) {
     btn.textContent = '♡ SAVED';
-    // TODO: Send to your backend / CRM / email list
-    // This is where you'd fire a webhook to notify David:
-    // fetch('/api/save', { method: 'POST', body: JSON.stringify({ piece: 'SKU-0024', action: 'saved' }) });
-    console.log('Piece saved — trigger follow-up in 48 hours');
+    
+    // 🔄 CONVERSION: Notify David that someone saved this piece.
+    // This fires a silent Formspree submission so David can follow up.
+    // The visitor doesn't need to fill in anything — this is a signal.
+    fetch('https://formspree.io/f/mlgokvnj', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: '♡ Someone saved The Flamingo (SKU-0024)',
+        piece: 'The Flamingo',
+        sku: 'SKU-0024',
+        price: '$18,500',
+        action: 'piece_saved',
+        message: 'A visitor saved this piece to their collection. No contact info yet — they may inquire soon.',
+        timestamp: new Date().toISOString()
+      })
+    }).catch(() => {}); // silent — don't interrupt the visitor
+    
   } else {
     btn.textContent = '♡ SAVE';
   }
@@ -1313,11 +1334,9 @@ function selectRoom(btn, index) {
 function selectIntent(btn) {
   const intent = btn.textContent;
   document.getElementById('selectedIntent').textContent = '"' + intent + '"';
+  document.getElementById('fieldIntent').value = intent;
   document.getElementById('intentStep').style.display = 'none';
   document.getElementById('inquiryForm').classList.add('visible');
-  
-  // TODO: Log intent for analytics
-  console.log('Intent selected:', intent);
 }
 
 function resetIntent() {
@@ -1325,32 +1344,73 @@ function resetIntent() {
   document.getElementById('inquiryForm').classList.remove('visible');
 }
 
-function submitInquiry() {
-  document.getElementById('inquiryForm').classList.remove('visible');
-  document.getElementById('inquiryConfirm').classList.add('visible');
+async function submitInquiry() {
+  const btn = document.getElementById('submitBtn');
+  const name = document.getElementById('fieldName').value.trim();
+  const email = document.getElementById('fieldEmail').value.trim();
   
-  // TODO: Send form data to your backend
-  // This is the most critical integration point.
-  // Options:
-  // 1. Formspree (no backend needed): change the form to submit to formspree.io
-  // 2. EmailJS: send directly from browser
-  // 3. Your own API endpoint
-  // 4. Zapier webhook → email/CRM
-  //
-  // Example with fetch:
-  // const data = {
-  //   piece: 'The Flamingo',
-  //   sku: 'SKU-0024',
-  //   intent: document.getElementById('selectedIntent').textContent,
-  //   name: document.querySelector('input[type="text"]').value,
-  //   email: document.querySelector('input[type="email"]').value,
-  //   phone: document.querySelector('input[type="tel"]').value,
-  //   message: document.querySelector('textarea').value,
-  //   timestamp: new Date().toISOString()
-  // };
-  // fetch('/api/inquiry', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data) });
+  // Basic validation
+  if (!name || !email) {
+    btn.textContent = 'PLEASE FILL IN NAME & EMAIL';
+    btn.style.background = 'var(--red)';
+    setTimeout(() => {
+      btn.textContent = 'Begin the Dialogue';
+      btn.style.background = 'var(--gold)';
+    }, 2000);
+    return;
+  }
   
-  console.log('Inquiry submitted — notify David ASAP');
+  // Show sending state
+  btn.textContent = 'SENDING...';
+  btn.style.opacity = '0.7';
+  btn.disabled = true;
+  
+  // Gather all form data
+  const data = {
+    name:    name,
+    email:   email,
+    phone:   document.getElementById('fieldPhone').value.trim(),
+    message: document.getElementById('fieldMessage').value.trim(),
+    piece:   'The Flamingo',
+    sku:     'SKU-0024',
+    price:   '$18,500',
+    intent:  document.getElementById('fieldIntent').value,
+    _subject: '🔔 PHAÖRA Inquiry — The Flamingo ($18,500)'
+  };
+  
+  try {
+    const response = await fetch('https://formspree.io/f/mlgokvnj', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    
+    if (response.ok) {
+      // Success — show confirmation
+      document.getElementById('inquiryForm').classList.remove('visible');
+      document.getElementById('inquiryConfirm').classList.add('visible');
+    } else {
+      // Formspree error — fallback
+      btn.textContent = 'SOMETHING WENT WRONG — TRY AGAIN';
+      btn.style.background = 'var(--red)';
+      btn.style.opacity = '1';
+      btn.disabled = false;
+      setTimeout(() => {
+        btn.textContent = 'Begin the Dialogue';
+        btn.style.background = 'var(--gold)';
+      }, 3000);
+    }
+  } catch (err) {
+    // Network error — offer phone/text as fallback
+    btn.textContent = 'CONNECTION ERROR — CALL OR TEXT DAVID';
+    btn.style.background = 'var(--red)';
+    btn.style.opacity = '1';
+    btn.disabled = false;
+    setTimeout(() => {
+      btn.textContent = 'Begin the Dialogue';
+      btn.style.background = 'var(--gold)';
+    }, 4000);
+  }
 }
 
 // ─── Thumbnail gallery ───
