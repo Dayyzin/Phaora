@@ -201,25 +201,25 @@ footer{background:var(--dark2);border-top:1px solid rgba(201,168,76,0.15);paddin
         <div class="form-row">
           <div class="fg">
             <label class="fl">First Name</label>
-            <input class="fi" type="text" placeholder="First name" required>
+            <input class="fi" type="text" name="first_name" placeholder="First name" required>
           </div>
           <div class="fg">
             <label class="fl">Last Name</label>
-            <input class="fi" type="text" placeholder="Last name" required>
+            <input class="fi" type="text" name="last_name" placeholder="Last name" required>
           </div>
         </div>
         <div class="fg">
           <label class="fl">Email Address</label>
-          <input class="fi" type="email" placeholder="your@email.com" required>
+          <input class="fi" type="email" name="email" placeholder="your@email.com" required>
         </div>
         <div class="fg">
           <label class="fl">Phone Number</label>
-          <input class="fi" type="tel" placeholder="+1 (000) 000-0000" required>
+          <input class="fi" type="tel" name="phone" placeholder="+1 (000) 000-0000" required>
         </div>
         <div class="form-row">
           <div class="fg">
             <label class="fl">Project Type</label>
-            <select class="fi" required>
+            <select class="fi" name="project_type" required>
               <option value="" disabled selected>Select type</option>
               <option>Driveway / Pavers</option>
               <option>Patio / Outdoor Living</option>
@@ -233,12 +233,12 @@ footer{background:var(--dark2);border-top:1px solid rgba(201,168,76,0.15);paddin
           </div>
           <div class="fg">
             <label class="fl">City / Zip Code</label>
-            <input class="fi" type="text" placeholder="Your location" required>
+            <input class="fi" type="text" name="location" placeholder="Your location" required>
           </div>
         </div>
         <div class="fg">
           <label class="fl">Tell us about your project</label>
-          <textarea class="fi" placeholder="Size, timeline, any specific ideas..."></textarea>
+          <textarea class="fi" name="message" placeholder="Size, timeline, any specific ideas..."></textarea>
         </div>
         <button class="form-submit" type="submit">Request Free Quote</button>
       </form>
