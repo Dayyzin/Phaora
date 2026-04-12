@@ -236,7 +236,8 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 @keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal{opacity:1;transform:none;transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.hidden{opacity:0;transform:translateY(30px)}
 .reveal.visible{opacity:1;transform:translateY(0)}
 
 @media(max-width:900px){
@@ -497,7 +498,7 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
       <p>Whether you need a pool deck, a driveway, a crystal sculpture, or a staging partner — every conversation begins with David. No sales team. No call center. Within 24 hours.</p>
       <div class="contact-details">
         <div class="contact-detail"><div class="icon">✦</div><div class="info"><a href="tel:+19548719991">(954) 871-9991</a><small>Call or text David directly</small></div></div>
-        <div class="contact-detail"><div class="icon">◈</div><div class="info"><a href="mailto:david@phaora.com">david@phaora.com</a><small>Response within 24 hours</small></div></div>
+        <div class="contact-detail"><div class="icon">◈</div><div class="info"><a href="/cdn-cgi/l/email-protection#92f6f3e4fbf6d2e2faf3fde0f3bcf1fdff"><span class="__cf_email__" data-cfemail="adc9ccdbc4c9edddc5ccc2dfcc83cec2c0">[email&#160;protected]</span></a><small>Response within 24 hours</small></div></div>
         <div class="contact-detail"><div class="icon">♛</div><div class="info">Boca Raton, Florida<small>Serving all of South Florida</small></div></div>
       </div>
     </div>
@@ -548,7 +549,7 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
   <div class="footer-inner">
     <div>
       <div class="footer-brand">PHAÖRA</div>
-      <div class="footer-tagline">The Earth, Shaped to Last.<br>Boca Raton, Florida<br>(954) 871-9991 · david@phaora.com<br><br>A StyleArtStoneCraft Company</div>
+      <div class="footer-tagline">The Earth, Shaped to Last.<br>Boca Raton, Florida<br>(954) 871-9991 · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="294d485f404d69594148465b48074a4644">[email&#160;protected]</a><br><br>A StyleArtStoneCraft Company</div>
     </div>
     <div class="footer-col">
       <h5>Hardscape</h5>
@@ -595,16 +596,81 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const nav=document.getElementById('nav');
 window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>60)});
 const floatingCta=document.getElementById('floatingCta');
 window.addEventListener('scroll',()=>{floatingCta.classList.toggle('visible',window.scrollY>800)});
 const reveals=document.querySelectorAll('.reveal');
-const ro=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target)}})},{threshold:.15});
-reveals.forEach(el=>ro.observe(el));
+reveals.forEach(el=>el.classList.add('visible'));
 let exitShown=false;
 document.addEventListener('mouseout',e=>{if(!exitShown&&e.clientY<5&&!e.relatedTarget){document.getElementById('exitOverlay').classList.add('active');exitShown=true}});
+
+// CONTACT FORM SUBMISSION
+const formSubmit=document.querySelector('.form-submit');
+if(formSubmit){
+  formSubmit.addEventListener('click',function(){
+    const form=this.closest('.contact-form');
+    const name=form.querySelector('input[type="text"]');
+    const phone=form.querySelector('input[type="tel"]');
+    const email=form.querySelector('input[type="email"]');
+    const select=form.querySelector('select');
+    let valid=true;
+    [name,phone,email,select].forEach(el=>{
+      if(!el)return;
+      if(!el.value.trim()||el.value===el.getAttribute('placeholder')||el.value===''){
+        el.style.borderColor='var(--red-soft)';
+        el.style.transition='border-color .3s';
+        valid=false;
+        setTimeout(()=>{el.style.borderColor=''},2500);
+      } else {
+        el.style.borderColor='var(--green-soft)';
+      }
+    });
+    if(!valid){
+      const msg=form.querySelector('.form-error-msg');
+      if(!msg){
+        const err=document.createElement('div');
+        err.className='form-error-msg';
+        err.style.cssText='color:var(--red-soft);font-size:.65rem;letter-spacing:.08em;text-align:center;margin-top:8px;';
+        err.textContent='Please fill in all required fields above.';
+        formSubmit.after(err);
+        setTimeout(()=>err.remove(),3000);
+      }
+      return;
+    }
+    // Build mailto link
+    const subject=encodeURIComponent('Free Consultation Request — PHAÖRA');
+    const body=encodeURIComponent(
+      'Name: '+name.value+'\nPhone: '+phone.value+'\nEmail: '+email.value+'\nInterest: '+select.value+'\n\n'+(form.querySelector('textarea').value||'')
+    );
+    window.location.href='mailto:info@phaora.com?subject='+subject+'&body='+body;
+    // Show success state
+    formSubmit.textContent='✦ Request Sent — We\'ll Be in Touch';
+    formSubmit.style.background='var(--green-soft)';
+    formSubmit.style.pointerEvents='none';
+    form.querySelector('.form-guarantee').textContent='✦ Thank you! David will respond personally within 24 hours.';
+    setTimeout(()=>{
+      formSubmit.textContent='Get Your Free Consultation ✦';
+      formSubmit.style.background='';
+      formSubmit.style.pointerEvents='';
+    },6000);
+  });
+}
+
+// EXIT OVERLAY FORM
+const exitFormBtn=document.querySelector('.exit-form button');
+if(exitFormBtn){
+  exitFormBtn.addEventListener('click',function(){
+    const input=document.querySelector('.exit-form input');
+    if(!input.value.trim()){input.style.borderColor='var(--red-soft)';setTimeout(()=>{input.style.borderColor=''},2000);return;}
+    const subject=encodeURIComponent('PHAÖRA — Get in Touch');
+    const body=encodeURIComponent('Contact: '+input.value);
+    window.location.href='mailto:info@phaora.com?subject='+subject+'&body='+body;
+    exitFormBtn.textContent='Sent ✦';
+    exitFormBtn.style.background='var(--green-soft)';
+  });
+}
 const quotes=[
   {text:'"They transformed our backyard into something we never imagined. The craftsmanship is on another level — every detail considered, every stone perfect."',author:'PHAÖRA Client',role:'Boca Raton · Pool Deck & Patio'},
   {text:'"From the first consultation to the final walkthrough, every step was handled with care. Our pool deck is the centerpiece of the property now."',author:'PHAÖRA Client',role:'Palm Beach · Travertine Pool Deck'},
@@ -612,9 +678,4 @@ const quotes=[
 ];
 let cq=0;const dots=document.querySelectorAll('.testimonial-dots span');
 dots.forEach((d,i)=>{d.addEventListener('click',()=>{cq=i;uq()})});
-function uq(){const q=quotes[cq];document.querySelector('.testimonial-inner blockquote').textContent=q.text;document.querySelector('.testimonial-inner cite').innerHTML=q.author+'<span>'+q.role+'</span>';dots.forEach((d,i)=>d.classList.toggle('active',i===cq))}
-setInterval(()=>{cq=(cq+1)%quotes.length;uq()},6000);
-document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})});
-</script>
-</body>
-</html>
+function uq(){const q=quotes[cq];document.querySelector('.testimonial-inner blockquote').textContent=q.text;document.querySelector('.testimonial-inner cite').innerHTML=q.author+'<span>'+q.role+'</span>';dots.forEach((
