@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PHAÖRA — The Collection · 39 Singular Works</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0907;--bg2:#110f0b;--surface:#1a1714;--surface2:#231f1a;
+  --gold:#c9a55c;--gold-light:#e2c98a;--gold-dim:#8a7340;
+  --cream:#f0e8d8;--cream2:#d4c9b2;--text:#e8e0d0;--text-dim:#9a9080;
+  --red-soft:#c45c4a;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Outfit',system-ui,sans-serif;
+  --ease:cubic-bezier(0.22,1,0.36,1);
+}
+html{scroll-behavior:smooth;font-size:16px;background:var(--bg)}
+body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(20px) saturate(1.4);background:rgba(10,9,7,.88);border-bottom:1px solid rgba(201,165,92,.08)}
+.nav-logo{font-family:var(--serif);font-size:1.4rem;font-weight:300;letter-spacing:.15em;color:var(--cream);text-decoration:none}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cream2);text-decoration:none;transition:color .3s;font-weight:400}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{background:var(--gold);color:var(--bg)!important;padding:10px 22px;font-size:.68rem!important;letter-spacing:.14em!important;font-weight:500;cursor:pointer;transition:all .3s var(--ease)}
+.nav-cta:hover{background:var(--gold-light);transform:translateY(-1px)}
+
+.hero{padding:130px 24px 80px;text-align:center}
+.hero .eyebrow{font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;font-weight:400}
+.hero h1{font-family:var(--serif);font-size:clamp(2.4rem,5vw,4.5rem);font-weight:300;line-height:1.1;color:var(--cream);margin-bottom:16px}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero p{font-size:.95rem;color:var(--cream2);max-width:560px;margin:0 auto 12px;line-height:1.7;font-weight:200}
+.hero-stats{display:flex;gap:40px;justify-content:center;margin-top:32px}
+.hero-stat .num{font-family:var(--serif);font-size:1.8rem;color:var(--gold);font-weight:300}
+.hero-stat .label{font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-dim);margin-top:4px}
+
+.filter-bar{padding:24px 24px 20px;text-align:center;position:sticky;top:52px;z-index:100;background:var(--bg);border-bottom:1px solid rgba(201,165,92,.06)}
+.filter-tabs{display:inline-flex;gap:4px;background:var(--surface);padding:4px;border:1px solid rgba(201,165,92,.08);flex-wrap:wrap;justify-content:center}
+.filter-tab{padding:10px 20px;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);background:transparent;border:none;cursor:pointer;font-family:var(--sans);transition:all .3s var(--ease);white-space:nowrap}
+.filter-tab.active,.filter-tab:hover{background:var(--gold);color:var(--bg)}
+.piece-count{font-size:.7rem;color:var(--text-dim);margin-top:12px}
+
+.gallery{padding:40px 24px 60px}
+.grid{max-width:1200px;margin:0 auto;columns:3;column-gap:16px}
+.card{break-inside:avoid;margin-bottom:16px;position:relative;overflow:hidden;cursor:pointer;background:var(--surface)}
+.card img{width:100%;display:block;transition:transform .7s var(--ease)}
+.card:hover img{transform:scale(1.04)}
+.card::after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(10,9,7,.88));opacity:0;transition:opacity .4s;pointer-events:none}
+.card:hover::after{opacity:1}
+.card-info{position:absolute;bottom:0;left:0;right:0;padding:20px;z-index:2;transform:translateY(10px);opacity:0;transition:all .4s var(--ease)}
+.card:hover .card-info{transform:translateY(0);opacity:1}
+.card-info h4{font-family:var(--serif);font-size:1.05rem;color:var(--cream);font-weight:400;margin-bottom:4px}
+.card-info .price{font-size:.62rem;color:var(--gold);letter-spacing:.1em;margin-bottom:8px}
+.card-info .inquire{font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cream2);background:rgba(201,165,92,.15);border:1px solid rgba(201,165,92,.3);padding:6px 14px;display:inline-block;transition:all .3s}
+.card-info .inquire:hover{background:var(--gold);color:var(--bg)}
+.card-tag{position:absolute;top:12px;right:12px;z-index:3;padding:5px 12px;font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;background:var(--red-soft);color:#fff}
+.card-sku{position:absolute;top:12px;left:12px;z-index:3;padding:5px 10px;font-size:.5rem;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-dim);background:rgba(10,9,7,.7);backdrop-filter:blur(6px);border:1px solid rgba(201,165,92,.1)}
+
+.mid-cta{padding:80px 24px;background:var(--bg2);text-align:center;border-top:1px solid rgba(201,165,92,.06);border-bottom:1px solid rgba(201,165,92,.06)}
+.mid-cta h2{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.6rem);font-weight:300;color:var(--cream);margin-bottom:12px}
+.mid-cta h2 em{font-style:italic;color:var(--gold-light)}
+.mid-cta p{color:var(--cream2);font-size:.88rem;max-width:460px;margin:0 auto 28px;line-height:1.7;font-weight:200}
+.btn-primary{background:var(--gold);color:var(--bg);padding:16px 36px;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-family:var(--sans);font-weight:500;border:none;cursor:pointer;transition:all .35s var(--ease);text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 12px 40px rgba(201,165,92,.25)}
+
+.footer{padding:40px 24px;background:var(--surface);border-top:1px solid rgba(201,165,92,.06);text-align:center}
+.footer .brand{font-family:var(--serif);font-size:1.3rem;color:var(--cream);font-weight:300;letter-spacing:.1em;margin-bottom:8px}
+.footer .info{font-size:.72rem;color:var(--text-dim);line-height:1.8;font-weight:200}
+.footer .info a{color:var(--gold);text-decoration:none}
+
+.floating-cta{position:fixed;bottom:24px;right:24px;z-index:999}
+.floating-cta a{display:flex;align-items:center;gap:10px;background:var(--gold);color:var(--bg);padding:14px 24px;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;text-decoration:none;box-shadow:0 8px 30px rgba(201,165,92,.3);transition:all .3s var(--ease)}
+.floating-cta a:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(201,165,92,.4)}
+.floating-cta .pulse{width:8px;height:8px;border-radius:50%;background:#5ca55c;animation:pulse 2s ease infinite}
+
+.lightbox{position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,.94);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+.lightbox.active{opacity:1;pointer-events:all}
+.lightbox img{max-width:90vw;max-height:85vh;object-fit:contain}
+.lb-close{position:absolute;top:20px;right:24px;background:none;border:none;color:var(--cream);font-size:1.5rem;cursor:pointer}
+.lb-close:hover{color:var(--gold)}
+.lb-caption{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);text-align:center}
+.lb-caption h4{font-family:var(--serif);font-size:1.2rem;color:var(--cream);font-weight:400}
+.lb-caption span{font-size:.6rem;color:var(--gold);letter-spacing:.12em;text-transform:uppercase}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(201,165,92,.15);border:1px solid rgba(201,165,92,.2);color:var(--cream);width:48px;height:48px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.2rem;transition:all .3s}
+.lb-nav:hover{background:var(--gold);color:var(--bg)}
+.lb-prev{left:20px}
+.lb-next{right:20px}
+
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+@media(max-width:900px){
+  .nav-links{display:none}
+  .grid{columns:2}
+  .hero-stats{gap:24px}
+}
+@media(max-width:600px){
+  .grid{columns:1}
+  .hero h1{font-size:2rem}
+  .hero-stats{flex-direction:row;gap:20px}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">PHAÖRA</a>
+  <div class="nav-links">
+    <a href="index.html#hardscape">Hardscape</a>
+    <a href="#">Collection</a>
+    <a href="index.html#staging">Staging</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="tel:+19548719991" style="color:var(--gold)!important">✦ (954) 871-9991</a>
+    <a href="index.html#contact" class="nav-cta">Inquire</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="eyebrow">✦ PHAÖRA · Minas Gerais, Brazil</div>
+  <h1>The <em>Collection</em></h1>
+  <p>Each piece was shaped by the earth over millions of years and finished by master craftsman Fabiano. One of one. Never to exist again.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="num">39</div><div class="label">Singular Works</div></div>
+    <div class="hero-stat"><div class="num">40+</div><div class="label">Years of Mastery</div></div>
+    <div class="hero-stat"><div class="num">0</div><div class="label">Duplicates Ever</div></div>
+  </div>
+</section>
+
+<div class="filter-bar">
+  <div class="filter-tabs">
+    <button class="filter-tab active" data-filter="all">All Pieces</button>
+    <button class="filter-tab" data-filter="statement">Statement $37,500+</button>
+    <button class="filter-tab" data-filter="mid">Mid $9,250–$17,500</button>
+    <button class="filter-tab" data-filter="entry">Entry $4,250–$6,250</button>
+  </div>
+  <div class="piece-count"><span id="countDisplay">39</span> pieces</div>
+</div>
+
+<section class="gallery">
+  <div class="grid" id="grid">
+
+    <div class="card" data-tier="statement"><img src="IMG_6972.JPG" alt="Blue Macaws on Amethyst Cathedral" loading="lazy"><div class="card-info"><h4>Blue Macaws on Amethyst Cathedral</h4><div class="price">Statement · $37,500+</div><span class="inquire">Inquire →</span></div><div class="card-tag">1 Available</div><div class="card-sku">PHR-001</div></div>
+
+    <div class="card" data-tier="statement"><img src="IMG_6973.JPG" alt="Blue Macaw on Amethyst Geode" loading="lazy"><div class="card-info"><h4>Blue Macaw on Amethyst Geode</h4><div class="price">Statement · $37,500+</div><span class="inquire">Inquire →</span></div><div class="card-sku">PHR-002</div></div>
+
+    <div class="card" data-tier="statement"><img src="IMG_6971.JPG" alt="Aquamarine Soaking Vessel" loading="lazy"><div class="card-info"><h4>Aquamarine Soaking Vessel</h4><div class="price">Statement · $37,500+</div><span class="inquire">Inquire →</span></div><div class="card-tag">1 Available</div><div class="card-sku">PHR-003</div></div>
+
+    <div class="card" data-tier="statement"><img src="IMG_6969.JPG" alt="White Cockatoos on Amethyst" loading="lazy"><div class="card-info"><h4>White Cockatoos on Amethyst</h4><div class="price">Statement · $37,500+</div><span class="inquire">Inquire →</span></div><div class="card-sku">PHR-004</div></div>
+
+    <div class="card" data-tier="statement"><img src="IMG_6974.JPG" alt="Scarlet Macaws on Quartz Cluster" loading="lazy"><div class="card-info"><h4>Scarlet Macaws on Quartz</h4><div class="price">Statement · $37,500+</div><span class="inquire">Inquire →</span></div><div class="card-tag">New Arrival</div><div class="card-sku">PHR-005</div></div>
+
+    <div class="card" data-tier="mid"><img src="IMG_6975.JPG" alt="Blue Macaw Pair on Amethyst Cave" loading="lazy"><div class="card-info"><h4>Blue Macaw Pair on Amethyst</h4><div class="price">Mid · $9,250 – $17,500</div><span class="inquire">Inquire →</span></div><div class="card-sku">PHR-006</div></div>
+
+    <div class="card" data-tier="mid"><img src="IMG_7035.JPG" alt="White Parrots on Amethyst" loading="lazy"><div class="card-info"><h4>White Parrots on Amethyst</h4><div class="price">Mid · $9,250 – $17,500</div><span class="inquire">Inquire →</span></div><div class="card-sku">PHR-007</div></div>
+
+    <div class="card" data-tier="statement"><img src="IMG_7036.JPG" alt="Crystal Parrots on Amethyst" loading="lazy"><div class="card-info"><h4>Crystal Parrots on Amethyst</h4><div class="price">Statement · $37,500+</div><span class="inquire">Inquire →</span></div><div class="card-sku">PHR-008</div></div>
+
+    <div class="card" data-tier="statement"><img src="IMG_7037.JPG" alt="Rose Quartz Macaws on Amethyst" loading="lazy"><div class="card-info"><h4>Rose Quartz Macaws on Amethyst</h4><div class="price">Statement · $37,500+</div><span class="inquire">Inquire →</span></div><div class="card-tag">1 Available</div><div class="card-sku">PHR-009</div></div>
+
+    <div class="card" data-tier="mid"><img src="IMG_7038.JPG" alt="Blue Macaws on Amethyst" loading="lazy"><div class="card-info"><h4>Blue Macaw Duo</h4><div class="price">Mid · $9,250 – $17,500</div><span class="inquire">Inquire →</span></div><div class="card-sku">PHR-010</div></div>
+
+    <div class="card" data-tier="entry"><img src="IMG_7039.JPG" alt="Dark Macaws on Emerald" loading="lazy"><div class="card-info"><h4>Dark Macaws on Emerald</h4><div class="price">Entry · $4,250 – $6,250</div><span class="inquire">Inquire →</span></div><div class="card-sku">PHR-011</div></div>
+
+    <div class="card" data-tier="mid"><img src="IMG_7040.JPG" alt="Blue Macaws on Dark Stone" loading="lazy"><div class="card-info"><h4>Blue Pair on Dark Stone</h4><div class="price">Mid · $9,250 – $17,500</div><span class="inquire">Inquire →</span></div><div class="card-sku">PHR-012</div></div>
+
+    <div class="card" data-tier="mid"><img src="IMG_7041.JPG" alt="Amethyst Parrot on Smoky Quartz" loading="lazy"><div class="card-info"><h4>Amethyst Parrot</h4><div class="price">Mid · $9,250 – $17,500</div><span class="inquire">Inquire →</span></div><div class="card-sku">PHR-013</div></div>
+
+    <div class="card" data-tier="entry"><img src="IMG_7042.JPG" alt="Rose Quartz Macaws on Amethyst" loading="lazy"><div class="card-info"><h4>Rose Quartz Pair on Amethyst</h4><div class="price">Entry · $4,250 – $6,250</div><span class="inquire">Inquire →</span></div><div class="card-sku">PHR-014</div></div>
+
+    <div class="card" data-tier="mid"><img src="IMG_7043.JPG" alt="White Cockatoo Pair on Amethyst" loading="lazy"><div class="card-info"><h4>White Cockatoo Pair</h4><div class="price">Mid · $9,250 – $17,500</div><span class="inquire">Inquire →</span></div><div class="card-sku">PHR-015</div></div>
+
+    <div class="card" data-tier="entry"><img src="IMG_7044.JPG" alt="Rose Quartz Birds on Amethyst" loading="lazy"><div class="card-info"><h4>Rose Quartz Birds</h4><div class="price">Entry · $4,250 – $6,250</div><span class="inquire">Inquire →</span></div><div class="card-tag">New Arrival</div><div class="card-sku">PHR-016</div></div>
+
+    <div class="card" data-tier="entry"><img src="IMG_7045.JPG" alt="Rose Quartz Cockatoo on Amethyst" loading="lazy"><div class="card-info"><h4>Rose Quartz Cockatoo</h4><div class="price">Entry · $4,250 – $6,250</div><span class="inquire">Inquire →</span></div><div class="card-sku">PHR-017</div></div>
+
+    <div class="card" data-tier="statement"><img src="IMG_7046.JPG" alt="Rose Quartz Eagle on Emerald" loading="lazy"><div class="card-info"><h4>Rose Quartz Eagle</h4><div class="price">Statement · $37,500+</div><span class="inquire">Inquire →</span></div><div class="card-tag">1 Available</div><div class="card-sku">PHR-018</div></div>
+
+    <div class="card" data-tier="mid"><img src="IMG_7047.JPG" alt="Rose Quartz Parrots on Amethyst" loading="lazy"><div class="card-info"><h4>Rose Quartz Parrots</h4><div class="price">Mid · $9,250 – $17,500</div><span class="inquire">Inquire →</span></div><div class="card-sku">PHR-019</div></div>
+
+    <div class="card" data-tier="entry"><img src="IMG_7048.JPG" alt="Rose Quartz Pair on Amethyst" loading="lazy"><div class="card-info"><h4>Rose Quartz Pair</h4><div class="price">Entry · $4,250 – $6,250</div><span class="inquire">Inquire →</span></div><div class="card-sku">PHR-020</div></div>
+
+    <div class="card" data-tier="mid"><img src="IMG_7049.JPG" alt="Rose Quartz Macaws on Dark Stone" loading="lazy"><div class="card-info"><h4>Rose Macaws on Dark Stone</h4><div class="price">Mid · $9,250 – $17,500</div><span class="inquire">Inquire →</span></div><div class="card-sku">PHR-021</div></div>
+
+    <div class="card" data-tier="mid"><img src="IMG_7050.JPG" alt="Jade Parrots on Amethyst" loading="lazy"><div class="card-info"><h4>Jade Parrots on Amethyst</h4><div class="price">Mid · $9,250 – $17,500</div><span class="inquire">Inquire →</span></div><div class="card-sku">PHR-022</div></div>
+
+    <div class="card" data-tier="statement"><img src="IMG_7051.JPG" alt="Rose Quartz Eagle Ascending" loading="lazy"><div class="card-info"><h4>Rose Quartz Eagle Ascending</h4><div class="price">Statement · $37,500+</div><span class="inquire">Inquire →</span></div><div class="card-sku">PHR-023</div></div>
+
+    <div class="card" data-tier="statement"><img src="IMG_7052.JPG" alt="Crystal Cockatoos on Amethyst Cathedral" loading="lazy"><div class="card-info"><h4>Crystal Cockatoos on Cathedral</h4><div class="price">Statement · $37,500+</div><span class="inquire">Inquire →</span></div><div class="card-sku">PHR-024</div></div>
+
+    <div class="card" data-tier="mid"><img src="IMG_7053.JPG" alt="Jade Parrots on Amethyst Pillar" loading="lazy"><div class="card-info"><h4>Jade Parrots on Amethyst</h4><div class="price">Mid · $9,250 – $17,500</div><span class="inquire">Inquire →</span></div><div class="card-sku">PHR-025</div></div>
+
+    <div class="card" data-tier="mid"><img src="IMG_7054.JPG" alt="Rose Quartz Macaws on Emerald" loading="lazy"><div class="card-info"><h4>Rose Macaws on Emerald</h4><div class="price">Mid · $9,250 – $17,500</div><span class="inquire">Inquire →</span></div><div class="card-sku">PHR-026</div></div>
+
+    <div class="card" data-tier="statement"><img src="IMG_7055.JPG" alt="Crystal Cockatoos on Amethyst Geode" loading="lazy"><div class="card-info"><h4>Crystal Cockatoos on Geode</h4><div class="price">Statement · $37,500+</div><span class="inquire">Inquire →</span></div><div class="card-tag">1 Available</div><div class="card-sku">PHR-027</div></div>
+
+    <div class="card" data-tier="entry"><img src="IMG_7056.JPG" alt="Crystal Pair on Amethyst Tower" loading="lazy"><div class="card-info"><h4>Crystal Pair on Amethyst</h4><div class="price">Entry · $4,250 – $6,250</div><span class="inquire">Inquire →</span></div><div class="card-sku">PHR-028</div></div>
+
+    <div class="card" data-tier="entry"><img src="IMG_6958.JPG" alt="Crystal Sculpture" loading="lazy"><div class="card-info"><h4>Mineral Sculpture I</h4><div class="price">Entry · $4,250 – $6,250</div><span class="inquire">Inquire →</span></div><div class="card-sku">PHR-029</div></div>
+
+    <div class="card" data-tier="entry"><img src="IMG_6959.JPG" alt="Crystal Sculpture" loading="lazy"><div class="card-info"><h4>Mineral Sculpture II</h4><div class="price">Entry · $4,250 – $6,250</div><span class="inquire">Inquire →</span></div><div class="card-sku">PHR-030</div></div>
+
+    <div class="card" data-tier="mid"><img src="IMG_6960.JPG" alt="Crystal Sculpture" loading="lazy"><div class="card-info"><h4>Mineral Sculpture III</h4><div class="price">Mid · $9,250 – $17,500</div><span class="inquire">Inquire →</span></div><div class="card-sku">PHR-031</div></div>
+
+    <div class="card" data-tier="mid"><img src="IMG_6961.JPG" alt="Crystal Sculpture" loading="lazy"><div class="card-info"><h4>Mineral Sculpture IV</h4><div class="price">Mid · $9,250 – $17,500</div><span class="inquire">Inquire →</span></div><div class="card-sku">PHR-032</div></div>
+
+    <div class="card" data-tier="entry"><img src="IMG_6962.JPG" alt="Crystal Sculpture" loading="lazy"><div class="card-info"><h4>Mineral Sculpture V</h4><div class="price">Entry · $4,250 – $6,250</div><span class="inquire">Inquire →</span></div><div class="card-sku">PHR-033</div></div>
+
+    <div class="card" data-tier="mid"><img src="IMG_6963.JPG" alt="Crystal Sculpture" loading="lazy"><div class="card-info"><h4>Mineral Sculpture VI</h4><div class="price">Mid · $9,250 – $17,500</div><span class="inquire">Inquire →</span></div><div class="card-sku">PHR-034</div></div>
+
+    <div class="card" data-tier="entry"><img src="IMG_6964.JPG" alt="Crystal Sculpture" loading="lazy"><div class="card-info"><h4>Mineral Sculpture VII</h4><div class="price">Entry · $4,250 – $6,250</div><span class="inquire">Inquire →</span></div><div class="card-sku">PHR-035</div></div>
+
+    <div class="card" data-tier="entry"><img src="IMG_6965.JPG" alt="Crystal Sculpture" loading="lazy"><div class="card-info"><h4>Mineral Sculpture VIII</h4><div class="price">Entry · $4,250 – $6,250</div><span class="inquire">Inquire →</span></div><div class="card-sku">PHR-036</div></div>
+
+    <div class="card" data-tier="mid"><img src="IMG_6966.JPG" alt="Crystal Sculpture" loading="lazy"><div class="card-info"><h4>Mineral Sculpture IX</h4><div class="price">Mid · $9,250 – $17,500</div><span class="inquire">Inquire →</span></div><div class="card-sku">PHR-037</div></div>
+
+    <div class="card" data-tier="entry"><img src="IMG_6967.JPG" alt="Crystal Sculpture" loading="lazy"><div class="card-info"><h4>Mineral Sculpture X</h4><div class="price">Entry · $4,250 – $6,250</div><span class="inquire">Inquire →</span></div><div class="card-sku">PHR-038</div></div>
+
+    <div class="card" data-tier="mid"><img src="IMG_6968.JPG" alt="Crystal Sculpture" loading="lazy"><div class="card-info"><h4>Mineral Sculpture XI</h4><div class="price">Mid · $9,250 – $17,500</div><span class="inquire">Inquire →</span></div><div class="card-sku">PHR-039</div></div>
+
+  </div>
+</section>
+
+<section class="mid-cta">
+  <h2>Begin the <em>Dialogue</em></h2>
+  <p>Every acquisition begins with a conversation. David responds personally within 24 hours — no sales team, no pressure.</p>
+  <a href="index.html#contact" class="btn-primary">Inquire About a Piece ✦</a>
+</section>
+
+<footer class="footer">
+  <div class="brand">PHAÖRA</div>
+  <div class="info">
+    From The Earth To Your Estate<br>
+    <a href="tel:+19548719991">(954) 871-9991</a> · <a href="mailto:david@phaora.com">david@phaora.com</a><br>
+    Boca Raton, Florida · A StyleArtStoneCraft Company<br><br>
+    <a href="index.html">← Back to Home</a>
+  </div>
+</footer>
+
+<div class="floating-cta"><a href="index.html#contact"><span class="pulse"></span>Inquire</a></div>
+
+<div class="lightbox" id="lb">
+  <button class="lb-close" id="lbClose">✕</button>
+  <button class="lb-nav lb-prev" id="lbPrev">‹</button>
+  <button class="lb-nav lb-next" id="lbNext">›</button>
+  <img src="" alt="" id="lbImg">
+  <div class="lb-caption"><h4 id="lbTitle"></h4><span id="lbSub"></span></div>
+</div>
+
+<script>
+// Filters
+const tabs=document.querySelectorAll('.filter-tab');
+const cards=document.querySelectorAll('.card');
+const countEl=document.getElementById('countDisplay');
+tabs.forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    tabs.forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    const f=tab.dataset.filter;
+    let c=0;
+    cards.forEach(card=>{
+      const show=f==='all'||card.dataset.tier===f;
+      card.style.display=show?'':'none';
+      if(show)c++;
+    });
+    countEl.textContent=c;
+  });
+});
+
+// Lightbox
+const lb=document.getElementById('lb');
+const lbImg=document.getElementById('lbImg');
+const lbTitle=document.getElementById('lbTitle');
+const lbSub=document.getElementById('lbSub');
+let currentIdx=0;
+let visibleCards=()=>[...cards].filter(c=>c.style.display!=='none');
+
+cards.forEach((card,i)=>{
+  card.addEventListener('click',()=>{
+    const vc=visibleCards();
+    currentIdx=vc.indexOf(card);
+    openLb(card);
+  });
+});
+
+function openLb(card){
+  const img=card.querySelector('img');
+  const info=card.querySelector('.card-info');
+  lbImg.src=img.src;
+  lbTitle.textContent=info?info.querySelector('h4').textContent:'';
+  lbSub.textContent=info?info.querySelector('.price').textContent:'';
+  lb.classList.add('active');
+}
+
+document.getElementById('lbClose').addEventListener('click',()=>lb.classList.remove('active'));
+lb.addEventListener('click',e=>{if(e.target===lb)lb.classList.remove('active')});
+
+document.getElementById('lbPrev').addEventListener('click',()=>{
+  const vc=visibleCards();
+  currentIdx=(currentIdx-1+vc.length)%vc.length;
+  openLb(vc[currentIdx]);
+});
+document.getElementById('lbNext').addEventListener('click',()=>{
+  const vc=visibleCards();
+  currentIdx=(currentIdx+1)%vc.length;
+  openLb(vc[currentIdx]);
+});
+document.addEventListener('keydown',e=>{
+  if(!lb.classList.contains('active'))return;
+  if(e.key==='Escape')lb.classList.remove('active');
+  if(e.key==='ArrowLeft')document.getElementById('lbPrev').click();
+  if(e.key==='ArrowRight')document.getElementById('lbNext').click();
+});
+</script>
+</body>
+</html>
