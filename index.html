@@ -154,6 +154,23 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
 .preview-tag{position:absolute;top:14px;right:14px;z-index:3;padding:5px 12px;font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;background:var(--red-soft);color:#fff}
 .preview-cta{text-align:center;margin-top:40px}
 
+/* FULL COLLECTION GALLERY */
+.full-collection{padding:60px 24px 80px;background:var(--bg2)}
+.full-collection .section-header{text-align:center;margin-bottom:40px}
+.fc-grid{max-width:1200px;margin:0 auto;columns:3;column-gap:16px}
+.fc-card{break-inside:avoid;margin-bottom:16px;position:relative;overflow:hidden;cursor:pointer;background:var(--surface);display:block;text-decoration:none;color:inherit}
+.fc-card img{width:100%;display:block;transition:transform .7s var(--ease)}
+.fc-card:hover img{transform:scale(1.04)}
+.fc-card::after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(10,9,7,.88));opacity:0;transition:opacity .4s;pointer-events:none}
+.fc-card:hover::after{opacity:1}
+.fc-card-info{position:absolute;bottom:0;left:0;right:0;padding:16px;z-index:2;transform:translateY(8px);opacity:0;transition:all .4s var(--ease)}
+.fc-card:hover .fc-card-info{transform:translateY(0);opacity:1}
+.fc-card-info h4{font-family:var(--serif);font-size:1rem;color:var(--cream);font-weight:400;margin-bottom:3px}
+.fc-card-info .fc-price{font-size:.6rem;color:var(--gold);letter-spacing:.1em;margin-bottom:6px}
+.fc-card-info .fc-inquire{font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cream2);background:rgba(201,165,92,.15);border:1px solid rgba(201,165,92,.3);padding:5px 12px;display:inline-block;transition:all .3s}
+.fc-card:hover .fc-card-info .fc-inquire{background:var(--gold);color:var(--bg)}
+.fc-tag{position:absolute;top:10px;right:10px;z-index:3;padding:4px 10px;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;background:var(--red-soft);color:#fff}
+
 /* STAGING */
 .staging{padding:100px 24px;background:var(--bg)}
 .staging-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1.2fr;gap:60px;align-items:center}
@@ -251,6 +268,7 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
   .full-collection{padding:40px 24px 60px}
   .process-steps{grid-template-columns:repeat(2,1fr);gap:32px}.process-steps::before{display:none}
   .masonry,.preview-grid{columns:2}
+  .fc-grid{columns:2}
   .footer-inner{grid-template-columns:1fr 1fr}
 }
 @media(max-width:600px){
@@ -258,6 +276,7 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
   .hero-trust{flex-direction:row;gap:20px}
   .hs-grid{columns:1}
   .preview-grid{grid-template-columns:1fr}
+  .fc-grid{columns:1}
   .crystal-intro{gap:24px}
   .crystal-visual{aspect-ratio:1/1;max-height:400px}
   .crystal-section{padding:48px 16px}
@@ -467,6 +486,216 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
     </div>
   </div>
   <div class="preview-cta"><a href="gallery.html" class="btn-primary">View All 39 Pieces ✦</a></div>
+</section>
+
+<!-- ========== FULL SCULPTURE GALLERY — ALL 39 PIECES ========== -->
+<section class="full-collection reveal" id="full-gallery">
+  <div class="section-header">
+    <div class="eyebrow">✦ The Complete Collection</div>
+    <h2>39 Singular <em>Works</em></h2>
+  </div>
+  <div class="fc-grid">
+
+    <a class="fc-card" href="pieces/the-canopy.html">
+      <img src="IMG_6959.JPG" alt="The Canopy" loading="lazy">
+      <div class="fc-card-info"><h4>The Canopy</h4><div class="fc-price">Statement · $68,000</div><span class="fc-inquire">View Piece →</span></div>
+    </a>
+
+    <a class="fc-card" href="pieces/the-aerie.html">
+      <img src="IMG_6969.JPG" alt="The Aerie" loading="lazy">
+      <div class="fc-card-info"><h4>The Aerie</h4><div class="fc-price">Statement · $48,000</div><span class="fc-inquire">View Piece →</span></div>
+    </a>
+
+    <a class="fc-card" href="pieces/the-eden.html">
+      <img src="IMG_7037.JPG" alt="The Eden" loading="lazy">
+      <div class="fc-card-info"><h4>The Eden</h4><div class="fc-price">Signature · $28,000</div><span class="fc-inquire">View Piece →</span></div>
+      <div class="fc-tag">Fountain</div>
+    </a>
+
+    <a class="fc-card" href="pieces/the-dynasty.html">
+      <img src="IMG_6972.JPG" alt="The Dynasty" loading="lazy">
+      <div class="fc-card-info"><h4>The Dynasty</h4><div class="fc-price">Statement · $52,000</div><span class="fc-inquire">View Piece →</span></div>
+    </a>
+
+    <a class="fc-card" href="pieces/the-parliament.html">
+      <img src="IMG_7039.JPG" alt="The Parliament" loading="lazy">
+      <div class="fc-card-info"><h4>The Parliament</h4><div class="fc-price">Statement · $38,000</div><span class="fc-inquire">View Piece →</span></div>
+    </a>
+
+    <a class="fc-card" href="pieces/the-scarlets.html">
+      <img src="IMG_6974.JPG" alt="The Scarlets" loading="lazy">
+      <div class="fc-card-info"><h4>The Scarlets</h4><div class="fc-price">Statement · $42,000</div><span class="fc-inquire">View Piece →</span></div>
+      <div class="fc-tag">New Arrival</div>
+    </a>
+
+    <a class="fc-card" href="pieces/the-portal.html">
+      <img src="IMG_6968.JPG" alt="The Portal" loading="lazy">
+      <div class="fc-card-info"><h4>The Portal</h4><div class="fc-price">Statement · $35,000</div><span class="fc-inquire">View Piece →</span></div>
+    </a>
+
+    <a class="fc-card" href="pieces/the-sovereign.html">
+      <img src="IMG_7047.JPG" alt="The Sovereign" loading="lazy">
+      <div class="fc-card-info"><h4>The Sovereign</h4><div class="fc-price">Statement · $32,000</div><span class="fc-inquire">View Piece →</span></div>
+    </a>
+
+    <a class="fc-card" href="pieces/the-ascent.html">
+      <img src="IMG_7046.JPG" alt="The Ascent" loading="lazy">
+      <div class="fc-card-info"><h4>The Ascent</h4><div class="fc-price">Statement · $32,000</div><span class="fc-inquire">View Piece →</span></div>
+    </a>
+
+    <a class="fc-card" href="pieces/the-cathedral.html">
+      <img src="IMG_7055.JPG" alt="The Cathedral" loading="lazy">
+      <div class="fc-card-info"><h4>The Cathedral</h4><div class="fc-price">Signature · $26,000</div><span class="fc-inquire">View Piece →</span></div>
+    </a>
+
+    <a class="fc-card" href="pieces/the-monolith.html">
+      <img src="IMG_6965.JPG" alt="The Monolith" loading="lazy">
+      <div class="fc-card-info"><h4>The Monolith</h4><div class="fc-price">Statement · $45,000</div><span class="fc-inquire">View Piece →</span></div>
+      <div class="fc-tag">1 Available</div>
+    </a>
+
+    <a class="fc-card" href="pieces/the-raptor.html">
+      <img src="IMG_6964.JPG" alt="The Raptor" loading="lazy">
+      <div class="fc-card-info"><h4>The Raptor</h4><div class="fc-price">Statement · $36,000</div><span class="fc-inquire">View Piece →</span></div>
+    </a>
+
+    <a class="fc-card" href="pieces/the-hyacinths.html">
+      <img src="IMG_7038.JPG" alt="The Hyacinths" loading="lazy">
+      <div class="fc-card-info"><h4>The Hyacinths</h4><div class="fc-price">Signature · $22,000</div><span class="fc-inquire">View Piece →</span></div>
+    </a>
+
+    <a class="fc-card" href="pieces/the-indigos.html">
+      <img src="IMG_6967.JPG" alt="The Indigos" loading="lazy">
+      <div class="fc-card-info"><h4>The Indigos</h4><div class="fc-price">Signature · $24,000</div><span class="fc-inquire">View Piece →</span></div>
+    </a>
+
+    <a class="fc-card" href="pieces/the-sentinels.html">
+      <img src="IMG_7040.JPG" alt="The Sentinels" loading="lazy">
+      <div class="fc-card-info"><h4>The Sentinels</h4><div class="fc-price">Signature · $22,000</div><span class="fc-inquire">View Piece →</span></div>
+    </a>
+
+    <a class="fc-card" href="pieces/the-crimson-duo.html">
+      <img src="IMG_6961.JPG" alt="The Crimson Duo" loading="lazy">
+      <div class="fc-card-info"><h4>The Crimson Duo</h4><div class="fc-price">Signature · $24,000</div><span class="fc-inquire">View Piece →</span></div>
+    </a>
+
+    <a class="fc-card" href="pieces/the-grotto.html">
+      <img src="IMG_6975.JPG" alt="The Grotto" loading="lazy">
+      <div class="fc-card-info"><h4>The Grotto</h4><div class="fc-price">Signature · $24,000</div><span class="fc-inquire">View Piece →</span></div>
+    </a>
+
+    <a class="fc-card" href="pieces/the-ethereals.html">
+      <img src="IMG_7056.JPG" alt="The Ethereals" loading="lazy">
+      <div class="fc-card-info"><h4>The Ethereals</h4><div class="fc-price">Signature · $20,000</div><span class="fc-inquire">View Piece →</span></div>
+    </a>
+
+    <a class="fc-card" href="pieces/the-companions.html">
+      <img src="IMG_7043.JPG" alt="The Companions" loading="lazy">
+      <div class="fc-card-info"><h4>The Companions</h4><div class="fc-price">Signature · $22,000</div><span class="fc-inquire">View Piece →</span></div>
+    </a>
+
+    <a class="fc-card" href="pieces/the-lovers.html">
+      <img src="IMG_7044.JPG" alt="The Lovers" loading="lazy">
+      <div class="fc-card-info"><h4>The Lovers</h4><div class="fc-price">Signature · $22,000</div><span class="fc-inquire">View Piece →</span></div>
+    </a>
+
+    <a class="fc-card" href="pieces/the-duet.html">
+      <img src="IMG_7054.JPG" alt="The Duet" loading="lazy">
+      <div class="fc-card-info"><h4>The Duet</h4><div class="fc-price">Signature · $22,000</div><span class="fc-inquire">View Piece →</span></div>
+    </a>
+
+    <a class="fc-card" href="pieces/the-gathering.html">
+      <img src="IMG_7053.JPG" alt="The Gathering" loading="lazy">
+      <div class="fc-card-info"><h4>The Gathering</h4><div class="fc-price">Signature · $26,000</div><span class="fc-inquire">View Piece →</span></div>
+    </a>
+
+    <a class="fc-card" href="pieces/the-courtship.html">
+      <img src="IMG_7048.JPG" alt="The Courtship" loading="lazy">
+      <div class="fc-card-info"><h4>The Courtship</h4><div class="fc-price">Signature · $22,000</div><span class="fc-inquire">View Piece →</span></div>
+    </a>
+
+    <a class="fc-card" href="pieces/the-violet.html">
+      <img src="IMG_7042.JPG" alt="The Violet" loading="lazy">
+      <div class="fc-card-info"><h4>The Violet</h4><div class="fc-price">Signature · $18,500</div><span class="fc-inquire">View Piece →</span></div>
+    </a>
+
+    <a class="fc-card" href="pieces/the-soloist.html">
+      <img src="IMG_6973.JPG" alt="The Soloist" loading="lazy">
+      <div class="fc-card-info"><h4>The Soloist</h4><div class="fc-price">Signature · $18,500</div><span class="fc-inquire">View Piece →</span></div>
+    </a>
+
+    <a class="fc-card" href="pieces/the-radiance.html">
+      <img src="IMG_7036.JPG" alt="The Radiance" loading="lazy">
+      <div class="fc-card-info"><h4>The Radiance</h4><div class="fc-price">Signature · $22,000</div><span class="fc-inquire">View Piece →</span></div>
+    </a>
+
+    <a class="fc-card" href="pieces/the-pair.html">
+      <img src="IMG_7049.JPG" alt="The Pair" loading="lazy">
+      <div class="fc-card-info"><h4>The Pair</h4><div class="fc-price">Signature · $22,000</div><span class="fc-inquire">View Piece →</span></div>
+    </a>
+
+    <a class="fc-card" href="pieces/the-eclipse.html">
+      <img src="IMG_6960.JPG" alt="The Eclipse" loading="lazy">
+      <div class="fc-card-info"><h4>The Eclipse</h4><div class="fc-price">Signature · $24,000</div><span class="fc-inquire">View Piece →</span></div>
+    </a>
+
+    <a class="fc-card" href="pieces/the-devotion.html">
+      <img src="IMG_7050.JPG" alt="The Devotion" loading="lazy">
+      <div class="fc-card-info"><h4>The Devotion</h4><div class="fc-price">Entry · $14,500</div><span class="fc-inquire">View Piece →</span></div>
+    </a>
+
+    <a class="fc-card" href="pieces/the-whisper.html">
+      <img src="IMG_7041.JPG" alt="The Whisper" loading="lazy">
+      <div class="fc-card-info"><h4>The Whisper</h4><div class="fc-price">Entry · $14,500</div><span class="fc-inquire">View Piece →</span></div>
+    </a>
+
+    <a class="fc-card" href="pieces/the-nest.html">
+      <img src="IMG_7052.JPG" alt="The Nest" loading="lazy">
+      <div class="fc-card-info"><h4>The Nest</h4><div class="fc-price">Entry · $14,500</div><span class="fc-inquire">View Piece →</span></div>
+    </a>
+
+    <a class="fc-card" href="pieces/the-guardians.html">
+      <img src="IMG_7051.JPG" alt="The Guardians" loading="lazy">
+      <div class="fc-card-info"><h4>The Guardians</h4><div class="fc-price">Entry · $16,500</div><span class="fc-inquire">View Piece →</span></div>
+    </a>
+
+    <a class="fc-card" href="pieces/the-herald.html">
+      <img src="IMG_7045.JPG" alt="The Herald" loading="lazy">
+      <div class="fc-card-info"><h4>The Herald</h4><div class="fc-price">Entry · $16,500</div><span class="fc-inquire">View Piece →</span></div>
+    </a>
+
+    <a class="fc-card" href="pieces/the-embrace.html">
+      <img src="IMG_6966.JPG" alt="The Embrace" loading="lazy">
+      <div class="fc-card-info"><h4>The Embrace</h4><div class="fc-price">Entry · $14,500</div><span class="fc-inquire">View Piece →</span></div>
+    </a>
+
+    <a class="fc-card" href="pieces/the-grace.html">
+      <img src="IMG_7035.JPG" alt="The Grace" loading="lazy">
+      <div class="fc-card-info"><h4>The Grace</h4><div class="fc-price">Entry · $14,500</div><span class="fc-inquire">View Piece →</span></div>
+    </a>
+
+    <a class="fc-card" href="pieces/the-perch.html">
+      <img src="IMG_6958.JPG" alt="The Perch" loading="lazy">
+      <div class="fc-card-info"><h4>The Perch</h4><div class="fc-price">Entry · $16,500</div><span class="fc-inquire">View Piece →</span></div>
+    </a>
+
+    <a class="fc-card" href="pieces/the-tenderness.html">
+      <img src="IMG_6962.JPG" alt="The Tenderness" loading="lazy">
+      <div class="fc-card-info"><h4>The Tenderness</h4><div class="fc-price">Entry · $14,500</div><span class="fc-inquire">View Piece →</span></div>
+    </a>
+
+    <a class="fc-card" href="pieces/the-orbit.html">
+      <img src="IMG_6963.JPG" alt="The Orbit" loading="lazy">
+      <div class="fc-card-info"><h4>The Orbit</h4><div class="fc-price">Entry · $12,500</div><span class="fc-inquire">View Piece →</span></div>
+    </a>
+
+    <a class="fc-card" href="pieces/the-vessel.html">
+      <img src="IMG_6971.JPG" alt="The Vessel" loading="lazy">
+      <div class="fc-card-info"><h4>The Vessel</h4><div class="fc-price">Statement · $35,000</div><span class="fc-inquire">View Piece →</span></div>
+      <div class="fc-tag">1 Available</div>
+    </a>
+
+  </div>
 </section>
 
 <!-- ========== STAGING ========== -->
