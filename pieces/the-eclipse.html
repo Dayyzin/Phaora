@@ -215,27 +215,31 @@ textarea{resize:vertical;}
 
   <!-- Main stage -->
   <div class="ps-stage" id="psStage">
-    <div class="ps-slide active" data-index="0"><img src="../img/IMG_6960.JPG" alt="Studio" loading="eager"></div>
-    
+    <div class="ps-slide active" data-index="0"><img src="../5.png" alt="Lifestyle" loading="eager"></div>
+    <div class="ps-slide" data-index="1"><img src="../img/IMG_6960.JPG" alt="Studio" loading="lazy"></div>
+
     <div class="ps-gradient-b"></div>
     <div class="ps-gradient-l"></div>
     <button class="ps-arrow ps-arrow--prev" id="psArrowPrev" aria-label="Previous">&#8592;</button>
     <button class="ps-arrow ps-arrow--next" id="psArrowNext" aria-label="Next">&#8594;</button>
-    <div class="ps-counter"><span id="psCurrent">1</span> / <span id="psTotal">1</span></div>
+    <div class="ps-counter"><span id="psCurrent">1</span> / <span id="psTotal">2</span></div>
     <div class="ps-progress"><div class="ps-progress-bar" id="psBar"></div></div>
   </div>
 
   <!-- Filmstrip -->
   <div class="ps-filmstrip" id="psFilmstrip">
     <div class="ps-thumb active" data-index="0">
+        <img src="../5.png" alt="Lifestyle" loading="lazy">
+        <span>Lifestyle</span>
+      </div>
+    <div class="ps-thumb" data-index="1">
         <img src="../img/IMG_6960.JPG" alt="Studio" loading="lazy">
         <span>Studio</span>
       </div>
-      
   </div>
 
   <!-- Dots (mobile) -->
-  <div class="ps-dots" id="psDots"><button class="ps-dot active" data-index="0" aria-label="Photo 1"></button></div>
+  <div class="ps-dots" id="psDots"><button class="ps-dot active" data-index="0" aria-label="Photo 1"></button><button class="ps-dot" data-index="1" aria-label="Photo 2"></button></div>
 
   <!-- Piece info row (preserved from original hero__info) -->
   <div class="hero__info">
