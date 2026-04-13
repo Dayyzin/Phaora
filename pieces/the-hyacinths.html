@@ -192,6 +192,33 @@ textarea{resize:vertical;}
   .certificate__signers{flex-direction:column;gap:20px;}
   .section{padding:40px 20px 0;}
 }
+/* ── Photo Switcher Styles ── */
+.ps-wrap { padding-top:50px; position:relative; background:var(--bg); }
+.ps-stage { position:relative; height:600px; overflow:hidden; background:var(--bg2); }
+.ps-slide { position:absolute; inset:0; opacity:0; transition:opacity 0.7s cubic-bezier(0.22,1,0.36,1); pointer-events:none; }
+.ps-slide.active { opacity:1; pointer-events:auto; }
+.ps-slide img { width:100%; height:100%; object-fit:cover; transition:transform 8s cubic-bezier(0.22,1,0.36,1); transform:scale(1.04); }
+.ps-slide.active img { transform:scale(1); }
+.ps-gradient-b { position:absolute; inset:0; pointer-events:none; z-index:2; background:linear-gradient(to bottom, transparent 40%, var(--bg) 100%); }
+.ps-gradient-l { position:absolute; inset:0; pointer-events:none; z-index:2; background:linear-gradient(to right, rgba(8,8,6,0.35) 0%, transparent 35%); }
+.ps-arrow { position:absolute; top:50%; transform:translateY(-50%); z-index:10; background:rgba(8,8,6,0.5); backdrop-filter:blur(12px); border:1px solid var(--border); width:44px; height:44px; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:all 0.3s; color:var(--cream-dim); font-size:16px; font-family:var(--f-sans); }
+.ps-arrow:hover { background:rgba(201,169,110,0.1); border-color:var(--gold); color:var(--gold); }
+.ps-arrow--prev { left:20px; } .ps-arrow--next { right:20px; }
+.ps-counter { position:absolute; top:20px; right:20px; z-index:10; font-family:var(--f-sans); font-size:10px; letter-spacing:0.2em; color:rgba(242,237,228,0.5); }
+#psCurrent { color:var(--cream); }
+.ps-progress { position:absolute; bottom:0; left:0; right:0; height:2px; background:rgba(201,169,110,0.08); z-index:10; }
+.ps-progress-bar { height:100%; background:var(--gold); transition:width 0.7s cubic-bezier(0.22,1,0.36,1); width:25%; }
+.ps-filmstrip { display:flex; gap:6px; padding:14px 32px 0; overflow-x:auto; scrollbar-width:none; background:linear-gradient(to bottom, var(--bg) 0%, var(--bg2) 100%); }
+.ps-filmstrip::-webkit-scrollbar { display:none; }
+.ps-thumb { flex-shrink:0; width:80px; height:54px; position:relative; overflow:hidden; cursor:pointer; border:1px solid var(--border); opacity:0.45; transition:all 0.3s; }
+.ps-thumb:hover { opacity:0.75; border-color:var(--border-hover); } .ps-thumb.active { opacity:1; border-color:var(--gold); }
+.ps-thumb img { width:100%; height:100%; object-fit:cover; }
+.ps-thumb span { position:absolute; bottom:0; left:0; right:0; background:linear-gradient(to top, rgba(8,8,6,0.85), transparent); padding:4px 5px 3px; font-family:var(--f-sans); font-size:7px; letter-spacing:0.1em; color:var(--cream-dim); text-transform:uppercase; opacity:0; transition:opacity 0.3s; }
+.ps-thumb:hover span, .ps-thumb.active span { opacity:1; }
+.ps-dots { display:none; gap:6px; justify-content:center; padding:10px 0 0; }
+.ps-dot { width:5px; height:5px; border-radius:50%; background:var(--cream-faint); border:none; cursor:pointer; transition:all 0.3s; padding:0; }
+.ps-dot.active { background:var(--gold); width:16px; border-radius:3px; }
+@media(max-width:768px) { .ps-stage { height:420px; } .ps-filmstrip { padding:10px 16px 0; } .ps-thumb { width:60px; height:42px; } .ps-arrow { display:none; } .ps-dots { display:flex; } }
 </style>
 </head>
 <body>
@@ -210,33 +237,46 @@ textarea{resize:vertical;}
   </div>
 </nav>
 
-<section class="hero">
-  <div class="hero__image">
-    <img src="../img/IMG_7038.JPG" alt="The Hyacinths — Sodalite & Amethyst by Fabiano">
-    <div class="hero__image-gradient-bottom"></div>
-    <div class="hero__image-glow"></div>
-    <div class="hero__badges">
+<section class="ps-wrap" id="photoSwitcher">
+  <div class="ps-stage" id="psStage">
+    <div class="ps-slide active" data-index="0"><img src="../img/IMG_7038.JPG" alt="Studio" loading="eager"></div>
+    <div class="ps-slide" data-index="1"><img src="../Untitled_design_-_6-compressed.jpeg" alt="Lifestyle" loading="lazy"></div>
+    <div class="ps-slide" data-index="2"><img src="../Untitled_design_-_3-compressed.jpeg" alt="Lifestyle" loading="lazy"></div>
+    <div class="ps-slide" data-index="3"><img src="../Untitled_design_-_9.jpeg" alt="Lifestyle" loading="lazy"></div>
+    <div class="ps-gradient-b"></div>
+    <div class="ps-gradient-l"></div>
+    <div class="hero__badges" style="position:absolute;top:20px;left:24px;display:flex;gap:8px;z-index:10;">
       <span class="badge">One of One</span>
       <span class="badge badge--green">Available</span>
       <span class="badge">Signature</span>
     </div>
-    <div class="hero__velocity">
+    <div class="hero__velocity" style="position:absolute;top:20px;right:20px;z-index:10;">
       <div class="hero__velocity-dot"></div>
       <span class="hero__velocity-text">4 PIECES ACQUIRED THIS QUARTER</span>
     </div>
-    
+    <button class="ps-arrow ps-arrow--prev" id="psArrowPrev" aria-label="Previous">&#8592;</button>
+    <button class="ps-arrow ps-arrow--next" id="psArrowNext" aria-label="Next">&#8594;</button>
+    <div class="ps-counter"><span id="psCurrent">1</span> / <span id="psTotal">4</span></div>
+    <div class="ps-progress"><div class="ps-progress-bar" id="psBar"></div></div>
   </div>
-  <div class="hero__info">
-    <div class="hero__title-group">
-      <div class="hero__sku label">Sodalite & Amethyst · Bird Sculpture · Macaw Duo · SKU-0013</div>
-      <h1 class="hero__title">The <em>Hyacinths</em></h1>
-    </div>
-    <div class="hero__price-group">
-      <div class="hero__price">$22,000</div>
-      <div class="hero__price-note">Acquisition by private inquiry</div>
-    </div>
+  <div class="ps-filmstrip" id="psFilmstrip">
+    <div class="ps-thumb active" data-index="0"><img src="../img/IMG_7038.JPG" alt="Studio" loading="lazy"><span>Studio</span></div>
+    <div class="ps-thumb" data-index="1"><img src="../Untitled_design_-_6-compressed.jpeg" alt="Lifestyle" loading="lazy"><span>Lifestyle</span></div>
+    <div class="ps-thumb" data-index="2"><img src="../Untitled_design_-_3-compressed.jpeg" alt="Lifestyle" loading="lazy"><span>Lifestyle</span></div>
+    <div class="ps-thumb" data-index="3"><img src="../Untitled_design_-_9.jpeg" alt="Lifestyle" loading="lazy"><span>Lifestyle</span></div>
   </div>
+  <div class="ps-dots" id="psDots"><button class="ps-dot active" data-index="0" aria-label="Photo 1"></button><button class="ps-dot" data-index="1" aria-label="Photo 2"></button><button class="ps-dot" data-index="2" aria-label="Photo 3"></button><button class="ps-dot" data-index="3" aria-label="Photo 4"></button></div>
 </section>
+<div class="hero__info">
+  <div class="hero__title-group">
+    <div class="hero__sku label">Sodalite & Amethyst · Bird Sculpture · Macaw Duo · SKU-0013</div>
+    <h1 class="hero__title">The <em>Hyacinths</em></h1>
+  </div>
+  <div class="hero__price-group">
+    <div class="hero__price">$22,000</div>
+    <div class="hero__price-note">Acquisition by private inquiry</div>
+  </div>
+</div>
 
 <div class="section reveal">
   <div class="gold-line"></div>
@@ -540,9 +580,17 @@ async function submitInquiry(){
   }catch(err){btn.textContent='CONNECTION ERROR — CALL OR TEXT DAVID';btn.style.background='var(--red)';btn.style.opacity='1';btn.disabled=false;setTimeout(()=>{btn.textContent='Begin the Dialogue';btn.style.background='var(--gold)';},4000);}
 }
 
-document.querySelectorAll('.hero__thumb').forEach(thumb=>{
-  thumb.addEventListener('click',function(){document.querySelectorAll('.hero__thumb').forEach(t=>t.classList.remove('active'));this.classList.add('active');});
-});
+(function() {
+  const total = 4; let cur = 0; let timer;
+  const stage=document.getElementById('psStage'),strip=document.getElementById('psFilmstrip'),dotsEl=document.getElementById('psDots'),bar=document.getElementById('psBar'),curEl=document.getElementById('psCurrent'),btnP=document.getElementById('psArrowPrev'),btnN=document.getElementById('psArrowNext');
+  const slides=stage.querySelectorAll('.ps-slide'),thumbs=strip.querySelectorAll('.ps-thumb'),dots=dotsEl.querySelectorAll('.ps-dot');
+  function goTo(n){slides[cur].classList.remove('active');thumbs[cur]?.classList.remove('active');dots[cur]?.classList.remove('active');cur=(n+total)%total;slides[cur].classList.add('active');thumbs[cur]?.classList.add('active');dots[cur]?.classList.add('active');thumbs[cur]?.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});curEl.textContent=cur+1;bar.style.width=((cur+1)/total*100)+'%';}
+  btnP.addEventListener('click',()=>{goTo(cur-1);resetTimer();});btnN.addEventListener('click',()=>{goTo(cur+1);resetTimer();});
+  thumbs.forEach(t=>t.addEventListener('click',()=>{goTo(+t.dataset.index);resetTimer();}));dots.forEach(d=>d.addEventListener('click',()=>{goTo(+d.dataset.index);resetTimer();}));
+  document.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'){goTo(cur-1);resetTimer();}if(e.key==='ArrowRight'){goTo(cur+1);resetTimer();}});
+  let tx=null;stage.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;},{passive:true});stage.addEventListener('touchend',e=>{if(tx===null)return;const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>50){goTo(dx<0?cur+1:cur-1);resetTimer();}tx=null;});
+  function resetTimer(){clearInterval(timer);timer=setInterval(()=>goTo(cur+1),5500);}resetTimer();
+})();
 </script>
 </body>
 </html>
