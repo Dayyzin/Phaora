@@ -12,30 +12,26 @@ jobs:
   rotate:
     name: Rotate Daily Content
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
           token: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-
       - name: Run rotation script
         run: node scripts/rotate.js
-
       - name: Commit and push changes
         run: |
           git config user.name "PHAÖRA Automation"
           git config user.email "automation@phaora.com"
-        git add -A
+          git add -A
           if git diff --staged --quiet; then
             echo "No changes to commit."
           else
-            git commit -m "chore: daily content rotation [$(date -u '+%Y-%m-%d')]"
+            git commit -m "chore: daily content rotation"
             git push
           fi
