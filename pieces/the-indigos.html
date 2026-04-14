@@ -234,25 +234,19 @@ textarea{resize:vertical;}
 
 <!-- PHOTO SWITCHER -->
 <section class="ps-wrap" id="photoSwitcher">
-  <div class="ps-stage" id="psStage">
+    <div class="ps-stage" id="psStage">
     <div class="ps-slide active" data-index="0"><img src="../img/IMG_6967.JPG" alt="Studio" loading="eager"></div>
-    <div class="ps-slide" data-index="1"><img src="../Untitled_design_-_6-compressed.jpeg" alt="Lifestyle" loading="lazy"></div>
-    <div class="ps-slide" data-index="2"><img src="../Untitled_design_-_3-compressed.jpeg" alt="Lifestyle" loading="lazy"></div>
-    <div class="ps-slide" data-index="3"><img src="../Untitled_design_-_9.jpeg" alt="Lifestyle" loading="lazy"></div>
     <div class="ps-gradient-b"></div>
     <div class="ps-gradient-l"></div>
     <button class="ps-arrow ps-arrow--prev" id="psArrowPrev" aria-label="Previous">&#8592;</button>
     <button class="ps-arrow ps-arrow--next" id="psArrowNext" aria-label="Next">&#8594;</button>
-    <div class="ps-counter"><span id="psCurrent">1</span> / <span id="psTotal">4</span></div>
-    <div class="ps-progress"><div class="ps-progress-bar" id="psBar" style="width:25.0%"></div></div>
+    <div class="ps-counter"><span id="psCurrent">1</span> / <span id="psTotal">1</span></div>
+    <div class="ps-progress"><div class="ps-progress-bar" id="psBar" style="width:100.0%"></div></div>
   </div>
   <div class="ps-filmstrip" id="psFilmstrip">
     <div class="ps-thumb active" data-index="0"><img src="../img/IMG_6967.JPG" alt="Studio" loading="lazy"><span>Studio</span></div>
-    <div class="ps-thumb" data-index="1"><img src="../Untitled_design_-_6-compressed.jpeg" alt="Lifestyle" loading="lazy"><span>Lifestyle</span></div>
-    <div class="ps-thumb" data-index="2"><img src="../Untitled_design_-_3-compressed.jpeg" alt="Lifestyle" loading="lazy"><span>Lifestyle</span></div>
-    <div class="ps-thumb" data-index="3"><img src="../Untitled_design_-_9.jpeg" alt="Lifestyle" loading="lazy"><span>Lifestyle</span></div>
   </div>
-  <div class="ps-dots" id="psDots"><button class="ps-dot active" data-index="0" aria-label="Photo 1"></button><button class="ps-dot" data-index="1" aria-label="Photo 2"></button><button class="ps-dot" data-index="2" aria-label="Photo 3"></button><button class="ps-dot" data-index="3" aria-label="Photo 4"></button></div>
+  <div class="ps-dots" id="psDots"><button class="ps-dot active" data-index="0" aria-label="Photo 1"></button></div>
 </section>
 
 <div class="hero__info">
@@ -533,7 +527,7 @@ document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
 // Photo switcher
 (function(){
-  const total=4;let cur=0;let timer;
+  const total=1;let cur=0;let timer;
   const stage=document.getElementById('psStage');
   const strip=document.getElementById('psFilmstrip');
   const dotsEl=document.getElementById('psDots');
