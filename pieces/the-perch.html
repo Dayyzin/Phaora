@@ -248,7 +248,7 @@ footer{padding:40px 32px;background:var(--surface);border-top:1px solid rgba(201
 @media(max-width:700px){footer{flex-direction:column;text-align:center;padding:32px 24px}}
 </style>
 </head>
-<body>
+<body data-slug="the-perch">
 
 <nav class="nav">
   <a href="../index.html" class="nav-logo">PHAÖRA</a>
@@ -261,7 +261,7 @@ footer{padding:40px 32px;background:var(--surface);border-top:1px solid rgba(201
   </div>
 </nav>
 
-<div class="ticker"><div class="ticker-track"><div class="ticker-item"><span class="dot red"></span>The Perch acquired — collector in Coral Gables, this week</div>
+<div class="ticker"><div class="ticker-track" id="tickerTrack"><div class="ticker-item"><span class="dot red"></span>The Perch acquired — collector in Coral Gables, this week</div>
 <div class="ticker-item"><span class="dot "></span>Someone in Miami Beach is viewing The Perch</div>
 <div class="ticker-item"><span class="dot red"></span>Two Perch pieces acquired as a pair — Palm Beach estate</div>
 <div class="ticker-item"><span class="dot red"></span>The Perch gifted for estate completion — Boca Raton</div>
@@ -316,7 +316,7 @@ footer{padding:40px 32px;background:var(--surface);border-top:1px solid rgba(201
   </div>
 </div>
 
-<div class="social-proof"><div class="sp-item">
+<div class="social-proof" id="testimonialsBox"><div class="sp-item">
       <div class="sp-avatar">A</div>
       <div class="sp-body">
         <div class="sp-stars">★★★★★</div>
@@ -389,7 +389,7 @@ footer{padding:40px 32px;background:var(--surface);border-top:1px solid rgba(201
 
 <div class="activity-bar">
   <span class="activity-label">Live Activity</span>
-  <div class="activity-feed"><div class="af-item"><span class="af-dot"></span><span class="af-text">Someone in Miami Beach is viewing this page</span><span class="af-time">now</span></div><div class="af-item"><span class="af-dot"></span><span class="af-text">2 inquiries this week for The Perch</span><span class="af-time">this week</span></div><div class="af-item"><span class="af-dot"></span><span class="af-text">Pair of Perch acquired — Palm Beach estate</span><span class="af-time">5 days ago</span></div><div class="af-item"><span class="af-dot"></span><span class="af-text">Gifted to client at listing close — agent referral</span><span class="af-time">last month</span></div></div>
+  <div class="activity-feed" id="activityFeed"><div class="af-item"><span class="af-dot"></span><span class="af-text">Someone in Miami Beach is viewing this page</span><span class="af-time">now</span></div><div class="af-item"><span class="af-dot"></span><span class="af-text">2 inquiries this week for The Perch</span><span class="af-time">this week</span></div><div class="af-item"><span class="af-dot"></span><span class="af-text">Pair of Perch acquired — Palm Beach estate</span><span class="af-time">5 days ago</span></div><div class="af-item"><span class="af-dot"></span><span class="af-text">Gifted to client at listing close — agent referral</span><span class="af-time">last month</span></div></div>
 </div>
 
 <section class="differentiation">
@@ -516,7 +516,7 @@ footer{padding:40px 32px;background:var(--surface);border-top:1px solid rgba(201
     <div class="stat-grid">
       <div class="stat-box"><div class="num">100%</div><div class="lbl">Buyer inquiry rate on staged pieces</div></div>
       <div class="stat-box"><div class="num">$3M+</div><div class="lbl">Minimum listing for staging</div></div>
-      <div class="stat-box"><div class="num">7</div><div class="lbl">Pieces sold via staging this quarter</div></div>
+      <div class="stat-box"><div class="num"><span data-sold-count>7</span></div><div class="lbl">Pieces sold via staging this quarter</div></div>
       <div class="stat-box"><div class="num">24h</div><div class="lbl">Delivery & placement turnaround</div></div>
     </div>
   </div>
@@ -588,28 +588,138 @@ footer{padding:40px 32px;background:var(--surface);border-top:1px solid rgba(201
 </footer>
 
 <script>
-var mainPhoto = document.getElementById('mainPhoto');
-var counter = document.getElementById('photoCounter');
-var thumbEls = document.querySelectorAll('.thumb');
-thumbEls.forEach(function(t) {
-  t.addEventListener('click', function() {
-    var idx = parseInt(this.dataset.idx);
-    mainPhoto.src = this.dataset.src;
-    thumbEls.forEach(function(x) { x.classList.remove('on'); });
-    this.classList.add('on');
-    counter.textContent = String(idx+1).padStart(2,'0') + ' / 06';
+// ── PHAÖRA Dynamic Data ──────────────────────────────────────
+// Loads from ../data.js and populates all social proof elements.
+
+function initDynamic() {
+  var d = window.PHAORA_DATA;
+  if (!d) return;
+
+  var slug = document.body.dataset.slug;
+
+  // ── INVENTORY ──────────────────────────────────────────────
+  var inv = d.inventory[slug];
+  if (inv) {
+    var pct = (inv.available / inv.total * 100).toFixed(2) + '%';
+    if (inv.available === 0) pct = '2%';
+
+    // Scarcity bar
+    var fill = document.querySelector('.scarcity-bar-fill');
+    if (fill) fill.style.width = pct;
+
+    // Scarcity text strong tag
+    var scarText = document.querySelector('.scarcity-text strong');
+    if (scarText) {
+      if (inv.available === 0) {
+        scarText.textContent = 'SOLD — No longer available.';
+        scarText.style.color = '#e06050';
+        // Disable CTAs
+        document.querySelectorAll('.cta-primary,.cta-hold,.btn-gold,.btn-outline').forEach(function(el) {
+          el.style.opacity = '.4';
+          el.style.pointerEvents = 'none';
+          if (el.classList.contains('cta-primary')) el.textContent = 'This Piece Has Been Acquired';
+        });
+      } else {
+        scarText.textContent = inv.available + (inv.available === 1 ? ' remaining.' : ' remaining.');
+      }
+    }
+
+    // Photo badge
+    var badge = document.querySelector('.photo-badge');
+    if (badge) {
+      var tier = badge.textContent.split('·')[1] ? badge.textContent.split('·')[1].trim() : '';
+      var avText = inv.available === 0 ? 'SOLD' : inv.available + ' Available';
+      badge.textContent = 'PHAÖRA · ' + tier + ' · ' + avText;
+    }
+
+    // Nav center viewer count — base off availability
+    var base = inv.available === 0 ? 0 : Math.max(2, inv.available + 2 + Math.floor(Math.random() * 3));
+    var viewerEl = document.getElementById('nav-viewers');
+    if (viewerEl && inv.available > 0) {
+      viewerEl.textContent = base + ' people viewing';
+      setInterval(function() {
+        var delta = Math.random() > 0.5 ? 1 : -1;
+        base = Math.max(2, Math.min(9, base + delta));
+        viewerEl.textContent = base + ' people viewing';
+      }, 11000);
+    }
+  }
+
+  // ── TICKER ─────────────────────────────────────────────────
+  var tickerTrack = document.getElementById('tickerTrack');
+  if (tickerTrack && d.ticker && d.ticker.length) {
+    var html = '';
+    var items = d.ticker.concat(d.ticker); // double for seamless loop
+    items.forEach(function(item) {
+      var red = (item.type === 'sold' || item.type === 'sale') ? ' red' : '';
+      html += '<div class="ticker-item"><span class="dot' + red + '"></span>' + item.text + '</div>';
+    });
+    tickerTrack.innerHTML = html;
+  }
+
+  // ── ACTIVITY FEED ──────────────────────────────────────────
+  var actFeed = document.getElementById('activityFeed');
+  if (actFeed && d.activity && d.activity[slug]) {
+    var html = '';
+    d.activity[slug].forEach(function(item) {
+      html += '<div class="af-item"><span class="af-dot"></span>'
+            + '<span class="af-text">' + item.text + '</span>'
+            + '<span class="af-time">' + item.time + '</span></div>';
+    });
+    actFeed.innerHTML = html;
+  }
+
+  // ── TESTIMONIALS ───────────────────────────────────────────
+  var testBox = document.getElementById('testimonialsBox');
+  if (testBox && d.testimonials && d.testimonials[slug]) {
+    var html = '';
+    d.testimonials[slug].forEach(function(t, i) {
+      if (i > 0) html += '<div class="sp-divider"></div>';
+      var stars = '★'.repeat(t.stars);
+      html += '<div class="sp-item">'
+            + '<div class="sp-avatar">' + t.initial + '</div>'
+            + '<div class="sp-body">'
+            + '<div class="sp-stars">' + stars + '</div>'
+            + '<div class="sp-name">' + t.name + '</div>'
+            + '<div class="sp-text">&ldquo;' + t.text + '&rdquo;</div>'
+            + '</div></div>';
+    });
+    testBox.innerHTML = html;
+  }
+
+  // ── SOLD COUNT ─────────────────────────────────────────────
+  document.querySelectorAll('[data-sold-count]').forEach(function(el) {
+    el.textContent = d.soldThisQuarter;
   });
-});
-var viewerEl = document.getElementById('nav-viewers');
-if (viewerEl) {
-  var base = 5;
-  viewerEl.textContent = base + ' people viewing';
-  setInterval(function() {
-    var delta = Math.random() > 0.5 ? 1 : -1;
-    base = Math.max(2, Math.min(9, base + delta));
-    viewerEl.textContent = base + ' people viewing';
-  }, 11000);
 }
+
+// Load data.js then init
+(function() {
+  // Photo switcher
+  var mainPhoto = document.getElementById('mainPhoto');
+  var counter = document.getElementById('photoCounter');
+  var thumbEls = document.querySelectorAll('.thumb');
+  var totalPanels = thumbEls.length;
+  thumbEls.forEach(function(t) {
+    t.addEventListener('click', function() {
+      var idx = parseInt(this.dataset.idx);
+      mainPhoto.src = this.dataset.src;
+      thumbEls.forEach(function(x) { x.classList.remove('on'); });
+      this.classList.add('on');
+      if (counter) counter.textContent = String(idx+1).padStart(2,'0') + ' / ' + String(totalPanels).padStart(2,'0');
+    });
+  });
+
+  // Try to use already-loaded data, otherwise load script
+  if (window.PHAORA_DATA) {
+    initDynamic();
+  } else {
+    var s = document.createElement('script');
+    s.src = '../data.js';
+    s.onload = initDynamic;
+    document.head.appendChild(s);
+  }
+})();
 </script>
 
 </body>
