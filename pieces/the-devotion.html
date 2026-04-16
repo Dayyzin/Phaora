@@ -3,562 +3,125 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Devotion — PHAÖRA</title>
-<meta name="description" content="One of one. 2 parrots on clear quartz & amethyst. Hand-mined from Minas Gerais. By appointment · Boca Raton.">
-<meta property="og:title" content="The Devotion — PHAÖRA">
-<meta property="og:description" content="One of one. 2 parrots. Clear Quartz & Amethyst. Never to exist again.">
-<meta property="og:image" content="../img/IMG_7050.JPG">
-<meta property="og:type" content="product">
-<meta property="og:url" content="../pieces/the-devotion">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Outfit:wght@200;300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<title>PHAÖRA — The Devotion · $15,000 · One of One</title>
+<meta name="description" content="The Devotion — two macaws intertwined on raw amethyst cluster. Loyalty in stone. One of one. PHAÖRA · Boca Raton.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Outfit:wght@200;300;400;500;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg:#080806;--bg2:#0e0e0b;--bg3:#151512;--bg4:#1c1c18;
-  --gold:#c9a96e;--gold-light:#dfc48f;--gold-dim:#8a7a52;--gold-faint:rgba(201,169,110,0.06);
-  --cream:#f2ede4;--cream-dim:#a89e8e;--cream-faint:#6b6358;
-  --border:rgba(201,169,110,0.12);--border-hover:rgba(201,169,110,0.3);--border-active:rgba(201,169,110,0.5);
-  --green:#5fa86b;--green-bg:rgba(95,168,107,0.08);--green-border:rgba(95,168,107,0.2);
-  --red:#c97070;--red-bg:rgba(201,112,112,0.08);--red-border:rgba(201,112,112,0.2);
-  --f-display:'Playfair Display',Georgia,serif;--f-body:'Cormorant Garamond',Garamond,serif;
-  --f-sans:'Outfit','Helvetica Neue',sans-serif;--f-mono:'JetBrains Mono',monospace;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--cream);font-family:var(--f-body);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
-img{max-width:100%;display:block;}
-a{color:inherit;text-decoration:none;}
-button{font-family:inherit;cursor:pointer;}
-input,textarea{font-family:var(--f-body);background:var(--bg3);border:1px solid var(--border);color:var(--cream);padding:14px 16px;font-size:16px;width:100%;transition:border-color 0.3s;outline:none;}
-input:focus,textarea:focus{border-color:var(--gold);}
-textarea{resize:vertical;}
-::-webkit-scrollbar{width:4px;}
-::-webkit-scrollbar-track{background:var(--bg);}
-::-webkit-scrollbar-thumb{background:var(--gold-dim);border-radius:2px;}
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
-@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
-@keyframes breathe{0%,100%{opacity:0.4;}50%{opacity:1;}}
-@keyframes shimmer{0%{background-position:-300% center;}100%{background-position:300% center;}}
-@keyframes scaleIn{from{opacity:0;transform:scale(0.94);}to{opacity:1;transform:scale(1);}}
-.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.8s cubic-bezier(0.22,1,0.36,1),transform 0.8s cubic-bezier(0.22,1,0.36,1);}
-.reveal.visible{opacity:1;transform:translateY(0);}
-.stagger{opacity:0;transform:translateY(16px);transition:opacity 0.6s ease,transform 0.6s ease;}
-.reveal.visible .stagger{opacity:1;transform:translateY(0);}
-.reveal.visible .stagger:nth-child(1){transition-delay:0s;}
-.reveal.visible .stagger:nth-child(2){transition-delay:0.1s;}
-.reveal.visible .stagger:nth-child(3){transition-delay:0.2s;}
-.reveal.visible .stagger:nth-child(4){transition-delay:0.3s;}
-.label{font-family:var(--f-sans);font-size:10px;letter-spacing:0.25em;color:var(--gold-dim);text-transform:uppercase;}
-.badge{display:inline-block;padding:5px 14px;background:var(--gold-faint);border:1px solid var(--border);font-family:var(--f-sans);font-size:9px;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;}
-.badge--green{background:var(--green-bg);border-color:var(--green-border);color:var(--green);}
-.badge--red{background:var(--red-bg);border-color:var(--red-border);color:var(--red);}
-.gold-line{height:1px;background:var(--border);transform-origin:left;transform:scaleX(0);transition:transform 1s cubic-bezier(0.22,1,0.36,1);}
-.reveal.visible .gold-line{transform:scaleX(1);}
-.section{max-width:900px;margin:0 auto;padding:56px 32px 0;}
-.btn-primary{background:var(--gold);border:none;color:var(--bg);padding:18px 48px;font-family:var(--f-sans);font-size:12px;letter-spacing:0.2em;text-transform:uppercase;font-weight:500;transition:background 0.3s;}
-.btn-primary:hover{background:var(--gold-light);}
-.btn-outline{background:transparent;border:1px solid var(--gold);color:var(--gold);padding:14px 32px;font-family:var(--f-sans);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;transition:all 0.3s;}
-.btn-outline:hover{background:var(--gold);color:var(--bg);}
-.topbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(8,8,6,0.88);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--border);height:50px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;}
-.topbar__brand{display:flex;align-items:center;gap:12px;font-family:var(--f-body);font-size:13px;color:var(--cream-dim);}
-.topbar__brand span:first-child{font-family:var(--f-sans);font-size:11px;letter-spacing:0.3em;color:var(--gold-dim);font-weight:300;}
-.topbar__brand .sep{color:var(--border);}
-.topbar__brand .current{color:var(--cream);font-weight:400;}
-.topbar__actions{display:flex;align-items:center;gap:16px;}
-.save-btn{background:transparent;border:1px solid var(--border);color:var(--cream-dim);padding:6px 16px;font-family:var(--f-sans);font-size:10px;letter-spacing:0.12em;transition:all 0.3s;}
-.save-btn.saved{background:rgba(201,169,110,0.1);border-color:var(--gold);color:var(--gold);}
-.topbar__phone{font-family:var(--f-sans);font-size:10px;color:var(--cream-faint);letter-spacing:0.1em;}
-.ps-wrap{padding-top:50px;position:relative;background:var(--bg);}
-.ps-stage{position:relative;height:600px;overflow:hidden;background:var(--bg2);}
-.ps-slide{position:absolute;inset:0;opacity:0;transition:opacity 0.7s cubic-bezier(0.22,1,0.36,1);pointer-events:none;}
-.ps-slide.active{opacity:1;pointer-events:auto;}
-.ps-slide img{width:100%;height:100%;object-fit:cover;transition:transform 8s cubic-bezier(0.22,1,0.36,1);transform:scale(1.04);}
-.ps-slide.active img{transform:scale(1);}
-.ps-gradient-b{position:absolute;inset:0;pointer-events:none;z-index:2;background:linear-gradient(to bottom,transparent 40%,var(--bg) 100%);}
-.ps-gradient-l{position:absolute;inset:0;pointer-events:none;z-index:2;background:linear-gradient(to right,rgba(8,8,6,0.35) 0%,transparent 35%);}
-.ps-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:10;background:rgba(8,8,6,0.5);backdrop-filter:blur(12px);border:1px solid var(--border);width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.3s;color:var(--cream-dim);font-size:16px;}
-.ps-arrow:hover{background:rgba(201,169,110,0.1);border-color:var(--gold);color:var(--gold);}
-.ps-arrow--prev{left:20px;}
-.ps-arrow--next{right:20px;}
-.ps-counter{position:absolute;top:20px;right:20px;z-index:10;font-family:var(--f-sans);font-size:10px;letter-spacing:0.2em;color:rgba(242,237,228,0.5);}
-#psCurrent{color:var(--cream);}
-.ps-progress{position:absolute;bottom:0;left:0;right:0;height:2px;background:rgba(201,169,110,0.08);z-index:10;}
-.ps-progress-bar{height:100%;background:var(--gold);transition:width 0.7s cubic-bezier(0.22,1,0.36,1);}
-.ps-filmstrip{display:flex;gap:6px;padding:14px 32px 0;overflow-x:auto;scrollbar-width:none;background:linear-gradient(to bottom,var(--bg) 0%,var(--bg2) 100%);}
-.ps-filmstrip::-webkit-scrollbar{display:none;}
-.ps-thumb{flex-shrink:0;width:80px;height:54px;position:relative;overflow:hidden;cursor:pointer;border:1px solid var(--border);opacity:0.45;transition:all 0.3s;}
-.ps-thumb:hover{opacity:0.75;border-color:var(--border-hover);}
-.ps-thumb.active{opacity:1;border-color:var(--gold);}
-.ps-thumb img{width:100%;height:100%;object-fit:cover;}
-.ps-thumb span{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(8,8,6,0.85),transparent);padding:4px 5px 3px;font-family:var(--f-sans);font-size:7px;letter-spacing:0.1em;color:var(--cream-dim);text-transform:uppercase;opacity:0;transition:opacity 0.3s;}
-.ps-thumb:hover span,.ps-thumb.active span{opacity:1;}
-.ps-dots{display:none;gap:6px;justify-content:center;padding:10px 0 0;}
-.ps-dot{width:5px;height:5px;border-radius:50%;background:var(--cream-faint);border:none;cursor:pointer;transition:all 0.3s;padding:0;}
-.ps-dot.active{background:var(--gold);width:16px;border-radius:3px;}
-.hero__info{max-width:900px;margin:0 auto;padding:40px 32px 0;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;animation:fadeUp 0.8s 0.3s both;}
-.hero__sku{font-family:var(--f-sans);font-size:10px;letter-spacing:0.25em;color:var(--gold-dim);margin-bottom:10px;}
-.hero__title{font-family:var(--f-display);font-size:48px;font-weight:400;color:var(--cream);line-height:1.15;}
-.hero__title em{color:var(--gold);font-style:italic;}
-.hero__price{font-family:var(--f-display);font-size:38px;color:var(--gold);font-weight:400;}
-.hero__price-note{font-family:var(--f-body);font-size:14px;color:var(--cream-dim);font-style:italic;font-weight:300;margin-top:4px;}
-.story{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:48px;}
-.story__narrative p{font-family:var(--f-body);font-size:19px;color:var(--cream-dim);line-height:1.85;font-weight:300;margin-bottom:24px;}
-.story__craftsman-img{width:100%;height:300px;object-fit:cover;filter:brightness(0.7) contrast(1.1);border:1px solid var(--border);}
-.story__craftsman-overlay{position:relative;margin-top:-60px;padding:0 20px 20px;background:linear-gradient(to top,rgba(8,8,6,0.95) 0%,transparent 100%);}
-.story__craftsman-name{font-family:var(--f-display);font-size:14px;color:var(--cream);font-style:italic;}
-.story__craftsman-title{font-family:var(--f-sans);font-size:9px;color:var(--gold-dim);letter-spacing:0.15em;margin-top:2px;}
-.story__quote{margin-top:24px;padding:24px 28px;border-left:2px solid var(--gold);background:var(--gold-faint);}
-.story__quote p{font-family:var(--f-body);font-size:17px;color:var(--gold-light);font-style:italic;line-height:1.75;font-weight:300;}
-.story__quote cite{font-family:var(--f-sans);font-size:9px;color:var(--gold-dim);letter-spacing:0.15em;display:block;margin-top:12px;font-style:normal;}
-.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);}
-.stat{background:var(--bg);padding:28px 16px;text-align:center;}
-.stat__value{font-family:var(--f-display);font-size:28px;color:var(--gold);font-weight:400;margin-bottom:6px;}
-.stat__label{font-family:var(--f-sans);font-size:9px;letter-spacing:0.2em;color:var(--cream-dim);}
-.timeline{margin-top:40px;background:var(--bg2);border:1px solid var(--border);padding:28px 32px;position:relative;overflow:hidden;}
-.timeline__shimmer{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);background-size:200% 100%;animation:shimmer 4s linear infinite;}
-.timeline__track{display:flex;align-items:center;margin-top:16px;height:60px;}
-.timeline__step{display:flex;flex-direction:column;align-items:center;}
-.timeline__step-time{font-family:var(--f-sans);font-size:8px;color:var(--gold-dim);letter-spacing:0.1em;margin-bottom:6px;}
-.timeline__step-bar{height:2px;width:100%;background:var(--gold);position:relative;}
-.timeline__step-bar::before{content:'';position:absolute;left:0;top:-4px;width:10px;height:10px;border-radius:50%;background:var(--gold);border:2px solid var(--bg2);}
-.timeline__step:last-child .timeline__step-bar::before{animation:breathe 2s ease-in-out infinite;}
-.timeline__step-label{font-family:var(--f-body);font-size:11px;color:var(--cream-dim);margin-top:6px;text-align:center;font-weight:300;}
-.details-table{margin-top:32px;}
-.detail-row{display:flex;justify-content:space-between;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--border);gap:24px;}
-.detail-row__key{font-family:var(--f-sans);font-size:11px;color:var(--cream-faint);letter-spacing:0.1em;flex-shrink:0;min-width:120px;}
-.detail-row__value{font-family:var(--f-body);font-size:16px;color:var(--cream);font-weight:400;text-align:right;line-height:1.5;}
-.certificate{border:1px solid var(--border);padding:48px 40px;text-align:center;position:relative;background:linear-gradient(180deg,var(--gold-faint) 0%,transparent 100%);}
-.certificate__corner{position:absolute;width:20px;height:20px;}
-.certificate__corner--tl{top:12px;left:12px;border-top:1px solid var(--gold-dim);border-left:1px solid var(--gold-dim);}
-.certificate__corner--tr{top:12px;right:12px;border-top:1px solid var(--gold-dim);border-right:1px solid var(--gold-dim);}
-.certificate__corner--bl{bottom:12px;left:12px;border-bottom:1px solid var(--gold-dim);border-left:1px solid var(--gold-dim);}
-.certificate__corner--br{bottom:12px;right:12px;border-bottom:1px solid var(--gold-dim);border-right:1px solid var(--gold-dim);}
-.certificate__title{font-family:var(--f-display);font-size:24px;color:var(--cream);margin:20px 0 6px;}
-.certificate__divider{width:40px;height:1px;background:var(--gold);margin:20px auto;}
-.certificate__oath{font-family:var(--f-body);font-size:16px;color:var(--gold-light);font-style:italic;line-height:1.75;max-width:440px;margin:0 auto 28px;font-weight:300;}
-.certificate__signers{display:flex;justify-content:center;gap:64px;}
-.certificate__signer-name{font-family:var(--f-display);font-size:16px;color:var(--cream);font-style:italic;}
-.certificate__signer-role{font-family:var(--f-sans);font-size:9px;color:var(--gold-dim);letter-spacing:0.12em;margin-top:4px;}
-.certificate__badges{margin-top:28px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap;}
-.lifestyle__grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
-.lifestyle__selector{display:flex;flex-direction:column;}
-.room-btn{background:transparent;border:none;border-left:2px solid var(--border);padding:20px 24px;text-align:left;transition:all 0.3s;}
-.room-btn.active{background:var(--bg3);border-left-color:var(--gold);}
-.room-btn__name{font-family:var(--f-display);font-size:18px;color:var(--cream);font-weight:400;margin-bottom:4px;transition:color 0.3s;}
-.room-btn.active .room-btn__name{color:var(--gold);font-weight:500;}
-.room-btn__desc{font-family:var(--f-body);font-size:14px;color:var(--cream-dim);font-weight:300;line-height:1.5;max-height:0;overflow:hidden;transition:max-height 0.4s ease;}
-.room-btn.active .room-btn__desc{max-height:60px;}
-.lifestyle__preview{height:320px;background:var(--bg3);border:1px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;animation:scaleIn 0.5s ease;}
-.lifestyle__preview-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 70%,rgba(201,169,110,0.05) 0%,transparent 60%);}
-.inquiry{text-align:center;}
-.inquiry__heading{font-family:var(--f-display);font-size:32px;color:var(--cream);font-weight:400;margin-bottom:8px;}
-.inquiry__heading em{color:var(--gold);font-style:italic;}
-.inquiry__sub{font-family:var(--f-body);font-size:15px;color:var(--cream-dim);font-weight:300;}
-.intent-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:520px;margin:36px auto 0;}
-.intent-btn{background:var(--bg3);border:1px solid var(--border);padding:16px 20px;text-align:left;font-family:var(--f-body);font-size:15px;color:var(--cream);font-weight:400;transition:all 0.3s;}
-.intent-btn:hover{border-color:var(--gold);}
-.inquiry__form{max-width:480px;margin:36px auto 0;display:none;flex-direction:column;gap:16px;text-align:left;animation:fadeUp 0.6s ease;}
-.inquiry__form.visible{display:flex;}
-.intent-badge{display:inline-flex;align-items:center;gap:10px;background:var(--gold-faint);border:1px solid var(--border);padding:6px 16px;margin:0 auto 24px;}
-.intent-badge__text{font-family:var(--f-body);font-size:13px;color:var(--gold);}
-.intent-badge__change{background:none;border:none;font-family:var(--f-sans);font-size:9px;color:var(--cream-faint);cursor:pointer;}
-.form-label{font-family:var(--f-sans);font-size:9px;letter-spacing:0.15em;color:var(--cream-dim);display:block;margin-bottom:6px;}
-.inquiry__piece-ref{font-family:var(--f-body);font-size:13px;color:var(--cream-faint);text-align:center;font-style:italic;font-weight:300;margin-top:8px;}
-.inquiry__confirmation{display:none;border:1px solid var(--gold);padding:48px 40px;text-align:center;background:var(--gold-faint);animation:scaleIn 0.6s ease;}
-.inquiry__confirmation.visible{display:block;}
-.sold-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
-.sold-card{background:var(--bg2);border:1px solid var(--border);padding:24px;position:relative;opacity:0.55;transition:opacity 0.3s;}
-.sold-card:hover{opacity:0.75;}
-.sold-card__badge{position:absolute;top:12px;right:12px;}
-.sold-card__name{font-family:var(--f-display);font-size:18px;color:var(--cream);margin-bottom:2px;}
-.sold-card__stone{font-family:var(--f-body);font-size:13px;color:var(--cream-dim);font-weight:300;}
-.sold-card__divider{height:1px;background:var(--border);margin:14px 0;}
-.sold-card__meta{display:flex;justify-content:space-between;font-family:var(--f-sans);font-size:10px;color:var(--cream-faint);}
-.sold-card__buyer{font-family:var(--f-body);font-size:12px;color:var(--cream-faint);font-style:italic;margin-top:6px;}
-.similar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
-.similar-card{background:var(--bg2);border:1px solid var(--border);cursor:pointer;transition:all 0.3s;overflow:hidden;}
-.similar-card:hover{border-color:var(--border-hover);transform:translateY(-2px);}
-.similar-card__image{height:180px;background:var(--bg3);display:flex;align-items:center;justify-content:center;position:relative;}
-.similar-card__info{padding:16px 20px;}
-.similar-card__name{font-family:var(--f-display);font-size:17px;color:var(--cream);margin-bottom:4px;}
-.similar-card__stone{font-family:var(--f-body);font-size:13px;color:var(--cream-dim);font-weight:300;}
-.similar-card__price{font-family:var(--f-display);font-size:16px;color:var(--gold);margin-top:10px;}
-.footer-cta{text-align:center;padding-bottom:80px;}
-.footer-cta__quote{font-family:var(--f-body);font-size:18px;color:var(--cream-dim);font-style:italic;font-weight:300;line-height:1.8;max-width:500px;margin:48px auto 32px;}
-.footer-cta__buttons{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;}
-.footer-cta__colophon{font-family:var(--f-sans);font-size:10px;color:var(--cream-faint);letter-spacing:0.15em;margin-top:24px;}
-@media(max-width:768px){.ps-stage{height:420px;}.ps-filmstrip{padding:10px 16px 0;}.ps-thumb{width:60px;height:42px;}.ps-arrow{display:none;}.ps-dots{display:flex;}.hero__title{font-size:32px;}.hero__price{font-size:28px;}.hero__info{flex-direction:column;align-items:flex-start;}.story{grid-template-columns:1fr;gap:32px;}.stats-grid{grid-template-columns:repeat(2,1fr);}.lifestyle__grid{grid-template-columns:1fr;}.sold-grid{grid-template-columns:1fr;}.similar-grid{grid-template-columns:1fr;}.intent-grid{grid-template-columns:1fr;}.certificate__signers{flex-direction:column;gap:20px;}.section{padding:40px 20px 0;}}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0907;--bg2:#0e0c09;--surface:#161310;--surface2:#1c1916;--surface3:#221f1a;--gold:#c9a55c;--gold-light:#e2c98a;--gold-dim:#6b5a2e;--gold-faint:rgba(201,165,92,.07);--cream:#f0e8d8;--cream2:#c8bca8;--cream3:#9a8e7e;--text-dim:#6b6155;--red:#b85040;--red-faint:rgba(184,80,64,.08);--green:#4a7a5a;--serif:'Cormorant Garamond',Georgia,serif;--sans:'Outfit',system-ui,sans-serif;--mono:'DM Mono',monospace;--ease:cubic-bezier(0.22,1,0.36,1)}
+html{scroll-behavior:smooth}body{font-family:var(--sans);color:var(--cream);background:var(--bg);-webkit-font-smoothing:antialiased;overflow-x:hidden}a{text-decoration:none;color:inherit}img{display:block}
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 32px;height:58px;display:flex;align-items:center;justify-content:space-between;background:rgba(10,9,7,.96);backdrop-filter:blur(24px);border-bottom:1px solid rgba(201,165,92,.07)}
+.nav-logo{font-family:var(--serif);font-size:1.25rem;font-weight:300;letter-spacing:.18em}.nav-center{font-family:var(--mono);font-size:.5rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text-dim);display:flex;align-items:center;gap:20px}.nav-center span{color:var(--gold)}.nav-right{display:flex;gap:16px;align-items:center}.nav-right a{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cream2);transition:color .25s}.nav-right a:hover{color:var(--gold)}.nav-inquire{background:var(--gold);color:var(--bg)!important;padding:8px 20px;font-weight:600;font-size:.6rem!important;letter-spacing:.14em!important}@media(max-width:700px){.nav-center{display:none}}
+.ticker{background:var(--surface);border-bottom:1px solid rgba(201,165,92,.06);padding:9px 0;overflow:hidden}.ticker-track{display:flex;animation:ticker 35s linear infinite;width:max-content}.ticker-item{display:flex;align-items:center;gap:8px;padding:0 40px;font-family:var(--mono);font-size:.52rem;letter-spacing:.1em;color:var(--text-dim);white-space:nowrap}.ticker-item .dot{width:5px;height:5px;border-radius:50%;background:var(--green);flex-shrink:0}.ticker-item .dot.red{background:var(--red)}@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.hero{padding-top:58px;display:grid;grid-template-columns:1fr 460px;min-height:calc(100vh - 58px);align-items:start}@media(max-width:1000px){.hero{grid-template-columns:1fr}}
+.photo-panel{background:var(--bg2)}.main-photo-wrap{position:relative;overflow:hidden}.main-photo-wrap img{width:100%;aspect-ratio:1/1;object-fit:cover;transition:transform .8s var(--ease)}.main-photo-wrap:hover img{transform:scale(1.02)}.photo-badge{position:absolute;top:20px;left:20px;background:rgba(10,9,7,.85);backdrop-filter:blur(12px);border:1px solid rgba(201,165,92,.2);padding:8px 16px;font-family:var(--mono);font-size:.48rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}.thumbs{display:flex;gap:4px;padding:8px;background:var(--surface)}.thumb{width:80px;height:58px;flex-shrink:0;cursor:pointer;overflow:hidden;border:2px solid transparent;opacity:.45;transition:all .2s}.thumb.on,.thumb:hover{border-color:var(--gold);opacity:1}.thumb img{width:100%;height:100%;object-fit:cover}
+.info-panel{padding:44px 44px 60px;background:var(--bg);border-left:1px solid rgba(201,165,92,.06)}@media(max-width:1000px){.info-panel{border-left:none;padding:32px 24px 48px}}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.48rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:20px}.breadcrumb a{color:var(--text-dim)}.breadcrumb a:hover{color:var(--gold)}.breadcrumb span{color:var(--gold-dim)}
+.piece-eyebrow{font-family:var(--mono);font-size:.48rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:8px}.piece-title{font-family:var(--serif);font-size:3.2rem;font-weight:300;line-height:1;margin-bottom:4px}.piece-title em{font-style:italic;color:var(--gold-light)}.piece-subtitle{font-size:.62rem;letter-spacing:.1em;color:var(--cream3);margin-bottom:24px}
+.scarcity-box{background:var(--red-faint);border:1px solid rgba(184,80,64,.18);padding:14px 18px;margin-bottom:20px}.scarcity-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}.scarcity-label{font-family:var(--mono);font-size:.48rem;letter-spacing:.14em;text-transform:uppercase;color:#c07060}.scarcity-live{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:.46rem;color:var(--text-dim)}.scarcity-live .live-dot{width:5px;height:5px;border-radius:50%;background:var(--red);animation:pulse 1.4s infinite}.scarcity-bar-track{height:4px;background:rgba(184,80,64,.15);width:100%}.scarcity-bar-fill{height:100%;background:linear-gradient(90deg,var(--red),#d06050)}.scarcity-text{font-size:.66rem;color:#c07060;margin-top:8px;line-height:1.5}.scarcity-text strong{color:#e09080}
+.price-module{padding:20px 0;border-top:1px solid rgba(201,165,92,.08);border-bottom:1px solid rgba(201,165,92,.08);margin-bottom:24px}.price-main{font-family:var(--serif);font-size:2.6rem;color:var(--gold);font-weight:300;line-height:1;margin-bottom:6px}.price-sub{font-size:.62rem;color:var(--text-dim);line-height:1.6}.price-sub span{color:var(--cream2)}
+.social-proof{background:var(--surface);border:1px solid rgba(201,165,92,.07);padding:14px 18px;margin-bottom:24px;display:flex;flex-direction:column;gap:10px}.sp-item{display:flex;align-items:flex-start;gap:10px}.sp-avatar{width:28px;height:28px;border-radius:50%;background:var(--surface3);border:1px solid rgba(201,165,92,.12);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:.7rem;color:var(--gold);flex-shrink:0}.sp-body{flex:1}.sp-name{font-size:.6rem;color:var(--cream2);font-weight:500;margin-bottom:2px}.sp-text{font-size:.66rem;color:var(--cream3);line-height:1.5;font-style:italic;font-family:var(--serif)}.sp-stars{color:var(--gold);font-size:.6rem;letter-spacing:2px;margin-bottom:2px}.sp-divider{height:1px;background:rgba(201,165,92,.06)}
+.cta-block{display:flex;flex-direction:column;gap:8px;margin-bottom:24px}.cta-primary{padding:17px;background:var(--gold);color:var(--bg);font-family:var(--sans);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;border:none;cursor:pointer;text-align:center;transition:all .25s var(--ease)}.cta-primary:hover{background:var(--gold-light);transform:translateY(-1px)}.cta-hold{padding:14px;background:transparent;color:var(--cream2);font-family:var(--sans);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;font-weight:400;border:1px solid rgba(201,165,92,.18);cursor:pointer;text-align:center;transition:all .25s}.cta-hold:hover{border-color:rgba(201,165,92,.4);color:var(--gold)}.deposit-note{font-family:var(--mono);font-size:.5rem;color:var(--text-dim);text-align:center;letter-spacing:.06em;line-height:1.6;padding:0 8px}.deposit-note span{color:var(--gold)}
+.trust-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:20px;margin-bottom:20px}.pill{display:flex;align-items:center;gap:5px;padding:5px 12px;background:var(--surface);border:1px solid rgba(201,165,92,.08);font-size:.52rem;color:var(--cream3);letter-spacing:.06em}.pill b{color:var(--gold);font-size:.5rem}
+.specs-section{border-top:1px solid rgba(201,165,92,.08)}.spec-row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:10px 0;border-bottom:1px solid rgba(201,165,92,.05)}.spec-label{font-family:var(--mono);font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim)}.spec-val{font-size:.76rem;color:var(--cream2);text-align:right;max-width:60%}
+.urgency-strip{background:linear-gradient(90deg,rgba(184,80,64,.1),rgba(184,80,64,.05) 50%,rgba(184,80,64,.1));border-top:1px solid rgba(184,80,64,.15);border-bottom:1px solid rgba(184,80,64,.15);padding:16px 60px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}@media(max-width:700px){.urgency-strip{padding:14px 24px}}.us-dot{width:8px;height:8px;border-radius:50%;background:var(--red);animation:pulse 1.4s infinite;flex-shrink:0}.us-text{font-size:.7rem;color:#d08070;line-height:1.5}.us-text strong{color:#e8a090}.us-cta{padding:10px 24px;background:rgba(184,80,64,.2);border:1px solid rgba(184,80,64,.3);color:#e8a090;font-family:var(--mono);font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:all .25s}@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.differentiation{padding:80px 60px;background:var(--bg2);display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}@media(max-width:800px){.differentiation{grid-template-columns:1fr;padding:56px 24px;gap:40px}}.section-label{font-family:var(--mono);font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:16px;display:flex;align-items:center;gap:10px}.section-label::before{content:'';width:24px;height:1px;background:var(--gold-dim)}.diff-text h2{font-family:var(--serif);font-size:2.4rem;font-weight:300;color:var(--cream);line-height:1.12;margin-bottom:20px}.diff-text h2 em{font-style:italic;color:var(--gold-light)}.diff-text p{font-size:.84rem;color:var(--cream2);line-height:1.9;font-weight:200;margin-bottom:16px}.diff-points{display:flex;flex-direction:column}.diff-point{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid rgba(201,165,92,.07)}.diff-point:last-child{border-bottom:none}.dp-num{font-family:var(--serif);font-size:1.6rem;color:var(--gold-dim);font-weight:300;line-height:1;flex-shrink:0;width:28px}.dp-body strong{display:block;font-size:.76rem;color:var(--cream);font-weight:500;margin-bottom:4px}.dp-body span{font-size:.72rem;color:var(--cream3);line-height:1.6}
+.related-section{padding:80px 60px;background:var(--bg2);border-top:1px solid rgba(201,165,92,.07)}@media(max-width:800px){.related-section{padding:56px 24px}}.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:32px}@media(max-width:700px){.related-grid{grid-template-columns:1fr}}.related-card{background:var(--surface);border:1px solid rgba(201,165,92,.05);overflow:hidden;transition:all .3s var(--ease)}.related-card:hover{border-color:rgba(201,165,92,.14);transform:translateY(-3px)}.rc-body{padding:16px}.rc-ey{font-family:var(--mono);font-size:.46rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);margin-bottom:5px}.rc-body h4{font-family:var(--serif);font-size:1.05rem;color:var(--cream);font-weight:400;margin-bottom:8px}.rc-price{font-size:.8rem;color:var(--gold)}.rc-btn{display:block;width:100%;padding:9px;background:transparent;border:1px solid rgba(201,165,92,.14);color:var(--gold);font-family:var(--mono);font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;text-align:center;transition:all .25s;margin-top:10px}.related-card:hover .rc-btn{background:var(--gold);color:var(--bg);border-color:var(--gold)}
+.final-cta{padding:100px 60px;background:var(--bg2);text-align:center;border-top:1px solid rgba(201,165,92,.07)}@media(max-width:700px){.final-cta{padding:64px 24px}}.final-cta-inner{max-width:560px;margin:0 auto}.final-cta h2{font-family:var(--serif);font-size:3rem;font-weight:300;color:var(--cream);line-height:1.1;margin-bottom:12px}.final-cta h2 em{font-style:italic;color:var(--gold-light)}.final-cta p{font-size:.84rem;color:var(--cream2);line-height:1.7;font-weight:200;margin-bottom:36px}.final-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}.btn-gold{padding:16px 44px;background:var(--gold);color:var(--bg);font-family:var(--sans);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;border:none;cursor:pointer;transition:all .25s}.btn-gold:hover{background:var(--gold-light);transform:translateY(-1px)}.btn-outline{padding:16px 44px;background:transparent;color:var(--gold);font-family:var(--sans);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;font-weight:400;border:1px solid rgba(201,165,92,.25);cursor:pointer;transition:all .25s}
+footer{padding:40px 32px;background:var(--surface);border-top:1px solid rgba(201,165,92,.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}.footer-logo{font-family:var(--serif);font-size:1.2rem;letter-spacing:.18em;font-weight:300}.footer-center{font-family:var(--mono);font-size:.48rem;color:var(--text-dim);letter-spacing:.1em;text-align:center}.footer-right{font-family:var(--mono);font-size:.5rem;color:var(--text-dim)}.footer-right a{color:var(--gold)}@media(max-width:700px){footer{flex-direction:column;text-align:center;padding:32px 24px}}
 </style>
 </head>
 <body>
-
-<nav class="topbar">
-  <div class="topbar__brand">
-    <span>PHAÖRA</span>
-    <span class="sep">·</span>
-    <a href="../collection.html" style="color:var(--cream-dim);">Collection</a>
-    <span class="sep">›</span>
-    <span class="current">The Devotion</span>
-  </div>
-  <div class="topbar__actions">
-    <button class="save-btn" id="saveBtn" onclick="toggleSave()">♡ SAVE</button>
-    <a href="tel:+19548719991" class="topbar__phone">(954) 871-9991</a>
-  </div>
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">PHAÖRA</a>
+  <div class="nav-center"><span>The Devotion</span> · Mid-Range · Two Macaws on Amethyst · <span id="nav-viewers">2 people viewing</span></div>
+  <div class="nav-right"><a href="../gallery.html">← Collection</a><a href="mailto:david@phaora.com?subject=Inquiry — The Devotion ($15,000)" class="nav-inquire">Inquire ✦</a></div>
 </nav>
-
-<!-- PHOTO SWITCHER -->
-<section class="ps-wrap" id="photoSwitcher">
-  <div class="ps-stage" id="psStage">
-    <div class="ps-slide active" data-index="0"><img src="../img/IMG_7050.JPG" alt="Studio" loading="eager"></div>
-    <div class="ps-gradient-b"></div>
-    <div class="ps-gradient-l"></div>
-    <button class="ps-arrow ps-arrow--prev" id="psArrowPrev" aria-label="Previous">&#8592;</button>
-    <button class="ps-arrow ps-arrow--next" id="psArrowNext" aria-label="Next">&#8594;</button>
-    <div class="ps-counter"><span id="psCurrent">1</span> / <span id="psTotal">1</span></div>
-    <div class="ps-progress"><div class="ps-progress-bar" id="psBar" style="width:50.0%"></div></div>
+<div class="ticker"><div class="ticker-track">
+  <div class="ticker-item"><span class="dot"></span>Someone in Boca Raton viewed The Devotion — 11 min ago</div>
+  <div class="ticker-item"><span class="dot red"></span>The Canopy was acquired — Palm Beach collector</div>
+  <div class="ticker-item"><span class="dot"></span>Realtor inquired about closing gift options — this morning</div>
+  <div class="ticker-item"><span class="dot red"></span>The Monolith is no longer available</div>
+  <div class="ticker-item"><span class="dot"></span>Someone in Coral Gables added The Devotion to their list</div>
+  <div class="ticker-item"><span class="dot red"></span>8 pieces placed this quarter</div>
+  <div class="ticker-item"><span class="dot"></span>Someone in Boca Raton viewed The Devotion — 11 min ago</div>
+  <div class="ticker-item"><span class="dot red"></span>The Canopy was acquired — Palm Beach collector</div>
+  <div class="ticker-item"><span class="dot"></span>Realtor inquired about closing gift options — this morning</div>
+  <div class="ticker-item"><span class="dot red"></span>The Monolith is no longer available</div>
+  <div class="ticker-item"><span class="dot"></span>Someone in Coral Gables added The Devotion to their list</div>
+  <div class="ticker-item"><span class="dot red"></span>8 pieces placed this quarter</div>
+</div></div>
+<div class="hero">
+  <div class="photo-panel">
+    <div class="main-photo-wrap"><img id="mainPhoto" src="../img/the-devotion-main.jpg" alt="The Devotion — Two Macaws on Amethyst Cluster"><div class="photo-badge">One of One · Mid-Range</div></div>
+    <div class="thumbs"><div class="thumb on"><img src="../img/the-devotion-main.jpg" alt=""></div><div class="thumb"><img src="../img/the-devotion-2.jpg" alt=""></div><div class="thumb"><img src="../img/the-devotion-3.jpg" alt=""></div></div>
   </div>
-  <div class="ps-filmstrip" id="psFilmstrip">
-    <div class="ps-thumb active" data-index="0"><img src="../img/IMG_7050.JPG" alt="Studio" loading="lazy"><span>Studio</span></div>
-  </div>
-  <div class="ps-dots" id="psDots"><button class="ps-dot active" data-index="0" aria-label="Photo 1"></button></div>
-</section>
-
-<div class="hero__info">
-  <div>
-    <div class="hero__sku label">Clear Quartz & Amethyst · Bird Sculpture · Duo · SKU-0029</div>
-    <h1 class="hero__title">The <em>Devotion</em></h1>
-  </div>
-  <div style="text-align:right;">
-    <div class="hero__price">$14,500</div>
-    <div class="hero__price-note">Acquisition by private inquiry</div>
-  </div>
-</div>
-
-
-<div class="section reveal">
-  <div class="gold-line"></div>
-  <div class="story">
-    <div class="story__narrative stagger">
-      <div class="label" style="margin-bottom:16px;">The Origin</div>
-      <p>Two clear quartz parrots face each other across an amethyst formation — their posture unmistakably one of devotion. The symmetry is deliberate: Fabiano carved these as mirror images, each wing angle reflecting the other.</p>
-      <p>Gold dust particles in the photography are not added — they represent the natural micro-inclusions of pyrite and mica that become visible when the amethyst is illuminated from below.</p>
+  <div class="info-panel">
+    <div class="breadcrumb"><a href="../index.html">PHAÖRA</a><span>›</span><a href="../gallery.html">Collection</a><span>›</span><span style="color:var(--cream2)">The Devotion</span></div>
+    <div class="piece-eyebrow">Two Macaws · Amethyst Cluster · Mid-Range Tier</div>
+    <h1 class="piece-title">The <em>Devotion</em></h1>
+    <div class="piece-subtitle">Intertwined. Rooted. Carved from the same devotion that shaped them.</div>
+    <div class="scarcity-box">
+      <div class="scarcity-top"><span class="scarcity-label">Availability</span><span class="scarcity-live"><span class="live-dot"></span>Live Status</span></div>
+      <div class="scarcity-bar-track"><div class="scarcity-bar-fill" style="width:8.33%"></div></div>
+      <div class="scarcity-text"><strong>1 of 1 remaining.</strong> The amethyst cluster base was selected for its depth of purple and the natural cavity that cradles the sculpture.</div>
     </div>
-    <div class="stagger">
-      <div style="position:relative;">
-        <img src="../img/IMG_7191.jpeg" alt="Fabiano — Master Craftsman" class="story__craftsman-img">
-        <div class="story__craftsman-overlay">
-          <div class="story__craftsman-name">Fabiano</div>
-          <div class="story__craftsman-title">MASTER CRAFTSMAN · 40+ YEARS</div>
-        </div>
-      </div>
-      <div class="story__quote">
-        <p>"I carved them facing each other because that is how they were found — two quartz formations, side by side, underground for sixty million years."</p>
-        <cite>— FABIANO · MINAS GERAIS, BRAZIL</cite>
-      </div>
+    <div class="price-module">
+      <div class="price-main">$15,000</div>
+      <div class="price-sub">Private acquisition. <span>White-glove delivery included.</span><br>$1,500 deposit holds this piece for 30 days.</div>
     </div>
-  </div>
-</div>
-
-<div class="section reveal">
-  <div class="stats-grid">
-    <div class="stat stagger"><div class="stat__value">2</div><div class="stat__label">BIRDS</div></div>
-    <div class="stat stagger">
-      <div class="stat__value">Clear Quartz</div>
-      <div class="stat__label">PRIMARY STONE</div>
+    <div class="social-proof">
+      <div class="sp-item"><div class="sp-avatar">N</div><div class="sp-body"><div class="sp-stars">★★★★★</div><div class="sp-name">Nicole B. — Palm Beach</div><div class="sp-text">"The amethyst base gives it a richness I wasn't expecting. The two birds feel genuinely bonded — not just placed."</div></div></div>
+      <div class="sp-divider"></div>
+      <div class="sp-item"><div class="sp-avatar">M</div><div class="sp-body"><div class="sp-stars">★★★★★</div><div class="sp-name">Michael T. — Interior Designer</div><div class="sp-text">"Used in a master bedroom I was staging. The deep purple against cream walls stopped everyone who walked in."</div></div></div>
     </div>
-    <div class="stat stagger">
-      <div class="stat__value">Entry</div>
-      <div class="stat__label">TIER</div>
+    <div class="cta-block">
+      <a href="mailto:david@phaora.com?subject=Inquiry — The Devotion ($15,000)" class="cta-primary">Inquire About This Piece ✦</a>
+      <button class="cta-hold">Request a 30-Day Hold — $1,500 Deposit</button>
     </div>
-    <div class="stat stagger">
-      <div class="stat__value">~65M yrs</div>
-      <div class="stat__label">FORMATION AGE</div>
-    </div>
-  </div>
-  <div class="timeline">
-    <div class="timeline__shimmer"></div>
-    <div class="label">Journey Through Time</div>
-    <div class="timeline__track">
-      <div class="timeline__step" style="flex:5;">
-        <div class="timeline__step-time">65M years ago</div>
-        <div class="timeline__step-bar"></div>
-        <div class="timeline__step-label">Formed in Earth</div>
-      </div>
-      <div class="timeline__step" style="flex:70;">
-        <div class="timeline__step-time">2025</div>
-        <div class="timeline__step-bar"></div>
-        <div class="timeline__step-label">Discovered by Fabiano</div>
-      </div>
-      <div class="timeline__step" style="flex:15;">
-        <div class="timeline__step-time">Weeks</div>
-        <div class="timeline__step-bar"></div>
-        <div class="timeline__step-label">Shaped by Hand</div>
-      </div>
-      <div class="timeline__step" style="flex:10;">
-        <div class="timeline__step-time">Now</div>
-        <div class="timeline__step-bar"></div>
-        <div class="timeline__step-label">Ready for Your Estate</div>
-      </div>
-    </div>
-  </div>
-  <div class="details-table">
-    <div class="detail-row stagger"><span class="detail-row__key">Material</span><span class="detail-row__value">Clear Quartz & Amethyst</span></div>
-    <div class="detail-row stagger"><span class="detail-row__key">Origin</span><span class="detail-row__value">Minas Gerais</span></div>
-    <div class="detail-row stagger"><span class="detail-row__key">Category</span><span class="detail-row__value">Bird Sculpture · Duo</span></div>
-    <div class="detail-row stagger"><span class="detail-row__key">Base</span><span class="detail-row__value">Black disc</span></div>
-    <div class="detail-row stagger"><span class="detail-row__key">Bird Type</span><span class="detail-row__value">Parrots</span></div>
-    <div class="detail-row stagger"><span class="detail-row__key">Dimensions</span><span class="detail-row__value">Available upon inquiry</span></div>
-    <div class="detail-row stagger"><span class="detail-row__key">Includes</span><span class="detail-row__value">Certificate of Authenticity · Digital Provenance Record · Physical Hang Tag</span></div>
-    <div class="detail-row stagger"><span class="detail-row__key">Delivery</span><span class="detail-row__value">White-glove, personally placed by PHAÖRA</span></div>
-  </div>
-</div>
-
-<div class="section reveal">
-  <div class="certificate">
-    <div class="certificate__corner certificate__corner--tl"></div>
-    <div class="certificate__corner certificate__corner--tr"></div>
-    <div class="certificate__corner certificate__corner--bl"></div>
-    <div class="certificate__corner certificate__corner--br"></div>
-    <div class="label">PHAÖRA</div>
-    <div class="certificate__title">Certificate of Authenticity</div>
-    <div class="certificate__divider"></div>
-    <p class="certificate__oath">"This piece is one of one. It was shaped by the earth and finished by a master. It will never be recreated."</p>
-    <div class="certificate__signers">
-      <div>
-        <div class="certificate__signer-name">Fabiano</div>
-        <div class="certificate__signer-role">MASTER CRAFTSMAN · BRAZIL</div>
-      </div>
-      <div>
-        <div class="certificate__signer-name">David Vaz</div>
-        <div class="certificate__signer-role">FOUNDER · PHAÖRA</div>
-      </div>
-    </div>
-    <div class="certificate__badges">
-      <span class="badge">Physical Certificate</span>
-      <span class="badge">Digital Provenance Record</span>
-      <span class="badge">NFT Coming Soon</span>
+    <div class="deposit-note">Deposit fully applied to acquisition. <span>No risk. No obligation.</span></div>
+    <div class="trust-pills"><span class="pill"><b>✦</b> Certificate of Authenticity</span><span class="pill"><b>✦</b> White-Glove Delivery</span><span class="pill"><b>✦</b> Hand-Placed by David</span><span class="pill"><b>✦</b> Brazilian Crystal</span></div>
+    <div class="specs-section">
+      <div class="spec-row"><span class="spec-label">Stone</span><span class="spec-val">Amethyst Cluster</span></div>
+      <div class="spec-row"><span class="spec-label">Origin</span><span class="spec-val">Minas Gerais, Brazil</span></div>
+      <div class="spec-row"><span class="spec-label">Birds</span><span class="spec-val">Two Macaws</span></div>
+      <div class="spec-row"><span class="spec-label">Tier</span><span class="spec-val">Mid-Range</span></div>
+      <div class="spec-row"><span class="spec-label">Edition</span><span class="spec-val">One of One — Never Duplicated</span></div>
+      <div class="spec-row"><span class="spec-label">Delivery</span><span class="spec-val">White-glove, personally placed by PHAÖRA</span></div>
     </div>
   </div>
 </div>
-
-<div class="section reveal">
-  <div class="label" style="margin-bottom:12px;">Envision the Placement</div>
-  <h2 style="font-family:var(--f-display);font-size:32px;color:var(--cream);font-weight:400;margin-bottom:32px;">Where will <em style="color:var(--gold);font-style:italic;">it live?</em></h2>
-  <div class="lifestyle__grid">
-    <div class="lifestyle__selector">
-      <button class="room-btn active" onclick="selectRoom(this,0)">
-        <div class="room-btn__name">Grand Entryway</div>
-        <div class="room-btn__desc">The first thing guests encounter — a statement of taste and permanence.</div>
-      </button>
-      <button class="room-btn" onclick="selectRoom(this,1)">
-        <div class="room-btn__name">Living Space</div>
-        <div class="room-btn__desc">Where light, conversation, and beauty converge around a singular presence.</div>
-      </button>
-      <button class="room-btn" onclick="selectRoom(this,2)">
-        <div class="room-btn__name">Private Study</div>
-        <div class="room-btn__desc">An intimate companion for reflection — visible from the desk, alive in morning light.</div>
-      </button>
-    </div>
-    <div class="lifestyle__preview" id="lifestylePreview">
-      <div class="lifestyle__preview-glow"></div>
-      <span style="font-family:var(--f-body);font-size:14px;color:var(--cream-dim);font-style:italic;" id="previewLabel">Grand Entryway Visualization</span>
-      <span style="font-family:var(--f-sans);font-size:9px;color:var(--cream-faint);letter-spacing:0.15em;margin-top:8px;">LIFESTYLE PHOTO COMING SOON</span>
-    </div>
+<div class="urgency-strip">
+  <div style="display:flex;align-items:center;gap:12px;"><div class="us-dot"></div><div class="us-text"><strong>The Devotion features one of the deepest-purple amethyst clusters in the collection.</strong> The natural cavity within the base was what inspired the composition — Fabiano built the birds into the stone's own geometry.</div></div>
+  <button class="us-cta" onclick="window.location='mailto:david@phaora.com?subject=Inquiry — The Devotion ($15,000)'">Begin Acquisition →</button>
+</div>
+<div class="differentiation">
+  <div class="diff-text">
+    <div class="section-label">What Makes This Different</div>
+    <h2>Intertwined.<br><em>In violet stone.</em></h2>
+    <p>The Devotion is built around closeness. The two macaws are positioned with touching wings — not the facing posture of courtship, but the settled nearness of a bond already made. Fabiano described it as "how they sleep."</p>
+    <p>The amethyst cluster beneath them was chosen specifically for its deep violet and its organic form — unaltered at the base, polished only where the birds rest. The raw and refined coexist in the same piece.</p>
+  </div>
+  <div class="diff-points">
+    <div class="diff-point"><div class="dp-num">01</div><div class="dp-body"><strong>Wing-Touch Posture</strong><span>Not facing, not separated — settled beside each other. The quiet language of long partnership.</span></div></div>
+    <div class="diff-point"><div class="dp-num">02</div><div class="dp-body"><strong>Deep-Violet Amethyst</strong><span>Among the darkest amethyst in the collection. Rich, saturated, alive under any light source.</span></div></div>
+    <div class="diff-point"><div class="dp-num">03</div><div class="dp-body"><strong>Raw-to-Polished Contrast</strong><span>The base is left raw. The birds are polished smooth. The contrast is deliberate — earth and craft in one object.</span></div></div>
+    <div class="diff-point"><div class="dp-num">04</div><div class="dp-body"><strong>Placed by Hand</strong><span>David personally delivers and positions every PHAÖRA piece.</span></div></div>
   </div>
 </div>
-
-<div class="section reveal">
-  <div class="gold-line"></div>
-  <div class="inquiry" style="margin-top:48px;">
-    <div class="label" style="margin-bottom:12px;">Begin the Acquisition</div>
-    <h2 class="inquiry__heading">Inquire About <em>The Devotion</em></h2>
-    <p class="inquiry__sub">David responds personally. No sales calls — a private conversation.</p>
-    <div id="intentStep">
-      <div class="label" style="margin-top:36px;margin-bottom:16px;">What brings you to this piece?</div>
-      <div class="intent-grid">
-        <button class="intent-btn" onclick="selectIntent(this)">I want this for my home</button>
-        <button class="intent-btn" onclick="selectIntent(this)">I'm furnishing a new property</button>
-        <button class="intent-btn" onclick="selectIntent(this)">I collect fine minerals</button>
-        <button class="intent-btn" onclick="selectIntent(this)">I'm a real estate agent</button>
-      </div>
-    </div>
-    <div class="inquiry__form" id="inquiryForm">
-      <div style="text-align:center;">
-        <div class="intent-badge">
-          <span class="intent-badge__text" id="selectedIntent"></span>
-          <button class="intent-badge__change" onclick="resetIntent()">change</button>
-        </div>
-      </div>
-      <div><label class="form-label">YOUR NAME</label><input type="text" name="name" id="fieldName" placeholder="How should David address you?" required></div>
-      <div><label class="form-label">EMAIL</label><input type="email" name="email" id="fieldEmail" placeholder="For David's personal response" required></div>
-      <div><label class="form-label">PHONE</label><input type="tel" name="phone" id="fieldPhone" placeholder="Optional — for text or call"></div>
-      <div><label class="form-label">TELL US ABOUT YOUR SPACE</label><textarea rows="3" name="message" id="fieldMessage" placeholder="Describe the room, the feeling you want, or any questions..."></textarea></div>
-      <input type="hidden" name="piece" value="The Devotion">
-      <input type="hidden" name="sku" value="SKU-0029">
-      <input type="hidden" name="price" value="$14,500">
-      <input type="hidden" name="intent" id="fieldIntent" value="">
-      <input type="hidden" name="_subject" value="🔔 PHAÖRA Inquiry — The Devotion ($14,500)">
-      <button class="btn-primary" id="submitBtn" onclick="submitInquiry()" style="width:100%;">Begin the Dialogue</button>
-      <div class="inquiry__piece-ref">Piece: The Devotion · SKU-0029 · $14,500</div>
-    </div>
-    <div class="inquiry__confirmation" id="inquiryConfirm">
-      <h3 style="font-family:var(--f-display);font-size:28px;color:var(--cream);margin-bottom:12px;">Your Inquiry Has Been <em style="color:var(--gold);font-style:italic;">Received</em></h3>
-      <p style="font-family:var(--f-body);font-size:16px;color:var(--cream-dim);line-height:1.7;font-weight:300;max-width:420px;margin:0 auto;">David Vaz has been notified personally about your interest in The Devotion. He will reach out within 24 hours to begin the conversation.</p>
-      <div class="label" style="margin-top:24px;">PHAÖRA · BOCA RATON · BY APPOINTMENT</div>
-    </div>
+<div class="related-section">
+  <div class="section-label">Continue Exploring</div>
+  <div class="related-grid">
+    <a href="the-companions.html" class="related-card"><div class="rc-body"><div class="rc-ey">Mid-Range · Two Parrots</div><h4>The Companions</h4><div class="rc-price">$10,500</div><div class="rc-btn">View Piece →</div></div></a>
+    <a href="the-courtship.html" class="related-card"><div class="rc-body"><div class="rc-ey">Mid-Range · Labradorite</div><h4>The Courtship</h4><div class="rc-price">$13,000</div><div class="rc-btn">View Piece →</div></div></a>
+    <a href="the-embrace.html" class="related-card"><div class="rc-body"><div class="rc-ey">Mid-Range · Pair</div><h4>The Embrace</h4><div class="rc-price">$17,000</div><div class="rc-btn">View Piece →</div></div></a>
   </div>
 </div>
-
-<div class="section reveal">
-  <div class="gold-line"></div>
-  <div style="display:flex;justify-content:space-between;align-items:flex-end;margin:40px 0 28px;flex-wrap:wrap;gap:12px;">
-    <div>
-      <div class="label" style="margin-bottom:8px;">Recently Placed</div>
-      <h3 style="font-family:var(--f-display);font-size:26px;color:var(--cream);font-weight:400;">Works that found <em style="color:var(--gold);font-style:italic;">their home</em></h3>
-    </div>
-    <span style="font-family:var(--f-sans);font-size:10px;color:var(--cream-faint);letter-spacing:0.1em;">These pieces are no longer available</span>
-  </div>
-  <div class="sold-grid">
-    <div class="sold-card stagger">
-      <div class="sold-card__badge"><span class="badge badge--red">Placed</span></div>
-      <div class="sold-card__name">The Heron</div>
-      <div class="sold-card__stone">Clear Quartz</div>
-      <div class="sold-card__divider"></div>
-      <div class="sold-card__meta"><span>Palm Beach</span><span>Feb 2026</span></div>
-      <div class="sold-card__buyer">Private Collection</div>
-    </div>
-    <div class="sold-card stagger">
-      <div class="sold-card__badge"><span class="badge badge--red">Placed</span></div>
-      <div class="sold-card__name">Crystal Tower IV</div>
-      <div class="sold-card__stone">Citrine</div>
-      <div class="sold-card__divider"></div>
-      <div class="sold-card__meta"><span>Boca Raton</span><span>Jan 2026</span></div>
-      <div class="sold-card__buyer">Estate Placement</div>
-    </div>
-    <div class="sold-card stagger">
-      <div class="sold-card__badge"><span class="badge badge--red">Placed</span></div>
-      <div class="sold-card__name">Geode Altar</div>
-      <div class="sold-card__stone">Amethyst</div>
-      <div class="sold-card__divider"></div>
-      <div class="sold-card__meta"><span>Coral Gables</span><span>Dec 2025</span></div>
-      <div class="sold-card__buyer">Private Collection</div>
-    </div>
-  </div>
-</div>
-
-<div class="section reveal">
-  <div class="label" style="margin-bottom:8px;">Continue Exploring</div>
-  <h3 style="font-family:var(--f-display);font-size:26px;color:var(--cream);font-weight:400;margin-bottom:28px;">Works of similar <em style="color:var(--gold);font-style:italic;">magnitude</em></h3>
-  <div class="similar-grid">
-    <a href="the-radiance.html" class="similar-card stagger">
-      <div class="similar-card__image"><img src="../Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 11.png" alt="The Radiance" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
-      <div class="similar-card__info">
-        <div class="similar-card__name">The Radiance</div>
-        <div class="similar-card__stone">View piece</div>
-      </div>
-    </a>
-    <a href="the-grace.html" class="similar-card stagger">
-      <div class="similar-card__image"><img src="../IMG_7035.JPG" alt="The Grace" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
-      <div class="similar-card__info">
-        <div class="similar-card__name">The Grace</div>
-        <div class="similar-card__stone">View piece</div>
-      </div>
-    </a>
-    <a href="the-orbit.html" class="similar-card stagger">
-      <div class="similar-card__image"><img src="../IMG_6963.JPG" alt="The Orbit" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
-      <div class="similar-card__info">
-        <div class="similar-card__name">The Orbit</div>
-        <div class="similar-card__stone">View piece</div>
-      </div>
-    </a>
-  </div>
-</div>
-
-<div class="section footer-cta reveal">
-  <div class="gold-line"></div>
-  <p class="footer-cta__quote">"PHAÖRA receives collectors by appointment. There is no storefront. There is no rush. There is only the work — and the right home for it."</p>
-  <div class="footer-cta__buttons">
-    <a href="tel:+19548719991" class="btn-outline">Call (954) 871-9991</a>
-    <a href="sms:+19548719991" class="btn-primary" style="display:inline-block;text-decoration:none;">Text David Directly</a>
-  </div>
-  <div class="footer-cta__colophon">PHAÖRA · BOCA RATON · BY APPOINTMENT · A STYLEARTSTONECRAFT COMPANY</div>
-</div>
-
-<script>
-const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add('visible');});},{threshold:0.15,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-
-// Photo switcher
-(function(){
-  const total=1;let cur=0;let timer;
-  const stage=document.getElementById('psStage');
-  const strip=document.getElementById('psFilmstrip');
-  const dotsEl=document.getElementById('psDots');
-  const bar=document.getElementById('psBar');
-  const curEl=document.getElementById('psCurrent');
-  const btnP=document.getElementById('psArrowPrev');
-  const btnN=document.getElementById('psArrowNext');
-  const slides=stage.querySelectorAll('.ps-slide');
-  const thumbs=strip.querySelectorAll('.ps-thumb');
-  const dots=dotsEl.querySelectorAll('.ps-dot');
-  function goTo(n){slides[cur].classList.remove('active');thumbs[cur]?.classList.remove('active');dots[cur]?.classList.remove('active');cur=(n+total)%total;slides[cur].classList.add('active');thumbs[cur]?.classList.add('active');dots[cur]?.classList.add('active');thumbs[cur]?.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});curEl.textContent=cur+1;bar.style.width=((cur+1)/total*100)+'%';}
-  btnP.addEventListener('click',()=>{goTo(cur-1);resetTimer();});
-  btnN.addEventListener('click',()=>{goTo(cur+1);resetTimer();});
-  thumbs.forEach(t=>t.addEventListener('click',()=>{goTo(+t.dataset.index);resetTimer();}));
-  dots.forEach(d=>d.addEventListener('click',()=>{goTo(+d.dataset.index);resetTimer();}));
-  document.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'){goTo(cur-1);resetTimer();}if(e.key==='ArrowRight'){goTo(cur+1);resetTimer();}});
-  let tx=null;
-  stage.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;},{passive:true});
-  stage.addEventListener('touchend',e=>{if(tx===null)return;const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>50){goTo(dx<0?cur+1:cur-1);resetTimer();}tx=null;});
-  function resetTimer(){clearInterval(timer);timer=setInterval(()=>goTo(cur+1),5500);}
-  resetTimer();
-})();
-
-function toggleSave(){
-  const btn=document.getElementById('saveBtn');
-  btn.classList.toggle('saved');
-  btn.textContent=btn.classList.contains('saved')?'♡ SAVED':'♡ SAVE';
-  if(btn.classList.contains('saved')){
-    fetch('https://formspree.io/f/mlgokvnj',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({_subject:'♡ Someone saved The Devotion (SKU-0029)',piece:'The Devotion',sku:'SKU-0029',price:'$14,500',action:'piece_saved',timestamp:new Date().toISOString()})}).catch(()=>{});
-  }
-}
-
-const roomLabels=['Grand Entryway','Living Space','Private Study'];
-function selectRoom(btn,index){
-  document.querySelectorAll('.room-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('previewLabel').textContent=roomLabels[index]+' Visualization';
-}
-
-function selectIntent(btn){
-  const intent=btn.textContent;
-  document.getElementById('selectedIntent').textContent='"'+intent+'"';
-  document.getElementById('fieldIntent').value=intent;
-  document.getElementById('intentStep').style.display='none';
-  document.getElementById('inquiryForm').classList.add('visible');
-}
-
-function resetIntent(){
-  document.getElementById('intentStep').style.display='block';
-  document.getElementById('inquiryForm').classList.remove('visible');
-}
-
-async function submitInquiry(){
-  const btn=document.getElementById('submitBtn');
-  const name=document.getElementById('fieldName').value.trim();
-  const email=document.getElementById('fieldEmail').value.trim();
-  if(!name||!email){btn.textContent='PLEASE FILL IN NAME & EMAIL';btn.style.background='var(--red)';setTimeout(()=>{btn.textContent='Begin the Dialogue';btn.style.background='var(--gold)';},2000);return;}
-  btn.textContent='SENDING...';btn.style.opacity='0.7';btn.disabled=true;
-  const data={name,email,phone:document.getElementById('fieldPhone').value.trim(),message:document.getElementById('fieldMessage').value.trim(),piece:'The Devotion',sku:'SKU-0029',price:'$14,500',intent:document.getElementById('fieldIntent').value,_subject:'🔔 PHAÖRA Inquiry — The Devotion ($14,500)'};
-  try{
-    const response=await fetch('https://formspree.io/f/mlgokvnj',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)});
-    if(response.ok){document.getElementById('inquiryForm').classList.remove('visible');document.getElementById('inquiryConfirm').classList.add('visible');}
-    else{btn.textContent='SOMETHING WENT WRONG — TRY AGAIN';btn.style.background='var(--red)';btn.style.opacity='1';btn.disabled=false;setTimeout(()=>{btn.textContent='Begin the Dialogue';btn.style.background='var(--gold)';},3000);}
-  }catch(err){btn.textContent='CONNECTION ERROR — CALL OR TEXT DAVID';btn.style.background='var(--red)';btn.style.opacity='1';btn.disabled=false;setTimeout(()=>{btn.textContent='Begin the Dialogue';btn.style.background='var(--gold)';},4000);}
-}
-
-document.querySelectorAll('.hero__thumb').forEach(thumb=>{
-  thumb.addEventListener('click',function(){document.querySelectorAll('.hero__thumb').forEach(t=>t.classList.remove('active'));this.classList.add('active');});
-});
-</script>
-</body>
-</html>
+<div class="final-cta"><div class="final-cta-inner">
+  <h2>Ready to acquire <em>The Devotion?</em></h2>
+  <p>David responds personally to every inquiry. No sales calls, no pressure.</p>
+  <div class="final-btns"><a href="mailto:david@phaora.com?subject=Inquiry — The Devotion ($15,000)" class="btn-gold">Begin the Conversation ✦</a><a href="tel:+19548719991" class="btn-outline">Call David Directly</a></div>
+</div></div>
+<footer><div class="footer-logo">PHAÖRA</div><div class="footer-center">Boca Raton · By Appointment · Brazilian Crystal Sculpture</div><div class="footer-right"><a href="mailto:david@phaora.com">david@phaora.com</a></div></footer>
+<script>document.querySelectorAll('.thumb').forEach(t=>{t.addEventListener('click',()=>{document.querySelectorAll('.thumb').forEach(x=>x.classList.remove('on'));t.classList.add('on');});});let v=2;setInterval(()=>{v=Math.max(1,v+(Math.random()>.5?1:-1));const el=document.getElementById('nav-viewers');if(el)el.textContent=v+' people viewing';},8000);</script>
+</body></html>
