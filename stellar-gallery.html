@@ -30,11 +30,22 @@ html,body{height:100%;width:100%;overflow:hidden;background:#000;font-family:var
 .overlay .intro h1 em{font-style:italic;color:var(--gold)}
 .overlay .intro p{font-size:.72rem;color:var(--cream2);letter-spacing:.05em;line-height:1.6;font-weight:200}
 
-.hint{position:fixed;bottom:18px;left:0;right:0;z-index:20;text-align:center;pointer-events:none;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-dim)}
+.hint{position:fixed;bottom:78px;left:0;right:0;z-index:20;text-align:center;pointer-events:none;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-dim)}
 .hint span{color:var(--gold)}
 
-.back-link{position:fixed;bottom:18px;right:20px;z-index:20;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cream2);text-decoration:none;padding:10px 16px;border:1px solid rgba(201,165,92,.25);background:rgba(10,9,7,.55);backdrop-filter:blur(8px);transition:all .3s var(--ease)}
+.back-link{position:fixed;bottom:78px;right:20px;z-index:20;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cream2);text-decoration:none;padding:10px 16px;border:1px solid rgba(201,165,92,.25);background:rgba(10,9,7,.55);backdrop-filter:blur(8px);transition:all .3s var(--ease)}
 .back-link:hover{color:var(--bg);background:var(--gold);border-color:var(--gold)}
+
+.nav-bar{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:25;display:flex;align-items:center;gap:4px;padding:6px;background:rgba(10,9,7,.78);border:1px solid rgba(201,165,92,.25);border-radius:999px;backdrop-filter:blur(12px);box-shadow:0 10px 40px rgba(0,0,0,.55);max-width:calc(100vw - 24px)}
+.nav-bar button{background:transparent;border:none;color:var(--cream);cursor:pointer;border-radius:999px;transition:color .25s,background .25s;display:inline-flex;align-items:center;justify-content:center;font-family:var(--serif)}
+.nav-bar .arrow{font-size:1.6rem;line-height:1;width:40px;height:40px;font-weight:300}
+.nav-bar .arrow:hover,.nav-bar .view:hover{color:var(--bg);background:var(--gold)}
+.nav-bar .view{width:40px;height:40px}
+.nav-bar .view svg{width:18px;height:18px}
+.nav-counter{min-width:150px;max-width:230px;text-align:center;padding:2px 10px;color:var(--cream);pointer-events:none;user-select:none}
+.nav-counter .count{font-family:var(--serif);font-size:.92rem;letter-spacing:.06em;line-height:1}
+.nav-counter .count .sep{opacity:.4;margin:0 3px}
+.nav-counter .title{font-family:var(--sans);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
 /* 3D card (rendered inside CSS3DObject) */
 .star-card{width:220px;height:300px;border-radius:6px;overflow:hidden;background:var(--surface);padding:10px;user-select:none;cursor:pointer;box-shadow:0 15px 30px rgba(0,0,0,.6);border:1px solid rgba(201,165,92,.15);transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease)}
@@ -69,7 +80,10 @@ html,body{height:100%;width:100%;overflow:hidden;background:#000;font-family:var
   .overlay{flex-direction:column;gap:10px;padding:14px 16px}
   .overlay .intro{text-align:left;max-width:none}
   .overlay .intro h1{font-size:1.25rem}
-  .hint{font-size:.55rem}
+  .hint{font-size:.55rem;bottom:86px}
+  .back-link{bottom:86px;font-size:.55rem;padding:8px 12px}
+  .nav-counter{min-width:120px;max-width:150px}
+  .nav-counter .title{font-size:.5rem}
 }
 </style>
 </head>
@@ -88,8 +102,20 @@ html,body{height:100%;width:100%;overflow:hidden;background:#000;font-family:var
   </div>
 </div>
 
-<div class="hint">Drag to orbit · <span>Scroll</span> to zoom · <span>Click</span> a piece to view</div>
+<div class="hint">Drag to orbit · <span>Scroll</span> to zoom · Use <span>arrows</span> to fly to a piece</div>
 <a class="back-link" href="gallery.html">← Classic Gallery</a>
+
+<nav class="nav-bar" aria-label="Piece navigation">
+  <button class="arrow" id="prevBtn" aria-label="Previous piece">‹</button>
+  <div class="nav-counter">
+    <div class="count"><span id="navIndex">01</span><span class="sep">/</span><span id="navTotal">20</span></div>
+    <div class="title" id="navTitle">—</div>
+  </div>
+  <button class="arrow" id="nextBtn" aria-label="Next piece">›</button>
+  <button class="view" id="viewBtn" aria-label="View details for this piece">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
+  </button>
+</nav>
 
 <div class="modal-backdrop" id="modal">
   <div class="modal">
@@ -266,6 +292,8 @@ PIECES.forEach((piece, i) => {
     </div>`;
   el.addEventListener('click', (e) => {
     e.stopPropagation();
+    currentIndex = i;
+    updateNavUI();
     openModal(piece);
   });
 
@@ -332,9 +360,64 @@ modalInner.addEventListener('mouseleave', () => {
 });
 
 /* =========================
+   Prev/Next navigation with fly-to camera
+   ========================= */
+const prevBtn  = document.getElementById('prevBtn');
+const nextBtn  = document.getElementById('nextBtn');
+const viewBtn  = document.getElementById('viewBtn');
+const navIndex = document.getElementById('navIndex');
+const navTotal = document.getElementById('navTotal');
+const navTitle = document.getElementById('navTitle');
+navTotal.textContent = String(N).padStart(2,'0');
+
+let currentIndex = 0;
+let tweenToken = null;
+const easeInOutCubic = t => t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3)/2;
+
+function updateNavUI(){
+  navIndex.textContent = String(currentIndex + 1).padStart(2,'0');
+  navTitle.textContent = PIECES[currentIndex].title;
+}
+
+function flyTo(i, duration = 1100){
+  currentIndex = ((i % N) + N) % N;
+  updateNavUI();
+  const P = cardObjects[currentIndex].position.clone();
+  const len = P.length();
+  const offset = 14; // stand-off distance from the piece
+  const endPos = P.clone().multiplyScalar(Math.max(0.05, (len - offset) / len));
+  const endTarget = P.clone();
+  const startPos = camera.position.clone();
+  const startTarget = controls.target.clone();
+  const startTime = performance.now();
+  controls.enabled = false;
+  const token = Symbol('fly');
+  tweenToken = token;
+  (function step(){
+    if (tweenToken !== token) return;
+    const t = Math.min(1, (performance.now() - startTime) / duration);
+    const e = easeInOutCubic(t);
+    camera.position.lerpVectors(startPos, endPos, e);
+    controls.target.lerpVectors(startTarget, endTarget, e);
+    if (t < 1) requestAnimationFrame(step);
+    else { controls.enabled = true; controls.update(); tweenToken = null; }
+  })();
+}
+
+prevBtn.addEventListener('click', () => flyTo(currentIndex - 1));
+nextBtn.addEventListener('click', () => flyTo(currentIndex + 1));
+viewBtn.addEventListener('click', () => openModal(PIECES[currentIndex]));
+document.addEventListener('keydown', (e) => {
+  if (modal.classList.contains('open')) return;
+  if (e.key === 'ArrowRight')      { e.preventDefault(); flyTo(currentIndex + 1); }
+  else if (e.key === 'ArrowLeft')  { e.preventDefault(); flyTo(currentIndex - 1); }
+  else if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(PIECES[currentIndex]); }
+});
+updateNavUI();
+
+/* =========================
    Animate
    ========================= */
-const tmp = new THREE.Vector3();
 function animate(){
   requestAnimationFrame(animate);
   controls.update();

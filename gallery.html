@@ -80,8 +80,8 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
 .floating-cta a{display:flex;align-items:center;gap:10px;background:var(--gold);color:var(--bg);padding:14px 24px;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;text-decoration:none;box-shadow:0 8px 30px rgba(201,165,92,.3);transition:all .3s var(--ease)}
 .floating-cta a:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(201,165,92,.4)}
 .floating-cta .pulse{width:8px;height:8px;border-radius:50%;background:#5ca55c;animation:pulse 2s ease infinite}
-.stellar-fab{display:none;position:fixed;bottom:24px;left:24px;z-index:999;align-items:center;gap:6px;padding:12px 18px;font-family:var(--sans);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:var(--bg);background:var(--gold);text-decoration:none;box-shadow:0 8px 30px rgba(201,165,92,.3);transition:all .3s var(--ease)}
-.stellar-fab:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 12px 40px rgba(201,165,92,.4)}
+.stellar-fab{display:none;position:fixed;bottom:24px;left:24px;z-index:999;align-items:center;gap:6px;padding:12px 18px;font-family:var(--sans);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:var(--bg);background:var(--gold);text-decoration:none;box-shadow:0 8px 30px rgba(201,165,92,.3);transition:background .3s var(--ease)}
+.stellar-fab:hover{background:var(--gold-light)}
 
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 
@@ -89,7 +89,7 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
   .nav-links{display:none}
   .grid{columns:2}
   .hero-stats{gap:24px}
-  .stellar-fab{display:inline-flex}
+  .stellar-fab.visible{display:inline-flex}
 }
 @media(max-width:600px){
   .grid{columns:1}
@@ -394,7 +394,7 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
 </footer>
 
 <div class="floating-cta"><a href="index.html#contact"><span class="pulse"></span>Inquire</a></div>
-<a href="stellar-gallery.html" class="stellar-fab" aria-label="Open Stellar 3D Gallery">✦ Stellar View</a>
+<a href="stellar-gallery.html" class="stellar-fab visible" aria-label="Open Stellar 3D Gallery">✦ Stellar View</a>
 
 <script>
 // Filters
