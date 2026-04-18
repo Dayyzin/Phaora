@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PHAÖRA — The Stellar Collection · Immersive 3D Gallery</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0907;--surface:#1a1714;
+  --gold:#c9a55c;--gold-light:#e2c98a;--gold-dim:#8a7340;
+  --cream:#f0e8d8;--cream2:#d4c9b2;--text:#e8e0d0;--text-dim:#9a9080;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Outfit',system-ui,sans-serif;
+  --ease:cubic-bezier(0.22,1,0.36,1);
+}
+html,body{height:100%;width:100%;overflow:hidden;background:#000;font-family:var(--sans);color:var(--text);-webkit-font-smoothing:antialiased}
+
+#starfield,#webgl,#css3d{position:fixed;inset:0}
+#starfield{z-index:0;background:#000}
+#webgl{z-index:1;pointer-events:none}
+#css3d{z-index:2}
+
+.overlay{position:fixed;top:0;left:0;right:0;z-index:20;padding:20px 28px;pointer-events:none;display:flex;align-items:flex-start;justify-content:space-between;gap:24px}
+.overlay .brand{font-family:var(--serif);font-size:1.3rem;font-weight:300;letter-spacing:.18em;color:var(--cream);text-decoration:none;pointer-events:auto}
+.overlay .intro{max-width:420px;text-align:right}
+.overlay .intro .eyebrow{font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;font-weight:400}
+.overlay .intro h1{font-family:var(--serif);font-size:1.6rem;font-weight:300;color:var(--cream);line-height:1.15;margin-bottom:6px}
+.overlay .intro h1 em{font-style:italic;color:var(--gold)}
+.overlay .intro p{font-size:.72rem;color:var(--cream2);letter-spacing:.05em;line-height:1.6;font-weight:200}
+
+.hint{position:fixed;bottom:78px;left:0;right:0;z-index:20;text-align:center;pointer-events:none;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-dim)}
+.hint span{color:var(--gold)}
+
+.back-link{position:fixed;bottom:78px;right:20px;z-index:20;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cream2);text-decoration:none;padding:10px 16px;border:1px solid rgba(201,165,92,.25);background:rgba(10,9,7,.55);backdrop-filter:blur(8px);transition:all .3s var(--ease)}
+.back-link:hover{color:var(--bg);background:var(--gold);border-color:var(--gold)}
+
+.nav-bar{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:25;display:flex;align-items:center;gap:4px;padding:6px;background:rgba(10,9,7,.78);border:1px solid rgba(201,165,92,.25);border-radius:999px;backdrop-filter:blur(12px);box-shadow:0 10px 40px rgba(0,0,0,.55);max-width:calc(100vw - 24px)}
+.nav-bar button{background:transparent;border:none;color:var(--cream);cursor:pointer;border-radius:999px;transition:color .25s,background .25s;display:inline-flex;align-items:center;justify-content:center;font-family:var(--serif)}
+.nav-bar .arrow{font-size:1.6rem;line-height:1;width:40px;height:40px;font-weight:300}
+.nav-bar .arrow:hover,.nav-bar .view:hover{color:var(--bg);background:var(--gold)}
+.nav-bar .view{width:40px;height:40px}
+.nav-bar .view svg{width:18px;height:18px}
+.nav-counter{min-width:150px;max-width:230px;text-align:center;padding:2px 10px;color:var(--cream);pointer-events:none;user-select:none}
+.nav-counter .count{font-family:var(--serif);font-size:.92rem;letter-spacing:.06em;line-height:1}
+.nav-counter .count .sep{opacity:.4;margin:0 3px}
+.nav-counter .title{font-family:var(--sans);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* 3D card (rendered inside CSS3DObject) */
+.star-card{width:220px;height:300px;border-radius:6px;overflow:hidden;background:var(--surface);padding:10px;user-select:none;cursor:pointer;box-shadow:0 15px 30px rgba(0,0,0,.6);border:1px solid rgba(201,165,92,.15);transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease)}
+.star-card:hover{transform:scale(1.12);box-shadow:0 25px 55px rgba(201,165,92,.35),0 0 30px rgba(201,165,92,.2);border-color:rgba(201,165,92,.55)}
+.star-card .thumb{width:100%;height:220px;border-radius:4px;background:#000 center/cover no-repeat}
+.star-card .meta{margin-top:10px;text-align:center}
+.star-card .title{font-family:var(--serif);color:var(--cream);font-size:1rem;font-weight:400;letter-spacing:.02em;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.star-card .tier{font-size:.52rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-dim)}
+
+/* Modal */
+.modal-backdrop{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.8);backdrop-filter:blur(8px);padding:20px}
+.modal-backdrop.open{display:flex}
+.modal{position:relative;max-width:460px;width:100%}
+.modal .close{position:absolute;top:-44px;right:0;background:transparent;border:none;color:var(--cream);cursor:pointer;padding:6px;transition:color .3s}
+.modal .close:hover{color:var(--gold)}
+.modal .close svg{width:28px;height:28px}
+.modal-card{perspective:1000px;width:100%}
+.modal-inner{position:relative;background:var(--surface);border:1px solid rgba(201,165,92,.18);border-radius:16px;padding:18px;transform-style:preserve-3d;transition:transform .5s var(--ease);box-shadow:rgba(0,0,0,.26) 0 83px 83px 0,rgba(0,0,0,.29) 0 21px 46px 0}
+.modal-inner .hero{position:relative;width:100%;aspect-ratio:3/4;border-radius:12px;overflow:hidden;background:#000;margin-bottom:16px}
+.modal-inner .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.modal-inner h3{font-family:var(--serif);color:var(--cream);font-size:1.4rem;font-weight:400;text-align:center;margin-bottom:4px}
+.modal-inner .sub{text-align:center;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.modal-actions{display:flex;gap:8px}
+.modal-actions .btn{flex:1;height:42px;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--gold);color:var(--bg);border:none;border-radius:8px;font-family:var(--sans);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;cursor:pointer;text-decoration:none;transition:background .25s var(--ease),transform .2s var(--ease),opacity .25s}
+.modal-actions .btn:hover{background:var(--gold-light)}
+.modal-actions .btn:active{transform:scale(.97)}
+.modal-actions .fav{flex:0 0 42px;width:42px;padding:0}
+.modal-actions .fav.on{background:var(--gold-light)}
+.modal-actions svg{width:16px;height:16px}
+
+@media(max-width:700px){
+  .overlay{flex-direction:column;gap:10px;padding:14px 16px}
+  .overlay .intro{text-align:left;max-width:none}
+  .overlay .intro h1{font-size:1.25rem}
+  .hint{font-size:.55rem;bottom:86px}
+  .back-link{bottom:86px;font-size:.55rem;padding:8px 12px}
+  .nav-counter{min-width:120px;max-width:150px}
+  .nav-counter .title{font-size:.5rem}
+}
+</style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+<div id="webgl"></div>
+<div id="css3d"></div>
+
+<div class="overlay">
+  <a href="index.html" class="brand">PHAÖRA</a>
+  <div class="intro">
+    <div class="eyebrow">✦ The Stellar Collection</div>
+    <h1>A <em>Constellation</em> of Singular Works</h1>
+    <p>Each piece suspended in its own orbit — one of one, never to exist again.</p>
+  </div>
+</div>
+
+<div class="hint">Drag to orbit · <span>Scroll</span> to zoom · Use <span>arrows</span> to fly to a piece</div>
+<a class="back-link" href="gallery.html">← Classic Gallery</a>
+
+<nav class="nav-bar" aria-label="Piece navigation">
+  <button class="arrow" id="prevBtn" aria-label="Previous piece">‹</button>
+  <div class="nav-counter">
+    <div class="count"><span id="navIndex">01</span><span class="sep">/</span><span id="navTotal">20</span></div>
+    <div class="title" id="navTitle">—</div>
+  </div>
+  <button class="arrow" id="nextBtn" aria-label="Next piece">›</button>
+  <button class="view" id="viewBtn" aria-label="View details for this piece">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
+  </button>
+</nav>
+
+<div class="modal-backdrop" id="modal">
+  <div class="modal">
+    <button class="close" id="modalClose" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="modal-card">
+      <div class="modal-inner" id="modalInner">
+        <div class="hero"><img id="modalImg" alt=""></div>
+        <h3 id="modalTitle">—</h3>
+        <div class="sub" id="modalSub">—</div>
+        <div class="modal-actions">
+          <a class="btn" id="modalView" href="#">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
+            <span>View Piece</span>
+          </a>
+          <button class="btn fav" id="modalFav" aria-label="Favorite">
+            <svg id="modalFavIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { CSS3DRenderer, CSS3DObject } from 'three/addons/renderers/CSS3DRenderer.js';
+
+/* =========================
+   Piece data (drawn from the classic gallery)
+   ========================= */
+const PIECES = [
+  { title:'The Canopy',     tier:'Statement · $68,000', img:'Untitled design - 2.PNG',                                                   href:'pieces/the-canopy.html' },
+  { title:'The Aerie',      tier:'Statement · $48,000', img:'Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 20.png',     href:'pieces/the-aerie.html' },
+  { title:'The Eden',       tier:'Signature · $28,000', img:'Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 12.png',     href:'pieces/the-eden.html' },
+  { title:'The Dynasty',    tier:'Statement · $52,000', img:'Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 13.png',     href:'pieces/the-dynasty.html' },
+  { title:'The Parliament', tier:'Statement · $38,000', img:'Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 21.png',     href:'pieces/the-parliament.html' },
+  { title:'The Scarlets',   tier:'Statement · $42,000', img:'img/IMG_6974.JPG',                                                         href:'pieces/the-scarlets.html' },
+  { title:'The Portal',     tier:'Statement · $35,000', img:'Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 19.png',     href:'pieces/the-portal.html' },
+  { title:'The Sovereign',  tier:'Statement · $32,000', img:'IMG_7047.JPG',                                                             href:'pieces/the-sovereign.html' },
+  { title:'The Ascent',     tier:'Statement · $32,000', img:'Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 33.png',     href:'pieces/the-ascent.html' },
+  { title:'The Cathedral',  tier:'Signature · $26,000', img:'Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 35.png',     href:'pieces/the-cathedral.html' },
+  { title:'The Monolith',   tier:'Statement · $45,000', img:'Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 31.png',     href:'pieces/the-monolith.html' },
+  { title:'The Raptor',     tier:'Statement · $36,000', img:'IMG_6964.JPG',                                                             href:'pieces/the-raptor.html' },
+  { title:'The Hyacinths',  tier:'Signature · $22,000', img:'img/IMG_7038.JPG',                                                         href:'pieces/the-hyacinths.html' },
+  { title:'The Indigos',    tier:'Signature · $24,000', img:'img/IMG_6967.JPG',                                                         href:'pieces/the-indigos.html' },
+  { title:'The Sentinels',  tier:'Signature · $22,000', img:'Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 22.png',     href:'pieces/the-sentinels.html' },
+  { title:'The Crimson Duo',tier:'Signature · $24,000', img:'img/IMG_6961.JPG',                                                         href:'pieces/the-crimson-duo.html' },
+  { title:'The Grotto',     tier:'Signature · $24,000', img:'img/IMG_6975.JPG',                                                         href:'pieces/the-grotto.html' },
+  { title:'The Companions', tier:'Signature · $22,000', img:'Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 17.png',     href:'pieces/the-companions.html' },
+  { title:'The Courtship',  tier:'Signature · $22,000', img:'Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 36.png',     href:'pieces/the-courtship.html' },
+  { title:'The Vessel',     tier:'Statement · $35,000', img:'Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 14.png',     href:'pieces/the-vessel.html' },
+];
+
+/* =========================
+   Starfield background (2D canvas for perf)
+   ========================= */
+(function starfield(){
+  const c = document.getElementById('starfield');
+  const ctx = c.getContext('2d');
+  let w, h, stars;
+  const STAR_COUNT = 340;
+
+  function resize(){
+    w = c.width = window.innerWidth * devicePixelRatio;
+    h = c.height = window.innerHeight * devicePixelRatio;
+    c.style.width = window.innerWidth + 'px';
+    c.style.height = window.innerHeight + 'px';
+    stars = Array.from({length:STAR_COUNT}, () => ({
+      x: Math.random()*w,
+      y: Math.random()*h,
+      r: Math.random()*1.6*devicePixelRatio + .3,
+      a: Math.random()*.8 + .2,
+      s: Math.random()*.015 + .005,
+      p: Math.random()*Math.PI*2,
+    }));
+  }
+  function frame(t){
+    ctx.clearRect(0,0,w,h);
+    for(const s of stars){
+      const tw = .55 + .45*Math.sin(t*s.s + s.p);
+      ctx.globalAlpha = s.a * tw;
+      ctx.fillStyle = '#fff';
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+      ctx.fill();
+    }
+    requestAnimationFrame(frame);
+  }
+  window.addEventListener('resize', resize);
+  resize();
+  requestAnimationFrame(frame);
+})();
+
+/* =========================
+   Three.js scene
+   ========================= */
+const webglHost = document.getElementById('webgl');
+const css3dHost = document.getElementById('css3d');
+
+const scene = new THREE.Scene();
+const cssScene = new THREE.Scene();
+
+const camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 2000);
+camera.position.set(0, 0, 3);
+
+const renderer = new THREE.WebGLRenderer({ antialias:true, alpha:true });
+renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setClearColor(0x000000, 0);
+webglHost.appendChild(renderer.domElement);
+
+const cssRenderer = new CSS3DRenderer();
+cssRenderer.setSize(window.innerWidth, window.innerHeight);
+cssRenderer.domElement.style.position = 'absolute';
+cssRenderer.domElement.style.top = '0';
+cssRenderer.domElement.style.left = '0';
+css3dHost.appendChild(cssRenderer.domElement);
+
+const controls = new OrbitControls(camera, cssRenderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.08;
+controls.minDistance = 1;
+controls.maxDistance = 120;
+controls.rotateSpeed = 0.5;
+controls.zoomSpeed = 1.1;
+controls.panSpeed = 0.6;
+controls.target.set(0,0,0);
+
+scene.add(new THREE.AmbientLight(0xffffff, 0.4));
+const key = new THREE.PointLight(0xc9a55c, 0.6);
+key.position.set(20, 20, 20);
+scene.add(key);
+const fill = new THREE.PointLight(0x6a84a0, 0.3);
+fill.position.set(-20, -20, -20);
+scene.add(fill);
+
+/* Wireframe guide spheres — subtle echo of the original galaxy */
+const guideColors = [0x1a1a2e, 0xc9a55c, 0xc9a55c, 0xc9a55c];
+const guideRadii  = [6, 32, 42, 52];
+const guideOpac   = [0.14, 0.05, 0.035, 0.02];
+guideRadii.forEach((r,i) => {
+  const geo = new THREE.SphereGeometry(r, 24, 24);
+  const mat = new THREE.MeshBasicMaterial({ color:guideColors[i], wireframe:true, transparent:true, opacity:guideOpac[i] });
+  scene.add(new THREE.Mesh(geo, mat));
+});
+
+/* =========================
+   Floating cards (Fibonacci sphere)
+   ========================= */
+const cardObjects = [];
+const goldenAngle = Math.PI * (3 - Math.sqrt(5));
+const N = PIECES.length;
+
+PIECES.forEach((piece, i) => {
+  const el = document.createElement('div');
+  el.className = 'star-card';
+  el.innerHTML = `
+    <div class="thumb" style="background-image:url('${encodeURI(piece.img).replace(/'/g, "%27")}')"></div>
+    <div class="meta">
+      <div class="title">${piece.title}</div>
+      <div class="tier">${piece.tier}</div>
+    </div>`;
+  el.addEventListener('click', (e) => {
+    e.stopPropagation();
+    currentIndex = i;
+    updateNavUI();
+    openModal(piece);
+  });
+
+  const obj = new CSS3DObject(el);
+  obj.scale.set(0.04, 0.04, 0.04); // shrink DOM card into world units
+
+  // Fibonacci sphere distribution with widely-spaced layered radii
+  const y = 1 - (i / Math.max(N-1, 1)) * 2;
+  const r = Math.sqrt(Math.max(0, 1 - y*y));
+  const theta = goldenAngle * i;
+  const x = Math.cos(theta) * r;
+  const z = Math.sin(theta) * r;
+  const layer = 32 + (i % 3) * 8;
+
+  obj.position.set(x * layer, y * layer, z * layer);
+  cssScene.add(obj);
+  cardObjects.push(obj);
+});
+
+/* =========================
+   Modal wiring
+   ========================= */
+const modal     = document.getElementById('modal');
+const modalImg  = document.getElementById('modalImg');
+const modalTitle= document.getElementById('modalTitle');
+const modalSub  = document.getElementById('modalSub');
+const modalView = document.getElementById('modalView');
+const modalFav  = document.getElementById('modalFav');
+const modalFavIcon = document.getElementById('modalFavIcon');
+const modalInner= document.getElementById('modalInner');
+const modalClose= document.getElementById('modalClose');
+
+function openModal(piece){
+  modalImg.src = piece.img;
+  modalImg.alt = piece.title;
+  modalTitle.textContent = piece.title;
+  modalSub.textContent = piece.tier;
+  modalView.href = piece.href;
+  modalFav.classList.remove('on');
+  modalFavIcon.setAttribute('fill', 'none');
+  modal.classList.add('open');
+}
+function closeModal(){ modal.classList.remove('open'); }
+
+modalClose.addEventListener('click', closeModal);
+modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+modalFav.addEventListener('click', () => {
+  const on = modalFav.classList.toggle('on');
+  modalFavIcon.setAttribute('fill', on ? 'currentColor' : 'none');
+});
+
+modalInner.addEventListener('mousemove', (e) => {
+  const r = modalInner.getBoundingClientRect();
+  const rx = (e.clientY - r.top - r.height/2) / 15;
+  const ry = (r.width/2 - (e.clientX - r.left)) / 15;
+  modalInner.style.transition = 'none';
+  modalInner.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+});
+modalInner.addEventListener('mouseleave', () => {
+  modalInner.style.transition = 'transform .5s ease-out';
+  modalInner.style.transform = 'rotateX(0) rotateY(0)';
+});
+
+/* =========================
+   Prev/Next navigation with fly-to camera
+   ========================= */
+const prevBtn  = document.getElementById('prevBtn');
+const nextBtn  = document.getElementById('nextBtn');
+const viewBtn  = document.getElementById('viewBtn');
+const navIndex = document.getElementById('navIndex');
+const navTotal = document.getElementById('navTotal');
+const navTitle = document.getElementById('navTitle');
+navTotal.textContent = String(N).padStart(2,'0');
+
+let currentIndex = 0;
+let tweenToken = null;
+const easeInOutCubic = t => t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3)/2;
+
+function updateNavUI(){
+  navIndex.textContent = String(currentIndex + 1).padStart(2,'0');
+  navTitle.textContent = PIECES[currentIndex].title;
+}
+
+function flyTo(i, duration = 1100){
+  currentIndex = ((i % N) + N) % N;
+  updateNavUI();
+  const P = cardObjects[currentIndex].position.clone();
+  const len = P.length();
+  const offset = 14; // stand-off distance from the piece
+  const endPos = P.clone().multiplyScalar(Math.max(0.05, (len - offset) / len));
+  const endTarget = P.clone();
+  const startPos = camera.position.clone();
+  const startTarget = controls.target.clone();
+  const startTime = performance.now();
+  controls.enabled = false;
+  const token = Symbol('fly');
+  tweenToken = token;
+  (function step(){
+    if (tweenToken !== token) return;
+    const t = Math.min(1, (performance.now() - startTime) / duration);
+    const e = easeInOutCubic(t);
+    camera.position.lerpVectors(startPos, endPos, e);
+    controls.target.lerpVectors(startTarget, endTarget, e);
+    if (t < 1) requestAnimationFrame(step);
+    else { controls.enabled = true; controls.update(); tweenToken = null; }
+  })();
+}
+
+prevBtn.addEventListener('click', () => flyTo(currentIndex - 1));
+nextBtn.addEventListener('click', () => flyTo(currentIndex + 1));
+viewBtn.addEventListener('click', () => openModal(PIECES[currentIndex]));
+document.addEventListener('keydown', (e) => {
+  if (modal.classList.contains('open')) return;
+  if (e.key === 'ArrowRight')      { e.preventDefault(); flyTo(currentIndex + 1); }
+  else if (e.key === 'ArrowLeft')  { e.preventDefault(); flyTo(currentIndex - 1); }
+  else if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(PIECES[currentIndex]); }
+});
+updateNavUI();
+
+/* =========================
+   Animate
+   ========================= */
+function animate(){
+  requestAnimationFrame(animate);
+  controls.update();
+  // Cards always face the camera
+  for (const obj of cardObjects) {
+    obj.lookAt(camera.position);
+  }
+  renderer.render(scene, camera);
+  cssRenderer.render(cssScene, camera);
+}
+animate();
+
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  cssRenderer.setSize(window.innerWidth, window.innerHeight);
+});
+</script>
+</body>
+</html>
