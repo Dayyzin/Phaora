@@ -1,0 +1,14 @@
+{
+  "_schema": "Keys are piece slugs (the-canopy, the-raptor, etc.). Values are arrays of entries. Each entry: {\"date\": \"YYYY-MM-DD\" or \"March 2026\", \"text\": \"one sentence, present- or past-tense, specific\"}. No invented placements. Only real brand activity. Empty array or missing key = block hidden on that piece. Delete this _schema key when the file has real data; it's here only as a reference.",
+
+  "_example_the_canopy_delete_when_ready": [
+    {
+      "date": "March 2026",
+      "text": "The Canopy began final polish — Fabiano selected a second driftwood base as a contingency. The first will ship."
+    },
+    {
+      "date": "February 2026",
+      "text": "Fabiano chose the flock of the Canopy from a single quartz vein."
+    }
+  ]
+}

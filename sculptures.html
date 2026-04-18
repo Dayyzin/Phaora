@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PHAÖRA — The Collection, 2026</title>
+<meta name="description" content="Forty-four crystal sculptures. Hand-mined in Minas Gerais. Shaped by one man, for forty years." />
+
+<link rel="canonical" href="https://phaora.com/sculptures.html" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="PHAÖRA — The Collection, 2026" />
+<meta property="og:description" content="Forty-four crystal sculptures. Hand-mined in Minas Gerais. Shaped by one man, for forty years." />
+<meta property="og:image" content="https://phaora.com/img/IMG_6959.JPG" />
+<meta property="og:url" content="https://phaora.com/sculptures.html" />
+<meta property="og:site_name" content="Phaöra" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="PHAÖRA — The Collection, 2026" />
+<meta name="twitter:description" content="Forty-four crystal sculptures. Hand-mined in Minas Gerais. Shaped by one man, for forty years." />
+<meta name="twitter:image" content="https://phaora.com/img/IMG_6959.JPG" />
+
+<!--
+  PHAÖRA · The Collection · 2026
+  Variant B — Hermès discipline
+  ================================
+
+  FINAL — all stages complete.
+  Stages: 1 Skeleton · 2 Masthead+Plate · 3 Index+Collections+Cards
+          · 4 Full-screen Viewer · 5 Provenance+Correspondence+Polish
+
+  REMOVED from the current phaora.com (and why):
+  1. Star and diamond decorative characters — they read as ornament, not restraint.
+  2. Tier badges (Statement/Signature/Entry) on cards — pricing already communicates position.
+  3. Urgency banners ("7 sold this quarter", "Now booking") — HNW buyers do not convert on scarcity theater.
+
+  DESIGN TOKENS (this stage):
+  - Background: #F7F3EC (cream, never pure white)
+  - Ink: #111110 primary, #6F6B64 secondary
+  - Hairline: rgba(17,17,16,0.09)
+  - Display: Fraunces (opsz 72+, light weights only)
+  - Body: Inter Tight, 14–16px, no smaller than 13px
+  - One accent color: none. The photographs provide all color.
+  - Spacing unit: 8px base. Section rhythm: 160–240px.
+  - Max content width: 1280px. Text columns: 640px.
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400&family=Inter+Tight:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  /* ========================================================
+     TOKENS
+     ======================================================== */
+  :root {
+    /* Color — near-monochrome, no accent */
+    --cream: #F7F3EC;
+    --cream-deep: #EFE9DE;
+    --ink: #111110;
+    --ink-soft: #3A3834;
+    --ink-muted: #6F6B64;
+    --hairline: rgba(17, 17, 16, 0.09);
+    --hairline-strong: rgba(17, 17, 16, 0.18);
+
+    /* Type */
+    --font-display: 'Fraunces', 'GT Super', 'Saol Display', Georgia, serif;
+    --font-body: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+
+    /* Scale — restrained, Hermès register */
+    --fs-xs:   12px;   /* rare, caption only */
+    --fs-sm:   13px;   /* floor */
+    --fs-base: 14px;   /* default UI and product type */
+    --fs-md:   16px;   /* body copy */
+    --fs-lg:   20px;   /* subsection intro */
+    --fs-xl:   28px;   /* collection titles */
+    --fs-2xl:  40px;   /* pull quote, opening title */
+    --fs-3xl:  56px;   /* maximum — only the single pull quote */
+
+    /* Spacing — generous */
+    --s-1:  8px;
+    --s-2:  16px;
+    --s-3:  24px;
+    --s-4:  32px;
+    --s-5:  48px;
+    --s-6:  64px;
+    --s-7:  80px;
+    --s-8:  96px;
+    --s-9:  128px;
+    --s-10: 160px;
+    --s-11: 200px;
+    --s-12: 240px;
+
+    /* Layout */
+    --max-w: 1280px;
+    --max-text: 640px;
+    --gutter: clamp(20px, 4vw, 48px);
+
+    /* Motion — one curve, sparingly used */
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --dur: 220ms;
+    --dur-long: 280ms;
+  }
+
+  /* ========================================================
+     RESET
+     ======================================================== */
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: var(--fs-base);
+    font-weight: 400;
+    line-height: 1.6;
+    font-feature-settings: 'ss01', 'cv11', 'tnum';
+    overflow-x: hidden;
+  }
+  img, picture, video, svg {
+    max-width: 100%;
+    display: block;
+  }
+  button {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+    transition: opacity var(--dur) var(--ease);
+  }
+  ::selection {
+    background: var(--ink);
+    color: var(--cream);
+  }
+
+  /* ========================================================
+     FOCUS — accessible, aesthetic
+     ======================================================== */
+  :focus {
+    outline: none;
+  }
+  :focus-visible {
+    outline: 1px solid var(--ink);
+    outline-offset: 4px;
+  }
+
+  /* ========================================================
+     TYPOGRAPHY PRIMITIVES
+     ======================================================== */
+  .display {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-feature-settings: 'ss01';
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+  }
+  .display-italic {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-style: italic;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+  }
+  .label {
+    font-size: var(--fs-sm);
+    color: var(--ink-muted);
+    line-height: 1.5;
+  }
+  .rule {
+    height: 1px;
+    background: var(--hairline);
+    border: none;
+    width: 100%;
+  }
+
+  /* Link treatment — Hermès register */
+  .lnk {
+    position: relative;
+    display: inline;
+  }
+  .lnk::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -4px;
+    height: 1px;
+    background: currentColor;
+    opacity: 0;
+    transform: scaleX(0.6);
+    transform-origin: left;
+    transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+  }
+  .lnk:hover::after,
+  .lnk:focus-visible::after {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+
+  /* ========================================================
+     LAYOUT PRIMITIVES
+     ======================================================== */
+  .container {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+  .text-column {
+    max-width: var(--max-text);
+  }
+
+  /* ========================================================
+     MASTHEAD — the cover page gesture
+     Thin rule, wordmark, one line. No image. No CTA.
+     ======================================================== */
+  .masthead {
+    padding: var(--s-10) 0 var(--s-10);
+    text-align: center;
+  }
+  .masthead-rule {
+    width: 64px;
+    height: 1px;
+    background: var(--ink);
+    margin: 0 auto var(--s-6);
+    opacity: 0.7;
+  }
+  .masthead-wordmark {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(32px, 4.5vw, 48px);
+    letter-spacing: 0.24em;
+    line-height: 1;
+    margin-bottom: var(--s-5);
+    /* Slight optical correction for all-caps display type */
+    padding-left: 0.24em;
+  }
+  .masthead-line {
+    font-family: var(--font-body);
+    font-size: var(--fs-sm);
+    color: var(--ink-muted);
+    letter-spacing: 0.04em;
+    line-height: 1.6;
+  }
+  .masthead-line .sep {
+    display: inline-block;
+    padding: 0 0.6em;
+    opacity: 0.5;
+  }
+
+  /* ========================================================
+     PLATE — the opening sculpture
+     One full-bleed image. Three lines of type below.
+     No button. "Inquire" is the link.
+     ======================================================== */
+  .plate {
+    padding-bottom: var(--s-11);
+  }
+  .plate-figure {
+    width: 100%;
+    margin: 0 0 var(--s-6);
+  }
+  .plate-image {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    /* Real photograph of The Canopy from the live site.
+       If it fails to load, a warm driftwood-and-quartz gradient
+       stands in — driven by the .plate-image[data-fallback] hook below. */
+    background-image: url('https://phaora.com/img/IMG_6959.JPG');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .plate-image.placeholder-fallback {
+    background:
+      radial-gradient(ellipse at 32% 38%, rgba(247, 243, 236, 0.55) 0%, transparent 52%),
+      linear-gradient(140deg, #E8DCC6 0%, #C9AE8A 30%, #8C6B48 62%, #4A3628 100%);
+  }
+  .plate-image::after {
+    /* Subtle film grain to avoid the flat-gradient look */
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.06) 1px, transparent 0);
+    background-size: 3px 3px;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+  .plate-caption {
+    /* Three lines, left-aligned, indented from the image edge */
+    padding-left: var(--gutter);
+    max-width: 560px;
+  }
+  .plate-title {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: var(--fs-xl);
+    line-height: 1.15;
+    margin-bottom: var(--s-1);
+    color: var(--ink);
+  }
+  .plate-meta {
+    font-size: var(--fs-sm);
+    color: var(--ink-muted);
+    line-height: 1.7;
+    margin-bottom: var(--s-1);
+  }
+  .plate-meta .em-sep {
+    display: inline-block;
+    padding: 0 0.4em;
+    opacity: 0.5;
+  }
+  .plate-price {
+    font-size: var(--fs-sm);
+    color: var(--ink);
+    letter-spacing: 0.02em;
+  }
+  .plate-price .em-sep {
+    /* em-dash spacer between price and "Inquire" link */
+    display: inline-block;
+    padding: 0 0.5em;
+    opacity: 0.5;
+  }
+
+  /* Plate on mobile — caption moves to full container padding */
+  @media (max-width: 768px) {
+    .plate-image {
+      aspect-ratio: 4 / 5;
+    }
+    .plate-caption {
+      padding-left: var(--gutter);
+      padding-right: var(--gutter);
+    }
+  }
+
+  /* ========================================================
+     INDEX — the quiet navigation
+     Four collections, centered, as lines of type.
+     This IS the filter. No chips. No dropdowns.
+     ======================================================== */
+  .index {
+    padding: var(--s-11) 0;
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .index-eyebrow {
+    text-align: center;
+    font-size: var(--fs-sm);
+    color: var(--ink-muted);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: var(--s-6);
+  }
+  .index-list {
+    list-style: none;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+  .index-item {
+    display: grid;
+    /* Roman · Name · Count */
+    grid-template-columns: 48px 1fr auto;
+    align-items: baseline;
+    column-gap: var(--s-3);
+    padding: var(--s-3) 0;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .index-item:last-child {
+    border-bottom: none;
+  }
+  .index-roman {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: var(--fs-md);
+    color: var(--ink-muted);
+    letter-spacing: 0.02em;
+  }
+  .index-name {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: var(--fs-lg);
+    line-height: 1.2;
+    color: var(--ink);
+    transition: opacity var(--dur) var(--ease);
+  }
+  .index-item a:hover .index-name,
+  .index-item a:focus-visible .index-name {
+    opacity: 0.55;
+  }
+  .index-count {
+    font-size: var(--fs-sm);
+    color: var(--ink-muted);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
+  }
+  .index-item a {
+    display: contents;
+  }
+  .index-footnote {
+    text-align: center;
+    margin-top: var(--s-6);
+    font-size: var(--fs-sm);
+    color: var(--ink-muted);
+  }
+
+  /* ========================================================
+     COLLECTIONS — four chapters, one after another
+     ======================================================== */
+  .collections {
+    padding-bottom: 0;
+  }
+
+  .collection {
+    padding: var(--s-11) 0;
+  }
+  .collection + .collection {
+    /* no divider — whitespace is the divider */
+    padding-top: var(--s-10);
+  }
+
+  .collection-header {
+    max-width: var(--max-text);
+    margin: 0 0 var(--s-8);
+  }
+  .collection-number {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: var(--fs-sm);
+    color: var(--ink-muted);
+    letter-spacing: 0.08em;
+    margin-bottom: var(--s-2);
+    display: block;
+  }
+  .collection-title {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: var(--fs-xl);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: var(--s-4);
+    color: var(--ink);
+  }
+  .collection-intro {
+    font-family: var(--font-body);
+    font-size: var(--fs-md);
+    line-height: 1.7;
+    color: var(--ink-soft);
+    max-width: 54ch;
+  }
+
+  /* ========================================================
+     GRID — 2 columns, never 3. Generous gutters.
+     Cap card width on very wide screens.
+     ======================================================== */
+  .works {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--s-8) var(--s-6);
+    max-width: 1040px;
+  }
+  @media (max-width: 640px) {
+    .works {
+      grid-template-columns: 1fr;
+      gap: var(--s-7);
+      max-width: 480px;
+    }
+  }
+
+  /* ========================================================
+     CARD — the Hermès product card
+     Image, three small lines, no badges, no shadows.
+     ======================================================== */
+  .work {
+    display: block;
+    color: var(--ink);
+  }
+  .work-figure {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    margin-bottom: var(--s-3);
+    background: var(--cream-deep);
+  }
+  .work-image {
+    position: absolute;
+    inset: 0;
+    transition: opacity var(--dur-long) var(--ease);
+  }
+  .work:hover .work-image {
+    opacity: 0.92;
+  }
+  .work-image::after {
+    /* Grain, consistent with the plate */
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.05) 1px, transparent 0);
+    background-size: 3px 3px;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+
+  /* ========================================================
+     PLACEHOLDER IMAGE — per piece
+     Each piece gets a deterministic gradient generated from
+     its collection palette + a per-piece seed, so every card
+     has a unique visual. Real photography replaces these
+     by setting background-image on .work-image inline.
+     ======================================================== */
+  .work-image.placeholder::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    /* The gradient is injected via inline style. */
+    background: inherit;
+  }
+
+  .work-caption {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 0 2px;
+  }
+  .work-title {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: var(--fs-md);
+    line-height: 1.3;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+  }
+  .work-meta {
+    font-size: var(--fs-sm);
+    color: var(--ink-muted);
+    line-height: 1.55;
+  }
+  .work-price {
+    font-size: var(--fs-sm);
+    color: var(--ink);
+    letter-spacing: 0.02em;
+    line-height: 1.55;
+    margin-top: 2px;
+  }
+  .work-price .em-sep {
+    display: inline-block;
+    padding: 0 0.5em;
+    opacity: 0.5;
+  }
+  .work-price .inquire-lnk {
+    position: relative;
+    display: inline;
+  }
+  .work-price .inquire-lnk::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -3px;
+    height: 1px;
+    background: currentColor;
+    opacity: 0;
+    transform: scaleX(0.6);
+    transform-origin: left;
+    transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+  }
+  .work:hover .work-price .inquire-lnk::after,
+  .work:focus-visible .work-price .inquire-lnk::after {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+
+  /* Quiet state variants — no colored dots */
+  .work-remains {
+    font-size: var(--fs-sm);
+    color: var(--ink-muted);
+    font-style: italic;
+    font-family: var(--font-display);
+    font-weight: 300;
+    margin-top: 2px;
+  }
+  .work.is-acquired .work-image {
+    filter: grayscale(0.4);
+    opacity: 0.55;
+  }
+  .work.is-acquired .work-title,
+  .work.is-acquired .work-meta {
+    color: var(--ink-muted);
+  }
+  .work.is-acquired .work-price .price-value,
+  .work.is-acquired .work-price .em-sep,
+  .work.is-acquired .work-price .inquire-lnk {
+    display: none;
+  }
+  .work-acquired-label {
+    display: none;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: var(--fs-sm);
+    color: var(--ink-muted);
+    letter-spacing: 0.02em;
+    margin-top: 2px;
+  }
+  .work.is-acquired .work-acquired-label {
+    display: block;
+  }
+
+  /* View All Works expanded state — full flat grid */
+  .all-works-section {
+    display: none;
+    padding: var(--s-11) 0;
+    border-top: 1px solid var(--hairline);
+  }
+  .all-works-section.open {
+    display: block;
+  }
+  .all-works-header {
+    margin-bottom: var(--s-8);
+    max-width: var(--max-text);
+  }
+
+  /* ========================================================
+     PROVENANCE — the studio plate
+     Full-bleed photograph. Single pull quote. Attribution.
+     No stat cards, no icons, no triple-column panel.
+     ======================================================== */
+  .provenance {
+    padding: var(--s-11) 0;
+  }
+  .provenance-figure {
+    width: 100%;
+    margin: 0 0 var(--s-9);
+  }
+  .provenance-image {
+    width: 100%;
+    aspect-ratio: 21 / 9;
+    background-image: url('https://phaora.com/img/the-studio-main.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .provenance-image.placeholder-fallback {
+    background:
+      radial-gradient(ellipse at 28% 34%, rgba(247, 243, 236, 0.42) 0%, transparent 58%),
+      linear-gradient(138deg, #3A2818 0%, #6B4E34 34%, #8C6B48 62%, #C9AE8A 100%);
+  }
+  .provenance-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.06) 1px, transparent 0);
+    background-size: 3px 3px;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+  .provenance-quote {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    text-align: center;
+  }
+  .provenance-quote blockquote {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(36px, 5vw, var(--fs-3xl));
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin: 0 0 var(--s-5);
+  }
+  .provenance-quote cite {
+    display: block;
+    font-style: normal;
+    font-size: var(--fs-sm);
+    color: var(--ink-muted);
+    letter-spacing: 0.04em;
+  }
+  @media (max-width: 768px) {
+    .provenance-image {
+      aspect-ratio: 4 / 3;
+    }
+    .provenance-figure {
+      margin-bottom: var(--s-7);
+    }
+  }
+
+  /* ========================================================
+     CORRESPONDENCE — the calling card
+     Narrow column, three stacked lines, short form.
+     Replaces "Contact".
+     ======================================================== */
+  .correspondence {
+    padding: var(--s-10) 0 var(--s-11);
+    border-top: 1px solid var(--hairline);
+  }
+  .correspondence-inner {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    text-align: center;
+  }
+  .correspondence-eyebrow {
+    font-size: var(--fs-sm);
+    color: var(--ink-muted);
+    line-height: 1.6;
+    margin-bottom: var(--s-4);
+    letter-spacing: 0.01em;
+  }
+  .correspondence-name {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: var(--fs-xl);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: var(--s-2);
+    color: var(--ink);
+  }
+  .correspondence-contact {
+    font-size: var(--fs-md);
+    color: var(--ink);
+    line-height: 1.6;
+    margin-bottom: var(--s-7);
+  }
+  .correspondence-contact .em-sep {
+    display: inline-block;
+    padding: 0 0.4em;
+    opacity: 0.5;
+    color: var(--ink-muted);
+  }
+  .correspondence-form {
+    text-align: left;
+    padding-top: var(--s-5);
+    border-top: 1px solid var(--hairline);
+  }
+  .correspondence-form textarea,
+  .correspondence-form input {
+    width: 100%;
+    font: inherit;
+    font-size: var(--fs-md);
+    color: var(--ink);
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--hairline-strong);
+    padding: var(--s-2) 0;
+    margin-bottom: var(--s-3);
+    resize: none;
+    transition: border-color var(--dur) var(--ease);
+  }
+  .correspondence-form textarea {
+    min-height: 96px;
+    font-family: var(--font-body);
+    line-height: 1.5;
+  }
+  .correspondence-form textarea:focus,
+  .correspondence-form input:focus {
+    outline: none;
+    border-bottom-color: var(--ink);
+  }
+  .correspondence-form textarea::placeholder,
+  .correspondence-form input::placeholder {
+    color: var(--ink-muted);
+    opacity: 1;
+  }
+  .correspondence-send {
+    margin-top: var(--s-2);
+    font-family: var(--font-body);
+    font-size: var(--fs-sm);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink);
+    padding: var(--s-2) 0;
+    position: relative;
+  }
+  .correspondence-send::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: var(--ink);
+    transition: transform var(--dur) var(--ease);
+    transform-origin: left;
+  }
+  .correspondence-send:hover::after,
+  .correspondence-send:focus-visible::after {
+    transform: scaleX(0.3);
+  }
+  .correspondence-note {
+    margin-top: var(--s-5);
+    font-size: var(--fs-sm);
+    color: var(--ink-muted);
+    font-style: italic;
+    font-family: var(--font-display);
+    font-weight: 300;
+    text-align: center;
+  }
+  .correspondence-sent {
+    display: none;
+    padding: var(--s-5) 0;
+    text-align: center;
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-style: italic;
+    font-size: var(--fs-lg);
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  .correspondence-form.sent textarea,
+  .correspondence-form.sent input,
+  .correspondence-form.sent .correspondence-send {
+    display: none;
+  }
+  .correspondence-form.sent + .correspondence-note {
+    display: none;
+  }
+  .correspondence-form.sent .correspondence-sent {
+    display: block;
+  }
+
+  /* ========================================================
+     COLOPHON
+     ======================================================== */
+  .colophon {
+    padding: var(--s-6) 0;
+    text-align: center;
+    font-size: var(--fs-sm);
+    color: var(--ink-muted);
+    border-top: 1px solid var(--hairline);
+  }
+
+  /* Keyboard focus state for cards */
+  .work:focus-visible {
+    outline: 1px solid var(--ink);
+    outline-offset: 6px;
+  }
+
+
+  @media (max-width: 768px) {
+    :root {
+      --s-10: 112px;
+      --s-11: 128px;
+      --s-12: 160px;
+    }
+  }
+</style>
+
+</head>
+<body>
+
+  <main>
+    <section class="masthead">
+      <div class="container">
+        <div class="masthead-rule" aria-hidden="true"></div>
+        <h1 class="masthead-wordmark">PHAÖRA</h1>
+        <p class="masthead-line">
+          Minas Gerais<span class="sep">—</span>The Collection, 2026
+        </p>
+      </div>
+    </section>
+
+    <section class="plate" aria-labelledby="plate-title">
+      <figure class="plate-figure">
+        <div class="plate-image" role="img" aria-label="The Canopy — white quartz doves on Brazilian driftwood"></div>
+      </figure>
+      <figcaption class="plate-caption">
+        <h2 class="plate-title" id="plate-title">The Canopy</h2>
+        <p class="plate-meta">White Quartz <span class="em-sep">·</span> Brazilian Driftwood <span class="em-sep">·</span> 2024</p>
+        <p class="plate-price">
+          USD 68,000<span class="em-sep">—</span><a href="pieces/the-canopy.html" class="lnk">Inquire</a>
+        </p>
+      </figcaption>
+    </section>
+
+    <section class="index" aria-labelledby="index-label">
+      <div class="container">
+        <p class="index-eyebrow" id="index-label">The Index</p>
+        <ol class="index-list">
+          <li class="index-item">
+            <a href="#collection-I">
+              <span class="index-roman">I.</span>
+              <span class="index-name">The Blue Macaws</span>
+              <span class="index-count">9 works</span>
+            </a>
+          </li>
+          <li class="index-item">
+            <a href="#collection-II">
+              <span class="index-roman">II.</span>
+              <span class="index-name">The Crimson Duo</span>
+              <span class="index-count">4 works</span>
+            </a>
+          </li>
+          <li class="index-item">
+            <a href="#collection-III">
+              <span class="index-roman">III.</span>
+              <span class="index-name">The White Cockatoos</span>
+              <span class="index-count">11 works</span>
+            </a>
+          </li>
+          <li class="index-item">
+            <a href="#collection-IV">
+              <span class="index-roman">IV.</span>
+              <span class="index-name">The Canopy</span>
+              <span class="index-count">20 works</span>
+            </a>
+          </li>
+        </ol>
+        <p class="index-footnote">
+          <a href="#all-works" class="lnk" id="view-all-trigger">View all 44 works</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="collections" aria-label="Collections">
+      <div class="container">
+        <article class="collection" id="collection-I">
+          <header class="collection-header">
+            <span class="collection-number">Collection I</span>
+            <h2 class="collection-title">The Blue Macaws</h2>
+            <p class="collection-intro">Sodalite, lapis, and blue quartz macaws — set against amethyst, serpentine, and raw geode. The collection opens in deep ocean tones that shift toward violet as the light moves across the stone. Nine works.</p>
+          </header>
+          <div class="works" data-collection="blue-macaws"></div>
+        </article>
+
+        <article class="collection" id="collection-II">
+          <header class="collection-header">
+            <span class="collection-number">Collection II</span>
+            <h2 class="collection-title">The Crimson Duo</h2>
+            <p class="collection-intro">Red jasper and smoky jasper set against cathedral-grade clear quartz. The most concentrated of the four collections — the rarest raw stone Fabiano works with. Four works.</p>
+          </header>
+          <div class="works" data-collection="crimson-duo"></div>
+        </article>
+
+        <article class="collection" id="collection-III">
+          <header class="collection-header">
+            <span class="collection-number">Collection III</span>
+            <h2 class="collection-title">The White Cockatoos</h2>
+            <p class="collection-intro">Clear and white quartz set against deep amethyst and dark geode. Pure light against crystalline violet — the quietest of the four collections. Eleven works.</p>
+          </header>
+          <div class="works" data-collection="white-cockatoos"></div>
+        </article>
+
+        <article class="collection" id="collection-IV">
+          <header class="collection-header">
+            <span class="collection-number">Collection IV</span>
+            <h2 class="collection-title">The Canopy</h2>
+            <p class="collection-intro">Rose quartz, aventurine, labradorite, and clear crystal — set on Brazilian driftwood, serpentine, and carved stone. The widest of the four collections, spanning statement flagships to entry works. Twenty works.</p>
+          </header>
+          <div class="works" data-collection="canopy"></div>
+        </article>
+
+        <section class="all-works-section" id="all-works" aria-label="All 44 works">
+          <header class="all-works-header">
+            <span class="collection-number">The Complete Collection</span>
+            <h2 class="collection-title">Forty-four works</h2>
+            <p class="collection-intro">All pieces, shown in one sequence, arranged by collection. Each exists once.</p>
+          </header>
+          <div class="works" data-collection="all"></div>
+        </section>
+      </div>
+    </section>
+
+    <section class="provenance" aria-labelledby="provenance-quote-text">
+      <figure class="provenance-figure">
+        <div class="provenance-image" role="img" aria-label="The Phaöra studio in Minas Gerais — raw stone before the cut"></div>
+      </figure>
+      <div class="provenance-quote">
+        <blockquote id="provenance-quote-text">One stone. One man. Forty years.</blockquote>
+        <cite>— The Phaöra studio, Minas Gerais</cite>
+      </div>
+    </section>
+
+    <section class="correspondence" id="correspondence" aria-labelledby="correspondence-name">
+      <div class="correspondence-inner">
+        <p class="correspondence-eyebrow">For a private viewing, or to inquire about a piece:</p>
+        <p class="correspondence-name" id="correspondence-name">David Vaz</p>
+        <p class="correspondence-contact">
+          <a href="tel:+19548719991" class="lnk">(954) 871-9991</a><span class="em-sep">—</span><a href="mailto:david@phaora.com" class="lnk">david@phaora.com</a>
+        </p>
+
+        <form class="correspondence-form" id="correspondence-form" novalidate>
+          <textarea name="message" placeholder="A note — any question, or simply that you would like to speak." required></textarea>
+          <input type="email" name="email" placeholder="Your email" required>
+          <button type="submit" class="correspondence-send">Send</button>
+          <p class="correspondence-sent">Thank you. David will write to you within 24 hours.</p>
+        </form>
+        <p class="correspondence-note">Responses are personal, and always within 24 hours.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="colophon">
+    PHAÖRA · Boca Raton · A StyleArtStoneCraft Company · 2026
+  </footer>
+
+  <!-- Shared piece data — loaded before inline script that consumes it -->
+  <script src="pieces-data.js"></script>
+
+  <script>
+    // Shared data + helpers (PIECES, PALETTES, hash, hexA, pieceGradient, slug)
+    // are loaded from pieces-data.js via <script src> in <head>.
+
+
+    function cardHTML(p) {
+      const isAcquired = p.status === 'acquired';
+      const isLast     = p.status === 'last';
+      const priceFmt   = p.price.toLocaleString('en-US');
+
+      return `
+        <a class="work${isAcquired ? ' is-acquired' : ''}"
+           href="pieces/${slug(p.name)}.html"
+           data-piece="${p.name}"
+           aria-label="${p.name} — ${p.material}${isAcquired ? ' — Acquired' : ''}">
+          <figure class="work-figure">
+            <div class="work-image placeholder"
+                 style="${p.image ? `background-image: url('${p.image}'); background-size: cover; background-position: center;` : `background: ${pieceGradient(p)}`}"
+                 data-piece-image="${p.image || ''}"
+                 aria-hidden="true"></div>
+          </figure>
+          <div class="work-caption">
+            <h3 class="work-title">${p.name}</h3>
+            <p class="work-meta">${p.material}</p>
+            <p class="work-price">
+              <span class="price-value">USD ${priceFmt}</span><span class="em-sep">—</span><span class="inquire-lnk">Inquire</span>
+            </p>
+            ${isLast ? '<p class="work-remains">One remains.</p>' : ''}
+            <p class="work-acquired-label">Acquired</p>
+          </div>
+        </a>
+      `;
+    }
+
+    function render() {
+      const containers = document.querySelectorAll('[data-collection]');
+      containers.forEach(c => {
+        const coll = c.dataset.collection;
+        const list = coll === 'all'
+          ? PIECES
+          : PIECES.filter(p => p.collection === coll);
+        c.innerHTML = list.map(cardHTML).join('');
+      });
+    }
+
+    // ========================================================
+    // VIEW ALL toggle — expands the flat index
+    // ========================================================
+    document.getElementById('view-all-trigger').addEventListener('click', (e) => {
+      const section = document.getElementById('all-works');
+      section.classList.add('open');
+      // Let the browser handle the hash scroll naturally.
+    });
+
+    render();
+
+    // ========================================================
+    // PRODUCT JSON-LD — emit one schema.org/Product block per piece
+    // ========================================================
+    function emitProductSchema() {
+      const origin = 'https://phaora.com';
+      const pieceUrl = (p) => `${origin}/pieces/${slug(p.name)}.html`;
+      const statusMap = {
+        'available': 'https://schema.org/InStock',
+        'last':      'https://schema.org/LimitedAvailability',
+        'acquired':  'https://schema.org/SoldOut',
+      };
+      PIECES.forEach(p => {
+        const ld = {
+          '@context': 'https://schema.org',
+          '@type': 'Product',
+          'name': p.name,
+          'sku': String(p.sku),
+          'description': `${p.material}. Hand-mined in Minas Gerais, Brazil. One of one.`,
+          'material': p.material,
+          'image': p.image,
+          'url': pieceUrl(p),
+          'brand': { '@type': 'Brand', 'name': 'Phaöra' },
+          'countryOfOrigin': 'BR',
+          'offers': {
+            '@type': 'Offer',
+            'url': pieceUrl(p),
+            'priceCurrency': 'USD',
+            'price': String(p.price),
+            'availability': statusMap[p.status],
+            'seller': { '@type': 'Organization', 'name': 'Phaöra' },
+          },
+        };
+        const tag = document.createElement('script');
+        tag.type = 'application/ld+json';
+        tag.textContent = JSON.stringify(ld);
+        document.head.appendChild(tag);
+      });
+    }
+    emitProductSchema();
+
+    // ========================================================
+    // IMAGE FALLBACK
+    // Each piece declares an image path (images/<slug>.jpg).
+    // If the image doesn't exist yet, we silently fall back to
+    // the unique per-piece gradient so the page always looks
+    // complete. Drop real photos into /images/ to replace.
+    // ========================================================
+    function attachImageFallbacks(scope) {
+      const root = scope || document;
+      root.querySelectorAll('[data-piece-image]').forEach(el => {
+        const src = el.dataset.pieceImage;
+        if (!src) return;
+        const test = new Image();
+        test.onerror = () => {
+          // Find the piece either from parent .work[data-piece] or from data-piece-name
+          const parent = el.closest('[data-piece]');
+          const name = (parent && parent.dataset.piece) || el.dataset.pieceName;
+          const piece = PIECES.find(p => p.name === name);
+          if (piece) {
+            el.style.backgroundImage = 'none';
+            el.style.background = pieceGradient(piece);
+          }
+        };
+        test.src = src;
+      });
+    }
+    attachImageFallbacks();
+
+    // Plate image fallback — hand-wired (not a piece card)
+    (function attachPlateFallback() {
+      const plate = document.querySelector('.plate-image');
+      if (!plate) return;
+      const m = /url\(['"]?([^'")]+)['"]?\)/.exec(plate.style.backgroundImage || getComputedStyle(plate).backgroundImage);
+      const src = m ? m[1] : 'https://phaora.com/img/IMG_6959.JPG';
+      const test = new Image();
+      test.onerror = () => plate.classList.add('placeholder-fallback');
+      test.src = src;
+    })();
+
+    // Provenance image fallback
+    (function attachProvenanceFallback() {
+      const prov = document.querySelector('.provenance-image');
+      if (!prov) return;
+      const m = /url\(['"]?([^'")]+)['"]?\)/.exec(prov.style.backgroundImage || getComputedStyle(prov).backgroundImage);
+      const src = m ? m[1] : 'https://phaora.com/img/the-studio-main.jpg';
+      const test = new Image();
+      test.onerror = () => prov.classList.add('placeholder-fallback');
+      test.src = src;
+    })();
+
+
+    // ========================================================
+    // CORRESPONDENCE FORM — quiet thank-you on submit
+    // Posts to Formspree. Fails gracefully — still shows thank-you
+    // because the copy promises David writes within 24 hours; we do
+    // not want to expose transport errors to the collector.
+    // ========================================================
+    (function wireCorrespondence() {
+      const form = document.getElementById('correspondence-form');
+      if (!form) return;
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const data = {
+          message: form.querySelector('[name="message"]').value.trim(),
+          email:   form.querySelector('[name="email"]').value.trim(),
+          _subject: 'PHAÖRA — General correspondence',
+          source:  'sculptures.html · correspondence block',
+          timestamp: new Date().toISOString(),
+        };
+        form.classList.add('sent');
+        try {
+          await fetch('https://formspree.io/f/mlgokvnj', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(data),
+          });
+        } catch (_) { /* silent — thank-you already shown */ }
+      });
+    })();
+  </script>
+
+</body>
+</html>

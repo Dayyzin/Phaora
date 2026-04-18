@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PHAÖRA — Piece</title>
+<meta name="description" content="One of one. Hand-mined in Minas Gerais. Shaped by Fabiano." />
+<link rel="canonical" href="https://phaora.com/piece.html" />
+
+<meta property="og:type" content="product" />
+<meta property="og:site_name" content="Phaöra" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<!--
+  PHAÖRA · Piece detail page · 2026
+  Variant B — Hermès discipline
+  ================================
+
+  One file serves all 44 pieces.
+  URL pattern: piece.html?p=the-canopy
+               piece.html?p=the-raptor  etc.
+
+  Shared data from pieces-data.js in the site root.
+  Narratives from narratives.js in the site root.
+  Studio Journal entries from studio-journal.json (optional, hides when empty).
+
+  Inquiry form posts to Formspree (endpoint mlgokvnj). On success the
+  form is replaced by a single italic thank-you line. On failure the
+  thank-you still shows — the promise to the collector is that David
+  writes back within 24 hours; exposing transport errors would
+  undermine that promise.
+
+  If the ?p= slug is unknown we show a quiet not-found panel and
+  link back to the Index.
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400&family=Inter+Tight:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  /* Tokens — identical to sculptures.html so both pages read as one site */
+  :root {
+    --cream: #F7F3EC;
+    --cream-deep: #EFE9DE;
+    --ink: #111110;
+    --ink-soft: #3A3834;
+    --ink-muted: #6F6B64;
+    --hairline: rgba(17, 17, 16, 0.09);
+    --hairline-strong: rgba(17, 17, 16, 0.18);
+
+    --font-display: 'Fraunces', 'GT Super', 'Saol Display', Georgia, serif;
+    --font-body: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+
+    --fs-sm:   13px;
+    --fs-base: 14px;
+    --fs-md:   16px;
+    --fs-lg:   20px;
+    --fs-xl:   28px;
+
+    --s-1:  8px;
+    --s-2:  16px;
+    --s-3:  24px;
+    --s-4:  32px;
+    --s-5:  48px;
+    --s-6:  64px;
+    --s-7:  80px;
+    --s-8:  96px;
+    --s-9:  128px;
+    --s-10: 160px;
+    --s-11: 200px;
+
+    --max-w: 1280px;
+    --max-text: 640px;
+    --gutter: clamp(20px, 4vw, 48px);
+
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --dur: 220ms;
+    --dur-long: 280ms;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: var(--fs-base);
+    line-height: 1.6;
+    font-feature-settings: 'ss01', 'cv11', 'tnum';
+    overflow-x: hidden;
+  }
+  img, picture, svg { max-width: 100%; display: block; }
+  button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; padding: 0; }
+  a { color: inherit; text-decoration: none; transition: opacity var(--dur) var(--ease); }
+  ::selection { background: var(--ink); color: var(--cream); }
+  :focus { outline: none; }
+  :focus-visible { outline: 1px solid var(--ink); outline-offset: 4px; }
+
+  .lnk { position: relative; display: inline; }
+  .lnk::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: -4px; height: 1px;
+    background: currentColor; opacity: 0; transform: scaleX(0.6); transform-origin: left;
+    transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+  }
+  .lnk:hover::after, .lnk:focus-visible::after { opacity: 1; transform: scaleX(1); }
+
+  /* =========================================================
+     MASTHEAD — the thin return-to-Index strip
+     ========================================================= */
+  .piece-masthead {
+    padding: var(--s-5) 0;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .piece-masthead-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-3);
+  }
+  .piece-back, .piece-phone {
+    font-size: var(--fs-sm);
+    color: var(--ink-muted);
+    letter-spacing: 0.02em;
+  }
+  .piece-wordmark {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: var(--fs-md);
+    letter-spacing: 0.24em;
+    line-height: 1;
+    padding-left: 0.24em;
+    color: var(--ink);
+  }
+  @media (max-width: 640px) {
+    .piece-masthead-inner { flex-wrap: wrap; row-gap: var(--s-2); justify-content: center; }
+    .piece-wordmark { order: -1; flex: 0 0 100%; text-align: center; }
+  }
+
+  /* =========================================================
+     HERO — image + body
+     ========================================================= */
+  .piece-hero {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: var(--s-9) var(--gutter) var(--s-7);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--s-8);
+    align-items: start;
+  }
+  @media (max-width: 900px) {
+    .piece-hero {
+      grid-template-columns: 1fr;
+      gap: var(--s-5);
+      padding: var(--s-6) var(--gutter) var(--s-5);
+    }
+  }
+
+  .piece-media { position: relative; }
+  .piece-media-main {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    position: relative;
+    overflow: hidden;
+    background: var(--cream-deep);
+  }
+  .piece-media-slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity var(--dur-long) var(--ease);
+  }
+  .piece-media-slide.active { opacity: 1; }
+  .piece-media-main::after {
+    content: ''; position: absolute; inset: 0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.05) 1px, transparent 0);
+    background-size: 3px 3px;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .piece-thumbs {
+    display: flex;
+    gap: var(--s-2);
+    margin-top: var(--s-3);
+    flex-wrap: wrap;
+  }
+  .piece-thumbs.is-single { display: none; }
+  .piece-thumb {
+    width: 64px;
+    height: 64px;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    opacity: 0.55;
+    transition: opacity var(--dur) var(--ease), border-color var(--dur) var(--ease);
+    border: 1px solid transparent;
+  }
+  .piece-thumb:hover { opacity: 0.85; }
+  .piece-thumb.active {
+    opacity: 1;
+    border-color: var(--ink);
+  }
+
+  .piece-body { max-width: 520px; }
+  .piece-eyebrow {
+    font-size: var(--fs-sm);
+    color: var(--ink-muted);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: var(--s-3);
+  }
+  .piece-title {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(32px, 4.5vw, 48px);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    margin-bottom: var(--s-3);
+    color: var(--ink);
+  }
+  .piece-edition {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: var(--fs-md);
+    color: var(--ink-muted);
+    margin-bottom: var(--s-5);
+  }
+  .piece-narrative {
+    font-family: var(--font-body);
+    font-size: var(--fs-md);
+    line-height: 1.75;
+    color: var(--ink-soft);
+    margin-bottom: var(--s-5);
+  }
+  .piece-price-row {
+    padding: var(--s-4) 0;
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    margin-bottom: var(--s-5);
+  }
+  .piece-price {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: var(--fs-xl);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    color: var(--ink);
+  }
+  .piece-price.acquired {
+    font-style: italic;
+    color: var(--ink-muted);
+  }
+  .piece-price-sub {
+    font-size: var(--fs-sm);
+    color: var(--ink-muted);
+    margin-top: var(--s-1);
+    font-style: italic;
+    font-family: var(--font-display);
+    font-weight: 300;
+  }
+  .piece-remains {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: var(--fs-md);
+    color: var(--ink);
+    margin-top: var(--s-1);
+  }
+
+  .piece-details {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    row-gap: var(--s-2);
+    column-gap: var(--s-3);
+    padding-bottom: var(--s-5);
+    margin-bottom: var(--s-5);
+    border-bottom: 1px solid var(--hairline);
+    font-size: var(--fs-sm);
+  }
+  .piece-details dt {
+    color: var(--ink-muted);
+    letter-spacing: 0.06em;
+  }
+  .piece-details dd { color: var(--ink); }
+
+  /* =========================================================
+     INQUIRY — always-open form, quiet register
+     ========================================================= */
+  .piece-inquiry { padding-top: var(--s-2); }
+  .piece-inquiry-promise {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: var(--fs-md);
+    color: var(--ink);
+    line-height: 1.55;
+    margin-bottom: var(--s-4);
+  }
+  .piece-inquiry-form textarea,
+  .piece-inquiry-form input {
+    width: 100%;
+    font: inherit;
+    font-size: var(--fs-md);
+    color: var(--ink);
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--hairline-strong);
+    padding: var(--s-2) 0;
+    margin-bottom: var(--s-3);
+    resize: none;
+    transition: border-color var(--dur) var(--ease);
+  }
+  .piece-inquiry-form textarea { min-height: 96px; font-family: var(--font-body); line-height: 1.5; }
+  .piece-inquiry-form textarea:focus,
+  .piece-inquiry-form input:focus {
+    outline: none;
+    border-bottom-color: var(--ink);
+  }
+  .piece-inquiry-form textarea::placeholder,
+  .piece-inquiry-form input::placeholder {
+    color: var(--ink-muted);
+    opacity: 1;
+  }
+  .piece-inquiry-send {
+    margin-top: var(--s-2);
+    font-family: var(--font-body);
+    font-size: var(--fs-sm);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink);
+    padding: var(--s-2) 0;
+    position: relative;
+  }
+  .piece-inquiry-send::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 1px;
+    background: var(--ink);
+    transition: transform var(--dur) var(--ease);
+    transform-origin: left;
+  }
+  .piece-inquiry-send:hover::after,
+  .piece-inquiry-send:focus-visible::after {
+    transform: scaleX(0.3);
+  }
+  .piece-inquiry-phone {
+    margin-top: var(--s-5);
+    padding-top: var(--s-4);
+    border-top: 1px solid var(--hairline);
+    font-size: var(--fs-sm);
+    color: var(--ink-muted);
+  }
+  .piece-inquiry-phone a {
+    color: var(--ink);
+  }
+  .piece-inquiry-sent {
+    display: none;
+    padding: var(--s-4) 0;
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-style: italic;
+    font-size: var(--fs-lg);
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  .piece-inquiry-form.sent textarea,
+  .piece-inquiry-form.sent input,
+  .piece-inquiry-form.sent .piece-inquiry-send,
+  .piece-inquiry-form.sent .piece-inquiry-promise {
+    display: none;
+  }
+  .piece-inquiry-form.sent .piece-inquiry-sent { display: block; }
+
+  /* =========================================================
+     STUDIO JOURNAL — hidden when empty
+     Real brand activity only. No invented placements.
+     ========================================================= */
+  .piece-journal {
+    max-width: var(--max-text);
+    margin: 0 auto;
+    padding: var(--s-11) var(--gutter);
+    border-top: 1px solid var(--hairline);
+  }
+  .piece-journal[hidden] { display: none; }
+  .piece-journal-eyebrow {
+    text-align: center;
+    font-size: var(--fs-sm);
+    color: var(--ink-muted);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: var(--s-6);
+  }
+  .piece-journal-entry {
+    padding: var(--s-4) 0;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .piece-journal-entry:last-child { border-bottom: none; }
+  .piece-journal-date {
+    font-family: var(--font-body);
+    font-size: var(--fs-sm);
+    color: var(--ink-muted);
+    letter-spacing: 0.04em;
+    margin-bottom: var(--s-1);
+  }
+  .piece-journal-text {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-style: italic;
+    font-size: var(--fs-md);
+    line-height: 1.55;
+    color: var(--ink);
+  }
+
+  /* =========================================================
+     SIMILAR WORKS — three cards, same style as sculptures.html
+     ========================================================= */
+  .piece-similar {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: var(--s-11) var(--gutter);
+    border-top: 1px solid var(--hairline);
+  }
+  .piece-similar-header {
+    max-width: var(--max-text);
+    margin: 0 0 var(--s-8);
+  }
+  .piece-similar-eyebrow {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: var(--fs-sm);
+    color: var(--ink-muted);
+    letter-spacing: 0.08em;
+    margin-bottom: var(--s-2);
+    display: block;
+  }
+  .piece-similar-title {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: var(--fs-xl);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .piece-similar-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--s-6);
+    max-width: 1040px;
+  }
+  @media (max-width: 900px) {
+    .piece-similar-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 520px) {
+    .piece-similar-grid { grid-template-columns: 1fr; max-width: 420px; }
+  }
+  .piece-similar-card {
+    display: block;
+    color: var(--ink);
+  }
+  .piece-similar-figure {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    margin-bottom: var(--s-3);
+    background: var(--cream-deep);
+  }
+  .piece-similar-image {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: opacity var(--dur-long) var(--ease);
+  }
+  .piece-similar-card:hover .piece-similar-image { opacity: 0.92; }
+  .piece-similar-caption {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .piece-similar-name {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: var(--fs-md);
+    line-height: 1.3;
+  }
+  .piece-similar-meta {
+    font-size: var(--fs-sm);
+    color: var(--ink-muted);
+  }
+
+  /* =========================================================
+     COLOPHON + NOT-FOUND
+     ========================================================= */
+  .colophon {
+    padding: var(--s-6) 0;
+    text-align: center;
+    font-size: var(--fs-sm);
+    color: var(--ink-muted);
+    border-top: 1px solid var(--hairline);
+  }
+
+  .not-found {
+    max-width: var(--max-text);
+    margin: 0 auto;
+    padding: var(--s-11) var(--gutter);
+    text-align: center;
+  }
+  .not-found-title {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-style: italic;
+    font-size: var(--fs-xl);
+    color: var(--ink);
+    margin-bottom: var(--s-3);
+  }
+  .not-found-body {
+    font-size: var(--fs-md);
+    color: var(--ink-muted);
+    line-height: 1.7;
+    margin-bottom: var(--s-5);
+  }
+
+  @media (max-width: 768px) {
+    :root {
+      --s-9: 96px;
+      --s-10: 112px;
+      --s-11: 128px;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <header class="piece-masthead">
+    <div class="piece-masthead-inner">
+      <a href="sculptures.html" class="piece-back lnk">← The Collection</a>
+      <a href="sculptures.html" class="piece-wordmark">PHAÖRA</a>
+      <a href="tel:+19548719991" class="piece-phone lnk">(954) 871-9991</a>
+    </div>
+  </header>
+
+  <main id="piece-root"></main>
+
+  <footer class="colophon">
+    PHAÖRA · Boca Raton · A StyleArtStoneCraft Company · 2026
+  </footer>
+
+  <!-- Shared data + helpers -->
+  <script src="pieces-data.js"></script>
+  <script src="narratives.js"></script>
+
+  <script>
+    // ========================================================
+    // Read ?p= from URL, look up piece, render.
+    // ========================================================
+    function getSlug() {
+      const params = new URLSearchParams(location.search);
+      const fromQuery = params.get('p');
+      if (fromQuery) return fromQuery;
+      // Graceful fallback: if someone lands on piece.html with no query
+      // (e.g., opened directly), show not-found rather than a random piece.
+      return null;
+    }
+
+    const COLL_LABEL = {
+      'blue-macaws':     'Collection I — The Blue Macaws',
+      'crimson-duo':     'Collection II — The Crimson Duo',
+      'white-cockatoos': 'Collection III — The White Cockatoos',
+      'canopy':          'Collection IV — The Canopy',
+    };
+
+    const ROOT = document.getElementById('piece-root');
+
+    function renderNotFound() {
+      document.title = 'PHAÖRA — Piece not found';
+      ROOT.innerHTML = `
+        <section class="not-found">
+          <h1 class="not-found-title">This piece is not in the Collection.</h1>
+          <p class="not-found-body">The address you followed may be outdated. The forty-four works are catalogued in one place — the Collection Index.</p>
+          <a href="sculptures.html" class="lnk">Return to The Collection</a>
+        </section>
+      `;
+    }
+
+    function renderPiece(piece) {
+      // Title + head meta
+      document.title = `${piece.name} — PHAÖRA`;
+      document.querySelector('meta[name="description"]').setAttribute(
+        'content',
+        `${piece.name} — ${piece.material}. One of one. Hand-mined in Minas Gerais. Shaped by Fabiano.`
+      );
+      document.querySelector('link[rel="canonical"]').setAttribute(
+        'href',
+        `https://phaora.com/piece.html?p=${slug(piece.name)}`
+      );
+      // OG tags
+      const ogSet = (prop, val) => {
+        let m = document.querySelector(`meta[property="${prop}"]`);
+        if (!m) { m = document.createElement('meta'); m.setAttribute('property', prop); document.head.appendChild(m); }
+        m.setAttribute('content', val);
+      };
+      ogSet('og:title', `${piece.name} — PHAÖRA`);
+      ogSet('og:description', `${piece.material}. One of one.`);
+      if (piece.image) ogSet('og:image', piece.image);
+      ogSet('og:url', `https://phaora.com/piece.html?p=${slug(piece.name)}`);
+
+      // JSON-LD Product schema
+      const statusMap = {
+        'available': 'https://schema.org/InStock',
+        'last':      'https://schema.org/LimitedAvailability',
+        'acquired':  'https://schema.org/SoldOut',
+      };
+      const ld = {
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        'name': piece.name,
+        'sku': String(piece.sku),
+        'description': `${piece.material}. Hand-mined in Minas Gerais, Brazil. One of one.`,
+        'material': piece.material,
+        'image': piece.image,
+        'url': `https://phaora.com/piece.html?p=${slug(piece.name)}`,
+        'brand': { '@type': 'Brand', 'name': 'Phaöra' },
+        'countryOfOrigin': 'BR',
+        'offers': {
+          '@type': 'Offer',
+          'url': `https://phaora.com/piece.html?p=${slug(piece.name)}`,
+          'priceCurrency': 'USD',
+          'price': String(piece.price),
+          'availability': statusMap[piece.status],
+          'seller': { '@type': 'Organization', 'name': 'Phaöra' },
+        },
+      };
+      const ldTag = document.createElement('script');
+      ldTag.type = 'application/ld+json';
+      ldTag.textContent = JSON.stringify(ld);
+      document.head.appendChild(ldTag);
+
+      // Images: support single `image` string or optional `images` array
+      const imageList = Array.isArray(piece.images) && piece.images.length
+        ? piece.images
+        : (piece.image ? [piece.image] : []);
+
+      const priceFmt   = piece.price.toLocaleString('en-US');
+      const isAcquired = piece.status === 'acquired';
+      const isLast     = piece.status === 'last';
+      const narrative  = (typeof NARRATIVES !== 'undefined' && NARRATIVES[slug(piece.name)]) || '';
+
+      // Collection-aware similar-works pick — same collection, closest in price, up to 3.
+      const similar = PIECES
+        .filter(p => p.name !== piece.name && p.collection === piece.collection)
+        .sort((a, b) => Math.abs(a.price - piece.price) - Math.abs(b.price - piece.price))
+        .slice(0, 3);
+
+      ROOT.innerHTML = `
+        <section class="piece-hero">
+          <div class="piece-media">
+            <div class="piece-media-main" id="pieceMain">
+              ${imageList.length
+                ? imageList.map((src, i) => `
+                    <div class="piece-media-slide${i === 0 ? ' active' : ''}"
+                         data-idx="${i}"
+                         data-piece-image="${src}"
+                         data-piece-name="${escapeAttr(piece.name)}"
+                         style="background-image: url('${src}');"></div>
+                  `).join('')
+                : `<div class="piece-media-slide active" style="background: ${pieceGradient(piece)};"></div>`
+              }
+            </div>
+            <div class="piece-thumbs${imageList.length < 2 ? ' is-single' : ''}" id="pieceThumbs">
+              ${imageList.map((src, i) => `
+                <button class="piece-thumb${i === 0 ? ' active' : ''}"
+                        data-idx="${i}"
+                        style="background-image: url('${src}');"
+                        aria-label="Image ${i + 1} of ${imageList.length}"></button>
+              `).join('')}
+            </div>
+          </div>
+
+          <div class="piece-body">
+            <p class="piece-eyebrow">${COLL_LABEL[piece.collection] || ''}</p>
+            <h1 class="piece-title">${escapeHTML(piece.name)}</h1>
+            <p class="piece-edition">One of one — once acquired, it is gone.</p>
+
+            ${narrative ? `<p class="piece-narrative">${escapeHTML(narrative)}</p>` : ''}
+
+            <div class="piece-price-row">
+              ${isAcquired
+                ? `<p class="piece-price acquired">Acquired</p>`
+                : `<p class="piece-price">USD ${priceFmt}</p>
+                   <p class="piece-price-sub">Acquisition by private inquiry — white-glove delivery.</p>`
+              }
+              ${isLast ? `<p class="piece-remains">One remains.</p>` : ''}
+            </div>
+
+            <dl class="piece-details">
+              <dt>Material</dt>         <dd>${escapeHTML(piece.material)}</dd>
+              <dt>Origin</dt>           <dd>Minas Gerais, Brazil</dd>
+              <dt>Maker</dt>            <dd>Fabiano — forty years of practice</dd>
+              <dt>Edition</dt>          <dd>One of one</dd>
+              <dt>Year</dt>             <dd>2024–2026</dd>
+              <dt>Includes</dt>         <dd>Certificate of authenticity, countersigned.</dd>
+            </dl>
+
+            ${isAcquired ? `
+              <p class="piece-inquiry-promise">This work has been placed. The remaining pieces in the Collection are listed on the Index.</p>
+              <p><a href="sculptures.html" class="lnk">Return to The Collection</a></p>
+            ` : `
+              <div class="piece-inquiry">
+                <form class="piece-inquiry-form" id="pieceForm" novalidate>
+                  <p class="piece-inquiry-promise">David responds personally, within 24 hours. No sales calls — a private conversation.</p>
+                  <textarea name="message" placeholder="A note — any question about the piece, or simply that you would like to speak." required></textarea>
+                  <input type="email" name="email" placeholder="Your email" required>
+                  <input type="tel" name="phone" placeholder="Phone (optional)">
+                  <button type="submit" class="piece-inquiry-send">Begin the inquiry</button>
+                  <p class="piece-inquiry-sent">Thank you. David will write to you within 24 hours.</p>
+                </form>
+                <p class="piece-inquiry-phone">
+                  Or, simply — <a href="tel:+19548719991" class="lnk">(954) 871-9991</a>. David answers in person.
+                </p>
+              </div>
+            `}
+          </div>
+        </section>
+
+        <section class="piece-journal" id="pieceJournal" hidden aria-labelledby="journalLabel">
+          <p class="piece-journal-eyebrow" id="journalLabel">From the Studio</p>
+          <div id="journalEntries"></div>
+        </section>
+
+        ${similar.length ? `
+          <section class="piece-similar">
+            <header class="piece-similar-header">
+              <span class="piece-similar-eyebrow">Also in ${COLL_LABEL[piece.collection].split('—').pop().trim()}</span>
+              <h2 class="piece-similar-title">Related works</h2>
+            </header>
+            <div class="piece-similar-grid">
+              ${similar.map(s => `
+                <a class="piece-similar-card" href="pieces/${slug(s.name)}.html" aria-label="${escapeAttr(s.name)} — ${escapeAttr(s.material)}">
+                  <figure class="piece-similar-figure">
+                    <div class="piece-similar-image"
+                         data-piece-image="${s.image || ''}"
+                         data-piece-name="${escapeAttr(s.name)}"
+                         style="${s.image ? `background-image: url('${s.image}');` : `background: ${pieceGradient(s)};`}"></div>
+                  </figure>
+                  <div class="piece-similar-caption">
+                    <h3 class="piece-similar-name">${escapeHTML(s.name)}</h3>
+                    <p class="piece-similar-meta">${escapeHTML(s.material)}</p>
+                  </div>
+                </a>
+              `).join('')}
+            </div>
+          </section>
+        ` : ''}
+      `;
+
+      wireSwitcher();
+      wireForm(piece);
+      loadJournal(piece);
+      attachImageFallbacks(ROOT);
+    }
+
+    // ========================================================
+    // Helpers
+    // ========================================================
+    function escapeHTML(s) {
+      return String(s).replace(/[&<>"']/g, ch => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      }[ch]));
+    }
+    function escapeAttr(s) { return escapeHTML(s); }
+
+    function wireSwitcher() {
+      const thumbs = document.querySelectorAll('#pieceThumbs .piece-thumb');
+      const slides = document.querySelectorAll('#pieceMain .piece-media-slide');
+      if (!thumbs.length || slides.length < 2) return;
+      thumbs.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const idx = Number(btn.dataset.idx);
+          thumbs.forEach(b => b.classList.toggle('active', Number(b.dataset.idx) === idx));
+          slides.forEach(s => s.classList.toggle('active', Number(s.dataset.idx) === idx));
+        });
+      });
+    }
+
+    function wireForm(piece) {
+      const form = document.getElementById('pieceForm');
+      if (!form) return;
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const data = {
+          piece:   piece.name,
+          sku:     piece.sku,
+          price:   `USD ${piece.price.toLocaleString('en-US')}`,
+          message: form.querySelector('[name="message"]').value.trim(),
+          email:   form.querySelector('[name="email"]').value.trim(),
+          phone:   form.querySelector('[name="phone"]').value.trim(),
+          _subject: `PHAÖRA — Inquiry about ${piece.name} (USD ${piece.price.toLocaleString('en-US')})`,
+          source:   `piece.html?p=${slug(piece.name)}`,
+          timestamp: new Date().toISOString(),
+        };
+        // Optimistic success — show thank-you immediately.
+        // If the network call fails we stay silent; the promise to the
+        // collector is that David writes back, not that transport succeeded.
+        form.classList.add('sent');
+        try {
+          await fetch('https://formspree.io/f/mlgokvnj', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(data),
+          });
+        } catch (_) { /* silent */ }
+      });
+    }
+
+    // ========================================================
+    // Studio Journal — loads real entries from studio-journal.json.
+    // Hides entirely if the file is absent, empty, or has no entries
+    // for this piece. No invented placements. Ever.
+    // ========================================================
+    async function loadJournal(piece) {
+      const host = document.getElementById('pieceJournal');
+      const list = document.getElementById('journalEntries');
+      if (!host || !list) return;
+      try {
+        const res = await fetch('studio-journal.json', { cache: 'no-cache' });
+        if (!res.ok) return; // hide silently
+        const data = await res.json();
+        // Schema: { "the-canopy": [{ date: "2026-01-14", text: "..." }, ...], ... }
+        const entries = (data && data[slug(piece.name)]) || [];
+        if (!entries.length) return;
+        list.innerHTML = entries.map(e => `
+          <div class="piece-journal-entry">
+            <p class="piece-journal-date">${escapeHTML(e.date || '')}</p>
+            <p class="piece-journal-text">${escapeHTML(e.text || '')}</p>
+          </div>
+        `).join('');
+        host.hidden = false;
+      } catch (_) { /* hide silently */ }
+    }
+
+    // ========================================================
+    // Image fallback — same pattern as sculptures.html
+    // ========================================================
+    function attachImageFallbacks(scope) {
+      const root = scope || document;
+      root.querySelectorAll('[data-piece-image]').forEach(el => {
+        const src = el.dataset.pieceImage;
+        if (!src) return;
+        const test = new Image();
+        test.onerror = () => {
+          const name = el.dataset.pieceName;
+          const piece = PIECES.find(p => p.name === name);
+          if (piece) {
+            el.style.backgroundImage = 'none';
+            el.style.background = pieceGradient(piece);
+          }
+        };
+        test.src = src;
+      });
+    }
+
+    // ========================================================
+    // Boot
+    // ========================================================
+    (function boot() {
+      const s = getSlug();
+      if (!s) { renderNotFound(); return; }
+      const piece = PIECES.find(p => slug(p.name) === s);
+      if (!piece) { renderNotFound(); return; }
+      renderPiece(piece);
+    })();
+  </script>
+
+</body>
+</html>
