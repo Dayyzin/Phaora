@@ -142,7 +142,7 @@ body.show-grid .frame::before { opacity: 1; }
 
 /* ––––– Gradient headings ––––– */
 h2, h3 {
-  background: linear-gradient(125deg, #C8872A 0%, #E8B84A 40%, #D4973A 65%, #A05A14 100%) !important;
+  background: linear-gradient(125deg, #111111 0%, #555555 35%, #888888 60%, #D8CDB8 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
@@ -2608,7 +2608,7 @@ body.fullscreen { –frame-pad: 28px; –frame-gap: 56px; }
 <script>
 // Force gradient on all h2/h3 headings — JS inline styles bypass all CSS cascade issues
 document.querySelectorAll('h2, h3').forEach(function(el) {
-  el.style.setProperty('background', 'linear-gradient(125deg, #C8872A 0%, #E8B84A 40%, #D4973A 65%, #A05A14 100%)', 'important');
+  el.style.setProperty('background', 'linear-gradient(125deg, #111111 0%, #555555 35%, #888888 60%, #D8CDB8 100%)', 'important');
   el.style.setProperty('-webkit-background-clip', 'text', 'important');
   el.style.setProperty('background-clip', 'text', 'important');
   el.style.setProperty('-webkit-text-fill-color', 'transparent', 'important');
