@@ -737,6 +737,38 @@ font-family: var(–mono); font-size: 10px; letter-spacing: .14em; text-transfor
 .sculpt .desc { font-family: var(–serif); font-style: italic; font-size: 15px; margin: 0; color: var(–ink-soft); }
 .sculpt-row.dark .sculpt .desc { color: rgba(243,238,226,.7); }
 
+/* ––––– Sculpture hover overlay ––––– */
+.sculpt { cursor: pointer; transition: transform .18s ease; }
+.sculpt:active { transform: scale(0.975); }
+.sculpt .img .spec-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(10,8,6,.92) 0%, rgba(10,8,6,.55) 60%, rgba(10,8,6,.18) 100%);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 18px 16px;
+  opacity: 0; transform: translateY(6px);
+  transition: opacity .28s ease, transform .28s ease;
+  pointer-events: none;
+}
+.sculpt:hover .img .spec-overlay { opacity: 1; transform: translateY(0); }
+.spec-overlay .ov-no { font-family: var(–mono); font-size: 9.5px; letter-spacing: .22em; text-transform: uppercase; color: rgba(243,238,226,.5); margin: 0 0 4px; }
+.spec-overlay .ov-name { font-family: var(–display); font-weight: 700; font-size: 17px; letter-spacing: -.01em; color: #F3EEE2; margin: 0 0 5px; }
+.spec-overlay .ov-material { font-family: var(–mono); font-size: 9.5px; letter-spacing: .18em; text-transform: uppercase; color: rgba(243,238,226,.6); margin: 0 0 9px; }
+.spec-overlay .ov-desc { font-family: var(–serif); font-style: italic; font-size: 12.5px; line-height: 1.45; color: rgba(243,238,226,.82); margin: 0 0 10px; }
+.spec-overlay .ov-tier { font-family: var(–mono); font-size: 9px; letter-spacing: .16em; text-transform: uppercase; color: rgba(243,238,226,.45); margin: 0; }
+/* Crystal piece cards */
+.piece { cursor: pointer; transition: transform .18s ease; }
+.piece:active { transform: scale(0.975); }
+.piece .img .spec-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(10,8,6,.92) 0%, rgba(10,8,6,.5) 60%, rgba(10,8,6,.1) 100%);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 16px 14px;
+  opacity: 0; transform: translateY(6px);
+  transition: opacity .28s ease, transform .28s ease;
+  pointer-events: none;
+}
+.piece:hover .img .spec-overlay { opacity: 1; transform: translateY(0); }
+
 /* ––––– FRAME 06 — Process + Contact ––––– */
 .process { padding: var(–frame-pad); }
 .process h2 {
@@ -2508,6 +2540,53 @@ body.fullscreen { –frame-pad: 28px; –frame-gap: 56px; }
     const href = el.getAttribute('data-href');
     if (href) el.addEventListener('click', () => { window.location.href = href; });
   });
+</script>
+
+<script>
+// Sculpture hover overlays
+(function () {
+  // .sculpt cards (all sculpture row cards)
+  document.querySelectorAll('.sculpt').forEach(function (card) {
+    var img = card.querySelector('.img');
+    if (!img) return;
+    var no       = (card.querySelector('.tag-tl') || {}).textContent || '';
+    var material = (card.querySelector('.tag-br') || {}).textContent || '';
+    var name     = (card.querySelector('h5') || {}).textContent || '';
+    var desc     = (card.querySelector('.desc') || {}).textContent || '';
+    var capSpans = card.querySelectorAll('.cap span');
+    var tier     = Array.from(capSpans).map(function(s){ return s.textContent; }).join(' · ');
+
+    var ov = document.createElement('div');
+    ov.className = 'spec-overlay';
+    ov.innerHTML =
+      '<div class="ov-no">' + no + '</div>' +
+      '<div class="ov-name">' + name + '</div>' +
+      '<div class="ov-material">' + material + '</div>' +
+      (desc ? '<p class="ov-desc">' + desc + '</p>' : '') +
+      (tier ? '<div class="ov-tier">' + tier + '</div>' : '');
+    img.appendChild(ov);
+  });
+
+  // .piece cards (crystal collection)
+  document.querySelectorAll('.piece').forEach(function (card) {
+    var img = card.querySelector('.img');
+    if (!img) return;
+    var name     = (card.querySelector('h5') || {}).textContent || '';
+    var capSpans = card.querySelectorAll('.cap span');
+    var material = capSpans[1] ? capSpans[1].textContent : '';
+    var no       = capSpans[0] ? capSpans[0].textContent : '';
+    var price    = (card.querySelector('.price') || {}).textContent || '';
+
+    var ov = document.createElement('div');
+    ov.className = 'spec-overlay';
+    ov.innerHTML =
+      '<div class="ov-no">' + no + '</div>' +
+      '<div class="ov-name">' + name + '</div>' +
+      '<div class="ov-material">' + material + '</div>' +
+      (price ? '<div class="ov-tier">' + price + '</div>' : '');
+    img.appendChild(ov);
+  });
+}());
 </script>
 
 </body>
