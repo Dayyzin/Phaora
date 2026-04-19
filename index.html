@@ -2605,5 +2605,22 @@ body.fullscreen { –frame-pad: 28px; –frame-gap: 56px; }
 }());
 </script>
 
+<script>
+// Force gradient on all h2/h3 headings — JS inline styles bypass all CSS cascade issues
+document.querySelectorAll('h2, h3').forEach(function(el) {
+  el.style.setProperty('background', 'linear-gradient(125deg, #C8872A 0%, #E8B84A 40%, #D4973A 65%, #A05A14 100%)', 'important');
+  el.style.setProperty('-webkit-background-clip', 'text', 'important');
+  el.style.setProperty('background-clip', 'text', 'important');
+  el.style.setProperty('-webkit-text-fill-color', 'transparent', 'important');
+  el.style.setProperty('color', 'transparent', 'important');
+  el.querySelectorAll('em').forEach(function(em) {
+    em.style.setProperty('background', 'inherit', 'important');
+    em.style.setProperty('-webkit-background-clip', 'text', 'important');
+    em.style.setProperty('background-clip', 'text', 'important');
+    em.style.setProperty('-webkit-text-fill-color', 'transparent', 'important');
+  });
+});
+</script>
+
 </body>
 </html>
