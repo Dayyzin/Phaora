@@ -148,12 +148,20 @@ font-family: var(–sans); font-size: 13px; letter-spacing: .04em;
 }
 .nav .left, .nav .right { display: flex; gap: 28px; align-items: center; }
 .nav .right { justify-content: flex-end; }
-.nav a { color: var(–ink); text-decoration: none; opacity: .78; }
+.nav a { color: var(–paper); text-decoration: none; opacity: .78; }
+.nav .logo-group { display: inline-flex; align-items: center; gap: 16px; }
 .nav .logo {
 font-family: var(–display); font-weight: 700; font-size: 22px; letter-spacing: .22em;
-display: inline-flex; align-items: baseline; gap: 0;
+display: inline-flex; align-items: baseline; gap: 0; color: var(–paper);
 }
 .nav .logo .o { position: relative; display: inline-block; }
+.nav .hs-pill {
+font-family: var(–sans); font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+border: 1px solid rgba(243,238,226,.4); padding: 5px 12px; border-radius: 3px;
+color: var(–paper) !important; opacity: 1 !important;
+}
+.nav .lang { font-family: var(–mono); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(–paper); opacity: .5; cursor: pointer; }
+.nav .lang.active { opacity: 1; }
 
 /* Reusable PHAORA wordmark with umlaut Ö */
 .phaora { display: inline-flex; align-items: baseline; }
@@ -613,6 +621,16 @@ display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; padding: 72px v
 .fcard .cap { display: flex; justify-content: space-between; padding-top: 14px; font-family: var(–mono); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(–muted); }
 .fcard h5 { font-family: var(–display); font-weight: 700; font-size: 28px; letter-spacing: -.01em; margin: 10px 0 0; }
 
+/* ––––– Dark frames — white text ––––– */
+.frame.v-dark-side, .frame.v-dark-bottom, .frame.v-dark-bronze, .frame.v-dark-radial {
+color: var(–paper);
+}
+.frame.v-dark-side h1, .frame.v-dark-side h2, .frame.v-dark-side h3, .frame.v-dark-side h4, .frame.v-dark-side h5, .frame.v-dark-side p,
+.frame.v-dark-bottom h1, .frame.v-dark-bottom h2, .frame.v-dark-bottom h3, .frame.v-dark-bottom h4, .frame.v-dark-bottom h5, .frame.v-dark-bottom p,
+.frame.v-dark-bronze h1, .frame.v-dark-bronze h2, .frame.v-dark-bronze h3, .frame.v-dark-bronze h4, .frame.v-dark-bronze h5, .frame.v-dark-bronze p {
+color: var(–paper);
+}
+
 /* ––––– FRAME 05 — Crystal sculptures ––––– */
 .crystal-frame { background:
 radial-gradient(120% 80% at 70% 20%, #2a2620 0%, #1a1714 40%, #0a0908 100%); color: var(–paper); }
@@ -692,6 +710,9 @@ background: linear-gradient(160deg, #2a2620 0%, #14110e 100%);
 overflow: hidden; position: relative;
 }
 .sculpt .shim { position: absolute; inset: 0; filter: blur(.2px); }
+.sculpt .img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.piece .img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
 .sculpt .shim.t1 { background: conic-gradient(from 210deg at 50% 45%, #3a3a36, #7a6f5a, #c6b794, #ece2c5, #a79a7a, #463f2f, #3a3a36); }
 .sculpt .shim.t2 { background: conic-gradient(from 140deg at 50% 50%, #1c2a1f, #46593a, #8aa06f, #d5dcb7, #6d7d54, #223120); }
 .sculpt .shim.t3 { background: conic-gradient(from 40deg  at 50% 50%, #2a110d, #6b2a22, #b46251, #e7b9a9, #7c332a, #1e0a08); }
@@ -1115,10 +1136,15 @@ body.fullscreen { –frame-pad: 28px; –frame-gap: 56px; }
 
 <div class="sticky-nav" id="sticky-nav">
   <div class="bar">
-    <div class="left"></div>
-    <div class="mark phaora">PHA<span class="o">Ö</span>RA</div>
+    <div class="left"><a href="#crystal-collection">Crystal Sculptures</a></div>
+    <div style="display:inline-flex;align-items:center;gap:16px;">
+      <div class="mark phaora">PHA<span class="o">Ö</span>RA</div>
+      <a href="#hardscape" style="font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;border:1px solid rgba(243,238,226,.4);padding:5px 12px;border-radius:3px;color:var(--paper);opacity:1;text-decoration:none;">Hardscape</a>
+    </div>
     <div class="right">
-      <a href="tel:+19548719991">(954) 871-9991</a>
+      <span style="font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--paper);opacity:1;cursor:pointer;">EN</span>
+      <span style="font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--paper);opacity:.45;cursor:pointer;">FR</span>
+      <span style="font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--paper);opacity:.45;cursor:pointer;">BR</span>
     </div>
   </div>
 </div>
@@ -1201,7 +1227,7 @@ body.fullscreen { –frame-pad: 28px; –frame-gap: 56px; }
 
     <figure class="sculpt">
       <div class="img">
-        <div class="shim t2"></div>
+        <img src="assets/PHAORA IMAGES/Sculptures/perch/phaora-perch-1.jpeg" alt="The Devotion" loading="lazy">
         <div class="spot"></div>
         <span class="tag-tl">No. 011</span>
         <span class="tag-br">Amethyst</span>
@@ -1212,7 +1238,7 @@ body.fullscreen { –frame-pad: 28px; –frame-gap: 56px; }
     </figure>
     <figure class="sculpt">
       <div class="img">
-        <div class="shim t4"></div>
+        <img src="assets/PHAORA IMAGES/Sculptures/dynasty/phaora-dynasty-1.jpeg" alt="The Whisper" loading="lazy">
         <div class="spot"></div>
         <span class="tag-tl">No. 012</span>
         <span class="tag-br">Lapis &amp; Amazonite</span>
@@ -1223,7 +1249,7 @@ body.fullscreen { –frame-pad: 28px; –frame-gap: 56px; }
     </figure>
     <figure class="sculpt">
       <div class="img">
-        <div class="shim t6"></div>
+        <img src="assets/PHAORA IMAGES/Sculptures/canopy/phaora-canopy-1.jpeg" alt="The Nest" loading="lazy">
         <div class="spot"></div>
         <span class="tag-tl">No. 013</span>
         <span class="tag-br">Citrine</span>
@@ -1333,7 +1359,7 @@ body.fullscreen { –frame-pad: 28px; –frame-gap: 56px; }
 
     <figure class="sculpt">
       <div class="img">
-        <div class="shim t2"></div>
+        <img src="assets/PHAORA IMAGES/Sculptures/dynasty/phaora-dynasty-2.jpeg" alt="The Hyacinths" loading="lazy">
         <div class="spot"></div>
         <span class="tag-tl">No. 021</span>
         <span class="tag-br">Amazonite</span>
@@ -1344,7 +1370,7 @@ body.fullscreen { –frame-pad: 28px; –frame-gap: 56px; }
     </figure>
     <figure class="sculpt">
       <div class="img">
-        <div class="shim t7"></div>
+        <img src="assets/PHAORA IMAGES/Sculptures/perch/phaora-perch-2.jpeg" alt="The Sentinels" loading="lazy">
         <div class="spot"></div>
         <span class="tag-tl">No. 022</span>
         <span class="tag-br">Malachite</span>
@@ -1355,7 +1381,7 @@ body.fullscreen { –frame-pad: 28px; –frame-gap: 56px; }
     </figure>
     <figure class="sculpt">
       <div class="img">
-        <div class="shim t3"></div>
+        <img src="assets/PHAORA IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-1.jpeg" alt="The Scarlets" loading="lazy">
         <div class="spot"></div>
         <span class="tag-tl">No. 023</span>
         <span class="tag-br">Jasper</span>
@@ -1401,7 +1427,7 @@ body.fullscreen { –frame-pad: 28px; –frame-gap: 56px; }
 
     <figure class="sculpt">
       <div class="img">
-        <div class="shim t7"></div>
+        <img src="assets/PHAORA IMAGES/Sculptures/perch/phaora-perch-3.jpeg" alt="The Foresta" loading="lazy">
         <div class="spot"></div>
         <span class="tag-tl">No. 031</span>
         <span class="tag-br">Malachite</span>
@@ -1412,7 +1438,7 @@ body.fullscreen { –frame-pad: 28px; –frame-gap: 56px; }
     </figure>
     <figure class="sculpt">
       <div class="img">
-        <div class="shim t5"></div>
+        <img src="assets/PHAORA IMAGES/Sculptures/portal/phaora-portal-1.jpeg" alt="The Cathedral" loading="lazy">
         <div class="spot"></div>
         <span class="tag-tl">No. 032</span>
         <span class="tag-br">Amethyst</span>
@@ -1423,7 +1449,7 @@ body.fullscreen { –frame-pad: 28px; –frame-gap: 56px; }
     </figure>
     <figure class="sculpt">
       <div class="img">
-        <div class="shim t8"></div>
+        <img src="assets/PHAORA IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-2.jpeg" alt="The Ignis" loading="lazy">
         <div class="spot"></div>
         <span class="tag-tl">No. 033</span>
         <span class="tag-br">Red jasper</span>
@@ -1477,7 +1503,7 @@ body.fullscreen { –frame-pad: 28px; –frame-gap: 56px; }
 
     <figure class="sculpt">
       <div class="img">
-        <div class="shim t1"></div>
+        <img src="assets/PHAORA IMAGES/Sculptures/canopy/phaora-canopy-2.jpeg" alt="The Canopy" loading="lazy">
         <div class="spot"></div>
         <span class="tag-tl">No. 041</span>
         <span class="tag-br">Quartz</span>
@@ -1488,7 +1514,7 @@ body.fullscreen { –frame-pad: 28px; –frame-gap: 56px; }
     </figure>
     <figure class="sculpt">
       <div class="img">
-        <div class="shim t4"></div>
+        <img src="assets/PHAORA IMAGES/Sculptures/dynasty/phaora-dynasty-3.jpeg" alt="The Dynasty" loading="lazy">
         <div class="spot"></div>
         <span class="tag-tl">No. 042</span>
         <span class="tag-br">Lapis lazuli</span>
@@ -1499,7 +1525,7 @@ body.fullscreen { –frame-pad: 28px; –frame-gap: 56px; }
     </figure>
     <figure class="sculpt">
       <div class="img">
-        <div class="shim t9"></div>
+        <img src="assets/PHAORA IMAGES/Sculptures/portal/phaora-portal-2.jpeg" alt="The Ultima" loading="lazy">
         <div class="spot"></div>
         <span class="tag-tl">No. 043</span>
         <span class="tag-br">Silver onyx</span>
@@ -1519,11 +1545,16 @@ body.fullscreen { –frame-pad: 28px; –frame-gap: 56px; }
   <section class="frame crystal-frame">
     <nav class="nav">
       <div class="left">
-        <a href="#hardscape">Hardscape</a><a href="#crystal-collection">Crystal Works</a><a href="#atelier">Atelier</a><a href="#commission">Commission</a>
+        <a href="#crystal-collection">Crystal Sculptures</a>
       </div>
-      <div class="logo phaora">PHA<span class="o">Ö</span>RA</div>
+      <div class="logo-group">
+        <div class="logo phaora">PHA<span class="o">Ö</span>RA</div>
+        <a href="#hardscape" class="hs-pill">Hardscape</a>
+      </div>
       <div class="right">
-        <a href="#request-piece">Acquisitions</a><a href="tel:+19548719991">(954) 871-9991</a><a href="#commission">Begin →</a>
+        <span class="lang active">EN</span>
+        <span class="lang">FR</span>
+        <span class="lang">BR</span>
       </div>
     </nav>
     <div class="rule" style="margin: 0 var(--frame-pad); background: rgba(243,238,226,.2);"></div>
@@ -1539,49 +1570,49 @@ body.fullscreen { –frame-pad: 28px; –frame-gap: 56px; }
 
 <div class="collection" id="crystal-collection">
   <div class="piece">
-    <div class="img"><div class="shimmer"></div></div>
+    <div class="img"><img src="assets/PHAORA IMAGES/Sculptures/canopy/phaora-canopy-3.jpeg" alt="The Canopy" loading="lazy"></div>
     <div class="cap"><span>No. 01</span><span>White Quartz</span></div>
     <h5>The Canopy</h5>
     <div class="price">$ 68,000</div>
   </div>
   <div class="piece g">
-    <div class="img"><div class="shimmer"></div></div>
+    <div class="img"><img src="assets/PHAORA IMAGES/Sculptures/dynasty/phaora-dynasty-4.jpeg" alt="The Aerie" loading="lazy"></div>
     <div class="cap"><span>No. 02</span><span>Amazonite</span></div>
     <h5>The Aerie</h5>
     <div class="price">$ 48,000</div>
   </div>
   <div class="piece r">
-    <div class="img"><div class="shimmer"></div></div>
+    <div class="img"><img src="assets/PHAORA IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-5.jpeg" alt="The Scarlets" loading="lazy"></div>
     <div class="cap"><span>No. 03</span><span>Jasper</span></div>
     <h5>The Scarlets</h5>
     <div class="price">$ 42,000</div>
   </div>
   <div class="piece b">
-    <div class="img"><div class="shimmer"></div></div>
+    <div class="img"><img src="assets/PHAORA IMAGES/Sculptures/dynasty/phaora-dynasty-5.jpeg" alt="The Dynasty" loading="lazy"></div>
     <div class="cap"><span>No. 04</span><span>Lapis Lazuli</span></div>
     <h5>The Dynasty</h5>
     <div class="price">$ 52,000</div>
   </div>
   <div class="piece">
-    <div class="img"><div class="shimmer"></div></div>
+    <div class="img"><img src="assets/PHAORA IMAGES/Sculptures/perch/phaora-perch-4.jpeg" alt="The Vessel" loading="lazy"></div>
     <div class="cap"><span>No. 05</span><span>Aquamarine Quartz</span></div>
     <h5>The Vessel</h5>
     <div class="price">$ 35,000</div>
   </div>
   <div class="piece r">
-    <div class="img"><div class="shimmer"></div></div>
+    <div class="img"><img src="assets/PHAORA IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-5.jpeg" alt="The Raptor" loading="lazy"></div>
     <div class="cap"><span>No. 06</span><span>Carnelian</span></div>
     <h5>The Raptor</h5>
     <div class="price">$ 36,000</div>
   </div>
   <div class="piece g">
-    <div class="img"><div class="shimmer"></div></div>
+    <div class="img"><img src="assets/PHAORA IMAGES/Sculptures/perch/phaora-perch-5.jpeg" alt="The Parliament" loading="lazy"></div>
     <div class="cap"><span>No. 07</span><span>Malachite</span></div>
     <h5>The Parliament</h5>
     <div class="price">$ 38,000</div>
   </div>
   <div class="piece b">
-    <div class="img"><div class="shimmer"></div></div>
+    <div class="img"><img src="assets/PHAORA IMAGES/Sculptures/portal/phaora-portal-3.jpeg" alt="The Cathedral" loading="lazy"></div>
     <div class="cap"><span>No. 08</span><span>Amethyst</span></div>
     <h5>The Cathedral</h5>
     <div class="price">$ 26,000</div>
@@ -1696,7 +1727,7 @@ body.fullscreen { –frame-pad: 28px; –frame-gap: 56px; }
 
     <figure class="sculpt">
       <div class="img">
-        <div class="shim t1"></div>
+        <img src="assets/PHAORA IMAGES/Sculptures/canopy/phaora-canopy-4.jpeg" alt="The Ascent" loading="lazy">
         <div class="spot"></div>
         <span class="tag-tl">No. 051</span>
         <span class="tag-br">White Quartz</span>
@@ -1707,7 +1738,7 @@ body.fullscreen { –frame-pad: 28px; –frame-gap: 56px; }
     </figure>
     <figure class="sculpt">
       <div class="img">
-        <div class="shim t3"></div>
+        <img src="assets/PHAORA IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-3.jpeg" alt="The Ignis" loading="lazy">
         <div class="spot"></div>
         <span class="tag-tl">No. 052</span>
         <span class="tag-br">Carnelian</span>
@@ -1718,7 +1749,7 @@ body.fullscreen { –frame-pad: 28px; –frame-gap: 56px; }
     </figure>
     <figure class="sculpt">
       <div class="img">
-        <div class="shim t4"></div>
+        <img src="assets/PHAORA IMAGES/Sculptures/portal/phaora-portal-4.jpeg" alt="The Portal" loading="lazy">
         <div class="spot"></div>
         <span class="tag-tl">No. 053</span>
         <span class="tag-br">Sodalite</span>
@@ -1781,7 +1812,7 @@ body.fullscreen { –frame-pad: 28px; –frame-gap: 56px; }
 
     <figure class="sculpt">
       <div class="img">
-        <div class="shim t6"></div>
+        <img src="assets/PHAORA IMAGES/Sculptures/canopy/phaora-canopy-5.jpeg" alt="The Eden" loading="lazy">
         <div class="spot"></div>
         <span class="tag-tl">No. 061</span>
         <span class="tag-br">Citrine &amp; Amber</span>
@@ -1792,7 +1823,7 @@ body.fullscreen { –frame-pad: 28px; –frame-gap: 56px; }
     </figure>
     <figure class="sculpt">
       <div class="img">
-        <div class="shim t6"></div>
+        <img src="assets/PHAORA IMAGES/Sculptures/perch/phaora-perch-6.jpeg" alt="The Sovereign" loading="lazy">
         <div class="spot"></div>
         <span class="tag-tl">No. 062</span>
         <span class="tag-br">Ochre Onyx</span>
@@ -1803,7 +1834,7 @@ body.fullscreen { –frame-pad: 28px; –frame-gap: 56px; }
     </figure>
     <figure class="sculpt">
       <div class="img">
-        <div class="shim t7"></div>
+        <img src="assets/PHAORA IMAGES/Sculptures/dynasty/phaora-dynasty-6.jpeg" alt="The Herald" loading="lazy">
         <div class="spot"></div>
         <span class="tag-tl">No. 063</span>
         <span class="tag-br">Malachite</span>
@@ -1860,7 +1891,7 @@ body.fullscreen { –frame-pad: 28px; –frame-gap: 56px; }
 
     <figure class="sculpt">
       <div class="img">
-        <div class="shim t2"></div>
+        <img src="assets/PHAORA IMAGES/Sculptures/portal/phaora-portal-5.jpeg" alt="The Indigos" loading="lazy">
         <div class="spot"></div>
         <span class="tag-tl">No. 071</span>
         <span class="tag-br">Amazonite</span>
@@ -1871,7 +1902,7 @@ body.fullscreen { –frame-pad: 28px; –frame-gap: 56px; }
     </figure>
     <figure class="sculpt">
       <div class="img">
-        <div class="shim t5"></div>
+        <img src="assets/PHAORA IMAGES/Sculptures/canopy/phaora-canopy-6.jpeg" alt="The Monolith" loading="lazy">
         <div class="spot"></div>
         <span class="tag-tl">No. 072</span>
         <span class="tag-br">Amethyst</span>
@@ -1882,7 +1913,7 @@ body.fullscreen { –frame-pad: 28px; –frame-gap: 56px; }
     </figure>
     <figure class="sculpt">
       <div class="img">
-        <div class="shim t1"></div>
+        <img src="assets/PHAORA IMAGES/Sculptures/portal/phaora-portal-6.jpeg" alt="The Lumen" loading="lazy">
         <div class="spot"></div>
         <span class="tag-tl">No. 073</span>
         <span class="tag-br">White Quartz</span>
@@ -1951,7 +1982,7 @@ body.fullscreen { –frame-pad: 28px; –frame-gap: 56px; }
 
     <figure class="sculpt">
       <div class="img">
-        <div class="shim t1"></div>
+        <img src="assets/PHAORA IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-6.jpeg" alt="The Guardians" loading="lazy">
         <div class="spot"></div>
         <span class="tag-tl">No. 081</span>
         <span class="tag-br">White Quartz</span>
@@ -1962,7 +1993,7 @@ body.fullscreen { –frame-pad: 28px; –frame-gap: 56px; }
     </figure>
     <figure class="sculpt">
       <div class="img">
-        <div class="shim t4"></div>
+        <img src="assets/PHAORA IMAGES/Sculptures/perch/phaora-perch-1.jpeg" alt="The Lovers" loading="lazy">
         <div class="spot"></div>
         <span class="tag-tl">No. 082</span>
         <span class="tag-br">Lapis Lazuli</span>
@@ -1973,7 +2004,7 @@ body.fullscreen { –frame-pad: 28px; –frame-gap: 56px; }
     </figure>
     <figure class="sculpt">
       <div class="img">
-        <div class="shim t6"></div>
+        <img src="assets/PHAORA IMAGES/Sculptures/canopy/phaora-canopy-1.jpeg" alt="The Orbit" loading="lazy">
         <div class="spot"></div>
         <span class="tag-tl">No. 083</span>
         <span class="tag-br">Ochre Onyx</span>
@@ -2121,7 +2152,7 @@ body.fullscreen { –frame-pad: 28px; –frame-gap: 56px; }
 
     <figure class="sculpt">
       <div class="img">
-        <div class="shim t3"></div>
+        <img src="assets/PHAORA IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-4.jpeg" alt="The Courtship" loading="lazy">
         <div class="spot"></div>
         <span class="tag-tl">No. 091</span>
         <span class="tag-br">Carnelian</span>
@@ -2132,7 +2163,7 @@ body.fullscreen { –frame-pad: 28px; –frame-gap: 56px; }
     </figure>
     <figure class="sculpt">
       <div class="img">
-        <div class="shim t9"></div>
+        <img src="assets/PHAORA IMAGES/Sculptures/dynasty/phaora-dynasty-4.jpeg" alt="The Duet" loading="lazy">
         <div class="spot"></div>
         <span class="tag-tl">No. 092</span>
         <span class="tag-br">Silver Onyx</span>
@@ -2143,7 +2174,7 @@ body.fullscreen { –frame-pad: 28px; –frame-gap: 56px; }
     </figure>
     <figure class="sculpt">
       <div class="img">
-        <div class="shim t1"></div>
+        <img src="assets/PHAORA IMAGES/Sculptures/perch/phaora-perch-4.jpeg" alt="The Gathering" loading="lazy">
         <div class="spot"></div>
         <span class="tag-tl">No. 093</span>
         <span class="tag-br">White Quartz</span>
