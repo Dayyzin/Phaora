@@ -142,12 +142,19 @@ body.show-grid .frame::before { opacity: 1; }
 
 /* ––––– Gradient headings ––––– */
 h2, h3 {
-  background: linear-gradient(125deg, #E8C878 0%, #D4973A 48%, #B86E20 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  background: linear-gradient(125deg, #C8872A 0%, #E8B84A 40%, #D4973A 65%, #A05A14 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  color: transparent !important;
 }
-h2 em, h3 em { -webkit-text-fill-color: transparent; color: inherit; }
+h2 em, h3 em {
+  background: inherit !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
 
 /* ––––– Navigation (shared) ––––– */
 .nav {
