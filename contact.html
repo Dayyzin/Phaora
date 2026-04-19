@@ -197,7 +197,7 @@ footer{background:var(--dark2);border-top:1px solid rgba(201,168,76,0.15);paddin
       <h2 class="sec-title">Get Your<br><em>Free Quote</em></h2>
       <div class="gold-rule"></div>
       <p class="form-sub">No obligation · Response within 24 hours · Free site visit</p>
-      <form class="form-grid" id="quoteForm" action="https://formspree.io/f/xvzvnyal" method="POST">
+      <form class="form-grid" id="quoteForm">
         <div class="form-row">
           <div class="fg">
             <label class="fl">First Name</label>
@@ -293,34 +293,32 @@ footer{background:var(--dark2);border-top:1px solid rgba(201,168,76,0.15);paddin
 </footer>
 
 <script>
-
-document.getElementById(‘quoteForm’).addEventListener(‘submit’, function(e) {
-e.preventDefault();
-const form = this;
-const data = new FormData(form);
-fetch(‘https://formspree.io/f/xvzvnyal’, {
-method: ‘POST’,
-body: data,
-headers: { ‘Accept’: ‘application/json’ }
-}).then(response => {
-if (response.ok) {
-document.getElementById(‘mainContent’).style.display = ‘none’;
-const confirm = document.getElementById(‘confirmSection’);
-confirm.classList.add(‘show’);
-window.scrollTo({top: 0, behavior: ‘smooth’});
-setTimeout(() => { document.getElementById(‘progressFill’).style.width = ‘100%’; }, 100);
-let count = 3;
-const counter = document.getElementById(‘countNum’);
-const timer = setInterval(() => {
-count--;
-counter.textContent = count;
-if (count <= 0) { clearInterval(timer); window.location.href = ‘/’; }
-}, 1000);
-} else {
-alert(‘Something went wrong. Please call us at (954) 871-9991.’);
-}
-}).catch(() => {
-alert(‘Something went wrong. Please call us at (954) 871-9991.’);
-});
+document.getElementById('quoteForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const form = this;
+  const data = Object.fromEntries(new FormData(form).entries());
+  fetch('https://admin.phaora.com/api/webhooks/contact', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  }).then(response => {
+    if (response.ok) {
+      document.getElementById('mainContent').style.display = 'none';
+      document.getElementById('confirmSection').classList.add('show');
+      window.scrollTo({top: 0, behavior: 'smooth'});
+      setTimeout(() => { document.getElementById('progressFill').style.width = '100%'; }, 100);
+      let count = 3;
+      const counter = document.getElementById('countNum');
+      const timer = setInterval(() => {
+        count--;
+        counter.textContent = count;
+        if (count <= 0) { clearInterval(timer); window.location.href = '/'; }
+      }, 1000);
+    } else {
+      alert('Something went wrong. Please call us at (954) 871-9991.');
+    }
+  }).catch(() => {
+    alert('Something went wrong. Please call us at (954) 871-9991.');
+  });
 });
 </script>
