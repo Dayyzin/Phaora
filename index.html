@@ -1735,7 +1735,7 @@ body.fullscreen { –frame-pad: 28px; –frame-gap: 56px; }
       <p class="eyebrow" style="color:rgba(243,238,226,.6);">§ Inside the Atelier · Minas Gerais</p>
       <h2 style="margin-top:16px;">Forty years<br/>at the <em>carving bench.</em></h2>
       <div class="film-stage" id="film-stage">
-        <video id="film-video" playsinline preload="auto"></video>
+        <video id="film-video" playsinline autoplay muted loop preload="auto"></video>
         <div class="play" role="button" aria-label="Play film" onclick="toggleFilm()"></div>
       </div>
       <div class="film-strip">
@@ -2333,11 +2333,10 @@ body.fullscreen { –frame-pad: 28px; –frame-gap: 56px; }
     // Propagate the preview-serve token (?t=...) to the video src so the
     // sandboxed preview endpoint authorizes the request.
     const token = new URLSearchParams(location.search).get('t');
-    v.src = 'assets/atelier-film.mp4' + (token ? ('?t=' + token) : '');
+    v.src = '1dceb46f-5d6c-4bb1-b342-0c985c5866a2.mp4' + (token ? ('?t=' + token) : '');
+    document.getElementById('film-stage').classList.add('playing');
     v.addEventListener('ended', () => {
       document.getElementById('film-stage').classList.remove('playing');
-      v.removeAttribute('controls');
-      v.currentTime = 0;
     });
   });
   // ---------- Pill select toggles (single-select by default; multi for stones/interests/project_type) ----------
