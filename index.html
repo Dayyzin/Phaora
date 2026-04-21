@@ -224,23 +224,23 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
   </div>
   <div class="hs-featured container">
     <div class="hs-feat-card hs-feat-large">
-      <img src="01592b15-bdc5-4212-99f7-904a2c44316b.jpeg" alt="Estate Pool Deck">
+      <img src="https://raw.githubusercontent.com/Dayyzin/Phaora/refs/heads/main/assets/PHAORA%20IMAGES/Hs/hardscape-gallery-pool-featured.jpg" alt="Estate Pool Deck">
       <div class="hs-feat-label"><h4>Estate Pool Deck</h4><span>Natural Stone · Travertine</span></div>
     </div>
     <div class="hs-feat-card">
-      <img src="04fd41fe-685e-4374-bfd1-4861982f11fe.jpeg" alt="Outdoor Fireplace">
+      <img src="https://raw.githubusercontent.com/Dayyzin/Phaora/refs/heads/main/assets/PHAORA%20IMAGES/Hs/hardscape-gallery-fireplace.jpg" alt="Outdoor Fireplace">
       <div class="hs-feat-label"><h4>Outdoor Fireplace</h4><span>Natural Stone · Custom Build</span></div>
     </div>
     <div class="hs-feat-card">
-      <img src="068ce2bd-2c6e-4ec3-8290-2f6a327e68ad.jpeg" alt="Estate Walkway">
+      <img src="https://raw.githubusercontent.com/Dayyzin/Phaora/refs/heads/main/assets/PHAORA%20IMAGES/Hs/hardscape-gallery-walkway.jpg" alt="Estate Walkway">
       <div class="hs-feat-label"><h4>Estate Walkway</h4><span>Paver · Golden Hour</span></div>
     </div>
     <div class="hs-feat-card">
-      <img src="0f598940-f01e-4093-b5ab-cbb1cce9bfe6.jpeg" alt="Stone Paver Detail">
+      <img src="https://raw.githubusercontent.com/Dayyzin/Phaora/refs/heads/main/assets/PHAORA%20IMAGES/Hs/hardscape-gallery-stone-detail.jpg" alt="Stone Paver Detail">
       <div class="hs-feat-label"><h4>Stone Detail</h4><span>Natural Paver · French Pattern</span></div>
     </div>
     <div class="hs-feat-card">
-      <img src="11f4f89b-77d8-4c59-ac7a-16eb2fec490b.jpeg" alt="Stone Fountain">
+      <img src="https://raw.githubusercontent.com/Dayyzin/Phaora/refs/heads/main/assets/PHAORA%20IMAGES/Hs/hardscape-gallery-stone-fountain.jpg" alt="Stone Fountain">
       <div class="hs-feat-label"><h4>Stone Fountain</h4><span>Coral Stone · Tropical Setting</span></div>
       <div class="hs-counter">+8 More Projects</div>
     </div>
@@ -355,9 +355,8 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
    ============================================================ */
 
 // -------- HARDSCAPE --------
-// Path: assets/PHAORA IMAGES/Hs/
-// Exact filenames (spaces in path are URL-encoded)
-const HS_BASE = 'assets/PHAORA%20IMAGES/Hs/';
+const RAW = 'https://raw.githubusercontent.com/Dayyzin/Phaora/refs/heads/main/';
+const HS_BASE = RAW + 'assets/PHAORA%20IMAGES/Hs/';
 const hardscapeFiles = [
   'hardscape-gallery-pool-featured.jpg',
   'hardscape-gallery-fireplace.jpg',
@@ -375,11 +374,9 @@ const hardscapeFiles = [
 ].map(f => HS_BASE + f);
 
 const heroEstate = HS_BASE + 'hero-estate.jpeg';
-const heroWaterfall = HS_BASE + 'hero-waterfall.jpeg';
 
 // -------- SCULPTURES --------
-// Path: assets/PHAORA IMAGES/Sculptures/[collection]/phaora-[collection]-[N].jpeg
-const SC_BASE = 'assets/PHAORA%20IMAGES/Sculptures/';
+const SC_BASE = RAW + 'assets/PHAORA%20IMAGES/Sculptures/';
 const collections = [
   'aerie','ascent','canopy','cathedral','cluster','companions','courtship',
   'crimson-duo','devotion','driftwood','duet','dynasty','eclipse','eden',
@@ -429,8 +426,8 @@ function setBg(el, src){
   };
   test.src = src;
 }
-setBg(document.getElementById('heroBg'), heroEstate);
-setBg(document.getElementById('sculptHeroBg'), SC_BASE + 'canopy/phaora-canopy-1.jpeg');
+setBg(document.getElementById('heroBg'), '1264572e-f188-448b-a36d-2e8e892594e1.jpeg');
+setBg(document.getElementById('sculptHeroBg'), '12852386-6a62-43fc-b02a-81615dce4afa.jpeg');
 
 // Nav scroll state
 const nav = document.getElementById('nav');
