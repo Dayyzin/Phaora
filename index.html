@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -8,29 +9,16 @@
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#0a0907;
-  --bg2:#110f0b;
-  --surface:#1a1714;
-  --surface2:#231f1a;
-  --gold:#c9a55c;
-  --gold-light:#e2c98a;
-  --gold-dim:#8a7340;
-  --cream:#f0e8d8;
-  --cream2:#d4c9b2;
-  --text:#e8e0d0;
-  --text-dim:#9a9080;
-  --accent:#d4a853;
-  --red-soft:#c45c4a;
-  --green-soft:#5ca55c;
-  --serif:'Cormorant Garamond',Georgia,serif;
-  --sans:'Outfit',system-ui,sans-serif;
+  --bg:#0a0907;--bg2:#110f0b;--surface:#1a1714;--surface2:#231f1a;
+  --gold:#c9a55c;--gold-light:#e2c98a;--gold-dim:#8a7340;
+  --cream:#f0e8d8;--cream2:#d4c9b2;--text:#e8e0d0;--text-dim:#9a9080;
+  --accent:#d4a853;--red-soft:#c45c4a;--green-soft:#5ca55c;
+  --serif:'Cormorant Garamond',Georgia,serif;--sans:'Outfit',system-ui,sans-serif;
   --ease:cubic-bezier(0.22,1,0.36,1);
 }
 html{scroll-behavior:smooth;font-size:16px;background:var(--bg)}
 body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
-
-/* NAV */
 .nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;transition:all .5s var(--ease);backdrop-filter:blur(0px);background:transparent}
 .nav.scrolled{backdrop-filter:blur(20px) saturate(1.4);background:rgba(10,9,7,.88);border-bottom:1px solid rgba(201,165,92,.08);padding:12px 24px}
 .nav-logo{font-family:var(--serif);font-size:1.4rem;font-weight:300;letter-spacing:.15em;color:var(--cream);text-decoration:none}
@@ -40,8 +28,6 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
 .nav-cta{background:var(--gold);color:var(--bg)!important;padding:10px 22px;font-size:.68rem!important;letter-spacing:.14em!important;font-weight:500;border:none;cursor:pointer;transition:all .3s var(--ease)}
 .nav-cta:hover{background:var(--gold-light);transform:translateY(-1px)}
 .nav-phone{font-size:.72rem;color:var(--gold)!important;font-weight:400}
-
-/* HERO */
 .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 24px 80px;overflow:hidden}
 .hero-bg{position:absolute;inset:0;z-index:0}
 .hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.35;filter:brightness(.6)}
@@ -60,28 +46,20 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
 .hero-trust-item{text-align:center}
 .hero-trust-item .num{font-family:var(--serif);font-size:1.8rem;color:var(--gold);font-weight:300}
 .hero-trust-item .label{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-dim);margin-top:4px}
-
-/* URGENCY */
 .urgency-bar{background:linear-gradient(90deg,var(--surface),var(--surface2),var(--surface));border-top:1px solid rgba(201,165,92,.1);border-bottom:1px solid rgba(201,165,92,.1);padding:14px 0;overflow:hidden}
 .urgency-track{display:flex;animation:scroll 40s linear infinite;width:max-content}
 .urgency-track span{white-space:nowrap;padding:0 40px;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-dim)}
 .urgency-track span strong{color:var(--gold);font-weight:500}
-
-/* PROOF */
 .proof-strip{padding:60px 24px;background:var(--bg)}
 .proof-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:center;align-items:center;gap:48px;flex-wrap:wrap}
 .proof-item{display:flex;align-items:center;gap:12px;opacity:.7}
 .proof-icon{width:32px;height:32px;border-radius:50%;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:.75rem;color:var(--gold)}
 .proof-text{font-size:.7rem;letter-spacing:.08em;color:var(--text-dim);text-transform:uppercase}
 .proof-text strong{color:var(--cream2);font-weight:500;display:block;font-size:.85rem;letter-spacing:0;text-transform:none}
-
-/* SECTION HEADERS */
 .section-header{text-align:center;margin-bottom:64px}
 .section-header .eyebrow{font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;font-weight:400}
 .section-header h2{font-family:var(--serif);font-size:clamp(2rem,4vw,3.5rem);font-weight:300;color:var(--cream);line-height:1.15}
 .section-header h2 em{font-style:italic;color:var(--gold-light)}
-
-/* HARDSCAPE GALLERY */
 .hs-gallery{padding:100px 24px;background:var(--bg2)}
 .hs-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:12px}
 .hs-card{position:relative;overflow:hidden;cursor:pointer;min-height:260px}
@@ -94,8 +72,6 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
 .hs-card-label span{font-size:.6rem;color:var(--gold);letter-spacing:.12em;text-transform:uppercase}
 .hs-counter{position:absolute;bottom:20px;right:20px;z-index:2;background:rgba(10,9,7,.7);backdrop-filter:blur(8px);padding:6px 14px;font-size:.6rem;color:var(--gold);letter-spacing:.1em;border:1px solid rgba(201,165,92,.15)}
 .hs-cta{text-align:center;margin-top:48px}
-
-/* SERVICES */
 .services{padding:100px 24px;background:var(--bg)}
 .services-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .service-card{background:var(--surface);border:1px solid rgba(201,165,92,.06);padding:40px 32px;transition:all .4s var(--ease);position:relative;overflow:hidden}
@@ -107,8 +83,6 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
 .service-card p{font-size:.82rem;color:var(--text-dim);line-height:1.7;font-weight:200;margin-bottom:20px}
 .service-card a{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);text-decoration:none;transition:color .3s}
 .service-card a:hover{color:var(--gold-light)}
-
-/* PROCESS */
 .process{padding:100px 24px;background:var(--bg2)}
 .process-steps{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
 .process-steps::before{content:'';position:absolute;top:28px;left:14%;right:14%;height:1px;background:linear-gradient(90deg,transparent,var(--gold-dim),var(--gold-dim),transparent)}
@@ -117,8 +91,6 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
 .step:hover .step-num{background:var(--gold);color:var(--bg);transform:scale(1.08)}
 .step h4{font-family:var(--serif);font-size:1rem;color:var(--cream);font-weight:400;margin-bottom:8px}
 .step p{font-size:.78rem;color:var(--text-dim);line-height:1.6;font-weight:200}
-
-/* TESTIMONIAL */
 .testimonial{padding:100px 24px;background:var(--bg);position:relative}
 .testimonial::before{content:'"';position:absolute;top:60px;left:50%;transform:translateX(-50%);font-family:var(--serif);font-size:12rem;color:rgba(201,165,92,.05);line-height:1;pointer-events:none}
 .testimonial-inner{max-width:700px;margin:0 auto;text-align:center}
@@ -128,8 +100,6 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
 .testimonial-dots{display:flex;justify-content:center;gap:8px;margin-top:32px}
 .testimonial-dots span{width:8px;height:8px;border-radius:50%;background:var(--surface2);cursor:pointer;transition:all .3s}
 .testimonial-dots span.active{background:var(--gold);transform:scale(1.2)}
-
-/* SCULPTURE SHOWCASE — FULL-WIDTH CINEMATIC */
 .sculpt-hero{position:relative;min-height:90vh;display:flex;align-items:flex-end;overflow:hidden;background:var(--bg)}
 .sculpt-hero-bg{position:absolute;inset:0;z-index:0}
 .sculpt-hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.55;filter:brightness(.7) saturate(1.1)}
@@ -145,16 +115,12 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
 .sculpt-stat{text-align:right}
 .sculpt-stat .num{font-family:var(--serif);font-size:2.2rem;color:var(--gold);font-weight:300;line-height:1}
 .sculpt-stat .label{font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-dim);margin-top:4px}
-
-/* SCULPTURE TRUST BAR */
 .sculpt-trust{padding:20px 0;background:var(--surface);border-top:1px solid rgba(201,165,92,.08);border-bottom:1px solid rgba(201,165,92,.08)}
 .sculpt-trust-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;justify-content:center;gap:40px;flex-wrap:wrap}
 .sculpt-trust-item{display:flex;align-items:center;gap:10px}
 .sculpt-trust-item .icon{color:var(--gold);font-size:.8rem}
 .sculpt-trust-item span{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim)}
 .sculpt-trust-item span strong{color:var(--cream2);font-weight:500}
-
-/* COLLECTION CATEGORIES */
 .sculpt-categories{padding:100px 24px 40px;background:var(--bg2)}
 .sculpt-cat-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .sculpt-cat{position:relative;overflow:hidden;cursor:pointer;min-height:520px;background:var(--surface)}
@@ -168,8 +134,6 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
 .sculpt-cat-link{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:all .3s var(--ease);border-bottom:1px solid transparent}
 .sculpt-cat-link:hover{border-bottom-color:var(--gold);gap:10px}
 .sculpt-cat-count{position:absolute;top:20px;right:20px;z-index:3;background:rgba(10,9,7,.7);backdrop-filter:blur(10px);padding:6px 14px;font-size:.55rem;color:var(--gold);letter-spacing:.1em;border:1px solid rgba(201,165,92,.15)}
-
-/* FEATURED PIECES — LARGE CARDS */
 .sculpt-featured{padding:80px 24px;background:var(--bg2)}
 .sculpt-featured-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .sf-card{position:relative;overflow:hidden;cursor:pointer;background:var(--surface);display:block;text-decoration:none;color:inherit}
@@ -187,8 +151,6 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
 .sf-card:hover .sf-inquire-btn{background:var(--gold);color:var(--bg);border-color:var(--gold)}
 .sf-tag{position:absolute;top:14px;right:14px;z-index:3;padding:5px 12px;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;background:var(--red-soft);color:#fff}
 .sf-tag.new{background:var(--gold);color:var(--bg)}
-
-/* FULL COLLECTION MASONRY */
 .full-collection{padding:60px 24px 80px;background:var(--bg2)}
 .full-collection .section-header{text-align:center;margin-bottom:40px}
 .fc-filter{text-align:center;margin-bottom:32px}
@@ -209,21 +171,15 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
 .fc-card-info .fc-inquire{font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cream2);background:rgba(201,165,92,.15);border:1px solid rgba(201,165,92,.3);padding:5px 12px;display:inline-block;transition:all .3s}
 .fc-card:hover .fc-card-info .fc-inquire{background:var(--gold);color:var(--bg)}
 .fc-tag{position:absolute;top:10px;right:10px;z-index:3;padding:4px 10px;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;background:var(--red-soft);color:#fff}
-
-/* Image loading optimization */
 .fc-card img,.card img,.sf-card img{opacity:0;transition:opacity .5s var(--ease)}
 .fc-card img.loaded,.card img.loaded,.sf-card img.loaded{opacity:1}
 .fc-card{background:var(--surface);min-height:200px}
 .fc-card::before{content:'';position:absolute;inset:0;background:linear-gradient(110deg,var(--surface) 30%,var(--surface2) 50%,var(--surface) 70%);background-size:300% 100%;animation:shimmer 1.8s ease-in-out infinite;z-index:0}
 .fc-card.img-ready::before{display:none}
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
-
-/* SCULPTURE URGENCY STRIP */
 .sculpt-urgency{padding:16px 0;background:var(--bg);border-top:1px solid rgba(201,165,92,.06);border-bottom:1px solid rgba(201,165,92,.06);text-align:center}
 .sculpt-urgency p{font-size:.68rem;color:var(--text-dim);letter-spacing:.08em}
 .sculpt-urgency p strong{color:var(--gold);font-weight:500}
-
-/* STAGING */
 .staging{padding:100px 24px;background:var(--bg)}
 .staging-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1.2fr;gap:60px;align-items:center}
 .staging-content h3{font-family:var(--serif);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;font-weight:400}
@@ -239,8 +195,6 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
 .staging-images .img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
 .staging-images .img-wrap:hover img{transform:scale(1.06)}
 .staging-images .img-wrap:first-child{grid-row:span 2;aspect-ratio:auto}
-
-/* CONTACT */
 .contact{padding:100px 24px;background:var(--bg2)}
 .contact-grid{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px}
 .contact-left h3{font-family:var(--serif);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;font-weight:400}
@@ -266,15 +220,11 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
 .form-submit{width:100%;background:var(--gold);color:var(--bg);padding:16px;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-family:var(--sans);font-weight:500;border:none;cursor:pointer;margin-top:8px;transition:all .35s var(--ease)}
 .form-submit:hover{background:var(--gold-light);transform:translateY(-1px)}
 .form-guarantee{text-align:center;margin-top:12px;font-size:.62rem;color:var(--text-dim)}
-
-/* FLOATING */
 .floating-cta{position:fixed;bottom:24px;right:24px;z-index:999;opacity:0;transform:translateY(20px);transition:all .4s var(--ease);pointer-events:none}
 .floating-cta.visible{opacity:1;transform:translateY(0);pointer-events:all}
 .floating-cta a{display:flex;align-items:center;gap:10px;background:var(--gold);color:var(--bg);padding:14px 24px;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;text-decoration:none;box-shadow:0 8px 30px rgba(201,165,92,.3);transition:all .3s var(--ease)}
 .floating-cta a:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(201,165,92,.4)}
 .floating-cta .pulse{width:8px;height:8px;border-radius:50%;background:var(--green-soft);animation:pulse 2s ease infinite}
-
-/* EXIT */
 .exit-overlay{position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.8);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s}
 .exit-overlay.active{opacity:1;pointer-events:all}
 .exit-modal{background:var(--bg2);border:1px solid rgba(201,165,92,.15);padding:48px;max-width:480px;width:90%;text-align:center;position:relative;transform:scale(.95);transition:transform .4s var(--ease)}
@@ -290,8 +240,6 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
 .exit-form button{background:var(--gold);color:var(--bg);padding:14px 24px;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;border:none;cursor:pointer;white-space:nowrap;transition:background .3s}
 .exit-form button:hover{background:var(--gold-light)}
 .exit-disclaimer{font-size:.58rem;color:var(--text-dim);margin-top:12px}
-
-/* FOOTER */
 .footer{padding:60px 24px 40px;background:var(--surface);border-top:1px solid rgba(201,165,92,.06)}
 .footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}
 .footer-brand{font-family:var(--serif);font-size:1.5rem;color:var(--cream);font-weight:300;letter-spacing:.1em;margin-bottom:12px}
@@ -301,14 +249,12 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
 .footer-col a:hover{color:var(--gold)}
 .footer-bottom{max-width:1100px;margin:40px auto 0;padding-top:24px;border-top:1px solid rgba(201,165,92,.06);display:flex;justify-content:space-between;align-items:center}
 .footer-bottom span{font-size:.62rem;color:var(--text-dim);letter-spacing:.05em}
-
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 @keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 .reveal{opacity:1;transform:none;transition:opacity .7s var(--ease),transform .7s var(--ease)}
 .reveal.hidden{opacity:0;transform:translateY(30px)}
 .reveal.visible{opacity:1;transform:translateY(0)}
-
 @media(max-width:900px){
   .nav-links{display:none}
   .nav{background:rgba(10,9,7,.95);backdrop-filter:blur(20px);padding:12px 24px}
@@ -340,8 +286,6 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
   .fc-filter-tabs{flex-wrap:wrap}
   .fc-filter-tab{padding:8px 14px;font-size:.56rem}
   .full-collection{padding:32px 16px 48px}
-  .m-info{padding:12px}
-  .m-info h4{font-size:.85rem}
   .process{padding:60px 24px}
   .process-steps{grid-template-columns:1fr}
   .services{padding:60px 24px}
@@ -356,13 +300,11 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
   .staging-images{grid-template-columns:1fr}.staging-images .img-wrap:first-child{grid-row:auto}
   .staging-grid{gap:32px}
   .contact-grid{gap:32px}
-  .featured-grid{gap:32px}
 }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav class="nav" id="nav">
   <a href="#" class="nav-logo">PHAÖRA</a>
   <div class="nav-links">
@@ -375,10 +317,9 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
   </div>
 </nav>
 
-<!-- ========== HERO — HARDSCAPE LEAD ========== -->
 <section class="hero" id="hero">
   <div class="hero-bg">
-    <img src="https://phaora.com/IMG_6688.jpeg" alt="Luxury estate pool at sunset">
+    <img src="IMG_5095.jpeg" alt="Luxury estate hardscape">
   </div>
   <div class="hero-content">
     <div class="hero-eyebrow">✦ PHAÖRA Hardscape · Boca Raton & Palm Beach</div>
@@ -396,7 +337,6 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
   </div>
 </section>
 
-<!-- URGENCY -->
 <div class="urgency-bar">
   <div class="urgency-track">
     <span><strong>Now booking</strong> Summer & Fall 2026 projects</span>
@@ -412,7 +352,6 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
   </div>
 </div>
 
-<!-- PROOF -->
 <section class="proof-strip">
   <div class="proof-inner">
     <div class="proof-item"><div class="proof-icon">◈</div><div class="proof-text"><strong>Licensed & Insured</strong>Full Florida credentials</div></div>
@@ -422,7 +361,6 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
   </div>
 </section>
 
-<!-- ========== HARDSCAPE GALLERY ========== -->
 <section class="hs-gallery reveal" id="hardscape">
   <div class="section-header">
     <div class="eyebrow">Our Work</div>
@@ -430,27 +368,26 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
   </div>
   <div class="hs-grid container">
     <div class="hs-card">
-      <img src="IMG_6687.jpeg" alt="Outdoor fireplace at dusk" loading="lazy">
+      <img src="IMG_5096.jpeg" alt="Outdoor Fireplace" loading="lazy">
       <div class="hs-card-label"><h4>Outdoor Fireplace</h4><span>Natural Stone · Custom Build</span></div>
     </div>
     <div class="hs-card">
-      <img src="IMG_6688.jpeg" alt="Estate paver walkway" loading="lazy">
+      <img src="IMG_5098.jpeg" alt="Estate Walkway" loading="lazy">
       <div class="hs-card-label"><h4>Estate Walkway</h4><span>Paver · Golden Hour</span></div>
     </div>
     <div class="hs-card">
-      <img src="IMG_6689.jpeg" alt="Stone paver detail" loading="lazy">
+      <img src="IMG_5099.jpeg" alt="Stone Detail" loading="lazy">
       <div class="hs-card-label"><h4>Stone Detail</h4><span>Natural Paver · French Pattern</span></div>
     </div>
     <div class="hs-card">
-      <img src="IMG_6690.jpeg" alt="Tropical stone fountain" loading="lazy">
+      <img src="IMG_5095.jpeg" alt="Stone Fountain" loading="lazy">
       <div class="hs-card-label"><h4>Stone Fountain</h4><span>Coral Stone · Tropical Setting</span></div>
       <div class="hs-counter">+53 Projects</div>
     </div>
   </div>
-<div class="hs-cta"><a href="hardscape-gallery.html" class="btn-primary">View Full Gallery ✦</a></div>
+  <div class="hs-cta"><a href="hardscape-gallery.html" class="btn-primary">View Full Gallery ✦</a></div>
 </section>
 
-<!-- ========== HARDSCAPE SERVICES ========== -->
 <section class="services reveal">
   <div class="section-header">
     <div class="eyebrow">Services</div>
@@ -478,7 +415,6 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
   </div>
 </section>
 
-<!-- ========== HOW IT WORKS ========== -->
 <section class="process reveal" id="process">
   <div class="section-header">
     <div class="eyebrow">How It Works</div>
@@ -492,7 +428,6 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
   </div>
 </section>
 
-<!-- TESTIMONIAL -->
 <section class="testimonial reveal">
   <div class="testimonial-inner">
     <blockquote>"They transformed our backyard into something we never imagined. The craftsmanship is on another level — every detail considered, every stone perfect."</blockquote>
@@ -501,10 +436,9 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
   </div>
 </section>
 
-<!-- ========== SCULPTURE COLLECTION — CINEMATIC HERO ========== -->
 <section class="sculpt-hero reveal" id="collection">
   <div class="sculpt-hero-bg">
-    <img src="Untitled_design_-_4-compressed.jpeg" alt="White crystal cockatoos in luxury modern lobby — PHAÖRA sculpture">
+    <img src="IMG_5815.jpeg" alt="PHAÖRA crystal sculpture">
   </div>
   <div class="sculpt-hero-content">
     <div class="eyebrow">PHAÖRA · Crystal Sculptures</div>
@@ -522,7 +456,6 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
   </div>
 </section>
 
-<!-- SCULPTURE TRUST BAR -->
 <div class="sculpt-trust">
   <div class="sculpt-trust-inner">
     <div class="sculpt-trust-item"><span class="icon">◈</span><span>Hand-mined in <strong>Minas Gerais, Brazil</strong></span></div>
@@ -532,7 +465,6 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
   </div>
 </div>
 
-<!-- SCULPTURE CATEGORIES -->
 <section class="sculpt-categories reveal" id="sculpt-pieces">
   <div class="section-header">
     <div class="eyebrow">Explore by Collection</div>
@@ -540,7 +472,7 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
   </div>
   <div class="sculpt-cat-grid container">
     <div class="sculpt-cat" onclick="document.getElementById('full-gallery').scrollIntoView({behavior:'smooth'})">
-      <img src="Untitled design - 7.PNG" alt="Blue Macaws on Amethyst Cathedral">
+      <img src="IMG_5805.jpeg" alt="Blue Macaws on Amethyst Cathedral">
       <div class="sculpt-cat-info">
         <div class="cat-label">Collection I</div>
         <h3>The Blue Macaws</h3>
@@ -550,7 +482,7 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
       <div class="sculpt-cat-count">8 Pieces</div>
     </div>
     <div class="sculpt-cat" onclick="document.getElementById('full-gallery').scrollIntoView({behavior:'smooth'})">
-      <img src="Untitled design - 13.PNG" alt="Scarlet Macaws on White Quartz">
+      <img src="IMG_5811.jpeg" alt="Scarlet Macaws on White Quartz">
       <div class="sculpt-cat-info">
         <div class="cat-label">Collection II</div>
         <h3>The Scarlet Macaws</h3>
@@ -560,7 +492,7 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
       <div class="sculpt-cat-count">7 Pieces</div>
     </div>
     <div class="sculpt-cat" onclick="document.getElementById('full-gallery').scrollIntoView({behavior:'smooth'})">
-      <img src="Untitled design - 11.PNG" alt="White Cockatoos on Amethyst — Garden">
+      <img src="IMG_5817.jpeg" alt="White Cockatoos on Amethyst">
       <div class="sculpt-cat-info">
         <div class="cat-label">Collection III</div>
         <h3>The White Cockatoos</h3>
@@ -570,7 +502,7 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
       <div class="sculpt-cat-count">12 Pieces</div>
     </div>
     <div class="sculpt-cat" onclick="document.getElementById('full-gallery').scrollIntoView({behavior:'smooth'})">
-      <img src="Untitled design - 2.PNG" alt="White Doves on Driftwood — Modern Interior">
+      <img src="IMG_5823.jpeg" alt="White Doves on Driftwood">
       <div class="sculpt-cat-info">
         <div class="cat-label">Collection IV</div>
         <h3>The Canopy</h3>
@@ -582,7 +514,6 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
   </div>
 </section>
 
-<!-- FEATURED PIECES — HIGH-IMPACT CARDS -->
 <section class="sculpt-featured reveal">
   <div class="section-header">
     <div class="eyebrow">✦ Featured Arrivals</div>
@@ -591,7 +522,7 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
   <div class="sculpt-featured-grid container">
     <a class="sf-card" href="pieces/the-canopy.html">
       <div class="sf-img-wrap">
-        <img src="Untitled design - 2.PNG" alt="The Canopy — White Quartz Doves on Driftwood" loading="lazy">
+        <img src="IMG_5806.jpeg" alt="The Canopy" loading="lazy">
       </div>
       <div class="sf-card-body">
         <h4>The Canopy</h4>
@@ -603,7 +534,7 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
     </a>
     <a class="sf-card" href="pieces/the-vessel.html">
       <div class="sf-img-wrap">
-        <img src="img/IMG_6971.JPG" alt="The Vessel — Aquamarine Quartz Basin" loading="lazy">
+        <img src="IMG_5820.jpeg" alt="The Vessel" loading="lazy">
       </div>
       <div class="sf-card-body">
         <h4>The Vessel</h4>
@@ -616,12 +547,10 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
   </div>
 </section>
 
-<!-- SCULPTURE URGENCY -->
 <div class="sculpt-urgency">
   <p>Each sculpture is <strong>one of one</strong> — once acquired, it is gone permanently. <strong>7 pieces</strong> have sold this quarter.</p>
 </div>
 
-<!-- ========== FULL SCULPTURE GALLERY — ALL 39 PIECES ========== -->
 <section class="full-collection reveal" id="full-gallery">
   <div class="section-header">
     <div class="eyebrow">✦ The Complete Collection</div>
@@ -638,209 +567,210 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
   </div>
   <div class="fc-grid">
 
-    <a class="fc-card" href="pieces/the-canopy.html" data-tier="statement">
-      <img data-src="img/IMG_6959.JPG" alt="The Canopy" src="">
-      <div class="fc-card-info"><h4>The Canopy</h4><div class="fc-price">Statement · $68,000</div><span class="fc-inquire">View Piece →</span></div>
-    </a>
+```
+<a class="fc-card" href="pieces/the-canopy.html" data-tier="statement">
+  <img data-src="IMG_5805.jpeg" alt="The Canopy" src="">
+  <div class="fc-card-info"><h4>The Canopy</h4><div class="fc-price">Statement · $68,000</div><span class="fc-inquire">View Piece →</span></div>
+</a>
 
-    <a class="fc-card" href="pieces/the-aerie.html" data-tier="statement">
-      <img data-src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 20.png" alt="The Aerie" src="">
-      <div class="fc-card-info"><h4>The Aerie</h4><div class="fc-price">Statement · $48,000</div><span class="fc-inquire">View Piece →</span></div>
-    </a>
+<a class="fc-card" href="pieces/the-aerie.html" data-tier="statement">
+  <img data-src="IMG_5806.jpeg" alt="The Aerie" src="">
+  <div class="fc-card-info"><h4>The Aerie</h4><div class="fc-price">Statement · $48,000</div><span class="fc-inquire">View Piece →</span></div>
+</a>
 
-    <a class="fc-card" href="pieces/the-eden.html" data-tier="signature">
-      <img data-src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 12.png" alt="The Eden" src="">
-      <div class="fc-card-info"><h4>The Eden</h4><div class="fc-price">Signature · $28,000</div><span class="fc-inquire">View Piece →</span></div>
-      <div class="fc-tag">Fountain</div>
-    </a>
+<a class="fc-card" href="pieces/the-eden.html" data-tier="signature">
+  <img data-src="IMG_5807.jpeg" alt="The Eden" src="">
+  <div class="fc-card-info"><h4>The Eden</h4><div class="fc-price">Signature · $28,000</div><span class="fc-inquire">View Piece →</span></div>
+  <div class="fc-tag">Fountain</div>
+</a>
 
-    <a class="fc-card" href="pieces/the-dynasty.html" data-tier="statement">
-      <img data-src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 13.png" alt="The Dynasty" src="">
-      <div class="fc-card-info"><h4>The Dynasty</h4><div class="fc-price">Statement · $52,000</div><span class="fc-inquire">View Piece →</span></div>
-    </a>
+<a class="fc-card" href="pieces/the-dynasty.html" data-tier="statement">
+  <img data-src="IMG_5808.jpeg" alt="The Dynasty" src="">
+  <div class="fc-card-info"><h4>The Dynasty</h4><div class="fc-price">Statement · $52,000</div><span class="fc-inquire">View Piece →</span></div>
+</a>
 
-    <a class="fc-card" href="pieces/the-parliament.html" data-tier="statement">
-      <img data-src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 21.png" alt="The Parliament" src="">
-      <div class="fc-card-info"><h4>The Parliament</h4><div class="fc-price">Statement · $38,000</div><span class="fc-inquire">View Piece →</span></div>
-    </a>
+<a class="fc-card" href="pieces/the-parliament.html" data-tier="statement">
+  <img data-src="IMG_5809.jpeg" alt="The Parliament" src="">
+  <div class="fc-card-info"><h4>The Parliament</h4><div class="fc-price">Statement · $38,000</div><span class="fc-inquire">View Piece →</span></div>
+</a>
 
-    <a class="fc-card" href="pieces/the-scarlets.html" data-tier="statement">
-      <img data-src="img/IMG_6974.JPG" alt="The Scarlets" src="">
-      <div class="fc-card-info"><h4>The Scarlets</h4><div class="fc-price">Statement · $42,000</div><span class="fc-inquire">View Piece →</span></div>
-      <div class="fc-tag">New Arrival</div>
-    </a>
+<a class="fc-card" href="pieces/the-scarlets.html" data-tier="statement">
+  <img data-src="IMG_5810.jpeg" alt="The Scarlets" src="">
+  <div class="fc-card-info"><h4>The Scarlets</h4><div class="fc-price">Statement · $42,000</div><span class="fc-inquire">View Piece →</span></div>
+  <div class="fc-tag">New Arrival</div>
+</a>
 
-    <a class="fc-card" href="pieces/the-portal.html" data-tier="statement">
-      <img data-src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 19.png" alt="The Portal" src="">
-      <div class="fc-card-info"><h4>The Portal</h4><div class="fc-price">Statement · $35,000</div><span class="fc-inquire">View Piece →</span></div>
-    </a>
+<a class="fc-card" href="pieces/the-portal.html" data-tier="statement">
+  <img data-src="IMG_5811.jpeg" alt="The Portal" src="">
+  <div class="fc-card-info"><h4>The Portal</h4><div class="fc-price">Statement · $35,000</div><span class="fc-inquire">View Piece →</span></div>
+</a>
 
-    <a class="fc-card" href="pieces/the-sovereign.html" data-tier="statement">
-      <img data-src="img/IMG_7047.JPG" alt="The Sovereign" src="">
-      <div class="fc-card-info"><h4>The Sovereign</h4><div class="fc-price">Statement · $32,000</div><span class="fc-inquire">View Piece →</span></div>
-    </a>
+<a class="fc-card" href="pieces/the-sovereign.html" data-tier="statement">
+  <img data-src="IMG_5812.jpeg" alt="The Sovereign" src="">
+  <div class="fc-card-info"><h4>The Sovereign</h4><div class="fc-price">Statement · $32,000</div><span class="fc-inquire">View Piece →</span></div>
+</a>
 
-    <a class="fc-card" href="pieces/the-ascent.html" data-tier="statement">
-      <img data-src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 33.png" alt="The Ascent" src="">
-      <div class="fc-card-info"><h4>The Ascent</h4><div class="fc-price">Statement · $32,000</div><span class="fc-inquire">View Piece →</span></div>
-    </a>
+<a class="fc-card" href="pieces/the-ascent.html" data-tier="statement">
+  <img data-src="IMG_5813.jpeg" alt="The Ascent" src="">
+  <div class="fc-card-info"><h4>The Ascent</h4><div class="fc-price">Statement · $32,000</div><span class="fc-inquire">View Piece →</span></div>
+</a>
 
-    <a class="fc-card" href="pieces/the-cathedral.html" data-tier="signature">
-      <img data-src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 35.png" alt="The Cathedral" src="">
-      <div class="fc-card-info"><h4>The Cathedral</h4><div class="fc-price">Signature · $26,000</div><span class="fc-inquire">View Piece →</span></div>
-    </a>
+<a class="fc-card" href="pieces/the-cathedral.html" data-tier="signature">
+  <img data-src="IMG_5814.jpeg" alt="The Cathedral" src="">
+  <div class="fc-card-info"><h4>The Cathedral</h4><div class="fc-price">Signature · $26,000</div><span class="fc-inquire">View Piece →</span></div>
+</a>
 
-    <a class="fc-card" href="pieces/the-monolith.html" data-tier="statement">
-      <img data-src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 31.png" alt="The Monolith" src="">
-      <div class="fc-card-info"><h4>The Monolith</h4><div class="fc-price">Statement · $45,000</div><span class="fc-inquire">View Piece →</span></div>
-      <div class="fc-tag">1 Available</div>
-    </a>
+<a class="fc-card" href="pieces/the-monolith.html" data-tier="statement">
+  <img data-src="IMG_5815.jpeg" alt="The Monolith" src="">
+  <div class="fc-card-info"><h4>The Monolith</h4><div class="fc-price">Statement · $45,000</div><span class="fc-inquire">View Piece →</span></div>
+  <div class="fc-tag">1 Available</div>
+</a>
 
-    <a class="fc-card" href="pieces/the-raptor.html" data-tier="statement">
-      <img data-src="img/IMG_6964.JPG" alt="The Raptor" src="">
-      <div class="fc-card-info"><h4>The Raptor</h4><div class="fc-price">Statement · $36,000</div><span class="fc-inquire">View Piece →</span></div>
-    </a>
+<a class="fc-card" href="pieces/the-raptor.html" data-tier="statement">
+  <img data-src="IMG_5816.jpeg" alt="The Raptor" src="">
+  <div class="fc-card-info"><h4>The Raptor</h4><div class="fc-price">Statement · $36,000</div><span class="fc-inquire">View Piece →</span></div>
+</a>
 
-    <a class="fc-card" href="pieces/the-hyacinths.html" data-tier="signature">
-      <img data-src="img/IMG_7038.JPG" alt="The Hyacinths" src="">
-      <div class="fc-card-info"><h4>The Hyacinths</h4><div class="fc-price">Signature · $22,000</div><span class="fc-inquire">View Piece →</span></div>
-    </a>
+<a class="fc-card" href="pieces/the-hyacinths.html" data-tier="signature">
+  <img data-src="IMG_5817.jpeg" alt="The Hyacinths" src="">
+  <div class="fc-card-info"><h4>The Hyacinths</h4><div class="fc-price">Signature · $22,000</div><span class="fc-inquire">View Piece →</span></div>
+</a>
 
-    <a class="fc-card" href="pieces/the-indigos.html" data-tier="signature">
-      <img data-src="img/IMG_6967.JPG" alt="The Indigos" src="">
-      <div class="fc-card-info"><h4>The Indigos</h4><div class="fc-price">Signature · $24,000</div><span class="fc-inquire">View Piece →</span></div>
-    </a>
+<a class="fc-card" href="pieces/the-indigos.html" data-tier="signature">
+  <img data-src="IMG_5818.jpeg" alt="The Indigos" src="">
+  <div class="fc-card-info"><h4>The Indigos</h4><div class="fc-price">Signature · $24,000</div><span class="fc-inquire">View Piece →</span></div>
+</a>
 
-    <a class="fc-card" href="pieces/the-sentinels.html" data-tier="signature">
-      <img data-src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 22.png" alt="The Sentinels" src="">
-      <div class="fc-card-info"><h4>The Sentinels</h4><div class="fc-price">Signature · $22,000</div><span class="fc-inquire">View Piece →</span></div>
-    </a>
+<a class="fc-card" href="pieces/the-sentinels.html" data-tier="signature">
+  <img data-src="IMG_5819.jpeg" alt="The Sentinels" src="">
+  <div class="fc-card-info"><h4>The Sentinels</h4><div class="fc-price">Signature · $22,000</div><span class="fc-inquire">View Piece →</span></div>
+</a>
 
-    <a class="fc-card" href="pieces/the-crimson-duo.html" data-tier="signature">
-      <img data-src="img/IMG_6961.JPG" alt="The Crimson Duo" src="">
-      <div class="fc-card-info"><h4>The Crimson Duo</h4><div class="fc-price">Signature · $24,000</div><span class="fc-inquire">View Piece →</span></div>
-    </a>
+<a class="fc-card" href="pieces/the-crimson-duo.html" data-tier="signature">
+  <img data-src="IMG_5820.jpeg" alt="The Crimson Duo" src="">
+  <div class="fc-card-info"><h4>The Crimson Duo</h4><div class="fc-price">Signature · $24,000</div><span class="fc-inquire">View Piece →</span></div>
+</a>
 
-    <a class="fc-card" href="pieces/the-grotto.html" data-tier="signature">
-      <img data-src="img/IMG_6975.JPG" alt="The Grotto" src="">
-      <div class="fc-card-info"><h4>The Grotto</h4><div class="fc-price">Signature · $24,000</div><span class="fc-inquire">View Piece →</span></div>
-    </a>
+<a class="fc-card" href="pieces/the-grotto.html" data-tier="signature">
+  <img data-src="IMG_5821.jpeg" alt="The Grotto" src="">
+  <div class="fc-card-info"><h4>The Grotto</h4><div class="fc-price">Signature · $24,000</div><span class="fc-inquire">View Piece →</span></div>
+</a>
 
-    <a class="fc-card" href="pieces/the-ethereals.html" data-tier="signature">
-      <img data-src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 38.png" alt="The Ethereals" src="">
-      <div class="fc-card-info"><h4>The Ethereals</h4><div class="fc-price">Signature · $20,000</div><span class="fc-inquire">View Piece →</span></div>
-    </a>
+<a class="fc-card" href="pieces/the-ethereals.html" data-tier="signature">
+  <img data-src="IMG_5822.jpeg" alt="The Ethereals" src="">
+  <div class="fc-card-info"><h4>The Ethereals</h4><div class="fc-price">Signature · $20,000</div><span class="fc-inquire">View Piece →</span></div>
+</a>
 
-    <a class="fc-card" href="pieces/the-companions.html" data-tier="signature">
-      <img data-src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 17.png" alt="The Companions" src="">
-      <div class="fc-card-info"><h4>The Companions</h4><div class="fc-price">Signature · $22,000</div><span class="fc-inquire">View Piece →</span></div>
-    </a>
+<a class="fc-card" href="pieces/the-companions.html" data-tier="signature">
+  <img data-src="IMG_5823.jpeg" alt="The Companions" src="">
+  <div class="fc-card-info"><h4>The Companions</h4><div class="fc-price">Signature · $22,000</div><span class="fc-inquire">View Piece →</span></div>
+</a>
 
-    <a class="fc-card" href="pieces/the-lovers.html" data-tier="signature">
-      <img data-src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 30.png" alt="The Lovers" src="">
-      <div class="fc-card-info"><h4>The Lovers</h4><div class="fc-price">Signature · $22,000</div><span class="fc-inquire">View Piece →</span></div>
-    </a>
+<a class="fc-card" href="pieces/the-lovers.html" data-tier="signature">
+  <img data-src="IMG_5824.jpeg" alt="The Lovers" src="">
+  <div class="fc-card-info"><h4>The Lovers</h4><div class="fc-price">Signature · $22,000</div><span class="fc-inquire">View Piece →</span></div>
+</a>
 
-    <a class="fc-card" href="pieces/the-duet.html" data-tier="signature">
-      <img data-src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 16.png" alt="The Duet" src="">
-      <div class="fc-card-info"><h4>The Duet</h4><div class="fc-price">Signature · $22,000</div><span class="fc-inquire">View Piece →</span></div>
-    </a>
+<a class="fc-card" href="pieces/the-duet.html" data-tier="signature">
+  <img data-src="IMG_5825.jpeg" alt="The Duet" src="">
+  <div class="fc-card-info"><h4>The Duet</h4><div class="fc-price">Signature · $22,000</div><span class="fc-inquire">View Piece →</span></div>
+</a>
 
-    <a class="fc-card" href="pieces/the-gathering.html" data-tier="signature">
-      <img data-src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 23.png" alt="The Gathering" src="">
-      <div class="fc-card-info"><h4>The Gathering</h4><div class="fc-price">Signature · $26,000</div><span class="fc-inquire">View Piece →</span></div>
-    </a>
+<a class="fc-card" href="pieces/the-gathering.html" data-tier="signature">
+  <img data-src="IMG_5826.jpeg" alt="The Gathering" src="">
+  <div class="fc-card-info"><h4>The Gathering</h4><div class="fc-price">Signature · $26,000</div><span class="fc-inquire">View Piece →</span></div>
+</a>
 
-    <a class="fc-card" href="pieces/the-courtship.html" data-tier="signature">
-      <img data-src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 36.png" alt="The Courtship" src="">
-      <div class="fc-card-info"><h4>The Courtship</h4><div class="fc-price">Signature · $22,000</div><span class="fc-inquire">View Piece →</span></div>
-    </a>
+<a class="fc-card" href="pieces/the-courtship.html" data-tier="signature">
+  <img data-src="IMG_5805.jpeg" alt="The Courtship" src="">
+  <div class="fc-card-info"><h4>The Courtship</h4><div class="fc-price">Signature · $22,000</div><span class="fc-inquire">View Piece →</span></div>
+</a>
 
-    <a class="fc-card" href="pieces/the-violet.html" data-tier="signature">
-      <img data-src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 27.png" alt="The Violet" src="">
-      <div class="fc-card-info"><h4>The Violet</h4><div class="fc-price">Signature · $18,500</div><span class="fc-inquire">View Piece →</span></div>
-    </a>
+<a class="fc-card" href="pieces/the-violet.html" data-tier="signature">
+  <img data-src="IMG_5806.jpeg" alt="The Violet" src="">
+  <div class="fc-card-info"><h4>The Violet</h4><div class="fc-price">Signature · $18,500</div><span class="fc-inquire">View Piece →</span></div>
+</a>
 
-    <a class="fc-card" href="pieces/the-soloist.html" data-tier="signature">
-      <img data-src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 15.png" alt="The Soloist" src="">
-      <div class="fc-card-info"><h4>The Soloist</h4><div class="fc-price">Signature · $18,500</div><span class="fc-inquire">View Piece →</span></div>
-    </a>
+<a class="fc-card" href="pieces/the-soloist.html" data-tier="signature">
+  <img data-src="IMG_5807.jpeg" alt="The Soloist" src="">
+  <div class="fc-card-info"><h4>The Soloist</h4><div class="fc-price">Signature · $18,500</div><span class="fc-inquire">View Piece →</span></div>
+</a>
 
-    <a class="fc-card" href="pieces/the-radiance.html" data-tier="signature">
-      <img data-src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 11.png" alt="The Radiance" src="">
-      <div class="fc-card-info"><h4>The Radiance</h4><div class="fc-price">Signature · $22,000</div><span class="fc-inquire">View Piece →</span></div>
-    </a>
+<a class="fc-card" href="pieces/the-radiance.html" data-tier="signature">
+  <img data-src="IMG_5808.jpeg" alt="The Radiance" src="">
+  <div class="fc-card-info"><h4>The Radiance</h4><div class="fc-price">Signature · $22,000</div><span class="fc-inquire">View Piece →</span></div>
+</a>
 
-    <a class="fc-card" href="pieces/the-pair.html" data-tier="signature">
-      <img data-src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 34.png" alt="The Pair" src="">
-      <div class="fc-card-info"><h4>The Pair</h4><div class="fc-price">Signature · $22,000</div><span class="fc-inquire">View Piece →</span></div>
-    </a>
+<a class="fc-card" href="pieces/the-pair.html" data-tier="signature">
+  <img data-src="IMG_5809.jpeg" alt="The Pair" src="">
+  <div class="fc-card-info"><h4>The Pair</h4><div class="fc-price">Signature · $22,000</div><span class="fc-inquire">View Piece →</span></div>
+</a>
 
-    <a class="fc-card" href="pieces/the-eclipse.html" data-tier="signature">
-      <img data-src="img/IMG_6960.JPG" alt="The Eclipse" src="">
-      <div class="fc-card-info"><h4>The Eclipse</h4><div class="fc-price">Signature · $24,000</div><span class="fc-inquire">View Piece →</span></div>
-    </a>
+<a class="fc-card" href="pieces/the-eclipse.html" data-tier="signature">
+  <img data-src="IMG_5810.jpeg" alt="The Eclipse" src="">
+  <div class="fc-card-info"><h4>The Eclipse</h4><div class="fc-price">Signature · $24,000</div><span class="fc-inquire">View Piece →</span></div>
+</a>
 
-    <a class="fc-card" href="pieces/the-devotion.html" data-tier="entry">
-      <img data-src="img/IMG_7050.JPG" alt="The Devotion" src="">
-      <div class="fc-card-info"><h4>The Devotion</h4><div class="fc-price">Entry · $14,500</div><span class="fc-inquire">View Piece →</span></div>
-    </a>
+<a class="fc-card" href="pieces/the-devotion.html" data-tier="entry">
+  <img data-src="IMG_5811.jpeg" alt="The Devotion" src="">
+  <div class="fc-card-info"><h4>The Devotion</h4><div class="fc-price">Entry · $14,500</div><span class="fc-inquire">View Piece →</span></div>
+</a>
 
-    <a class="fc-card" href="pieces/the-whisper.html" data-tier="entry">
-      <img data-src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 37.png" alt="The Whisper" src="">
-      <div class="fc-card-info"><h4>The Whisper</h4><div class="fc-price">Entry · $14,500</div><span class="fc-inquire">View Piece →</span></div>
-    </a>
+<a class="fc-card" href="pieces/the-whisper.html" data-tier="entry">
+  <img data-src="IMG_5812.jpeg" alt="The Whisper" src="">
+  <div class="fc-card-info"><h4>The Whisper</h4><div class="fc-price">Entry · $14,500</div><span class="fc-inquire">View Piece →</span></div>
+</a>
 
-    <a class="fc-card" href="pieces/the-nest.html" data-tier="entry">
-      <img data-src="IMG_7052.JPG" alt="The Nest" src="">
-      <div class="fc-card-info"><h4>The Nest</h4><div class="fc-price">Entry · $14,500</div><span class="fc-inquire">View Piece →</span></div>
-    </a>
+<a class="fc-card" href="pieces/the-nest.html" data-tier="entry">
+  <img data-src="IMG_5813.jpeg" alt="The Nest" src="">
+  <div class="fc-card-info"><h4>The Nest</h4><div class="fc-price">Entry · $14,500</div><span class="fc-inquire">View Piece →</span></div>
+</a>
 
-    <a class="fc-card" href="pieces/the-guardians.html" data-tier="entry">
-      <img data-src="img/IMG_7051.JPG" alt="The Guardians" src="">
-      <div class="fc-card-info"><h4>The Guardians</h4><div class="fc-price">Entry · $16,500</div><span class="fc-inquire">View Piece →</span></div>
-    </a>
+<a class="fc-card" href="pieces/the-guardians.html" data-tier="entry">
+  <img data-src="IMG_5814.jpeg" alt="The Guardians" src="">
+  <div class="fc-card-info"><h4>The Guardians</h4><div class="fc-price">Entry · $16,500</div><span class="fc-inquire">View Piece →</span></div>
+</a>
 
-    <a class="fc-card" href="pieces/the-herald.html" data-tier="entry">
-      <img data-src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 28.png" alt="The Herald" src="">
-      <div class="fc-card-info"><h4>The Herald</h4><div class="fc-price">Entry · $16,500</div><span class="fc-inquire">View Piece →</span></div>
-    </a>
+<a class="fc-card" href="pieces/the-herald.html" data-tier="entry">
+  <img data-src="IMG_5815.jpeg" alt="The Herald" src="">
+  <div class="fc-card-info"><h4>The Herald</h4><div class="fc-price">Entry · $16,500</div><span class="fc-inquire">View Piece →</span></div>
+</a>
 
-    <a class="fc-card" href="pieces/the-embrace.html" data-tier="entry">
-      <img data-src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 29.png" alt="The Embrace" src="">
-      <div class="fc-card-info"><h4>The Embrace</h4><div class="fc-price">Entry · $14,500</div><span class="fc-inquire">View Piece →</span></div>
-    </a>
+<a class="fc-card" href="pieces/the-embrace.html" data-tier="entry">
+  <img data-src="IMG_5816.jpeg" alt="The Embrace" src="">
+  <div class="fc-card-info"><h4>The Embrace</h4><div class="fc-price">Entry · $14,500</div><span class="fc-inquire">View Piece →</span></div>
+</a>
 
-    <a class="fc-card" href="pieces/the-grace.html" data-tier="entry">
-      <img data-src="IMG_7035.JPG" alt="The Grace" src="">
-      <div class="fc-card-info"><h4>The Grace</h4><div class="fc-price">Entry · $14,500</div><span class="fc-inquire">View Piece →</span></div>
-    </a>
+<a class="fc-card" href="pieces/the-grace.html" data-tier="entry">
+  <img data-src="IMG_5817.jpeg" alt="The Grace" src="">
+  <div class="fc-card-info"><h4>The Grace</h4><div class="fc-price">Entry · $14,500</div><span class="fc-inquire">View Piece →</span></div>
+</a>
 
-    <a class="fc-card" href="pieces/the-perch.html" data-tier="entry">
-      <img data-src="img/IMG_6958.JPG" alt="The Perch" src="">
-      <div class="fc-card-info"><h4>The Perch</h4><div class="fc-price">Entry · $16,500</div><span class="fc-inquire">View Piece →</span></div>
-    </a>
+<a class="fc-card" href="pieces/the-perch.html" data-tier="entry">
+  <img data-src="IMG_5818.jpeg" alt="The Perch" src="">
+  <div class="fc-card-info"><h4>The Perch</h4><div class="fc-price">Entry · $16,500</div><span class="fc-inquire">View Piece →</span></div>
+</a>
 
-    <a class="fc-card" href="pieces/the-tenderness.html" data-tier="entry">
-      <img data-src="img/IMG_6962.JPG" alt="The Tenderness" src="">
-      <div class="fc-card-info"><h4>The Tenderness</h4><div class="fc-price">Entry · $14,500</div><span class="fc-inquire">View Piece →</span></div>
-    </a>
+<a class="fc-card" href="pieces/the-tenderness.html" data-tier="entry">
+  <img data-src="IMG_5819.jpeg" alt="The Tenderness" src="">
+  <div class="fc-card-info"><h4>The Tenderness</h4><div class="fc-price">Entry · $14,500</div><span class="fc-inquire">View Piece →</span></div>
+</a>
 
-    <a class="fc-card" href="pieces/the-orbit.html" data-tier="entry">
-      <img data-src="IMG_6963.JPG" alt="The Orbit" src="">
-      <div class="fc-card-info"><h4>The Orbit</h4><div class="fc-price">Entry · $12,500</div><span class="fc-inquire">View Piece →</span></div>
-    </a>
+<a class="fc-card" href="pieces/the-orbit.html" data-tier="entry">
+  <img data-src="IMG_5820.jpeg" alt="The Orbit" src="">
+  <div class="fc-card-info"><h4>The Orbit</h4><div class="fc-price">Entry · $12,500</div><span class="fc-inquire">View Piece →</span></div>
+</a>
 
-    <a class="fc-card" href="pieces/the-vessel.html" data-tier="statement">
-      <img data-src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 14.png" alt="The Vessel" src="">
-      <div class="fc-card-info"><h4>The Vessel</h4><div class="fc-price">Statement · $35,000</div><span class="fc-inquire">View Piece →</span></div>
-      <div class="fc-tag">1 Available</div>
-    </a>
+<a class="fc-card" href="pieces/the-vessel.html" data-tier="statement">
+  <img data-src="IMG_5821.jpeg" alt="The Vessel" src="">
+  <div class="fc-card-info"><h4>The Vessel</h4><div class="fc-price">Statement · $35,000</div><span class="fc-inquire">View Piece →</span></div>
+  <div class="fc-tag">1 Available</div>
+</a>
+```
 
   </div>
 </section>
 
-<!-- ========== STAGING ========== -->
 <section class="staging reveal" id="staging">
   <div class="staging-grid container">
     <div class="staging-content">
@@ -853,14 +783,13 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
       <a href="#contact" class="btn-primary" style="margin-top:24px">Partner With PHAÖRA</a>
     </div>
     <div class="staging-images">
-      <div class="img-wrap"><img src="Untitled_design_-_4-compressed.jpeg" alt="Crystal sculpture in modern lobby" loading="lazy"></div>
-      <div class="img-wrap"><img src="Untitled_design_-_1-compressed__1_.jpeg" alt="White doves sculpture in luxury interior" loading="lazy"></div>
-      <div class="img-wrap"><img src="Untitled_design_-_2-compressed.jpeg" alt="Blue macaws crystal sculpture at sunset" loading="lazy"></div>
+      <div class="img-wrap"><img src="IMG_5813.jpeg" alt="Crystal sculpture in modern lobby" loading="lazy"></div>
+      <div class="img-wrap"><img src="IMG_5819.jpeg" alt="Crystal sculpture in luxury interior" loading="lazy"></div>
+      <div class="img-wrap"><img src="IMG_5825.jpeg" alt="Crystal sculpture at sunset" loading="lazy"></div>
     </div>
   </div>
 </section>
 
-<!-- ========== CONTACT ========== -->
 <section class="contact reveal" id="contact">
   <div class="contact-grid container">
     <div class="contact-left">
@@ -869,7 +798,7 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
       <p>Whether you need a pool deck, a driveway, a crystal sculpture, or a staging partner — every conversation begins with David. No sales team. No call center. Within 24 hours.</p>
       <div class="contact-details">
         <div class="contact-detail"><div class="icon">✦</div><div class="info"><a href="tel:+19548719991">(954) 871-9991</a><small>Call or text David directly</small></div></div>
-        <div class="contact-detail"><div class="icon">◈</div><div class="info"><a href="/cdn-cgi/l/email-protection#92f6f3e4fbf6d2e2faf3fde0f3bcf1fdff"><span class="__cf_email__" data-cfemail="adc9ccdbc4c9edddc5ccc2dfcc83cec2c0">[email&#160;protected]</span></a><small>Response within 24 hours</small></div></div>
+        <div class="contact-detail"><div class="icon">◈</div><div class="info"><a href="mailto:info@phaora.com">info@phaora.com</a><small>Response within 24 hours</small></div></div>
         <div class="contact-detail"><div class="icon">♛</div><div class="info">Boca Raton, Florida<small>Serving all of South Florida</small></div></div>
       </div>
     </div>
@@ -901,7 +830,6 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
   </div>
 </section>
 
-<!-- PRIVATE LIST -->
 <section style="padding:80px 24px;background:var(--bg);text-align:center" class="reveal">
   <div style="max-width:500px;margin:0 auto">
     <div style="font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:16px">Private List</div>
@@ -915,12 +843,11 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer class="footer">
   <div class="footer-inner">
     <div>
       <div class="footer-brand">PHAÖRA</div>
-      <div class="footer-tagline">The Earth, Shaped to Last.<br>Boca Raton, Florida<br>(954) 871-9991 · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="294d485f404d69594148465b48074a4644">[email&#160;protected]</a><br><br>A StyleArtStoneCraft Company</div>
+      <div class="footer-tagline">The Earth, Shaped to Last.<br>Boca Raton, Florida<br>(954) 871-9991 · <a href="mailto:info@phaora.com">info@phaora.com</a><br><br>A StyleArtStoneCraft Company</div>
     </div>
     <div class="footer-col">
       <h5>Hardscape</h5>
@@ -950,10 +877,8 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
   </div>
 </footer>
 
-<!-- FLOATING CTA -->
 <div class="floating-cta" id="floatingCta"><a href="#contact"><span class="pulse"></span>Free Consultation</a></div>
 
-<!-- EXIT OVERLAY -->
 <div class="exit-overlay" id="exitOverlay">
   <div class="exit-modal">
     <button class="exit-close" onclick="document.getElementById('exitOverlay').classList.remove('active')">✕</button>
@@ -967,15 +892,13 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 const nav=document.getElementById('nav');
 window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>60)});
 const floatingCta=document.getElementById('floatingCta');
 window.addEventListener('scroll',()=>{floatingCta.classList.toggle('visible',window.scrollY>800)});
-const reveals=document.querySelectorAll('.reveal');
-reveals.forEach(el=>el.classList.add('visible'));
+document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'));
 
-// Lazy load gallery images — only fetch when scrolling near
 const imgObserver=new IntersectionObserver((entries)=>{
   entries.forEach(entry=>{
     if(entry.isIntersecting){
@@ -995,13 +918,11 @@ const imgObserver=new IntersectionObserver((entries)=>{
 },{rootMargin:'300px 0px',threshold:0.01});
 document.querySelectorAll('img[data-src]').forEach(img=>imgObserver.observe(img));
 
-// Also fade in regular images when loaded
-document.querySelectorAll('.sf-card img, .card img, .hs-card img, .sculpt-cat img').forEach(img=>{
+document.querySelectorAll('.sf-card img, .hs-card img, .sculpt-cat img').forEach(img=>{
   if(img.complete){img.classList.add('loaded')}
   else{img.onload=()=>img.classList.add('loaded')}
 });
 
-// FILTER TABS — Sculpture collection
 const filterTabs=document.querySelectorAll('.fc-filter-tab');
 const fcCards=document.querySelectorAll('.fc-card[data-tier]');
 const pieceCount=document.getElementById('pieceCount');
@@ -1021,10 +942,10 @@ filterTabs.forEach(tab=>{
     if(pieceCount)pieceCount.textContent=count;
   });
 });
+
 let exitShown=false;
 document.addEventListener('mouseout',e=>{if(!exitShown&&e.clientY<5&&!e.relatedTarget){document.getElementById('exitOverlay').classList.add('active');exitShown=true}});
 
-// CONTACT FORM SUBMISSION
 const formSubmit=document.querySelector('.form-submit');
 if(formSubmit){
   formSubmit.addEventListener('click',function(){
@@ -1057,13 +978,11 @@ if(formSubmit){
       }
       return;
     }
-    // Build mailto link
     const subject=encodeURIComponent('Free Consultation Request — PHAÖRA');
     const body=encodeURIComponent(
       'Name: '+name.value+'\nPhone: '+phone.value+'\nEmail: '+email.value+'\nInterest: '+select.value+'\n\n'+(form.querySelector('textarea').value||'')
     );
     window.location.href='mailto:info@phaora.com?subject='+subject+'&body='+body;
-    // Show success state
     formSubmit.textContent='✦ Request Sent — We\'ll Be in Touch';
     formSubmit.style.background='var(--green-soft)';
     formSubmit.style.pointerEvents='none';
@@ -1076,7 +995,6 @@ if(formSubmit){
   });
 }
 
-// EXIT OVERLAY FORM
 const exitFormBtn=document.querySelector('.exit-form button');
 if(exitFormBtn){
   exitFormBtn.addEventListener('click',function(){
@@ -1089,6 +1007,7 @@ if(exitFormBtn){
     exitFormBtn.style.background='var(--green-soft)';
   });
 }
+
 const quotes=[
   {text:'"They transformed our backyard into something we never imagined. The craftsmanship is on another level — every detail considered, every stone perfect."',author:'PHAÖRA Client',role:'Boca Raton · Pool Deck & Patio'},
   {text:'"From the first consultation to the final walkthrough, every step was handled with care. Our pool deck is the centerpiece of the property now."',author:'PHAÖRA Client',role:'Palm Beach · Travertine Pool Deck'},
@@ -1099,5 +1018,6 @@ dots.forEach((d,i)=>{d.addEventListener('click',()=>{cq=i;uq()})});
 function uq(){const q=quotes[cq];document.querySelector('.testimonial-inner blockquote').textContent=q.text;document.querySelector('.testimonial-inner cite').innerHTML=q.author+'<span>'+q.role+'</span>';dots.forEach((d,i)=>{d.classList.toggle('active',i===cq)})}
 setInterval(()=>{cq=(cq+1)%quotes.length;uq()},6000);
 </script>
+
 </body>
 </html>
