@@ -356,7 +356,7 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
 
 // -------- HARDSCAPE --------
 const RAW = 'https://raw.githubusercontent.com/Dayyzin/Phaora/refs/heads/main/';
-const HS_BASE = RAW + 'assets/PHAORA%20IMAGES/Hs/';
+const HS_BASE = RAW + 'hs/';
 const hardscapeFiles = [
   'hardscape-gallery-pool-featured.jpg',
   'hardscape-gallery-fireplace.jpg',
@@ -426,8 +426,8 @@ function setBg(el, src){
   };
   test.src = src;
 }
-setBg(document.getElementById('heroBg'), '1264572e-f188-448b-a36d-2e8e892594e1.jpeg');
-setBg(document.getElementById('sculptHeroBg'), '12852386-6a62-43fc-b02a-81615dce4afa.jpeg');
+setBg(document.getElementById('heroBg'), heroEstate);
+setBg(document.getElementById('sculptHeroBg'), SC_BASE + 'canopy/phaora-canopy-1.jpeg');
 
 // Nav scroll state
 const nav = document.getElementById('nav');
