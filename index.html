@@ -9,151 +9,308 @@
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#0a0907;--bg2:#110f0b;--surface:#1a1714;--surface2:#231f1a;
-  --gold:#c9a55c;--gold-light:#e2c98a;--gold-dim:#8a7340;
-  --cream:#f0e8d8;--cream2:#d4c9b2;--text:#e8e0d0;--text-dim:#9a9080;
-  --red-soft:#c45c4a;--green-soft:#5ca55c;
-  --serif:'Cormorant Garamond',Georgia,serif;--sans:'Outfit',system-ui,sans-serif;
+  --bg:#0a0907;
+  --bg2:#110f0b;
+  --surface:#1a1714;
+  --surface2:#231f1a;
+  --gold:#c9a55c;
+  --gold-light:#e2c98a;
+  --gold-dim:#8a7340;
+  --cream:#f0e8d8;
+  --cream2:#d4c9b2;
+  --text:#e8e0d0;
+  --text-dim:#9a9080;
+  --accent:#d4a853;
+  --red-soft:#c45c4a;
+  --green-soft:#5ca55c;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Outfit',system-ui,sans-serif;
   --ease:cubic-bezier(0.22,1,0.36,1);
 }
 html{scroll-behavior:smooth;font-size:16px;background:var(--bg)}
 body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
-.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;transition:all .5s var(--ease);background:transparent}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;transition:all .5s var(–ease);backdrop-filter:blur(0px);background:transparent}
 .nav.scrolled{backdrop-filter:blur(20px) saturate(1.4);background:rgba(10,9,7,.88);border-bottom:1px solid rgba(201,165,92,.08);padding:12px 24px}
-.nav-logo{font-family:var(--serif);font-size:1.4rem;font-weight:300;letter-spacing:.15em;color:var(--cream);text-decoration:none}
+.nav-logo{font-family:var(–serif);font-size:1.4rem;font-weight:300;letter-spacing:.15em;color:var(–cream);text-decoration:none}
 .nav-links{display:flex;gap:28px;align-items:center}
-.nav-links a{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cream2);text-decoration:none;transition:color .3s;font-weight:400}
-.nav-links a:hover{color:var(--gold)}
-.nav-cta{background:var(--gold);color:var(--bg)!important;padding:10px 22px;font-size:.68rem!important;letter-spacing:.14em!important;font-weight:500;border:none;cursor:pointer;transition:all .3s var(--ease)}
-.nav-cta:hover{background:var(--gold-light);transform:translateY(-1px)}
-.nav-phone{font-size:.72rem;color:var(--gold)!important;font-weight:400}
-.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 24px 80px;overflow:hidden;background:var(--bg)}
+.nav-links a{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(–cream2);text-decoration:none;transition:color .3s;font-weight:400}
+.nav-links a:hover{color:var(–gold)}
+.nav-cta{background:var(–gold);color:var(–bg)!important;padding:10px 22px;font-size:.68rem!important;letter-spacing:.14em!important;font-weight:500;border:none;cursor:pointer;transition:all .3s var(–ease)}
+.nav-cta:hover{background:var(–gold-light);transform:translateY(-1px)}
+.nav-phone{font-size:.72rem;color:var(–gold)!important;font-weight:400}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 24px 80px;overflow:hidden}
 .hero-bg{position:absolute;inset:0;z-index:0}
 .hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.35;filter:brightness(.6)}
-.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 30%,var(--bg) 95%)}
+.hero-bg::after{content:’’;position:absolute;inset:0;background:linear-gradient(transparent 30%,var(–bg) 95%)}
 .hero-content{position:relative;z-index:2}
-.hero-eyebrow{font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;opacity:0;animation:fadeUp .8s var(--ease) .2s forwards}
-.hero h1{font-family:var(--serif);font-size:clamp(2.6rem,5.8vw,5.2rem);font-weight:300;line-height:1.08;color:var(--cream);margin-bottom:20px;opacity:0;animation:fadeUp .8s var(--ease) .4s forwards}
-.hero h1 em{font-style:italic;color:var(--gold)}
-.hero-sub{font-size:1.05rem;color:var(--cream2);max-width:580px;line-height:1.7;font-weight:200;margin-bottom:40px;opacity:0;animation:fadeUp .8s var(--ease) .6s forwards}
-.hero-actions{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;opacity:0;animation:fadeUp .8s var(--ease) .8s forwards}
-.btn-primary{background:var(--gold);color:var(--bg);padding:16px 36px;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-family:var(--sans);font-weight:500;border:none;cursor:pointer;transition:all .35s var(--ease);text-decoration:none;display:inline-flex;align-items:center;gap:8px}
-.btn-primary:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 12px 40px rgba(201,165,92,.25)}
-.btn-secondary{background:transparent;color:var(--cream);padding:16px 36px;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-family:var(--sans);font-weight:400;border:1px solid rgba(201,165,92,.3);cursor:pointer;transition:all .35s var(--ease);text-decoration:none}
-.btn-secondary:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
-.hero-trust{display:flex;gap:32px;margin-top:48px;opacity:0;animation:fadeUp .8s var(--ease) 1s forwards}
+.hero-eyebrow{font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(–gold);margin-bottom:24px;font-weight:400;opacity:0;animation:fadeUp .8s var(–ease) .2s forwards}
+.hero h1{font-family:var(–serif);font-size:clamp(2.6rem,5.8vw,5.2rem);font-weight:300;line-height:1.08;color:var(–cream);margin-bottom:20px;opacity:0;animation:fadeUp .8s var(–ease) .4s forwards}
+.hero h1 em{font-style:italic;color:var(–gold)}
+.hero-sub{font-size:1.05rem;color:var(–cream2);max-width:580px;line-height:1.7;font-weight:200;margin-bottom:40px;opacity:0;animation:fadeUp .8s var(–ease) .6s forwards}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;opacity:0;animation:fadeUp .8s var(–ease) .8s forwards}
+.btn-primary{background:var(–gold);color:var(–bg);padding:16px 36px;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-family:var(–sans);font-weight:500;border:none;cursor:pointer;transition:all .35s var(–ease);text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn-primary:hover{background:var(–gold-light);transform:translateY(-2px);box-shadow:0 12px 40px rgba(201,165,92,.25)}
+.btn-secondary{background:transparent;color:var(–cream);padding:16px 36px;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-family:var(–sans);font-weight:400;border:1px solid rgba(201,165,92,.3);cursor:pointer;transition:all .35s var(–ease);text-decoration:none}
+.btn-secondary:hover{border-color:var(–gold);color:var(–gold);transform:translateY(-2px)}
+.hero-trust{display:flex;gap:32px;margin-top:48px;opacity:0;animation:fadeUp .8s var(–ease) 1s forwards}
 .hero-trust-item{text-align:center}
-.hero-trust-item .num{font-family:var(--serif);font-size:1.8rem;color:var(--gold);font-weight:300}
-.hero-trust-item .label{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-dim);margin-top:4px}
-.urgency-bar{background:linear-gradient(90deg,var(--surface),var(--surface2),var(--surface));border-top:1px solid rgba(201,165,92,.1);border-bottom:1px solid rgba(201,165,92,.1);padding:14px 0;overflow:hidden}
+.hero-trust-item .num{font-family:var(–serif);font-size:1.8rem;color:var(–gold);font-weight:300}
+.hero-trust-item .label{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(–text-dim);margin-top:4px}
+
+/* URGENCY */
+.urgency-bar{background:linear-gradient(90deg,var(–surface),var(–surface2),var(–surface));border-top:1px solid rgba(201,165,92,.1);border-bottom:1px solid rgba(201,165,92,.1);padding:14px 0;overflow:hidden}
 .urgency-track{display:flex;animation:scroll 40s linear infinite;width:max-content}
-.urgency-track span{white-space:nowrap;padding:0 40px;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-dim)}
-.urgency-track span strong{color:var(--gold);font-weight:500}
+.urgency-track span{white-space:nowrap;padding:0 40px;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(–gold-dim)}
+.urgency-track span strong{color:var(–gold);font-weight:500}
+
+/* PROOF */
+.proof-strip{padding:60px 24px;background:var(–bg)}
+.proof-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:center;align-items:center;gap:48px;flex-wrap:wrap}
+.proof-item{display:flex;align-items:center;gap:12px;opacity:.7}
+.proof-icon{width:32px;height:32px;border-radius:50%;background:var(–surface2);display:flex;align-items:center;justify-content:center;font-size:.75rem;color:var(–gold)}
+.proof-text{font-size:.7rem;letter-spacing:.08em;color:var(–text-dim);text-transform:uppercase}
+.proof-text strong{color:var(–cream2);font-weight:500;display:block;font-size:.85rem;letter-spacing:0;text-transform:none}
+
+/* SECTION HEADERS */
 .section-header{text-align:center;margin-bottom:64px}
-.section-header .eyebrow{font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
-.section-header h2{font-family:var(--serif);font-size:clamp(2rem,4vw,3.5rem);font-weight:300;color:var(--cream);line-height:1.15}
-.section-header h2 em{font-style:italic;color:var(--gold-light)}
-.hs-gallery{padding:100px 24px;background:var(--bg2)}
-.hs-grid,.fc-grid{max-width:1200px;margin:0 auto;columns:3;column-gap:12px}
-.hs-card,.fc-card{break-inside:avoid;margin-bottom:12px;position:relative;overflow:hidden;background:var(--surface);display:block}
-.hs-card img,.fc-card img{width:100%;display:block;transition:transform .7s var(--ease),opacity .5s var(--ease);opacity:0}
-.hs-card img.loaded,.fc-card img.loaded{opacity:1}
-.hs-card:hover img,.fc-card:hover img{transform:scale(1.04)}
-.hs-card.broken,.fc-card.broken{display:none}
-.process{padding:100px 24px;background:var(--bg2)}
+.section-header .eyebrow{font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(–gold);margin-bottom:16px;font-weight:400}
+.section-header h2{font-family:var(–serif);font-size:clamp(2rem,4vw,3.5rem);font-weight:300;color:var(–cream);line-height:1.15}
+.section-header h2 em{font-style:italic;color:var(–gold-light)}
+
+/* HARDSCAPE GALLERY */
+.hs-gallery{padding:100px 24px;background:var(–bg2)}
+.hs-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:12px}
+.hs-card{position:relative;overflow:hidden;cursor:pointer;min-height:260px}
+.hs-card img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(–ease)}
+.hs-card:hover img{transform:scale(1.05)}
+.hs-card::after{content:’’;position:absolute;inset:0;background:linear-gradient(transparent 50%,rgba(10,9,7,.85));pointer-events:none}
+.hs-card:first-child{grid-row:span 2;min-height:540px}
+.hs-card-label{position:absolute;bottom:20px;left:20px;z-index:2}
+.hs-card-label h4{font-family:var(–serif);font-size:1.2rem;color:var(–cream);font-weight:400}
+.hs-card-label span{font-size:.6rem;color:var(–gold);letter-spacing:.12em;text-transform:uppercase}
+.hs-counter{position:absolute;bottom:20px;right:20px;z-index:2;background:rgba(10,9,7,.7);backdrop-filter:blur(8px);padding:6px 14px;font-size:.6rem;color:var(–gold);letter-spacing:.1em;border:1px solid rgba(201,165,92,.15)}
+.hs-cta{text-align:center;margin-top:48px}
+
+/* SERVICES */
+.services{padding:100px 24px;background:var(–bg)}
+.services-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.service-card{background:var(–surface);border:1px solid rgba(201,165,92,.06);padding:40px 32px;transition:all .4s var(–ease);position:relative;overflow:hidden}
+.service-card::before{content:’’;position:absolute;top:0;left:0;right:0;height:2px;background:var(–gold);transform:scaleX(0);transform-origin:left;transition:transform .5s var(–ease)}
+.service-card:hover::before{transform:scaleX(1)}
+.service-card:hover{border-color:rgba(201,165,92,.15);transform:translateY(-4px)}
+.service-icon{font-size:1.6rem;color:var(–gold);margin-bottom:20px}
+.service-card h4{font-family:var(–serif);font-size:1.2rem;color:var(–cream);font-weight:400;margin-bottom:12px}
+.service-card p{font-size:.82rem;color:var(–text-dim);line-height:1.7;font-weight:200;margin-bottom:20px}
+.service-card a{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(–gold);text-decoration:none;transition:color .3s}
+.service-card a:hover{color:var(–gold-light)}
+
+/* PROCESS */
+.process{padding:100px 24px;background:var(–bg2)}
 .process-steps{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
-.process-steps::before{content:'';position:absolute;top:28px;left:14%;right:14%;height:1px;background:linear-gradient(90deg,transparent,var(--gold-dim),var(--gold-dim),transparent)}
-.step{text-align:center;padding:0 16px}
-.step-num{width:56px;height:56px;border-radius:50%;border:1px solid var(--gold-dim);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-family:var(--serif);font-size:1.1rem;color:var(--gold);background:var(--bg2);position:relative;z-index:2}
-.step h4{font-family:var(--serif);font-size:1rem;color:var(--cream);font-weight:400;margin-bottom:8px}
-.step p{font-size:.78rem;color:var(--text-dim);line-height:1.6;font-weight:200}
-.sculpt-hero{position:relative;min-height:90vh;display:flex;align-items:flex-end;overflow:hidden;background:var(--bg)}
-.sculpt-hero-bg{position:absolute;inset:0;z-index:0;background:var(--surface)}
-.sculpt-hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.55;filter:brightness(.7) saturate(1.1)}
-.sculpt-hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,var(--bg) 0%,rgba(10,9,7,.6) 40%,transparent 70%)}
-.sculpt-hero-content{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:0 24px 80px;width:100%}
-.sculpt-hero-content .eyebrow{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:10px}
-.sculpt-hero-content .eyebrow::before{content:'';width:40px;height:1px;background:var(--gold)}
-.sculpt-hero-content h2{font-family:var(--serif);font-size:clamp(2.4rem,5vw,4.5rem);font-weight:300;line-height:1.08;color:var(--cream);margin-bottom:16px}
-.sculpt-hero-content h2 em{font-style:italic;color:var(--gold-light)}
-.sculpt-hero-content p{color:var(--cream2);font-size:1rem;line-height:1.7;font-weight:200;max-width:520px;margin-bottom:32px}
-.sculpt-hero-actions{display:flex;gap:14px;flex-wrap:wrap}
-.sculpt-trust{padding:20px 0;background:var(--surface);border-top:1px solid rgba(201,165,92,.08);border-bottom:1px solid rgba(201,165,92,.08)}
-.sculpt-trust-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;justify-content:center;gap:40px;flex-wrap:wrap}
-.sculpt-trust-item{display:flex;align-items:center;gap:10px}
-.sculpt-trust-item .icon{color:var(--gold);font-size:.8rem}
-.sculpt-trust-item span{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim)}
-.sculpt-trust-item span strong{color:var(--cream2);font-weight:500}
-.full-collection{padding:100px 24px 80px;background:var(--bg2)}
-.contact{padding:100px 24px;background:var(--bg2)}
+.process-steps::before{content:’’;position:absolute;top:28px;left:14%;right:14%;height:1px;background:linear-gradient(90deg,transparent,var(–gold-dim),var(–gold-dim),transparent)}
+.step{text-align:center;padding:0 16px;position:relative}
+.step-num{width:56px;height:56px;border-radius:50%;border:1px solid var(–gold-dim);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-family:var(–serif);font-size:1.1rem;color:var(–gold);background:var(–bg2);position:relative;z-index:2;transition:all .4s var(–ease)}
+.step:hover .step-num{background:var(–gold);color:var(–bg);transform:scale(1.08)}
+.step h4{font-family:var(–serif);font-size:1rem;color:var(–cream);font-weight:400;margin-bottom:8px}
+.step p{font-size:.78rem;color:var(–text-dim);line-height:1.6;font-weight:200}
+
+/* TESTIMONIAL */
+.testimonial{padding:100px 24px;background:var(–bg);position:relative}
+.testimonial::before{content:’”’;position:absolute;top:60px;left:50%;transform:translateX(-50%);font-family:var(–serif);font-size:12rem;color:rgba(201,165,92,.05);line-height:1;pointer-events:none}
+.testimonial-inner{max-width:700px;margin:0 auto;text-align:center}
+.testimonial-inner blockquote{font-family:var(–serif);font-size:clamp(1.2rem,2.5vw,1.8rem);font-weight:300;font-style:italic;color:var(–cream);line-height:1.6;margin-bottom:28px}
+.testimonial-inner cite{font-family:var(–sans);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(–gold);font-style:normal;display:block}
+.testimonial-inner cite span{display:block;color:var(–text-dim);margin-top:4px;font-size:.65rem}
+.testimonial-dots{display:flex;justify-content:center;gap:8px;margin-top:32px}
+.testimonial-dots span{width:8px;height:8px;border-radius:50%;background:var(–surface2);cursor:pointer;transition:all .3s}
+.testimonial-dots span.active{background:var(–gold);transform:scale(1.2)}
+
+/* CRYSTAL SECTION */
+.crystal-section{padding:100px 24px;background:var(–bg2)}
+.crystal-intro{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1.2fr;gap:60px;align-items:center}
+.crystal-visual{position:relative;aspect-ratio:4/5;background:var(–surface);overflow:hidden}
+.crystal-visual img{width:100%;height:100%;object-fit:cover}
+.crystal-badge{position:absolute;top:20px;left:20px;background:rgba(10,9,7,.85);backdrop-filter:blur(10px);padding:8px 16px;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(–gold);border:1px solid rgba(201,165,92,.2)}
+.crystal-content h3{font-family:var(–serif);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(–gold);margin-bottom:16px;font-weight:400}
+.crystal-content h2{font-family:var(–serif);font-size:clamp(2rem,3.5vw,3.2rem);font-weight:300;line-height:1.15;color:var(–cream);margin-bottom:24px}
+.crystal-content h2 em{font-style:italic;color:var(–gold-light)}
+.crystal-content p{color:var(–cream2);line-height:1.8;font-weight:200;font-size:.95rem;margin-bottom:20px}
+.crystal-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+
+/* COLLECTION PREVIEW */
+.collection-preview{padding:40px 24px 80px;background:var(–bg2)}
+.preview-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.preview-card{position:relative;aspect-ratio:3/4;overflow:hidden;cursor:pointer;background:var(–surface)}
+.preview-card img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(–ease)}
+.preview-card:hover img{transform:scale(1.05)}
+.preview-card::after{content:’’;position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(10,9,7,.88));pointer-events:none}
+.preview-info{position:absolute;bottom:0;left:0;right:0;padding:20px;z-index:2}
+.preview-info h4{font-family:var(–serif);font-size:1.1rem;color:var(–cream);font-weight:400;margin-bottom:4px}
+.preview-price{font-size:.65rem;color:var(–gold);letter-spacing:.1em}
+.preview-tag{position:absolute;top:14px;right:14px;z-index:3;padding:5px 12px;font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;background:var(–red-soft);color:#fff}
+.preview-cta{text-align:center;margin-top:40px}
+
+/* STAGING */
+.staging{padding:100px 24px;background:var(–bg)}
+.staging-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1.2fr;gap:60px;align-items:center}
+.staging-content h3{font-family:var(–serif);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(–gold);margin-bottom:16px;font-weight:400}
+.staging-content h2{font-family:var(–serif);font-size:clamp(1.8rem,3vw,2.8rem);font-weight:300;color:var(–cream);line-height:1.15;margin-bottom:24px}
+.staging-content h2 em{font-style:italic;color:var(–gold-light)}
+.staging-content p{color:var(–cream2);line-height:1.8;font-weight:200;font-size:.92rem;margin-bottom:24px}
+.staging-benefit{display:flex;align-items:flex-start;gap:14px;margin-bottom:16px}
+.staging-benefit .icon{width:28px;height:28px;border-radius:50%;background:rgba(201,165,92,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(–gold);font-size:.7rem;margin-top:2px}
+.staging-benefit .text{font-size:.82rem;color:var(–cream2);line-height:1.6}
+.staging-benefit .text strong{color:var(–cream);font-weight:500}
+.staging-images{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.staging-images .img-wrap{aspect-ratio:1;background:var(–surface);overflow:hidden}
+.staging-images .img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(–ease)}
+.staging-images .img-wrap:hover img{transform:scale(1.06)}
+.staging-images .img-wrap:first-child{grid-row:span 2;aspect-ratio:auto}
+
+/* CONTACT */
+.contact{padding:100px 24px;background:var(–bg2)}
 .contact-grid{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px}
-.contact-left h3{font-family:var(--serif);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
-.contact-left h2{font-family:var(--serif);font-size:clamp(2rem,3.5vw,3rem);font-weight:300;color:var(--cream);line-height:1.15;margin-bottom:24px}
-.contact-left h2 em{font-style:italic;color:var(--gold-light)}
-.contact-left p{color:var(--cream2);line-height:1.8;font-weight:200;font-size:.92rem;margin-bottom:32px}
+.contact-left h3{font-family:var(–serif);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(–gold);margin-bottom:16px;font-weight:400}
+.contact-left h2{font-family:var(–serif);font-size:clamp(2rem,3.5vw,3rem);font-weight:300;color:var(–cream);line-height:1.15;margin-bottom:24px}
+.contact-left h2 em{font-style:italic;color:var(–gold-light)}
+.contact-left p{color:var(–cream2);line-height:1.8;font-weight:200;font-size:.92rem;margin-bottom:32px}
 .contact-details{display:flex;flex-direction:column;gap:16px}
 .contact-detail{display:flex;align-items:center;gap:14px}
-.contact-detail .icon{width:36px;height:36px;border-radius:50%;background:var(--surface2);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:.8rem}
-.contact-detail .info{font-size:.85rem;color:var(--cream2)}
-.contact-detail .info a{color:var(--gold);text-decoration:none}
-.contact-detail .info small{display:block;color:var(--text-dim);font-size:.68rem;margin-top:2px}
-.contact-form{background:var(--surface);padding:40px;border:1px solid rgba(201,165,92,.08)}
-.contact-form h4{font-family:var(--serif);font-size:1.3rem;color:var(--cream);font-weight:400;margin-bottom:6px}
-.contact-form .form-sub{font-size:.72rem;color:var(--text-dim);margin-bottom:28px;font-weight:200}
+.contact-detail .icon{width:36px;height:36px;border-radius:50%;background:var(–surface2);display:flex;align-items:center;justify-content:center;color:var(–gold);font-size:.8rem}
+.contact-detail .info{font-size:.85rem;color:var(–cream2)}
+.contact-detail .info a{color:var(–gold);text-decoration:none}
+.contact-detail .info small{display:block;color:var(–text-dim);font-size:.68rem;margin-top:2px}
+.contact-form{background:var(–surface);padding:40px;border:1px solid rgba(201,165,92,.08)}
+.contact-form h4{font-family:var(–serif);font-size:1.3rem;color:var(–cream);font-weight:400;margin-bottom:6px}
+.contact-form .form-sub{font-size:.72rem;color:var(–text-dim);margin-bottom:28px;font-weight:200}
 .form-group{margin-bottom:16px}
-.form-group label{display:block;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);margin-bottom:6px}
-.form-group input,.form-group select,.form-group textarea{width:100%;background:var(--bg);border:1px solid rgba(201,165,92,.12);padding:12px 16px;color:var(--cream);font-family:var(--sans);font-size:.85rem;outline:none}
-.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--gold)}
+.form-group label{display:block;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(–text-dim);margin-bottom:6px}
+.form-group input,.form-group select,.form-group textarea{width:100%;background:var(–bg);border:1px solid rgba(201,165,92,.12);padding:12px 16px;color:var(–cream);font-family:var(–sans);font-size:.85rem;transition:border-color .3s;outline:none}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(–gold)}
 .form-group select{appearance:none;cursor:pointer}
 .form-group textarea{resize:vertical;min-height:80px}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.form-submit{width:100%;background:var(--gold);color:var(--bg);padding:16px;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;border:none;cursor:pointer;margin-top:8px}
-.footer{padding:60px 24px 40px;background:var(--surface);border-top:1px solid rgba(201,165,92,.06)}
+.form-submit{width:100%;background:var(–gold);color:var(–bg);padding:16px;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-family:var(–sans);font-weight:500;border:none;cursor:pointer;margin-top:8px;transition:all .35s var(–ease)}
+.form-submit:hover{background:var(–gold-light);transform:translateY(-1px)}
+.form-guarantee{text-align:center;margin-top:12px;font-size:.62rem;color:var(–text-dim)}
+
+/* FLOATING */
+.floating-cta{position:fixed;bottom:24px;right:24px;z-index:999;opacity:0;transform:translateY(20px);transition:all .4s var(–ease);pointer-events:none}
+.floating-cta.visible{opacity:1;transform:translateY(0);pointer-events:all}
+.floating-cta a{display:flex;align-items:center;gap:10px;background:var(–gold);color:var(–bg);padding:14px 24px;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;text-decoration:none;box-shadow:0 8px 30px rgba(201,165,92,.3);transition:all .3s var(–ease)}
+.floating-cta a:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(201,165,92,.4)}
+.floating-cta .pulse{width:8px;height:8px;border-radius:50%;background:var(–green-soft);animation:pulse 2s ease infinite}
+
+/* EXIT */
+.exit-overlay{position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.8);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s}
+.exit-overlay.active{opacity:1;pointer-events:all}
+.exit-modal{background:var(–bg2);border:1px solid rgba(201,165,92,.15);padding:48px;max-width:480px;width:90%;text-align:center;position:relative;transform:scale(.95);transition:transform .4s var(–ease)}
+.exit-overlay.active .exit-modal{transform:scale(1)}
+.exit-close{position:absolute;top:16px;right:16px;background:none;border:none;color:var(–text-dim);cursor:pointer;font-size:1.2rem;transition:color .3s}
+.exit-close:hover{color:var(–cream)}
+.exit-modal h3{font-family:var(–serif);font-size:1.8rem;color:var(–cream);font-weight:300;margin-bottom:12px}
+.exit-modal h3 em{font-style:italic;color:var(–gold)}
+.exit-modal p{color:var(–cream2);font-size:.88rem;line-height:1.7;font-weight:200;margin-bottom:28px}
+.exit-form{display:flex;gap:8px}
+.exit-form input{flex:1;background:var(–surface);border:1px solid rgba(201,165,92,.12);padding:14px 16px;color:var(–cream);font-family:var(–sans);font-size:.85rem;outline:none}
+.exit-form input:focus{border-color:var(–gold)}
+.exit-form button{background:var(–gold);color:var(–bg);padding:14px 24px;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;border:none;cursor:pointer;white-space:nowrap;transition:background .3s}
+.exit-form button:hover{background:var(–gold-light)}
+.exit-disclaimer{font-size:.58rem;color:var(–text-dim);margin-top:12px}
+
+/* FOOTER */
+.footer{padding:60px 24px 40px;background:var(–surface);border-top:1px solid rgba(201,165,92,.06)}
 .footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}
-.footer-brand{font-family:var(--serif);font-size:1.5rem;color:var(--cream);font-weight:300;letter-spacing:.1em;margin-bottom:12px}
-.footer-tagline{font-size:.78rem;color:var(--text-dim);line-height:1.6;font-weight:200;max-width:280px}
-.footer-col h5{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
-.footer-col a{display:block;font-size:.78rem;color:var(--text-dim);text-decoration:none;margin-bottom:10px}
-.footer-col a:hover{color:var(--gold)}
+.footer-brand{font-family:var(–serif);font-size:1.5rem;color:var(–cream);font-weight:300;letter-spacing:.1em;margin-bottom:12px}
+.footer-tagline{font-size:.78rem;color:var(–text-dim);line-height:1.6;font-weight:200;max-width:280px}
+.footer-col h5{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(–gold);margin-bottom:16px;font-weight:500}
+.footer-col a{display:block;font-size:.78rem;color:var(–text-dim);text-decoration:none;margin-bottom:10px;transition:color .3s;font-weight:300}
+.footer-col a:hover{color:var(–gold)}
 .footer-bottom{max-width:1100px;margin:40px auto 0;padding-top:24px;border-top:1px solid rgba(201,165,92,.06);display:flex;justify-content:space-between;align-items:center}
-.footer-bottom span{font-size:.62rem;color:var(--text-dim)}
+.footer-bottom span{font-size:.62rem;color:var(–text-dim);letter-spacing:.05em}
+
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 @keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.reveal{opacity:1;transform:none;transition:opacity .7s var(–ease),transform .7s var(–ease)}
+.reveal.hidden{opacity:0;transform:translateY(30px)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
 @media(max-width:900px){
-  .nav-links{display:none}
-  .nav{background:rgba(10,9,7,.95);backdrop-filter:blur(20px);padding:12px 24px}
-  .hs-grid,.fc-grid{columns:2}
-  .contact-grid{grid-template-columns:1fr}
-  .process-steps{grid-template-columns:repeat(2,1fr);gap:32px}.process-steps::before{display:none}
-  .footer-inner{grid-template-columns:1fr 1fr}
+.nav-links{display:none}
+.nav{background:rgba(10,9,7,.95);backdrop-filter:blur(20px);padding:12px 24px}
+.hs-grid{grid-template-columns:1fr 1fr}.hs-card:first-child{grid-row:auto}
+.services-grid,.crystal-intro,.staging-grid,.contact-grid{grid-template-columns:1fr}
+.crystal-intro{gap:32px}
+.crystal-visual{aspect-ratio:3/4;max-height:500px}
+.crystal-section{padding:60px 24px}
+.full-collection{padding:40px 24px 60px}
+.process-steps{grid-template-columns:repeat(2,1fr);gap:32px}.process-steps::before{display:none}
+.masonry,.preview-grid{columns:2}
+.footer-inner{grid-template-columns:1fr 1fr}
 }
 @media(max-width:600px){
-  .hero h1{font-size:2.2rem}
-  .hs-grid,.fc-grid{columns:1}
-  .sculpt-hero{min-height:80vh}
-  .sculpt-hero-content h2{font-size:2rem}
-  .process-steps{grid-template-columns:1fr}
-  .form-row{grid-template-columns:1fr}
-  .footer-inner{grid-template-columns:1fr}
+.hero h1{font-size:2.2rem}
+.hero-trust{flex-direction:row;gap:20px}
+.hs-grid{columns:1}
+.preview-grid{grid-template-columns:1fr}
+.crystal-intro{gap:24px}
+.crystal-visual{aspect-ratio:1/1;max-height:400px}
+.crystal-section{padding:48px 16px}
+.crystal-content h2{font-size:1.8rem}
+.crystal-actions{flex-direction:column}
+.crystal-actions .btn-primary,.crystal-actions .btn-secondary{width:100%;text-align:center;justify-content:center}
+.full-collection{padding:32px 16px 48px}
+.filter-tabs-wrap{margin-bottom:24px}
+.filter-tab{padding:8px 14px;font-size:.58rem}
+.m-info{padding:12px}
+.m-info h4{font-size:.85rem}
+.process{padding:60px 24px}
+.process-steps{grid-template-columns:1fr}
+.services{padding:60px 24px}
+.services-grid{gap:16px}
+.testimonial{padding:60px 24px}
+.staging{padding:60px 24px}
+.contact{padding:60px 24px}
+.form-row{grid-template-columns:1fr}
+.exit-form{flex-direction:column}
+.footer-inner{grid-template-columns:1fr}
+.footer-bottom{flex-direction:column;gap:12px;text-align:center}
+.staging-images{grid-template-columns:1fr}.staging-images .img-wrap:first-child{grid-row:auto}
+.staging-grid{gap:32px}
+.contact-grid{gap:32px}
+.featured-grid{gap:32px}
 }
 </style>
+
 </head>
 <body>
+
+<!-- NAV -->
 
 <nav class="nav" id="nav">
   <a href="#" class="nav-logo">PHAÖRA</a>
   <div class="nav-links">
     <a href="#hardscape">Hardscape</a>
     <a href="#collection">Crystal Collection</a>
+    <a href="#staging">Staging</a>
     <a href="#contact">Contact</a>
     <a href="tel:+19548719991" class="nav-phone">✦ (954) 871-9991</a>
     <a href="#contact" class="nav-cta">Get a Quote</a>
   </div>
 </nav>
 
+<!-- ========== HERO — HARDSCAPE LEAD ========== -->
+
 <section class="hero" id="hero">
-  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-bg">
+    <img src="https://phaora.com/IMG_6688.jpeg" alt="Luxury estate pool at sunset">
+  </div>
   <div class="hero-content">
     <div class="hero-eyebrow">✦ PHAÖRA Hardscape · Boca Raton & Palm Beach</div>
     <h1>The Earth, Shaped<br>to <em>Last.</em></h1>
@@ -170,28 +327,95 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
   </div>
 </section>
 
+<!-- URGENCY -->
+
 <div class="urgency-bar">
   <div class="urgency-track">
     <span><strong>Now booking</strong> Summer & Fall 2026 projects</span>
     <span>Serving <strong>Boca Raton · Palm Beach · South Florida</strong></span>
     <span>Free on-site consultation · <strong>(954) 871-9991</strong></span>
     <span>Natural stone · <strong>Travertine · Marble · Coral</strong></span>
+    <span>Pool decks · Driveways · Patios · <strong>Outdoor Living</strong></span>
     <span><strong>Now booking</strong> Summer & Fall 2026 projects</span>
     <span>Serving <strong>Boca Raton · Palm Beach · South Florida</strong></span>
     <span>Free on-site consultation · <strong>(954) 871-9991</strong></span>
     <span>Natural stone · <strong>Travertine · Marble · Coral</strong></span>
+    <span>Pool decks · Driveways · Patios · <strong>Outdoor Living</strong></span>
   </div>
 </div>
 
-<section class="hs-gallery" id="hardscape">
+<!-- PROOF -->
+
+<section class="proof-strip">
+  <div class="proof-inner">
+    <div class="proof-item"><div class="proof-icon">◈</div><div class="proof-text"><strong>Licensed & Insured</strong>Full Florida credentials</div></div>
+    <div class="proof-item"><div class="proof-icon">✦</div><div class="proof-text"><strong>Premium Natural Stone</strong>Sourced globally, set locally</div></div>
+    <div class="proof-item"><div class="proof-icon">♛</div><div class="proof-text"><strong>White-Glove Service</strong>Design through final walkthrough</div></div>
+    <div class="proof-item"><div class="proof-icon">◎</div><div class="proof-text"><strong>Built to Endure</strong>Generations of durability</div></div>
+  </div>
+</section>
+
+<!-- ========== HARDSCAPE GALLERY ========== -->
+
+<section class="hs-gallery reveal" id="hardscape">
   <div class="section-header">
     <div class="eyebrow">Our Work</div>
     <h2>Permanent. Considered. <em>Unforgettable.</em></h2>
   </div>
-  <div class="hs-grid" id="hardscapeGrid"></div>
+  <div class="hs-grid container">
+    <div class="hs-card">
+      <img src="IMG_6687.jpeg" alt="Outdoor fireplace at dusk" loading="lazy">
+      <div class="hs-card-label"><h4>Outdoor Fireplace</h4><span>Natural Stone · Custom Build</span></div>
+    </div>
+    <div class="hs-card">
+      <img src="IMG_6688.jpeg" alt="Estate paver walkway" loading="lazy">
+      <div class="hs-card-label"><h4>Estate Walkway</h4><span>Paver · Golden Hour</span></div>
+    </div>
+    <div class="hs-card">
+      <img src="IMG_6689.jpeg" alt="Stone paver detail" loading="lazy">
+      <div class="hs-card-label"><h4>Stone Detail</h4><span>Natural Paver · French Pattern</span></div>
+    </div>
+    <div class="hs-card">
+      <img src="IMG_6690.jpeg" alt="Tropical stone fountain" loading="lazy">
+      <div class="hs-card-label"><h4>Stone Fountain</h4><span>Coral Stone · Tropical Setting</span></div>
+      <div class="hs-counter">+53 Projects</div>
+    </div>
+  </div>
+<div class="hs-cta"><a href="hardscape-gallery.html" class="btn-primary">View Full Gallery ✦</a></div>
 </section>
 
-<section class="process">
+<!-- ========== HARDSCAPE SERVICES ========== -->
+
+<section class="services reveal">
+  <div class="section-header">
+    <div class="eyebrow">Services</div>
+    <h2>Every Surface, <em>Perfected</em></h2>
+  </div>
+  <div class="services-grid container">
+    <div class="service-card">
+      <div class="service-icon">▣</div>
+      <h4>Pool Decks & Surrounds</h4>
+      <p>Travertine, marble, coral stone — selected for beauty and durability in the South Florida climate. Designed to complement your architecture.</p>
+      <a href="#contact">Request a consultation →</a>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">◧</div>
+      <h4>Patios & Outdoor Living</h4>
+      <p>Dining areas, fire pits, outdoor kitchens — built with natural stone that ages with character. From design through final placement.</p>
+      <a href="#contact">Request a consultation →</a>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">▤</div>
+      <h4>Driveways & Entries</h4>
+      <p>The first impression of your estate. Paver driveways, stone walkways, and grand entries that command attention from the moment guests arrive.</p>
+      <a href="#contact">Request a consultation →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== HOW IT WORKS ========== -->
+
+<section class="process reveal" id="process">
   <div class="section-header">
     <div class="eyebrow">How It Works</div>
     <h2>From Vision <em>to Stone</em></h2>
@@ -204,36 +428,83 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
   </div>
 </section>
 
-<section class="sculpt-hero" id="collection">
-  <div class="sculpt-hero-bg" id="sculptHeroBg"></div>
-  <div class="sculpt-hero-content">
-    <div class="eyebrow">PHAÖRA · Crystal Sculptures</div>
-    <h2>One of One.<br>From the <em>Earth.</em></h2>
-    <p>Hand-mined crystal sculptures from the mountains of Minas Gerais, Brazil. Each piece is shaped by master craftsman Fabiano — forty years of devotion — and exists once. Never duplicated.</p>
-    <div class="sculpt-hero-actions">
-      <a href="#full-gallery" class="btn-primary">View the Collection ✦</a>
-      <a href="#contact" class="btn-secondary">Inquire About a Piece</a>
+<!-- TESTIMONIAL -->
+
+<section class="testimonial reveal">
+  <div class="testimonial-inner">
+    <blockquote>"They transformed our backyard into something we never imagined. The craftsmanship is on another level — every detail considered, every stone perfect."</blockquote>
+    <cite>PHAÖRA Client<span>Boca Raton, Florida · Pool Deck & Patio</span></cite>
+    <div class="testimonial-dots"><span class="active"></span><span></span><span></span></div>
+  </div>
+</section>
+
+<!-- ========== CRYSTAL COLLECTION (SECONDARY) ========== -->
+
+<section class="crystal-section reveal" id="collection">
+  <div class="crystal-intro container">
+    <div class="crystal-content">
+      <h3>PHAÖRA · Crystal Sculptures</h3>
+      <h2>One of One. From the <em>Earth.</em></h2>
+      <p>Beyond hardscape, PHAÖRA sources and presents hand-mined crystal sculptures from the mountains of Minas Gerais, Brazil. Each piece is shaped by master craftsman Fabiano — forty years of devotion — and exists once. Never duplicated.</p>
+      <p>Statement pieces for estates, collectors, and luxury real estate staging.</p>
+      <div class="crystal-actions">
+        <a href="#crystal-pieces" class="btn-primary">View the Collection ✦</a>
+        <a href="#contact" class="btn-secondary">Inquire About a Piece</a>
+      </div>
+    </div>
+    <div class="crystal-visual">
+      <img src="IMG_6972.JPG" alt="Blue Macaws on Amethyst Cathedral — Statement Sculpture" loading="lazy">
+      <div class="crystal-badge">✦ Statement Piece</div>
     </div>
   </div>
 </section>
 
-<div class="sculpt-trust">
-  <div class="sculpt-trust-inner">
-    <div class="sculpt-trust-item"><span class="icon">◈</span><span>Hand-mined in <strong>Minas Gerais, Brazil</strong></span></div>
-    <div class="sculpt-trust-item"><span class="icon">✦</span><span>Every piece <strong>one of one</strong></span></div>
-    <div class="sculpt-trust-item"><span class="icon">♛</span><span><strong>White-glove delivery</strong> & placement</span></div>
-  </div>
-</div>
+<!-- COLLECTION PREVIEW — 3 Featured Pieces -->
 
-<section class="full-collection" id="full-gallery">
-  <div class="section-header">
-    <div class="eyebrow">✦ The Complete Collection</div>
-    <h2>Singular <em>Works</em></h2>
+<section class="collection-preview reveal" id="crystal-pieces">
+  <div class="preview-grid container">
+    <div class="preview-card">
+      <img src="IMG_6972.JPG" alt="Blue Macaws on Amethyst Cathedral" loading="lazy">
+      <div class="preview-info"><h4>Blue Macaws on Amethyst</h4><div class="preview-price">Statement · $37,500+</div></div>
+      <div class="preview-tag">1 Available</div>
+    </div>
+    <div class="preview-card">
+      <img src="IMG_7037.JPG" alt="Rose Quartz Macaws on Amethyst" loading="lazy">
+      <div class="preview-info"><h4>Rose Quartz Macaws</h4><div class="preview-price">Statement · $37,500+</div></div>
+    </div>
+    <div class="preview-card">
+      <img src="IMG_7046.JPG" alt="Rose Quartz Eagle" loading="lazy">
+      <div class="preview-info"><h4>Rose Quartz Eagle</h4><div class="preview-price">Statement · $37,500+</div></div>
+      <div class="preview-tag">New Arrival</div>
+    </div>
   </div>
-  <div class="fc-grid" id="sculptureGrid"></div>
+  <div class="preview-cta"><a href="gallery.html" class="btn-primary">View All 39 Pieces ✦</a></div>
 </section>
 
-<section class="contact" id="contact">
+<!-- ========== STAGING ========== -->
+
+<section class="staging reveal" id="staging">
+  <div class="staging-grid container">
+    <div class="staging-content">
+      <h3>For Real Estate Agents</h3>
+      <h2>The Listing <em>Remembered</em></h2>
+      <p>Place a one-of-one crystal sculpture in a $3M+ listing. Every buyer stops. Every buyer photographs it. Every buyer remembers your listing — and you.</p>
+      <div class="staging-benefit"><div class="icon">✦</div><div class="text"><strong>Earn commission on sculpture sales.</strong> Buyers regularly ask to purchase the staging piece. You earn a referral commission.</div></div>
+      <div class="staging-benefit"><div class="icon">◈</div><div class="text"><strong>Wholesale partner pricing.</strong> Approved partners receive exclusive pricing and a dedicated lookbook.</div></div>
+      <div class="staging-benefit"><div class="icon">♛</div><div class="text"><strong>White-glove placement & removal.</strong> PHAÖRA handles delivery, placement, and pickup. Zero hassle.</div></div>
+      <a href="#contact" class="btn-primary" style="margin-top:24px">Partner With PHAÖRA</a>
+    </div>
+    <div class="staging-images">
+      <div class="img-wrap"><img src="https://phaora.com/IMG_6689.jpeg" alt="Estate exterior" loading="lazy"></div>
+      <div class="img-wrap"><img src="https://phaora.com/IMG_6688.jpeg" alt="Pool sunset" loading="lazy"></div>
+      <div class="img-wrap"><img src="https://phaora.com/IMG_6690.jpeg" alt="Estate night" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CONTACT ========== -->
+
+<section class="contact reveal" id="contact">
   <div class="contact-grid container">
     <div class="contact-left">
       <h3>Begin the Dialogue</h3>
@@ -241,7 +512,7 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
       <p>Whether you need a pool deck, a driveway, a crystal sculpture, or a staging partner — every conversation begins with David. No sales team. No call center. Within 24 hours.</p>
       <div class="contact-details">
         <div class="contact-detail"><div class="icon">✦</div><div class="info"><a href="tel:+19548719991">(954) 871-9991</a><small>Call or text David directly</small></div></div>
-        <div class="contact-detail"><div class="icon">◈</div><div class="info"><a href="mailto:info@phaora.com">info@phaora.com</a><small>Response within 24 hours</small></div></div>
+        <div class="contact-detail"><div class="icon">◈</div><div class="info"><a href="/cdn-cgi/l/email-protection#92f6f3e4fbf6d2e2faf3fde0f3bcf1fdff"><span class="__cf_email__" data-cfemail="adc9ccdbc4c9edddc5ccc2dfcc83cec2c0">[email&#160;protected]</span></a><small>Response within 24 hours</small></div></div>
         <div class="contact-detail"><div class="icon">♛</div><div class="info">Boca Raton, Florida<small>Serving all of South Florida</small></div></div>
       </div>
     </div>
@@ -260,26 +531,63 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
           <option>Hardscape — Pool Deck</option>
           <option>Hardscape — Patio / Outdoor Living</option>
           <option>Hardscape — Driveway / Entry</option>
+          <option>Hardscape — Full Property</option>
           <option>Crystal Sculpture — Inquiry</option>
           <option>Real Estate Staging — Partnership</option>
           <option>Other</option>
         </select>
       </div>
       <div class="form-group"><label>Tell Us About Your Project (optional)</label><textarea placeholder="Describe your space, timeline, or what you're envisioning…"></textarea></div>
-      <button class="form-submit" id="formSubmit">Get Your Free Consultation ✦</button>
+      <button class="form-submit">Get Your Free Consultation ✦</button>
+      <div class="form-guarantee">✦ Personal response from David within 24 hours · No obligations</div>
     </div>
   </div>
 </section>
+
+<!-- PRIVATE LIST -->
+
+<section style="padding:80px 24px;background:var(--bg);text-align:center" class="reveal">
+  <div style="max-width:500px;margin:0 auto">
+    <div style="font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:16px">Private List</div>
+    <h2 style="font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.4rem);font-weight:300;color:var(--cream);line-height:1.15;margin-bottom:12px">Be First When <em style="font-style:italic;color:var(--gold-light)">New Works Arrive</em></h2>
+    <p style="color:var(--cream2);font-size:.88rem;line-height:1.7;font-weight:200;margin-bottom:28px">New crystal sculptures arrive from Minas Gerais without announcement. Private list members are notified first.</p>
+    <div style="display:flex;gap:8px;max-width:420px;margin:0 auto">
+      <input type="email" placeholder="Your email address" style="flex:1;background:var(--surface);border:1px solid rgba(201,165,92,.12);padding:14px 16px;color:var(--cream);font-family:var(--sans);font-size:.85rem;outline:none">
+      <button style="background:var(--gold);color:var(--bg);padding:14px 24px;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;border:none;cursor:pointer;white-space:nowrap">Join</button>
+    </div>
+    <div style="font-size:.58rem;color:var(--text-dim);margin-top:10px">No spam. Only new arrivals and private invitations.</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 
 <footer class="footer">
   <div class="footer-inner">
     <div>
       <div class="footer-brand">PHAÖRA</div>
-      <div class="footer-tagline">The Earth, Shaped to Last.<br>Boca Raton, Florida<br>(954) 871-9991 · <a href="mailto:info@phaora.com">info@phaora.com</a></div>
+      <div class="footer-tagline">The Earth, Shaped to Last.<br>Boca Raton, Florida<br>(954) 871-9991 · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="294d485f404d69594148465b48074a4644">[email&#160;protected]</a><br><br>A StyleArtStoneCraft Company</div>
     </div>
-    <div class="footer-col"><h5>Hardscape</h5><a href="#hardscape">Pool Decks</a><a href="#hardscape">Patios</a><a href="#hardscape">Driveways</a></div>
-    <div class="footer-col"><h5>Crystal Collection</h5><a href="#full-gallery">All Pieces</a><a href="#contact">Inquire</a></div>
-    <div class="footer-col"><h5>Studio</h5><a href="#contact">Contact David</a><a href="tel:+19548719991">(954) 871-9991</a></div>
+    <div class="footer-col">
+      <h5>Hardscape</h5>
+      <a href="#">Pool Decks</a>
+      <a href="#">Patios & Outdoor Living</a>
+      <a href="#">Driveways & Entries</a>
+      <a href="#">View All Projects</a>
+    </div>
+    <div class="footer-col">
+      <h5>Crystal Collection</h5>
+      <a href="#">All Pieces</a>
+      <a href="#">Statement Pieces</a>
+      <a href="#">Real Estate Staging</a>
+      <a href="#">Agent Portal</a>
+    </div>
+    <div class="footer-col">
+      <h5>Studio</h5>
+      <a href="#">About PHAÖRA</a>
+      <a href="#">Journal</a>
+      <a href="#">Contact David</a>
+      <a href="#">TikTok Shop</a>
+    </div>
   </div>
   <div class="footer-bottom">
     <span>© 2026 PHAÖRA · All rights reserved</span>
@@ -287,121 +595,106 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
   </div>
 </footer>
 
-<script>
-/* ============================================================
-   PHAÖRA — Direct photo loading from your repo folder structure.
-   No API calls. Broken images auto-hide.
-   ============================================================ */
+<!-- FLOATING CTA -->
 
-// -------- HARDSCAPE --------
-// Path: assets/PHAORA IMAGES/Hs/
-// Exact filenames (spaces in path are URL-encoded)
-const HS_BASE = 'assets/PHAORA%20IMAGES/Hs/';
-const hardscapeFiles = [
-  'hardscape-gallery-pool-featured.jpg',
-  'hardscape-gallery-fireplace.jpg',
-  'hardscape-gallery-stone-fountain.jpg',
-  'hardscape-gallery-elevated-patio.jpg',
-  'hardscape-gallery-fire-pit.jpg',
-  'hardscape-gallery-outdoor-kitchen.jpg',
-  'hardscape-gallery-paver-closeup.jpg',
-  'hardscape-gallery-pool-steps.jpg',
-  'hardscape-gallery-retaining-wall.jpg',
-  'hardscape-gallery-stone-detail.jpg',
-  'hardscape-gallery-stone-fireplace.jpg',
-  'hardscape-gallery-the-craft.jpg',
-  'hardscape-gallery-walkway.jpg'
-].map(f => HS_BASE + f);
+<div class="floating-cta" id="floatingCta"><a href="#contact"><span class="pulse"></span>Free Consultation</a></div>
 
-const heroEstate = HS_BASE + 'hero-estate.jpeg';
-const heroWaterfall = HS_BASE + 'hero-waterfall.jpeg';
+<!-- EXIT OVERLAY -->
 
-// -------- SCULPTURES --------
-// Path: assets/PHAORA IMAGES/Sculptures/[collection]/phaora-[collection]-[N].jpeg
-const SC_BASE = 'assets/PHAORA%20IMAGES/Sculptures/';
-const collections = [
-  'aerie','ascent','canopy','cathedral','cluster','companions','courtship',
-  'crimson-duo','devotion','driftwood','duet','dynasty','eclipse','eden',
-  'embrace','ethereals','gathering','grace','grotto','guardians','herald',
-  'hyacinths','indigos','lovers','monolith','nest','orbit','pair',
-  'parliament','perch','portal','radiance','raptor','scarlets','sentinels',
-  'sliced','smoke','soloist','sovereign','tenderness','twins','vessel',
-  'violet','whisper'
-];
+<div class="exit-overlay" id="exitOverlay">
+  <div class="exit-modal">
+    <button class="exit-close" onclick="document.getElementById('exitOverlay').classList.remove('active')">✕</button>
+    <h3>Before You <em>Go</em></h3>
+    <p>Get a free consultation on your hardscape project — or join our private list for new crystal arrivals. David responds personally within 24 hours.</p>
+    <div class="exit-form">
+      <input type="email" placeholder="Your email or phone">
+      <button>Get in Touch</button>
+    </div>
+    <div class="exit-disclaimer">No spam. Personal response within 24 hours.</div>
+  </div>
+</div>
 
-// Scan 1-10 in each folder; broken ones auto-hide
-const sculptureFiles = [];
-collections.forEach(c => {
-  for (let i = 1; i <= 10; i++){
-    sculptureFiles.push(`${SC_BASE}${c}/phaora-${c}-${i}.jpeg`);
-  }
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+
+const nav=document.getElementById(‘nav’);
+window.addEventListener(‘scroll’,()=>{nav.classList.toggle(‘scrolled’,window.scrollY>60)});
+const floatingCta=document.getElementById(‘floatingCta’);
+window.addEventListener(‘scroll’,()=>{floatingCta.classList.toggle(‘visible’,window.scrollY>800)});
+const reveals=document.querySelectorAll(’.reveal’);
+reveals.forEach(el=>el.classList.add(‘visible’));
+let exitShown=false;
+document.addEventListener(‘mouseout’,e=>{if(!exitShown&&e.clientY<5&&!e.relatedTarget){document.getElementById(‘exitOverlay’).classList.add(‘active’);exitShown=true}});
+
+// CONTACT FORM SUBMISSION
+const formSubmit=document.querySelector(’.form-submit’);
+if(formSubmit){
+formSubmit.addEventListener(‘click’,function(){
+const form=this.closest(’.contact-form’);
+const name=form.querySelector(‘input[type=“text”]’);
+const phone=form.querySelector(‘input[type=“tel”]’);
+const email=form.querySelector(‘input[type=“email”]’);
+const select=form.querySelector(‘select’);
+let valid=true;
+[name,phone,email,select].forEach(el=>{
+if(!el)return;
+if(!el.value.trim()||el.value===el.getAttribute(‘placeholder’)||el.value===’’){
+el.style.borderColor=‘var(–red-soft)’;
+el.style.transition=‘border-color .3s’;
+valid=false;
+setTimeout(()=>{el.style.borderColor=’’},2500);
+} else {
+el.style.borderColor=‘var(–green-soft)’;
+}
 });
-
-// -------- RENDER --------
-function addCard(grid, src, cls, alt){
-  const card = document.createElement('div');
-  card.className = cls;
-  const img = document.createElement('img');
-  img.loading = 'lazy';
-  img.alt = alt;
-  img.src = src;
-  img.addEventListener('load', () => img.classList.add('loaded'));
-  img.addEventListener('error', () => card.classList.add('broken'));
-  card.appendChild(img);
-  grid.appendChild(card);
+if(!valid){
+const msg=form.querySelector(’.form-error-msg’);
+if(!msg){
+const err=document.createElement(‘div’);
+err.className=‘form-error-msg’;
+err.style.cssText=‘color:var(–red-soft);font-size:.65rem;letter-spacing:.08em;text-align:center;margin-top:8px;’;
+err.textContent=‘Please fill in all required fields above.’;
+formSubmit.after(err);
+setTimeout(()=>err.remove(),3000);
+}
+return;
+}
+// Build mailto link
+const subject=encodeURIComponent(‘Free Consultation Request — PHAÖRA’);
+const body=encodeURIComponent(
+‘Name: ‘+name.value+’\nPhone: ‘+phone.value+’\nEmail: ‘+email.value+’\nInterest: ‘+select.value+’\n\n’+(form.querySelector(‘textarea’).value||’’)
+);
+window.location.href=‘mailto:info@phaora.com?subject=’+subject+’&body=’+body;
+// Show success state
+formSubmit.textContent=‘✦ Request Sent — We'll Be in Touch’;
+formSubmit.style.background=‘var(–green-soft)’;
+formSubmit.style.pointerEvents=‘none’;
+form.querySelector(’.form-guarantee’).textContent=‘✦ Thank you! David will respond personally within 24 hours.’;
+setTimeout(()=>{
+formSubmit.textContent=‘Get Your Free Consultation ✦’;
+formSubmit.style.background=’’;
+formSubmit.style.pointerEvents=’’;
+},6000);
+});
 }
 
-const hsGrid = document.getElementById('hardscapeGrid');
-hardscapeFiles.forEach(f => addCard(hsGrid, f, 'hs-card', 'PHAÖRA Hardscape'));
-
-const scGrid = document.getElementById('sculptureGrid');
-sculptureFiles.forEach(f => addCard(scGrid, f, 'fc-card', 'PHAÖRA Crystal Sculpture'));
-
-// Hero backgrounds
-function setBg(el, src){
-  const test = new Image();
-  test.onload = () => {
-    const img = document.createElement('img');
-    img.src = src;
-    img.alt = '';
-    el.appendChild(img);
-  };
-  test.src = src;
+// EXIT OVERLAY FORM
+const exitFormBtn=document.querySelector(’.exit-form button’);
+if(exitFormBtn){
+exitFormBtn.addEventListener(‘click’,function(){
+const input=document.querySelector(’.exit-form input’);
+if(!input.value.trim()){input.style.borderColor=‘var(–red-soft)’;setTimeout(()=>{input.style.borderColor=’’},2000);return;}
+const subject=encodeURIComponent(‘PHAÖRA — Get in Touch’);
+const body=encodeURIComponent(‘Contact: ‘+input.value);
+window.location.href=‘mailto:info@phaora.com?subject=’+subject+’&body=’+body;
+exitFormBtn.textContent=‘Sent ✦’;
+exitFormBtn.style.background=‘var(–green-soft)’;
+});
 }
-setBg(document.getElementById('heroBg'), heroEstate);
-setBg(document.getElementById('sculptHeroBg'), SC_BASE + 'canopy/phaora-canopy-1.jpeg');
-
-// Nav scroll state
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
-
-// Contact form
-const submitBtn = document.getElementById('formSubmit');
-if (submitBtn){
-  submitBtn.addEventListener('click', function(){
-    const form = this.closest('.contact-form');
-    const name = form.querySelector('input[type="text"]').value.trim();
-    const phone = form.querySelector('input[type="tel"]').value.trim();
-    const email = form.querySelector('input[type="email"]').value.trim();
-    const select = form.querySelector('select').value;
-    const msg = form.querySelector('textarea').value.trim();
-    if (!name || !phone || !email || !select){
-      submitBtn.textContent = 'Please fill in all fields';
-      submitBtn.style.background = 'var(--red-soft)';
-      setTimeout(() => {
-        submitBtn.textContent = 'Get Your Free Consultation ✦';
-        submitBtn.style.background = '';
-      }, 2500);
-      return;
-    }
-    const subject = encodeURIComponent('Free Consultation Request — PHAÖRA');
-    const body = encodeURIComponent('Name: ' + name + '\nPhone: ' + phone + '\nEmail: ' + email + '\nInterest: ' + select + '\n\n' + msg);
-    window.location.href = 'mailto:info@phaora.com?subject=' + subject + '&body=' + body;
-    submitBtn.textContent = '✦ Request Sent';
-    submitBtn.style.background = 'var(--green-soft)';
-  });
-}
-</script>
-
-</body>
-</html>
+const quotes=[
+{text:’“They transformed our backyard into something we never imagined. The craftsmanship is on another level — every detail considered, every stone perfect.”’,author:‘PHAÖRA Client’,role:‘Boca Raton · Pool Deck & Patio’},
+{text:’“From the first consultation to the final walkthrough, every step was handled with care. Our pool deck is the centerpiece of the property now.”’,author:‘PHAÖRA Client’,role:‘Palm Beach · Travertine Pool Deck’},
+{text:’“A room with a PHAÖRA sculpture is not a room with a decoration. It is a room with a story. And stories close listings.”’,author:‘David Vaz’,role:‘Founder · PHAÖRA’}
+];
+let cq=0;const dots=document.querySelectorAll(’.testimonial-dots span’);
+dots.forEach((d,i)=>{d.addEventListener(‘click’,()=>{cq=i;uq()})});
+function uq(){const q=quotes[cq];document.querySelector(’.testimonial-inner blockquote’).textContent=q.text;document.querySelector(’.testimonial-inner cite’).innerHTML=q.author+’<span>’+q.role+’</span>’;dots.forEach((
