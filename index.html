@@ -55,6 +55,23 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
 .section-header h2{font-family:var(--serif);font-size:clamp(2rem,4vw,3.5rem);font-weight:300;color:var(--cream);line-height:1.15}
 .section-header h2 em{font-style:italic;color:var(--gold-light)}
 .hs-gallery{padding:100px 24px;background:var(--bg2)}
+.hs-featured{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:12px}
+.hs-feat-card{position:relative;overflow:hidden;background:var(--surface);min-height:260px;cursor:pointer}
+.hs-feat-card img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.hs-feat-card:hover img{transform:scale(1.05)}
+.hs-feat-card::after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 50%,rgba(10,9,7,.85));pointer-events:none}
+.hs-feat-large{grid-row:span 2;min-height:540px}
+.hs-feat-label{position:absolute;bottom:20px;left:20px;z-index:2}
+.hs-feat-label h4{font-family:var(--serif);font-size:1.2rem;color:var(--cream);font-weight:400;margin-bottom:2px}
+.hs-feat-label span{font-size:.6rem;color:var(--gold);letter-spacing:.12em;text-transform:uppercase}
+.hs-counter{position:absolute;bottom:20px;right:20px;z-index:2;background:rgba(10,9,7,.7);backdrop-filter:blur(8px);padding:6px 14px;font-size:.6rem;color:var(--gold);letter-spacing:.1em;border:1px solid rgba(201,165,92,.15)}
+.hs-cta{text-align:center;margin-top:48px}
+.proof-strip{padding:60px 24px;background:var(--bg)}
+.proof-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:center;align-items:center;gap:48px;flex-wrap:wrap}
+.proof-item{display:flex;align-items:center;gap:12px;opacity:.7}
+.proof-icon{width:32px;height:32px;border-radius:50%;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:.75rem;color:var(--gold)}
+.proof-text{font-size:.7rem;letter-spacing:.08em;color:var(--text-dim);text-transform:uppercase}
+.proof-text strong{color:var(--cream2);font-weight:500;display:block;font-size:.85rem;letter-spacing:0;text-transform:none}
 .hs-grid,.fc-grid{max-width:1200px;margin:0 auto;columns:3;column-gap:12px}
 .hs-card,.fc-card{break-inside:avoid;margin-bottom:12px;position:relative;overflow:hidden;background:var(--surface);display:block}
 .hs-card img,.fc-card img{width:100%;display:block;transition:transform .7s var(--ease),opacity .5s var(--ease);opacity:0}
@@ -124,6 +141,8 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
   .nav-links{display:none}
   .nav{background:rgba(10,9,7,.95);backdrop-filter:blur(20px);padding:12px 24px}
   .hs-grid,.fc-grid{columns:2}
+  .hs-featured{grid-template-columns:1fr 1fr}
+  .hs-feat-large{grid-row:auto;min-height:300px}
   .contact-grid{grid-template-columns:1fr}
   .process-steps{grid-template-columns:repeat(2,1fr);gap:32px}.process-steps::before{display:none}
   .footer-inner{grid-template-columns:1fr 1fr}
@@ -131,6 +150,8 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
 @media(max-width:600px){
   .hero h1{font-size:2.2rem}
   .hs-grid,.fc-grid{columns:1}
+  .hs-featured{grid-template-columns:1fr}
+  .hs-feat-card{min-height:240px}
   .sculpt-hero{min-height:80vh}
   .sculpt-hero-content h2{font-size:2rem}
   .process-steps{grid-template-columns:1fr}
@@ -183,12 +204,52 @@ body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:h
   </div>
 </div>
 
+<!-- PROOF STRIP -->
+
+<section class="proof-strip">
+  <div class="proof-inner">
+    <div class="proof-item"><div class="proof-icon">◈</div><div class="proof-text"><strong>Licensed & Insured</strong>Full Florida credentials</div></div>
+    <div class="proof-item"><div class="proof-icon">✦</div><div class="proof-text"><strong>Premium Natural Stone</strong>Sourced globally, set locally</div></div>
+    <div class="proof-item"><div class="proof-icon">♛</div><div class="proof-text"><strong>White-Glove Service</strong>Design through final walkthrough</div></div>
+    <div class="proof-item"><div class="proof-icon">◎</div><div class="proof-text"><strong>Built to Endure</strong>Generations of durability</div></div>
+  </div>
+</section>
+
+<!-- HARDSCAPE GALLERY -->
+
 <section class="hs-gallery" id="hardscape">
   <div class="section-header">
     <div class="eyebrow">Our Work</div>
     <h2>Permanent. Considered. <em>Unforgettable.</em></h2>
   </div>
+  <div class="hs-featured container">
+    <div class="hs-feat-card hs-feat-large">
+      <img src="assets/PHAORA%20IMAGES/Hs/hardscape-gallery-pool-featured.jpg" alt="Estate Pool Deck">
+      <div class="hs-feat-label"><h4>Estate Pool Deck</h4><span>Natural Stone · Travertine</span></div>
+    </div>
+    <div class="hs-feat-card">
+      <img src="assets/PHAORA%20IMAGES/Hs/hardscape-gallery-fireplace.jpg" alt="Outdoor Fireplace">
+      <div class="hs-feat-label"><h4>Outdoor Fireplace</h4><span>Natural Stone · Custom Build</span></div>
+    </div>
+    <div class="hs-feat-card">
+      <img src="assets/PHAORA%20IMAGES/Hs/hardscape-gallery-walkway.jpg" alt="Estate Walkway">
+      <div class="hs-feat-label"><h4>Estate Walkway</h4><span>Paver · Golden Hour</span></div>
+    </div>
+    <div class="hs-feat-card">
+      <img src="assets/PHAORA%20IMAGES/Hs/hardscape-gallery-stone-detail.jpg" alt="Stone Paver Detail">
+      <div class="hs-feat-label"><h4>Stone Detail</h4><span>Natural Paver · French Pattern</span></div>
+    </div>
+    <div class="hs-feat-card">
+      <img src="assets/PHAORA%20IMAGES/Hs/hardscape-gallery-stone-fountain.jpg" alt="Stone Fountain">
+      <div class="hs-feat-label"><h4>Stone Fountain</h4><span>Coral Stone · Tropical Setting</span></div>
+      <div class="hs-counter">+8 More Projects</div>
+    </div>
+  </div>
+  <div class="section-header" style="margin:80px 0 32px">
+    <div class="eyebrow">The Complete Portfolio</div>
+  </div>
   <div class="hs-grid" id="hardscapeGrid"></div>
+  <div class="hs-cta"><a href="#contact" class="btn-primary">Request a Free Consultation ✦</a></div>
 </section>
 
 <section class="process">
