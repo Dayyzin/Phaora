@@ -106,6 +106,7 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
 .cat-tile:hover .cat-link .arrow{transform:translateX(4px)}
 .cat-photo .cat-bg{opacity:0}
 .cat-photo:hover .cat-bg{opacity:0.35}
+.cat-photo.revealed .cat-bg{opacity:0.35}
 
 /* CORRESPONDENCE */
 .corr{padding:6rem 2.5rem;text-align:center;border-top:0.5px solid var(--stroke)}
@@ -328,9 +329,15 @@ document.getElementById('lb-next').addEventListener('click',function(){show(idx+
 lb.addEventListener('click',function(e){if(e.target===lb)close()});
 document.addEventListener('keydown',function(e){if(!lb.classList.contains('open'))return;if(e.key==='Escape')close();else if(e.key==='ArrowLeft')show(idx-1);else if(e.key==='ArrowRight')show(idx+1)});
 
-/* Catalog photo tile lightbox */
+/* Catalog photo tile lightbox + mobile tap-to-reveal */
+var isTouch='ontouchstart' in window;
 document.querySelectorAll('.cat-photo').forEach(function(t){
   t.addEventListener('click',function(){
+    if(isTouch&&!t.classList.contains('revealed')){
+      document.querySelectorAll('.cat-photo.revealed').forEach(function(r){r.classList.remove('revealed')});
+      t.classList.add('revealed');
+      return;
+    }
     lbImg.src=t.getAttribute('data-img');
     lbCounter.textContent='';
     lb.classList.add('open');
