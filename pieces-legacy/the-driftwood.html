@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cockatoos on Driftwood Tree — PHAÖRA</title>
+<meta name="description" content="One of one. White crystal cockatoos on sculptural Brazilian driftwood. Grand installation by master craftsman Fabiano. By appointment · Boca Raton.">
+<meta property="og:title" content="Cockatoos on Driftwood Tree — PHAÖRA">
+<meta property="og:image" content="../1.png">
+<meta property="og:type" content="product">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Outfit:wght@200;300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#080806;--bg2:#0e0e0b;--bg3:#151512;--bg4:#1c1c18;--gold:#c9a96e;--gold-light:#dfc48f;--gold-dim:#8a7a52;--gold-faint:rgba(201,169,110,0.06);--cream:#f2ede4;--cream-dim:#a89e8e;--cream-faint:#6b6358;--border:rgba(201,169,110,0.12);--border-hover:rgba(201,169,110,0.3);--f-display:'Playfair Display',Georgia,serif;--f-body:'Cormorant Garamond',Garamond,serif;--f-sans:'Outfit','Helvetica Neue',sans-serif;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--cream);font-family:var(--f-body);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;cursor:pointer;}
+input,textarea{font-family:var(--f-body);background:var(--bg3);border:1px solid var(--border);color:var(--cream);padding:14px 16px;font-size:16px;width:100%;transition:border-color 0.3s;outline:none;}
+input:focus,textarea:focus{border-color:var(--gold);}
+textarea{resize:vertical;}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--gold-dim);border-radius:2px;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes breathe{0%,100%{opacity:0.4;}50%{opacity:1;}}
+@keyframes shimmer{0%{background-position:-300% center;}100%{background-position:300% center;}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.8s cubic-bezier(0.22,1,0.36,1),transform 0.8s cubic-bezier(0.22,1,0.36,1);}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.stagger{opacity:0;transform:translateY(16px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.reveal.visible .stagger{opacity:1;transform:translateY(0);}
+.reveal.visible .stagger:nth-child(1){transition-delay:0s;}
+.reveal.visible .stagger:nth-child(2){transition-delay:0.1s;}
+.reveal.visible .stagger:nth-child(3){transition-delay:0.2s;}
+.reveal.visible .stagger:nth-child(4){transition-delay:0.3s;}
+.label{font-family:var(--f-sans);font-size:10px;letter-spacing:0.25em;color:var(--gold-dim);text-transform:uppercase;}
+.badge{display:inline-block;padding:5px 14px;background:var(--gold-faint);border:1px solid var(--border);font-family:var(--f-sans);font-size:9px;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;}
+.badge--green{background:rgba(95,168,107,0.08);border-color:rgba(95,168,107,0.2);color:#5fa86b;}
+.gold-line{height:1px;background:var(--border);transform-origin:left;transform:scaleX(0);transition:transform 1s cubic-bezier(0.22,1,0.36,1);}
+.reveal.visible .gold-line{transform:scaleX(1);}
+.section{max-width:900px;margin:0 auto;padding:56px 32px 0;}
+.btn-primary{background:var(--gold);border:none;color:var(--bg);padding:18px 48px;font-family:var(--f-sans);font-size:12px;letter-spacing:0.2em;text-transform:uppercase;font-weight:500;transition:background 0.3s;cursor:pointer;}
+.btn-primary:hover{background:var(--gold-light);}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(8,8,6,0.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);height:50px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;}
+.topbar__brand{display:flex;align-items:center;gap:12px;font-family:var(--f-body);font-size:13px;color:var(--cream-dim);}
+.topbar__brand span:first-child{font-family:var(--f-sans);font-size:11px;letter-spacing:0.3em;color:var(--gold-dim);font-weight:300;}
+.topbar__brand .sep{color:var(--border);}
+.topbar__brand .current{color:var(--cream);font-weight:400;}
+.topbar__actions{display:flex;align-items:center;gap:16px;}
+.save-btn{background:transparent;border:1px solid var(--border);color:var(--cream-dim);padding:6px 16px;font-family:var(--f-sans);font-size:10px;letter-spacing:0.12em;transition:all 0.3s;}
+.save-btn.saved{background:rgba(201,169,110,0.1);border-color:var(--gold);color:var(--gold);}
+.topbar__phone{font-family:var(--f-sans);font-size:10px;color:var(--cream-faint);letter-spacing:0.1em;}
+/* Collage grid */
+.piece-collage{padding-top:50px;}
+.collage-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;width:100%;background:var(--bg2);}
+.collage-grid img{width:100%;aspect-ratio:2/3;object-fit:cover;display:block;transition:transform 0.6s ease;}
+.collage-grid img:hover{transform:scale(1.02);}
+/* Hero info */
+.hero__info{max-width:900px;margin:0 auto;padding:40px 32px 0;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;}
+.hero__title-group{opacity:0;animation:fadeUp 0.8s 0.3s forwards;}
+.hero__sku{font-family:var(--f-sans);font-size:10px;letter-spacing:0.25em;color:var(--gold-dim);margin-bottom:10px;}
+.hero__title{font-family:var(--f-display);font-size:48px;font-weight:400;color:var(--cream);line-height:1.15;}
+.hero__title em{color:var(--gold);font-style:italic;}
+.hero__price-group{text-align:right;opacity:0;animation:fadeUp 0.8s 0.5s forwards;}
+.hero__price{font-family:var(--f-display);font-size:38px;color:var(--gold);font-weight:400;}
+.hero__price-note{font-family:var(--f-body);font-size:14px;color:var(--cream-dim);font-style:italic;font-weight:300;margin-top:4px;}
+.hero__badges{display:flex;gap:8px;margin-top:16px;opacity:0;animation:fadeIn 0.6s 0.7s forwards;}
+/* Story */
+.story{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:48px;}
+.story__narrative p{font-family:var(--f-body);font-size:19px;color:var(--cream-dim);line-height:1.85;font-weight:300;margin-bottom:24px;}
+.story__craftsman-img{width:100%;height:300px;object-fit:cover;filter:brightness(0.7) contrast(1.1);border:1px solid var(--border);}
+.story__craftsman-overlay{position:relative;margin-top:-60px;padding:0 20px 20px;}
+.story__craftsman-name{font-family:var(--f-display);font-size:14px;color:var(--cream);font-style:italic;}
+.story__craftsman-title{font-family:var(--f-sans);font-size:9px;color:var(--gold-dim);letter-spacing:0.15em;margin-top:2px;}
+.story__quote{margin-top:24px;padding:24px 28px;border-left:2px solid var(--gold);background:var(--gold-faint);}
+.story__quote p{font-family:var(--f-body);font-size:17px;color:var(--gold-light);font-style:italic;line-height:1.75;font-weight:300;}
+.story__quote cite{font-family:var(--f-sans);font-size:9px;color:var(--gold-dim);letter-spacing:0.15em;display:block;margin-top:12px;font-style:normal;}
+/* Stats */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);}
+.stat{background:var(--bg);padding:28px 16px;text-align:center;}
+.stat__value{font-family:var(--f-display);font-size:28px;color:var(--gold);font-weight:400;margin-bottom:6px;}
+.stat__label{font-family:var(--f-sans);font-size:9px;letter-spacing:0.2em;color:var(--cream-dim);}
+/* Timeline */
+.timeline{margin-top:40px;background:var(--bg2);border:1px solid var(--border);padding:28px 32px;position:relative;overflow:hidden;}
+.timeline__shimmer{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);background-size:200% 100%;animation:shimmer 4s linear infinite;}
+.timeline__track{display:flex;align-items:center;margin-top:16px;height:60px;}
+.timeline__step{display:flex;flex-direction:column;align-items:center;}
+.timeline__step-time{font-family:var(--f-sans);font-size:8px;color:var(--gold-dim);letter-spacing:0.1em;margin-bottom:6px;}
+.timeline__step-bar{height:2px;width:100%;background:var(--gold);position:relative;}
+.timeline__step-bar::before{content:'';position:absolute;left:0;top:-4px;width:10px;height:10px;border-radius:50%;background:var(--gold);border:2px solid var(--bg2);}
+.timeline__step-label{font-family:var(--f-body);font-size:11px;color:var(--cream-dim);margin-top:6px;text-align:center;font-weight:300;}
+/* Details */
+.details-table{margin-top:32px;}
+.detail-row{display:flex;justify-content:space-between;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--border);gap:24px;}
+.detail-row__key{font-family:var(--f-sans);font-size:11px;color:var(--cream-faint);letter-spacing:0.1em;flex-shrink:0;min-width:120px;}
+.detail-row__value{font-family:var(--f-body);font-size:16px;color:var(--cream);font-weight:400;text-align:right;line-height:1.5;}
+/* Inquiry */
+.inquiry__heading{font-family:var(--f-display);font-size:36px;color:var(--cream);font-weight:400;margin-bottom:8px;}
+.inquiry__heading em{color:var(--gold);font-style:italic;}
+.inquiry__sub{font-family:var(--f-body);font-size:16px;color:var(--cream-dim);font-weight:300;margin-bottom:32px;}
+.inquiry__form{display:flex;flex-direction:column;gap:16px;margin-top:28px;}
+.form-label{font-family:var(--f-sans);font-size:9px;letter-spacing:0.2em;color:var(--gold-dim);display:block;margin-bottom:6px;}
+.inquiry__piece-ref{font-family:var(--f-sans);font-size:9px;color:var(--cream-faint);letter-spacing:0.1em;text-align:center;margin-top:12px;}
+.inquiry__confirmation{display:none;text-align:center;padding:48px 0;}
+/* Similar */
+.similar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:0;}
+.similar-card{display:block;background:var(--bg2);border:1px solid var(--border);overflow:hidden;transition:border-color 0.3s;}
+.similar-card:hover{border-color:var(--border-hover);}
+.similar-card__image{aspect-ratio:3/4;overflow:hidden;background:var(--bg3);}
+.similar-card__image img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s ease;}
+.similar-card:hover .similar-card__image img{transform:scale(1.04);}
+.similar-card__body{padding:16px;}
+.similar-card__name{font-family:var(--f-display);font-size:15px;color:var(--cream);font-weight:400;margin-bottom:4px;}
+.similar-card__price{font-family:var(--f-sans);font-size:10px;color:var(--gold);letter-spacing:0.08em;}
+/* Footer strip */
+.footer-strip{background:var(--bg2);border-top:1px solid var(--border);padding:32px;text-align:center;margin-top:80px;}
+.footer-strip p{font-family:var(--f-sans);font-size:10px;color:var(--cream-faint);letter-spacing:0.15em;}
+@media(max-width:768px){
+.hero__title{font-size:32px;}
+.hero__price{font-size:28px;}
+.story{grid-template-columns:1fr;}
+.stats-grid{grid-template-columns:repeat(2,1fr);}
+.similar-grid{grid-template-columns:1fr 1fr;}
+.section{padding:40px 20px 0;}
+.collage-grid img{aspect-ratio:1/1;}
+}
+@media(max-width:480px){
+.similar-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar__brand">
+    <span>PHAÖRA</span>
+    <span class="sep">·</span>
+    <a href="../gallery.html" style="color:var(--cream-dim);">Collection</a>
+    <span class="sep">›</span>
+    <span class="current">Cockatoos on Driftwood Tree</span>
+  </div>
+  <div class="topbar__actions">
+    <button class="save-btn" id="saveBtn" onclick="toggleSave()">♡ SAVE</button>
+    <a href="tel:+19548719991" class="topbar__phone">(954) 871-9991</a>
+  </div>
+</nav>
+
+<section class="piece-collage">
+  <div class="collage-grid">
+    <img src="../1.png" alt="Cockatoos on Driftwood Tree — Full View">
+    <img src="../Untitled%20design.png" alt="Cockatoos on Driftwood Tree — Lobby Setting">
+    <img src="../1.png" alt="Cockatoos on Driftwood Tree — Detail">
+    <img src="../Untitled%20design.png" alt="Cockatoos on Driftwood Tree — Scale">
+    <img src="../1.png" alt="Cockatoos on Driftwood Tree — Side View">
+    <img src="../Untitled%20design.png" alt="Cockatoos on Driftwood Tree — Installation">
+  </div>
+</section>
+
+<div class="hero__info">
+  <div class="hero__title-group">
+    <div class="hero__sku label">White Quartz Cockatoos · Brazilian Driftwood · SKU-0040</div>
+    <h1 class="hero__title">Cockatoos on <em>Driftwood Tree</em></h1>
+    <div class="hero__badges">
+      <span class="badge">One of One</span>
+      <span class="badge badge--green">Available</span>
+      <span class="badge">Statement</span>
+    </div>
+  </div>
+  <div class="hero__price-group">
+    <div class="hero__price">$68,000</div>
+    <div class="hero__price-note">Acquisition by private inquiry</div>
+  </div>
+</div>
+
+<div class="section reveal">
+  <div class="gold-line"></div>
+  <div class="story">
+    <div class="story__narrative stagger">
+      <div class="label" style="margin-bottom:16px;">The Origin</div>
+      <p>Seven white quartz cockatoos inhabit a monumental piece of Brazilian driftwood — each bird carved from a single crystal formation, each wing extended mid-flight as though caught in the same suspended moment. The driftwood itself was harvested from the banks of the São Francisco River, aged over decades into its current sculptural form.</p>
+      <p>Fabiano spent four months on this piece. The installation base is raw white quartz — unpolished, as nature delivered it. This is the only piece in the collection that commands a room by height alone. It changes every space it enters.</p>
+    </div>
+    <div class="stagger">
+      <div style="position:relative;">
+        <img src="../img/IMG_7191.jpeg" alt="Fabiano — Master Craftsman" class="story__craftsman-img">
+        <div class="story__craftsman-overlay">
+          <div class="story__craftsman-name">Fabiano</div>
+          <div class="story__craftsman-title">MASTER CRAFTSMAN · 40+ YEARS</div>
+        </div>
+      </div>
+      <div class="story__quote">
+        <p>"The tree remembers every storm. I carve the birds so the tree is never alone again."</p>
+        <cite>— FABIANO · MINAS GERAIS, BRAZIL</cite>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section reveal">
+  <div class="stats-grid">
+    <div class="stat stagger"><div class="stat__value">7</div><div class="stat__label">BIRDS</div></div>
+    <div class="stat stagger"><div class="stat__value">White Quartz</div><div class="stat__label">PRIMARY STONE</div></div>
+    <div class="stat stagger"><div class="stat__value">Statement</div><div class="stat__label">TIER</div></div>
+    <div class="stat stagger"><div class="stat__value">~65M yrs</div><div class="stat__label">FORMATION AGE</div></div>
+  </div>
+  <div class="timeline">
+    <div class="timeline__shimmer"></div>
+    <div class="label">Journey Through Time</div>
+    <div class="timeline__track">
+      <div class="timeline__step" style="flex:5;"><div class="timeline__step-time">65M years ago</div><div class="timeline__step-bar"></div><div class="timeline__step-label">Crystal Formed</div></div>
+      <div class="timeline__step" style="flex:60;"><div class="timeline__step-time">Decades</div><div class="timeline__step-bar"></div><div class="timeline__step-label">Driftwood Aged</div></div>
+      <div class="timeline__step" style="flex:20;"><div class="timeline__step-time">2025–2026</div><div class="timeline__step-bar"></div><div class="timeline__step-label">Carved by Fabiano</div></div>
+      <div class="timeline__step" style="flex:15;"><div class="timeline__step-time">Now</div><div class="timeline__step-bar"></div><div class="timeline__step-label">Ready for Placement</div></div>
+    </div>
+  </div>
+  <div class="details-table">
+    <div class="detail-row stagger"><span class="detail-row__key">Birds</span><span class="detail-row__value">7 White Quartz Cockatoos</span></div>
+    <div class="detail-row stagger"><span class="detail-row__key">Base Material</span><span class="detail-row__value">Brazilian Driftwood + Raw White Quartz</span></div>
+    <div class="detail-row stagger"><span class="detail-row__key">Crystal Origin</span><span class="detail-row__value">Minas Gerais, Brazil</span></div>
+    <div class="detail-row stagger"><span class="detail-row__key">Tier</span><span class="detail-row__value">Statement</span></div>
+    <div class="detail-row stagger"><span class="detail-row__key">Edition</span><span class="detail-row__value">One of One — Never Duplicated</span></div>
+    <div class="detail-row stagger"><span class="detail-row__key">Installation</span><span class="detail-row__value">White-glove delivery & placement included</span></div>
+    <div class="detail-row stagger"><span class="detail-row__key">SKU</span><span class="detail-row__value">SKU-0040</span></div>
+  </div>
+</div>
+
+<div class="section reveal">
+  <div class="gold-line"></div>
+  <div style="margin-top:48px;">
+    <div class="label" style="margin-bottom:12px;">Begin the Acquisition</div>
+    <h2 class="inquiry__heading">Inquire About <em>Cockatoos on Driftwood Tree</em></h2>
+    <p class="inquiry__sub">David responds personally. No sales calls — a private conversation.</p>
+    <div class="inquiry__form" id="inquiryForm">
+      <div><label class="form-label">YOUR NAME</label><input type="text" name="name" placeholder="How should David address you?" required></div>
+      <div><label class="form-label">EMAIL</label><input type="email" name="email" placeholder="For David's personal response" required></div>
+      <div><label class="form-label">PHONE</label><input type="tel" name="phone" placeholder="Optional — for text or call"></div>
+      <div><label class="form-label">TELL US ABOUT YOUR SPACE</label><textarea rows="3" name="message" placeholder="Describe the room, the feeling you want, or any questions..."></textarea></div>
+      <input type="hidden" name="piece" value="Cockatoos on Driftwood Tree">
+      <input type="hidden" name="sku" value="SKU-0040">
+      <input type="hidden" name="price" value="$68,000">
+      <input type="hidden" name="_subject" value="🔔 PHAÖRA Inquiry — Cockatoos on Driftwood Tree ($68,000)">
+      <button class="btn-primary" onclick="submitInquiry()" style="width:100%;">Begin the Dialogue</button>
+      <div class="inquiry__piece-ref">Piece: Cockatoos on Driftwood Tree · SKU-0040 · $68,000</div>
+    </div>
+    <div class="inquiry__confirmation" id="inquiryConfirm">
+      <h3 style="font-family:var(--f-display);font-size:28px;color:var(--cream);margin-bottom:12px;">Your Inquiry Has Been <em style="color:var(--gold);font-style:italic;">Received</em></h3>
+      <p style="font-family:var(--f-body);font-size:16px;color:var(--cream-dim);line-height:1.7;font-weight:300;max-width:420px;margin:0 auto;">David Vaz has been notified personally. He will reach out within 24 hours.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section reveal">
+  <div class="gold-line"></div>
+  <div style="margin-top:40px;margin-bottom:28px;">
+    <div class="label" style="margin-bottom:8px;">Continue Exploring</div>
+    <h3 style="font-family:var(--f-display);font-size:26px;color:var(--cream);font-weight:400;">Works of similar <em style="color:var(--gold);font-style:italic;">magnitude</em></h3>
+  </div>
+  <div class="similar-grid">
+    <a href="the-canopy.html" class="similar-card stagger">
+      <div class="similar-card__image"><img src="../unnamed-3.jpg" alt="The Canopy" loading="lazy"></div>
+      <div class="similar-card__body"><div class="similar-card__name">The Canopy</div><div class="similar-card__price">Statement · $68,000</div></div>
+    </a>
+    <a href="the-aerie.html" class="similar-card stagger">
+      <div class="similar-card__image"><img src="../img/IMG_6969.JPG" alt="The Aerie" loading="lazy"></div>
+      <div class="similar-card__body"><div class="similar-card__name">The Aerie</div><div class="similar-card__price">Statement · $48,000</div></div>
+    </a>
+    <a href="the-white-cockatoos.html" class="similar-card stagger">
+      <div class="similar-card__image"><img src="../Untitled%20(4320%20x%201350%20px)%20(2160%20x%201000%20px)%20(720%20x%201000%20px)%20-%2011.png" alt="White Cockatoos on Amethyst" loading="lazy"></div>
+      <div class="similar-card__body"><div class="similar-card__name">White Cockatoos on Amethyst</div><div class="similar-card__price">Statement · $44,000</div></div>
+    </a>
+  </div>
+</div>
+
+<div class="footer-strip">
+  <p>PHAÖRA · BOCA RATON · BY APPOINTMENT · <a href="../index.html" style="color:var(--gold-dim);">RETURN TO COLLECTION</a></p>
+</div>
+
+<script>
+function toggleSave(){const b=document.getElementById('saveBtn');b.classList.toggle('saved');b.textContent=b.classList.contains('saved')?'♥ SAVED':'♡ SAVE';}
+function submitInquiry(){
+  const form=document.getElementById('inquiryForm');
+  const confirm=document.getElementById('inquiryConfirm');
+  const data=new FormData();
+  form.querySelectorAll('input,textarea').forEach(f=>{if(f.name)data.append(f.name,f.value);});
+  fetch('https://formspree.io/f/xdkopzpw',{method:'POST',body:data,headers:{'Accept':'application/json'}})
+    .then(r=>{if(r.ok){form.style.display='none';confirm.style.display='block';}else{alert('Something went wrong. Please call David directly at (954) 871-9991.');}})
+    .catch(()=>{alert('Something went wrong. Please call David directly at (954) 871-9991.');});
+}
+const revealObserver=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
+</script>
+</body>
+</html>

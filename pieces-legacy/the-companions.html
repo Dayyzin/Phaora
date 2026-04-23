@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PHAÖRA — The Companions · $10,500 · One of One</title>
+<meta name="description" content="The Companions — two parrots facing each other on rose quartz. Intimacy in stone. One of one. PHAÖRA · Boca Raton.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Outfit:wght@200;300;400;500;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0907;--bg2:#0e0c09;--surface:#161310;--surface2:#1c1916;--surface3:#221f1a;
+  --gold:#c9a55c;--gold-light:#e2c98a;--gold-dim:#6b5a2e;--gold-faint:rgba(201,165,92,.07);
+  --cream:#f0e8d8;--cream2:#c8bca8;--cream3:#9a8e7e;--text-dim:#6b6155;
+  --red:#b85040;--red-faint:rgba(184,80,64,.08);--green:#4a7a5a;
+  --serif:'Cormorant Garamond',Georgia,serif;--sans:'Outfit',system-ui,sans-serif;--mono:'DM Mono',monospace;
+  --ease:cubic-bezier(0.22,1,0.36,1);
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--cream);background:var(--bg);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+img{display:block}
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 32px;height:58px;display:flex;align-items:center;justify-content:space-between;background:rgba(10,9,7,.96);backdrop-filter:blur(24px);border-bottom:1px solid rgba(201,165,92,.07)}
+.nav-logo{font-family:var(--serif);font-size:1.25rem;font-weight:300;letter-spacing:.18em}
+.nav-center{font-family:var(--mono);font-size:.5rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text-dim);display:flex;align-items:center;gap:20px}
+.nav-center span{color:var(--gold)}
+.nav-right{display:flex;gap:16px;align-items:center}
+.nav-right a{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cream2);transition:color .25s}
+.nav-right a:hover{color:var(--gold)}
+.nav-inquire{background:var(--gold);color:var(--bg)!important;padding:8px 20px;font-weight:600;font-size:.6rem!important;letter-spacing:.14em!important}
+@media(max-width:700px){.nav-center{display:none}}
+.ticker{background:var(--surface);border-bottom:1px solid rgba(201,165,92,.06);padding:9px 0;overflow:hidden}
+.ticker-track{display:flex;animation:ticker 35s linear infinite;width:max-content}
+.ticker-item{display:flex;align-items:center;gap:8px;padding:0 40px;font-family:var(--mono);font-size:.52rem;letter-spacing:.1em;color:var(--text-dim);white-space:nowrap}
+.ticker-item .dot{width:5px;height:5px;border-radius:50%;background:var(--green);flex-shrink:0}
+.ticker-item .dot.red{background:var(--red)}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.hero{padding-top:58px;display:grid;grid-template-columns:1fr 460px;min-height:calc(100vh - 58px);align-items:start}
+@media(max-width:1000px){.hero{grid-template-columns:1fr}}
+.photo-panel{background:var(--bg2)}
+.main-photo-wrap{position:relative;overflow:hidden}
+.main-photo-wrap img{width:100%;aspect-ratio:1/1;object-fit:cover;transition:transform .8s var(--ease)}
+.main-photo-wrap:hover img{transform:scale(1.02)}
+.photo-badge{position:absolute;top:20px;left:20px;background:rgba(10,9,7,.85);backdrop-filter:blur(12px);border:1px solid rgba(201,165,92,.2);padding:8px 16px;font-family:var(--mono);font-size:.48rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.thumbs{display:flex;gap:4px;padding:8px;background:var(--surface)}
+.thumb{width:80px;height:58px;flex-shrink:0;cursor:pointer;overflow:hidden;border:2px solid transparent;opacity:.45;transition:all .2s}
+.thumb.on,.thumb:hover{border-color:var(--gold);opacity:1}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.info-panel{padding:44px 44px 60px;background:var(--bg);border-left:1px solid rgba(201,165,92,.06)}
+@media(max-width:1000px){.info-panel{border-left:none;padding:32px 24px 48px}}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.48rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:20px}
+.breadcrumb a{color:var(--text-dim)}
+.breadcrumb a:hover{color:var(--gold)}
+.breadcrumb span{color:var(--gold-dim)}
+.piece-eyebrow{font-family:var(--mono);font-size:.48rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:8px}
+.piece-title{font-family:var(--serif);font-size:3.2rem;font-weight:300;line-height:1;margin-bottom:4px}
+.piece-title em{font-style:italic;color:var(--gold-light)}
+.piece-subtitle{font-size:.62rem;letter-spacing:.1em;color:var(--cream3);margin-bottom:24px}
+.scarcity-box{background:var(--red-faint);border:1px solid rgba(184,80,64,.18);padding:14px 18px;margin-bottom:20px}
+.scarcity-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.scarcity-label{font-family:var(--mono);font-size:.48rem;letter-spacing:.14em;text-transform:uppercase;color:#c07060}
+.scarcity-live{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:.46rem;color:var(--text-dim)}
+.scarcity-live .live-dot{width:5px;height:5px;border-radius:50%;background:var(--red);animation:pulse 1.4s infinite}
+.scarcity-bar-track{height:4px;background:rgba(184,80,64,.15);width:100%}
+.scarcity-bar-fill{height:100%;background:linear-gradient(90deg,var(--red),#d06050)}
+.scarcity-text{font-size:.66rem;color:#c07060;margin-top:8px;line-height:1.5}
+.scarcity-text strong{color:#e09080}
+.price-module{padding:20px 0;border-top:1px solid rgba(201,165,92,.08);border-bottom:1px solid rgba(201,165,92,.08);margin-bottom:24px}
+.price-main{font-family:var(--serif);font-size:2.6rem;color:var(--gold);font-weight:300;line-height:1;margin-bottom:6px}
+.price-sub{font-size:.62rem;color:var(--text-dim);line-height:1.6}
+.price-sub span{color:var(--cream2)}
+.social-proof{background:var(--surface);border:1px solid rgba(201,165,92,.07);padding:14px 18px;margin-bottom:24px;display:flex;flex-direction:column;gap:10px}
+.sp-item{display:flex;align-items:flex-start;gap:10px}
+.sp-avatar{width:28px;height:28px;border-radius:50%;background:var(--surface3);border:1px solid rgba(201,165,92,.12);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:.7rem;color:var(--gold);flex-shrink:0}
+.sp-body{flex:1}
+.sp-name{font-size:.6rem;color:var(--cream2);font-weight:500;margin-bottom:2px}
+.sp-text{font-size:.66rem;color:var(--cream3);line-height:1.5;font-style:italic;font-family:var(--serif)}
+.sp-stars{color:var(--gold);font-size:.6rem;letter-spacing:2px;margin-bottom:2px}
+.sp-divider{height:1px;background:rgba(201,165,92,.06)}
+.cta-block{display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
+.cta-primary{padding:17px;background:var(--gold);color:var(--bg);font-family:var(--sans);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;border:none;cursor:pointer;text-align:center;transition:all .25s var(--ease)}
+.cta-primary:hover{background:var(--gold-light);transform:translateY(-1px)}
+.cta-hold{padding:14px;background:transparent;color:var(--cream2);font-family:var(--sans);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;font-weight:400;border:1px solid rgba(201,165,92,.18);cursor:pointer;text-align:center;transition:all .25s}
+.cta-hold:hover{border-color:rgba(201,165,92,.4);color:var(--gold)}
+.deposit-note{font-family:var(--mono);font-size:.5rem;color:var(--text-dim);text-align:center;letter-spacing:.06em;line-height:1.6;padding:0 8px}
+.deposit-note span{color:var(--gold)}
+.trust-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:20px;margin-bottom:20px}
+.pill{display:flex;align-items:center;gap:5px;padding:5px 12px;background:var(--surface);border:1px solid rgba(201,165,92,.08);font-size:.52rem;color:var(--cream3);letter-spacing:.06em}
+.pill b{color:var(--gold);font-size:.5rem}
+.specs-section{border-top:1px solid rgba(201,165,92,.08)}
+.spec-row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:10px 0;border-bottom:1px solid rgba(201,165,92,.05)}
+.spec-label{font-family:var(--mono);font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim)}
+.spec-val{font-size:.76rem;color:var(--cream2);text-align:right;max-width:60%}
+.urgency-strip{background:linear-gradient(90deg,rgba(184,80,64,.1),rgba(184,80,64,.05) 50%,rgba(184,80,64,.1));border-top:1px solid rgba(184,80,64,.15);border-bottom:1px solid rgba(184,80,64,.15);padding:16px 60px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media(max-width:700px){.urgency-strip{padding:14px 24px}}
+.us-dot{width:8px;height:8px;border-radius:50%;background:var(--red);animation:pulse 1.4s infinite;flex-shrink:0}
+.us-text{font-size:.7rem;color:#d08070;line-height:1.5}
+.us-text strong{color:#e8a090}
+.us-cta{padding:10px 24px;background:rgba(184,80,64,.2);border:1px solid rgba(184,80,64,.3);color:#e8a090;font-family:var(--mono);font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:all .25s}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.differentiation{padding:80px 60px;background:var(--bg2);display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+@media(max-width:800px){.differentiation{grid-template-columns:1fr;padding:56px 24px;gap:40px}}
+.section-label{font-family:var(--mono);font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.section-label::before{content:'';width:24px;height:1px;background:var(--gold-dim)}
+.diff-text h2{font-family:var(--serif);font-size:2.4rem;font-weight:300;color:var(--cream);line-height:1.12;margin-bottom:20px}
+.diff-text h2 em{font-style:italic;color:var(--gold-light)}
+.diff-text p{font-size:.84rem;color:var(--cream2);line-height:1.9;font-weight:200;margin-bottom:16px}
+.diff-points{display:flex;flex-direction:column}
+.diff-point{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid rgba(201,165,92,.07)}
+.diff-point:last-child{border-bottom:none}
+.dp-num{font-family:var(--serif);font-size:1.6rem;color:var(--gold-dim);font-weight:300;line-height:1;flex-shrink:0;width:28px}
+.dp-body strong{display:block;font-size:.76rem;color:var(--cream);font-weight:500;margin-bottom:4px}
+.dp-body span{font-size:.72rem;color:var(--cream3);line-height:1.6}
+.related-section{padding:80px 60px;background:var(--bg2);border-top:1px solid rgba(201,165,92,.07)}
+@media(max-width:800px){.related-section{padding:56px 24px}}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:32px}
+@media(max-width:700px){.related-grid{grid-template-columns:1fr}}
+.related-card{background:var(--surface);border:1px solid rgba(201,165,92,.05);overflow:hidden;transition:all .3s var(--ease)}
+.related-card:hover{border-color:rgba(201,165,92,.14);transform:translateY(-3px)}
+.rc-body{padding:16px}
+.rc-ey{font-family:var(--mono);font-size:.46rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);margin-bottom:5px}
+.rc-body h4{font-family:var(--serif);font-size:1.05rem;color:var(--cream);font-weight:400;margin-bottom:8px}
+.rc-price{font-size:.8rem;color:var(--gold)}
+.rc-btn{display:block;width:100%;padding:9px;background:transparent;border:1px solid rgba(201,165,92,.14);color:var(--gold);font-family:var(--mono);font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;text-align:center;transition:all .25s;margin-top:10px}
+.related-card:hover .rc-btn{background:var(--gold);color:var(--bg);border-color:var(--gold)}
+.final-cta{padding:100px 60px;background:var(--bg2);text-align:center;border-top:1px solid rgba(201,165,92,.07)}
+@media(max-width:700px){.final-cta{padding:64px 24px}}
+.final-cta-inner{max-width:560px;margin:0 auto}
+.final-cta h2{font-family:var(--serif);font-size:3rem;font-weight:300;color:var(--cream);line-height:1.1;margin-bottom:12px}
+.final-cta h2 em{font-style:italic;color:var(--gold-light)}
+.final-cta p{font-size:.84rem;color:var(--cream2);line-height:1.7;font-weight:200;margin-bottom:36px}
+.final-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn-gold{padding:16px 44px;background:var(--gold);color:var(--bg);font-family:var(--sans);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;border:none;cursor:pointer;transition:all .25s}
+.btn-gold:hover{background:var(--gold-light);transform:translateY(-1px)}
+.btn-outline{padding:16px 44px;background:transparent;color:var(--gold);font-family:var(--sans);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;font-weight:400;border:1px solid rgba(201,165,92,.25);cursor:pointer;transition:all .25s}
+footer{padding:40px 32px;background:var(--surface);border-top:1px solid rgba(201,165,92,.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-logo{font-family:var(--serif);font-size:1.2rem;letter-spacing:.18em;font-weight:300}
+.footer-center{font-family:var(--mono);font-size:.48rem;color:var(--text-dim);letter-spacing:.1em;text-align:center}
+.footer-right{font-family:var(--mono);font-size:.5rem;color:var(--text-dim)}
+.footer-right a{color:var(--gold)}
+@media(max-width:700px){footer{flex-direction:column;text-align:center;padding:32px 24px}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">PHAÖRA</a>
+  <div class="nav-center"><span>The Companions</span> · Mid-Range · Two Parrots on Rose Quartz · <span id="nav-viewers">2 people viewing</span></div>
+  <div class="nav-right">
+    <a href="../gallery.html">← Collection</a>
+    <a href="mailto:david@phaora.com?subject=Inquiry — The Companions ($10,500)" class="nav-inquire">Inquire ✦</a>
+  </div>
+</nav>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <div class="ticker-item"><span class="dot"></span>Someone in Boca Raton viewed The Companions — 5 minutes ago</div>
+    <div class="ticker-item"><span class="dot red"></span>The Crimson Duo was acquired — Coral Gables collector</div>
+    <div class="ticker-item"><span class="dot"></span>Real estate agent inquired about closing gift options — this morning</div>
+    <div class="ticker-item"><span class="dot red"></span>The Monolith is no longer available</div>
+    <div class="ticker-item"><span class="dot"></span>Someone in Delray Beach added The Companions to their list</div>
+    <div class="ticker-item"><span class="dot red"></span>The Aerie has limited availability</div>
+    <div class="ticker-item"><span class="dot"></span>Interior designer requested catalog — 1 hour ago</div>
+    <div class="ticker-item"><span class="dot red"></span>7 pieces placed this quarter</div>
+    <div class="ticker-item"><span class="dot"></span>Someone in Boca Raton viewed The Companions — 5 minutes ago</div>
+    <div class="ticker-item"><span class="dot red"></span>The Crimson Duo was acquired — Coral Gables collector</div>
+    <div class="ticker-item"><span class="dot"></span>Real estate agent inquired about closing gift options — this morning</div>
+    <div class="ticker-item"><span class="dot red"></span>The Monolith is no longer available</div>
+    <div class="ticker-item"><span class="dot"></span>Someone in Delray Beach added The Companions to their list</div>
+    <div class="ticker-item"><span class="dot red"></span>The Aerie has limited availability</div>
+    <div class="ticker-item"><span class="dot"></span>Interior designer requested catalog — 1 hour ago</div>
+    <div class="ticker-item"><span class="dot red"></span>7 pieces placed this quarter</div>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="photo-panel">
+    <div class="main-photo-wrap">
+      <img id="mainPhoto" src="../img/the-companions-main.jpg" alt="The Companions — Two Parrots on Rose Quartz">
+      <div class="photo-badge">One of One · Mid-Range</div>
+    </div>
+    <div class="thumbs">
+      <div class="thumb on"><img src="../img/the-companions-main.jpg" alt=""></div>
+      <div class="thumb"><img src="../img/the-companions-2.jpg" alt=""></div>
+      <div class="thumb"><img src="../img/the-companions-3.jpg" alt=""></div>
+    </div>
+  </div>
+  <div class="info-panel">
+    <div class="breadcrumb">
+      <a href="../index.html">PHAÖRA</a><span>›</span>
+      <a href="../gallery.html">Collection</a><span>›</span>
+      <span style="color:var(--cream2)">The Companions</span>
+    </div>
+    <div class="piece-eyebrow">Two Parrots · Rose Quartz · Mid-Range Tier</div>
+    <h1 class="piece-title">The <em>Companions</em></h1>
+    <div class="piece-subtitle">Two birds. One stone. Facing each other since before they were carved.</div>
+
+```
+<div class="scarcity-box">
+  <div class="scarcity-top">
+    <span class="scarcity-label">Availability</span>
+    <span class="scarcity-live"><span class="live-dot"></span>Live Status</span>
+  </div>
+  <div class="scarcity-bar-track"><div class="scarcity-bar-fill" style="width:8.33%"></div></div>
+  <div class="scarcity-text"><strong>1 of 1 remaining.</strong> This rose quartz base was selected for its translucency and the natural blush depth that makes the parrots appear to glow.</div>
+</div>
+
+<div class="price-module">
+  <div class="price-main">$10,500</div>
+  <div class="price-sub">Private acquisition. <span>White-glove delivery included.</span><br>$1,050 deposit holds this piece for 30 days.</div>
+</div>
+
+<div class="social-proof">
+  <div class="sp-item">
+    <div class="sp-avatar">S</div>
+    <div class="sp-body">
+      <div class="sp-stars">★★★★★</div>
+      <div class="sp-name">Sophia T. — Jupiter, FL</div>
+      <div class="sp-text">"I gave this as a gift to a couple for their new home. They said it was the most meaningful thing anyone has ever given them."</div>
+    </div>
+  </div>
+  <div class="sp-divider"></div>
+  <div class="sp-item">
+    <div class="sp-avatar">D</div>
+    <div class="sp-body">
+      <div class="sp-stars">★★★★★</div>
+      <div class="sp-name">Daniel R. — Realtor, Boca Raton</div>
+      <div class="sp-text">"Used as a closing gift. My clients still bring it up every time I see them. Best $10k I've ever invested in a relationship."</div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-block">
+  <a href="mailto:david@phaora.com?subject=Inquiry — The Companions ($10,500)" class="cta-primary">Inquire About This Piece ✦</a>
+  <button class="cta-hold">Request a 30-Day Hold — $1,050 Deposit</button>
+</div>
+<div class="deposit-note">Deposit fully applied to acquisition. <span>No risk. No obligation.</span></div>
+
+<div class="trust-pills">
+  <span class="pill"><b>✦</b> Certificate of Authenticity</span>
+  <span class="pill"><b>✦</b> White-Glove Delivery</span>
+  <span class="pill"><b>✦</b> Hand-Placed by David</span>
+  <span class="pill"><b>✦</b> Brazilian Crystal</span>
+</div>
+
+<div class="specs-section">
+  <div class="spec-row"><span class="spec-label">Stone</span><span class="spec-val">Rose Quartz</span></div>
+  <div class="spec-row"><span class="spec-label">Origin</span><span class="spec-val">Minas Gerais, Brazil</span></div>
+  <div class="spec-row"><span class="spec-label">Birds</span><span class="spec-val">Two Parrots</span></div>
+  <div class="spec-row"><span class="spec-label">Tier</span><span class="spec-val">Mid-Range</span></div>
+  <div class="spec-row"><span class="spec-label">Edition</span><span class="spec-val">One of One — Never Duplicated</span></div>
+  <div class="spec-row"><span class="spec-label">Delivery</span><span class="spec-val">White-glove, personally placed by PHAÖRA</span></div>
+</div>
+```
+
+  </div>
+</div>
+
+<div class="urgency-strip">
+  <div style="display:flex;align-items:center;gap:12px;">
+    <div class="us-dot"></div>
+    <div class="us-text"><strong>The Companions is one of PHAÖRA's most requested pieces for closing gifts and new-home placements.</strong> The rose quartz base and paired posture make it the most relationship-oriented piece in the collection.</div>
+  </div>
+  <button class="us-cta" onclick="window.location='mailto:david@phaora.com?subject=Inquiry — The Companions ($10,500)'">Begin Acquisition →</button>
+</div>
+
+<div class="differentiation">
+  <div class="diff-text">
+    <div class="section-label">What Makes This Different</div>
+    <h2>Two birds.<br><em>One conversation.</em></h2>
+    <p>The Companions is built around a single idea: two creatures that found each other. The parrots face inward, beaks nearly touching, carved from stone selected specifically because its translucency softens the mood.</p>
+    <p>Rose quartz — mined from the highlands of Minas Gerais — gives the piece a warmth that most crystal sculptures lack. The stone itself feels gentle. So does the composition.</p>
+  </div>
+  <div class="diff-points">
+    <div class="diff-point">
+      <div class="dp-num">01</div>
+      <div class="dp-body"><strong>Facing Posture</strong><span>Both parrots angled inward. The negative space between them is part of the composition — deliberate, not accidental.</span></div>
+    </div>
+    <div class="diff-point">
+      <div class="dp-num">02</div>
+      <div class="dp-body"><strong>Rose Quartz Base</strong><span>A translucent blush stone that diffuses light rather than reflecting it. The result is softer and warmer than most PHAÖRA pieces.</span></div>
+    </div>
+    <div class="diff-point">
+      <div class="dp-num">03</div>
+      <div class="dp-body"><strong>Ideal for Gifting</strong><span>The most-given PHAÖRA piece. Closing gifts, anniversaries, new homes. The story tells itself.</span></div>
+    </div>
+    <div class="diff-point">
+      <div class="dp-num">04</div>
+      <div class="dp-body"><strong>Placed by Hand</strong><span>David personally delivers and positions every PHAÖRA piece. The placement is part of the acquisition.</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="related-section">
+  <div class="section-label">Continue Exploring</div>
+  <div class="related-grid">
+    <a href="the-courtship.html" class="related-card">
+      <div class="rc-body">
+        <div class="rc-ey">Mid-Range · Pair</div>
+        <h4>The Courtship</h4>
+        <div class="rc-price">$13,000</div>
+        <div class="rc-btn">View Piece →</div>
+      </div>
+    </a>
+    <a href="the-lovers.html" class="related-card">
+      <div class="rc-body">
+        <div class="rc-ey">Mid-Range · Pair</div>
+        <h4>The Lovers</h4>
+        <div class="rc-price">$11,500</div>
+        <div class="rc-btn">View Piece →</div>
+      </div>
+    </a>
+    <a href="the-tenderness.html" class="related-card">
+      <div class="rc-body">
+        <div class="rc-ey">Mid-Range · Pair</div>
+        <h4>The Tenderness</h4>
+        <div class="rc-price">$9,500</div>
+        <div class="rc-btn">View Piece →</div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<div class="final-cta">
+  <div class="final-cta-inner">
+    <h2>Ready to acquire <em>The Companions?</em></h2>
+    <p>David responds personally to every inquiry. No sales calls, no pressure — a private conversation about whether this piece belongs in your home.</p>
+    <div class="final-btns">
+      <a href="mailto:david@phaora.com?subject=Inquiry — The Companions ($10,500)" class="btn-gold">Begin the Conversation ✦</a>
+      <a href="tel:+19548719991" class="btn-outline">Call David Directly</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">PHAÖRA</div>
+  <div class="footer-center">Boca Raton · By Appointment · Brazilian Crystal Sculpture</div>
+  <div class="footer-right"><a href="mailto:david@phaora.com">david@phaora.com</a></div>
+</footer>
+<script>
+document.querySelectorAll('.thumb').forEach(t=>{t.addEventListener('click',()=>{document.querySelectorAll('.thumb').forEach(x=>x.classList.remove('on'));t.classList.add('on');});});
+let v=2;setInterval(()=>{v=Math.max(1,v+(Math.random()>.5?1:-1));const el=document.getElementById('nav-viewers');if(el)el.textContent=v+' people viewing';},8000);
+</script>
+</body>
+</html>
