@@ -20,17 +20,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --ink:#0a0908;--surface:#12100c;--bone:#e8dcc4;
-  --amber:#B87333;--amber-bright:#D4A254;--muted:#8a7355;
-  --stroke:rgba(184,115,51,0.2);
-  --serif:'Fraunces',Georgia,serif;--sans:'Inter',system-ui,sans-serif;
-  --mono:'JetBrains Mono',monospace;--ease:cubic-bezier(0.22,1,0.36,1);
-}
+:root{--ink:#0a0908;--surface:#12100c;--bone:#e8dcc4;--amber:#B87333;--amber-bright:#D4A254;--muted:#8a7355;--stroke:rgba(184,115,51,0.2);--serif:'Fraunces',Georgia,serif;--sans:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;--ease:cubic-bezier(0.22,1,0.36,1)}
 html{scroll-behavior:smooth;background:var(--ink)}
 body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 
-/* ═══ NAV ═══ */
+/* NAV */
 .nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 2.5rem;height:60px;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(24px) saturate(1.2);-webkit-backdrop-filter:blur(24px) saturate(1.2);background:rgba(10,9,8,0.85);border-bottom:0.5px solid var(--stroke)}
 .nav-left,.nav-right{display:flex;align-items:center;gap:2rem}
 .nav-left a,.nav-right a{font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;color:var(--bone);transition:color .3s ease;position:relative}
@@ -42,7 +36,11 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
 .nav-enquire:hover .arrow{transform:translateX(4px)}
 .nav-enquire:hover{background:rgba(232,220,196,0.06)}
 
-/* ═══ MASTHEAD ═══ */
+/* GOLD FLAKES */
+.gf{position:relative;isolation:isolate}
+.gf::after{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:0.55;background-image:radial-gradient(1.5px 1.5px at 8% 15%,rgba(184,115,51,0.35),transparent),radial-gradient(1px 1px at 22% 48%,rgba(212,162,84,0.25),transparent),radial-gradient(2px 1px at 38% 78%,rgba(184,115,51,0.2),transparent),radial-gradient(1px 1.5px at 55% 22%,rgba(212,162,84,0.3),transparent),radial-gradient(1.5px 1px at 72% 58%,rgba(184,115,51,0.25),transparent),radial-gradient(1px 1px at 85% 82%,rgba(212,162,84,0.2),transparent),radial-gradient(1px 2px at 15% 92%,rgba(184,115,51,0.15),transparent),radial-gradient(2px 1px at 92% 35%,rgba(212,162,84,0.25),transparent)}
+
+/* MASTHEAD */
 .mh{min-height:55vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:8rem 2.5rem 4rem}
 .mh-meta{width:100%;max-width:1000px;display:flex;justify-content:space-between;align-items:center;margin-bottom:3rem}
 .mh-meta span{font-family:var(--sans);font-size:10.5px;font-weight:400;letter-spacing:0.32em;text-transform:uppercase;color:rgba(232,220,196,0.65)}
@@ -53,97 +51,61 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
 .mh-lede{font-family:var(--serif);font-style:italic;font-size:clamp(16px,1.6vw,20px);line-height:1.55;color:rgba(232,220,196,0.85);max-width:580px;margin-bottom:3rem;font-variation-settings:'opsz' 18,'SOFT' 50}
 .mh-strip{width:100%;max-width:800px;border-top:0.5px solid var(--stroke);padding-top:1.5rem;font-family:var(--mono);font-size:13px;font-weight:300;letter-spacing:0.08em;color:var(--muted)}
 
-/* ═══ OPENING PLATE ═══ */
-.plate{padding:0 0 5rem;border-top:0.5px solid var(--stroke)}
+/* OPENING PLATE */
+.plate{padding:0 0 4rem;border-top:0.5px solid var(--stroke)}
 .plate-label{max-width:1440px;margin:0 auto;padding:1rem 2.5rem;font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--amber)}
-.plate-hero{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;cursor:pointer}
+.plate-hero{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden}
 .plate-hero img{width:100%;height:100%;object-fit:cover;filter:brightness(0.95) contrast(1.05)}
-.plate-overlay{position:absolute;bottom:0;left:0;right:0;padding:3rem 2.5rem;background:linear-gradient(transparent,rgba(10,9,8,0.8))}
-.plate-overlay h2{font-family:var(--serif);font-size:clamp(48px,6vw,88px);font-weight:300;color:var(--bone);font-variation-settings:'opsz' 144,'SOFT' 0;letter-spacing:-0.02em;margin-bottom:0.5rem}
-.plate-overlay p{font-family:var(--serif);font-style:italic;font-size:clamp(16px,1.6vw,20px);color:rgba(232,220,196,0.85);font-variation-settings:'opsz' 18,'SOFT' 50}
+.plate-ov{position:absolute;bottom:0;left:0;right:0;padding:3rem 2.5rem;background:linear-gradient(transparent,rgba(10,9,8,0.8))}
+.plate-ov h2{font-family:var(--serif);font-size:clamp(48px,6vw,88px);font-weight:300;color:var(--bone);font-variation-settings:'opsz' 144,'SOFT' 0;letter-spacing:-0.02em;margin-bottom:0.5rem}
+.plate-ov p{font-family:var(--serif);font-style:italic;font-size:clamp(16px,1.6vw,20px);color:rgba(232,220,196,0.85);font-variation-settings:'opsz' 18,'SOFT' 50}
 .plate-info{max-width:1440px;margin:0 auto;padding:2rem 2.5rem;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:2rem}
-.plate-price-block{text-align:right}
-.plate-price-label{display:block;font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-.plate-price{font-family:var(--mono);font-size:22px;font-weight:300;color:var(--bone);margin-bottom:4px}
-.plate-edition{font-family:var(--serif);font-style:italic;font-size:13px;color:var(--muted);font-variation-settings:'opsz' 18;margin-bottom:12px;display:block}
-.plate-inquire{font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--amber);text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:gap .4s var(--ease)}
-.plate-inquire:hover{gap:12px}
-.spec-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--amber);border-left:1px solid var(--amber);max-width:1440px;margin:0 auto 2rem}
-.spec-grid--pad{margin-left:2.5rem;margin-right:2.5rem}
+.plate-pb{text-align:right}
+.plate-pb-label{display:block;font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.plate-pb-val{font-family:var(--mono);font-size:22px;font-weight:300;color:var(--bone);margin-bottom:4px}
+.plate-pb-ed{font-family:var(--serif);font-style:italic;font-size:13px;color:var(--muted);font-variation-settings:'opsz' 18;margin-bottom:12px;display:block}
+.plate-inq{font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--amber);text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:gap .4s var(--ease)}
+.plate-inq:hover{gap:12px}
+.spec-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--amber);border-left:1px solid var(--amber);max-width:1440px;margin:0 auto 2rem;margin-left:2.5rem;margin-right:2.5rem}
 .spec-cell{padding:1.25rem;border-bottom:1px solid var(--amber);border-right:1px solid var(--amber)}
 .spec-label{display:block;font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
 .spec-val{font-family:var(--mono);font-size:14px;font-weight:300;color:var(--bone);letter-spacing:0.02em}
-.plate-thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;max-width:1440px;margin:0 auto;padding:0 2.5rem}
-.plate-thumb{position:relative;height:180px;overflow:hidden;cursor:pointer}
-.plate-thumb img{width:100%;height:100%;object-fit:cover;filter:grayscale(10%) brightness(0.75) contrast(1.08);transition:all 1.2s cubic-bezier(0.22,1,0.36,1)}
-.plate-thumb:hover img{filter:grayscale(0%) brightness(1) contrast(1.08);transform:scale(1.04)}
-.plate-view-all{max-width:1440px;margin:1.5rem auto 0;padding:0 2.5rem}
-.plate-view-all a{font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--amber);text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:gap .4s var(--ease)}
-.plate-view-all a:hover{gap:12px}
 
-/* ═══ COLLECTION SECTIONS ═══ */
-.coll{padding:6rem 2.5rem;border-top:0.5px solid var(--stroke)}
-.coll-header{max-width:1440px;margin:0 auto 2.5rem;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:2rem;padding:1.5rem 0;border-top:0.5px solid var(--stroke);border-bottom:0.5px solid var(--stroke)}
-.coll-num{font-family:var(--serif);font-style:italic;font-size:32px;font-weight:300;color:var(--amber);font-variation-settings:'opsz' 72,'SOFT' 0;line-height:1}
-.coll-name{font-family:var(--serif);font-size:clamp(28px,3.5vw,48px);font-weight:300;color:var(--bone);text-align:center;font-variation-settings:'opsz' 144,'SOFT' 0;line-height:1}
-.coll-count{font-family:var(--mono);font-size:12px;font-weight:300;letter-spacing:0.12em;color:var(--muted);text-align:right}
-.coll-intro{max-width:680px;margin:0 auto 2.5rem;text-align:center;font-family:var(--serif);font-style:italic;font-size:17px;line-height:1.55;color:rgba(232,220,196,0.85);font-variation-settings:'opsz' 18,'SOFT' 50}
-.coll-footer{max-width:1440px;margin:2rem auto 0;padding-top:1.5rem;border-top:0.5px solid var(--stroke);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
-.coll-price{font-family:var(--mono);font-size:20px;font-weight:300;color:var(--bone)}
-.coll-links{display:flex;gap:2rem;align-items:center}
-.coll-link{font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--amber);text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:gap .4s var(--ease)}
-.coll-link:hover{gap:12px}
-
-/* ═══ GALLERY TILES ═══ */
-.p-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:90px;gap:1.25rem;max-width:1440px;margin:0 auto;grid-auto-flow:dense}
+/* POOL GALLERY */
+.pool{padding:6rem 2.5rem;border-top:0.5px solid var(--stroke)}
+.pool-inner{max-width:1440px;margin:0 auto}
+.pool-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:1rem}
+.pool-label{font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--amber)}
+.pool-count{font-family:var(--mono);font-size:12px;font-weight:300;color:var(--muted)}
+.pool-sub{font-family:var(--serif);font-style:italic;font-size:17px;color:rgba(232,220,196,0.85);font-variation-settings:'opsz' 18,'SOFT' 50;margin-bottom:3rem;max-width:680px}
+.p-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:90px;gap:1.25rem;grid-auto-flow:dense}
 .g-tile{position:relative;overflow:hidden;cursor:pointer}
 .g-tile img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(10%) brightness(0.75) contrast(1.08);transition:all 1.2s cubic-bezier(0.22,1,0.36,1)}
 .g-tile:hover img{filter:grayscale(0%) brightness(1) contrast(1.08);transform:scale(1.04)}
-.g-caption{position:absolute;bottom:0;left:0;right:0;padding:3rem 1.25rem 1rem;background:linear-gradient(transparent,rgba(10,9,8,0.85));border-top:0.5px solid transparent;font-family:var(--sans);font-size:10.5px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:var(--bone);transform:translateY(100%);transition:transform .6s var(--ease),border-color .6s ease}
-.g-tile:hover .g-caption{transform:translateY(0);border-top-color:var(--stroke)}
-.pat-a .g-tile:nth-child(1){grid-column:span 8;grid-row:span 5}
-.pat-a .g-tile:nth-child(2){grid-column:span 4;grid-row:span 5}
-.pat-a .g-tile:nth-child(3){grid-column:span 4;grid-row:span 3}
-.pat-a .g-tile:nth-child(4){grid-column:span 4;grid-row:span 3}
-.pat-a .g-tile:nth-child(5){grid-column:span 4;grid-row:span 3}
-.pat-a .g-tile:nth-child(6){grid-column:span 12;grid-row:span 3}
-.pat-b .g-tile:nth-child(1){grid-column:span 7;grid-row:span 5}
-.pat-b .g-tile:nth-child(2){grid-column:span 5;grid-row:span 5}
-.pat-b .g-tile:nth-child(3){grid-column:span 5;grid-row:span 4}
-.pat-b .g-tile:nth-child(4){grid-column:span 4;grid-row:span 4}
-.pat-b .g-tile:nth-child(5){grid-column:span 3;grid-row:span 4}
-.pat-b .g-tile:nth-child(6){grid-column:span 12;grid-row:span 3}
-.pat-c .g-tile:nth-child(1){grid-column:span 5;grid-row:span 5}
-.pat-c .g-tile:nth-child(2){grid-column:span 7;grid-row:span 6}
-.pat-c .g-tile:nth-child(3){grid-column:span 4;grid-row:span 3}
-.pat-c .g-tile:nth-child(4){grid-column:span 8;grid-row:span 3}
-.pat-c .g-tile:nth-child(5){grid-column:span 6;grid-row:span 4}
-.pat-c .g-tile:nth-child(6){grid-column:span 6;grid-row:span 4}
-.pat-d .g-tile:nth-child(1){grid-column:span 6;grid-row:span 5}
-.pat-d .g-tile:nth-child(2){grid-column:span 6;grid-row:span 5}
-.pat-d .g-tile:nth-child(3){grid-column:span 4;grid-row:span 3}
-.pat-d .g-tile:nth-child(4){grid-column:span 4;grid-row:span 3}
-.pat-d .g-tile:nth-child(5){grid-column:span 4;grid-row:span 3}
-.pat-d .g-tile:nth-child(6){grid-column:span 12;grid-row:span 3}
+.g-tile:hover::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--amber)}
 
-/* ═══ REGISTRY ═══ */
-.registry{padding:6rem 2.5rem;border-top:0.5px solid var(--stroke)}
-.registry-header{text-align:center;max-width:680px;margin:0 auto 3rem}
-.registry-header h2{font-family:var(--serif);font-size:clamp(32px,4vw,48px);font-weight:300;color:var(--bone);font-variation-settings:'opsz' 144,'SOFT' 0;margin-bottom:1rem}
-.registry-header h2 em{font-style:italic}
-.registry-sub{font-family:var(--serif);font-style:italic;font-size:17px;line-height:1.55;color:rgba(232,220,196,0.55);font-variation-settings:'opsz' 18,'SOFT' 50}
-.reg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;max-width:1440px;margin:0 auto 2rem}
-.reg-tile{display:block;text-decoration:none;color:var(--bone);background:var(--surface);border:0.5px solid var(--stroke);padding:1.5rem;transition:border-color .4s ease,background .4s ease}
-.reg-tile:hover{border-color:var(--amber);background:#1a1714}
-.reg-num{display:block;font-family:var(--serif);font-style:italic;font-size:14px;color:var(--amber);margin-bottom:0.5rem;font-variation-settings:'opsz' 18}
-.reg-name{display:block;font-family:var(--serif);font-size:22px;font-weight:300;color:var(--bone);margin-bottom:0.25rem;font-variation-settings:'opsz' 36,'SOFT' 0}
-.reg-coll{display:block;font-family:var(--sans);font-style:italic;font-size:11px;letter-spacing:0.08em;color:var(--muted);margin-bottom:1rem}
-.reg-link{font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--amber);display:inline-flex;align-items:center;gap:6px}
-.reg-link .arrow{transition:transform .3s var(--ease)}
-.reg-tile:hover .reg-link .arrow{transform:translateX(4px)}
-.reg-note{text-align:center;font-family:var(--serif);font-style:italic;font-size:13px;color:var(--muted);font-variation-settings:'opsz' 18;max-width:1440px;margin:0 auto}
+/* CATALOG */
+.catalog{padding:6rem 2.5rem;border-top:0.5px solid var(--stroke)}
+.catalog-inner{max-width:1440px;margin:0 auto}
+.catalog-head{text-align:center;margin-bottom:3rem}
+.catalog-head .sec-label{font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--amber);margin-bottom:1rem;display:block}
+.catalog-head p{font-family:var(--serif);font-style:italic;font-size:17px;color:rgba(232,220,196,0.55);font-variation-settings:'opsz' 18,'SOFT' 50}
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+.cat-tile{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:1.5rem;background:var(--surface);border:0.5px solid var(--stroke);text-decoration:none;color:var(--bone);min-height:220px;transition:border-color .4s ease}
+.cat-tile:hover{border-color:var(--amber)}
+.cat-bg{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center;opacity:0;transition:opacity .6s ease}
+.cat-tile:hover .cat-bg{opacity:0.35}
+.cat-tile>*:not(.cat-bg){position:relative;z-index:1}
+.cat-num{position:absolute;top:1rem;right:1rem;font-family:var(--serif);font-style:italic;font-size:14px;color:var(--amber);font-variation-settings:'opsz' 18;z-index:1}
+.cat-name{display:block;font-family:var(--serif);font-size:24px;font-weight:300;color:var(--bone);font-variation-settings:'opsz' 36,'SOFT' 0;margin-bottom:0.5rem}
+.cat-price{display:block;font-family:var(--mono);font-size:14px;font-weight:300;color:var(--muted);margin-bottom:0.25rem}
+.cat-price-req{font-family:var(--serif);font-style:italic}
+.cat-ed{display:block;font-family:var(--serif);font-style:italic;font-size:11px;color:var(--muted);font-variation-settings:'opsz' 18;margin-bottom:1rem}
+.cat-link{font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--amber);display:inline-flex;align-items:center;gap:6px}
+.cat-link .arrow{transition:transform .3s var(--ease)}
+.cat-tile:hover .cat-link .arrow{transform:translateX(4px)}
 
-/* ═══ CORRESPONDENCE ═══ */
+/* CORRESPONDENCE */
 .corr{padding:6rem 2.5rem;text-align:center;border-top:0.5px solid var(--stroke)}
 .corr-inner{max-width:680px;margin:0 auto}
 .super-label{display:block;font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:0.32em;text-transform:uppercase;color:var(--muted);margin-bottom:2.5rem}
@@ -152,7 +114,7 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
 .corr-inner>p{font-family:var(--serif);font-size:17px;font-weight:400;line-height:1.55;color:rgba(232,220,196,0.5);margin-bottom:3rem;font-variation-settings:'opsz' 18,'SOFT' 50}
 .corr-ctas{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
 
-/* ═══ BUTTONS ═══ */
+/* BUTTONS */
 .btn{display:inline-flex;align-items:center;gap:10px;padding:1rem 2rem;font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:all .4s var(--ease)}
 .btn .arrow{transition:transform .4s var(--ease)}
 .btn:hover .arrow{transform:translateX(6px)}
@@ -161,21 +123,7 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
 .btn-outline{background:transparent;color:var(--bone);border:1px solid rgba(232,220,196,0.3)}
 .btn-outline:hover{background:var(--bone);color:var(--ink);border-color:var(--bone)}
 
-/* ═══ LIGHTBOX ═══ */
-.lb{position:fixed;inset:0;z-index:10000;background:rgba(10,9,8,0.96);display:flex;align-items:center;justify-content:center;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .3s ease}
-.lb.open{opacity:1;pointer-events:all}
-.lb-img{max-width:90vw;max-height:85vh;object-fit:contain;display:block}
-.lb-close{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;color:var(--bone);font-size:1.5rem;cursor:pointer;transition:color .3s;padding:0.5rem}
-.lb-close:hover{color:var(--amber)}
-.lb-prev,.lb-next{position:absolute;top:50%;transform:translateY(-50%);background:none;border:1px solid rgba(232,220,196,0.15);color:var(--bone);font-size:1.5rem;width:48px;height:48px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s ease}
-.lb-prev{left:1.5rem}.lb-next{right:1.5rem}
-.lb-prev:hover,.lb-next:hover{color:var(--amber);border-color:var(--amber)}
-.lb-info{margin-top:1.25rem;text-align:center}
-.lb-title{font-family:var(--serif);font-style:italic;font-size:18px;color:var(--bone);margin-bottom:4px;font-variation-settings:'opsz' 24}
-.lb-sub{font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted)}
-.lb-counter{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:0.15em;color:var(--muted)}
-
-/* ═══ FOOTER ═══ */
+/* FOOTER */
 .footer{background:var(--ink);border-top:0.5px solid var(--stroke);padding:5rem 2.5rem 0}
 .footer-inner{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem;max-width:1440px;margin:0 auto;padding-bottom:4rem}
 .footer-logo{font-family:var(--serif);font-size:40px;font-weight:300;color:var(--bone);margin-bottom:1rem;display:block;font-variation-settings:'opsz' 72,'SOFT' 0}
@@ -187,29 +135,34 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
 .footer-bottom span{font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:0.06em;color:var(--muted)}
 .footer-bottom .motto{font-family:var(--serif);font-style:italic;font-size:13px;color:rgba(232,220,196,0.6);font-variation-settings:'opsz' 18}
 
-/* ═══ REVEAL + KEYFRAMES ═══ */
+/* LIGHTBOX */
+.lb{position:fixed;inset:0;z-index:10000;background:rgba(10,9,8,0.96);display:flex;align-items:center;justify-content:center;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .3s ease}
+.lb.open{opacity:1;pointer-events:all}
+.lb-img{max-width:90vw;max-height:85vh;object-fit:contain;display:block}
+.lb-close{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;color:var(--bone);font-size:1.5rem;cursor:pointer;transition:color .3s;padding:0.5rem}
+.lb-close:hover{color:var(--amber)}
+.lb-prev,.lb-next{position:absolute;top:50%;transform:translateY(-50%);background:none;border:1px solid rgba(232,220,196,0.15);color:var(--bone);font-size:1.5rem;width:48px;height:48px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s ease}
+.lb-prev{left:1.5rem}.lb-next{right:1.5rem}
+.lb-prev:hover,.lb-next:hover{color:var(--amber);border-color:var(--amber)}
+.lb-counter{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:0.15em;color:var(--muted)}
+
+/* REVEAL + KEYFRAMES */
 .reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
 .reveal.revealed{opacity:1;transform:translateY(0)}
-.hidden-tiles{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
 @keyframes dotPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.75)}}
 
-/* ═══ RESPONSIVE ═══ */
+/* RESPONSIVE */
 @media(max-width:900px){
   .nav-left,.nav-right{display:none}.nav{justify-content:center}
   .mh{padding:6rem 1.5rem 3rem;min-height:auto}.mh-meta{display:none}.mh h1{font-size:clamp(56px,16vw,100px)}
-  .plate-hero{aspect-ratio:4/5}.plate-label{padding-left:1.5rem;padding-right:1.5rem}
-  .plate-overlay{padding:2rem 1.5rem}.plate-info{padding:1.5rem;flex-direction:column}.plate-price-block{text-align:left}
-  .spec-grid{grid-template-columns:repeat(2,1fr)}.spec-grid--pad{margin-left:1.5rem;margin-right:1.5rem}
-  .plate-thumbs{padding:0 1.5rem;grid-template-columns:repeat(3,1fr)}.plate-thumb{height:120px}
-  .plate-view-all{padding:0 1.5rem}
-  .coll{padding:4rem 1.5rem}
-  .coll-header{grid-template-columns:1fr;gap:0.5rem;text-align:center}.coll-num{text-align:center;font-size:24px}.coll-count{text-align:center}
+  .plate-hero{aspect-ratio:4/5}.plate-ov{padding:2rem 1.5rem}.plate-info{padding:1.5rem;flex-direction:column}.plate-pb{text-align:left}
+  .spec-grid{grid-template-columns:repeat(2,1fr);margin-left:1.5rem;margin-right:1.5rem}
+  .pool{padding:4rem 1.5rem}
   .p-grid{grid-template-columns:repeat(6,1fr);grid-auto-rows:80px;gap:0.75rem}
-  .pat-a .g-tile:nth-child(1),.pat-a .g-tile:nth-child(2),.pat-a .g-tile:nth-child(3),.pat-a .g-tile:nth-child(4),.pat-a .g-tile:nth-child(5),.pat-a .g-tile:nth-child(6),
-  .pat-b .g-tile:nth-child(1),.pat-b .g-tile:nth-child(2),.pat-b .g-tile:nth-child(3),.pat-b .g-tile:nth-child(4),.pat-b .g-tile:nth-child(5),.pat-b .g-tile:nth-child(6),
-  .pat-c .g-tile:nth-child(1),.pat-c .g-tile:nth-child(2),.pat-c .g-tile:nth-child(3),.pat-c .g-tile:nth-child(4),.pat-c .g-tile:nth-child(5),.pat-c .g-tile:nth-child(6),
-  .pat-d .g-tile:nth-child(1),.pat-d .g-tile:nth-child(2),.pat-d .g-tile:nth-child(3),.pat-d .g-tile:nth-child(4),.pat-d .g-tile:nth-child(5),.pat-d .g-tile:nth-child(6){grid-column:span 3;grid-row:span 4}
-  .registry{padding:4rem 1.5rem}.reg-grid{grid-template-columns:1fr}
+  .p-grid .g-tile{grid-column:span 3 !important;grid-row:span 4 !important}
+  .catalog{padding:4rem 1.5rem}
+  .cat-grid{grid-template-columns:repeat(2,1fr)}
+  .cat-tile{min-height:180px}
   .corr{padding:4rem 1.5rem}.corr-ctas{flex-direction:column;align-items:center}
   .footer{padding:3rem 1.5rem 0}.footer-inner{grid-template-columns:1fr;text-align:center}.footer-tagline{margin:0 auto}
   .footer-bottom{flex-direction:column;gap:0.5rem;text-align:center;padding:1.25rem 0}
@@ -219,263 +172,205 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
 </head>
 <body>
 
-<nav class="nav" id="nav">
-  <div class="nav-left"><a href="hardscape-gallery.html">Hardscape</a><a href="sculptures.html">Sculpture</a><a href="gallery.html">Gallery</a><a href="agents.html">Agents</a></div>
-  <a href="index.html" class="nav-logo">PHAÖRA</a>
-  <div class="nav-right"><a href="/#studio">Studio</a><a href="contact.html">Contact</a><a href="/#invitation" class="nav-enquire">Enquire <span class="arrow">&rarr;</span></a></div>
-</nav>
+<nav class="nav"><div class="nav-left"><a href="hardscape-gallery.html">Hardscape</a><a href="sculptures.html">Sculpture</a><a href="gallery.html">Gallery</a><a href="agents.html">Agents</a></div><a href="index.html" class="nav-logo">PHAÖRA</a><div class="nav-right"><a href="/#studio">Studio</a><a href="contact.html">Contact</a><a href="/#invitation" class="nav-enquire">Enquire <span class="arrow">&rarr;</span></a></div></nav>
 
-<!-- ═══ MASTHEAD ═══ -->
-<section class="mh">
-  <div class="mh-meta">
-    <span>The Collection</span>
-    <span class="mh-meta-c"><span class="pulse-dot"></span>Forty-four pieces. Minas Gerais.</span>
-    <span>Hand-mined. Hand-shaped.</span>
-  </div>
+<!-- MASTHEAD -->
+<section class="mh gf">
+  <div class="mh-meta"><span>The Collection</span><span class="mh-meta-c"><span class="pulse-dot"></span>Forty-four pieces. Minas Gerais.</span><span>Hand-mined. Hand-shaped.</span></div>
   <h1>PHAÖRA</h1>
   <p class="mh-sub">The Collection, MMXXVI</p>
   <p class="mh-lede">Forty-four crystal sculptures. Hand-mined in Minas Gerais. Shaped by one man, for forty years.</p>
-  <div class="mh-strip">Five collections · Each piece exists once</div>
+  <div class="mh-strip">Forty-four works · By appointment</div>
 </section>
 
-<!-- ═══ PLATE I — THE CANOPY ═══ -->
+<!-- OPENING PLATE -->
 <section class="plate reveal">
   <div class="plate-label">Plate I · Featured piece</div>
-  <div class="plate-hero g-tile" data-cap="The Canopy · Plate 1">
-    <img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-1.jpeg" alt="The Canopy — White Quartz Flock on Driftwood">
-    <div class="plate-overlay">
-      <h2>The Canopy</h2>
-      <p>White quartz flock on Brazilian driftwood — the flagship of the collection.</p>
-    </div>
-  </div>
-  <div class="plate-info">
-    <div></div>
-    <div class="plate-price-block">
-      <span class="plate-price-label">Price</span>
-      <div class="plate-price">USD 68,000</div>
-      <span class="plate-edition">One of one</span>
-      <a href="mailto:david@phaora.com?subject=Enquiry:%20The%20Canopy" class="plate-inquire">Inquire <span>&rarr;</span></a>
-    </div>
-  </div>
-  <div class="spec-grid spec-grid--pad">
+  <div class="plate-hero"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-1.jpeg" alt="The Canopy"><div class="plate-ov"><h2>The Canopy</h2><p>White quartz flock on Brazilian driftwood — the flagship of the collection.</p></div></div>
+  <div class="plate-info"><div></div><div class="plate-pb"><span class="plate-pb-label">Price</span><div class="plate-pb-val">USD 68,000</div><span class="plate-pb-ed">One of one</span><a href="mailto:david@phaora.com?subject=Enquiry:%20The%20Canopy" class="plate-inq">Inquire <span>&rarr;</span></a></div></div>
+  <div class="spec-grid">
     <div class="spec-cell"><span class="spec-label">Collection</span><span class="spec-val">The Canopy</span></div>
-    <div class="spec-cell"><span class="spec-label">Medium</span><span class="spec-val">White Quartz Flock on Driftwood</span></div>
+    <div class="spec-cell"><span class="spec-label">Medium</span><span class="spec-val">White Quartz on Driftwood</span></div>
     <div class="spec-cell"><span class="spec-label">Origin</span><span class="spec-val">Minas Gerais, Brazil</span></div>
     <div class="spec-cell"><span class="spec-label">Edition</span><span class="spec-val">One of one</span></div>
     <div class="spec-cell"><span class="spec-label">Tier</span><span class="spec-val">Statement</span></div>
     <div class="spec-cell"><span class="spec-label">Status</span><span class="spec-val">Available</span></div>
   </div>
-  <div class="plate-thumbs">
-    <div class="plate-thumb g-tile" data-cap="The Canopy · Plate 2"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-2.jpeg" alt="The Canopy — view 2" loading="lazy"></div>
-    <div class="plate-thumb g-tile" data-cap="The Canopy · Plate 3"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-3.jpeg" alt="The Canopy — view 3" loading="lazy"></div>
-    <div class="plate-thumb g-tile" data-cap="The Canopy · Plate 4"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-4.jpeg" alt="The Canopy — view 4" loading="lazy"></div>
-  </div>
-  <div class="hidden-tiles">
-    <div class="g-tile" data-cap="The Canopy · Plate 5"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-5.jpeg" alt="The Canopy — view 5"></div>
-    <div class="g-tile" data-cap="The Canopy · Plate 6"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-6.jpeg" alt="The Canopy — view 6"></div>
-  </div>
-  <div class="plate-view-all"><a href="#" id="view-canopy">View all six photographs of The Canopy <span>&rarr;</span></a></div>
 </section>
 
-<!-- ═══ Nº II — THE CRIMSON DUO ═══ -->
-<section class="coll reveal">
-  <div class="coll-header"><span class="coll-num">II</span><span class="coll-name">The Crimson Duo</span><span class="coll-count">Six photographs · One piece</span></div>
-  <p class="coll-intro">Red jasper set against cathedral-grade clear quartz. The smallest of the collections — the rarest stone Fabiano works with, quarried from a single deposit in central Minas Gerais.</p>
-  <div class="p-grid pat-a">
-    <div class="g-tile" data-cap="Crimson Duo · Plate 1"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-1.jpeg" alt="Crimson Duo — view 1" loading="lazy"><div class="g-caption">Crimson Duo · Plate 1</div></div>
-    <div class="g-tile" data-cap="Crimson Duo · Plate 2"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-2.jpeg" alt="Crimson Duo — view 2" loading="lazy"><div class="g-caption">Crimson Duo · Plate 2</div></div>
-    <div class="g-tile" data-cap="Crimson Duo · Plate 3"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-3.jpeg" alt="Crimson Duo — view 3" loading="lazy"><div class="g-caption">Crimson Duo · Plate 3</div></div>
-    <div class="g-tile" data-cap="Crimson Duo · Plate 4"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-4.jpeg" alt="Crimson Duo — view 4" loading="lazy"><div class="g-caption">Crimson Duo · Plate 4</div></div>
-    <div class="g-tile" data-cap="Crimson Duo · Plate 5"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-5.jpeg" alt="Crimson Duo — view 5" loading="lazy"><div class="g-caption">Crimson Duo · Plate 5</div></div>
-    <div class="g-tile" data-cap="Crimson Duo · Plate 6"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-6.jpeg" alt="Crimson Duo — view 6" loading="lazy"><div class="g-caption">Crimson Duo · Plate 6</div></div>
-  </div>
-  <div class="coll-footer">
-    <span class="coll-price">USD 24,000</span>
-    <div class="coll-links">
-      <a href="mailto:david@phaora.com?subject=Enquiry:%20The%20Crimson%20Duo" class="coll-link">Inquire about The Crimson Duo <span>&rarr;</span></a>
-      <a href="pieces/the-crimson-duo.html" class="coll-link">View piece page <span>&rarr;</span></a>
+<!-- THE POOL -->
+<section class="pool reveal">
+  <div class="pool-inner">
+    <div class="pool-head"><span class="pool-label">— The Studio Archive —</span><span class="pool-count">Thirty photographs</span></div>
+    <p class="pool-sub">Forty years of crystal carving, documented across five bodies of work in the Minas Gerais studio.</p>
+    <div class="p-grid">
+      <div class="g-tile" style="grid-column:span 7;grid-row:span 5"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-1.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 5;grid-row:span 4"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-2.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 4;grid-row:span 3"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-3.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 4;grid-row:span 3"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-4.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 4;grid-row:span 3"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-5.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 8;grid-row:span 5"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-6.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 4;grid-row:span 5"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-1.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 5;grid-row:span 4"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-2.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 7;grid-row:span 5"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-3.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 4;grid-row:span 3"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-4.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 4;grid-row:span 3"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-5.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 4;grid-row:span 3"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-6.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 6;grid-row:span 5"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-1.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 6;grid-row:span 5"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-2.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 4;grid-row:span 3"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-3.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 4;grid-row:span 3"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-4.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 4;grid-row:span 3"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-5.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 8;grid-row:span 4"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-6.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 4;grid-row:span 4"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-1.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 7;grid-row:span 5"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-2.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 5;grid-row:span 5"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-3.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 4;grid-row:span 3"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-4.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 4;grid-row:span 3"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-5.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 4;grid-row:span 3"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-6.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 6;grid-row:span 5"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-1.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 6;grid-row:span 5"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-2.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 4;grid-row:span 3"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-3.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 8;grid-row:span 3"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-4.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 5;grid-row:span 4"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-5.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 7;grid-row:span 4"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-6.jpeg" alt="" loading="lazy"></div>
     </div>
   </div>
 </section>
 
-<!-- ═══ Nº III — THE PERCH ═══ -->
-<section class="coll reveal">
-  <div class="coll-header"><span class="coll-num">III</span><span class="coll-name">The Perch</span><span class="coll-count">Six photographs · One piece</span></div>
-  <p class="coll-intro">White quartz cockatoos set on raw stone. Quiet, precise, and unmistakable — the most collected form in the register, shaped from a single block of Brazilian quartz.</p>
-  <div class="p-grid pat-b">
-    <div class="g-tile" data-cap="Perch · Plate 1"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-1.jpeg" alt="Perch — view 1" loading="lazy"><div class="g-caption">Perch · Plate 1</div></div>
-    <div class="g-tile" data-cap="Perch · Plate 2"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-2.jpeg" alt="Perch — view 2" loading="lazy"><div class="g-caption">Perch · Plate 2</div></div>
-    <div class="g-tile" data-cap="Perch · Plate 3"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-3.jpeg" alt="Perch — view 3" loading="lazy"><div class="g-caption">Perch · Plate 3</div></div>
-    <div class="g-tile" data-cap="Perch · Plate 4"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-4.jpeg" alt="Perch — view 4" loading="lazy"><div class="g-caption">Perch · Plate 4</div></div>
-    <div class="g-tile" data-cap="Perch · Plate 5"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-5.jpeg" alt="Perch — view 5" loading="lazy"><div class="g-caption">Perch · Plate 5</div></div>
-    <div class="g-tile" data-cap="Perch · Plate 6"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-6.jpeg" alt="Perch — view 6" loading="lazy"><div class="g-caption">Perch · Plate 6</div></div>
-  </div>
-  <div class="coll-footer">
-    <span class="coll-price">USD 16,500</span>
-    <div class="coll-links">
-      <a href="mailto:david@phaora.com?subject=Enquiry:%20The%20Perch" class="coll-link">Inquire about The Perch <span>&rarr;</span></a>
-      <a href="pieces/the-perch.html" class="coll-link">View piece page <span>&rarr;</span></a>
+<!-- THE FORTY-FOUR -->
+<section class="catalog reveal">
+  <div class="catalog-inner">
+    <div class="catalog-head"><span class="sec-label">— The Forty-Four —</span><p>Every piece exists once. Each shaped by master craftsman Fabiano in Minas Gerais.</p></div>
+    <div class="cat-grid">
+      <a href="pieces/the-aerie.html" class="cat-tile" data-slug="the-aerie"><div class="cat-bg"></div><span class="cat-num">01</span><span class="cat-name">The Aerie</span><span class="cat-price">USD 48,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-ascent.html" class="cat-tile" data-slug="the-ascent"><div class="cat-bg"></div><span class="cat-num">02</span><span class="cat-name">The Ascent</span><span class="cat-price">USD 14,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-canopy.html" class="cat-tile" data-slug="the-canopy"><div class="cat-bg"></div><span class="cat-num">03</span><span class="cat-name">The Canopy</span><span class="cat-price">USD 68,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-cathedral.html" class="cat-tile" data-slug="the-cathedral"><div class="cat-bg"></div><span class="cat-num">04</span><span class="cat-name">The Cathedral</span><span class="cat-price">USD 26,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-cluster.html" class="cat-tile" data-slug="the-cluster"><div class="cat-bg"></div><span class="cat-num">05</span><span class="cat-name">The Cluster</span><span class="cat-price">USD 44,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-companions.html" class="cat-tile" data-slug="the-companions"><div class="cat-bg"></div><span class="cat-num">06</span><span class="cat-name">The Companions</span><span class="cat-price">USD 10,500</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-courtship.html" class="cat-tile" data-slug="the-courtship"><div class="cat-bg"></div><span class="cat-num">07</span><span class="cat-name">The Courtship</span><span class="cat-price">USD 13,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-crimson-duo.html" class="cat-tile" data-slug="the-crimson-duo"><div class="cat-bg"></div><span class="cat-num">08</span><span class="cat-name">The Crimson Duo</span><span class="cat-price">USD 24,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-devotion.html" class="cat-tile" data-slug="the-devotion"><div class="cat-bg"></div><span class="cat-num">09</span><span class="cat-name">The Devotion</span><span class="cat-price">USD 14,500</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-driftwood.html" class="cat-tile" data-slug="the-driftwood"><div class="cat-bg"></div><span class="cat-num">10</span><span class="cat-name">The Driftwood</span><span class="cat-price cat-price-req">On request</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-duet.html" class="cat-tile" data-slug="the-duet"><div class="cat-bg"></div><span class="cat-num">11</span><span class="cat-name">The Duet</span><span class="cat-price">USD 11,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-dynasty.html" class="cat-tile" data-slug="the-dynasty"><div class="cat-bg"></div><span class="cat-num">12</span><span class="cat-name">The Dynasty</span><span class="cat-price">USD 52,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-eclipse.html" class="cat-tile" data-slug="the-eclipse"><div class="cat-bg"></div><span class="cat-num">13</span><span class="cat-name">The Eclipse</span><span class="cat-price">USD 23,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-eden.html" class="cat-tile" data-slug="the-eden"><div class="cat-bg"></div><span class="cat-num">14</span><span class="cat-name">The Eden</span><span class="cat-price">USD 18,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-embrace.html" class="cat-tile" data-slug="the-embrace"><div class="cat-bg"></div><span class="cat-num">15</span><span class="cat-name">The Embrace</span><span class="cat-price">USD 14,500</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-ethereals.html" class="cat-tile" data-slug="the-ethereals"><div class="cat-bg"></div><span class="cat-num">16</span><span class="cat-name">The Ethereals</span><span class="cat-price">USD 20,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-gathering.html" class="cat-tile" data-slug="the-gathering"><div class="cat-bg"></div><span class="cat-num">17</span><span class="cat-name">The Gathering</span><span class="cat-price">USD 26,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-grace.html" class="cat-tile" data-slug="the-grace"><div class="cat-bg"></div><span class="cat-num">18</span><span class="cat-name">The Grace</span><span class="cat-price">USD 7,500</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-grotto.html" class="cat-tile" data-slug="the-grotto"><div class="cat-bg"></div><span class="cat-num">19</span><span class="cat-name">The Grotto</span><span class="cat-price">USD 19,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-guardians.html" class="cat-tile" data-slug="the-guardians"><div class="cat-bg"></div><span class="cat-num">20</span><span class="cat-name">The Guardians</span><span class="cat-price">USD 16,500</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-herald.html" class="cat-tile" data-slug="the-herald"><div class="cat-bg"></div><span class="cat-num">21</span><span class="cat-name">The Herald</span><span class="cat-price">USD 16,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-hyacinths.html" class="cat-tile" data-slug="the-hyacinths"><div class="cat-bg"></div><span class="cat-num">22</span><span class="cat-name">The Hyacinths</span><span class="cat-price">USD 22,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-indigos.html" class="cat-tile" data-slug="the-indigos"><div class="cat-bg"></div><span class="cat-num">23</span><span class="cat-name">The Indigos</span><span class="cat-price">USD 20,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-lovers.html" class="cat-tile" data-slug="the-lovers"><div class="cat-bg"></div><span class="cat-num">24</span><span class="cat-name">The Lovers</span><span class="cat-price">USD 11,500</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-monolith.html" class="cat-tile" data-slug="the-monolith"><div class="cat-bg"></div><span class="cat-num">25</span><span class="cat-name">The Monolith</span><span class="cat-price">USD 38,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-nest.html" class="cat-tile" data-slug="the-nest"><div class="cat-bg"></div><span class="cat-num">26</span><span class="cat-name">The Nest</span><span class="cat-price">USD 8,500</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-orbit.html" class="cat-tile" data-slug="the-orbit"><div class="cat-bg"></div><span class="cat-num">27</span><span class="cat-name">The Orbit</span><span class="cat-price">USD 12,500</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-pair.html" class="cat-tile" data-slug="the-pair"><div class="cat-bg"></div><span class="cat-num">28</span><span class="cat-name">The Pair</span><span class="cat-price">USD 9,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-parliament.html" class="cat-tile" data-slug="the-parliament"><div class="cat-bg"></div><span class="cat-num">29</span><span class="cat-name">The Parliament</span><span class="cat-price">USD 26,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-perch.html" class="cat-tile" data-slug="the-perch"><div class="cat-bg"></div><span class="cat-num">30</span><span class="cat-name">The Perch</span><span class="cat-price">USD 16,500</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-portal.html" class="cat-tile" data-slug="the-portal"><div class="cat-bg"></div><span class="cat-num">31</span><span class="cat-name">The Portal</span><span class="cat-price">USD 35,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-radiance.html" class="cat-tile" data-slug="the-radiance"><div class="cat-bg"></div><span class="cat-num">32</span><span class="cat-name">The Radiance</span><span class="cat-price">USD 21,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-raptor.html" class="cat-tile" data-slug="the-raptor"><div class="cat-bg"></div><span class="cat-num">33</span><span class="cat-name">The Raptor</span><span class="cat-price">USD 28,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-scarlets.html" class="cat-tile" data-slug="the-scarlets"><div class="cat-bg"></div><span class="cat-num">34</span><span class="cat-name">The Scarlets</span><span class="cat-price">USD 27,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-sentinels.html" class="cat-tile" data-slug="the-sentinels"><div class="cat-bg"></div><span class="cat-num">35</span><span class="cat-name">The Sentinels</span><span class="cat-price">USD 22,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-sliced.html" class="cat-tile" data-slug="the-sliced"><div class="cat-bg"></div><span class="cat-num">36</span><span class="cat-name">The Sliced</span><span class="cat-price">USD 26,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-smoke.html" class="cat-tile" data-slug="the-smoke"><div class="cat-bg"></div><span class="cat-num">37</span><span class="cat-name">The Smoke</span><span class="cat-price">USD 24,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-soloist.html" class="cat-tile" data-slug="the-soloist"><div class="cat-bg"></div><span class="cat-num">38</span><span class="cat-name">The Soloist</span><span class="cat-price">USD 12,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-sovereign.html" class="cat-tile" data-slug="the-sovereign"><div class="cat-bg"></div><span class="cat-num">39</span><span class="cat-name">The Sovereign</span><span class="cat-price">USD 32,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-tenderness.html" class="cat-tile" data-slug="the-tenderness"><div class="cat-bg"></div><span class="cat-num">40</span><span class="cat-name">The Tenderness</span><span class="cat-price">USD 9,500</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-twins.html" class="cat-tile" data-slug="the-twins"><div class="cat-bg"></div><span class="cat-num">41</span><span class="cat-name">The Twins</span><span class="cat-price">USD 28,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-vessel.html" class="cat-tile" data-slug="the-vessel"><div class="cat-bg"></div><span class="cat-num">42</span><span class="cat-name">The Vessel</span><span class="cat-price">USD 35,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-violet.html" class="cat-tile" data-slug="the-violet"><div class="cat-bg"></div><span class="cat-num">43</span><span class="cat-name">The Violet</span><span class="cat-price">USD 13,500</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-whisper.html" class="cat-tile" data-slug="the-whisper"><div class="cat-bg"></div><span class="cat-num">44</span><span class="cat-name">The Whisper</span><span class="cat-price">USD 6,500</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
     </div>
   </div>
 </section>
 
-<!-- ═══ Nº IV — THE DYNASTY ═══ -->
-<section class="coll reveal">
-  <div class="coll-header"><span class="coll-num">IV</span><span class="coll-name">The Dynasty</span><span class="coll-count">Six photographs · One piece</span></div>
-  <p class="coll-intro">Sodalite macaws arranged on an amethyst tower. Deep ocean tones that shift toward violet as the light moves across the stone — the tallest composition in the register.</p>
-  <div class="p-grid pat-c">
-    <div class="g-tile" data-cap="Dynasty · Plate 1"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-1.jpeg" alt="Dynasty — view 1" loading="lazy"><div class="g-caption">Dynasty · Plate 1</div></div>
-    <div class="g-tile" data-cap="Dynasty · Plate 2"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-2.jpeg" alt="Dynasty — view 2" loading="lazy"><div class="g-caption">Dynasty · Plate 2</div></div>
-    <div class="g-tile" data-cap="Dynasty · Plate 3"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-3.jpeg" alt="Dynasty — view 3" loading="lazy"><div class="g-caption">Dynasty · Plate 3</div></div>
-    <div class="g-tile" data-cap="Dynasty · Plate 4"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-4.jpeg" alt="Dynasty — view 4" loading="lazy"><div class="g-caption">Dynasty · Plate 4</div></div>
-    <div class="g-tile" data-cap="Dynasty · Plate 5"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-5.jpeg" alt="Dynasty — view 5" loading="lazy"><div class="g-caption">Dynasty · Plate 5</div></div>
-    <div class="g-tile" data-cap="Dynasty · Plate 6"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-6.jpeg" alt="Dynasty — view 6" loading="lazy"><div class="g-caption">Dynasty · Plate 6</div></div>
-  </div>
-  <div class="coll-footer">
-    <span class="coll-price">USD 52,000</span>
-    <div class="coll-links">
-      <a href="mailto:david@phaora.com?subject=Enquiry:%20The%20Dynasty" class="coll-link">Inquire about The Dynasty <span>&rarr;</span></a>
-      <a href="pieces/the-dynasty.html" class="coll-link">View piece page <span>&rarr;</span></a>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ Nº V — THE PORTAL ═══ -->
-<section class="coll reveal">
-  <div class="coll-header"><span class="coll-num">V</span><span class="coll-name">The Portal</span><span class="coll-count">Six photographs · One piece</span></div>
-  <p class="coll-intro">Sodalite parrots set within a ring-shaped geode formation. A singular composition — the only piece in the register built around a natural portal in the stone.</p>
-  <div class="p-grid pat-d">
-    <div class="g-tile" data-cap="Portal · Plate 1"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-1.jpeg" alt="Portal — view 1" loading="lazy"><div class="g-caption">Portal · Plate 1</div></div>
-    <div class="g-tile" data-cap="Portal · Plate 2"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-2.jpeg" alt="Portal — view 2" loading="lazy"><div class="g-caption">Portal · Plate 2</div></div>
-    <div class="g-tile" data-cap="Portal · Plate 3"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-3.jpeg" alt="Portal — view 3" loading="lazy"><div class="g-caption">Portal · Plate 3</div></div>
-    <div class="g-tile" data-cap="Portal · Plate 4"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-4.jpeg" alt="Portal — view 4" loading="lazy"><div class="g-caption">Portal · Plate 4</div></div>
-    <div class="g-tile" data-cap="Portal · Plate 5"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-5.jpeg" alt="Portal — view 5" loading="lazy"><div class="g-caption">Portal · Plate 5</div></div>
-    <div class="g-tile" data-cap="Portal · Plate 6"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-6.jpeg" alt="Portal — view 6" loading="lazy"><div class="g-caption">Portal · Plate 6</div></div>
-  </div>
-  <div class="coll-footer">
-    <span class="coll-price">USD 35,000</span>
-    <div class="coll-links">
-      <a href="mailto:david@phaora.com?subject=Enquiry:%20The%20Portal" class="coll-link">Inquire about The Portal <span>&rarr;</span></a>
-      <a href="pieces/the-portal.html" class="coll-link">View piece page <span>&rarr;</span></a>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ THE REGISTRY ═══ -->
-<section class="registry reveal">
-  <div class="registry-header">
-    <h2>The Registry · Thirty-nine <em>unshown</em> works</h2>
-    <p class="registry-sub">Each of these works exists in the studio. Photography follows by appointment. To arrange a private viewing, write to the studio below.</p>
-  </div>
-  <div class="reg-grid">
-    <a href="pieces/the-aerie.html" class="reg-tile"><span class="reg-num">02</span><span class="reg-name">The Aerie</span><span class="reg-coll">The Canopy</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
-    <a href="pieces/the-eden.html" class="reg-tile"><span class="reg-num">03</span><span class="reg-name">The Eden</span><span class="reg-coll">The Canopy</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
-    <a href="pieces/the-parliament.html" class="reg-tile"><span class="reg-num">05</span><span class="reg-name">The Parliament</span><span class="reg-coll">Crimson Duo</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
-    <a href="pieces/the-scarlets.html" class="reg-tile"><span class="reg-num">06</span><span class="reg-name">The Scarlets</span><span class="reg-coll">Crimson Duo</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
-    <a href="pieces/the-sovereign.html" class="reg-tile"><span class="reg-num">08</span><span class="reg-name">The Sovereign</span><span class="reg-coll">The Canopy</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
-    <a href="pieces/the-ascent.html" class="reg-tile"><span class="reg-num">09</span><span class="reg-name">The Ascent</span><span class="reg-coll">The Canopy</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
-    <a href="pieces/the-cathedral.html" class="reg-tile"><span class="reg-num">10</span><span class="reg-name">The Cathedral</span><span class="reg-coll">White Cockatoos</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
-    <a href="pieces/the-monolith.html" class="reg-tile"><span class="reg-num">11</span><span class="reg-name">The Monolith</span><span class="reg-coll">The Canopy</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
-    <a href="pieces/the-raptor.html" class="reg-tile"><span class="reg-num">12</span><span class="reg-name">The Raptor</span><span class="reg-coll">The Canopy</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
-    <a href="pieces/the-hyacinths.html" class="reg-tile"><span class="reg-num">13</span><span class="reg-name">The Hyacinths</span><span class="reg-coll">Blue Macaws</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
-    <a href="pieces/the-indigos.html" class="reg-tile"><span class="reg-num">14</span><span class="reg-name">The Indigos</span><span class="reg-coll">Blue Macaws</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
-    <a href="pieces/the-sentinels.html" class="reg-tile"><span class="reg-num">15</span><span class="reg-name">The Sentinels</span><span class="reg-coll">Blue Macaws</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
-    <a href="pieces/the-grotto.html" class="reg-tile"><span class="reg-num">17</span><span class="reg-name">The Grotto</span><span class="reg-coll">Blue Macaws</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
-    <a href="pieces/the-ethereals.html" class="reg-tile"><span class="reg-num">18</span><span class="reg-name">The Ethereals</span><span class="reg-coll">White Cockatoos</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
-    <a href="pieces/the-companions.html" class="reg-tile"><span class="reg-num">19</span><span class="reg-name">The Companions</span><span class="reg-coll">The Canopy</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
-    <a href="pieces/the-lovers.html" class="reg-tile"><span class="reg-num">20</span><span class="reg-name">The Lovers</span><span class="reg-coll">The Canopy</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
-    <a href="pieces/the-duet.html" class="reg-tile"><span class="reg-num">21</span><span class="reg-name">The Duet</span><span class="reg-coll">The Canopy</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
-    <a href="pieces/the-gathering.html" class="reg-tile"><span class="reg-num">22</span><span class="reg-name">The Gathering</span><span class="reg-coll">The Canopy</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
-    <a href="pieces/the-courtship.html" class="reg-tile"><span class="reg-num">23</span><span class="reg-name">The Courtship</span><span class="reg-coll">The Canopy</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
-    <a href="pieces/the-violet.html" class="reg-tile"><span class="reg-num">24</span><span class="reg-name">The Violet</span><span class="reg-coll">White Cockatoos</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
-    <a href="pieces/the-soloist.html" class="reg-tile"><span class="reg-num">25</span><span class="reg-name">The Soloist</span><span class="reg-coll">Blue Macaws</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
-    <a href="pieces/the-radiance.html" class="reg-tile"><span class="reg-num">26</span><span class="reg-name">The Radiance</span><span class="reg-coll">White Cockatoos</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
-    <a href="pieces/the-pair.html" class="reg-tile"><span class="reg-num">27</span><span class="reg-name">The Pair</span><span class="reg-coll">The Canopy</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
-    <a href="pieces/the-eclipse.html" class="reg-tile"><span class="reg-num">28</span><span class="reg-name">The Eclipse</span><span class="reg-coll">Blue Macaws</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
-    <a href="pieces/the-devotion.html" class="reg-tile"><span class="reg-num">29</span><span class="reg-name">The Devotion</span><span class="reg-coll">White Cockatoos</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
-    <a href="pieces/the-whisper.html" class="reg-tile"><span class="reg-num">30</span><span class="reg-name">The Whisper</span><span class="reg-coll">The Canopy</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
-    <a href="pieces/the-nest.html" class="reg-tile"><span class="reg-num">31</span><span class="reg-name">The Nest</span><span class="reg-coll">The Canopy</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
-    <a href="pieces/the-guardians.html" class="reg-tile"><span class="reg-num">32</span><span class="reg-name">The Guardians</span><span class="reg-coll">White Cockatoos</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
-    <a href="pieces/the-herald.html" class="reg-tile"><span class="reg-num">33</span><span class="reg-name">The Herald</span><span class="reg-coll">The Canopy</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
-    <a href="pieces/the-embrace.html" class="reg-tile"><span class="reg-num">34</span><span class="reg-name">The Embrace</span><span class="reg-coll">The Canopy</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
-    <a href="pieces/the-grace.html" class="reg-tile"><span class="reg-num">35</span><span class="reg-name">The Grace</span><span class="reg-coll">White Cockatoos</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
-    <a href="pieces/the-tenderness.html" class="reg-tile"><span class="reg-num">37</span><span class="reg-name">The Tenderness</span><span class="reg-coll">The Canopy</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
-    <a href="pieces/the-orbit.html" class="reg-tile"><span class="reg-num">38</span><span class="reg-name">The Orbit</span><span class="reg-coll">White Cockatoos</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
-    <a href="pieces/the-vessel.html" class="reg-tile"><span class="reg-num">39</span><span class="reg-name">The Vessel</span><span class="reg-coll">The Canopy</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
-    <a href="pieces/the-driftwood.html" class="reg-tile"><span class="reg-num">40</span><span class="reg-name">The Driftwood</span><span class="reg-coll">The Canopy</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
-    <a href="pieces/the-cluster.html" class="reg-tile"><span class="reg-num">41</span><span class="reg-name">The Cluster</span><span class="reg-coll">White Cockatoos</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
-    <a href="pieces/the-twins.html" class="reg-tile"><span class="reg-num">42</span><span class="reg-name">The Twins</span><span class="reg-coll">White Cockatoos</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
-    <a href="pieces/the-sliced.html" class="reg-tile"><span class="reg-num">43</span><span class="reg-name">The Sliced</span><span class="reg-coll">Blue Macaws</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
-    <a href="pieces/the-smoke.html" class="reg-tile"><span class="reg-num">44</span><span class="reg-name">The Smoke</span><span class="reg-coll">Crimson Duo</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
-  </div>
-  <p class="reg-note">To request a private viewing of any piece, write to david@phaora.com or call the studio directly.</p>
-</section>
-
-<!-- ═══ CORRESPONDENCE ═══ -->
-<section class="corr reveal">
+<!-- CORRESPONDENCE -->
+<section class="corr gf reveal">
   <div class="corr-inner">
     <span class="super-label">— Correspondence —</span>
     <h3>Write to the studio about a <em>piece</em></h3>
-    <p>Every enquiry is answered personally by David within twenty-four hours. Private viewings are arranged at the Boca Raton studio or by secure shipment.</p>
+    <p>Every enquiry is answered personally by David within twenty-four hours. Private viewings arranged at the Boca Raton studio.</p>
     <div class="corr-ctas">
       <a href="mailto:david@phaora.com?subject=Sculpture%20Enquiry" class="btn btn-amber">Write to the studio <span class="arrow">&rarr;</span></a>
-      <a href="gallery.html" class="btn btn-outline">View the gallery <span class="arrow">&rarr;</span></a>
+      <a href="gallery.html" class="btn btn-outline">Visit the gallery <span class="arrow">&rarr;</span></a>
     </div>
   </div>
 </section>
 
-<!-- ═══ FOOTER ═══ -->
-<footer class="footer">
-  <div class="footer-inner">
-    <div><span class="footer-logo">PHAÖRA</span><p class="footer-tagline">Hardscape and crystal for the estates that demand permanence.</p></div>
-    <div class="footer-col"><h5>The House</h5><a href="/">About</a><a href="/#studio">Studio</a><a href="#">Press</a><a href="#">Journal</a></div>
-    <div class="footer-col"><h5>Divisions</h5><a href="hardscape-gallery.html">Hardscape</a><a href="sculptures.html">Sculpture</a><a href="gallery.html">Gallery</a><a href="sculptures.html">Pieces</a></div>
-    <div class="footer-col"><h5>Connect</h5><a href="contact.html">Contact</a><a href="agents.html">Agents</a><a href="#">Instagram</a><a href="mailto:david@phaora.com">Email</a></div>
-  </div>
-  <div class="footer-bottom"><span>Phaöra · MMXXVI</span><span class="motto">Built on standards. Not inherited. Decided.</span><span>Boca Raton · All rights reserved</span></div>
-</footer>
+<!-- FOOTER -->
+<footer class="footer"><div class="footer-inner"><div><span class="footer-logo">PHAÖRA</span><p class="footer-tagline">Hardscape and crystal for the estates that demand permanence.</p></div><div class="footer-col"><h5>The House</h5><a href="/">About</a><a href="/#studio">Studio</a><a href="#">Press</a><a href="#">Journal</a></div><div class="footer-col"><h5>Divisions</h5><a href="hardscape-gallery.html">Hardscape</a><a href="sculptures.html">Sculpture</a><a href="gallery.html">Gallery</a><a href="sculptures.html">Pieces</a></div><div class="footer-col"><h5>Connect</h5><a href="contact.html">Contact</a><a href="agents.html">Agents</a><a href="#">Instagram</a><a href="mailto:david@phaora.com">Email</a></div></div><div class="footer-bottom"><span>Phaöra · MMXXVI</span><span class="motto">Built on standards. Not inherited. Decided.</span><span>Boca Raton · All rights reserved</span></div></footer>
 
-<!-- ═══ LIGHTBOX ═══ -->
-<div class="lb" id="lb">
-  <button class="lb-close" id="lb-close">&#x2715;</button>
-  <button class="lb-prev" id="lb-prev">&#x2039;</button>
-  <img class="lb-img" id="lb-img" src="" alt="">
-  <button class="lb-next" id="lb-next">&#x203A;</button>
-  <div class="lb-info"><div class="lb-title" id="lb-title"></div><div class="lb-sub" id="lb-sub"></div></div>
-  <span class="lb-counter" id="lb-counter"></span>
-</div>
+<!-- LIGHTBOX -->
+<div class="lb" id="lb"><button class="lb-close" id="lb-close">&#x2715;</button><button class="lb-prev" id="lb-prev">&#x2039;</button><img class="lb-img" id="lb-img" src="" alt=""><button class="lb-next" id="lb-next">&#x203A;</button><span class="lb-counter" id="lb-counter"></span></div>
 
 <script>
 (function(){
-  var reveals=document.querySelectorAll('.reveal');
-  var rObs=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){en.target.classList.add('revealed');rObs.unobserve(en.target)}})},{threshold:0.1});
-  reveals.forEach(function(el){rObs.observe(el)});
+var POOL=[
+'assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-1.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-2.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-3.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-4.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-5.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-6.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-1.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-2.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-3.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-4.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-5.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-6.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-1.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-2.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-3.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-4.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-5.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-6.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-1.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-2.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-3.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-4.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-5.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-6.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-1.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-2.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-3.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-4.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-5.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-6.jpeg'
+];
+function hashSlug(s){var h=0;for(var i=0;i<s.length;i++)h=((h<<5)-h)+s.charCodeAt(i);return Math.abs(h)}
 
-  var tiles=Array.from(document.querySelectorAll('.g-tile'));
-  var lb=document.getElementById('lb'),lbImg=document.getElementById('lb-img'),
-      lbTitle=document.getElementById('lb-title'),lbSub=document.getElementById('lb-sub'),
-      lbCounter=document.getElementById('lb-counter');
-  var idx=0,total=tiles.length;
+/* Catalog tile hover photos */
+document.querySelectorAll('.cat-tile').forEach(function(t){
+  var slug=t.getAttribute('data-slug');
+  var idx=hashSlug(slug)%POOL.length;
+  t.querySelector('.cat-bg').style.backgroundImage='url('+POOL[idx]+')';
+});
 
-  function show(i){
-    idx=((i%total)+total)%total;
-    var t=tiles[idx],cap=t.getAttribute('data-cap')||'',parts=cap.split(' \u00B7 ');
-    lbImg.src=t.querySelector('img').src;
-    lbTitle.textContent=parts[0]||'';lbSub.textContent=parts[1]||'';
-    lbCounter.textContent=(idx+1)+' / '+total;
-  }
-  function open(i){show(i);lb.classList.add('open');document.body.style.overflow='hidden'}
-  function close(){lb.classList.remove('open');document.body.style.overflow=''}
+/* Lightbox for pool gallery */
+var tiles=Array.from(document.querySelectorAll('.g-tile'));
+var lb=document.getElementById('lb'),lbImg=document.getElementById('lb-img'),lbCounter=document.getElementById('lb-counter');
+var idx=0,total=tiles.length;
+function show(i){idx=((i%total)+total)%total;lbImg.src=tiles[idx].querySelector('img').src;lbCounter.textContent=(idx+1)+' / '+total}
+function open(i){show(i);lb.classList.add('open');document.body.style.overflow='hidden'}
+function close(){lb.classList.remove('open');document.body.style.overflow=''}
+tiles.forEach(function(t,i){t.addEventListener('click',function(){open(i)})});
+document.getElementById('lb-close').addEventListener('click',close);
+document.getElementById('lb-prev').addEventListener('click',function(){show(idx-1)});
+document.getElementById('lb-next').addEventListener('click',function(){show(idx+1)});
+lb.addEventListener('click',function(e){if(e.target===lb)close()});
+document.addEventListener('keydown',function(e){if(!lb.classList.contains('open'))return;if(e.key==='Escape')close();else if(e.key==='ArrowLeft')show(idx-1);else if(e.key==='ArrowRight')show(idx+1)});
 
-  tiles.forEach(function(t,i){t.addEventListener('click',function(e){e.preventDefault();open(i)})});
-  document.getElementById('lb-close').addEventListener('click',close);
-  document.getElementById('lb-prev').addEventListener('click',function(){show(idx-1)});
-  document.getElementById('lb-next').addEventListener('click',function(){show(idx+1)});
-  lb.addEventListener('click',function(e){if(e.target===lb)close()});
-  document.addEventListener('keydown',function(e){if(!lb.classList.contains('open'))return;if(e.key==='Escape')close();else if(e.key==='ArrowLeft')show(idx-1);else if(e.key==='ArrowRight')show(idx+1)});
-
-  var vcLink=document.getElementById('view-canopy');
-  if(vcLink){vcLink.addEventListener('click',function(e){e.preventDefault();open(0)})}
+/* Scroll reveal */
+var reveals=document.querySelectorAll('.reveal');
+var rObs=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){en.target.classList.add('revealed');rObs.unobserve(en.target)}})},{threshold:0.08});
+reveals.forEach(function(el){rObs.observe(el)});
 })();
 </script>
 </body>

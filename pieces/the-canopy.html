@@ -4,23 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PHAÖRA — The Canopy · USD 68,000</title>
-<meta name="description" content="The Canopy — seven white quartz birds on Brazilian driftwood. One of one. Never duplicated. PHAÖRA's flagship sculpture.">
+<meta name="description" content="The Canopy — seven white quartz birds on Brazilian driftwood. One of one. PHAÖRA's flagship sculpture.">
+<meta property="og:image" content="https://phaora.com/assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-1.jpeg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --ink:#0a0908;--surface:#12100c;--bone:#e8dcc4;
-  --amber:#B87333;--amber-bright:#D4A254;--muted:#8a7355;
-  --stroke:rgba(184,115,51,0.2);
-  --serif:'Fraunces',Georgia,serif;--sans:'Inter',system-ui,sans-serif;
-  --mono:'JetBrains Mono',monospace;--ease:cubic-bezier(0.22,1,0.36,1);
-}
+:root{--ink:#0a0908;--surface:#12100c;--bone:#e8dcc4;--amber:#B87333;--amber-bright:#D4A254;--muted:#8a7355;--stroke:rgba(184,115,51,0.2);--serif:'Fraunces',Georgia,serif;--sans:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;--ease:cubic-bezier(0.22,1,0.36,1)}
 html{scroll-behavior:smooth;background:var(--ink)}
 body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-
-/* ═══ NAV ═══ */
 .nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 2.5rem;height:60px;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(24px) saturate(1.2);-webkit-backdrop-filter:blur(24px) saturate(1.2);background:rgba(10,9,8,0.85);border-bottom:0.5px solid var(--stroke)}
 .nav-left,.nav-right{display:flex;align-items:center;gap:2rem}
 .nav-left a,.nav-right a{font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;color:var(--bone);transition:color .3s ease;position:relative}
@@ -31,41 +24,40 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
 .nav-enquire .arrow{font-size:10px;transition:transform .3s var(--ease)}
 .nav-enquire:hover .arrow{transform:translateX(4px)}
 .nav-enquire:hover{background:rgba(232,220,196,0.06)}
+.gf{position:relative;isolation:isolate}
+.gf::after{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:0.55;background-image:radial-gradient(1.5px 1.5px at 8% 15%,rgba(184,115,51,0.35),transparent),radial-gradient(1px 1px at 22% 48%,rgba(212,162,84,0.25),transparent),radial-gradient(2px 1px at 38% 78%,rgba(184,115,51,0.2),transparent),radial-gradient(1px 1.5px at 55% 22%,rgba(212,162,84,0.3),transparent),radial-gradient(1.5px 1px at 72% 58%,rgba(184,115,51,0.25),transparent),radial-gradient(1px 1px at 85% 82%,rgba(212,162,84,0.2),transparent),radial-gradient(1px 2px at 15% 92%,rgba(184,115,51,0.15),transparent),radial-gradient(2px 1px at 92% 35%,rgba(212,162,84,0.25),transparent)}
 
-/* ═══ BREADCRUMB ═══ */
+/* BREADCRUMB */
 .crumb{margin-top:60px;padding:1rem 2.5rem;border-bottom:0.5px solid var(--stroke);display:flex;justify-content:space-between;align-items:center}
 .crumb a{font-family:var(--sans);font-size:10.5px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .3s}
 .crumb a:hover{color:var(--amber)}
 .crumb-num{font-family:var(--mono);font-size:12px;font-weight:300;letter-spacing:0.1em;color:var(--muted)}
 
-/* ═══ PIECE HERO ═══ */
-.piece-hero{padding:6rem 2.5rem 4rem;text-align:center}
-.piece-hero-inner{max-width:900px;margin:0 auto}
+/* PIECE HERO */
+.piece-hero{min-height:70vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:6rem 2.5rem;position:relative;overflow:hidden}
+.piece-hero-bg{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center;filter:brightness(0.45) contrast(1.05)}
+.piece-hero>*{position:relative;z-index:1}
 .piece-super{font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:0.32em;text-transform:uppercase;color:var(--amber);margin-bottom:2rem}
 .piece-hero h1{font-family:var(--serif);font-size:clamp(56px,8vw,120px);font-weight:300;line-height:0.95;letter-spacing:-0.025em;color:var(--bone);font-variation-settings:'opsz' 144,'SOFT' 0;margin-bottom:1rem}
 .piece-hero h1 em{font-style:italic}
-.piece-hero-sub{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2vw,26px);line-height:1.4;color:rgba(232,220,196,0.85);font-weight:300;font-variation-settings:'opsz' 36,'SOFT' 80;max-width:600px;margin:0 auto 3rem}
-.piece-meta-strip{border-top:0.5px solid var(--stroke);padding-top:1.25rem;font-family:var(--mono);font-size:12px;font-weight:300;letter-spacing:0.08em;color:var(--muted);display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap}
-.piece-meta-strip .sep{color:var(--amber);font-size:10px}
+.piece-sub{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2vw,26px);line-height:1.4;color:rgba(232,220,196,0.85);font-weight:300;font-variation-settings:'opsz' 36,'SOFT' 80;max-width:600px;margin-bottom:3rem}
+.piece-meta{border-top:0.5px solid var(--stroke);padding-top:1.25rem;font-family:var(--mono);font-size:12px;font-weight:300;letter-spacing:0.08em;color:var(--muted);display:flex;gap:1.5rem;flex-wrap:wrap}
+.piece-meta .sep{color:var(--amber);font-size:10px}
 
-/* ═══ PIECE BODY ═══ */
-.piece-body{padding:0 2.5rem 5rem}
+/* BODY */
+.piece-body{padding:5rem 2.5rem}
 .piece-body-inner{display:grid;grid-template-columns:1fr 2fr;gap:5rem;max-width:1200px;margin:0 auto;align-items:start}
-
-/* Metadata card */
-.meta-card{border:0.5px solid var(--stroke);padding:0}
+.meta-card{border:0.5px solid var(--stroke)}
 .mc-price{padding:2rem;border-bottom:0.5px solid var(--stroke)}
 .mc-price-label{display:block;font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem}
 .mc-price-val{font-family:var(--mono);font-size:22px;font-weight:300;color:var(--bone)}
-.mc-price-edition{display:block;font-family:var(--serif);font-style:italic;font-size:13px;color:var(--muted);margin-top:0.5rem;font-variation-settings:'opsz' 18}
+.mc-price-ed{display:block;font-family:var(--serif);font-style:italic;font-size:13px;color:var(--muted);margin-top:0.5rem;font-variation-settings:'opsz' 18}
 .mc-row{display:flex;justify-content:space-between;align-items:baseline;padding:0.875rem 2rem;border-bottom:0.5px solid var(--stroke)}
 .mc-row:last-child{border-bottom:none}
 .mc-label{font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted)}
 .mc-val{font-family:var(--mono);font-size:13px;font-weight:300;color:var(--bone);text-align:right;max-width:55%}
 .mc-cta{display:block;padding:1.25rem 2rem;text-align:center;background:var(--amber);color:var(--ink);font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;transition:background .4s var(--ease)}
 .mc-cta:hover{background:var(--amber-bright)}
-
-/* Editorial body */
 .editorial h2{font-family:var(--serif);font-size:clamp(28px,3vw,40px);font-weight:300;line-height:1.15;color:var(--bone);font-variation-settings:'opsz' 72,'SOFT' 0;margin-bottom:2rem}
 .editorial h2 em{font-style:italic}
 .editorial p{font-family:var(--serif);font-size:18px;font-weight:400;line-height:1.65;color:rgba(232,220,196,0.88);margin-bottom:1.5rem;font-variation-settings:'opsz' 18,'SOFT' 50}
@@ -77,7 +69,7 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
 .cp-body strong{display:block;font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:0.06em;color:var(--bone);margin-bottom:4px}
 .cp-body span{font-family:var(--serif);font-size:15px;font-weight:400;color:rgba(232,220,196,0.6);line-height:1.55;font-variation-settings:'opsz' 18}
 
-/* ═══ PHOTO BLOCK ═══ */
+/* PHOTO BLOCK */
 .photos{padding:0 2.5rem 5rem;border-top:0.5px solid var(--stroke)}
 .photos-label{max-width:1440px;margin:0 auto;padding:1rem 0;font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--amber);margin-bottom:2rem}
 .p-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:90px;gap:1.25rem;max-width:1440px;margin:0 auto;grid-auto-flow:dense}
@@ -86,14 +78,8 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
 .g-tile:hover img{filter:grayscale(0%) brightness(1) contrast(1.08);transform:scale(1.04)}
 .g-caption{position:absolute;bottom:0;left:0;right:0;padding:3rem 1.25rem 1rem;background:linear-gradient(transparent,rgba(10,9,8,0.85));border-top:0.5px solid transparent;font-family:var(--sans);font-size:10.5px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:var(--bone);transform:translateY(100%);transition:transform .6s var(--ease),border-color .6s ease}
 .g-tile:hover .g-caption{transform:translateY(0);border-top-color:var(--stroke)}
-.g-tile:nth-child(1){grid-column:span 8;grid-row:span 5}
-.g-tile:nth-child(2){grid-column:span 4;grid-row:span 5}
-.g-tile:nth-child(3){grid-column:span 5;grid-row:span 4}
-.g-tile:nth-child(4){grid-column:span 4;grid-row:span 4}
-.g-tile:nth-child(5){grid-column:span 3;grid-row:span 4}
-.g-tile:nth-child(6){grid-column:span 12;grid-row:span 3}
 
-/* ═══ PREV/NEXT ═══ */
+/* PREV/NEXT */
 .pn{border-top:0.5px solid var(--stroke);padding:3rem 2.5rem;max-width:1440px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:2rem}
 .pn a{text-decoration:none;color:var(--bone);transition:color .3s}
 .pn a:hover{color:var(--amber)}
@@ -101,7 +87,7 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
 .pn-name{font-family:var(--serif);font-style:italic;font-size:22px;font-weight:300;font-variation-settings:'opsz' 36}
 .pn-next{text-align:right}
 
-/* ═══ CORRESPONDENCE ═══ */
+/* CORRESPONDENCE */
 .corr{padding:6rem 2.5rem;text-align:center;border-top:0.5px solid var(--stroke)}
 .corr-inner{max-width:680px;margin:0 auto}
 .super-label{display:block;font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:0.32em;text-transform:uppercase;color:var(--muted);margin-bottom:2.5rem}
@@ -109,8 +95,6 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
 .corr-inner h3 em{font-style:italic}
 .corr-inner>p{font-family:var(--serif);font-size:17px;font-weight:400;line-height:1.55;color:rgba(232,220,196,0.5);margin-bottom:3rem;font-variation-settings:'opsz' 18,'SOFT' 50}
 .corr-ctas{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-
-/* ═══ BUTTONS ═══ */
 .btn{display:inline-flex;align-items:center;gap:10px;padding:1rem 2rem;font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:all .4s var(--ease)}
 .btn .arrow{transition:transform .4s var(--ease)}
 .btn:hover .arrow{transform:translateX(6px)}
@@ -119,7 +103,7 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
 .btn-outline{background:transparent;color:var(--bone);border:1px solid rgba(232,220,196,0.3)}
 .btn-outline:hover{background:var(--bone);color:var(--ink);border-color:var(--bone)}
 
-/* ═══ FOOTER ═══ */
+/* FOOTER */
 .footer{background:var(--ink);border-top:0.5px solid var(--stroke);padding:5rem 2.5rem 0}
 .footer-inner{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem;max-width:1440px;margin:0 auto;padding-bottom:4rem}
 .footer-logo{font-family:var(--serif);font-size:40px;font-weight:300;color:var(--bone);margin-bottom:1rem;display:block;font-variation-settings:'opsz' 72,'SOFT' 0}
@@ -131,7 +115,7 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
 .footer-bottom span{font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:0.06em;color:var(--muted)}
 .footer-bottom .motto{font-family:var(--serif);font-style:italic;font-size:13px;color:rgba(232,220,196,0.6);font-variation-settings:'opsz' 18}
 
-/* ═══ LIGHTBOX ═══ */
+/* LIGHTBOX */
 .lb{position:fixed;inset:0;z-index:10000;background:rgba(10,9,8,0.96);display:flex;align-items:center;justify-content:center;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .3s ease}
 .lb.open{opacity:1;pointer-events:all}
 .lb-img{max-width:90vw;max-height:85vh;object-fit:contain;display:block}
@@ -145,26 +129,21 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
 .lb-sub{font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted)}
 .lb-counter{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:0.15em;color:var(--muted)}
 
-/* ═══ REVEAL ═══ */
 .reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
 .reveal.revealed{opacity:1;transform:translateY(0)}
-@keyframes dotPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.75)}}
 
-/* ═══ RESPONSIVE ═══ */
 @media(max-width:900px){
   .nav-left,.nav-right{display:none}.nav{justify-content:center}
   .crumb{padding:0.75rem 1.5rem}
-  .piece-hero{padding:4rem 1.5rem 3rem}
+  .piece-hero{padding:4rem 1.5rem;min-height:60vh}
   .piece-hero h1{font-size:clamp(40px,12vw,72px)}
-  .piece-meta-strip{flex-direction:column;gap:0.5rem}
-  .piece-body{padding:0 1.5rem 3rem}
+  .piece-meta{flex-direction:column;gap:0.5rem}
+  .piece-body{padding:3rem 1.5rem}
   .piece-body-inner{grid-template-columns:1fr;gap:3rem}
   .photos{padding:0 1.5rem 3rem}
   .p-grid{grid-template-columns:repeat(6,1fr);grid-auto-rows:80px;gap:0.75rem}
-  .g-tile:nth-child(1),.g-tile:nth-child(2),.g-tile:nth-child(3),
-  .g-tile:nth-child(4),.g-tile:nth-child(5),.g-tile:nth-child(6){grid-column:span 3;grid-row:span 4}
-  .pn{padding:2rem 1.5rem;grid-template-columns:1fr}
-  .pn-next{text-align:left}
+  .p-grid .g-tile{grid-column:span 3 !important;grid-row:span 4 !important}
+  .pn{padding:2rem 1.5rem;grid-template-columns:1fr}.pn-next{text-align:left}
   .corr{padding:4rem 1.5rem}.corr-ctas{flex-direction:column;align-items:center}
   .footer{padding:3rem 1.5rem 0}.footer-inner{grid-template-columns:1fr;text-align:center}.footer-tagline{margin:0 auto}
   .footer-bottom{flex-direction:column;gap:0.5rem;text-align:center;padding:1.25rem 0}
@@ -174,46 +153,24 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
 </head>
 <body>
 
-<!-- ═══ NAV ═══ -->
-<nav class="nav">
-  <div class="nav-left"><a href="../hardscape-gallery.html">Hardscape</a><a href="../sculptures.html">Sculpture</a><a href="../gallery.html">Gallery</a><a href="../agents.html">Agents</a></div>
-  <a href="../index.html" class="nav-logo">PHAÖRA</a>
-  <div class="nav-right"><a href="../index.html#studio">Studio</a><a href="../contact.html">Contact</a><a href="../index.html#invitation" class="nav-enquire">Enquire <span class="arrow">&rarr;</span></a></div>
-</nav>
+<nav class="nav"><div class="nav-left"><a href="../hardscape-gallery.html">Hardscape</a><a href="../sculptures.html">Sculpture</a><a href="../gallery.html">Gallery</a><a href="../agents.html">Agents</a></div><a href="../index.html" class="nav-logo">PHAÖRA</a><div class="nav-right"><a href="../index.html#studio">Studio</a><a href="../contact.html">Contact</a><a href="../index.html#invitation" class="nav-enquire">Enquire <span class="arrow">&rarr;</span></a></div></nav>
 
-<!-- ═══ BREADCRUMB ═══ -->
-<div class="crumb">
-  <a href="../sculptures.html">&larr; Back to the collection</a>
-  <span class="crumb-num">03 of Forty-four</span>
-</div>
+<div class="crumb"><a href="../sculptures.html">&larr; Back to the collection</a><span class="crumb-num">03 of Forty-four</span></div>
 
-<!-- ═══ PIECE HERO ═══ -->
-<section class="piece-hero reveal">
-  <div class="piece-hero-inner">
-    <div class="piece-super">Collection · The Canopy</div>
-    <h1>The <em>Canopy</em></h1>
-    <p class="piece-hero-sub">White Quartz Flock on Brazilian Driftwood · Minas Gerais, Brazil</p>
-    <div class="piece-meta-strip">
-      <span>Edition · One of one</span>
-      <span class="sep">&#x25C6;</span>
-      <span>Origin · Minas Gerais</span>
-      <span class="sep">&#x25C6;</span>
-      <span>Available</span>
-    </div>
-  </div>
+<!-- HERO -->
+<section class="piece-hero gf">
+  <div class="piece-hero-bg" style="background-image:url('../assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-1.jpeg')"></div>
+  <div class="piece-super">Piece · 03</div>
+  <h1>The <em>Canopy</em></h1>
+  <p class="piece-sub">White Quartz Flock on Brazilian Driftwood · Minas Gerais, Brazil</p>
+  <div class="piece-meta"><span>Edition · One of one</span><span class="sep">&#x25C6;</span><span>Origin · Minas Gerais</span><span class="sep">&#x25C6;</span><span>By appointment</span></div>
 </section>
 
-<!-- ═══ PIECE BODY ═══ -->
+<!-- BODY -->
 <section class="piece-body reveal">
   <div class="piece-body-inner">
-
-    <!-- Metadata card -->
     <div class="meta-card">
-      <div class="mc-price">
-        <span class="mc-price-label">Price</span>
-        <div class="mc-price-val">USD 68,000</div>
-        <span class="mc-price-edition">One of one</span>
-      </div>
+      <div class="mc-price"><span class="mc-price-label">Price</span><div class="mc-price-val">USD 68,000</div><span class="mc-price-ed">One of one</span></div>
       <div class="mc-row"><span class="mc-label">Medium</span><span class="mc-val">White Quartz · Driftwood · Quartz Base</span></div>
       <div class="mc-row"><span class="mc-label">Origin</span><span class="mc-val">Minas Gerais, Brazil</span></div>
       <div class="mc-row"><span class="mc-label">Dimensions</span><span class="mc-val">H 72" x W 96" x D 48"</span></div>
@@ -223,58 +180,39 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
       <div class="mc-row"><span class="mc-label">Signed</span><span class="mc-val">David Machado Vaz</span></div>
       <a href="mailto:david@phaora.com?subject=Enquiry:%20The%20Canopy" class="mc-cta">Inquire about this piece</a>
     </div>
-
-    <!-- Editorial -->
     <div class="editorial">
       <h2>Not art that <em>fills</em> a room.<br>Art that <em>becomes</em> one.</h2>
       <p>The Canopy is PHAÖRA's defining work — the piece that every collector who sees it asks about first. It is not a decoration. It is not an accent. It is the room's reason.</p>
       <blockquote>It is not a decoration. It is not an accent. It is the room's reason.</blockquote>
       <p>At 96 inches wide and 380 pounds, it is scaled for the spaces that deserve it: double-height lobbies, grand foyers, estate galleries, penthouse atriums. In every space it has occupied, the room was remembered because of it.</p>
-
       <div class="craft-points">
-        <div class="craft-point">
-          <span class="cp-num">I</span>
-          <div class="cp-body"><strong>Seven individually carved birds</strong><span>Each white quartz bird is a separate carving — not cast, not molded. Feather striations are cut by hand. No two birds are identical.</span></div>
-        </div>
-        <div class="craft-point">
-          <span class="cp-num">II</span>
-          <div class="cp-body"><strong>Atlantic rainforest driftwood</strong><span>The driftwood base was sourced from Brazil's Atlantic coast and treated to preserve its grain for generations. There is no substitute material.</span></div>
-        </div>
-        <div class="craft-point">
-          <span class="cp-num">III</span>
-          <div class="cp-body"><strong>Crystal botanical accents</strong><span>Flowers and foliage carved from citrine, amethyst, and labradorite are worked into the driftwood at the junction points — visible only on close inspection.</span></div>
-        </div>
-        <div class="craft-point">
-          <span class="cp-num">IV</span>
-          <div class="cp-body"><strong>40 years in one piece</strong><span>Fabiano has been carving for over four decades. The Canopy represents the accumulated precision of that practice — it is not the work of a young artist.</span></div>
-        </div>
+        <div class="craft-point"><span class="cp-num">I</span><div class="cp-body"><strong>Seven individually carved birds</strong><span>Each white quartz bird is a separate carving — not cast, not molded. Feather striations are cut by hand. No two birds are identical.</span></div></div>
+        <div class="craft-point"><span class="cp-num">II</span><div class="cp-body"><strong>Atlantic rainforest driftwood</strong><span>The driftwood base was sourced from Brazil's Atlantic coast and treated to preserve its grain for generations. There is no substitute material.</span></div></div>
+        <div class="craft-point"><span class="cp-num">III</span><div class="cp-body"><strong>Crystal botanical accents</strong><span>Flowers and foliage carved from citrine, amethyst, and labradorite are worked into the driftwood at the junction points — visible only on close inspection.</span></div></div>
+        <div class="craft-point"><span class="cp-num">IV</span><div class="cp-body"><strong>40 years in one piece</strong><span>Fabiano has been carving for over four decades. The Canopy represents the accumulated precision of that practice — it is not the work of a young artist.</span></div></div>
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- ═══ PHOTOGRAPHY ═══ -->
+<!-- PHOTOGRAPHY (6 real photos — canopy is a photographed piece) -->
 <section class="photos reveal">
   <div class="photos-label">Six photographs · The Canopy</div>
   <div class="p-grid">
-    <div class="g-tile" data-cap="The Canopy · Plate 1"><img src="../assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-1.jpeg" alt="The Canopy — view 1" loading="lazy"><div class="g-caption">The Canopy · Plate 1</div></div>
-    <div class="g-tile" data-cap="The Canopy · Plate 2"><img src="../assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-2.jpeg" alt="The Canopy — view 2" loading="lazy"><div class="g-caption">The Canopy · Plate 2</div></div>
-    <div class="g-tile" data-cap="The Canopy · Plate 3"><img src="../assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-3.jpeg" alt="The Canopy — view 3" loading="lazy"><div class="g-caption">The Canopy · Plate 3</div></div>
-    <div class="g-tile" data-cap="The Canopy · Plate 4"><img src="../assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-4.jpeg" alt="The Canopy — view 4" loading="lazy"><div class="g-caption">The Canopy · Plate 4</div></div>
-    <div class="g-tile" data-cap="The Canopy · Plate 5"><img src="../assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-5.jpeg" alt="The Canopy — view 5" loading="lazy"><div class="g-caption">The Canopy · Plate 5</div></div>
-    <div class="g-tile" data-cap="The Canopy · Plate 6"><img src="../assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-6.jpeg" alt="The Canopy — view 6" loading="lazy"><div class="g-caption">The Canopy · Plate 6</div></div>
+    <div class="g-tile" style="grid-column:span 8;grid-row:span 5" data-cap="The Canopy · Plate 1"><img src="../assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-1.jpeg" alt="The Canopy — view 1" loading="lazy"><div class="g-caption">The Canopy · Plate 1</div></div>
+    <div class="g-tile" style="grid-column:span 4;grid-row:span 5" data-cap="The Canopy · Plate 2"><img src="../assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-2.jpeg" alt="The Canopy — view 2" loading="lazy"><div class="g-caption">The Canopy · Plate 2</div></div>
+    <div class="g-tile" style="grid-column:span 5;grid-row:span 4" data-cap="The Canopy · Plate 3"><img src="../assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-3.jpeg" alt="The Canopy — view 3" loading="lazy"><div class="g-caption">The Canopy · Plate 3</div></div>
+    <div class="g-tile" style="grid-column:span 4;grid-row:span 4" data-cap="The Canopy · Plate 4"><img src="../assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-4.jpeg" alt="The Canopy — view 4" loading="lazy"><div class="g-caption">The Canopy · Plate 4</div></div>
+    <div class="g-tile" style="grid-column:span 3;grid-row:span 4" data-cap="The Canopy · Plate 5"><img src="../assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-5.jpeg" alt="The Canopy — view 5" loading="lazy"><div class="g-caption">The Canopy · Plate 5</div></div>
+    <div class="g-tile" style="grid-column:span 12;grid-row:span 3" data-cap="The Canopy · Plate 6"><img src="../assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-6.jpeg" alt="The Canopy — view 6" loading="lazy"><div class="g-caption">The Canopy · Plate 6</div></div>
   </div>
 </section>
 
-<!-- ═══ PREV / NEXT ═══ -->
-<nav class="pn">
-  <a href="the-ascent.html"><span class="pn-label">&larr; Previous</span><span class="pn-name">The Ascent</span></a>
-  <a href="the-cathedral.html" class="pn-next"><span class="pn-label">Next &rarr;</span><span class="pn-name">The Cathedral</span></a>
-</nav>
+<!-- PREV / NEXT -->
+<nav class="pn"><a href="the-ascent.html"><span class="pn-label">&larr; Previous</span><span class="pn-name">The Ascent</span></a><a href="the-cathedral.html" class="pn-next"><span class="pn-label">Next &rarr;</span><span class="pn-name">The Cathedral</span></a></nav>
 
-<!-- ═══ CORRESPONDENCE ═══ -->
-<section class="corr reveal">
+<!-- CORRESPONDENCE -->
+<section class="corr gf reveal">
   <div class="corr-inner">
     <span class="super-label">— Correspondence —</span>
     <h3>Enquire about <em>The Canopy</em></h3>
@@ -286,38 +224,18 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
   </div>
 </section>
 
-<!-- ═══ FOOTER ═══ -->
-<footer class="footer">
-  <div class="footer-inner">
-    <div><span class="footer-logo">PHAÖRA</span><p class="footer-tagline">Hardscape and crystal for the estates that demand permanence.</p></div>
-    <div class="footer-col"><h5>The House</h5><a href="../index.html">About</a><a href="../index.html#studio">Studio</a><a href="#">Press</a><a href="#">Journal</a></div>
-    <div class="footer-col"><h5>Divisions</h5><a href="../hardscape-gallery.html">Hardscape</a><a href="../sculptures.html">Sculpture</a><a href="../gallery.html">Gallery</a><a href="../sculptures.html">Pieces</a></div>
-    <div class="footer-col"><h5>Connect</h5><a href="../contact.html">Contact</a><a href="../agents.html">Agents</a><a href="#">Instagram</a><a href="mailto:david@phaora.com">Email</a></div>
-  </div>
-  <div class="footer-bottom"><span>Phaöra · MMXXVI</span><span class="motto">Built on standards. Not inherited. Decided.</span><span>Boca Raton · All rights reserved</span></div>
-</footer>
+<footer class="footer"><div class="footer-inner"><div><span class="footer-logo">PHAÖRA</span><p class="footer-tagline">Hardscape and crystal for the estates that demand permanence.</p></div><div class="footer-col"><h5>The House</h5><a href="../index.html">About</a><a href="../index.html#studio">Studio</a><a href="#">Press</a><a href="#">Journal</a></div><div class="footer-col"><h5>Divisions</h5><a href="../hardscape-gallery.html">Hardscape</a><a href="../sculptures.html">Sculpture</a><a href="../gallery.html">Gallery</a><a href="../sculptures.html">Pieces</a></div><div class="footer-col"><h5>Connect</h5><a href="../contact.html">Contact</a><a href="../agents.html">Agents</a><a href="#">Instagram</a><a href="mailto:david@phaora.com">Email</a></div></div><div class="footer-bottom"><span>Phaöra · MMXXVI</span><span class="motto">Built on standards. Not inherited. Decided.</span><span>Boca Raton · All rights reserved</span></div></footer>
 
-<!-- ═══ LIGHTBOX ═══ -->
-<div class="lb" id="lb">
-  <button class="lb-close" id="lb-close">&#x2715;</button>
-  <button class="lb-prev" id="lb-prev">&#x2039;</button>
-  <img class="lb-img" id="lb-img" src="" alt="">
-  <button class="lb-next" id="lb-next">&#x203A;</button>
-  <div class="lb-info"><div class="lb-title" id="lb-title"></div><div class="lb-sub" id="lb-sub"></div></div>
-  <span class="lb-counter" id="lb-counter"></span>
-</div>
+<div class="lb" id="lb"><button class="lb-close" id="lb-close">&#x2715;</button><button class="lb-prev" id="lb-prev">&#x2039;</button><img class="lb-img" id="lb-img" src="" alt=""><button class="lb-next" id="lb-next">&#x203A;</button><div class="lb-info"><div class="lb-title" id="lb-title"></div><div class="lb-sub" id="lb-sub"></div></div><span class="lb-counter" id="lb-counter"></span></div>
 
 <script>
 (function(){
   var reveals=document.querySelectorAll('.reveal');
   var rObs=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){en.target.classList.add('revealed');rObs.unobserve(en.target)}})},{threshold:0.1});
   reveals.forEach(function(el){rObs.observe(el)});
-
   var tiles=Array.from(document.querySelectorAll('.g-tile'));
   if(!tiles.length)return;
-  var lb=document.getElementById('lb'),lbImg=document.getElementById('lb-img'),
-      lbTitle=document.getElementById('lb-title'),lbSub=document.getElementById('lb-sub'),
-      lbCounter=document.getElementById('lb-counter');
+  var lb=document.getElementById('lb'),lbImg=document.getElementById('lb-img'),lbTitle=document.getElementById('lb-title'),lbSub=document.getElementById('lb-sub'),lbCounter=document.getElementById('lb-counter');
   var idx=0,total=tiles.length;
   function show(i){idx=((i%total)+total)%total;var t=tiles[idx],cap=t.getAttribute('data-cap')||'',parts=cap.split(' \u00B7 ');lbImg.src=t.querySelector('img').src;lbTitle.textContent=parts[0]||'';lbSub.textContent=parts[1]||'';lbCounter.textContent=(idx+1)+' / '+total}
   function open(i){show(i);lb.classList.add('open');document.body.style.overflow='hidden'}
