@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PHAÖRA — Built on Standards</title>
+<meta name="description" content="Phaöra is a Boca Raton luxury house specializing in premium hardscape and hand-carved crystal sculptures for South Florida's finest estates.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+
+/* ===== RESET & ROOT ===== */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bone:#F4F1EA;
+  --black:#0a0907;
+  --dark:#111;
+  --amber:#B87333;
+  --red:#D4541A;
+  --serif:'Fraunces',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+  --ease:cubic-bezier(0.22,1,0.36,1);
+}
+html{scroll-behavior:smooth;background:var(--bone)}
+body{font-family:var(--sans);color:var(--black);background:var(--bone);overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+
+/* ===== NAVIGATION ===== */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  padding:20px 40px;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:background .6s ease,border-color .6s ease;
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  background:rgba(244,241,234,0.88);
+  border-bottom:1px solid var(--amber);
+}
+.nav.nav-dark{
+  background:rgba(10,9,7,0.6);
+  border-bottom-color:rgba(183,115,51,0.15);
+}
+.nav-left,.nav-right{display:flex;align-items:center;gap:32px}
+.nav-left a,.nav-right a{
+  font-family:var(--sans);font-size:11px;font-weight:400;
+  letter-spacing:0.22em;text-transform:uppercase;
+  text-decoration:none;color:var(--black);
+  transition:color .4s ease;position:relative;
+}
+.nav.nav-dark .nav-left a,
+.nav.nav-dark .nav-right a{color:var(--bone)}
+.nav-left a::after,.nav-right a:not(.nav-enquire)::after{
+  content:'';position:absolute;bottom:-4px;left:0;
+  width:100%;height:1px;background:var(--amber);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .4s var(--ease);
+}
+.nav-left a:hover::after,.nav-right a:not(.nav-enquire):hover::after{
+  transform:scaleX(1);
+}
+.nav-logo{
+  font-family:var(--serif);font-size:13px;font-weight:400;
+  letter-spacing:0.28em;text-transform:uppercase;
+  text-decoration:none;color:var(--black);
+  transition:color .4s ease;
+  font-variation-settings:'opsz' 72;
+}
+.nav.nav-dark .nav-logo{color:var(--bone)}
+.nav-enquire{
+  padding:10px 20px;border:1px solid var(--black);
+  transition:all .4s ease !important;
+}
+.nav.nav-dark .nav-enquire{border-color:var(--bone)}
+.nav-enquire:hover{background:var(--black);color:var(--bone) !important}
+.nav.nav-dark .nav-enquire:hover{background:var(--bone);color:var(--black) !important}
+
+/* ===== HERO ===== */
+.hero{
+  position:relative;
+  min-height:max(100vh,720px);
+  display:flex;flex-direction:column;
+  overflow:hidden;background:var(--black);
+}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{
+  width:100%;height:100%;object-fit:cover;
+  opacity:0.4;filter:brightness(0.55);
+  animation:heroZoom 20s ease-out forwards;
+}
+.hero-bg::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(
+    to bottom,
+    rgba(10,9,7,0.4) 0%,
+    rgba(10,9,7,0.15) 35%,
+    rgba(10,9,7,0.3) 65%,
+    rgba(10,9,7,0.85) 100%
+  );
+}
+/* 12-column grid overlay */
+.hero::before{
+  content:'';position:absolute;inset:0;z-index:1;
+  background-image:linear-gradient(90deg,rgba(244,241,234,0.04) 1px,transparent 1px);
+  background-size:calc(100% / 12) 100%;
+  pointer-events:none;
+}
+.hero-content{
+  position:relative;z-index:2;flex:1;
+  display:flex;flex-direction:column;
+  justify-content:space-between;align-items:center;
+  padding:100px 40px 0;
+  max-width:1400px;width:100%;margin:0 auto;
+  text-align:center;
+}
+
+/* Hero meta row */
+.hero-meta{
+  width:100%;display:flex;
+  justify-content:space-between;align-items:center;
+  margin-bottom:auto;
+}
+.hero-meta span{
+  font-family:var(--sans);font-size:10px;font-weight:400;
+  letter-spacing:0.25em;text-transform:uppercase;
+  color:rgba(244,241,234,0.5);
+}
+.hero-meta-center{
+  font-family:var(--serif) !important;font-style:italic;
+  font-size:13px !important;letter-spacing:0.08em !important;
+  text-transform:none !important;color:rgba(244,241,234,0.6) !important;
+  font-variation-settings:'opsz' 24;
+}
+.hero-meta-center .dot{
+  display:inline-block;width:4px;height:4px;
+  border-radius:50%;background:rgba(244,241,234,0.3);
+  vertical-align:middle;margin:0 10px;
+}
+
+/* Hero main heading */
+.hero-main{
+  margin:auto 0;padding:60px 0;
+}
+.hero-kicker{
+  display:inline-flex;align-items:center;gap:16px;
+  font-family:var(--sans);font-size:11px;font-weight:500;
+  letter-spacing:0.28em;text-transform:uppercase;
+  color:rgba(244,241,234,0.7);margin-bottom:32px;
+}
+.kicker-line{
+  width:48px;height:1px;background:var(--amber);
+  animation:lineGrow 1.2s var(--ease) 0.3s both;
+}
+.hero h1{
+  font-family:var(--serif);
+  font-size:clamp(64px,9vw,148px);
+  font-weight:300;line-height:1.02;
+  color:var(--bone);margin-bottom:28px;
+  font-variation-settings:'opsz' 144,'SOFT' 0;
+}
+.hero h1 em{font-style:italic;font-weight:300}
+.hero-lede{
+  font-family:var(--serif);font-style:italic;
+  font-size:clamp(16px,1.8vw,20px);
+  line-height:1.6;color:rgba(244,241,234,0.6);
+  max-width:520px;margin:0 auto;
+  font-variation-settings:'opsz' 18,'SOFT' 50;
+}
+
+/* Hero stats strip */
+.hero-stats{
+  width:100%;border-top:1px solid rgba(183,115,51,0.3);
+  display:grid;grid-template-columns:repeat(4,1fr);
+  padding:32px 0 40px;margin-top:auto;
+}
+.hero-stat{text-align:center}
+.hero-stat .stat-label{
+  display:block;font-family:var(--sans);font-size:11px;
+  font-weight:400;letter-spacing:0.22em;text-transform:uppercase;
+  color:rgba(244,241,234,0.35);margin-bottom:8px;
+}
+.hero-stat .stat-value{
+  font-family:var(--serif);font-style:italic;font-size:22px;
+  color:var(--bone);font-variation-settings:'opsz' 24;
+}
+
+/* Scroll indicator */
+.scroll-indicator{
+  position:absolute;bottom:20px;left:50%;
+  transform:translateX(-50%);z-index:3;
+}
+.scroll-indicator span{
+  display:block;width:1px;height:48px;
+  background:var(--amber);
+  animation:scrollPulse 2.4s ease-in-out infinite;
+}
+
+/* ===== TICKER ===== */
+.ticker{
+  background:var(--dark);
+  border-top:1px solid rgba(183,115,51,0.15);
+  border-bottom:1px solid rgba(183,115,51,0.15);
+  padding:16px 40px;
+}
+.ticker-inner{
+  max-width:1400px;margin:0 auto;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.ticker-left{display:flex;align-items:center;gap:14px}
+.ticker-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--red);
+  animation:dotPulse 2s ease-in-out infinite;
+  flex-shrink:0;
+}
+.ticker-left span:last-child{
+  font-family:var(--sans);font-size:12px;font-weight:400;
+  letter-spacing:0.12em;text-transform:uppercase;
+  color:rgba(244,241,234,0.6);
+}
+.ticker-right span{
+  font-family:var(--sans);font-size:11px;font-weight:400;
+  letter-spacing:0.22em;text-transform:uppercase;
+  color:rgba(244,241,234,0.35);
+}
+
+/* ===== FEATURED HARDSCAPE ===== */
+.featured{
+  padding:120px 40px;background:var(--bone);
+  border-bottom:1px solid var(--amber);
+}
+.featured-header{
+  display:grid;grid-template-columns:1fr 2fr 1fr;
+  align-items:end;gap:40px;
+  max-width:1400px;margin:0 auto 60px;
+  padding-bottom:40px;
+  border-bottom:1px solid var(--amber);
+}
+.featured-tag{
+  font-family:var(--sans);font-size:11px;font-weight:500;
+  letter-spacing:0.22em;text-transform:uppercase;
+  color:rgba(10,9,7,0.4);
+}
+.featured-header h2{
+  font-family:var(--serif);
+  font-size:clamp(42px,5.2vw,74px);
+  font-weight:300;line-height:1.05;color:var(--black);
+  font-variation-settings:'opsz' 144,'SOFT' 0;
+  text-align:center;
+}
+.featured-header h2 em{font-style:italic}
+.featured-spec-meta{
+  text-align:right;
+  font-family:var(--sans);font-size:11px;font-weight:400;
+  letter-spacing:0.08em;color:rgba(10,9,7,0.4);
+  line-height:1.8;
+}
+.featured-split{
+  display:grid;grid-template-columns:5fr 7fr;
+  max-width:1400px;margin:0 auto;
+  min-height:560px;
+}
+.featured-image{
+  position:relative;overflow:hidden;
+}
+.featured-image img{
+  width:100%;height:100%;object-fit:cover;display:block;
+}
+.featured-corner-label{
+  position:absolute;top:24px;left:24px;
+  font-family:var(--sans);font-size:10px;font-weight:500;
+  letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--bone);
+  background:rgba(10,9,7,0.5);backdrop-filter:blur(8px);
+  padding:8px 14px;
+}
+.featured-content{padding:48px 56px}
+.featured-kicker{
+  display:block;font-family:var(--serif);font-style:italic;
+  font-size:14px;color:rgba(10,9,7,0.5);
+  margin-bottom:16px;font-variation-settings:'opsz' 18;
+}
+.featured-content h3{
+  font-family:var(--serif);
+  font-size:clamp(32px,3.5vw,48px);
+  font-weight:300;line-height:1.1;color:var(--black);
+  margin-bottom:20px;font-variation-settings:'opsz' 72,'SOFT' 0;
+}
+.featured-content>p{
+  font-family:var(--sans);font-size:14px;font-weight:300;
+  line-height:1.8;color:rgba(10,9,7,0.6);
+  margin-bottom:40px;max-width:480px;
+}
+.spec-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  border-top:1px solid var(--amber);
+  border-left:1px solid var(--amber);
+  margin-bottom:40px;
+}
+.spec-cell{
+  padding:16px 18px;
+  border-bottom:1px solid var(--amber);
+  border-right:1px solid var(--amber);
+}
+.spec-cell .spec-label{
+  display:block;font-family:var(--sans);font-size:10px;
+  font-weight:500;letter-spacing:0.22em;text-transform:uppercase;
+  color:rgba(10,9,7,0.3);margin-bottom:6px;
+}
+.spec-cell .spec-value{
+  font-family:var(--serif);font-style:italic;font-size:15px;
+  color:var(--black);font-variation-settings:'opsz' 18;
+}
+
+/* ===== BUTTONS ===== */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:18px 32px;
+  font-family:var(--sans);font-size:11px;font-weight:500;
+  letter-spacing:0.22em;text-transform:uppercase;
+  text-decoration:none;cursor:pointer;
+  transition:all .4s var(--ease);
+}
+.btn .arrow{transition:transform .4s var(--ease)}
+.btn:hover .arrow{transform:translateX(6px)}
+.btn-dark{
+  background:var(--black);color:var(--bone);
+  border:1px solid var(--black);
+}
+.btn-dark:hover{background:var(--bone);color:var(--black)}
+.btn-light{
+  background:var(--bone);color:var(--black);
+  border:1px solid var(--bone);
+}
+.btn-light:hover{background:transparent;color:var(--bone)}
+.btn-outline-light{
+  background:transparent;color:var(--bone);
+  border:1px solid rgba(244,241,234,0.35);
+}
+.btn-outline-light:hover{
+  background:var(--bone);color:var(--black);
+  border-color:var(--bone);
+}
+
+/* ===== TWO DIVISIONS ===== */
+.divisions{
+  padding:0 40px;background:var(--bone);
+  border-bottom:1px solid var(--amber);
+}
+.divisions-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:2px;max-width:1400px;margin:0 auto;
+}
+.division-tile{
+  position:relative;aspect-ratio:4/5;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  text-decoration:none;color:var(--bone);
+}
+.division-tile img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;
+  transition:transform 1.2s var(--ease),filter .8s ease;
+}
+.division-tile:hover img{transform:scale(1.07);filter:brightness(1.1)}
+.division-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(
+    to bottom,
+    rgba(10,9,7,0.05) 0%,
+    rgba(10,9,7,0.3) 40%,
+    rgba(10,9,7,0.8) 80%,
+    rgba(10,9,7,0.92) 100%
+  );
+  z-index:1;
+}
+.division-num{
+  position:absolute;top:28px;right:28px;z-index:2;
+  font-family:var(--serif);font-size:64px;font-weight:300;
+  color:rgba(244,241,234,0.12);
+  font-variation-settings:'opsz' 144;
+}
+.division-label{
+  position:absolute;top:28px;left:28px;z-index:2;
+  font-family:var(--sans);font-size:10px;font-weight:500;
+  letter-spacing:0.28em;text-transform:uppercase;
+  color:rgba(244,241,234,0.5);
+}
+.division-content{
+  position:relative;z-index:2;padding:32px;
+}
+.division-content h3{
+  font-family:var(--serif);
+  font-size:clamp(36px,4vw,56px);
+  font-weight:300;line-height:1.05;
+  margin-bottom:10px;
+  font-variation-settings:'opsz' 144,'SOFT' 0;
+}
+.division-tag{
+  display:block;font-family:var(--sans);font-size:10px;
+  font-weight:500;letter-spacing:0.28em;text-transform:uppercase;
+  color:rgba(244,241,234,0.5);margin-bottom:16px;
+}
+.division-content p{
+  font-family:var(--sans);font-size:13px;font-weight:300;
+  line-height:1.7;color:rgba(244,241,234,0.6);
+  max-width:360px;margin-bottom:24px;
+}
+.division-enter{
+  font-family:var(--sans);font-size:11px;font-weight:500;
+  letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--bone);display:inline-flex;align-items:center;gap:10px;
+}
+.division-enter .arrow{transition:transform .4s var(--ease)}
+.division-tile:hover .division-enter .arrow{transform:translateX(6px)}
+
+/* ===== MANIFESTO ===== */
+.manifesto{
+  padding:120px 40px;background:var(--bone);
+  border-bottom:1px solid var(--amber);
+}
+.manifesto-inner{
+  display:grid;grid-template-columns:1fr 2.4fr;
+  gap:80px;max-width:1200px;margin:0 auto;
+}
+.manifesto-meta{display:flex;flex-direction:column;gap:0}
+.meta-row{
+  padding:16px 0;
+  border-bottom:1px solid rgba(183,115,51,0.25);
+  display:flex;justify-content:space-between;align-items:baseline;
+}
+.meta-row:first-child{border-top:1px solid rgba(183,115,51,0.25)}
+.meta-label{
+  font-family:var(--sans);font-size:10px;font-weight:500;
+  letter-spacing:0.22em;text-transform:uppercase;
+  color:rgba(10,9,7,0.35);
+}
+.meta-value{
+  font-family:var(--serif);font-style:italic;font-size:14px;
+  color:var(--black);font-variation-settings:'opsz' 18;
+}
+.manifesto-body{max-width:640px}
+.dropcap{
+  font-family:var(--sans);font-size:15px;font-weight:300;
+  line-height:1.85;color:rgba(10,9,7,0.65);
+  margin-bottom:48px;
+}
+.dropcap::first-letter{
+  font-family:var(--serif);float:left;
+  font-size:110px;line-height:0.78;
+  padding-right:14px;padding-top:6px;
+  color:var(--black);font-weight:300;
+  font-variation-settings:'opsz' 144,'SOFT' 0;
+}
+.manifesto-body blockquote{
+  font-family:var(--serif);font-style:italic;
+  font-size:clamp(24px,2.8vw,32px);line-height:1.4;
+  color:var(--black);padding-left:28px;
+  border-left:1px solid var(--amber);
+  margin:48px 0;font-variation-settings:'opsz' 36,'SOFT' 50;
+}
+.manifesto-body .closing{
+  font-family:var(--sans);font-size:15px;font-weight:300;
+  line-height:1.85;color:rgba(10,9,7,0.65);
+  margin-bottom:48px;
+}
+.signoff-name{
+  display:block;font-family:var(--serif);font-style:italic;
+  font-size:16px;color:var(--black);margin-bottom:4px;
+  font-variation-settings:'opsz' 18;
+}
+.signoff-title{
+  font-family:var(--sans);font-size:11px;font-weight:400;
+  letter-spacing:0.12em;color:rgba(10,9,7,0.4);
+}
+
+/* ===== DARK GALLERY ===== */
+.gallery{
+  padding:120px 40px;background:var(--dark);
+}
+.gallery-inner{max-width:1400px;margin:0 auto}
+.gallery-header{
+  display:flex;justify-content:space-between;
+  align-items:flex-end;margin-bottom:60px;
+}
+.gallery-header-left .gallery-kicker{
+  display:block;font-family:var(--sans);font-size:11px;
+  font-weight:500;letter-spacing:0.28em;text-transform:uppercase;
+  color:rgba(244,241,234,0.4);margin-bottom:16px;
+}
+.gallery-header-left h2{
+  font-family:var(--serif);
+  font-size:clamp(42px,5.2vw,74px);
+  font-weight:300;line-height:1.05;color:var(--bone);
+  font-variation-settings:'opsz' 144,'SOFT' 0;
+}
+.gallery-header-left h2 em{font-style:italic}
+.gallery-header-right{text-align:right}
+.gallery-count{
+  display:block;font-family:var(--serif);font-style:italic;
+  font-size:15px;color:rgba(244,241,234,0.4);
+  margin-bottom:8px;font-variation-settings:'opsz' 18;
+}
+.gallery-link{
+  font-family:var(--sans);font-size:11px;font-weight:500;
+  letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--bone);text-decoration:none;
+  display:inline-flex;align-items:center;gap:8px;
+  transition:gap .4s var(--ease);
+}
+.gallery-link:hover{gap:14px}
+.gallery-grid{
+  display:grid;grid-template-columns:repeat(12,1fr);
+  grid-auto-rows:90px;gap:4px;
+}
+.gallery-tile{
+  position:relative;overflow:hidden;cursor:pointer;
+}
+.gallery-tile:nth-child(1){grid-column:span 7;grid-row:span 5}
+.gallery-tile:nth-child(2){grid-column:span 5;grid-row:span 6}
+.gallery-tile:nth-child(3){grid-column:span 5;grid-row:span 4}
+.gallery-tile:nth-child(4){grid-column:span 4;grid-row:span 5}
+.gallery-tile:nth-child(5){grid-column:span 3;grid-row:span 4}
+.gallery-tile:nth-child(6){grid-column:span 6;grid-row:span 5}
+.gallery-tile:nth-child(7){grid-column:span 6;grid-row:span 5}
+.gallery-tile img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  filter:grayscale(15%) brightness(0.9);
+  transition:all 1.2s cubic-bezier(0.22,1,0.36,1);
+}
+.gallery-tile:hover img{
+  filter:grayscale(0%) brightness(1);
+  transform:scale(1.06);
+}
+.gallery-caption{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:40px 20px 18px;
+  background:linear-gradient(transparent,rgba(10,9,7,0.8));
+  font-family:var(--sans);font-size:11px;font-weight:400;
+  letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--bone);
+  transform:translateY(100%);
+  transition:transform .6s var(--ease);
+}
+.gallery-tile:hover .gallery-caption{transform:translateY(0)}
+
+/* ===== STUDIO / PROVENANCE ===== */
+.studio{
+  padding:120px 40px;background:var(--bone);
+  border-bottom:1px solid var(--amber);
+}
+.studio-inner{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;max-width:1400px;margin:0 auto;
+  align-items:start;
+}
+.studio-image{
+  position:relative;aspect-ratio:4/5;overflow:hidden;
+}
+.studio-image img{
+  width:100%;height:100%;object-fit:cover;display:block;
+}
+.studio-content{padding:40px 0}
+.studio-kicker{
+  display:block;font-family:var(--sans);font-size:11px;
+  font-weight:500;letter-spacing:0.28em;text-transform:uppercase;
+  color:rgba(10,9,7,0.35);margin-bottom:20px;
+}
+.studio-content h3{
+  font-family:var(--serif);
+  font-size:clamp(36px,4.5vw,64px);
+  font-weight:300;line-height:1.05;color:var(--black);
+  margin-bottom:24px;
+  font-variation-settings:'opsz' 144,'SOFT' 0;
+}
+.studio-content h3 em{font-style:italic}
+.studio-content>p{
+  font-family:var(--sans);font-size:14px;font-weight:300;
+  line-height:1.8;color:rgba(10,9,7,0.6);
+  margin-bottom:48px;max-width:440px;
+}
+.territory-list{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+  border-top:1px solid var(--amber);
+}
+.territory-item{
+  padding:16px 0;
+  border-bottom:1px solid rgba(183,115,51,0.25);
+  display:flex;justify-content:space-between;align-items:baseline;
+}
+.territory-item:nth-child(odd){padding-right:24px}
+.territory-item:nth-child(even){padding-left:24px;border-left:1px solid rgba(183,115,51,0.25)}
+.territory-name{
+  font-family:var(--serif);font-size:15px;font-weight:400;
+  color:var(--black);font-variation-settings:'opsz' 18;
+}
+.territory-since{
+  font-family:var(--sans);font-size:10px;font-weight:400;
+  letter-spacing:0.15em;text-transform:uppercase;
+  color:rgba(10,9,7,0.35);
+}
+
+/* ===== INVITATION ===== */
+.invitation{
+  position:relative;padding:160px 40px;
+  background:var(--black);overflow:hidden;
+  text-align:center;
+}
+.invitation::before{
+  content:'';position:absolute;inset:0;
+  background-image:url('https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1600&q=85&auto=format&fit=crop');
+  background-size:cover;background-position:center;
+  background-attachment:fixed;
+  opacity:0.18;
+}
+.invitation-content{
+  position:relative;z-index:2;
+  max-width:680px;margin:0 auto;
+}
+.super-label{
+  font-family:var(--sans);font-size:11px;font-weight:500;
+  letter-spacing:0.32em;text-transform:uppercase;
+  color:rgba(244,241,234,0.4);margin-bottom:40px;
+  display:block;
+}
+.invitation-content h3{
+  font-family:var(--serif);
+  font-size:clamp(36px,5vw,64px);
+  font-weight:300;line-height:1.1;color:var(--bone);
+  margin-bottom:24px;
+  font-variation-settings:'opsz' 144,'SOFT' 0;
+}
+.invitation-content h3 em{font-style:italic}
+.invitation-content>p{
+  font-family:var(--sans);font-size:14px;font-weight:300;
+  line-height:1.8;color:rgba(244,241,234,0.5);
+  margin-bottom:48px;max-width:480px;margin-left:auto;margin-right:auto;
+}
+.invitation-ctas{
+  display:flex;gap:16px;justify-content:center;
+  flex-wrap:wrap;
+}
+
+/* ===== FOOTER ===== */
+.footer{
+  background:var(--bone);
+  border-top:1px solid var(--amber);
+  padding:80px 40px 0;
+}
+.footer-inner{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:40px;max-width:1400px;margin:0 auto;
+  padding-bottom:60px;
+}
+.footer-logo{
+  font-family:var(--serif);font-size:28px;font-weight:300;
+  letter-spacing:0.15em;color:var(--black);
+  margin-bottom:16px;display:block;
+  font-variation-settings:'opsz' 72;
+}
+.footer-tagline{
+  font-family:var(--serif);font-style:italic;font-size:14px;
+  line-height:1.6;color:rgba(10,9,7,0.5);
+  max-width:320px;font-variation-settings:'opsz' 18,'SOFT' 50;
+}
+.footer-col h5{
+  font-family:var(--sans);font-size:10px;font-weight:600;
+  letter-spacing:0.25em;text-transform:uppercase;
+  color:rgba(10,9,7,0.35);margin-bottom:20px;
+}
+.footer-col a{
+  display:block;font-family:var(--sans);font-size:13px;
+  font-weight:400;color:rgba(10,9,7,0.6);
+  text-decoration:none;margin-bottom:12px;
+  transition:color .3s ease;
+}
+.footer-col a:hover{color:var(--black)}
+.footer-bottom{
+  max-width:1400px;margin:0 auto;
+  padding:24px 0;
+  border-top:1px solid var(--amber);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.footer-bottom span{
+  font-family:var(--sans);font-size:11px;font-weight:400;
+  letter-spacing:0.08em;color:rgba(10,9,7,0.35);
+}
+.footer-bottom .motto{
+  font-family:var(--serif);font-style:italic;
+  font-variation-settings:'opsz' 18;
+}
+
+/* ===== KEYFRAMES ===== */
+@keyframes heroZoom{
+  from{transform:scale(1.08)}
+  to{transform:scale(1)}
+}
+@keyframes lineGrow{
+  from{transform:scaleX(0);transform-origin:left}
+  to{transform:scaleX(1);transform-origin:left}
+}
+@keyframes scrollPulse{
+  0%,100%{opacity:0.2;transform:scaleY(0.6)}
+  50%{opacity:0.8;transform:scaleY(1)}
+}
+@keyframes dotPulse{
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:0.5;transform:scale(0.8)}
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+  .nav-left,.nav-right{display:none}
+  .nav{justify-content:center;padding:16px 24px}
+
+  .hero-content{padding:80px 24px 0}
+  .hero-meta{display:none}
+  .hero h1{font-size:clamp(40px,10vw,72px)}
+  .hero-stats{grid-template-columns:repeat(2,1fr);gap:24px}
+
+  .ticker{padding:14px 24px}
+  .ticker-inner{flex-direction:column;gap:8px;text-align:center}
+
+  .featured{padding:80px 24px}
+  .featured-header{
+    grid-template-columns:1fr;gap:16px;
+    text-align:left;
+  }
+  .featured-spec-meta{text-align:left}
+  .featured-split{grid-template-columns:1fr}
+  .featured-image{aspect-ratio:16/10}
+  .featured-content{padding:32px 0}
+
+  .divisions{padding:0 24px}
+  .divisions-grid{grid-template-columns:1fr}
+
+  .manifesto{padding:80px 24px}
+  .manifesto-inner{grid-template-columns:1fr;gap:48px}
+
+  .gallery{padding:80px 24px}
+  .gallery-header{flex-direction:column;align-items:flex-start;gap:20px}
+  .gallery-header-right{text-align:left}
+  .gallery-grid{
+    grid-template-columns:repeat(6,1fr);
+    grid-auto-rows:80px;
+  }
+  .gallery-tile:nth-child(1),
+  .gallery-tile:nth-child(2),
+  .gallery-tile:nth-child(3),
+  .gallery-tile:nth-child(4),
+  .gallery-tile:nth-child(5),
+  .gallery-tile:nth-child(6),
+  .gallery-tile:nth-child(7){
+    grid-column:span 6;grid-row:span 4;
+  }
+
+  .studio{padding:80px 24px}
+  .studio-inner{grid-template-columns:1fr;gap:48px}
+  .territory-list{grid-template-columns:1fr}
+  .territory-item:nth-child(even){padding-left:0;border-left:none}
+  .territory-item:nth-child(odd){padding-right:0}
+
+  .invitation{padding:100px 24px}
+  .invitation::before{background-attachment:scroll}
+
+  .footer{padding:60px 24px 0}
+  .footer-inner{grid-template-columns:1fr;text-align:center}
+  .footer-tagline{margin:0 auto}
+  .footer-bottom{
+    flex-direction:column;gap:8px;
+    text-align:center;padding:20px 0;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav class="nav nav-dark" id="nav">
+  <div class="nav-left">
+    <a href="hardscape-gallery.html">Hardscape</a>
+    <a href="sculptures.html">Sculpture</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="agents.html">Agents</a>
+  </div>
+  <a href="index.html" class="nav-logo">PHAÖRA</a>
+  <div class="nav-right">
+    <a href="#studio">Studio</a>
+    <a href="contact.html">Contact</a>
+    <a href="#invitation" class="nav-enquire">Enquire</a>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="hero" data-nav-dark>
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1920&q=85&auto=format&fit=crop" alt="Luxury estate at dusk">
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-meta">
+      <span class="hero-meta-left">Est. MMXIX · Boca Raton</span>
+      <span class="hero-meta-center"><span class="dot"></span>The House of Phaöra<span class="dot"></span></span>
+      <span class="hero-meta-right">26°21′N 80°05′W</span>
+    </div>
+
+    <div class="hero-main">
+      <div class="hero-kicker">
+        <span class="kicker-line"></span>
+        WHERE STONE MEETS INTENTION
+      </div>
+      <h1>Where Earth<br>Becomes <em>Permanent</em></h1>
+      <p class="hero-lede">Stone for the estate, crystal for the collection — two disciplines shaped by one unbroken standard.</p>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="stat-label">Established</span>
+        <span class="stat-value">MMXIX</span>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-label">Territory</span>
+        <span class="stat-value">South Florida</span>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-label">Divisions</span>
+        <span class="stat-value">II</span>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-label">Standing</span>
+        <span class="stat-value">Active</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-indicator"><span></span></div>
+</section>
+
+<!-- ===== TICKER ===== -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <div class="ticker-left">
+      <span class="ticker-dot"></span>
+      <span>Now scheduling · Summer MMXXVI consultations open</span>
+    </div>
+    <div class="ticker-right">
+      <span>Boca Raton · 26°21′N</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FEATURED HARDSCAPE ===== -->
+<section class="featured">
+  <div class="featured-header">
+    <div class="featured-tag">01 · Featured Project</div>
+    <h2>A Driveway Carved<br>from <em>Conviction</em></h2>
+    <div class="featured-spec-meta">
+      Coral Gables, FL<br>
+      Delivered XII MMXXV<br>
+      1,200 Sq Ft
+    </div>
+  </div>
+
+  <div class="featured-split">
+    <div class="featured-image">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=85&auto=format&fit=crop" alt="Luxury hardscape driveway">
+      <span class="featured-corner-label">Project 01</span>
+    </div>
+    <div class="featured-content">
+      <span class="featured-kicker">Coral Gables · Completed MMXXV</span>
+      <h3>The Meridian Entry</h3>
+      <p>Twelve hundred square feet of hand-selected French-pattern travertine, laid without a single machine cut. Every joint raked by hand, every edge mitered to the architect's original grade.</p>
+      <div class="spec-grid">
+        <div class="spec-cell">
+          <span class="spec-label">Material</span>
+          <span class="spec-value">French Travertine</span>
+        </div>
+        <div class="spec-cell">
+          <span class="spec-label">Territory</span>
+          <span class="spec-value">Coral Gables</span>
+        </div>
+        <div class="spec-cell">
+          <span class="spec-label">Completion</span>
+          <span class="spec-value">XII MMXXV</span>
+        </div>
+        <div class="spec-cell">
+          <span class="spec-label">Area</span>
+          <span class="spec-value">1,200 Sq Ft</span>
+        </div>
+        <div class="spec-cell">
+          <span class="spec-label">Delivered</span>
+          <span class="spec-value">XXIV Pallets</span>
+        </div>
+        <div class="spec-cell">
+          <span class="spec-label">Status</span>
+          <span class="spec-value">Complete</span>
+        </div>
+      </div>
+      <a href="contact.html" class="btn btn-dark">Begin an enquiry <span class="arrow">&rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TWO DIVISIONS ===== -->
+<section class="divisions">
+  <div class="divisions-grid">
+    <a href="hardscape-gallery.html" class="division-tile">
+      <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1600&q=85&auto=format&fit=crop" alt="Luxury pool deck">
+      <div class="division-overlay"></div>
+      <span class="division-num">I</span>
+      <span class="division-label">Division I</span>
+      <div class="division-content">
+        <h3>Hardscape</h3>
+        <span class="division-tag">STONE, SET WITH RESOLVE</span>
+        <p>From pool decks to driveways, every project begins at the quarry and ends with a surface built to outlast its owners. Material selected by hand, set to grade, sealed for generations.</p>
+        <span class="division-enter">Enter <span class="arrow">&rarr;</span></span>
+      </div>
+    </a>
+
+    <a href="sculptures.html" class="division-tile">
+      <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1600&q=85&auto=format&fit=crop" alt="Crystal sculpture">
+      <div class="division-overlay"></div>
+      <span class="division-num">II</span>
+      <span class="division-label">Division II</span>
+      <div class="division-content">
+        <h3>Sculpture</h3>
+        <span class="division-tag">CRYSTAL, GIVEN FORM</span>
+        <p>Hand-carved from the mountains of Minas Gerais, Brazil. Singular works shaped by forty years of devotion to the stone.</p>
+        <span class="division-enter">Enter <span class="arrow">&rarr;</span></span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ===== MANIFESTO ===== -->
+<section class="manifesto" id="manifesto">
+  <div class="manifesto-inner">
+    <div class="manifesto-meta">
+      <div class="meta-row">
+        <span class="meta-label">From the studio</span>
+        <span class="meta-value">Note</span>
+      </div>
+      <div class="meta-row">
+        <span class="meta-label">Founder</span>
+        <span class="meta-value">DMV</span>
+      </div>
+      <div class="meta-row">
+        <span class="meta-label">Filed</span>
+        <span class="meta-value">22 IV MMXXVI</span>
+      </div>
+      <div class="meta-row">
+        <span class="meta-label">Read</span>
+        <span class="meta-value">2 min</span>
+      </div>
+      <div class="meta-row">
+        <span class="meta-label">Territory</span>
+        <span class="meta-value">Boca Raton, FL</span>
+      </div>
+    </div>
+
+    <div class="manifesto-body">
+      <p class="dropcap">What we build outlasts trends because we begin where most finish — at the source. Our stone is quarried, not selected from a catalog. Our surfaces are set by hand, never assembled by machine. This is slow work, and we have no interest in accelerating it.</p>
+
+      <blockquote>A house reveals its builder the way a shore reveals its tide — slowly, under pressure, and without apology.</blockquote>
+
+      <p class="closing">We are not the largest firm in South Florida. We never intend to be. The work speaks when we do not.</p>
+
+      <div class="signoff">
+        <span class="signoff-name">— David Machado Vaz</span>
+        <span class="signoff-title">Founder, Phaöra</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DARK GALLERY ===== -->
+<section class="gallery" id="gallery">
+  <div class="gallery-inner">
+    <div class="gallery-header">
+      <div class="gallery-header-left">
+        <span class="gallery-kicker">Selected Works</span>
+        <h2>The <em>Permanent</em> Portfolio</h2>
+      </div>
+      <div class="gallery-header-right">
+        <span class="gallery-count">VII Projects</span>
+        <a href="gallery.html" class="gallery-link">View all <span>&rarr;</span></a>
+      </div>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-tile" data-cap="Palm Beach · Pool Deck">
+        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a8?w=1600&q=85&auto=format&fit=crop" alt="Palm Beach Pool Deck">
+        <div class="gallery-caption">Palm Beach · Pool Deck</div>
+      </div>
+      <div class="gallery-tile" data-cap="Coral Gables · Driveway">
+        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c0?w=1600&q=85&auto=format&fit=crop" alt="Coral Gables Driveway">
+        <div class="gallery-caption">Coral Gables · Driveway</div>
+      </div>
+      <div class="gallery-tile" data-cap="Boca Raton · Outdoor Kitchen">
+        <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1600&q=85&auto=format&fit=crop" alt="Boca Raton Outdoor Kitchen">
+        <div class="gallery-caption">Boca Raton · Outdoor Kitchen</div>
+      </div>
+      <div class="gallery-tile" data-cap="Delray Beach · Entry Walk">
+        <img src="https://images.unsplash.com/photo-1600573472592-401b489a3cdc?w=1600&q=85&auto=format&fit=crop" alt="Delray Beach Entry Walk">
+        <div class="gallery-caption">Delray Beach · Entry Walk</div>
+      </div>
+      <div class="gallery-tile" data-cap="Manalapan · Loggia">
+        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1600&q=85&auto=format&fit=crop" alt="Manalapan Loggia">
+        <div class="gallery-caption">Manalapan · Loggia</div>
+      </div>
+      <div class="gallery-tile" data-cap="Fisher Island · Commission">
+        <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1600&q=85&auto=format&fit=crop" alt="Fisher Island Commission">
+        <div class="gallery-caption">Fisher Island · Commission</div>
+      </div>
+      <div class="gallery-tile" data-cap="Jupiter Island · Garden Path">
+        <img src="https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?w=1600&q=85&auto=format&fit=crop" alt="Jupiter Island Garden Path">
+        <div class="gallery-caption">Jupiter Island · Garden Path</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STUDIO / PROVENANCE ===== -->
+<section class="studio" id="studio">
+  <div class="studio-inner">
+    <div class="studio-image">
+      <img src="https://images.unsplash.com/photo-1540979388789-6cee28a1cdc9?w=1200&q=85&auto=format&fit=crop" alt="South Florida palms">
+    </div>
+    <div class="studio-content">
+      <span class="studio-kicker">IV · Territory</span>
+      <h3>Where Phaöra <em>Builds</em></h3>
+      <p>South Florida's most demanding residential corridors, from the barrier islands to the inland estates. Every territory earned, never inherited.</p>
+      <div class="territory-list">
+        <div class="territory-item">
+          <span class="territory-name">Palm Beach</span>
+          <span class="territory-since">Since MMXX</span>
+        </div>
+        <div class="territory-item">
+          <span class="territory-name">Coral Gables</span>
+          <span class="territory-since">Since MMXXI</span>
+        </div>
+        <div class="territory-item">
+          <span class="territory-name">Boca Raton</span>
+          <span class="territory-since">Since MMXIX</span>
+        </div>
+        <div class="territory-item">
+          <span class="territory-name">Delray Beach</span>
+          <span class="territory-since">Since MMXXI</span>
+        </div>
+        <div class="territory-item">
+          <span class="territory-name">Manalapan</span>
+          <span class="territory-since">Since MMXXII</span>
+        </div>
+        <div class="territory-item">
+          <span class="territory-name">Jupiter Island</span>
+          <span class="territory-since">Since MMXXIII</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INVITATION ===== -->
+<section class="invitation" id="invitation" data-nav-dark>
+  <div class="invitation-content">
+    <span class="super-label">— Consultation —</span>
+    <h3>Begin a <em>project</em><br>with the studio</h3>
+    <p>Every engagement starts with a conversation — materials, territory, timeline. No obligation, no intermediary. David responds personally.</p>
+    <div class="invitation-ctas">
+      <a href="contact.html" class="btn btn-light">Begin a project <span class="arrow">&rarr;</span></a>
+      <a href="mailto:david@phaora.com" class="btn btn-outline-light">Speak with the studio</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <span class="footer-logo">PHAÖRA</span>
+      <p class="footer-tagline">A Boca Raton house devoted to the permanent arts of stone and crystal.</p>
+    </div>
+    <div class="footer-col">
+      <h5>The House</h5>
+      <a href="#">About</a>
+      <a href="#studio">Studio</a>
+      <a href="#">Press</a>
+      <a href="#">Journal</a>
+    </div>
+    <div class="footer-col">
+      <h5>Divisions</h5>
+      <a href="hardscape-gallery.html">Hardscape</a>
+      <a href="sculptures.html">Sculpture</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="sculptures.html">Pieces</a>
+    </div>
+    <div class="footer-col">
+      <h5>Connect</h5>
+      <a href="contact.html">Contact</a>
+      <a href="agents.html">Agents</a>
+      <a href="#">Instagram</a>
+      <a href="mailto:david@phaora.com">Email</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>Phaöra · MMXXVI</span>
+    <span class="motto">Built on standards. Not inherited. Decided.</span>
+    <span>Boca Raton · All rights reserved</span>
+  </div>
+</footer>
+
+<!-- ===== INTERSECTION OBSERVER ===== -->
+<script>
+(function(){
+  var nav = document.getElementById('nav');
+  var darkSections = document.querySelectorAll('[data-nav-dark]');
+  var states = new Map();
+
+  darkSections.forEach(function(section){
+    states.set(section, false);
+  });
+
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      states.set(entry.target, entry.isIntersecting);
+    });
+    var anyDark = false;
+    states.forEach(function(val){
+      if(val) anyDark = true;
+    });
+    nav.classList.toggle('nav-dark', anyDark);
+  }, {
+    rootMargin: '0px 0px -90% 0px'
+  });
+
+  darkSections.forEach(function(section){
+    observer.observe(section);
+  });
+})();
+</script>
+
+</body>
+</html>
