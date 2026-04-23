@@ -1,369 +1,298 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PHAÖRA — Agent Partner Portal</title>
-<meta name="description" content="Join the PHAÖRA Agent Partner Program. Earn referral commissions, get exclusive crystal pricing, and access your private portal.">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Cinzel:wght@300;400&display=swap" rel="stylesheet">
+<title>PHAÖRA — Closing Gifts for Agents</title>
+<meta name="description" content="A Phaöra sculpture arrives the day after the keys. Your client remembers who it came from for a generation.">
+<link rel="canonical" href="https://phaora.com/agents.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PHAÖRA — Closing Gifts for Agents">
+<meta property="og:description" content="A Phaöra sculpture arrives the day after the keys. Your client remembers who it came from for a generation.">
+<meta property="og:image" content="https://phaora.com/assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-1.jpeg">
+<meta property="og:url" content="https://phaora.com/agents.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300&display=swap" rel="stylesheet">
 <style>
-:root{--gold:#C9A84C;--gold-light:#E8D5A3;--gold-dim:rgba(201,168,76,0.15);--black:#0D0B07;--dark:#141108;--dark2:#181409;--cream:#FAF7F2;--mid:#888888;--light:#CCCCCC}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:linear-gradient(160deg,#0d0b07 0%,#111009 40%,#0a0c0e 100%);background-attachment:fixed;color:var(--cream);font-family:'Cormorant Garamond','Didot',Georgia,serif;font-weight:300;overflow-x:hidden;-webkit-font-smoothing:antialiased;letter-spacing:0.03em}
+:root{--ink:#0a0908;--surface:#12100c;--bone:#e8dcc4;--amber:#B87333;--amber-bright:#D4A254;--muted:#8a7355;--stroke:rgba(184,115,51,0.2);--serif:'Fraunces',Georgia,serif;--sans:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;--ease:cubic-bezier(0.22,1,0.36,1)}
+html{scroll-behavior:smooth;background:var(--ink)}
+body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:3rem 4rem;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);background:rgba(10,10,10,0.15);transition:all 0.6s}
-nav.scrolled{padding:1.25rem 3rem;background:rgba(10,10,10,0.9);border-bottom:1px solid rgba(201,168,76,0.06)}
-.nav-logo{font-family:‘Cinzel’,‘Cormorant Garamond’,Georgia,serif;font-size:1.4rem;font-weight:400;color:var(--gold);letter-spacing:0.5em;cursor:pointer;text-shadow:0 0 30px rgba(201,168,76,0.25);text-decoration:none}
-.nav-back{font-size:0.5rem;letter-spacing:0.35em;text-transform:uppercase;color:rgba(201,168,76,0.4);text-decoration:none;font-family:-apple-system,‘Helvetica Neue’,sans-serif;transition:color 0.3s}
-.nav-back:hover{color:var(--gold)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 2.5rem;height:60px;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(24px) saturate(1.2);-webkit-backdrop-filter:blur(24px) saturate(1.2);background:rgba(10,9,8,0.85);border-bottom:0.5px solid var(--stroke)}
+.nav-left,.nav-right{display:flex;align-items:center;gap:2rem}
+.nav-left a,.nav-right a{font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;color:var(--bone);transition:color .3s ease;position:relative}
+.nav-left a::after,.nav-right a:not(.nav-enquire)::after{content:'';position:absolute;bottom:-3px;left:0;width:100%;height:0.5px;background:var(--amber);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+.nav-left a:hover::after,.nav-right a:not(.nav-enquire):hover::after{transform:scaleX(1)}
+.nav-logo{font-family:var(--sans);font-size:14px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;text-decoration:none;color:var(--bone)}
+.nav-enquire{padding:8px 18px;border:0.5px solid rgba(232,220,196,0.3);transition:all .3s ease !important;display:inline-flex;align-items:center;gap:6px}
+.nav-enquire .arrow{font-size:10px;transition:transform .3s var(--ease)}
+.nav-enquire:hover .arrow{transform:translateX(4px)}
+.nav-enquire:hover{background:rgba(232,220,196,0.06)}
 
-/* HERO */
-.hero{min-height:60vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:14rem 2.5rem 6rem;text-align:center}
-.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0d0b07 0%,#181408 50%,#0d0b07 100%)}
-.hero-lines{position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.03) 1px,transparent 1px);background-size:60px 60px}
-.hero-glow{position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 60%,rgba(201,168,76,0.06) 0%,transparent 70%)}
-.f1{opacity:0;animation:fadeUp 1s ease 0.3s forwards}
-.f2{opacity:0;animation:fadeUp 1.2s ease 0.5s forwards}
-.f3{opacity:0;animation:fadeUp 1s ease 0.8s forwards}
-.f4{opacity:0;animation:fadeUp 1s ease 1s forwards}
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-.hero-eyebrow{font-size:0.52rem;letter-spacing:0.6em;color:rgba(201,168,76,0.6);text-transform:uppercase;margin-bottom:2rem;font-family:-apple-system,‘Helvetica Neue’,sans-serif;position:relative;z-index:1}
-.hero-title{font-family:‘Cormorant Garamond’,‘Didot’,Georgia,serif;font-size:clamp(3rem,9vw,7rem);font-weight:300;color:var(--cream);letter-spacing:0.1em;line-height:0.95;margin-bottom:1.5rem;position:relative;z-index:1}
-.hero-title em{color:var(--gold);font-style:italic}
-.hero-rule{width:40px;height:1px;background:linear-gradient(to right,transparent,rgba(201,168,76,0.7),transparent);margin:0 auto 1.5rem;position:relative;z-index:1}
-.hero-sub{font-family:‘Cormorant Garamond’,Georgia,serif;font-style:italic;font-size:1.1rem;color:rgba(250,247,242,0.5);letter-spacing:0.1em;position:relative;z-index:1}
+/* GOLD FLAKES */
+.gf{position:relative;isolation:isolate}
+.gf::after{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:0.55;background-image:radial-gradient(1.5px 1.5px at 8% 15%,rgba(184,115,51,0.35),transparent),radial-gradient(1px 1px at 22% 48%,rgba(212,162,84,0.25),transparent),radial-gradient(2px 1px at 38% 78%,rgba(184,115,51,0.2),transparent),radial-gradient(1px 1.5px at 55% 22%,rgba(212,162,84,0.3),transparent),radial-gradient(1.5px 1px at 72% 58%,rgba(184,115,51,0.25),transparent),radial-gradient(1px 1px at 85% 82%,rgba(212,162,84,0.2),transparent),radial-gradient(1px 2px at 15% 92%,rgba(184,115,51,0.15),transparent),radial-gradient(2px 1px at 92% 35%,rgba(212,162,84,0.25),transparent)}
 
-/* MARQUEE */
-.marquee-wrap{border-top:1px solid rgba(201,168,76,0.15);border-bottom:1px solid rgba(201,168,76,0.15);padding:1.2rem 0;overflow:hidden;background:var(--dark)}
-.marquee-track{display:flex;gap:3rem;animation:marquee 22s linear infinite;white-space:nowrap}
-.mi{display:flex;align-items:center;gap:3rem;flex-shrink:0}
-.mt{font-size:0.5rem;letter-spacing:0.45em;text-transform:uppercase;color:rgba(201,168,76,0.35);font-family:-apple-system,‘Helvetica Neue’,sans-serif}
-@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* MASTHEAD */
+.mh{min-height:55vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:8rem 2.5rem 4rem}
+.mh-meta{width:100%;max-width:1000px;display:flex;justify-content:space-between;align-items:center;margin-bottom:3rem}
+.mh-meta span{font-family:var(--sans);font-size:10.5px;font-weight:400;letter-spacing:0.32em;text-transform:uppercase;color:rgba(232,220,196,0.65)}
+.mh-meta-c{font-family:var(--serif) !important;font-style:italic;font-size:12px !important;letter-spacing:0.06em !important;text-transform:none !important;color:rgba(232,220,196,0.55) !important;font-variation-settings:'opsz' 18,'SOFT' 80;display:inline-flex;align-items:center;gap:10px}
+.pulse-dot{width:6px;height:6px;border-radius:50%;background:var(--amber);flex-shrink:0;animation:dotPulse 2.4s ease-in-out infinite}
+.mh h1{font-family:var(--serif);font-size:clamp(56px,8vw,120px);font-weight:300;line-height:0.9;letter-spacing:-0.03em;color:var(--bone);font-variation-settings:'opsz' 144,'SOFT' 100;margin-bottom:1.5rem}
+.mh h1 em{font-style:italic;color:var(--amber)}
+.mh-sub{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2vw,24px);color:var(--amber);font-weight:300;font-variation-settings:'opsz' 18,'SOFT' 50;max-width:580px;line-height:1.5}
 
-/* BENEFITS */
-.benefits{display:grid;grid-template-columns:repeat(3,1fr);background:var(--dark2);border-top:1px solid rgba(201,168,76,0.1);border-bottom:1px solid rgba(201,168,76,0.1)}
-.benefit-item{padding:3.5rem 2.5rem;border-right:1px solid rgba(201,168,76,0.08);text-align:center}
-.benefit-item:last-child{border-right:none}
-.benefit-icon{font-family:‘Cormorant Garamond’,Georgia,serif;font-size:2.5rem;color:var(--gold);display:block;margin-bottom:1.2rem;opacity:0.6}
-.benefit-title{font-size:0.52rem;letter-spacing:0.35em;color:var(--gold);text-transform:uppercase;margin-bottom:0.8rem;font-family:-apple-system,‘Helvetica Neue’,sans-serif}
-.benefit-body{font-size:0.85rem;color:var(--mid);line-height:1.9}
+/* SECTIONS */
+.sec{padding:6rem 2.5rem;border-top:0.5px solid var(--stroke)}
+.sec-inner{max-width:1200px;margin:0 auto}
+.sec-label{display:block;font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--amber);margin-bottom:2rem;text-align:center}
 
-/* EXCLUSIVITY NOTE */
-.excl-wrap{max-width:720px;margin:0 auto;padding:5rem 2.5rem}
-.excl-box{border:1px solid rgba(201,168,76,0.2);background:rgba(201,168,76,0.03);padding:2rem 2.5rem;display:flex;align-items:flex-start;gap:1.5rem}
-.excl-icon{font-family:‘Cormorant Garamond’,Georgia,serif;font-size:2rem;color:var(--gold);flex-shrink:0;margin-top:4px;opacity:0.7}
-.excl-title{font-size:0.52rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-bottom:0.6rem;font-family:-apple-system,sans-serif}
-.excl-body{font-size:0.85rem;color:var(--mid);line-height:1.9}
+/* OFFER 3-COL */
+.offer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3rem}
+.offer-col h3{font-family:var(--serif);font-size:24px;font-weight:300;color:var(--bone);font-variation-settings:'opsz' 36,'SOFT' 0;margin-bottom:1rem}
+.offer-col p{font-family:var(--serif);font-style:italic;font-size:17px;line-height:1.55;color:rgba(232,220,196,0.85);font-variation-settings:'opsz' 18,'SOFT' 50}
+.offer-col ul{list-style:none;padding:0}
+.offer-col li{font-family:var(--serif);font-style:italic;font-size:15px;line-height:1.55;color:rgba(232,220,196,0.85);font-variation-settings:'opsz' 18,'SOFT' 50;padding:1rem 0;border-bottom:0.5px solid var(--stroke)}
+.offer-col li:first-child{border-top:0.5px solid var(--stroke)}
+.offer-mono{font-family:var(--mono);font-size:14px;font-weight:300;color:var(--muted);line-height:1.8}
 
-/* FORM */
-.form-section{padding:0 2.5rem 7rem;max-width:720px;margin:0 auto;width:100%}
-.eyebrow{font-size:0.5rem;letter-spacing:0.5em;color:rgba(201,168,76,0.6);text-transform:uppercase;margin-bottom:1.25rem;font-family:-apple-system,‘Helvetica Neue’,sans-serif}
-.sec-title{font-family:‘Cormorant Garamond’,‘Didot’,Georgia,serif;font-size:clamp(2.2rem,4vw,3.5rem);font-weight:300;color:var(--cream);line-height:1.05;margin-bottom:1rem;letter-spacing:0.05em}
-.sec-title em{color:var(--gold);font-style:italic}
-.gold-rule{width:40px;height:1px;background:linear-gradient(to right,transparent,rgba(201,168,76,0.7),transparent);margin-bottom:2.5rem}
-.form-grid{display:flex;flex-direction:column;gap:0}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
-.fg{display:flex;flex-direction:column;gap:0.4rem;margin-bottom:1.5rem}
-.fl{font-size:0.55rem;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;font-family:-apple-system,‘Helvetica Neue’,sans-serif}
-.fi{background:rgba(255,255,255,0.02);border:none;border-bottom:1px solid rgba(201,168,76,0.2);color:var(--cream);font-size:0.95rem;font-weight:300;padding:0.85rem 0;outline:none;transition:border-color 0.3s;width:100%;font-family:‘Cormorant Garamond’,Georgia,serif;letter-spacing:0.05em}
-.fi:focus{border-bottom-color:var(--gold)}
-.fi::placeholder{color:rgba(136,136,136,0.5);font-style:italic}
-select.fi{-webkit-appearance:none;background-image:url(“data:image/svg+xml,%3Csvg xmlns=‘http://www.w3.org/2000/svg’ width=‘10’ height=‘6’%3E%3Cpath d=‘M0 0l5 6 5-6z’ fill=’%23C9A84C’/%3E%3C/svg%3E”);background-repeat:no-repeat;background-position:right 4px center;cursor:pointer;background-color:transparent}
-select.fi option{background:#111;color:#FAF7F2}
-textarea.fi{resize:none;height:100px}
-.form-submit{margin-top:1rem;padding:1.1rem 3.5rem;background:rgba(201,168,76,0.9);color:var(--black);font-size:0.55rem;letter-spacing:0.35em;text-transform:uppercase;font-weight:600;border:none;cursor:pointer;transition:all 0.4s;font-family:-apple-system,‘Helvetica Neue’,sans-serif}
-.form-submit:hover{background:var(--gold-light);transform:translateY(-2px)}
+/* PROCESS */
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:2rem}
+.step{padding:1.5rem;border:0.5px solid var(--stroke)}
+.step-num{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--amber);font-variation-settings:'opsz' 18;margin-bottom:1rem;display:block}
+.step h4{font-family:var(--serif);font-size:20px;font-weight:300;color:var(--bone);font-variation-settings:'opsz' 36,'SOFT' 0;margin-bottom:0.75rem}
+.step p{font-family:var(--serif);font-style:italic;font-size:14px;line-height:1.55;color:rgba(232,220,196,0.55);font-variation-settings:'opsz' 18,'SOFT' 50}
 
-/* CONFIRM */
-.confirm-section{display:none;flex-direction:column;align-items:center;text-align:center;padding:7rem 2.5rem;max-width:680px;margin:0 auto;width:100%}
-.confirm-section.show{display:flex}
-.confirm-icon{font-family:‘Cormorant Garamond’,Georgia,serif;font-size:4rem;color:var(--gold);margin-bottom:1.5rem;opacity:0.6;line-height:1}
-.confirm-title{font-family:‘Cormorant Garamond’,‘Didot’,Georgia,serif;font-size:clamp(2.2rem,5vw,3.5rem);font-weight:300;color:var(--cream);margin-bottom:0.5rem}
-.confirm-sub{font-family:‘Cormorant Garamond’,Georgia,serif;font-style:italic;font-size:1.2rem;color:rgba(201,168,76,0.6);margin-bottom:2rem}
-.confirm-body{font-size:0.9rem;color:var(--mid);line-height:2;margin-bottom:2.5rem;max-width:480px}
-.confirm-details{border:1px solid rgba(201,168,76,0.15);padding:2rem 2.5rem;width:100%;text-align:left;margin-bottom:2.5rem;background:var(--dark)}
-.ci-item{padding:0.9rem 0;border-bottom:1px solid rgba(201,168,76,0.08)}
-.ci-item:last-child{border-bottom:none}
-.ci-label{font-size:0.55rem;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;margin-bottom:0.3rem;font-family:-apple-system,sans-serif}
-.ci-val{font-family:‘Cormorant Garamond’,Georgia,serif;font-size:1rem;color:var(--cream)}
-.countdown{font-size:0.55rem;letter-spacing:0.25em;color:var(--mid);text-transform:uppercase;margin-bottom:1rem;font-family:-apple-system,sans-serif}
-.countdown span{color:var(--gold)}
-.progress-bar{width:100%;height:1px;background:rgba(201,168,76,0.15);margin-bottom:2rem;overflow:hidden}
-.progress-fill{height:100%;width:0%;background:var(--gold);transition:width 3s linear}
-.btn-row{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-.btn-gold{padding:1rem 2.5rem;background:rgba(201,168,76,0.9);color:var(--black);font-size:0.55rem;letter-spacing:0.35em;text-transform:uppercase;font-weight:600;border:none;cursor:pointer;transition:all 0.4s;font-family:-apple-system,‘Helvetica Neue’,sans-serif;text-decoration:none;display:inline-block}
-.btn-gold:hover{background:var(--gold-light)}
-.btn-outline{padding:1rem 2.5rem;border:1px solid rgba(201,168,76,0.35);color:rgba(201,168,76,0.7);font-size:0.55rem;letter-spacing:0.35em;text-transform:uppercase;background:transparent;cursor:pointer;transition:all 0.4s;font-family:-apple-system,‘Helvetica Neue’,sans-serif;text-decoration:none;display:inline-block}
-.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+/* PULL QUOTE */
+.pull{padding:5rem 2.5rem;text-align:center;border-top:0.5px solid var(--stroke)}
+.pull blockquote{font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.5vw,28px);color:rgba(232,220,196,0.85);font-variation-settings:'opsz' 18,'SOFT' 50;max-width:680px;margin:0 auto;line-height:1.55}
+
+/* CONTACT BAND */
+.corr{padding:6rem 2.5rem;text-align:center;border-top:0.5px solid var(--stroke)}
+.corr-inner{max-width:680px;margin:0 auto}
+.super-label{display:block;font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:0.32em;text-transform:uppercase;color:var(--muted);margin-bottom:2.5rem}
+.corr-inner h3{font-family:var(--serif);font-size:clamp(36px,5vw,56px);font-weight:300;line-height:1.1;color:var(--bone);margin-bottom:1.5rem;font-variation-settings:'opsz' 144,'SOFT' 0}
+.corr-inner h3 em{font-style:italic}
+.corr-inner>p{font-family:var(--serif);font-size:17px;font-weight:400;line-height:1.55;color:rgba(232,220,196,0.5);margin-bottom:3rem;font-variation-settings:'opsz' 18,'SOFT' 50}
+.corr-ctas{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:1rem 2rem;font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:all .4s var(--ease)}
+.btn .arrow{transition:transform .4s var(--ease)}
+.btn:hover .arrow{transform:translateX(6px)}
+.btn-amber{background:var(--amber);color:var(--ink);border:1px solid var(--amber)}
+.btn-amber:hover{background:var(--amber-bright);border-color:var(--amber-bright)}
+.btn-outline{background:transparent;color:var(--bone);border:1px solid rgba(232,220,196,0.3)}
+.btn-outline:hover{background:var(--bone);color:var(--ink);border-color:var(--bone)}
 
 /* FOOTER */
-footer{background:var(--dark2);border-top:1px solid rgba(201,168,76,0.15);padding:3rem 4rem}
-.ft{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem}
-.fbrand{font-family:‘Cormorant Garamond’,‘Didot’,Georgia,serif;font-size:1.5rem;font-weight:300;color:var(--gold);letter-spacing:0.3em}
-.fcopy{font-size:0.58rem;color:rgba(136,136,136,0.5);font-family:-apple-system,sans-serif}
-.fback{font-size:0.52rem;letter-spacing:0.25em;color:rgba(201,168,76,0.35);text-transform:uppercase;font-family:-apple-system,sans-serif;text-decoration:none;transition:color 0.3s}
-.fback:hover{color:var(--gold)}
+.footer{background:var(--ink);border-top:0.5px solid var(--stroke);padding:5rem 2.5rem 0}
+.footer-inner{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem;max-width:1440px;margin:0 auto;padding-bottom:4rem}
+.footer-logo{font-family:var(--serif);font-size:40px;font-weight:300;color:var(--bone);margin-bottom:1rem;display:block;font-variation-settings:'opsz' 72,'SOFT' 0}
+.footer-tagline{font-family:var(--serif);font-style:italic;font-size:15px;line-height:1.55;color:rgba(232,220,196,0.55);max-width:320px;font-variation-settings:'opsz' 18,'SOFT' 50}
+.footer-col h5{font-family:var(--sans);font-size:10.5px;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);margin-bottom:1.25rem}
+.footer-col a{display:block;font-family:var(--sans);font-size:13px;font-weight:400;color:rgba(232,220,196,0.5);text-decoration:none;margin-bottom:0.75rem;transition:color .3s ease}
+.footer-col a:hover{color:var(--amber)}
+.footer-bottom{max-width:1440px;margin:0 auto;padding:1.5rem 0;border-top:0.5px solid var(--stroke);display:flex;justify-content:space-between;align-items:center}
+.footer-bottom span{font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:0.06em;color:var(--muted)}
+.footer-bottom .motto{font-family:var(--serif);font-style:italic;font-size:13px;color:rgba(232,220,196,0.6);font-variation-settings:'opsz' 18}
 
-@media(max-width:768px){
-nav{padding:1.5rem 1.5rem}
-.hero{padding:10rem 1.5rem 4rem}
-.benefits{grid-template-columns:1fr}
-.benefit-item{border-right:none;border-bottom:1px solid rgba(201,168,76,0.08)}
-.form-row{grid-template-columns:1fr}
-.excl-wrap{padding:3rem 1.5rem}
-.form-section{padding:0 1.5rem 5rem}
-footer{padding:2.5rem 1.5rem}
-.ft{flex-direction:column;text-align:center}
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
+.reveal.revealed{opacity:1;transform:translateY(0)}
+@keyframes dotPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.75)}}
+
+.m-hamburger{display:none}
+.m-overlay{display:none}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .nav-left,.nav-right{display:none}
+  .nav{justify-content:space-between}
+  .m-hamburger{display:flex !important;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;padding:10px;background:none;border:none;cursor:pointer}
+  .m-hamburger span{display:block;width:100%;height:2px;background:var(--bone)}
+  .m-overlay{display:flex !important;position:fixed;inset:0;z-index:9999;background:var(--ink);flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s ease}
+  .m-overlay.open{opacity:1;pointer-events:all;transition-duration:.3s}
+  .m-overlay:not(.open){transition-duration:.2s}
+  .m-overlay-close{position:absolute;top:1rem;right:1.5rem;background:none;border:none;color:var(--bone);font-size:32px;width:44px;height:44px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .m-overlay-link{font-family:var(--serif);font-style:italic;font-size:clamp(36px,8vw,56px);color:var(--bone);text-decoration:none;display:block;padding:0.75rem 0;font-variation-settings:'opsz' 72,'SOFT' 50;transition:color .3s}
+  .m-overlay-link:hover{color:var(--amber)}
+  .m-overlay-footer{position:absolute;bottom:2rem;font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:0.32em;text-transform:uppercase;color:var(--muted)}
+  .mh{padding:6rem 1.5rem 3rem;min-height:auto}.mh-meta{display:none}.mh h1{font-size:clamp(40px,12vw,72px)}
+  .offer-grid{grid-template-columns:1fr}
+  .process-grid{grid-template-columns:1fr 1fr}
+  .corr{padding:4rem 1.5rem}.corr-ctas{flex-direction:column;align-items:center}
+  .footer{padding:3rem 1.5rem 0}.footer-inner{grid-template-columns:1fr;text-align:center}.footer-tagline{margin:0 auto}
+  .footer-bottom{flex-direction:column;gap:0.5rem;text-align:center;padding:1.25rem 0}
 }
 </style>
-
 </head>
 <body>
 
-<nav id="nav">
-  <a href="/" class="nav-logo">PHAÖRA</a>
-  <a href="/" class="nav-back">← Back to Collection</a>
+<nav class="nav" id="nav">
+  <div class="nav-left">
+    <a href="hardscape-gallery.html">Hardscape</a>
+    <a href="sculptures.html">Sculpture</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="agents.html">Agents</a>
+  </div>
+  <a href="index.html" class="nav-logo">PHAÖRA</a>
+  <div class="nav-right">
+    <a href="index.html#studio">Studio</a>
+    <a href="contact.html">Contact</a>
+    <a href="#contact-band" class="nav-enquire">Enquire <span class="arrow">&rarr;</span></a>
+  </div>
+  <button class="m-hamburger" id="m-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 
-<!-- HERO -->
+<!-- MASTHEAD -->
+<section class="mh gf">
+  <div class="mh-meta"><span>For agents &middot; Closing gifts</span><span class="mh-meta-c"><span class="pulse-dot"></span>Private commissions for your clients</span><span>By referral</span></div>
+  <h1>Closing gifts that<br><em>outlast</em> the closing.</h1>
+  <p class="mh-sub">A Phaöra sculpture arrives the day after the keys. Your client remembers who it came from for a generation.</p>
+</section>
 
-<div class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-lines"></div>
-  <div class="hero-glow"></div>
-  <p class="hero-eyebrow f1">Exclusive · By Invitation Only</p>
-  <h1 class="hero-title f2">Agent Partner<br><em>Portal</em></h1>
-  <div class="hero-rule f3"></div>
-  <p class="hero-sub f4">Referral Commissions · Crystal Discount · Private Access</p>
-</div>
-
-<!-- MARQUEE -->
-
-<div class="marquee-wrap">
-  <div class="marquee-track">
-    <div class="mi">
-      <span class="mt">Referral Commissions</span>
-      <span class="mt">·</span>
-      <span class="mt">Crystal Discount</span>
-      <span class="mt">·</span>
-      <span class="mt">Private Portal Access</span>
-      <span class="mt">·</span>
-      <span class="mt">Limited Spots Per Zip Code</span>
-      <span class="mt">·</span>
-      <span class="mt">Luxury Hardscape</span>
-      <span class="mt">·</span>
-      <span class="mt">South Florida</span>
-      <span class="mt">·</span>
-      <span class="mt">$15K – $100K+ Projects</span>
-      <span class="mt">·</span>
-    </div>
-    <div class="mi">
-      <span class="mt">Referral Commissions</span>
-      <span class="mt">·</span>
-      <span class="mt">Crystal Discount</span>
-      <span class="mt">·</span>
-      <span class="mt">Private Portal Access</span>
-      <span class="mt">·</span>
-      <span class="mt">Limited Spots Per Zip Code</span>
-      <span class="mt">·</span>
-      <span class="mt">Luxury Hardscape</span>
-      <span class="mt">·</span>
-      <span class="mt">South Florida</span>
-      <span class="mt">·</span>
-      <span class="mt">$15K – $100K+ Projects</span>
-      <span class="mt">·</span>
-    </div>
-  </div>
-</div>
-
-<!-- BENEFITS -->
-
-<div class="benefits">
-  <div class="benefit-item">
-    <span class="benefit-icon">◇</span>
-    <p class="benefit-title">Referral Commissions</p>
-    <p class="benefit-body">Earn on every hardscape project you refer. Projects range from $15,000 to $100,000+. Track your commissions in real time through your private portal.</p>
-  </div>
-  <div class="benefit-item">
-    <span class="benefit-icon">✦</span>
-    <p class="benefit-title">Crystal Discount</p>
-    <p class="benefit-body">Approved partners receive exclusive pricing on PHAÖRA handcrafted Brazilian stone sculptures — rose quartz, amethyst, selenite. A meaningful perk for you and your clients.</p>
-  </div>
-  <div class="benefit-item">
-    <span class="benefit-icon">○</span>
-    <p class="benefit-title">Limited Spots</p>
-    <p class="benefit-body">We approve a limited number of partners per zip code. Once a territory is full, it closes. Apply now to secure your area before it fills.</p>
-  </div>
-</div>
-
-<!-- EXCLUSIVITY NOTE -->
-
-<div class="excl-wrap">
-  <div class="excl-box">
-    <span class="excl-icon">✦</span>
-    <div>
-      <p class="excl-title">Approval Required</p>
-      <p class="excl-body">Portal access is approved directly by PHAÖRA. We review every application and approve a limited number of partners per market. Once approved you'll receive your portal login within 24 hours. All applications are reviewed by David Vaz personally.</p>
-    </div>
-  </div>
-</div>
-
-<!-- FORM / CONFIRM -->
-
-<div id="formWrap">
-  <div class="form-section" id="formSection">
-    <p class="eyebrow">Request Access</p>
-    <h2 class="sec-title">Join the<br><em>Partner Program</em></h2>
-    <div class="gold-rule"></div>
-
-<form class="form-grid" id="agentForm" action="https://formspree.io/f/xvzvnyal" method="POST">
-  <div class="form-row">
-    <div class="fg">
-      <label class="fl">First Name</label>
-      <input class="fi" type="text" name="first_name" placeholder="First name" required>
-    </div>
-    <div class="fg">
-      <label class="fl">Last Name</label>
-      <input class="fi" type="text" name="last_name" placeholder="Last name" required>
-    </div>
-  </div>
-
-  <div class="fg">
-    <label class="fl">Email Address</label>
-    <input class="fi" type="email" name="email" placeholder="your@email.com" required>
-  </div>
-
-  <div class="fg">
-    <label class="fl">Phone Number</label>
-    <input class="fi" type="tel" name="phone" placeholder="+1 (000) 000-0000" required>
-  </div>
-
-  <div class="fg">
-    <label class="fl">Brokerage / Company</label>
-    <input class="fi" type="text" name="company" placeholder="Your brokerage or company name" required>
-  </div>
-
-  <div class="form-row">
-    <div class="fg">
-      <label class="fl">Your Role</label>
-      <select class="fi" name="role" required>
-        <option value="" disabled selected>Select role</option>
-        <option>Real Estate Agent</option>
-        <option>Realtor</option>
-        <option>Real Estate Advisor</option>
-        <option>Broker</option>
-        <option>Interior Designer</option>
-        <option>Architect</option>
-        <option>Property Manager</option>
-        <option>Other</option>
-      </select>
-    </div>
-    <div class="fg">
-      <label class="fl">Primary Zip Code</label>
-      <input class="fi" type="text" name="zip_code" placeholder="Your market area" required>
-    </div>
-  </div>
-
-  <div class="fg">
-    <label class="fl">Instagram Handle (optional)</label>
-    <input class="fi" type="text" name="instagram" placeholder="@yourhandle">
-  </div>
-
-  <div class="fg">
-    <label class="fl">Tell us about your client base</label>
-    <textarea class="fi" name="message" placeholder="What kind of clients do you work with? Any current projects?"></textarea>
-  </div>
-
-  <input type="hidden" name="_subject" value="New Agent Partner Application — PHAÖRA">
-  <button class="form-submit" type="submit">Request Portal Access</button>
-</form>
-
-  </div>
-
-  <!-- CONFIRMATION -->
-
-  <div class="confirm-section" id="confirmSection">
-    <div class="confirm-icon">✦</div>
-    <h2 class="confirm-title">Application Received</h2>
-    <p class="confirm-sub">Thank you for applying</p>
-    <div class="gold-rule" style="margin:0 auto 1.5rem"></div>
-    <p class="confirm-body">
-      Your application has been sent to David Vaz directly at <a href="mailto:info@phaora.com">info@phaora.com</a>.<br>
-      You'll hear back within 24 hours regarding your portal access and territory availability.
-    </p>
-    <div class="confirm-details">
-      <div class="ci-item">
-        <p class="ci-label">Reviewed By</p>
-        <p class="ci-val">David Vaz — PHAÖRA</p>
+<!-- THE OFFER -->
+<section class="sec gf reveal">
+  <div class="sec-inner">
+    <span class="sec-label">&mdash; The Offer &mdash;</span>
+    <div class="offer-grid">
+      <div class="offer-col">
+        <h3>For your top-tier closings</h3>
+        <p>Reserved for million-dollar closings, repeat clients, and the luxury market where a closing gift signals permanence, not obligation.</p>
       </div>
-      <div class="ci-item">
-        <p class="ci-label">Response Time</p>
-        <p class="ci-val">Within 24 hours</p>
+      <div class="offer-col">
+        <h3>What arrives</h3>
+        <ul>
+          <li>A hand-carved crystal sculpture from our collection or commissioned to match the home</li>
+          <li>Delivered and staged by our team</li>
+          <li>Hand-written card from the studio on your behalf</li>
+          <li>One-of-one piece &mdash; never sold to another client</li>
+        </ul>
       </div>
-      <div class="ci-item">
-        <p class="ci-label">What Happens Next</p>
-        <p class="ci-val">Territory availability check · Portal access sent · Welcome call scheduled</p>
-      </div>
-      <div class="ci-item">
-        <p class="ci-label">Contact</p>
-        <p class="ci-val"><a href="mailto:info@phaora.com">info@phaora.com</a> · +1 (954) 871-9991</p>
+      <div class="offer-col">
+        <h3>What it costs</h3>
+        <p class="offer-mono">Starting USD 14,500.<br><br>Full collection from USD 14,500 to USD 68,000.<br><br>15% trade discount for verified agents.</p>
       </div>
     </div>
-    <p class="countdown">Redirecting to PHAÖRA in <span id="countNum">3</span>...</p>
-    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-    <div class="btn-row">
-      <a href="/" class="btn-gold">Explore PHAÖRA</a>
-      <a href="/" class="btn-outline">Back to Home</a>
+  </div>
+</section>
+
+<!-- THE PROCESS -->
+<section class="sec reveal">
+  <div class="sec-inner">
+    <span class="sec-label">&mdash; The Process &mdash;</span>
+    <div class="process-grid">
+      <div class="step">
+        <span class="step-num">N&#x00BA; I</span>
+        <h4>You contact the studio</h4>
+        <p>Email or phone. Every enquiry answered within twenty-four hours.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">N&#x00BA; II</span>
+        <h4>We propose 2&ndash;3 pieces</h4>
+        <p>Based on budget, property style, and client personality.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">N&#x00BA; III</span>
+        <h4>You or your client approve</h4>
+        <p>Inclusive of base and delivery timeline.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">N&#x00BA; IV</span>
+        <h4>We deliver and stage</h4>
+        <p>On the closing date or after, signed and documented.</p>
+      </div>
     </div>
   </div>
-</div>
+</section>
+
+<!-- A QUIET PROMISE -->
+<section class="pull gf reveal">
+  <blockquote>Your client never sees an invoice. The gift is between the studio and you, delivered as if from your hand.</blockquote>
+</section>
+
+<!-- CONTACT BAND -->
+<section class="corr gf reveal" id="contact-band">
+  <div class="corr-inner">
+    <span class="super-label">&mdash; For agents, by request &mdash;</span>
+    <h3>Begin a <em>conversation.</em></h3>
+    <p>One email starts the process. David responds personally within twenty-four hours.</p>
+    <div class="corr-ctas">
+      <a href="mailto:david@phaora.com?subject=Agent%20Enquiry%20-%20Closing%20Gift%20Program" class="btn btn-amber">Write to the studio <span class="arrow">&rarr;</span></a>
+      <a href="sculptures.html" class="btn btn-outline">View the collection <span class="arrow">&rarr;</span></a>
+    </div>
+  </div>
+</section>
 
 <!-- FOOTER -->
-
-<footer>
-  <div class="ft">
-    <span class="fbrand">PHAÖRA</span>
-    <span class="fcopy">© 2024 Phaöra · Agent Partner Program · Confidential</span>
-    <a href="/" class="fback">← phaora.com</a>
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <span class="footer-logo">PHAÖRA</span>
+      <p class="footer-tagline">Hardscape and crystal for the estates that demand permanence.</p>
+    </div>
+    <div class="footer-col">
+      <h5>The House</h5>
+      <a href="#">About</a>
+      <a href="index.html#studio">Studio</a>
+      <a href="#">Press</a>
+      <a href="#">Journal</a>
+    </div>
+    <div class="footer-col">
+      <h5>Divisions</h5>
+      <a href="hardscape-gallery.html">Hardscape</a>
+      <a href="sculptures.html">Sculpture</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="sculptures.html">Pieces</a>
+    </div>
+    <div class="footer-col">
+      <h5>Connect</h5>
+      <a href="contact.html">Contact</a>
+      <a href="agents.html">Agents</a>
+      <a href="#">Instagram</a>
+      <a href="mailto:david@phaora.com">Email</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>Phaöra &middot; MMXXVI</span>
+    <span class="motto">Built on standards. Not inherited. Decided.</span>
+    <span>Boca Raton &middot; All rights reserved</span>
   </div>
 </footer>
 
+<div class="m-overlay" id="m-overlay">
+<button class="m-overlay-close" id="m-overlay-close">&#x2715;</button>
+<a href="hardscape-gallery.html" class="m-overlay-link">Hardscape</a>
+<a href="sculptures.html" class="m-overlay-link">Sculpture</a>
+<a href="gallery.html" class="m-overlay-link">Gallery</a>
+<a href="agents.html" class="m-overlay-link">Agents</a>
+<a href="index.html#studio" class="m-overlay-link">Studio</a>
+<a href="contact.html" class="m-overlay-link">Contact</a>
+<a href="#contact-band" class="m-overlay-link">Enquire</a>
+<span class="m-overlay-footer">MMXXVI &middot; Boca Raton</span>
+</div>
+
 <script>
+(function(){
+/* Scroll reveal */
+var reveals=document.querySelectorAll('.reveal');
+var rObs=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){en.target.classList.add('revealed');rObs.unobserve(en.target)}})},{threshold:0.08});
+reveals.forEach(function(el){rObs.observe(el)});
 
-// Nav scroll
-window.addEventListener(‘scroll’, () => {
-document.getElementById(‘nav’).classList.toggle(‘scrolled’, window.scrollY > 60);
-});
-
-// Form submit
-document.getElementById(‘agentForm’).addEventListener(‘submit’, function(e) {
-e.preventDefault();
-const form = this;
-const btn = form.querySelector(‘.form-submit’);
-btn.textContent = ‘Sending…’;
-btn.style.pointerEvents = ‘none’;
-const data = new FormData(form);
-fetch(‘https://formspree.io/f/xvzvnyal’, {
-  method: ‘POST’,
-  body: data,
-  headers: { ‘Accept’: ‘application/json’ }
-}).then(response => {
-  if (response.ok) {
-    document.getElementById(‘formSection’).style.display = ‘none’;
-    const confirm = document.getElementById(‘confirmSection’);
-    confirm.classList.add(‘show’);
-    window.scrollTo({ top: 0, behavior: ‘smooth’ });
-  } else {
-    btn.textContent = ‘Request Portal Access’;
-    btn.style.pointerEvents = ‘’;
-    alert(‘Something went wrong. Please call us at (954) 871-9991.’);
-  }
-}).catch(() => {
-  btn.textContent = ‘Request Portal Access’;
-  btn.style.pointerEvents = ‘’;
-  alert(‘Something went wrong. Please call us at (954) 871-9991.’);
-});
-});
+/* Mobile menu */
+var ham=document.getElementById('m-hamburger'),ov=document.getElementById('m-overlay'),cl=document.getElementById('m-overlay-close');
+function openM(){ov.classList.add('open');document.body.style.overflow='hidden'}
+function closeM(){ov.classList.remove('open');document.body.style.overflow=''}
+ham.addEventListener('click',openM);
+cl.addEventListener('click',closeM);
+ov.addEventListener('click',function(e){if(e.target===ov)closeM()});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('open'))closeM()});
+})();
+</script>
+</body>
+</html>
