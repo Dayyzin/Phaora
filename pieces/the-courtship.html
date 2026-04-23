@@ -1,345 +1,205 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PHAÖRA — The Courtship · $13,000 · One of One</title>
-<meta name="description" content="The Courtship — two macaws mid-display on labradorite. The ritual of pursuit, crystallized. One of one. PHAÖRA · Boca Raton.">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Outfit:wght@200;300;400;500;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<title>PHAÖRA — The Courtship · USD 13,000</title>
+<meta name="description" content="The Courtship — one of one crystal sculpture. Hand-carved in Minas Gerais, Brazil. By appointment.">
+<meta property="og:image" content="https://phaora.com/assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-1.jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --bg:#0a0907;--bg2:#0e0c09;--surface:#161310;--surface2:#1c1916;--surface3:#221f1a;
-  --gold:#c9a55c;--gold-light:#e2c98a;--gold-dim:#6b5a2e;--gold-faint:rgba(201,165,92,.07);
-  --cream:#f0e8d8;--cream2:#c8bca8;--cream3:#9a8e7e;--text-dim:#6b6155;
-  --red:#b85040;--red-faint:rgba(184,80,64,.08);--green:#4a7a5a;
-  --serif:'Cormorant Garamond',Georgia,serif;--sans:'Outfit',system-ui,sans-serif;--mono:'DM Mono',monospace;
-  --ease:cubic-bezier(0.22,1,0.36,1);
+:root{--ink:#0a0908;--surface:#12100c;--bone:#e8dcc4;--amber:#B87333;--amber-bright:#D4A254;--muted:#8a7355;--stroke:rgba(184,115,51,0.2);--serif:'Fraunces',Georgia,serif;--sans:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;--ease:cubic-bezier(0.22,1,0.36,1)}
+html{scroll-behavior:smooth;background:var(--ink)}
+body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 2.5rem;height:60px;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(24px) saturate(1.2);-webkit-backdrop-filter:blur(24px) saturate(1.2);background:rgba(10,9,8,0.85);border-bottom:0.5px solid var(--stroke)}
+.nav-left,.nav-right{display:flex;align-items:center;gap:2rem}
+.nav-left a,.nav-right a{font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;color:var(--bone);transition:color .3s ease;position:relative}
+.nav-left a::after,.nav-right a:not(.nav-enquire)::after{content:'';position:absolute;bottom:-3px;left:0;width:100%;height:0.5px;background:var(--amber);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+.nav-left a:hover::after,.nav-right a:not(.nav-enquire):hover::after{transform:scaleX(1)}
+.nav-logo{font-family:var(--sans);font-size:14px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;text-decoration:none;color:var(--bone)}
+.nav-enquire{padding:8px 18px;border:0.5px solid rgba(232,220,196,0.3);transition:all .3s ease !important;display:inline-flex;align-items:center;gap:6px}
+.nav-enquire .arrow{font-size:10px;transition:transform .3s var(--ease)}
+.nav-enquire:hover .arrow{transform:translateX(4px)}
+.nav-enquire:hover{background:rgba(232,220,196,0.06)}
+.gf{position:relative;isolation:isolate}
+.gf::after{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:0.55;background-image:radial-gradient(1.5px 1.5px at 8% 15%,rgba(184,115,51,0.35),transparent),radial-gradient(1px 1px at 22% 48%,rgba(212,162,84,0.25),transparent),radial-gradient(2px 1px at 38% 78%,rgba(184,115,51,0.2),transparent),radial-gradient(1px 1.5px at 55% 22%,rgba(212,162,84,0.3),transparent),radial-gradient(1.5px 1px at 72% 58%,rgba(184,115,51,0.25),transparent),radial-gradient(1px 1px at 85% 82%,rgba(212,162,84,0.2),transparent),radial-gradient(1px 2px at 15% 92%,rgba(184,115,51,0.15),transparent),radial-gradient(2px 1px at 92% 35%,rgba(212,162,84,0.25),transparent)}
+.crumb{margin-top:60px;padding:1rem 2.5rem;border-bottom:0.5px solid var(--stroke);display:flex;justify-content:space-between;align-items:center}
+.crumb a{font-family:var(--sans);font-size:10.5px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .3s}
+.crumb a:hover{color:var(--amber)}
+.crumb-num{font-family:var(--mono);font-size:12px;font-weight:300;letter-spacing:0.1em;color:var(--muted)}
+.piece-hero{min-height:70vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:6rem 2.5rem;position:relative;overflow:hidden}
+.piece-hero-bg{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center;filter:brightness(0.45) contrast(1.05)}
+.piece-hero>*{position:relative;z-index:1}
+.piece-super{font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:0.32em;text-transform:uppercase;color:var(--amber);margin-bottom:2rem}
+.piece-hero h1{font-family:var(--serif);font-size:clamp(56px,8vw,120px);font-weight:300;line-height:0.95;letter-spacing:-0.025em;color:var(--bone);font-variation-settings:'opsz' 144,'SOFT' 0;margin-bottom:1rem}
+.piece-hero h1 em{font-style:italic}
+.piece-sub{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2vw,26px);line-height:1.4;color:rgba(232,220,196,0.85);font-weight:300;font-variation-settings:'opsz' 36,'SOFT' 80;max-width:600px;margin-bottom:3rem}
+.piece-meta{border-top:0.5px solid var(--stroke);padding-top:1.25rem;font-family:var(--mono);font-size:12px;font-weight:300;letter-spacing:0.08em;color:var(--muted);display:flex;gap:1.5rem;flex-wrap:wrap}
+.piece-meta .sep{color:var(--amber);font-size:10px}
+.piece-body{padding:5rem 2.5rem}
+.piece-body-inner{display:grid;grid-template-columns:1fr 2fr;gap:5rem;max-width:1200px;margin:0 auto;align-items:start}
+.meta-card{border:0.5px solid var(--stroke)}
+.mc-price{padding:2rem;border-bottom:0.5px solid var(--stroke)}
+.mc-price-label{display:block;font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem}
+.mc-price-val{font-family:var(--mono);font-size:22px;font-weight:300;color:var(--bone)}
+.mc-price-ed{display:block;font-family:var(--serif);font-style:italic;font-size:13px;color:var(--muted);margin-top:0.5rem;font-variation-settings:'opsz' 18}
+.mc-row{display:flex;justify-content:space-between;align-items:baseline;padding:0.875rem 2rem;border-bottom:0.5px solid var(--stroke)}
+.mc-row:last-child{border-bottom:none}
+.mc-label{font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted)}
+.mc-val{font-family:var(--mono);font-size:13px;font-weight:300;color:var(--bone);text-align:right;max-width:55%}
+.mc-cta{display:block;padding:1.25rem 2rem;text-align:center;background:var(--amber);color:var(--ink);font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;transition:background .4s var(--ease)}
+.mc-cta:hover{background:var(--amber-bright)}
+.editorial h2{font-family:var(--serif);font-size:clamp(28px,3vw,40px);font-weight:300;line-height:1.15;color:var(--bone);font-variation-settings:'opsz' 72,'SOFT' 0;margin-bottom:2rem}
+.editorial h2 em{font-style:italic}
+.editorial p{font-family:var(--serif);font-size:18px;font-weight:400;line-height:1.65;color:rgba(232,220,196,0.88);margin-bottom:1.5rem;font-variation-settings:'opsz' 18,'SOFT' 50}
+.editorial blockquote{font-family:var(--serif);font-style:italic;font-size:clamp(22px,2.5vw,28px);line-height:1.4;color:var(--bone);padding-left:2rem;border-left:1px solid var(--amber);margin:2.5rem 0;font-variation-settings:'opsz' 36,'SOFT' 50}
+.craft-points{margin-top:3rem;border-top:0.5px solid var(--stroke);padding-top:2rem}
+.craft-point{display:flex;gap:1.25rem;padding:1.25rem 0;border-bottom:0.5px solid var(--stroke)}
+.craft-point:last-child{border-bottom:none}
+.cp-num{font-family:var(--serif);font-style:italic;font-size:24px;font-weight:300;color:var(--amber);line-height:1;flex-shrink:0;width:2rem;font-variation-settings:'opsz' 36}
+.cp-body strong{display:block;font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:0.06em;color:var(--bone);margin-bottom:4px}
+.cp-body span{font-family:var(--serif);font-size:15px;font-weight:400;color:rgba(232,220,196,0.6);line-height:1.55;font-variation-settings:'opsz' 18}
+.photos{padding:0 2.5rem 5rem;border-top:0.5px solid var(--stroke)}
+.photos-label{max-width:1440px;margin:0 auto;padding:1rem 0;font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--amber);margin-bottom:2rem}
+.p-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:90px;gap:1.25rem;max-width:1440px;margin:0 auto;grid-auto-flow:dense}
+.g-tile{position:relative;overflow:hidden;cursor:pointer}
+.g-tile img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(10%) brightness(0.75) contrast(1.08);transition:all 1.2s cubic-bezier(0.22,1,0.36,1)}
+.g-tile:hover img{filter:grayscale(0%) brightness(1) contrast(1.08);transform:scale(1.04)}
+.g-caption{position:absolute;bottom:0;left:0;right:0;padding:3rem 1.25rem 1rem;background:linear-gradient(transparent,rgba(10,9,8,0.85));border-top:0.5px solid transparent;font-family:var(--sans);font-size:10.5px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:var(--bone);transform:translateY(100%);transition:transform .6s var(--ease),border-color .6s ease}
+.g-tile:hover .g-caption{transform:translateY(0);border-top-color:var(--stroke)}
+.accent-strip{padding:3rem 2.5rem 5rem}
+.accent-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;max-width:1440px;margin:0 auto}
+.accent-img{height:180px;overflow:hidden}
+.accent-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(10%) brightness(0.75) contrast(1.08)}
+.pn{border-top:0.5px solid var(--stroke);padding:3rem 2.5rem;max-width:1440px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.pn a{text-decoration:none;color:var(--bone);transition:color .3s}
+.pn a:hover{color:var(--amber)}
+.pn-label{display:block;font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem}
+.pn-name{font-family:var(--serif);font-style:italic;font-size:22px;font-weight:300;font-variation-settings:'opsz' 36}
+.pn-next{text-align:right}
+.corr{padding:6rem 2.5rem;text-align:center;border-top:0.5px solid var(--stroke)}
+.corr-inner{max-width:680px;margin:0 auto}
+.super-label{display:block;font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:0.32em;text-transform:uppercase;color:var(--muted);margin-bottom:2.5rem}
+.corr-inner h3{font-family:var(--serif);font-size:clamp(36px,5vw,56px);font-weight:300;line-height:1.1;color:var(--bone);margin-bottom:1.5rem;font-variation-settings:'opsz' 144,'SOFT' 0}
+.corr-inner h3 em{font-style:italic}
+.corr-inner>p{font-family:var(--serif);font-size:17px;font-weight:400;line-height:1.55;color:rgba(232,220,196,0.5);margin-bottom:3rem;font-variation-settings:'opsz' 18,'SOFT' 50}
+.corr-ctas{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:1rem 2rem;font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:all .4s var(--ease)}
+.btn .arrow{transition:transform .4s var(--ease)}
+.btn:hover .arrow{transform:translateX(6px)}
+.btn-amber{background:var(--amber);color:var(--ink);border:1px solid var(--amber)}
+.btn-amber:hover{background:var(--amber-bright);border-color:var(--amber-bright)}
+.btn-outline{background:transparent;color:var(--bone);border:1px solid rgba(232,220,196,0.3)}
+.btn-outline:hover{background:var(--bone);color:var(--ink);border-color:var(--bone)}
+.footer{background:var(--ink);border-top:0.5px solid var(--stroke);padding:5rem 2.5rem 0}
+.footer-inner{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem;max-width:1440px;margin:0 auto;padding-bottom:4rem}
+.footer-logo{font-family:var(--serif);font-size:40px;font-weight:300;color:var(--bone);margin-bottom:1rem;display:block;font-variation-settings:'opsz' 72,'SOFT' 0}
+.footer-tagline{font-family:var(--serif);font-style:italic;font-size:15px;line-height:1.55;color:rgba(232,220,196,0.55);max-width:320px;font-variation-settings:'opsz' 18,'SOFT' 50}
+.footer-col h5{font-family:var(--sans);font-size:10.5px;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);margin-bottom:1.25rem}
+.footer-col a{display:block;font-family:var(--sans);font-size:13px;font-weight:400;color:rgba(232,220,196,0.5);text-decoration:none;margin-bottom:0.75rem;transition:color .3s ease}
+.footer-col a:hover{color:var(--amber)}
+.footer-bottom{max-width:1440px;margin:0 auto;padding:1.5rem 0;border-top:0.5px solid var(--stroke);display:flex;justify-content:space-between;align-items:center}
+.footer-bottom span{font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:0.06em;color:var(--muted)}
+.footer-bottom .motto{font-family:var(--serif);font-style:italic;font-size:13px;color:rgba(232,220,196,0.6);font-variation-settings:'opsz' 18}
+.lb{position:fixed;inset:0;z-index:10000;background:rgba(10,9,8,0.96);display:flex;align-items:center;justify-content:center;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .3s ease}
+.lb.open{opacity:1;pointer-events:all}
+.lb-img{max-width:90vw;max-height:85vh;object-fit:contain;display:block}
+.lb-close{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;color:var(--bone);font-size:1.5rem;cursor:pointer;transition:color .3s;padding:0.5rem}
+.lb-close:hover{color:var(--amber)}
+.lb-prev,.lb-next{position:absolute;top:50%;transform:translateY(-50%);background:none;border:1px solid rgba(232,220,196,0.15);color:var(--bone);font-size:1.5rem;width:48px;height:48px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s ease}
+.lb-prev{left:1.5rem}.lb-next{right:1.5rem}
+.lb-prev:hover,.lb-next:hover{color:var(--amber);border-color:var(--amber)}
+.lb-info{margin-top:1.25rem;text-align:center}
+.lb-title{font-family:var(--serif);font-style:italic;font-size:18px;color:var(--bone);margin-bottom:4px;font-variation-settings:'opsz' 24}
+.lb-sub{font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted)}
+.lb-counter{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:0.15em;color:var(--muted)}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
+.reveal.revealed{opacity:1;transform:translateY(0)}
+@media(max-width:900px){
+.nav-left,.nav-right{display:none}.nav{justify-content:center}
+.crumb{padding:0.75rem 1.5rem}
+.piece-hero{padding:4rem 1.5rem;min-height:60vh}
+.piece-hero h1{font-size:clamp(40px,12vw,72px)}
+.piece-meta{flex-direction:column;gap:0.5rem}
+.piece-body{padding:3rem 1.5rem}
+.piece-body-inner{grid-template-columns:1fr;gap:3rem}
+.photos{padding:0 1.5rem 3rem}
+.p-grid{grid-template-columns:repeat(6,1fr);grid-auto-rows:80px;gap:0.75rem}
+.p-grid .g-tile{grid-column:span 3 !important;grid-row:span 4 !important}
+.accent-strip{padding:2rem 1.5rem 3rem}
+.accent-grid{grid-template-columns:1fr 1fr 1fr}
+.accent-img{height:120px}
+.pn{padding:2rem 1.5rem;grid-template-columns:1fr}.pn-next{text-align:left}
+.corr{padding:4rem 1.5rem}.corr-ctas{flex-direction:column;align-items:center}
+.footer{padding:3rem 1.5rem 0}.footer-inner{grid-template-columns:1fr;text-align:center}.footer-tagline{margin:0 auto}
+.footer-bottom{flex-direction:column;gap:0.5rem;text-align:center;padding:1.25rem 0}
+.lb-prev{left:0.5rem}.lb-next{right:0.5rem}.lb-prev,.lb-next{width:36px;height:36px;font-size:1.2rem}
 }
-html{scroll-behavior:smooth}
-body{font-family:var(--sans);color:var(--cream);background:var(--bg);-webkit-font-smoothing:antialiased;overflow-x:hidden}
-a{text-decoration:none;color:inherit}
-img{display:block}
-.nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 32px;height:58px;display:flex;align-items:center;justify-content:space-between;background:rgba(10,9,7,.96);backdrop-filter:blur(24px);border-bottom:1px solid rgba(201,165,92,.07)}
-.nav-logo{font-family:var(--serif);font-size:1.25rem;font-weight:300;letter-spacing:.18em}
-.nav-center{font-family:var(--mono);font-size:.5rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text-dim);display:flex;align-items:center;gap:20px}
-.nav-center span{color:var(--gold)}
-.nav-right{display:flex;gap:16px;align-items:center}
-.nav-right a{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cream2);transition:color .25s}
-.nav-right a:hover{color:var(--gold)}
-.nav-inquire{background:var(--gold);color:var(--bg)!important;padding:8px 20px;font-weight:600;font-size:.6rem!important;letter-spacing:.14em!important}
-@media(max-width:700px){.nav-center{display:none}}
-.ticker{background:var(--surface);border-bottom:1px solid rgba(201,165,92,.06);padding:9px 0;overflow:hidden}
-.ticker-track{display:flex;animation:ticker 35s linear infinite;width:max-content}
-.ticker-item{display:flex;align-items:center;gap:8px;padding:0 40px;font-family:var(--mono);font-size:.52rem;letter-spacing:.1em;color:var(--text-dim);white-space:nowrap}
-.ticker-item .dot{width:5px;height:5px;border-radius:50%;background:var(--green);flex-shrink:0}
-.ticker-item .dot.red{background:var(--red)}
-@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.hero{padding-top:58px;display:grid;grid-template-columns:1fr 460px;min-height:calc(100vh - 58px);align-items:start}
-@media(max-width:1000px){.hero{grid-template-columns:1fr}}
-.photo-panel{background:var(--bg2)}
-.main-photo-wrap{position:relative;overflow:hidden}
-.main-photo-wrap img{width:100%;aspect-ratio:1/1;object-fit:cover;transition:transform .8s var(--ease)}
-.main-photo-wrap:hover img{transform:scale(1.02)}
-.photo-badge{position:absolute;top:20px;left:20px;background:rgba(10,9,7,.85);backdrop-filter:blur(12px);border:1px solid rgba(201,165,92,.2);padding:8px 16px;font-family:var(--mono);font-size:.48rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
-.thumbs{display:flex;gap:4px;padding:8px;background:var(--surface)}
-.thumb{width:80px;height:58px;flex-shrink:0;cursor:pointer;overflow:hidden;border:2px solid transparent;opacity:.45;transition:all .2s}
-.thumb.on,.thumb:hover{border-color:var(--gold);opacity:1}
-.thumb img{width:100%;height:100%;object-fit:cover}
-.info-panel{padding:44px 44px 60px;background:var(--bg);border-left:1px solid rgba(201,165,92,.06)}
-@media(max-width:1000px){.info-panel{border-left:none;padding:32px 24px 48px}}
-.breadcrumb{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.48rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:20px}
-.breadcrumb a{color:var(--text-dim)}
-.breadcrumb a:hover{color:var(--gold)}
-.breadcrumb span{color:var(--gold-dim)}
-.piece-eyebrow{font-family:var(--mono);font-size:.48rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:8px}
-.piece-title{font-family:var(--serif);font-size:3.2rem;font-weight:300;line-height:1;margin-bottom:4px}
-.piece-title em{font-style:italic;color:var(--gold-light)}
-.piece-subtitle{font-size:.62rem;letter-spacing:.1em;color:var(--cream3);margin-bottom:24px}
-.scarcity-box{background:var(--red-faint);border:1px solid rgba(184,80,64,.18);padding:14px 18px;margin-bottom:20px}
-.scarcity-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-.scarcity-label{font-family:var(--mono);font-size:.48rem;letter-spacing:.14em;text-transform:uppercase;color:#c07060}
-.scarcity-live{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:.46rem;color:var(--text-dim)}
-.scarcity-live .live-dot{width:5px;height:5px;border-radius:50%;background:var(--red);animation:pulse 1.4s infinite}
-.scarcity-bar-track{height:4px;background:rgba(184,80,64,.15);width:100%}
-.scarcity-bar-fill{height:100%;background:linear-gradient(90deg,var(--red),#d06050)}
-.scarcity-text{font-size:.66rem;color:#c07060;margin-top:8px;line-height:1.5}
-.scarcity-text strong{color:#e09080}
-.price-module{padding:20px 0;border-top:1px solid rgba(201,165,92,.08);border-bottom:1px solid rgba(201,165,92,.08);margin-bottom:24px}
-.price-main{font-family:var(--serif);font-size:2.6rem;color:var(--gold);font-weight:300;line-height:1;margin-bottom:6px}
-.price-sub{font-size:.62rem;color:var(--text-dim);line-height:1.6}
-.price-sub span{color:var(--cream2)}
-.social-proof{background:var(--surface);border:1px solid rgba(201,165,92,.07);padding:14px 18px;margin-bottom:24px;display:flex;flex-direction:column;gap:10px}
-.sp-item{display:flex;align-items:flex-start;gap:10px}
-.sp-avatar{width:28px;height:28px;border-radius:50%;background:var(--surface3);border:1px solid rgba(201,165,92,.12);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:.7rem;color:var(--gold);flex-shrink:0}
-.sp-body{flex:1}
-.sp-name{font-size:.6rem;color:var(--cream2);font-weight:500;margin-bottom:2px}
-.sp-text{font-size:.66rem;color:var(--cream3);line-height:1.5;font-style:italic;font-family:var(--serif)}
-.sp-stars{color:var(--gold);font-size:.6rem;letter-spacing:2px;margin-bottom:2px}
-.sp-divider{height:1px;background:rgba(201,165,92,.06)}
-.cta-block{display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
-.cta-primary{padding:17px;background:var(--gold);color:var(--bg);font-family:var(--sans);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;border:none;cursor:pointer;text-align:center;transition:all .25s var(--ease)}
-.cta-primary:hover{background:var(--gold-light);transform:translateY(-1px)}
-.cta-hold{padding:14px;background:transparent;color:var(--cream2);font-family:var(--sans);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;font-weight:400;border:1px solid rgba(201,165,92,.18);cursor:pointer;text-align:center;transition:all .25s}
-.cta-hold:hover{border-color:rgba(201,165,92,.4);color:var(--gold)}
-.deposit-note{font-family:var(--mono);font-size:.5rem;color:var(--text-dim);text-align:center;letter-spacing:.06em;line-height:1.6;padding:0 8px}
-.deposit-note span{color:var(--gold)}
-.trust-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:20px;margin-bottom:20px}
-.pill{display:flex;align-items:center;gap:5px;padding:5px 12px;background:var(--surface);border:1px solid rgba(201,165,92,.08);font-size:.52rem;color:var(--cream3);letter-spacing:.06em}
-.pill b{color:var(--gold);font-size:.5rem}
-.specs-section{border-top:1px solid rgba(201,165,92,.08)}
-.spec-row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:10px 0;border-bottom:1px solid rgba(201,165,92,.05)}
-.spec-label{font-family:var(--mono);font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim)}
-.spec-val{font-size:.76rem;color:var(--cream2);text-align:right;max-width:60%}
-.urgency-strip{background:linear-gradient(90deg,rgba(184,80,64,.1),rgba(184,80,64,.05) 50%,rgba(184,80,64,.1));border-top:1px solid rgba(184,80,64,.15);border-bottom:1px solid rgba(184,80,64,.15);padding:16px 60px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
-@media(max-width:700px){.urgency-strip{padding:14px 24px}}
-.us-dot{width:8px;height:8px;border-radius:50%;background:var(--red);animation:pulse 1.4s infinite;flex-shrink:0}
-.us-text{font-size:.7rem;color:#d08070;line-height:1.5}
-.us-text strong{color:#e8a090}
-.us-cta{padding:10px 24px;background:rgba(184,80,64,.2);border:1px solid rgba(184,80,64,.3);color:#e8a090;font-family:var(--mono);font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:all .25s}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-.differentiation{padding:80px 60px;background:var(--bg2);display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
-@media(max-width:800px){.differentiation{grid-template-columns:1fr;padding:56px 24px;gap:40px}}
-.section-label{font-family:var(--mono);font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:16px;display:flex;align-items:center;gap:10px}
-.section-label::before{content:'';width:24px;height:1px;background:var(--gold-dim)}
-.diff-text h2{font-family:var(--serif);font-size:2.4rem;font-weight:300;color:var(--cream);line-height:1.12;margin-bottom:20px}
-.diff-text h2 em{font-style:italic;color:var(--gold-light)}
-.diff-text p{font-size:.84rem;color:var(--cream2);line-height:1.9;font-weight:200;margin-bottom:16px}
-.diff-points{display:flex;flex-direction:column}
-.diff-point{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid rgba(201,165,92,.07)}
-.diff-point:last-child{border-bottom:none}
-.dp-num{font-family:var(--serif);font-size:1.6rem;color:var(--gold-dim);font-weight:300;line-height:1;flex-shrink:0;width:28px}
-.dp-body strong{display:block;font-size:.76rem;color:var(--cream);font-weight:500;margin-bottom:4px}
-.dp-body span{font-size:.72rem;color:var(--cream3);line-height:1.6}
-.related-section{padding:80px 60px;background:var(--bg2);border-top:1px solid rgba(201,165,92,.07)}
-@media(max-width:800px){.related-section{padding:56px 24px}}
-.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:32px}
-@media(max-width:700px){.related-grid{grid-template-columns:1fr}}
-.related-card{background:var(--surface);border:1px solid rgba(201,165,92,.05);overflow:hidden;transition:all .3s var(--ease)}
-.related-card:hover{border-color:rgba(201,165,92,.14);transform:translateY(-3px)}
-.rc-body{padding:16px}
-.rc-ey{font-family:var(--mono);font-size:.46rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);margin-bottom:5px}
-.rc-body h4{font-family:var(--serif);font-size:1.05rem;color:var(--cream);font-weight:400;margin-bottom:8px}
-.rc-price{font-size:.8rem;color:var(--gold)}
-.rc-btn{display:block;width:100%;padding:9px;background:transparent;border:1px solid rgba(201,165,92,.14);color:var(--gold);font-family:var(--mono);font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;text-align:center;transition:all .25s;margin-top:10px}
-.related-card:hover .rc-btn{background:var(--gold);color:var(--bg);border-color:var(--gold)}
-.final-cta{padding:100px 60px;background:var(--bg2);text-align:center;border-top:1px solid rgba(201,165,92,.07)}
-@media(max-width:700px){.final-cta{padding:64px 24px}}
-.final-cta-inner{max-width:560px;margin:0 auto}
-.final-cta h2{font-family:var(--serif);font-size:3rem;font-weight:300;color:var(--cream);line-height:1.1;margin-bottom:12px}
-.final-cta h2 em{font-style:italic;color:var(--gold-light)}
-.final-cta p{font-size:.84rem;color:var(--cream2);line-height:1.7;font-weight:200;margin-bottom:36px}
-.final-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-.btn-gold{padding:16px 44px;background:var(--gold);color:var(--bg);font-family:var(--sans);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;border:none;cursor:pointer;transition:all .25s}
-.btn-gold:hover{background:var(--gold-light);transform:translateY(-1px)}
-.btn-outline{padding:16px 44px;background:transparent;color:var(--gold);font-family:var(--sans);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;font-weight:400;border:1px solid rgba(201,165,92,.25);cursor:pointer;transition:all .25s}
-footer{padding:40px 32px;background:var(--surface);border-top:1px solid rgba(201,165,92,.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
-.footer-logo{font-family:var(--serif);font-size:1.2rem;letter-spacing:.18em;font-weight:300}
-.footer-center{font-family:var(--mono);font-size:.48rem;color:var(--text-dim);letter-spacing:.1em;text-align:center}
-.footer-right{font-family:var(--mono);font-size:.5rem;color:var(--text-dim)}
-.footer-right a{color:var(--gold)}
-@media(max-width:700px){footer{flex-direction:column;text-align:center;padding:32px 24px}}
 </style>
 </head>
 <body>
-<nav class="nav">
-  <a href="../index.html" class="nav-logo">PHAÖRA</a>
-  <div class="nav-center"><span>The Courtship</span> · Mid-Range · Two Macaws on Labradorite · <span id="nav-viewers">3 people viewing</span></div>
-  <div class="nav-right">
-    <a href="../gallery.html">← Collection</a>
-    <a href="mailto:david@phaora.com?subject=Inquiry — The Courtship ($13,000)" class="nav-inquire">Inquire ✦</a>
-  </div>
-</nav>
-
-<div class="ticker">
-  <div class="ticker-track">
-    <div class="ticker-item"><span class="dot"></span>Someone in Palm Beach viewed The Courtship — 9 minutes ago</div>
-    <div class="ticker-item"><span class="dot red"></span>The Canopy was acquired — Palm Beach collector</div>
-    <div class="ticker-item"><span class="dot"></span>Realtor inquired about The Courtship as a closing gift — today</div>
-    <div class="ticker-item"><span class="dot red"></span>The Monolith is no longer available</div>
-    <div class="ticker-item"><span class="dot"></span>Someone in Fort Lauderdale is viewing The Courtship right now</div>
-    <div class="ticker-item"><span class="dot red"></span>The Scarlets acquired — Palm Beach Gardens</div>
-    <div class="ticker-item"><span class="dot"></span>Interior designer shortlisted The Courtship for a client — 2 hours ago</div>
-    <div class="ticker-item"><span class="dot red"></span>7 pieces placed this quarter</div>
-    <div class="ticker-item"><span class="dot"></span>Someone in Palm Beach viewed The Courtship — 9 minutes ago</div>
-    <div class="ticker-item"><span class="dot red"></span>The Canopy was acquired — Palm Beach collector</div>
-    <div class="ticker-item"><span class="dot"></span>Realtor inquired about The Courtship as a closing gift — today</div>
-    <div class="ticker-item"><span class="dot red"></span>The Monolith is no longer available</div>
-    <div class="ticker-item"><span class="dot"></span>Someone in Fort Lauderdale is viewing The Courtship right now</div>
-    <div class="ticker-item"><span class="dot red"></span>The Scarlets acquired — Palm Beach Gardens</div>
-    <div class="ticker-item"><span class="dot"></span>Interior designer shortlisted The Courtship for a client — 2 hours ago</div>
-    <div class="ticker-item"><span class="dot red"></span>7 pieces placed this quarter</div>
-  </div>
-</div>
-
-<div class="hero">
-  <div class="photo-panel">
-    <div class="main-photo-wrap">
-      <img id="mainPhoto" src="../img/the-courtship-main.jpg" alt="The Courtship — Two Macaws on Labradorite">
-      <div class="photo-badge">One of One · Mid-Range</div>
+<nav class="nav"><div class="nav-left"><a href="../hardscape-gallery.html">Hardscape</a><a href="../sculptures.html">Sculpture</a><a href="../gallery.html">Gallery</a><a href="../agents.html">Agents</a></div><a href="../index.html" class="nav-logo">PHAÖRA</a><div class="nav-right"><a href="../index.html#studio">Studio</a><a href="../contact.html">Contact</a><a href="../index.html#invitation" class="nav-enquire">Enquire <span class="arrow">&rarr;</span></a></div></nav>
+<div class="crumb"><a href="../sculptures.html">&larr; Back to the collection</a><span class="crumb-num">07 of Forty-four</span></div>
+<section class="piece-hero gf">
+  <div class="piece-hero-bg" style="background-image:url('../assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-6.jpeg')"></div>
+  <div class="piece-super">Piece &middot; 07</div>
+  <h1>The <em>Courtship</em></h1>
+  <p class="piece-sub">The ritual of pursuit, crystallized in iridescent stone.</p>
+  <div class="piece-meta"><span>Edition &middot; One of one</span><span class="sep">&#x25C6;</span><span>Origin &middot; Minas Gerais</span><span class="sep">&#x25C6;</span><span>By appointment</span></div>
+</section>
+<section class="piece-body reveal">
+  <div class="piece-body-inner">
+    <div class="meta-card">
+      <div class="mc-price"><span class="mc-price-label">Price</span><div class="mc-price-val">USD 13,000</div><span class="mc-price-ed">One of one</span></div>
+      <div class="mc-row"><span class="mc-label">Stone</span><span class="mc-val">Labradorite</span></div>
+      <div class="mc-row"><span class="mc-label">Origin</span><span class="mc-val">Rio Grande do Sul, Brazil</span></div>
+      <div class="mc-row"><span class="mc-label">Birds</span><span class="mc-val">Two Macaws</span></div>
+      <div class="mc-row"><span class="mc-label">Tier</span><span class="mc-val">Mid-Range</span></div>
+      <div class="mc-row"><span class="mc-label">Signed</span><span class="mc-val">David Machado Vaz</span></div>
+      <a href="mailto:david@phaora.com?subject=Enquiry%3A%20The%20Courtship" class="mc-cta">Inquire about this piece</a>
     </div>
-    <div class="thumbs">
-      <div class="thumb on"><img src="../img/the-courtship-main.jpg" alt=""></div>
-      <div class="thumb"><img src="../img/the-courtship-2.jpg" alt=""></div>
-      <div class="thumb"><img src="../img/the-courtship-3.jpg" alt=""></div>
+    <div class="editorial">
+      <h2>Iridescence.<br><em>In pursuit.</em></h2>
+      <p>The Courtship captures two macaws in the elaborate display behavior that precedes pairing — one elevated, wings fanned slightly; the other watching, waiting. Fabiano called it "the moment just before everything is decided."</p>
+      <p>The labradorite base shifts between deep charcoal and vivid blue-green depending on the angle of light. It is one of the few PHAÖRA stones that actively changes throughout the day.</p>
+      <blockquote>The Courtship captures two macaws in the elaborate display behavior that precedes pairing — one elevated, wings fanned slightly; the other watching, waiting.</blockquote>
+      <div class="craft-points"><div class="craft-point"><span class="cp-num">I</span><div class="cp-body"><strong>Display Posture</strong><span>One bird elevated with wings fanned. The other attentive. A choreography that exists in nature and in stone.</span></div></div><div class="craft-point"><span class="cp-num">II</span><div class="cp-body"><strong>Labradorite Flash</strong><span>The iridescent blue-green that appears only at certain angles. Changes character depending on where you stand.</span></div></div><div class="craft-point"><span class="cp-num">III</span><div class="cp-body"><strong>A Living Surface</strong><span>No two viewings of this piece are the same. The stone reads differently in morning light versus evening — the piece evolves.</span></div></div></div>
     </div>
   </div>
-  <div class="info-panel">
-    <div class="breadcrumb">
-      <a href="../index.html">PHAÖRA</a><span>›</span>
-      <a href="../gallery.html">Collection</a><span>›</span>
-      <span style="color:var(--cream2)">The Courtship</span>
-    </div>
-    <div class="piece-eyebrow">Two Macaws · Labradorite · Mid-Range Tier</div>
-    <h1 class="piece-title">The <em>Courtship</em></h1>
-    <div class="piece-subtitle">The ritual of pursuit, crystallized in iridescent stone.</div>
+</section>
 
-```
-<div class="scarcity-box">
-  <div class="scarcity-top">
-    <span class="scarcity-label">Availability</span>
-    <span class="scarcity-live"><span class="live-dot"></span>Live Status</span>
+<!-- STUDIO CONTEXT -->
+<section class="accent-strip reveal">
+  <div class="accent-grid">
+    <div class="accent-img"><img src="../assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-1.jpeg" alt="" loading="lazy"></div>
+    <div class="accent-img"><img src="../assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-2.jpeg" alt="" loading="lazy"></div>
+    <div class="accent-img"><img src="../assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-3.jpeg" alt="" loading="lazy"></div>
   </div>
-  <div class="scarcity-bar-track"><div class="scarcity-bar-fill" style="width:8.33%"></div></div>
-  <div class="scarcity-text"><strong>1 of 1 remaining.</strong> The labradorite base carries a rare blue-green flash. The piece cannot be duplicated — the stone alone makes that impossible.</div>
-</div>
-
-<div class="price-module">
-  <div class="price-main">$13,000</div>
-  <div class="price-sub">Private acquisition. <span>White-glove delivery included.</span><br>$1,300 deposit holds this piece for 30 days.</div>
-</div>
-
-<div class="social-proof">
-  <div class="sp-item">
-    <div class="sp-avatar">L</div>
-    <div class="sp-body">
-      <div class="sp-stars">★★★★★</div>
-      <div class="sp-name">Laura M. — Boca Raton</div>
-      <div class="sp-text">"The labradorite changes color with the light. My husband noticed something new in it three months after we got it."</div>
+</section>
+<nav class="pn"><a href="the-companions.html"><span class="pn-label">&larr; Previous</span><span class="pn-name">The Companions</span></a><a href="the-crimson-duo.html" class="pn-next"><span class="pn-label">Next &rarr;</span><span class="pn-name">The Crimson Duo</span></a></nav>
+<section class="corr gf reveal">
+  <div class="corr-inner">
+    <span class="super-label">&mdash; Correspondence &mdash;</span>
+    <h3>Enquire about <em>The Courtship</em></h3>
+    <p>David responds personally to every enquiry within twenty-four hours. No intermediary, no obligation.</p>
+    <div class="corr-ctas">
+      <a href="mailto:david@phaora.com?subject=Enquiry%3A%20The%20Courtship" class="btn btn-amber">Write to the studio <span class="arrow">&rarr;</span></a>
+      <a href="../sculptures.html" class="btn btn-outline">View the collection <span class="arrow">&rarr;</span></a>
     </div>
   </div>
-  <div class="sp-divider"></div>
-  <div class="sp-item">
-    <div class="sp-avatar">P</div>
-    <div class="sp-body">
-      <div class="sp-stars">★★★★★</div>
-      <div class="sp-name">Paul G. — Realtor, Palm Beach</div>
-      <div class="sp-text">"Used as an anniversary gift for a top client. The iridescent base made it feel luxurious and alive."</div>
-    </div>
-  </div>
-</div>
+</section>
+<footer class="footer"><div class="footer-inner"><div><span class="footer-logo">PHAÖRA</span><p class="footer-tagline">Hardscape and crystal for the estates that demand permanence.</p></div><div class="footer-col"><h5>The House</h5><a href="../index.html">About</a><a href="../index.html#studio">Studio</a><a href="#">Press</a><a href="#">Journal</a></div><div class="footer-col"><h5>Divisions</h5><a href="../hardscape-gallery.html">Hardscape</a><a href="../sculptures.html">Sculpture</a><a href="../gallery.html">Gallery</a><a href="../sculptures.html">Pieces</a></div><div class="footer-col"><h5>Connect</h5><a href="../contact.html">Contact</a><a href="../agents.html">Agents</a><a href="#">Instagram</a><a href="mailto:david@phaora.com">Email</a></div></div><div class="footer-bottom"><span>Phaöra &middot; MMXXVI</span><span class="motto">Built on standards. Not inherited. Decided.</span><span>Boca Raton &middot; All rights reserved</span></div></footer>
 
-<div class="cta-block">
-  <a href="mailto:david@phaora.com?subject=Inquiry — The Courtship ($13,000)" class="cta-primary">Inquire About This Piece ✦</a>
-  <button class="cta-hold">Request a 30-Day Hold — $1,300 Deposit</button>
-</div>
-<div class="deposit-note">Deposit fully applied to acquisition. <span>No risk. No obligation.</span></div>
-
-<div class="trust-pills">
-  <span class="pill"><b>✦</b> Certificate of Authenticity</span>
-  <span class="pill"><b>✦</b> White-Glove Delivery</span>
-  <span class="pill"><b>✦</b> Hand-Placed by David</span>
-  <span class="pill"><b>✦</b> Brazilian Crystal</span>
-</div>
-
-<div class="specs-section">
-  <div class="spec-row"><span class="spec-label">Stone</span><span class="spec-val">Labradorite</span></div>
-  <div class="spec-row"><span class="spec-label">Origin</span><span class="spec-val">Rio Grande do Sul, Brazil</span></div>
-  <div class="spec-row"><span class="spec-label">Birds</span><span class="spec-val">Two Macaws</span></div>
-  <div class="spec-row"><span class="spec-label">Tier</span><span class="spec-val">Mid-Range</span></div>
-  <div class="spec-row"><span class="spec-label">Edition</span><span class="spec-val">One of One — Never Duplicated</span></div>
-  <div class="spec-row"><span class="spec-label">Delivery</span><span class="spec-val">White-glove, personally placed by PHAÖRA</span></div>
-</div>
-```
-
-  </div>
-</div>
-
-<div class="urgency-strip">
-  <div style="display:flex;align-items:center;gap:12px;">
-    <div class="us-dot"></div>
-    <div class="us-text"><strong>The labradorite in The Courtship is among the most optically active stones in PHAÖRA's history.</strong> The blue-green flash is a natural phenomenon — present only in rare formations from specific mineral deposits.</div>
-  </div>
-  <button class="us-cta" onclick="window.location='mailto:david@phaora.com?subject=Inquiry — The Courtship ($13,000)'">Begin Acquisition →</button>
-</div>
-
-<div class="differentiation">
-  <div class="diff-text">
-    <div class="section-label">What Makes This Different</div>
-    <h2>Iridescence.<br><em>In pursuit.</em></h2>
-    <p>The Courtship captures two macaws in the elaborate display behavior that precedes pairing — one elevated, wings fanned slightly; the other watching, waiting. Fabiano called it "the moment just before everything is decided."</p>
-    <p>The labradorite base shifts between deep charcoal and vivid blue-green depending on the angle of light. It is one of the few PHAÖRA stones that actively changes throughout the day.</p>
-  </div>
-  <div class="diff-points">
-    <div class="diff-point">
-      <div class="dp-num">01</div>
-      <div class="dp-body"><strong>Display Posture</strong><span>One bird elevated with wings fanned. The other attentive. A choreography that exists in nature and in stone.</span></div>
-    </div>
-    <div class="diff-point">
-      <div class="dp-num">02</div>
-      <div class="dp-body"><strong>Labradorite Flash</strong><span>The iridescent blue-green that appears only at certain angles. Changes character depending on where you stand.</span></div>
-    </div>
-    <div class="diff-point">
-      <div class="dp-num">03</div>
-      <div class="dp-body"><strong>A Living Surface</strong><span>No two viewings of this piece are the same. The stone reads differently in morning light versus evening — the piece evolves.</span></div>
-    </div>
-    <div class="diff-point">
-      <div class="dp-num">04</div>
-      <div class="dp-body"><strong>Placed by Hand</strong><span>David personally delivers and positions every PHAÖRA piece. The placement is part of the acquisition.</span></div>
-    </div>
-  </div>
-</div>
-
-<div class="related-section">
-  <div class="section-label">Continue Exploring</div>
-  <div class="related-grid">
-    <a href="the-companions.html" class="related-card">
-      <div class="rc-body">
-        <div class="rc-ey">Mid-Range · Two Parrots</div>
-        <h4>The Companions</h4>
-        <div class="rc-price">$10,500</div>
-        <div class="rc-btn">View Piece →</div>
-      </div>
-    </a>
-    <a href="the-lovers.html" class="related-card">
-      <div class="rc-body">
-        <div class="rc-ey">Mid-Range · Pair</div>
-        <h4>The Lovers</h4>
-        <div class="rc-price">$11,500</div>
-        <div class="rc-btn">View Piece →</div>
-      </div>
-    </a>
-    <a href="the-devotion.html" class="related-card">
-      <div class="rc-body">
-        <div class="rc-ey">Mid-Range · Pair</div>
-        <h4>The Devotion</h4>
-        <div class="rc-price">$15,000</div>
-        <div class="rc-btn">View Piece →</div>
-      </div>
-    </a>
-  </div>
-</div>
-
-<div class="final-cta">
-  <div class="final-cta-inner">
-    <h2>Ready to acquire <em>The Courtship?</em></h2>
-    <p>David responds personally to every inquiry. No sales calls, no pressure — a private conversation about whether this piece belongs in your home.</p>
-    <div class="final-btns">
-      <a href="mailto:david@phaora.com?subject=Inquiry — The Courtship ($13,000)" class="btn-gold">Begin the Conversation ✦</a>
-      <a href="tel:+19548719991" class="btn-outline">Call David Directly</a>
-    </div>
-  </div>
-</div>
-
-<footer>
-  <div class="footer-logo">PHAÖRA</div>
-  <div class="footer-center">Boca Raton · By Appointment · Brazilian Crystal Sculpture</div>
-  <div class="footer-right"><a href="mailto:david@phaora.com">david@phaora.com</a></div>
-</footer>
 <script>
-document.querySelectorAll('.thumb').forEach(t=>{t.addEventListener('click',()=>{document.querySelectorAll('.thumb').forEach(x=>x.classList.remove('on'));t.classList.add('on');});});
-let v=3;setInterval(()=>{v=Math.max(1,v+(Math.random()>.5?1:-1));const el=document.getElementById('nav-viewers');if(el)el.textContent=v+' people viewing';},8000);
+(function(){
+  var reveals=document.querySelectorAll('.reveal');
+  var rObs=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){en.target.classList.add('revealed');rObs.unobserve(en.target)}})},{threshold:0.1});
+  reveals.forEach(function(el){rObs.observe(el)});
+  
+})();
 </script>
 </body>
 </html>
