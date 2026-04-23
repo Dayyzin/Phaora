@@ -1,1199 +1,482 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>PHAÖRA — The Collection, 2026</title>
-<meta name="description" content="Forty-four crystal sculptures. Hand-mined in Minas Gerais. Shaped by one man, for forty years." />
-
-<link rel="canonical" href="https://phaora.com/sculptures.html" />
-
-<meta property="og:type" content="website" />
-<meta property="og:title" content="PHAÖRA — The Collection, 2026" />
-<meta property="og:description" content="Forty-four crystal sculptures. Hand-mined in Minas Gerais. Shaped by one man, for forty years." />
-<meta property="og:image" content="https://phaora.com/img/IMG_6959.JPG" />
-<meta property="og:url" content="https://phaora.com/sculptures.html" />
-<meta property="og:site_name" content="Phaöra" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="PHAÖRA — The Collection, 2026" />
-<meta name="twitter:description" content="Forty-four crystal sculptures. Hand-mined in Minas Gerais. Shaped by one man, for forty years." />
-<meta name="twitter:image" content="https://phaora.com/img/IMG_6959.JPG" />
-
-<!--
-  PHAÖRA · The Collection · 2026
-  Variant B — Hermès discipline
-  ================================
-
-  FINAL — all stages complete.
-  Stages: 1 Skeleton · 2 Masthead+Plate · 3 Index+Collections+Cards
-          · 4 Full-screen Viewer · 5 Provenance+Correspondence+Polish
-
-  REMOVED from the current phaora.com (and why):
-  1. Star and diamond decorative characters — they read as ornament, not restraint.
-  2. Tier badges (Statement/Signature/Entry) on cards — pricing already communicates position.
-  3. Urgency banners ("7 sold this quarter", "Now booking") — HNW buyers do not convert on scarcity theater.
-
-  DESIGN TOKENS (this stage):
-  - Background: #F7F3EC (cream, never pure white)
-  - Ink: #111110 primary, #6F6B64 secondary
-  - Hairline: rgba(17,17,16,0.09)
-  - Display: Fraunces (opsz 72+, light weights only)
-  - Body: Inter Tight, 14–16px, no smaller than 13px
-  - One accent color: none. The photographs provide all color.
-  - Spacing unit: 8px base. Section rhythm: 160–240px.
-  - Max content width: 1280px. Text columns: 640px.
--->
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PHAÖRA — The Collection, MMXXVI</title>
+<meta name="description" content="Forty-four crystal sculptures. Hand-mined in Minas Gerais. Shaped by one man, for forty years.">
+<link rel="canonical" href="https://phaora.com/sculptures.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PHAÖRA — The Collection, MMXXVI">
+<meta property="og:description" content="Forty-four crystal sculptures. Hand-mined in Minas Gerais. Shaped by one man, for forty years.">
+<meta property="og:image" content="https://phaora.com/assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-1.jpeg">
+<meta property="og:url" content="https://phaora.com/sculptures.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PHAÖRA — The Collection, MMXXVI">
+<meta name="twitter:description" content="Forty-four crystal sculptures. Hand-mined in Minas Gerais. Shaped by one man, for forty years.">
+<meta name="twitter:image" content="https://phaora.com/assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-1.jpeg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400&family=Inter+Tight:wght@400;500&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300&display=swap" rel="stylesheet">
 <style>
-  /* ========================================================
-     TOKENS
-     ======================================================== */
-  :root {
-    /* Color — near-monochrome, no accent */
-    --cream: #F7F3EC;
-    --cream-deep: #EFE9DE;
-    --ink: #111110;
-    --ink-soft: #3A3834;
-    --ink-muted: #6F6B64;
-    --hairline: rgba(17, 17, 16, 0.09);
-    --hairline-strong: rgba(17, 17, 16, 0.18);
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ink:#0a0908;--surface:#12100c;--bone:#e8dcc4;
+  --amber:#B87333;--amber-bright:#D4A254;--muted:#8a7355;
+  --stroke:rgba(184,115,51,0.2);
+  --serif:'Fraunces',Georgia,serif;--sans:'Inter',system-ui,sans-serif;
+  --mono:'JetBrains Mono',monospace;--ease:cubic-bezier(0.22,1,0.36,1);
+}
+html{scroll-behavior:smooth;background:var(--ink)}
+body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 
-    /* Type */
-    --font-display: 'Fraunces', 'GT Super', 'Saol Display', Georgia, serif;
-    --font-body: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+/* ═══ NAV ═══ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 2.5rem;height:60px;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(24px) saturate(1.2);-webkit-backdrop-filter:blur(24px) saturate(1.2);background:rgba(10,9,8,0.85);border-bottom:0.5px solid var(--stroke)}
+.nav-left,.nav-right{display:flex;align-items:center;gap:2rem}
+.nav-left a,.nav-right a{font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;color:var(--bone);transition:color .3s ease;position:relative}
+.nav-left a::after,.nav-right a:not(.nav-enquire)::after{content:'';position:absolute;bottom:-3px;left:0;width:100%;height:0.5px;background:var(--amber);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+.nav-left a:hover::after,.nav-right a:not(.nav-enquire):hover::after{transform:scaleX(1)}
+.nav-logo{font-family:var(--sans);font-size:14px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;text-decoration:none;color:var(--bone)}
+.nav-enquire{padding:8px 18px;border:0.5px solid rgba(232,220,196,0.3);transition:all .3s ease !important;display:inline-flex;align-items:center;gap:6px}
+.nav-enquire .arrow{font-size:10px;transition:transform .3s var(--ease)}
+.nav-enquire:hover .arrow{transform:translateX(4px)}
+.nav-enquire:hover{background:rgba(232,220,196,0.06)}
 
-    /* Scale — restrained, Hermès register */
-    --fs-xs:   12px;   /* rare, caption only */
-    --fs-sm:   13px;   /* floor */
-    --fs-base: 14px;   /* default UI and product type */
-    --fs-md:   16px;   /* body copy */
-    --fs-lg:   20px;   /* subsection intro */
-    --fs-xl:   28px;   /* collection titles */
-    --fs-2xl:  40px;   /* pull quote, opening title */
-    --fs-3xl:  56px;   /* maximum — only the single pull quote */
+/* ═══ MASTHEAD ═══ */
+.mh{min-height:55vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:8rem 2.5rem 4rem}
+.mh-meta{width:100%;max-width:1000px;display:flex;justify-content:space-between;align-items:center;margin-bottom:3rem}
+.mh-meta span{font-family:var(--sans);font-size:10.5px;font-weight:400;letter-spacing:0.32em;text-transform:uppercase;color:rgba(232,220,196,0.65)}
+.mh-meta-c{font-family:var(--serif) !important;font-style:italic;font-size:12px !important;letter-spacing:0.06em !important;text-transform:none !important;color:rgba(232,220,196,0.55) !important;font-variation-settings:'opsz' 18,'SOFT' 80;display:inline-flex;align-items:center;gap:10px}
+.pulse-dot{width:6px;height:6px;border-radius:50%;background:var(--amber);flex-shrink:0;animation:dotPulse 2.4s ease-in-out infinite}
+.mh h1{font-family:var(--serif);font-size:clamp(88px,13vw,180px);font-weight:300;line-height:0.85;letter-spacing:-0.03em;color:var(--bone);font-variation-settings:'opsz' 144,'SOFT' 100;margin-bottom:0.5rem}
+.mh-sub{font-family:var(--serif);font-style:italic;font-size:clamp(24px,3vw,40px);color:var(--amber);font-weight:300;font-variation-settings:'opsz' 72,'SOFT' 80;margin-bottom:1.5rem}
+.mh-lede{font-family:var(--serif);font-style:italic;font-size:clamp(16px,1.6vw,20px);line-height:1.55;color:rgba(232,220,196,0.85);max-width:580px;margin-bottom:3rem;font-variation-settings:'opsz' 18,'SOFT' 50}
+.mh-strip{width:100%;max-width:800px;border-top:0.5px solid var(--stroke);padding-top:1.5rem;font-family:var(--mono);font-size:13px;font-weight:300;letter-spacing:0.08em;color:var(--muted)}
 
-    /* Spacing — generous */
-    --s-1:  8px;
-    --s-2:  16px;
-    --s-3:  24px;
-    --s-4:  32px;
-    --s-5:  48px;
-    --s-6:  64px;
-    --s-7:  80px;
-    --s-8:  96px;
-    --s-9:  128px;
-    --s-10: 160px;
-    --s-11: 200px;
-    --s-12: 240px;
+/* ═══ OPENING PLATE ═══ */
+.plate{padding:0 0 5rem;border-top:0.5px solid var(--stroke)}
+.plate-label{max-width:1440px;margin:0 auto;padding:1rem 2.5rem;font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--amber)}
+.plate-hero{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;cursor:pointer}
+.plate-hero img{width:100%;height:100%;object-fit:cover;filter:brightness(0.95) contrast(1.05)}
+.plate-overlay{position:absolute;bottom:0;left:0;right:0;padding:3rem 2.5rem;background:linear-gradient(transparent,rgba(10,9,8,0.8))}
+.plate-overlay h2{font-family:var(--serif);font-size:clamp(48px,6vw,88px);font-weight:300;color:var(--bone);font-variation-settings:'opsz' 144,'SOFT' 0;letter-spacing:-0.02em;margin-bottom:0.5rem}
+.plate-overlay p{font-family:var(--serif);font-style:italic;font-size:clamp(16px,1.6vw,20px);color:rgba(232,220,196,0.85);font-variation-settings:'opsz' 18,'SOFT' 50}
+.plate-info{max-width:1440px;margin:0 auto;padding:2rem 2.5rem;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:2rem}
+.plate-price-block{text-align:right}
+.plate-price-label{display:block;font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.plate-price{font-family:var(--mono);font-size:22px;font-weight:300;color:var(--bone);margin-bottom:4px}
+.plate-edition{font-family:var(--serif);font-style:italic;font-size:13px;color:var(--muted);font-variation-settings:'opsz' 18;margin-bottom:12px;display:block}
+.plate-inquire{font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--amber);text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:gap .4s var(--ease)}
+.plate-inquire:hover{gap:12px}
+.spec-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--amber);border-left:1px solid var(--amber);max-width:1440px;margin:0 auto 2rem}
+.spec-grid--pad{margin-left:2.5rem;margin-right:2.5rem}
+.spec-cell{padding:1.25rem;border-bottom:1px solid var(--amber);border-right:1px solid var(--amber)}
+.spec-label{display:block;font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.spec-val{font-family:var(--mono);font-size:14px;font-weight:300;color:var(--bone);letter-spacing:0.02em}
+.plate-thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;max-width:1440px;margin:0 auto;padding:0 2.5rem}
+.plate-thumb{position:relative;height:180px;overflow:hidden;cursor:pointer}
+.plate-thumb img{width:100%;height:100%;object-fit:cover;filter:grayscale(10%) brightness(0.75) contrast(1.08);transition:all 1.2s cubic-bezier(0.22,1,0.36,1)}
+.plate-thumb:hover img{filter:grayscale(0%) brightness(1) contrast(1.08);transform:scale(1.04)}
+.plate-view-all{max-width:1440px;margin:1.5rem auto 0;padding:0 2.5rem}
+.plate-view-all a{font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--amber);text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:gap .4s var(--ease)}
+.plate-view-all a:hover{gap:12px}
 
-    /* Layout */
-    --max-w: 1280px;
-    --max-text: 640px;
-    --gutter: clamp(20px, 4vw, 48px);
+/* ═══ COLLECTION SECTIONS ═══ */
+.coll{padding:6rem 2.5rem;border-top:0.5px solid var(--stroke)}
+.coll-header{max-width:1440px;margin:0 auto 2.5rem;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:2rem;padding:1.5rem 0;border-top:0.5px solid var(--stroke);border-bottom:0.5px solid var(--stroke)}
+.coll-num{font-family:var(--serif);font-style:italic;font-size:32px;font-weight:300;color:var(--amber);font-variation-settings:'opsz' 72,'SOFT' 0;line-height:1}
+.coll-name{font-family:var(--serif);font-size:clamp(28px,3.5vw,48px);font-weight:300;color:var(--bone);text-align:center;font-variation-settings:'opsz' 144,'SOFT' 0;line-height:1}
+.coll-count{font-family:var(--mono);font-size:12px;font-weight:300;letter-spacing:0.12em;color:var(--muted);text-align:right}
+.coll-intro{max-width:680px;margin:0 auto 2.5rem;text-align:center;font-family:var(--serif);font-style:italic;font-size:17px;line-height:1.55;color:rgba(232,220,196,0.85);font-variation-settings:'opsz' 18,'SOFT' 50}
+.coll-footer{max-width:1440px;margin:2rem auto 0;padding-top:1.5rem;border-top:0.5px solid var(--stroke);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.coll-price{font-family:var(--mono);font-size:20px;font-weight:300;color:var(--bone)}
+.coll-links{display:flex;gap:2rem;align-items:center}
+.coll-link{font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--amber);text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:gap .4s var(--ease)}
+.coll-link:hover{gap:12px}
 
-    /* Motion — one curve, sparingly used */
-    --ease: cubic-bezier(0.22, 1, 0.36, 1);
-    --dur: 220ms;
-    --dur-long: 280ms;
-  }
+/* ═══ GALLERY TILES ═══ */
+.p-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:90px;gap:1.25rem;max-width:1440px;margin:0 auto;grid-auto-flow:dense}
+.g-tile{position:relative;overflow:hidden;cursor:pointer}
+.g-tile img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(10%) brightness(0.75) contrast(1.08);transition:all 1.2s cubic-bezier(0.22,1,0.36,1)}
+.g-tile:hover img{filter:grayscale(0%) brightness(1) contrast(1.08);transform:scale(1.04)}
+.g-caption{position:absolute;bottom:0;left:0;right:0;padding:3rem 1.25rem 1rem;background:linear-gradient(transparent,rgba(10,9,8,0.85));border-top:0.5px solid transparent;font-family:var(--sans);font-size:10.5px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:var(--bone);transform:translateY(100%);transition:transform .6s var(--ease),border-color .6s ease}
+.g-tile:hover .g-caption{transform:translateY(0);border-top-color:var(--stroke)}
+.pat-a .g-tile:nth-child(1){grid-column:span 8;grid-row:span 5}
+.pat-a .g-tile:nth-child(2){grid-column:span 4;grid-row:span 5}
+.pat-a .g-tile:nth-child(3){grid-column:span 4;grid-row:span 3}
+.pat-a .g-tile:nth-child(4){grid-column:span 4;grid-row:span 3}
+.pat-a .g-tile:nth-child(5){grid-column:span 4;grid-row:span 3}
+.pat-a .g-tile:nth-child(6){grid-column:span 12;grid-row:span 3}
+.pat-b .g-tile:nth-child(1){grid-column:span 7;grid-row:span 5}
+.pat-b .g-tile:nth-child(2){grid-column:span 5;grid-row:span 5}
+.pat-b .g-tile:nth-child(3){grid-column:span 5;grid-row:span 4}
+.pat-b .g-tile:nth-child(4){grid-column:span 4;grid-row:span 4}
+.pat-b .g-tile:nth-child(5){grid-column:span 3;grid-row:span 4}
+.pat-b .g-tile:nth-child(6){grid-column:span 12;grid-row:span 3}
+.pat-c .g-tile:nth-child(1){grid-column:span 5;grid-row:span 5}
+.pat-c .g-tile:nth-child(2){grid-column:span 7;grid-row:span 6}
+.pat-c .g-tile:nth-child(3){grid-column:span 4;grid-row:span 3}
+.pat-c .g-tile:nth-child(4){grid-column:span 8;grid-row:span 3}
+.pat-c .g-tile:nth-child(5){grid-column:span 6;grid-row:span 4}
+.pat-c .g-tile:nth-child(6){grid-column:span 6;grid-row:span 4}
+.pat-d .g-tile:nth-child(1){grid-column:span 6;grid-row:span 5}
+.pat-d .g-tile:nth-child(2){grid-column:span 6;grid-row:span 5}
+.pat-d .g-tile:nth-child(3){grid-column:span 4;grid-row:span 3}
+.pat-d .g-tile:nth-child(4){grid-column:span 4;grid-row:span 3}
+.pat-d .g-tile:nth-child(5){grid-column:span 4;grid-row:span 3}
+.pat-d .g-tile:nth-child(6){grid-column:span 12;grid-row:span 3}
 
-  /* ========================================================
-     RESET
-     ======================================================== */
-  *, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  html {
-    scroll-behavior: smooth;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-  }
-  body {
-    background: var(--cream);
-    color: var(--ink);
-    font-family: var(--font-body);
-    font-size: var(--fs-base);
-    font-weight: 400;
-    line-height: 1.6;
-    font-feature-settings: 'ss01', 'cv11', 'tnum';
-    overflow-x: hidden;
-  }
-  img, picture, video, svg {
-    max-width: 100%;
-    display: block;
-  }
-  button {
-    font: inherit;
-    color: inherit;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-  }
-  a {
-    color: inherit;
-    text-decoration: none;
-    transition: opacity var(--dur) var(--ease);
-  }
-  ::selection {
-    background: var(--ink);
-    color: var(--cream);
-  }
+/* ═══ REGISTRY ═══ */
+.registry{padding:6rem 2.5rem;border-top:0.5px solid var(--stroke)}
+.registry-header{text-align:center;max-width:680px;margin:0 auto 3rem}
+.registry-header h2{font-family:var(--serif);font-size:clamp(32px,4vw,48px);font-weight:300;color:var(--bone);font-variation-settings:'opsz' 144,'SOFT' 0;margin-bottom:1rem}
+.registry-header h2 em{font-style:italic}
+.registry-sub{font-family:var(--serif);font-style:italic;font-size:17px;line-height:1.55;color:rgba(232,220,196,0.55);font-variation-settings:'opsz' 18,'SOFT' 50}
+.reg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;max-width:1440px;margin:0 auto 2rem}
+.reg-tile{display:block;text-decoration:none;color:var(--bone);background:var(--surface);border:0.5px solid var(--stroke);padding:1.5rem;transition:border-color .4s ease,background .4s ease}
+.reg-tile:hover{border-color:var(--amber);background:#1a1714}
+.reg-num{display:block;font-family:var(--serif);font-style:italic;font-size:14px;color:var(--amber);margin-bottom:0.5rem;font-variation-settings:'opsz' 18}
+.reg-name{display:block;font-family:var(--serif);font-size:22px;font-weight:300;color:var(--bone);margin-bottom:0.25rem;font-variation-settings:'opsz' 36,'SOFT' 0}
+.reg-coll{display:block;font-family:var(--sans);font-style:italic;font-size:11px;letter-spacing:0.08em;color:var(--muted);margin-bottom:1rem}
+.reg-link{font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--amber);display:inline-flex;align-items:center;gap:6px}
+.reg-link .arrow{transition:transform .3s var(--ease)}
+.reg-tile:hover .reg-link .arrow{transform:translateX(4px)}
+.reg-note{text-align:center;font-family:var(--serif);font-style:italic;font-size:13px;color:var(--muted);font-variation-settings:'opsz' 18;max-width:1440px;margin:0 auto}
 
-  /* ========================================================
-     FOCUS — accessible, aesthetic
-     ======================================================== */
-  :focus {
-    outline: none;
-  }
-  :focus-visible {
-    outline: 1px solid var(--ink);
-    outline-offset: 4px;
-  }
+/* ═══ CORRESPONDENCE ═══ */
+.corr{padding:6rem 2.5rem;text-align:center;border-top:0.5px solid var(--stroke)}
+.corr-inner{max-width:680px;margin:0 auto}
+.super-label{display:block;font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:0.32em;text-transform:uppercase;color:var(--muted);margin-bottom:2.5rem}
+.corr-inner h3{font-family:var(--serif);font-size:clamp(36px,5vw,56px);font-weight:300;line-height:1.1;color:var(--bone);margin-bottom:1.5rem;font-variation-settings:'opsz' 144,'SOFT' 0}
+.corr-inner h3 em{font-style:italic}
+.corr-inner>p{font-family:var(--serif);font-size:17px;font-weight:400;line-height:1.55;color:rgba(232,220,196,0.5);margin-bottom:3rem;font-variation-settings:'opsz' 18,'SOFT' 50}
+.corr-ctas{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
 
-  /* ========================================================
-     TYPOGRAPHY PRIMITIVES
-     ======================================================== */
-  .display {
-    font-family: var(--font-display);
-    font-weight: 300;
-    font-feature-settings: 'ss01';
-    letter-spacing: -0.01em;
-    line-height: 1.1;
-  }
-  .display-italic {
-    font-family: var(--font-display);
-    font-weight: 300;
-    font-style: italic;
-    letter-spacing: -0.01em;
-    line-height: 1.1;
-  }
-  .label {
-    font-size: var(--fs-sm);
-    color: var(--ink-muted);
-    line-height: 1.5;
-  }
-  .rule {
-    height: 1px;
-    background: var(--hairline);
-    border: none;
-    width: 100%;
-  }
+/* ═══ BUTTONS ═══ */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:1rem 2rem;font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:all .4s var(--ease)}
+.btn .arrow{transition:transform .4s var(--ease)}
+.btn:hover .arrow{transform:translateX(6px)}
+.btn-amber{background:var(--amber);color:var(--ink);border:1px solid var(--amber)}
+.btn-amber:hover{background:var(--amber-bright);border-color:var(--amber-bright)}
+.btn-outline{background:transparent;color:var(--bone);border:1px solid rgba(232,220,196,0.3)}
+.btn-outline:hover{background:var(--bone);color:var(--ink);border-color:var(--bone)}
 
-  /* Link treatment — Hermès register */
-  .lnk {
-    position: relative;
-    display: inline;
-  }
-  .lnk::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -4px;
-    height: 1px;
-    background: currentColor;
-    opacity: 0;
-    transform: scaleX(0.6);
-    transform-origin: left;
-    transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
-  }
-  .lnk:hover::after,
-  .lnk:focus-visible::after {
-    opacity: 1;
-    transform: scaleX(1);
-  }
+/* ═══ LIGHTBOX ═══ */
+.lb{position:fixed;inset:0;z-index:10000;background:rgba(10,9,8,0.96);display:flex;align-items:center;justify-content:center;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .3s ease}
+.lb.open{opacity:1;pointer-events:all}
+.lb-img{max-width:90vw;max-height:85vh;object-fit:contain;display:block}
+.lb-close{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;color:var(--bone);font-size:1.5rem;cursor:pointer;transition:color .3s;padding:0.5rem}
+.lb-close:hover{color:var(--amber)}
+.lb-prev,.lb-next{position:absolute;top:50%;transform:translateY(-50%);background:none;border:1px solid rgba(232,220,196,0.15);color:var(--bone);font-size:1.5rem;width:48px;height:48px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s ease}
+.lb-prev{left:1.5rem}.lb-next{right:1.5rem}
+.lb-prev:hover,.lb-next:hover{color:var(--amber);border-color:var(--amber)}
+.lb-info{margin-top:1.25rem;text-align:center}
+.lb-title{font-family:var(--serif);font-style:italic;font-size:18px;color:var(--bone);margin-bottom:4px;font-variation-settings:'opsz' 24}
+.lb-sub{font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted)}
+.lb-counter{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:0.15em;color:var(--muted)}
 
-  /* ========================================================
-     LAYOUT PRIMITIVES
-     ======================================================== */
-  .container {
-    max-width: var(--max-w);
-    margin: 0 auto;
-    padding: 0 var(--gutter);
-  }
-  .text-column {
-    max-width: var(--max-text);
-  }
+/* ═══ FOOTER ═══ */
+.footer{background:var(--ink);border-top:0.5px solid var(--stroke);padding:5rem 2.5rem 0}
+.footer-inner{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem;max-width:1440px;margin:0 auto;padding-bottom:4rem}
+.footer-logo{font-family:var(--serif);font-size:40px;font-weight:300;color:var(--bone);margin-bottom:1rem;display:block;font-variation-settings:'opsz' 72,'SOFT' 0}
+.footer-tagline{font-family:var(--serif);font-style:italic;font-size:15px;line-height:1.55;color:rgba(232,220,196,0.55);max-width:320px;font-variation-settings:'opsz' 18,'SOFT' 50}
+.footer-col h5{font-family:var(--sans);font-size:10.5px;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);margin-bottom:1.25rem}
+.footer-col a{display:block;font-family:var(--sans);font-size:13px;font-weight:400;color:rgba(232,220,196,0.5);text-decoration:none;margin-bottom:0.75rem;transition:color .3s ease}
+.footer-col a:hover{color:var(--amber)}
+.footer-bottom{max-width:1440px;margin:0 auto;padding:1.5rem 0;border-top:0.5px solid var(--stroke);display:flex;justify-content:space-between;align-items:center}
+.footer-bottom span{font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:0.06em;color:var(--muted)}
+.footer-bottom .motto{font-family:var(--serif);font-style:italic;font-size:13px;color:rgba(232,220,196,0.6);font-variation-settings:'opsz' 18}
 
-  /* ========================================================
-     MASTHEAD — the cover page gesture
-     Thin rule, wordmark, one line. No image. No CTA.
-     ======================================================== */
-  .masthead {
-    padding: var(--s-10) 0 var(--s-10);
-    text-align: center;
-  }
-  .masthead-rule {
-    width: 64px;
-    height: 1px;
-    background: var(--ink);
-    margin: 0 auto var(--s-6);
-    opacity: 0.7;
-  }
-  .masthead-wordmark {
-    font-family: var(--font-display);
-    font-weight: 300;
-    font-size: clamp(32px, 4.5vw, 48px);
-    letter-spacing: 0.24em;
-    line-height: 1;
-    margin-bottom: var(--s-5);
-    /* Slight optical correction for all-caps display type */
-    padding-left: 0.24em;
-  }
-  .masthead-line {
-    font-family: var(--font-body);
-    font-size: var(--fs-sm);
-    color: var(--ink-muted);
-    letter-spacing: 0.04em;
-    line-height: 1.6;
-  }
-  .masthead-line .sep {
-    display: inline-block;
-    padding: 0 0.6em;
-    opacity: 0.5;
-  }
+/* ═══ REVEAL + KEYFRAMES ═══ */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
+.reveal.revealed{opacity:1;transform:translateY(0)}
+.hidden-tiles{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+@keyframes dotPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.75)}}
 
-  /* ========================================================
-     PLATE — the opening sculpture
-     One full-bleed image. Three lines of type below.
-     No button. "Inquire" is the link.
-     ======================================================== */
-  .plate {
-    padding-bottom: var(--s-11);
-  }
-  .plate-figure {
-    width: 100%;
-    margin: 0 0 var(--s-6);
-  }
-  .plate-image {
-    width: 100%;
-    aspect-ratio: 16 / 10;
-    /* Real photograph of The Canopy from the live site.
-       If it fails to load, a warm driftwood-and-quartz gradient
-       stands in — driven by the .plate-image[data-fallback] hook below. */
-    background-image: url('https://phaora.com/img/IMG_6959.JPG');
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .plate-image.placeholder-fallback {
-    background:
-      radial-gradient(ellipse at 32% 38%, rgba(247, 243, 236, 0.55) 0%, transparent 52%),
-      linear-gradient(140deg, #E8DCC6 0%, #C9AE8A 30%, #8C6B48 62%, #4A3628 100%);
-  }
-  .plate-image::after {
-    /* Subtle film grain to avoid the flat-gradient look */
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image:
-      radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.06) 1px, transparent 0);
-    background-size: 3px 3px;
-    mix-blend-mode: overlay;
-    pointer-events: none;
-  }
-  .plate-caption {
-    /* Three lines, left-aligned, indented from the image edge */
-    padding-left: var(--gutter);
-    max-width: 560px;
-  }
-  .plate-title {
-    font-family: var(--font-display);
-    font-weight: 300;
-    font-size: var(--fs-xl);
-    line-height: 1.15;
-    margin-bottom: var(--s-1);
-    color: var(--ink);
-  }
-  .plate-meta {
-    font-size: var(--fs-sm);
-    color: var(--ink-muted);
-    line-height: 1.7;
-    margin-bottom: var(--s-1);
-  }
-  .plate-meta .em-sep {
-    display: inline-block;
-    padding: 0 0.4em;
-    opacity: 0.5;
-  }
-  .plate-price {
-    font-size: var(--fs-sm);
-    color: var(--ink);
-    letter-spacing: 0.02em;
-  }
-  .plate-price .em-sep {
-    /* em-dash spacer between price and "Inquire" link */
-    display: inline-block;
-    padding: 0 0.5em;
-    opacity: 0.5;
-  }
-
-  /* Plate on mobile — caption moves to full container padding */
-  @media (max-width: 768px) {
-    .plate-image {
-      aspect-ratio: 4 / 5;
-    }
-    .plate-caption {
-      padding-left: var(--gutter);
-      padding-right: var(--gutter);
-    }
-  }
-
-  /* ========================================================
-     INDEX — the quiet navigation
-     Four collections, centered, as lines of type.
-     This IS the filter. No chips. No dropdowns.
-     ======================================================== */
-  .index {
-    padding: var(--s-11) 0;
-    border-top: 1px solid var(--hairline);
-    border-bottom: 1px solid var(--hairline);
-  }
-  .index-eyebrow {
-    text-align: center;
-    font-size: var(--fs-sm);
-    color: var(--ink-muted);
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    margin-bottom: var(--s-6);
-  }
-  .index-list {
-    list-style: none;
-    max-width: 520px;
-    margin: 0 auto;
-  }
-  .index-item {
-    display: grid;
-    /* Roman · Name · Count */
-    grid-template-columns: 48px 1fr auto;
-    align-items: baseline;
-    column-gap: var(--s-3);
-    padding: var(--s-3) 0;
-    border-bottom: 1px solid var(--hairline);
-  }
-  .index-item:last-child {
-    border-bottom: none;
-  }
-  .index-roman {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-weight: 300;
-    font-size: var(--fs-md);
-    color: var(--ink-muted);
-    letter-spacing: 0.02em;
-  }
-  .index-name {
-    font-family: var(--font-display);
-    font-weight: 300;
-    font-size: var(--fs-lg);
-    line-height: 1.2;
-    color: var(--ink);
-    transition: opacity var(--dur) var(--ease);
-  }
-  .index-item a:hover .index-name,
-  .index-item a:focus-visible .index-name {
-    opacity: 0.55;
-  }
-  .index-count {
-    font-size: var(--fs-sm);
-    color: var(--ink-muted);
-    font-variant-numeric: tabular-nums;
-    letter-spacing: 0.02em;
-  }
-  .index-item a {
-    display: contents;
-  }
-  .index-footnote {
-    text-align: center;
-    margin-top: var(--s-6);
-    font-size: var(--fs-sm);
-    color: var(--ink-muted);
-  }
-
-  /* ========================================================
-     COLLECTIONS — four chapters, one after another
-     ======================================================== */
-  .collections {
-    padding-bottom: 0;
-  }
-
-  .collection {
-    padding: var(--s-11) 0;
-  }
-  .collection + .collection {
-    /* no divider — whitespace is the divider */
-    padding-top: var(--s-10);
-  }
-
-  .collection-header {
-    max-width: var(--max-text);
-    margin: 0 0 var(--s-8);
-  }
-  .collection-number {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-weight: 300;
-    font-size: var(--fs-sm);
-    color: var(--ink-muted);
-    letter-spacing: 0.08em;
-    margin-bottom: var(--s-2);
-    display: block;
-  }
-  .collection-title {
-    font-family: var(--font-display);
-    font-weight: 300;
-    font-size: var(--fs-xl);
-    line-height: 1.1;
-    letter-spacing: -0.01em;
-    margin-bottom: var(--s-4);
-    color: var(--ink);
-  }
-  .collection-intro {
-    font-family: var(--font-body);
-    font-size: var(--fs-md);
-    line-height: 1.7;
-    color: var(--ink-soft);
-    max-width: 54ch;
-  }
-
-  /* ========================================================
-     GRID — 2 columns, never 3. Generous gutters.
-     Cap card width on very wide screens.
-     ======================================================== */
-  .works {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--s-8) var(--s-6);
-    max-width: 1040px;
-  }
-  @media (max-width: 640px) {
-    .works {
-      grid-template-columns: 1fr;
-      gap: var(--s-7);
-      max-width: 480px;
-    }
-  }
-
-  /* ========================================================
-     CARD — the Hermès product card
-     Image, three small lines, no badges, no shadows.
-     ======================================================== */
-  .work {
-    display: block;
-    color: var(--ink);
-  }
-  .work-figure {
-    position: relative;
-    aspect-ratio: 3 / 4;
-    overflow: hidden;
-    margin-bottom: var(--s-3);
-    background: var(--cream-deep);
-  }
-  .work-image {
-    position: absolute;
-    inset: 0;
-    transition: opacity var(--dur-long) var(--ease);
-  }
-  .work:hover .work-image {
-    opacity: 0.92;
-  }
-  .work-image::after {
-    /* Grain, consistent with the plate */
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image:
-      radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.05) 1px, transparent 0);
-    background-size: 3px 3px;
-    mix-blend-mode: overlay;
-    pointer-events: none;
-  }
-
-  /* ========================================================
-     PLACEHOLDER IMAGE — per piece
-     Each piece gets a deterministic gradient generated from
-     its collection palette + a per-piece seed, so every card
-     has a unique visual. Real photography replaces these
-     by setting background-image on .work-image inline.
-     ======================================================== */
-  .work-image.placeholder::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    /* The gradient is injected via inline style. */
-    background: inherit;
-  }
-
-  .work-caption {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    padding: 0 2px;
-  }
-  .work-title {
-    font-family: var(--font-display);
-    font-weight: 300;
-    font-size: var(--fs-md);
-    line-height: 1.3;
-    letter-spacing: -0.005em;
-    color: var(--ink);
-  }
-  .work-meta {
-    font-size: var(--fs-sm);
-    color: var(--ink-muted);
-    line-height: 1.55;
-  }
-  .work-price {
-    font-size: var(--fs-sm);
-    color: var(--ink);
-    letter-spacing: 0.02em;
-    line-height: 1.55;
-    margin-top: 2px;
-  }
-  .work-price .em-sep {
-    display: inline-block;
-    padding: 0 0.5em;
-    opacity: 0.5;
-  }
-  .work-price .inquire-lnk {
-    position: relative;
-    display: inline;
-  }
-  .work-price .inquire-lnk::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -3px;
-    height: 1px;
-    background: currentColor;
-    opacity: 0;
-    transform: scaleX(0.6);
-    transform-origin: left;
-    transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
-  }
-  .work:hover .work-price .inquire-lnk::after,
-  .work:focus-visible .work-price .inquire-lnk::after {
-    opacity: 1;
-    transform: scaleX(1);
-  }
-
-  /* Quiet state variants — no colored dots */
-  .work-remains {
-    font-size: var(--fs-sm);
-    color: var(--ink-muted);
-    font-style: italic;
-    font-family: var(--font-display);
-    font-weight: 300;
-    margin-top: 2px;
-  }
-  .work.is-acquired .work-image {
-    filter: grayscale(0.4);
-    opacity: 0.55;
-  }
-  .work.is-acquired .work-title,
-  .work.is-acquired .work-meta {
-    color: var(--ink-muted);
-  }
-  .work.is-acquired .work-price .price-value,
-  .work.is-acquired .work-price .em-sep,
-  .work.is-acquired .work-price .inquire-lnk {
-    display: none;
-  }
-  .work-acquired-label {
-    display: none;
-    font-family: var(--font-display);
-    font-style: italic;
-    font-weight: 300;
-    font-size: var(--fs-sm);
-    color: var(--ink-muted);
-    letter-spacing: 0.02em;
-    margin-top: 2px;
-  }
-  .work.is-acquired .work-acquired-label {
-    display: block;
-  }
-
-  /* View All Works expanded state — full flat grid */
-  .all-works-section {
-    display: none;
-    padding: var(--s-11) 0;
-    border-top: 1px solid var(--hairline);
-  }
-  .all-works-section.open {
-    display: block;
-  }
-  .all-works-header {
-    margin-bottom: var(--s-8);
-    max-width: var(--max-text);
-  }
-
-  /* ========================================================
-     PROVENANCE — the studio plate
-     Full-bleed photograph. Single pull quote. Attribution.
-     No stat cards, no icons, no triple-column panel.
-     ======================================================== */
-  .provenance {
-    padding: var(--s-11) 0;
-  }
-  .provenance-figure {
-    width: 100%;
-    margin: 0 0 var(--s-9);
-  }
-  .provenance-image {
-    width: 100%;
-    aspect-ratio: 21 / 9;
-    background-image: url('https://phaora.com/img/the-studio-main.jpg');
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .provenance-image.placeholder-fallback {
-    background:
-      radial-gradient(ellipse at 28% 34%, rgba(247, 243, 236, 0.42) 0%, transparent 58%),
-      linear-gradient(138deg, #3A2818 0%, #6B4E34 34%, #8C6B48 62%, #C9AE8A 100%);
-  }
-  .provenance-image::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image:
-      radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.06) 1px, transparent 0);
-    background-size: 3px 3px;
-    mix-blend-mode: overlay;
-    pointer-events: none;
-  }
-  .provenance-quote {
-    max-width: 880px;
-    margin: 0 auto;
-    padding: 0 var(--gutter);
-    text-align: center;
-  }
-  .provenance-quote blockquote {
-    font-family: var(--font-display);
-    font-weight: 300;
-    font-size: clamp(36px, 5vw, var(--fs-3xl));
-    line-height: 1.1;
-    letter-spacing: -0.015em;
-    color: var(--ink);
-    margin: 0 0 var(--s-5);
-  }
-  .provenance-quote cite {
-    display: block;
-    font-style: normal;
-    font-size: var(--fs-sm);
-    color: var(--ink-muted);
-    letter-spacing: 0.04em;
-  }
-  @media (max-width: 768px) {
-    .provenance-image {
-      aspect-ratio: 4 / 3;
-    }
-    .provenance-figure {
-      margin-bottom: var(--s-7);
-    }
-  }
-
-  /* ========================================================
-     CORRESPONDENCE — the calling card
-     Narrow column, three stacked lines, short form.
-     Replaces "Contact".
-     ======================================================== */
-  .correspondence {
-    padding: var(--s-10) 0 var(--s-11);
-    border-top: 1px solid var(--hairline);
-  }
-  .correspondence-inner {
-    max-width: 480px;
-    margin: 0 auto;
-    padding: 0 var(--gutter);
-    text-align: center;
-  }
-  .correspondence-eyebrow {
-    font-size: var(--fs-sm);
-    color: var(--ink-muted);
-    line-height: 1.6;
-    margin-bottom: var(--s-4);
-    letter-spacing: 0.01em;
-  }
-  .correspondence-name {
-    font-family: var(--font-display);
-    font-weight: 300;
-    font-size: var(--fs-xl);
-    line-height: 1.1;
-    letter-spacing: -0.01em;
-    margin-bottom: var(--s-2);
-    color: var(--ink);
-  }
-  .correspondence-contact {
-    font-size: var(--fs-md);
-    color: var(--ink);
-    line-height: 1.6;
-    margin-bottom: var(--s-7);
-  }
-  .correspondence-contact .em-sep {
-    display: inline-block;
-    padding: 0 0.4em;
-    opacity: 0.5;
-    color: var(--ink-muted);
-  }
-  .correspondence-form {
-    text-align: left;
-    padding-top: var(--s-5);
-    border-top: 1px solid var(--hairline);
-  }
-  .correspondence-form textarea,
-  .correspondence-form input {
-    width: 100%;
-    font: inherit;
-    font-size: var(--fs-md);
-    color: var(--ink);
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid var(--hairline-strong);
-    padding: var(--s-2) 0;
-    margin-bottom: var(--s-3);
-    resize: none;
-    transition: border-color var(--dur) var(--ease);
-  }
-  .correspondence-form textarea {
-    min-height: 96px;
-    font-family: var(--font-body);
-    line-height: 1.5;
-  }
-  .correspondence-form textarea:focus,
-  .correspondence-form input:focus {
-    outline: none;
-    border-bottom-color: var(--ink);
-  }
-  .correspondence-form textarea::placeholder,
-  .correspondence-form input::placeholder {
-    color: var(--ink-muted);
-    opacity: 1;
-  }
-  .correspondence-send {
-    margin-top: var(--s-2);
-    font-family: var(--font-body);
-    font-size: var(--fs-sm);
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--ink);
-    padding: var(--s-2) 0;
-    position: relative;
-  }
-  .correspondence-send::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 1px;
-    background: var(--ink);
-    transition: transform var(--dur) var(--ease);
-    transform-origin: left;
-  }
-  .correspondence-send:hover::after,
-  .correspondence-send:focus-visible::after {
-    transform: scaleX(0.3);
-  }
-  .correspondence-note {
-    margin-top: var(--s-5);
-    font-size: var(--fs-sm);
-    color: var(--ink-muted);
-    font-style: italic;
-    font-family: var(--font-display);
-    font-weight: 300;
-    text-align: center;
-  }
-  .correspondence-sent {
-    display: none;
-    padding: var(--s-5) 0;
-    text-align: center;
-    font-family: var(--font-display);
-    font-weight: 300;
-    font-style: italic;
-    font-size: var(--fs-lg);
-    color: var(--ink);
-    line-height: 1.5;
-  }
-  .correspondence-form.sent textarea,
-  .correspondence-form.sent input,
-  .correspondence-form.sent .correspondence-send {
-    display: none;
-  }
-  .correspondence-form.sent + .correspondence-note {
-    display: none;
-  }
-  .correspondence-form.sent .correspondence-sent {
-    display: block;
-  }
-
-  /* ========================================================
-     COLOPHON
-     ======================================================== */
-  .colophon {
-    padding: var(--s-6) 0;
-    text-align: center;
-    font-size: var(--fs-sm);
-    color: var(--ink-muted);
-    border-top: 1px solid var(--hairline);
-  }
-
-  /* Keyboard focus state for cards */
-  .work:focus-visible {
-    outline: 1px solid var(--ink);
-    outline-offset: 6px;
-  }
-
-
-  @media (max-width: 768px) {
-    :root {
-      --s-10: 112px;
-      --s-11: 128px;
-      --s-12: 160px;
-    }
-  }
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:900px){
+  .nav-left,.nav-right{display:none}.nav{justify-content:center}
+  .mh{padding:6rem 1.5rem 3rem;min-height:auto}.mh-meta{display:none}.mh h1{font-size:clamp(56px,16vw,100px)}
+  .plate-hero{aspect-ratio:4/5}.plate-label{padding-left:1.5rem;padding-right:1.5rem}
+  .plate-overlay{padding:2rem 1.5rem}.plate-info{padding:1.5rem;flex-direction:column}.plate-price-block{text-align:left}
+  .spec-grid{grid-template-columns:repeat(2,1fr)}.spec-grid--pad{margin-left:1.5rem;margin-right:1.5rem}
+  .plate-thumbs{padding:0 1.5rem;grid-template-columns:repeat(3,1fr)}.plate-thumb{height:120px}
+  .plate-view-all{padding:0 1.5rem}
+  .coll{padding:4rem 1.5rem}
+  .coll-header{grid-template-columns:1fr;gap:0.5rem;text-align:center}.coll-num{text-align:center;font-size:24px}.coll-count{text-align:center}
+  .p-grid{grid-template-columns:repeat(6,1fr);grid-auto-rows:80px;gap:0.75rem}
+  .pat-a .g-tile:nth-child(1),.pat-a .g-tile:nth-child(2),.pat-a .g-tile:nth-child(3),.pat-a .g-tile:nth-child(4),.pat-a .g-tile:nth-child(5),.pat-a .g-tile:nth-child(6),
+  .pat-b .g-tile:nth-child(1),.pat-b .g-tile:nth-child(2),.pat-b .g-tile:nth-child(3),.pat-b .g-tile:nth-child(4),.pat-b .g-tile:nth-child(5),.pat-b .g-tile:nth-child(6),
+  .pat-c .g-tile:nth-child(1),.pat-c .g-tile:nth-child(2),.pat-c .g-tile:nth-child(3),.pat-c .g-tile:nth-child(4),.pat-c .g-tile:nth-child(5),.pat-c .g-tile:nth-child(6),
+  .pat-d .g-tile:nth-child(1),.pat-d .g-tile:nth-child(2),.pat-d .g-tile:nth-child(3),.pat-d .g-tile:nth-child(4),.pat-d .g-tile:nth-child(5),.pat-d .g-tile:nth-child(6){grid-column:span 3;grid-row:span 4}
+  .registry{padding:4rem 1.5rem}.reg-grid{grid-template-columns:1fr}
+  .corr{padding:4rem 1.5rem}.corr-ctas{flex-direction:column;align-items:center}
+  .footer{padding:3rem 1.5rem 0}.footer-inner{grid-template-columns:1fr;text-align:center}.footer-tagline{margin:0 auto}
+  .footer-bottom{flex-direction:column;gap:0.5rem;text-align:center;padding:1.25rem 0}
+  .lb-prev{left:0.5rem}.lb-next{right:0.5rem}.lb-prev,.lb-next{width:36px;height:36px;font-size:1.2rem}
+}
 </style>
-
 </head>
 <body>
 
-  <main>
-    <section class="masthead">
-      <div class="container">
-        <div class="masthead-rule" aria-hidden="true"></div>
-        <h1 class="masthead-wordmark">PHAÖRA</h1>
-        <p class="masthead-line">
-          Minas Gerais<span class="sep">—</span>The Collection, 2026
-        </p>
-      </div>
-    </section>
+<nav class="nav" id="nav">
+  <div class="nav-left"><a href="hardscape-gallery.html">Hardscape</a><a href="sculptures.html">Sculpture</a><a href="gallery.html">Gallery</a><a href="agents.html">Agents</a></div>
+  <a href="index.html" class="nav-logo">PHAÖRA</a>
+  <div class="nav-right"><a href="/#studio">Studio</a><a href="contact.html">Contact</a><a href="/#invitation" class="nav-enquire">Enquire <span class="arrow">&rarr;</span></a></div>
+</nav>
 
-    <section class="plate" aria-labelledby="plate-title">
-      <figure class="plate-figure">
-        <div class="plate-image" role="img" aria-label="The Canopy — white quartz doves on Brazilian driftwood"></div>
-      </figure>
-      <figcaption class="plate-caption">
-        <h2 class="plate-title" id="plate-title">The Canopy</h2>
-        <p class="plate-meta">White Quartz <span class="em-sep">·</span> Brazilian Driftwood <span class="em-sep">·</span> 2024</p>
-        <p class="plate-price">
-          USD 68,000<span class="em-sep">—</span><a href="pieces/the-canopy.html" class="lnk">Inquire</a>
-        </p>
-      </figcaption>
-    </section>
+<!-- ═══ MASTHEAD ═══ -->
+<section class="mh">
+  <div class="mh-meta">
+    <span>The Collection</span>
+    <span class="mh-meta-c"><span class="pulse-dot"></span>Forty-four pieces. Minas Gerais.</span>
+    <span>Hand-mined. Hand-shaped.</span>
+  </div>
+  <h1>PHAÖRA</h1>
+  <p class="mh-sub">The Collection, MMXXVI</p>
+  <p class="mh-lede">Forty-four crystal sculptures. Hand-mined in Minas Gerais. Shaped by one man, for forty years.</p>
+  <div class="mh-strip">Five collections · Each piece exists once</div>
+</section>
 
-    <section class="index" aria-labelledby="index-label">
-      <div class="container">
-        <p class="index-eyebrow" id="index-label">The Index</p>
-        <ol class="index-list">
-          <li class="index-item">
-            <a href="#collection-I">
-              <span class="index-roman">I.</span>
-              <span class="index-name">The Blue Macaws</span>
-              <span class="index-count">9 works</span>
-            </a>
-          </li>
-          <li class="index-item">
-            <a href="#collection-II">
-              <span class="index-roman">II.</span>
-              <span class="index-name">The Crimson Duo</span>
-              <span class="index-count">4 works</span>
-            </a>
-          </li>
-          <li class="index-item">
-            <a href="#collection-III">
-              <span class="index-roman">III.</span>
-              <span class="index-name">The White Cockatoos</span>
-              <span class="index-count">11 works</span>
-            </a>
-          </li>
-          <li class="index-item">
-            <a href="#collection-IV">
-              <span class="index-roman">IV.</span>
-              <span class="index-name">The Canopy</span>
-              <span class="index-count">20 works</span>
-            </a>
-          </li>
-        </ol>
-        <p class="index-footnote">
-          <a href="#all-works" class="lnk" id="view-all-trigger">View all 44 works</a>
-        </p>
-      </div>
-    </section>
+<!-- ═══ PLATE I — THE CANOPY ═══ -->
+<section class="plate reveal">
+  <div class="plate-label">Plate I · Featured piece</div>
+  <div class="plate-hero g-tile" data-cap="The Canopy · Plate 1">
+    <img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-1.jpeg" alt="The Canopy — White Quartz Flock on Driftwood">
+    <div class="plate-overlay">
+      <h2>The Canopy</h2>
+      <p>White quartz flock on Brazilian driftwood — the flagship of the collection.</p>
+    </div>
+  </div>
+  <div class="plate-info">
+    <div></div>
+    <div class="plate-price-block">
+      <span class="plate-price-label">Price</span>
+      <div class="plate-price">USD 68,000</div>
+      <span class="plate-edition">One of one</span>
+      <a href="mailto:david@phaora.com?subject=Enquiry:%20The%20Canopy" class="plate-inquire">Inquire <span>&rarr;</span></a>
+    </div>
+  </div>
+  <div class="spec-grid spec-grid--pad">
+    <div class="spec-cell"><span class="spec-label">Collection</span><span class="spec-val">The Canopy</span></div>
+    <div class="spec-cell"><span class="spec-label">Medium</span><span class="spec-val">White Quartz Flock on Driftwood</span></div>
+    <div class="spec-cell"><span class="spec-label">Origin</span><span class="spec-val">Minas Gerais, Brazil</span></div>
+    <div class="spec-cell"><span class="spec-label">Edition</span><span class="spec-val">One of one</span></div>
+    <div class="spec-cell"><span class="spec-label">Tier</span><span class="spec-val">Statement</span></div>
+    <div class="spec-cell"><span class="spec-label">Status</span><span class="spec-val">Available</span></div>
+  </div>
+  <div class="plate-thumbs">
+    <div class="plate-thumb g-tile" data-cap="The Canopy · Plate 2"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-2.jpeg" alt="The Canopy — view 2" loading="lazy"></div>
+    <div class="plate-thumb g-tile" data-cap="The Canopy · Plate 3"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-3.jpeg" alt="The Canopy — view 3" loading="lazy"></div>
+    <div class="plate-thumb g-tile" data-cap="The Canopy · Plate 4"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-4.jpeg" alt="The Canopy — view 4" loading="lazy"></div>
+  </div>
+  <div class="hidden-tiles">
+    <div class="g-tile" data-cap="The Canopy · Plate 5"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-5.jpeg" alt="The Canopy — view 5"></div>
+    <div class="g-tile" data-cap="The Canopy · Plate 6"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-6.jpeg" alt="The Canopy — view 6"></div>
+  </div>
+  <div class="plate-view-all"><a href="#" id="view-canopy">View all six photographs of The Canopy <span>&rarr;</span></a></div>
+</section>
 
-    <section class="collections" aria-label="Collections">
-      <div class="container">
-        <article class="collection" id="collection-I">
-          <header class="collection-header">
-            <span class="collection-number">Collection I</span>
-            <h2 class="collection-title">The Blue Macaws</h2>
-            <p class="collection-intro">Sodalite, lapis, and blue quartz macaws — set against amethyst, serpentine, and raw geode. The collection opens in deep ocean tones that shift toward violet as the light moves across the stone. Nine works.</p>
-          </header>
-          <div class="works" data-collection="blue-macaws"></div>
-        </article>
+<!-- ═══ Nº II — THE CRIMSON DUO ═══ -->
+<section class="coll reveal">
+  <div class="coll-header"><span class="coll-num">II</span><span class="coll-name">The Crimson Duo</span><span class="coll-count">Six photographs · One piece</span></div>
+  <p class="coll-intro">Red jasper set against cathedral-grade clear quartz. The smallest of the collections — the rarest stone Fabiano works with, quarried from a single deposit in central Minas Gerais.</p>
+  <div class="p-grid pat-a">
+    <div class="g-tile" data-cap="Crimson Duo · Plate 1"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-1.jpeg" alt="Crimson Duo — view 1" loading="lazy"><div class="g-caption">Crimson Duo · Plate 1</div></div>
+    <div class="g-tile" data-cap="Crimson Duo · Plate 2"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-2.jpeg" alt="Crimson Duo — view 2" loading="lazy"><div class="g-caption">Crimson Duo · Plate 2</div></div>
+    <div class="g-tile" data-cap="Crimson Duo · Plate 3"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-3.jpeg" alt="Crimson Duo — view 3" loading="lazy"><div class="g-caption">Crimson Duo · Plate 3</div></div>
+    <div class="g-tile" data-cap="Crimson Duo · Plate 4"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-4.jpeg" alt="Crimson Duo — view 4" loading="lazy"><div class="g-caption">Crimson Duo · Plate 4</div></div>
+    <div class="g-tile" data-cap="Crimson Duo · Plate 5"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-5.jpeg" alt="Crimson Duo — view 5" loading="lazy"><div class="g-caption">Crimson Duo · Plate 5</div></div>
+    <div class="g-tile" data-cap="Crimson Duo · Plate 6"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-6.jpeg" alt="Crimson Duo — view 6" loading="lazy"><div class="g-caption">Crimson Duo · Plate 6</div></div>
+  </div>
+  <div class="coll-footer">
+    <span class="coll-price">USD 24,000</span>
+    <div class="coll-links">
+      <a href="mailto:david@phaora.com?subject=Enquiry:%20The%20Crimson%20Duo" class="coll-link">Inquire about The Crimson Duo <span>&rarr;</span></a>
+      <a href="pieces/the-crimson-duo.html" class="coll-link">View piece page <span>&rarr;</span></a>
+    </div>
+  </div>
+</section>
 
-        <article class="collection" id="collection-II">
-          <header class="collection-header">
-            <span class="collection-number">Collection II</span>
-            <h2 class="collection-title">The Crimson Duo</h2>
-            <p class="collection-intro">Red jasper and smoky jasper set against cathedral-grade clear quartz. The most concentrated of the four collections — the rarest raw stone Fabiano works with. Four works.</p>
-          </header>
-          <div class="works" data-collection="crimson-duo"></div>
-        </article>
+<!-- ═══ Nº III — THE PERCH ═══ -->
+<section class="coll reveal">
+  <div class="coll-header"><span class="coll-num">III</span><span class="coll-name">The Perch</span><span class="coll-count">Six photographs · One piece</span></div>
+  <p class="coll-intro">White quartz cockatoos set on raw stone. Quiet, precise, and unmistakable — the most collected form in the register, shaped from a single block of Brazilian quartz.</p>
+  <div class="p-grid pat-b">
+    <div class="g-tile" data-cap="Perch · Plate 1"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-1.jpeg" alt="Perch — view 1" loading="lazy"><div class="g-caption">Perch · Plate 1</div></div>
+    <div class="g-tile" data-cap="Perch · Plate 2"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-2.jpeg" alt="Perch — view 2" loading="lazy"><div class="g-caption">Perch · Plate 2</div></div>
+    <div class="g-tile" data-cap="Perch · Plate 3"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-3.jpeg" alt="Perch — view 3" loading="lazy"><div class="g-caption">Perch · Plate 3</div></div>
+    <div class="g-tile" data-cap="Perch · Plate 4"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-4.jpeg" alt="Perch — view 4" loading="lazy"><div class="g-caption">Perch · Plate 4</div></div>
+    <div class="g-tile" data-cap="Perch · Plate 5"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-5.jpeg" alt="Perch — view 5" loading="lazy"><div class="g-caption">Perch · Plate 5</div></div>
+    <div class="g-tile" data-cap="Perch · Plate 6"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-6.jpeg" alt="Perch — view 6" loading="lazy"><div class="g-caption">Perch · Plate 6</div></div>
+  </div>
+  <div class="coll-footer">
+    <span class="coll-price">USD 16,500</span>
+    <div class="coll-links">
+      <a href="mailto:david@phaora.com?subject=Enquiry:%20The%20Perch" class="coll-link">Inquire about The Perch <span>&rarr;</span></a>
+      <a href="pieces/the-perch.html" class="coll-link">View piece page <span>&rarr;</span></a>
+    </div>
+  </div>
+</section>
 
-        <article class="collection" id="collection-III">
-          <header class="collection-header">
-            <span class="collection-number">Collection III</span>
-            <h2 class="collection-title">The White Cockatoos</h2>
-            <p class="collection-intro">Clear and white quartz set against deep amethyst and dark geode. Pure light against crystalline violet — the quietest of the four collections. Eleven works.</p>
-          </header>
-          <div class="works" data-collection="white-cockatoos"></div>
-        </article>
+<!-- ═══ Nº IV — THE DYNASTY ═══ -->
+<section class="coll reveal">
+  <div class="coll-header"><span class="coll-num">IV</span><span class="coll-name">The Dynasty</span><span class="coll-count">Six photographs · One piece</span></div>
+  <p class="coll-intro">Sodalite macaws arranged on an amethyst tower. Deep ocean tones that shift toward violet as the light moves across the stone — the tallest composition in the register.</p>
+  <div class="p-grid pat-c">
+    <div class="g-tile" data-cap="Dynasty · Plate 1"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-1.jpeg" alt="Dynasty — view 1" loading="lazy"><div class="g-caption">Dynasty · Plate 1</div></div>
+    <div class="g-tile" data-cap="Dynasty · Plate 2"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-2.jpeg" alt="Dynasty — view 2" loading="lazy"><div class="g-caption">Dynasty · Plate 2</div></div>
+    <div class="g-tile" data-cap="Dynasty · Plate 3"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-3.jpeg" alt="Dynasty — view 3" loading="lazy"><div class="g-caption">Dynasty · Plate 3</div></div>
+    <div class="g-tile" data-cap="Dynasty · Plate 4"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-4.jpeg" alt="Dynasty — view 4" loading="lazy"><div class="g-caption">Dynasty · Plate 4</div></div>
+    <div class="g-tile" data-cap="Dynasty · Plate 5"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-5.jpeg" alt="Dynasty — view 5" loading="lazy"><div class="g-caption">Dynasty · Plate 5</div></div>
+    <div class="g-tile" data-cap="Dynasty · Plate 6"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-6.jpeg" alt="Dynasty — view 6" loading="lazy"><div class="g-caption">Dynasty · Plate 6</div></div>
+  </div>
+  <div class="coll-footer">
+    <span class="coll-price">USD 52,000</span>
+    <div class="coll-links">
+      <a href="mailto:david@phaora.com?subject=Enquiry:%20The%20Dynasty" class="coll-link">Inquire about The Dynasty <span>&rarr;</span></a>
+      <a href="pieces/the-dynasty.html" class="coll-link">View piece page <span>&rarr;</span></a>
+    </div>
+  </div>
+</section>
 
-        <article class="collection" id="collection-IV">
-          <header class="collection-header">
-            <span class="collection-number">Collection IV</span>
-            <h2 class="collection-title">The Canopy</h2>
-            <p class="collection-intro">Rose quartz, aventurine, labradorite, and clear crystal — set on Brazilian driftwood, serpentine, and carved stone. The widest of the four collections, spanning statement flagships to entry works. Twenty works.</p>
-          </header>
-          <div class="works" data-collection="canopy"></div>
-        </article>
+<!-- ═══ Nº V — THE PORTAL ═══ -->
+<section class="coll reveal">
+  <div class="coll-header"><span class="coll-num">V</span><span class="coll-name">The Portal</span><span class="coll-count">Six photographs · One piece</span></div>
+  <p class="coll-intro">Sodalite parrots set within a ring-shaped geode formation. A singular composition — the only piece in the register built around a natural portal in the stone.</p>
+  <div class="p-grid pat-d">
+    <div class="g-tile" data-cap="Portal · Plate 1"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-1.jpeg" alt="Portal — view 1" loading="lazy"><div class="g-caption">Portal · Plate 1</div></div>
+    <div class="g-tile" data-cap="Portal · Plate 2"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-2.jpeg" alt="Portal — view 2" loading="lazy"><div class="g-caption">Portal · Plate 2</div></div>
+    <div class="g-tile" data-cap="Portal · Plate 3"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-3.jpeg" alt="Portal — view 3" loading="lazy"><div class="g-caption">Portal · Plate 3</div></div>
+    <div class="g-tile" data-cap="Portal · Plate 4"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-4.jpeg" alt="Portal — view 4" loading="lazy"><div class="g-caption">Portal · Plate 4</div></div>
+    <div class="g-tile" data-cap="Portal · Plate 5"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-5.jpeg" alt="Portal — view 5" loading="lazy"><div class="g-caption">Portal · Plate 5</div></div>
+    <div class="g-tile" data-cap="Portal · Plate 6"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-6.jpeg" alt="Portal — view 6" loading="lazy"><div class="g-caption">Portal · Plate 6</div></div>
+  </div>
+  <div class="coll-footer">
+    <span class="coll-price">USD 35,000</span>
+    <div class="coll-links">
+      <a href="mailto:david@phaora.com?subject=Enquiry:%20The%20Portal" class="coll-link">Inquire about The Portal <span>&rarr;</span></a>
+      <a href="pieces/the-portal.html" class="coll-link">View piece page <span>&rarr;</span></a>
+    </div>
+  </div>
+</section>
 
-        <section class="all-works-section" id="all-works" aria-label="All 44 works">
-          <header class="all-works-header">
-            <span class="collection-number">The Complete Collection</span>
-            <h2 class="collection-title">Forty-four works</h2>
-            <p class="collection-intro">All pieces, shown in one sequence, arranged by collection. Each exists once.</p>
-          </header>
-          <div class="works" data-collection="all"></div>
-        </section>
-      </div>
-    </section>
+<!-- ═══ THE REGISTRY ═══ -->
+<section class="registry reveal">
+  <div class="registry-header">
+    <h2>The Registry · Thirty-nine <em>unshown</em> works</h2>
+    <p class="registry-sub">Each of these works exists in the studio. Photography follows by appointment. To arrange a private viewing, write to the studio below.</p>
+  </div>
+  <div class="reg-grid">
+    <a href="pieces/the-aerie.html" class="reg-tile"><span class="reg-num">02</span><span class="reg-name">The Aerie</span><span class="reg-coll">The Canopy</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
+    <a href="pieces/the-eden.html" class="reg-tile"><span class="reg-num">03</span><span class="reg-name">The Eden</span><span class="reg-coll">The Canopy</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
+    <a href="pieces/the-parliament.html" class="reg-tile"><span class="reg-num">05</span><span class="reg-name">The Parliament</span><span class="reg-coll">Crimson Duo</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
+    <a href="pieces/the-scarlets.html" class="reg-tile"><span class="reg-num">06</span><span class="reg-name">The Scarlets</span><span class="reg-coll">Crimson Duo</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
+    <a href="pieces/the-sovereign.html" class="reg-tile"><span class="reg-num">08</span><span class="reg-name">The Sovereign</span><span class="reg-coll">The Canopy</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
+    <a href="pieces/the-ascent.html" class="reg-tile"><span class="reg-num">09</span><span class="reg-name">The Ascent</span><span class="reg-coll">The Canopy</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
+    <a href="pieces/the-cathedral.html" class="reg-tile"><span class="reg-num">10</span><span class="reg-name">The Cathedral</span><span class="reg-coll">White Cockatoos</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
+    <a href="pieces/the-monolith.html" class="reg-tile"><span class="reg-num">11</span><span class="reg-name">The Monolith</span><span class="reg-coll">The Canopy</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
+    <a href="pieces/the-raptor.html" class="reg-tile"><span class="reg-num">12</span><span class="reg-name">The Raptor</span><span class="reg-coll">The Canopy</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
+    <a href="pieces/the-hyacinths.html" class="reg-tile"><span class="reg-num">13</span><span class="reg-name">The Hyacinths</span><span class="reg-coll">Blue Macaws</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
+    <a href="pieces/the-indigos.html" class="reg-tile"><span class="reg-num">14</span><span class="reg-name">The Indigos</span><span class="reg-coll">Blue Macaws</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
+    <a href="pieces/the-sentinels.html" class="reg-tile"><span class="reg-num">15</span><span class="reg-name">The Sentinels</span><span class="reg-coll">Blue Macaws</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
+    <a href="pieces/the-grotto.html" class="reg-tile"><span class="reg-num">17</span><span class="reg-name">The Grotto</span><span class="reg-coll">Blue Macaws</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
+    <a href="pieces/the-ethereals.html" class="reg-tile"><span class="reg-num">18</span><span class="reg-name">The Ethereals</span><span class="reg-coll">White Cockatoos</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
+    <a href="pieces/the-companions.html" class="reg-tile"><span class="reg-num">19</span><span class="reg-name">The Companions</span><span class="reg-coll">The Canopy</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
+    <a href="pieces/the-lovers.html" class="reg-tile"><span class="reg-num">20</span><span class="reg-name">The Lovers</span><span class="reg-coll">The Canopy</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
+    <a href="pieces/the-duet.html" class="reg-tile"><span class="reg-num">21</span><span class="reg-name">The Duet</span><span class="reg-coll">The Canopy</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
+    <a href="pieces/the-gathering.html" class="reg-tile"><span class="reg-num">22</span><span class="reg-name">The Gathering</span><span class="reg-coll">The Canopy</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
+    <a href="pieces/the-courtship.html" class="reg-tile"><span class="reg-num">23</span><span class="reg-name">The Courtship</span><span class="reg-coll">The Canopy</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
+    <a href="pieces/the-violet.html" class="reg-tile"><span class="reg-num">24</span><span class="reg-name">The Violet</span><span class="reg-coll">White Cockatoos</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
+    <a href="pieces/the-soloist.html" class="reg-tile"><span class="reg-num">25</span><span class="reg-name">The Soloist</span><span class="reg-coll">Blue Macaws</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
+    <a href="pieces/the-radiance.html" class="reg-tile"><span class="reg-num">26</span><span class="reg-name">The Radiance</span><span class="reg-coll">White Cockatoos</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
+    <a href="pieces/the-pair.html" class="reg-tile"><span class="reg-num">27</span><span class="reg-name">The Pair</span><span class="reg-coll">The Canopy</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
+    <a href="pieces/the-eclipse.html" class="reg-tile"><span class="reg-num">28</span><span class="reg-name">The Eclipse</span><span class="reg-coll">Blue Macaws</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
+    <a href="pieces/the-devotion.html" class="reg-tile"><span class="reg-num">29</span><span class="reg-name">The Devotion</span><span class="reg-coll">White Cockatoos</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
+    <a href="pieces/the-whisper.html" class="reg-tile"><span class="reg-num">30</span><span class="reg-name">The Whisper</span><span class="reg-coll">The Canopy</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
+    <a href="pieces/the-nest.html" class="reg-tile"><span class="reg-num">31</span><span class="reg-name">The Nest</span><span class="reg-coll">The Canopy</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
+    <a href="pieces/the-guardians.html" class="reg-tile"><span class="reg-num">32</span><span class="reg-name">The Guardians</span><span class="reg-coll">White Cockatoos</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
+    <a href="pieces/the-herald.html" class="reg-tile"><span class="reg-num">33</span><span class="reg-name">The Herald</span><span class="reg-coll">The Canopy</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
+    <a href="pieces/the-embrace.html" class="reg-tile"><span class="reg-num">34</span><span class="reg-name">The Embrace</span><span class="reg-coll">The Canopy</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
+    <a href="pieces/the-grace.html" class="reg-tile"><span class="reg-num">35</span><span class="reg-name">The Grace</span><span class="reg-coll">White Cockatoos</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
+    <a href="pieces/the-tenderness.html" class="reg-tile"><span class="reg-num">37</span><span class="reg-name">The Tenderness</span><span class="reg-coll">The Canopy</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
+    <a href="pieces/the-orbit.html" class="reg-tile"><span class="reg-num">38</span><span class="reg-name">The Orbit</span><span class="reg-coll">White Cockatoos</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
+    <a href="pieces/the-vessel.html" class="reg-tile"><span class="reg-num">39</span><span class="reg-name">The Vessel</span><span class="reg-coll">The Canopy</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
+    <a href="pieces/the-driftwood.html" class="reg-tile"><span class="reg-num">40</span><span class="reg-name">The Driftwood</span><span class="reg-coll">The Canopy</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
+    <a href="pieces/the-cluster.html" class="reg-tile"><span class="reg-num">41</span><span class="reg-name">The Cluster</span><span class="reg-coll">White Cockatoos</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
+    <a href="pieces/the-twins.html" class="reg-tile"><span class="reg-num">42</span><span class="reg-name">The Twins</span><span class="reg-coll">White Cockatoos</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
+    <a href="pieces/the-sliced.html" class="reg-tile"><span class="reg-num">43</span><span class="reg-name">The Sliced</span><span class="reg-coll">Blue Macaws</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
+    <a href="pieces/the-smoke.html" class="reg-tile"><span class="reg-num">44</span><span class="reg-name">The Smoke</span><span class="reg-coll">Crimson Duo</span><span class="reg-link">By appointment <span class="arrow">&rarr;</span></span></a>
+  </div>
+  <p class="reg-note">To request a private viewing of any piece, write to david@phaora.com or call the studio directly.</p>
+</section>
 
-    <section class="provenance" aria-labelledby="provenance-quote-text">
-      <figure class="provenance-figure">
-        <div class="provenance-image" role="img" aria-label="The Phaöra studio in Minas Gerais — raw stone before the cut"></div>
-      </figure>
-      <div class="provenance-quote">
-        <blockquote id="provenance-quote-text">One stone. One man. Forty years.</blockquote>
-        <cite>— The Phaöra studio, Minas Gerais</cite>
-      </div>
-    </section>
+<!-- ═══ CORRESPONDENCE ═══ -->
+<section class="corr reveal">
+  <div class="corr-inner">
+    <span class="super-label">— Correspondence —</span>
+    <h3>Write to the studio about a <em>piece</em></h3>
+    <p>Every enquiry is answered personally by David within twenty-four hours. Private viewings are arranged at the Boca Raton studio or by secure shipment.</p>
+    <div class="corr-ctas">
+      <a href="mailto:david@phaora.com?subject=Sculpture%20Enquiry" class="btn btn-amber">Write to the studio <span class="arrow">&rarr;</span></a>
+      <a href="gallery.html" class="btn btn-outline">View the gallery <span class="arrow">&rarr;</span></a>
+    </div>
+  </div>
+</section>
 
-    <section class="correspondence" id="correspondence" aria-labelledby="correspondence-name">
-      <div class="correspondence-inner">
-        <p class="correspondence-eyebrow">For a private viewing, or to inquire about a piece:</p>
-        <p class="correspondence-name" id="correspondence-name">David Vaz</p>
-        <p class="correspondence-contact">
-          <a href="tel:+19548719991" class="lnk">(954) 871-9991</a><span class="em-sep">—</span><a href="mailto:david@phaora.com" class="lnk">david@phaora.com</a>
-        </p>
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div><span class="footer-logo">PHAÖRA</span><p class="footer-tagline">Hardscape and crystal for the estates that demand permanence.</p></div>
+    <div class="footer-col"><h5>The House</h5><a href="/">About</a><a href="/#studio">Studio</a><a href="#">Press</a><a href="#">Journal</a></div>
+    <div class="footer-col"><h5>Divisions</h5><a href="hardscape-gallery.html">Hardscape</a><a href="sculptures.html">Sculpture</a><a href="gallery.html">Gallery</a><a href="sculptures.html">Pieces</a></div>
+    <div class="footer-col"><h5>Connect</h5><a href="contact.html">Contact</a><a href="agents.html">Agents</a><a href="#">Instagram</a><a href="mailto:david@phaora.com">Email</a></div>
+  </div>
+  <div class="footer-bottom"><span>Phaöra · MMXXVI</span><span class="motto">Built on standards. Not inherited. Decided.</span><span>Boca Raton · All rights reserved</span></div>
+</footer>
 
-        <form class="correspondence-form" id="correspondence-form" novalidate>
-          <textarea name="message" placeholder="A note — any question, or simply that you would like to speak." required></textarea>
-          <input type="email" name="email" placeholder="Your email" required>
-          <button type="submit" class="correspondence-send">Send</button>
-          <p class="correspondence-sent">Thank you. David will write to you within 24 hours.</p>
-        </form>
-        <p class="correspondence-note">Responses are personal, and always within 24 hours.</p>
-      </div>
-    </section>
+<!-- ═══ LIGHTBOX ═══ -->
+<div class="lb" id="lb">
+  <button class="lb-close" id="lb-close">&#x2715;</button>
+  <button class="lb-prev" id="lb-prev">&#x2039;</button>
+  <img class="lb-img" id="lb-img" src="" alt="">
+  <button class="lb-next" id="lb-next">&#x203A;</button>
+  <div class="lb-info"><div class="lb-title" id="lb-title"></div><div class="lb-sub" id="lb-sub"></div></div>
+  <span class="lb-counter" id="lb-counter"></span>
+</div>
 
-  </main>
+<script>
+(function(){
+  var reveals=document.querySelectorAll('.reveal');
+  var rObs=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){en.target.classList.add('revealed');rObs.unobserve(en.target)}})},{threshold:0.1});
+  reveals.forEach(function(el){rObs.observe(el)});
 
-  <footer class="colophon">
-    PHAÖRA · Boca Raton · A StyleArtStoneCraft Company · 2026
-  </footer>
+  var tiles=Array.from(document.querySelectorAll('.g-tile'));
+  var lb=document.getElementById('lb'),lbImg=document.getElementById('lb-img'),
+      lbTitle=document.getElementById('lb-title'),lbSub=document.getElementById('lb-sub'),
+      lbCounter=document.getElementById('lb-counter');
+  var idx=0,total=tiles.length;
 
-  <!-- Shared piece data — loaded before inline script that consumes it -->
-  <script src="pieces-data.js"></script>
+  function show(i){
+    idx=((i%total)+total)%total;
+    var t=tiles[idx],cap=t.getAttribute('data-cap')||'',parts=cap.split(' \u00B7 ');
+    lbImg.src=t.querySelector('img').src;
+    lbTitle.textContent=parts[0]||'';lbSub.textContent=parts[1]||'';
+    lbCounter.textContent=(idx+1)+' / '+total;
+  }
+  function open(i){show(i);lb.classList.add('open');document.body.style.overflow='hidden'}
+  function close(){lb.classList.remove('open');document.body.style.overflow=''}
 
-  <script>
-    // Shared data + helpers (PIECES, PALETTES, hash, hexA, pieceGradient, slug)
-    // are loaded from pieces-data.js via <script src> in <head>.
+  tiles.forEach(function(t,i){t.addEventListener('click',function(e){e.preventDefault();open(i)})});
+  document.getElementById('lb-close').addEventListener('click',close);
+  document.getElementById('lb-prev').addEventListener('click',function(){show(idx-1)});
+  document.getElementById('lb-next').addEventListener('click',function(){show(idx+1)});
+  lb.addEventListener('click',function(e){if(e.target===lb)close()});
+  document.addEventListener('keydown',function(e){if(!lb.classList.contains('open'))return;if(e.key==='Escape')close();else if(e.key==='ArrowLeft')show(idx-1);else if(e.key==='ArrowRight')show(idx+1)});
 
-
-    function cardHTML(p) {
-      const isAcquired = p.status === 'acquired';
-      const isLast     = p.status === 'last';
-      const priceFmt   = p.price.toLocaleString('en-US');
-
-      return `
-        <a class="work${isAcquired ? ' is-acquired' : ''}"
-           href="pieces/${slug(p.name)}.html"
-           data-piece="${p.name}"
-           aria-label="${p.name} — ${p.material}${isAcquired ? ' — Acquired' : ''}">
-          <figure class="work-figure">
-            <div class="work-image placeholder"
-                 style="${p.image ? `background-image: url('${p.image}'); background-size: cover; background-position: center;` : `background: ${pieceGradient(p)}`}"
-                 data-piece-image="${p.image || ''}"
-                 aria-hidden="true"></div>
-          </figure>
-          <div class="work-caption">
-            <h3 class="work-title">${p.name}</h3>
-            <p class="work-meta">${p.material}</p>
-            <p class="work-price">
-              <span class="price-value">USD ${priceFmt}</span><span class="em-sep">—</span><span class="inquire-lnk">Inquire</span>
-            </p>
-            ${isLast ? '<p class="work-remains">One remains.</p>' : ''}
-            <p class="work-acquired-label">Acquired</p>
-          </div>
-        </a>
-      `;
-    }
-
-    function render() {
-      const containers = document.querySelectorAll('[data-collection]');
-      containers.forEach(c => {
-        const coll = c.dataset.collection;
-        const list = coll === 'all'
-          ? PIECES
-          : PIECES.filter(p => p.collection === coll);
-        c.innerHTML = list.map(cardHTML).join('');
-      });
-    }
-
-    // ========================================================
-    // VIEW ALL toggle — expands the flat index
-    // ========================================================
-    document.getElementById('view-all-trigger').addEventListener('click', (e) => {
-      const section = document.getElementById('all-works');
-      section.classList.add('open');
-      // Let the browser handle the hash scroll naturally.
-    });
-
-    render();
-
-    // ========================================================
-    // PRODUCT JSON-LD — emit one schema.org/Product block per piece
-    // ========================================================
-    function emitProductSchema() {
-      const origin = 'https://phaora.com';
-      const pieceUrl = (p) => `${origin}/pieces/${slug(p.name)}.html`;
-      const statusMap = {
-        'available': 'https://schema.org/InStock',
-        'last':      'https://schema.org/LimitedAvailability',
-        'acquired':  'https://schema.org/SoldOut',
-      };
-      PIECES.forEach(p => {
-        const ld = {
-          '@context': 'https://schema.org',
-          '@type': 'Product',
-          'name': p.name,
-          'sku': String(p.sku),
-          'description': `${p.material}. Hand-mined in Minas Gerais, Brazil. One of one.`,
-          'material': p.material,
-          'image': p.image,
-          'url': pieceUrl(p),
-          'brand': { '@type': 'Brand', 'name': 'Phaöra' },
-          'countryOfOrigin': 'BR',
-          'offers': {
-            '@type': 'Offer',
-            'url': pieceUrl(p),
-            'priceCurrency': 'USD',
-            'price': String(p.price),
-            'availability': statusMap[p.status],
-            'seller': { '@type': 'Organization', 'name': 'Phaöra' },
-          },
-        };
-        const tag = document.createElement('script');
-        tag.type = 'application/ld+json';
-        tag.textContent = JSON.stringify(ld);
-        document.head.appendChild(tag);
-      });
-    }
-    emitProductSchema();
-
-    // ========================================================
-    // IMAGE FALLBACK
-    // Each piece declares an image path (images/<slug>.jpg).
-    // If the image doesn't exist yet, we silently fall back to
-    // the unique per-piece gradient so the page always looks
-    // complete. Drop real photos into /images/ to replace.
-    // ========================================================
-    function attachImageFallbacks(scope) {
-      const root = scope || document;
-      root.querySelectorAll('[data-piece-image]').forEach(el => {
-        const src = el.dataset.pieceImage;
-        if (!src) return;
-        const test = new Image();
-        test.onerror = () => {
-          // Find the piece either from parent .work[data-piece] or from data-piece-name
-          const parent = el.closest('[data-piece]');
-          const name = (parent && parent.dataset.piece) || el.dataset.pieceName;
-          const piece = PIECES.find(p => p.name === name);
-          if (piece) {
-            el.style.backgroundImage = 'none';
-            el.style.background = pieceGradient(piece);
-          }
-        };
-        test.src = src;
-      });
-    }
-    attachImageFallbacks();
-
-    // Plate image fallback — hand-wired (not a piece card)
-    (function attachPlateFallback() {
-      const plate = document.querySelector('.plate-image');
-      if (!plate) return;
-      const m = /url\(['"]?([^'")]+)['"]?\)/.exec(plate.style.backgroundImage || getComputedStyle(plate).backgroundImage);
-      const src = m ? m[1] : 'https://phaora.com/img/IMG_6959.JPG';
-      const test = new Image();
-      test.onerror = () => plate.classList.add('placeholder-fallback');
-      test.src = src;
-    })();
-
-    // Provenance image fallback
-    (function attachProvenanceFallback() {
-      const prov = document.querySelector('.provenance-image');
-      if (!prov) return;
-      const m = /url\(['"]?([^'")]+)['"]?\)/.exec(prov.style.backgroundImage || getComputedStyle(prov).backgroundImage);
-      const src = m ? m[1] : 'https://phaora.com/img/the-studio-main.jpg';
-      const test = new Image();
-      test.onerror = () => prov.classList.add('placeholder-fallback');
-      test.src = src;
-    })();
-
-
-    // ========================================================
-    // CORRESPONDENCE FORM — quiet thank-you on submit
-    // Posts to Formspree. Fails gracefully — still shows thank-you
-    // because the copy promises David writes within 24 hours; we do
-    // not want to expose transport errors to the collector.
-    // ========================================================
-    (function wireCorrespondence() {
-      const form = document.getElementById('correspondence-form');
-      if (!form) return;
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const data = {
-          message: form.querySelector('[name="message"]').value.trim(),
-          email:   form.querySelector('[name="email"]').value.trim(),
-          _subject: 'PHAÖRA — General correspondence',
-          source:  'sculptures.html · correspondence block',
-          timestamp: new Date().toISOString(),
-        };
-        form.classList.add('sent');
-        try {
-          await fetch('https://formspree.io/f/mlgokvnj', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-            body: JSON.stringify(data),
-          });
-        } catch (_) { /* silent — thank-you already shown */ }
-      });
-    })();
-  </script>
-
+  var vcLink=document.getElementById('view-canopy');
+  if(vcLink){vcLink.addEventListener('click',function(e){e.preventDefault();open(0)})}
+})();
+</script>
 </body>
 </html>
