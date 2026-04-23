@@ -3,465 +3,689 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PHAÖRA — The Collection · 44 Singular Works</title>
-<meta name="description" content="44 one-of-one hand-crafted Brazilian crystal sculptures by master craftsman Fabiano. Blue Macaws, Scarlet Macaws, White Cockatoos, and Eagles on amethyst and quartz. Available for purchase and luxury staging in South Florida.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://phaora.com/gallery.html">
-<meta property="og:title" content="PHAÖRA — The Crystal Collection · 44 Singular Works">
-<meta property="og:description" content="One-of-one hand-crafted crystal sculptures from the mountains of Minas Gerais, Brazil. Each piece shaped by master craftsman Fabiano — forty years of devotion. Never duplicated.">
-<meta property="og:image" content="https://phaora.com/Untitled_design_-_4-compressed.jpeg">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="PHAÖRA — The Crystal Collection">
-<meta name="twitter:description" content="39 one-of-one hand-crafted Brazilian crystal sculptures. Never duplicated.">
-<meta name="twitter:image" content="https://phaora.com/Untitled_design_-_4-compressed.jpeg">
-<link rel="canonical" href="https://phaora.com/gallery.html">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<title>PHAÖRA — Sculpture Gallery · Five Pieces, Thirty Works</title>
+<meta name="description" content="The complete sculpture register — hand-carved Brazilian crystal by master craftsman Fabiano. Five singular pieces, thirty photographs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300&display=swap" rel="stylesheet">
 <style>
+
+/* ═══ RESET & ROOT ═══ */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#0a0907;--bg2:#110f0b;--surface:#1a1714;--surface2:#231f1a;
-  --gold:#c9a55c;--gold-light:#e2c98a;--gold-dim:#8a7340;
-  --cream:#f0e8d8;--cream2:#d4c9b2;--text:#e8e0d0;--text-dim:#9a9080;
-  --red-soft:#c45c4a;
-  --serif:'Cormorant Garamond',Georgia,serif;
-  --sans:'Outfit',system-ui,sans-serif;
+  --ink:#0a0908;
+  --surface:#12100c;
+  --bone:#e8dcc4;
+  --amber:#B87333;
+  --amber-bright:#D4A254;
+  --muted:#8a7355;
+  --stroke:rgba(184,115,51,0.2);
+  --serif:'Fraunces',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+  --mono:'JetBrains Mono',monospace;
   --ease:cubic-bezier(0.22,1,0.36,1);
 }
-html{scroll-behavior:smooth;font-size:16px;background:var(--bg)}
-body{font-family:var(--sans);color:var(--text);background:var(--bg);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth;background:var(--ink)}
+body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 
-.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(20px) saturate(1.4);background:rgba(10,9,7,.88);border-bottom:1px solid rgba(201,165,92,.08)}
-.nav-logo{font-family:var(--serif);font-size:1.4rem;font-weight:300;letter-spacing:.15em;color:var(--cream);text-decoration:none}
-.nav-links{display:flex;gap:28px;align-items:center}
-.nav-links a{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cream2);text-decoration:none;transition:color .3s;font-weight:400}
-.nav-links a:hover{color:var(--gold)}
-.nav-cta{background:var(--gold);color:var(--bg)!important;padding:10px 22px;font-size:.68rem!important;letter-spacing:.14em!important;font-weight:500;cursor:pointer;transition:all .3s var(--ease)}
-.nav-cta:hover{background:var(--gold-light);transform:translateY(-1px)}
-
-.hero{padding:130px 24px 80px;text-align:center}
-.hero .eyebrow{font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;font-weight:400}
-.hero h1{font-family:var(--serif);font-size:clamp(2.4rem,5vw,4.5rem);font-weight:300;line-height:1.1;color:var(--cream);margin-bottom:16px}
-.hero h1 em{font-style:italic;color:var(--gold)}
-.hero p{font-size:.95rem;color:var(--cream2);max-width:560px;margin:0 auto 12px;line-height:1.7;font-weight:200}
-.hero-stats{display:flex;gap:40px;justify-content:center;margin-top:32px}
-.hero-stat .num{font-family:var(--serif);font-size:1.8rem;color:var(--gold);font-weight:300}
-.hero-stat .label{font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-dim);margin-top:4px}
-
-.filter-bar{padding:24px 24px 20px;text-align:center;position:sticky;top:52px;z-index:100;background:var(--bg);border-bottom:1px solid rgba(201,165,92,.06)}
-.filter-tabs{display:inline-flex;gap:4px;background:var(--surface);padding:4px;border:1px solid rgba(201,165,92,.08);flex-wrap:wrap;justify-content:center}
-.filter-tab{padding:10px 20px;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);background:transparent;border:none;cursor:pointer;font-family:var(--sans);transition:all .3s var(--ease);white-space:nowrap}
-.filter-tab.active,.filter-tab:hover{background:var(--gold);color:var(--bg)}
-.piece-count{font-size:.7rem;color:var(--text-dim);margin-top:12px}
-
-.gallery{padding:40px 24px 60px}
-.grid{max-width:1200px;margin:0 auto;columns:3;column-gap:16px}
-
-/* Cards are now <a> tags — reset link styles */
-.card{
-  break-inside:avoid;margin-bottom:16px;position:relative;overflow:hidden;
-  cursor:pointer;background:var(--surface);display:block;
-  text-decoration:none;color:inherit;
+/* ═══ NAV (verbatim from index.html) ═══ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  padding:0 2.5rem;height:60px;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:background .5s ease,border-color .5s ease;
+  backdrop-filter:blur(24px) saturate(1.2);-webkit-backdrop-filter:blur(24px) saturate(1.2);
+  background:rgba(10,9,8,0.85);
+  border-bottom:0.5px solid var(--stroke);
 }
-.card img{width:100%;display:block;transition:transform .7s var(--ease)}
-.card:hover img{transform:scale(1.04)}
-.card::after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(10,9,7,.88));opacity:0;transition:opacity .4s;pointer-events:none}
-.card:hover::after{opacity:1}
-.card-info{position:absolute;bottom:0;left:0;right:0;padding:20px;z-index:2;transform:translateY(10px);opacity:0;transition:all .4s var(--ease)}
-.card:hover .card-info{transform:translateY(0);opacity:1}
-.card-info h4{font-family:var(--serif);font-size:1.05rem;color:var(--cream);font-weight:400;margin-bottom:4px}
-.card-info .price{font-size:.62rem;color:var(--gold);letter-spacing:.1em;margin-bottom:8px}
-.card-info .inquire{font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cream2);background:rgba(201,165,92,.15);border:1px solid rgba(201,165,92,.3);padding:6px 14px;display:inline-block;transition:all .3s}
-.card:hover .card-info .inquire{background:var(--gold);color:var(--bg)}
-.card-tag{position:absolute;top:12px;right:12px;z-index:3;padding:5px 12px;font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;background:var(--red-soft);color:#fff}
-.card-sku{position:absolute;top:12px;left:12px;z-index:3;padding:5px 10px;font-size:.5rem;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-dim);background:rgba(10,9,7,.7);backdrop-filter:blur(6px);border:1px solid rgba(201,165,92,.1)}
+.nav-left,.nav-right{display:flex;align-items:center;gap:2rem}
+.nav-left a,.nav-right a{
+  font-family:var(--sans);font-size:11px;font-weight:400;
+  letter-spacing:0.22em;text-transform:uppercase;
+  text-decoration:none;color:var(--bone);
+  transition:color .3s ease;position:relative;
+}
+.nav-left a::after,.nav-right a:not(.nav-enquire)::after{
+  content:'';position:absolute;bottom:-3px;left:0;
+  width:100%;height:0.5px;background:var(--amber);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .4s var(--ease);
+}
+.nav-left a:hover::after,.nav-right a:not(.nav-enquire):hover::after{transform:scaleX(1)}
+.nav-logo{
+  font-family:var(--sans);font-size:14px;font-weight:600;
+  letter-spacing:0.32em;text-transform:uppercase;
+  text-decoration:none;color:var(--bone);
+}
+.nav-enquire{
+  padding:8px 18px;border:0.5px solid rgba(232,220,196,0.3);
+  transition:all .3s ease !important;
+  display:inline-flex;align-items:center;gap:6px;
+}
+.nav-enquire .arrow{font-size:10px;transition:transform .3s var(--ease)}
+.nav-enquire:hover .arrow{transform:translateX(4px)}
+.nav-enquire:hover{background:rgba(232,220,196,0.06)}
 
-.mid-cta{padding:80px 24px;background:var(--bg2);text-align:center;border-top:1px solid rgba(201,165,92,.06);border-bottom:1px solid rgba(201,165,92,.06)}
-.mid-cta h2{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.6rem);font-weight:300;color:var(--cream);margin-bottom:12px}
-.mid-cta h2 em{font-style:italic;color:var(--gold-light)}
-.mid-cta p{color:var(--cream2);font-size:.88rem;max-width:460px;margin:0 auto 28px;line-height:1.7;font-weight:200}
-.btn-primary{background:var(--gold);color:var(--bg);padding:16px 36px;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-family:var(--sans);font-weight:500;border:none;cursor:pointer;transition:all .35s var(--ease);text-decoration:none;display:inline-flex;align-items:center;gap:8px}
-.btn-primary:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 12px 40px rgba(201,165,92,.25)}
+/* ═══ HEADER ═══ */
+.gh{
+  min-height:55vh;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;
+  text-align:center;padding:8rem 2.5rem 4rem;
+  background:var(--ink);
+}
+.gh-meta{
+  width:100%;max-width:1000px;
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:3rem;
+}
+.gh-meta span{
+  font-family:var(--sans);font-size:10.5px;font-weight:400;
+  letter-spacing:0.32em;text-transform:uppercase;
+  color:rgba(232,220,196,0.65);
+}
+.gh-meta-center{
+  font-family:var(--serif) !important;font-style:italic;
+  font-size:12px !important;letter-spacing:0.06em !important;
+  text-transform:none !important;
+  color:rgba(232,220,196,0.55) !important;
+  font-variation-settings:'opsz' 18,'SOFT' 80;
+  display:inline-flex;align-items:center;gap:10px;
+}
+.pulse-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--amber);flex-shrink:0;
+  animation:dotPulse 2.4s ease-in-out infinite;
+}
+.gh h1{
+  font-family:var(--serif);
+  font-size:clamp(56px,8vw,120px);
+  font-weight:300;line-height:0.95;
+  letter-spacing:-0.03em;color:var(--bone);
+  font-variation-settings:'opsz' 144,'SOFT' 0;
+  margin-bottom:1.25rem;
+}
+.gh h1 em{font-style:italic}
+.gh-sub{
+  font-family:var(--serif);font-style:italic;
+  font-size:clamp(18px,2vw,24px);line-height:1.4;
+  color:rgba(232,220,196,0.85);font-weight:300;
+  font-variation-settings:'opsz' 36,'SOFT' 80;
+  max-width:520px;margin-bottom:3rem;
+}
+.gh-strip{
+  width:100%;max-width:800px;
+  border-top:0.5px solid var(--stroke);
+  padding-top:1.5rem;
+  font-family:var(--mono);font-size:13px;font-weight:300;
+  letter-spacing:0.08em;color:var(--muted);
+}
 
-.footer{padding:40px 24px;background:var(--surface);border-top:1px solid rgba(201,165,92,.06);text-align:center}
-.footer .brand{font-family:var(--serif);font-size:1.3rem;color:var(--cream);font-weight:300;letter-spacing:.1em;margin-bottom:8px}
-.footer .info{font-size:.72rem;color:var(--text-dim);line-height:1.8;font-weight:200}
-.footer .info a{color:var(--gold);text-decoration:none}
+/* ═══ PIECE SECTIONS ═══ */
+.piece-section{padding:0 2.5rem 6rem;background:var(--ink)}
+.piece-header{
+  max-width:1440px;margin:0 auto 2.5rem;
+  display:grid;grid-template-columns:auto 1fr auto;
+  align-items:center;gap:2rem;
+  padding:1.5rem 0;
+  border-top:0.5px solid var(--stroke);
+  border-bottom:0.5px solid var(--stroke);
+}
+.piece-num{
+  font-family:var(--serif);font-style:italic;font-size:48px;
+  font-weight:300;color:var(--amber);
+  font-variation-settings:'opsz' 72,'SOFT' 0;
+  line-height:1;
+}
+.piece-name{
+  font-family:var(--serif);font-size:clamp(32px,4vw,56px);
+  font-weight:300;color:var(--bone);text-align:center;
+  font-variation-settings:'opsz' 144,'SOFT' 0;
+  line-height:1;
+}
+.piece-count{
+  font-family:var(--mono);font-size:12px;font-weight:300;
+  letter-spacing:0.12em;color:var(--muted);
+  text-align:right;
+}
 
-.floating-cta{position:fixed;bottom:24px;right:24px;z-index:999}
-.floating-cta a{display:flex;align-items:center;gap:10px;background:var(--gold);color:var(--bg);padding:14px 24px;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;text-decoration:none;box-shadow:0 8px 30px rgba(201,165,92,.3);transition:all .3s var(--ease)}
-.floating-cta a:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(201,165,92,.4)}
-.floating-cta .pulse{width:8px;height:8px;border-radius:50%;background:#5ca55c;animation:pulse 2s ease infinite}
-.stellar-fab{display:none;position:fixed;bottom:24px;left:24px;z-index:999;align-items:center;gap:6px;padding:12px 18px;font-family:var(--sans);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:var(--bg);background:var(--gold);text-decoration:none;box-shadow:0 8px 30px rgba(201,165,92,.3);transition:background .3s var(--ease)}
-.stellar-fab:hover{background:var(--gold-light)}
+/* ═══ GALLERY TILES ═══ */
+.p-grid{
+  display:grid;grid-template-columns:repeat(12,1fr);
+  grid-auto-rows:90px;gap:1.25rem;
+  max-width:1440px;margin:0 auto;
+  grid-auto-flow:dense;
+}
+.g-tile{position:relative;overflow:hidden;cursor:pointer}
+.g-tile img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  filter:grayscale(10%) brightness(0.75) contrast(1.08);
+  transition:all 1.2s cubic-bezier(0.22,1,0.36,1);
+}
+.g-tile:hover img{
+  filter:grayscale(0%) brightness(1) contrast(1.08);
+  transform:scale(1.04);
+}
+.g-caption{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:3rem 1.25rem 1rem;
+  background:linear-gradient(transparent,rgba(10,9,8,0.85));
+  border-top:0.5px solid transparent;
+  font-family:var(--sans);font-size:10.5px;font-weight:400;
+  letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--bone);
+  transform:translateY(100%);
+  transition:transform .6s var(--ease),border-color .6s ease;
+}
+.g-tile:hover .g-caption{
+  transform:translateY(0);
+  border-top-color:var(--stroke);
+}
 
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+/* Pattern A — Canopy */
+.pat-a .g-tile:nth-child(1){grid-column:span 8;grid-row:span 5}
+.pat-a .g-tile:nth-child(2){grid-column:span 4;grid-row:span 5}
+.pat-a .g-tile:nth-child(3){grid-column:span 5;grid-row:span 4}
+.pat-a .g-tile:nth-child(4){grid-column:span 4;grid-row:span 4}
+.pat-a .g-tile:nth-child(5){grid-column:span 3;grid-row:span 4}
+.pat-a .g-tile:nth-child(6){grid-column:span 12;grid-row:span 3}
 
+/* Pattern B — Perch */
+.pat-b .g-tile:nth-child(1){grid-column:span 7;grid-row:span 5}
+.pat-b .g-tile:nth-child(2){grid-column:span 5;grid-row:span 5}
+.pat-b .g-tile:nth-child(3){grid-column:span 6;grid-row:span 4}
+.pat-b .g-tile:nth-child(4){grid-column:span 6;grid-row:span 4}
+.pat-b .g-tile:nth-child(5){grid-column:span 4;grid-row:span 3}
+.pat-b .g-tile:nth-child(6){grid-column:span 8;grid-row:span 3}
+
+/* Pattern C — Dynasty */
+.pat-c .g-tile:nth-child(1){grid-column:span 5;grid-row:span 5}
+.pat-c .g-tile:nth-child(2){grid-column:span 7;grid-row:span 6}
+.pat-c .g-tile:nth-child(3){grid-column:span 4;grid-row:span 3}
+.pat-c .g-tile:nth-child(4){grid-column:span 4;grid-row:span 3}
+.pat-c .g-tile:nth-child(5){grid-column:span 4;grid-row:span 3}
+.pat-c .g-tile:nth-child(6){grid-column:span 12;grid-row:span 3}
+
+/* Pattern D — Portal */
+.pat-d .g-tile:nth-child(1){grid-column:span 8;grid-row:span 6}
+.pat-d .g-tile:nth-child(2){grid-column:span 4;grid-row:span 4}
+.pat-d .g-tile:nth-child(3){grid-column:span 4;grid-row:span 3}
+.pat-d .g-tile:nth-child(4){grid-column:span 8;grid-row:span 3}
+.pat-d .g-tile:nth-child(5){grid-column:span 6;grid-row:span 4}
+.pat-d .g-tile:nth-child(6){grid-column:span 6;grid-row:span 4}
+
+/* Pattern E — Crimson Duo */
+.pat-e .g-tile:nth-child(1){grid-column:span 6;grid-row:span 5}
+.pat-e .g-tile:nth-child(2){grid-column:span 6;grid-row:span 5}
+.pat-e .g-tile:nth-child(3){grid-column:span 5;grid-row:span 4}
+.pat-e .g-tile:nth-child(4){grid-column:span 3;grid-row:span 4}
+.pat-e .g-tile:nth-child(5){grid-column:span 4;grid-row:span 4}
+.pat-e .g-tile:nth-child(6){grid-column:span 12;grid-row:span 3}
+
+/* ═══ LIGHTBOX ═══ */
+.lb{
+  position:fixed;inset:0;z-index:10000;
+  background:rgba(10,9,8,0.96);
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;
+  opacity:0;pointer-events:none;
+  transition:opacity .3s ease;
+}
+.lb.open{opacity:1;pointer-events:all}
+.lb-img{
+  max-width:90vw;max-height:85vh;object-fit:contain;
+  display:block;
+}
+.lb-close{
+  position:absolute;top:1.5rem;right:1.5rem;
+  background:none;border:none;color:var(--bone);
+  font-size:1.5rem;cursor:pointer;
+  transition:color .3s;padding:0.5rem;
+}
+.lb-close:hover{color:var(--amber)}
+.lb-prev,.lb-next{
+  position:absolute;top:50%;transform:translateY(-50%);
+  background:none;border:1px solid rgba(232,220,196,0.15);
+  color:var(--bone);font-size:1.5rem;
+  width:48px;height:48px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .3s ease;
+}
+.lb-prev{left:1.5rem}
+.lb-next{right:1.5rem}
+.lb-prev:hover,.lb-next:hover{
+  color:var(--amber);border-color:var(--amber);
+}
+.lb-info{margin-top:1.25rem;text-align:center}
+.lb-title{
+  font-family:var(--serif);font-style:italic;font-size:18px;
+  color:var(--bone);margin-bottom:4px;
+  font-variation-settings:'opsz' 24;
+}
+.lb-sub{
+  font-family:var(--sans);font-size:11px;font-weight:400;
+  letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--muted);
+}
+.lb-counter{
+  position:absolute;bottom:1.5rem;left:50%;
+  transform:translateX(-50%);
+  font-family:var(--sans);font-size:11px;font-weight:400;
+  letter-spacing:0.15em;color:var(--muted);
+}
+
+/* ═══ COMMISSION BAND ═══ */
+.commission{
+  padding:6rem 2.5rem;background:var(--ink);
+  text-align:center;
+  border-top:0.5px solid var(--stroke);
+}
+.commission-content{max-width:680px;margin:0 auto}
+.super-label{
+  display:block;font-family:var(--sans);font-size:11px;font-weight:500;
+  letter-spacing:0.32em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:2.5rem;
+}
+.commission-content h3{
+  font-family:var(--serif);
+  font-size:clamp(36px,5vw,58px);
+  font-weight:300;line-height:1.1;color:var(--bone);
+  margin-bottom:1.5rem;
+  font-variation-settings:'opsz' 144,'SOFT' 0;
+}
+.commission-content h3 em{font-style:italic}
+.commission-content>p{
+  font-family:var(--serif);font-size:17px;font-weight:400;
+  line-height:1.55;color:rgba(232,220,196,0.5);
+  margin-bottom:3rem;
+  font-variation-settings:'opsz' 18,'SOFT' 50;
+}
+.commission-ctas{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+/* ═══ BUTTONS (verbatim from index.html) ═══ */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:1rem 2rem;
+  font-family:var(--sans);font-size:11px;font-weight:500;
+  letter-spacing:0.22em;text-transform:uppercase;
+  text-decoration:none;cursor:pointer;
+  transition:all .4s var(--ease);
+}
+.btn .arrow{transition:transform .4s var(--ease)}
+.btn:hover .arrow{transform:translateX(6px)}
+.btn-amber{
+  background:var(--amber);color:var(--ink);
+  border:1px solid var(--amber);
+}
+.btn-amber:hover{
+  background:var(--amber-bright);
+  border-color:var(--amber-bright);
+}
+.btn-outline{
+  background:transparent;color:var(--bone);
+  border:1px solid rgba(232,220,196,0.3);
+}
+.btn-outline:hover{
+  background:var(--bone);color:var(--ink);
+  border-color:var(--bone);
+}
+
+/* ═══ FOOTER (verbatim from index.html) ═══ */
+.footer{
+  background:var(--ink);
+  border-top:0.5px solid var(--stroke);
+  padding:5rem 2.5rem 0;
+}
+.footer-inner{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:2.5rem;max-width:1440px;margin:0 auto;
+  padding-bottom:4rem;
+}
+.footer-logo{
+  font-family:var(--serif);font-size:40px;font-weight:300;
+  color:var(--bone);margin-bottom:1rem;display:block;
+  font-variation-settings:'opsz' 72,'SOFT' 0;
+}
+.footer-tagline{
+  font-family:var(--serif);font-style:italic;font-size:15px;
+  line-height:1.55;color:rgba(232,220,196,0.55);
+  max-width:320px;font-variation-settings:'opsz' 18,'SOFT' 50;
+}
+.footer-col h5{
+  font-family:var(--sans);font-size:10.5px;font-weight:600;
+  letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:1.25rem;
+}
+.footer-col a{
+  display:block;font-family:var(--sans);font-size:13px;
+  font-weight:400;color:rgba(232,220,196,0.5);
+  text-decoration:none;margin-bottom:0.75rem;
+  transition:color .3s ease;
+}
+.footer-col a:hover{color:var(--amber)}
+.footer-bottom{
+  max-width:1440px;margin:0 auto;
+  padding:1.5rem 0;
+  border-top:0.5px solid var(--stroke);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.footer-bottom span{
+  font-family:var(--sans);font-size:11px;font-weight:400;
+  letter-spacing:0.06em;color:var(--muted);
+}
+.footer-bottom .motto{
+  font-family:var(--serif);font-style:italic;font-size:13px;
+  color:rgba(232,220,196,0.6);
+  font-variation-settings:'opsz' 18;
+}
+
+/* ═══ REVEAL ═══ */
+.reveal{
+  opacity:0;transform:translateY(40px);
+  transition:opacity .8s ease,transform .8s ease;
+}
+.reveal.revealed{opacity:1;transform:translateY(0)}
+
+/* ═══ KEYFRAMES ═══ */
+@keyframes dotPulse{
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.4;transform:scale(.75)}
+}
+
+/* ═══ RESPONSIVE ═══ */
 @media(max-width:900px){
-  .nav-links{display:none}
-  .grid{columns:2}
-  .hero-stats{gap:24px}
-  .stellar-fab.visible{display:inline-flex}
+  .nav-left,.nav-right{display:none}
+  .nav{justify-content:center}
+
+  .gh{padding:6rem 1.5rem 3rem;min-height:auto}
+  .gh-meta{display:none}
+  .gh h1{font-size:clamp(40px,12vw,72px)}
+  .gh-strip{font-size:11px}
+
+  .piece-section{padding:0 1.5rem 4rem}
+  .piece-header{grid-template-columns:1fr;gap:0.75rem;text-align:center}
+  .piece-num{font-size:32px;text-align:center}
+  .piece-count{text-align:center}
+
+  .p-grid{
+    grid-template-columns:repeat(6,1fr);grid-auto-rows:80px;gap:0.75rem;
+  }
+  .pat-a .g-tile:nth-child(1),.pat-a .g-tile:nth-child(2),
+  .pat-a .g-tile:nth-child(3),.pat-a .g-tile:nth-child(4),
+  .pat-a .g-tile:nth-child(5),.pat-a .g-tile:nth-child(6),
+  .pat-b .g-tile:nth-child(1),.pat-b .g-tile:nth-child(2),
+  .pat-b .g-tile:nth-child(3),.pat-b .g-tile:nth-child(4),
+  .pat-b .g-tile:nth-child(5),.pat-b .g-tile:nth-child(6),
+  .pat-c .g-tile:nth-child(1),.pat-c .g-tile:nth-child(2),
+  .pat-c .g-tile:nth-child(3),.pat-c .g-tile:nth-child(4),
+  .pat-c .g-tile:nth-child(5),.pat-c .g-tile:nth-child(6),
+  .pat-d .g-tile:nth-child(1),.pat-d .g-tile:nth-child(2),
+  .pat-d .g-tile:nth-child(3),.pat-d .g-tile:nth-child(4),
+  .pat-d .g-tile:nth-child(5),.pat-d .g-tile:nth-child(6),
+  .pat-e .g-tile:nth-child(1),.pat-e .g-tile:nth-child(2),
+  .pat-e .g-tile:nth-child(3),.pat-e .g-tile:nth-child(4),
+  .pat-e .g-tile:nth-child(5),.pat-e .g-tile:nth-child(6){
+    grid-column:span 3;grid-row:span 4;
+  }
+
+  .lb-prev{left:0.5rem}
+  .lb-next{right:0.5rem}
+  .lb-prev,.lb-next{width:36px;height:36px;font-size:1.2rem}
+
+  .commission{padding:4rem 1.5rem}
+  .commission-ctas{flex-direction:column;align-items:center}
+
+  .footer{padding:3rem 1.5rem 0}
+  .footer-inner{grid-template-columns:1fr;text-align:center}
+  .footer-tagline{margin:0 auto}
+  .footer-bottom{flex-direction:column;gap:0.5rem;text-align:center;padding:1.25rem 0}
 }
-@media(max-width:600px){
-  .grid{columns:1}
-  .hero h1{font-size:2rem}
-  .hero-stats{flex-direction:row;gap:20px}
-}
+
 </style>
 </head>
 <body>
 
-<nav class="nav">
+<!-- ═══ NAV (verbatim from index.html) ═══ -->
+<nav class="nav" id="nav">
+  <div class="nav-left">
+    <a href="hardscape-gallery.html">Hardscape</a>
+    <a href="sculptures.html">Sculpture</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="agents.html">Agents</a>
+  </div>
   <a href="index.html" class="nav-logo">PHAÖRA</a>
-  <div class="nav-links">
-    <a href="index.html#hardscape">Hardscape</a>
-    <a href="#">Collection</a>
-    <a href="stellar-gallery.html">Stellar View</a>
-    <a href="index.html#staging">Staging</a>
-    <a href="index.html#contact">Contact</a>
-    <a href="tel:+19548719991" style="color:var(--gold)!important">✦ (954) 871-9991</a>
-    <a href="index.html#contact" class="nav-cta">Inquire</a>
+  <div class="nav-right">
+    <a href="/#studio">Studio</a>
+    <a href="contact.html">Contact</a>
+    <a href="/#invitation" class="nav-enquire">Enquire <span class="arrow">&rarr;</span></a>
   </div>
 </nav>
 
-<section class="hero">
-  <div class="eyebrow">✦ PHAÖRA · Minas Gerais, Brazil</div>
-  <h1>The <em>Collection</em></h1>
-  <p>Each piece was shaped by the earth over millions of years and finished by master craftsman Fabiano. One of one. Never to exist again.</p>
-  <div class="hero-stats">
-    <div class="hero-stat"><div class="num">44</div><div class="label">Singular Works</div></div>
-    <div class="hero-stat"><div class="num">40+</div><div class="label">Years of Mastery</div></div>
-    <div class="hero-stat"><div class="num">0</div><div class="label">Duplicates Ever</div></div>
+<!-- ═══ HEADER ═══ -->
+<section class="gh">
+  <div class="gh-meta">
+    <span>Gallery · Sculpture</span>
+    <span class="gh-meta-center"><span class="pulse-dot"></span>Five pieces · Thirty works</span>
+    <span>By commission only</span>
+  </div>
+  <h1>The Crystal <em>Register</em></h1>
+  <p class="gh-sub">Hand-carved from Brazilian earth, each work exists once and will never be repeated.</p>
+  <div class="gh-strip">Thirty works · Five pieces · Updated MMXXVI</div>
+</section>
+
+<!-- ═══ PIECE I — CANOPY ═══ -->
+<section class="piece-section reveal">
+  <div class="piece-header">
+    <span class="piece-num">I</span>
+    <span class="piece-name">Canopy</span>
+    <span class="piece-count">Six photographs</span>
+  </div>
+  <div class="p-grid pat-a">
+    <div class="g-tile" data-cap="Canopy · Plate 1"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-1.jpeg" alt="Canopy — view 1" loading="lazy"><div class="g-caption">Canopy · Plate 1</div></div>
+    <div class="g-tile" data-cap="Canopy · Plate 2"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-2.jpeg" alt="Canopy — view 2" loading="lazy"><div class="g-caption">Canopy · Plate 2</div></div>
+    <div class="g-tile" data-cap="Canopy · Plate 3"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-3.jpeg" alt="Canopy — view 3" loading="lazy"><div class="g-caption">Canopy · Plate 3</div></div>
+    <div class="g-tile" data-cap="Canopy · Plate 4"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-4.jpeg" alt="Canopy — view 4" loading="lazy"><div class="g-caption">Canopy · Plate 4</div></div>
+    <div class="g-tile" data-cap="Canopy · Plate 5"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-5.jpeg" alt="Canopy — view 5" loading="lazy"><div class="g-caption">Canopy · Plate 5</div></div>
+    <div class="g-tile" data-cap="Canopy · Plate 6"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-6.jpeg" alt="Canopy — view 6" loading="lazy"><div class="g-caption">Canopy · Plate 6</div></div>
   </div>
 </section>
 
-<div class="filter-bar">
-  <div class="filter-tabs">
-    <button class="filter-tab active" data-filter="all">All Pieces</button>
-    <button class="filter-tab" data-filter="statement">Statement</button>
-    <button class="filter-tab" data-filter="signature">Signature</button>
-    <button class="filter-tab" data-filter="entry">Entry</button>
+<!-- ═══ PIECE II — PERCH ═══ -->
+<section class="piece-section reveal">
+  <div class="piece-header">
+    <span class="piece-num">II</span>
+    <span class="piece-name">Perch</span>
+    <span class="piece-count">Six photographs</span>
   </div>
-  <div class="piece-count"><span id="countDisplay">44</span> pieces</div>
-</div>
-
-<section class="gallery">
-  <div class="grid" id="grid">
-
-    <a class="card" data-tier="statement" href="pieces/the-canopy.html">
-      <img src="Untitled_design_-_1-compressed.jpeg" alt="The Canopy — White Quartz Flock on Driftwood" loading="lazy">
-      <div class="card-info"><h4>The Canopy</h4><div class="price">Statement · $68,000</div><span class="inquire">View Piece →</span></div>
-      <div class="card-sku">SKU-0001</div>
-    </a>
-
-    <a class="card" data-tier="statement" href="pieces/the-aerie.html">
-      <img src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 20.png" alt="The Aerie — White Quartz Eagle & Flock" loading="lazy">
-      <div class="card-info"><h4>The Aerie</h4><div class="price">Statement · $48,000</div><span class="inquire">View Piece →</span></div>
-      <div class="card-sku">SKU-0002</div>
-    </a>
-
-    <a class="card" data-tier="signature" href="pieces/the-eden.html">
-      <img src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 12.png" alt="The Eden — Rose Quartz Trio on Fountain" loading="lazy">
-      <div class="card-info"><h4>The Eden</h4><div class="price">Signature · $28,000</div><span class="inquire">View Piece →</span></div>
-      <div class="card-sku">SKU-0003</div>
-    </a>
-
-    <a class="card" data-tier="statement" href="pieces/the-dynasty.html">
-      <img src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 13.png" alt="The Dynasty — Sodalite Quartet on Amethyst Tower" loading="lazy">
-      <div class="card-info"><h4>The Dynasty</h4><div class="price">Statement · $52,000</div><span class="inquire">View Piece →</span></div>
-      <div class="card-sku">SKU-0004</div>
-    </a>
-
-    <a class="card" data-tier="statement" href="pieces/the-parliament.html">
-      <img src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 21.png" alt="The Parliament — Red Jasper Trio on Serpentine" loading="lazy">
-      <div class="card-info"><h4>The Parliament</h4><div class="price">Statement · $38,000</div><span class="inquire">View Piece →</span></div>
-      <div class="card-sku">SKU-0005</div>
-    </a>
-
-    <a class="card" data-tier="statement" href="pieces/the-scarlets.html">
-      <img src="img/IMG_6974.JPG" alt="The Scarlets — Red Jasper Trio on Clear Quartz" loading="lazy">
-      <div class="card-info"><h4>The Scarlets</h4><div class="price">Statement · $42,000</div><span class="inquire">View Piece →</span></div>
-      <div class="card-tag">New Arrival</div>
-      <div class="card-sku">SKU-0006</div>
-    </a>
-
-    <a class="card" data-tier="statement" href="pieces/the-portal.html">
-      <img src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 19.png" alt="The Portal — Sodalite Duo on Ring Geode" loading="lazy">
-      <div class="card-info"><h4>The Portal</h4><div class="price">Statement · $35,000</div><span class="inquire">View Piece →</span></div>
-      <div class="card-sku">SKU-0007</div>
-    </a>
-
-    <a class="card" data-tier="statement" href="pieces/the-sovereign.html">
-      <img src="IMG_7047.JPG" alt="The Sovereign — Rose Quartz Eagle" loading="lazy">
-      <div class="card-info"><h4>The Sovereign</h4><div class="price">Statement · $32,000</div><span class="inquire">View Piece →</span></div>
-      <div class="card-sku">SKU-0008</div>
-    </a>
-
-    <a class="card" data-tier="statement" href="pieces/the-ascent.html">
-      <img src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 33.png" alt="The Ascent — Rose Quartz Eagle on Serpentine" loading="lazy">
-      <div class="card-info"><h4>The Ascent</h4><div class="price">Statement · $32,000</div><span class="inquire">View Piece →</span></div>
-      <div class="card-sku">SKU-0009</div>
-    </a>
-
-    <a class="card" data-tier="signature" href="pieces/the-cathedral.html">
-      <img src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 35.png" alt="The Cathedral — Clear Quartz Duo on Amethyst" loading="lazy">
-      <div class="card-info"><h4>The Cathedral</h4><div class="price">Signature · $26,000</div><span class="inquire">View Piece →</span></div>
-      <div class="card-sku">SKU-0010</div>
-    </a>
-
-    <a class="card" data-tier="statement" href="pieces/the-monolith.html">
-      <img src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 31.png" alt="The Monolith — Green Aventurine Crystal Tower" loading="lazy">
-      <div class="card-info"><h4>The Monolith</h4><div class="price">Statement · $45,000</div><span class="inquire">View Piece →</span></div>
-      <div class="card-tag">1 Available</div>
-      <div class="card-sku">SKU-0011</div>
-    </a>
-
-    <a class="card" data-tier="statement" href="pieces/the-raptor.html">
-      <img src="IMG_6964.JPG" alt="The Raptor — Labradorite Eagle on Amethyst" loading="lazy">
-      <div class="card-info"><h4>The Raptor</h4><div class="price">Statement · $36,000</div><span class="inquire">View Piece →</span></div>
-      <div class="card-sku">SKU-0012</div>
-    </a>
-
-    <a class="card" data-tier="signature" href="pieces/the-hyacinths.html">
-      <img src="img/IMG_7038.JPG" alt="The Hyacinths — Sodalite Macaw Duo" loading="lazy">
-      <div class="card-info"><h4>The Hyacinths</h4><div class="price">Signature · $22,000</div><span class="inquire">View Piece →</span></div>
-      <div class="card-sku">SKU-0013</div>
-    </a>
-
-    <a class="card" data-tier="signature" href="pieces/the-indigos.html">
-      <img src="img/IMG_6967.JPG" alt="The Indigos — Sodalite Macaw Duo on Raw Stone" loading="lazy">
-      <div class="card-info"><h4>The Indigos</h4><div class="price">Signature · $24,000</div><span class="inquire">View Piece →</span></div>
-      <div class="card-sku">SKU-0014</div>
-    </a>
-
-    <a class="card" data-tier="signature" href="pieces/the-sentinels.html">
-      <img src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 22.png" alt="The Sentinels — Blue Quartz Duo on Serpentine" loading="lazy">
-      <div class="card-info"><h4>The Sentinels</h4><div class="price">Signature · $22,000</div><span class="inquire">View Piece →</span></div>
-      <div class="card-sku">SKU-0015</div>
-    </a>
-
-    <a class="card" data-tier="signature" href="pieces/the-crimson-duo.html">
-      <img src="img/IMG_6961.JPG" alt="The Crimson Duo — Red Jasper on Clear Quartz" loading="lazy">
-      <div class="card-info"><h4>The Crimson Duo</h4><div class="price">Signature · $24,000</div><span class="inquire">View Piece →</span></div>
-      <div class="card-sku">SKU-0016</div>
-    </a>
-
-    <a class="card" data-tier="signature" href="pieces/the-grotto.html">
-      <img src="img/IMG_6975.JPG" alt="The Grotto — Blue Quartz Duo on Amethyst Cave" loading="lazy">
-      <div class="card-info"><h4>The Grotto</h4><div class="price">Signature · $24,000</div><span class="inquire">View Piece →</span></div>
-      <div class="card-sku">SKU-0017</div>
-    </a>
-
-    <a class="card" data-tier="signature" href="pieces/the-ethereals.html">
-      <img src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 38.png" alt="The Ethereals — Clear Quartz Duo on Amethyst Tower" loading="lazy">
-      <div class="card-info"><h4>The Ethereals</h4><div class="price">Signature · $20,000</div><span class="inquire">View Piece →</span></div>
-      <div class="card-sku">SKU-0018</div>
-    </a>
-
-    <a class="card" data-tier="signature" href="pieces/the-companions.html">
-      <img src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 17.png" alt="The Companions — Rose Quartz Parrot Duo" loading="lazy">
-      <div class="card-info"><h4>The Companions</h4><div class="price">Signature · $22,000</div><span class="inquire">View Piece →</span></div>
-      <div class="card-sku">SKU-0019</div>
-    </a>
-
-    <a class="card" data-tier="signature" href="pieces/the-lovers.html">
-      <img src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 30.png" alt="The Lovers — Rose Quartz Parrot Duo" loading="lazy">
-      <div class="card-info"><h4>The Lovers</h4><div class="price">Signature · $22,000</div><span class="inquire">View Piece →</span></div>
-      <div class="card-sku">SKU-0020</div>
-    </a>
-
-    <a class="card" data-tier="signature" href="pieces/the-duet.html">
-      <img src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 16.png" alt="The Duet — Rose Quartz & Serpentine" loading="lazy">
-      <div class="card-info"><h4>The Duet</h4><div class="price">Signature · $22,000</div><span class="inquire">View Piece →</span></div>
-      <div class="card-sku">SKU-0021</div>
-    </a>
-
-    <a class="card" data-tier="signature" href="pieces/the-gathering.html">
-      <img src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 23.png" alt="The Gathering — Green Aventurine Trio" loading="lazy">
-      <div class="card-info"><h4>The Gathering</h4><div class="price">Signature · $26,000</div><span class="inquire">View Piece →</span></div>
-      <div class="card-sku">SKU-0022</div>
-    </a>
-
-    <a class="card" data-tier="signature" href="pieces/the-courtship.html">
-      <img src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 36.png" alt="The Courtship — Rose Quartz Parrot Duo" loading="lazy">
-      <div class="card-info"><h4>The Courtship</h4><div class="price">Signature · $22,000</div><span class="inquire">View Piece →</span></div>
-      <div class="card-sku">SKU-0023</div>
-    </a>
-
-    <a class="card" data-tier="signature" href="pieces/the-violet.html">
-      <img src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 27.png" alt="The Violet — Amethyst Solo Parrot" loading="lazy">
-      <div class="card-info"><h4>The Violet</h4><div class="price">Signature · $18,500</div><span class="inquire">View Piece →</span></div>
-      <div class="card-sku">SKU-0024</div>
-    </a>
-
-    <a class="card" data-tier="signature" href="pieces/the-soloist.html">
-      <img src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 15.png" alt="The Soloist — Sodalite Solo Macaw" loading="lazy">
-      <div class="card-info"><h4>The Soloist</h4><div class="price">Signature · $18,500</div><span class="inquire">View Piece →</span></div>
-      <div class="card-sku">SKU-0025</div>
-    </a>
-
-    <a class="card" data-tier="signature" href="pieces/the-radiance.html">
-      <img src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 11.png" alt="The Radiance — Clear Quartz with Ruby Eyes" loading="lazy">
-      <div class="card-info"><h4>The Radiance</h4><div class="price">Signature · $22,000</div><span class="inquire">View Piece →</span></div>
-      <div class="card-sku">SKU-0026</div>
-    </a>
-
-    <a class="card" data-tier="signature" href="pieces/the-pair.html">
-      <img src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 34.png" alt="The Pair — Rose Quartz & Serpentine" loading="lazy">
-      <div class="card-info"><h4>The Pair</h4><div class="price">Signature · $22,000</div><span class="inquire">View Piece →</span></div>
-      <div class="card-sku">SKU-0027</div>
-    </a>
-
-    <a class="card" data-tier="signature" href="pieces/the-eclipse.html">
-      <img src="img/IMG_6960.JPG" alt="The Eclipse — Sodalite Duo on Geode Slice" loading="lazy">
-      <div class="card-info"><h4>The Eclipse</h4><div class="price">Signature · $24,000</div><span class="inquire">View Piece →</span></div>
-      <div class="card-sku">SKU-0028</div>
-    </a>
-
-    <a class="card" data-tier="entry" href="pieces/the-devotion.html">
-      <img src="img/IMG_7050.JPG" alt="The Devotion — Clear Quartz Duo" loading="lazy">
-      <div class="card-info"><h4>The Devotion</h4><div class="price">Entry · $14,500</div><span class="inquire">View Piece →</span></div>
-      <div class="card-sku">SKU-0029</div>
-    </a>
-
-    <a class="card" data-tier="entry" href="pieces/the-whisper.html">
-      <img src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 37.png" alt="The Whisper — Rose Quartz & Gold Leaf" loading="lazy">
-      <div class="card-info"><h4>The Whisper</h4><div class="price">Entry · $14,500</div><span class="inquire">View Piece →</span></div>
-      <div class="card-sku">SKU-0030</div>
-    </a>
-
-    <a class="card" data-tier="entry" href="pieces/the-nest.html">
-      <img src="IMG_7052.JPG" alt="The Nest — Green Aventurine Duo" loading="lazy">
-      <div class="card-info"><h4>The Nest</h4><div class="price">Entry · $14,500</div><span class="inquire">View Piece →</span></div>
-      <div class="card-sku">SKU-0031</div>
-    </a>
-
-    <a class="card" data-tier="entry" href="pieces/the-guardians.html">
-      <img src="img/IMG_7051.JPG" alt="The Guardians — Clear Quartz Duo on Geode" loading="lazy">
-      <div class="card-info"><h4>The Guardians</h4><div class="price">Entry · $16,500</div><span class="inquire">View Piece →</span></div>
-      <div class="card-sku">SKU-0032</div>
-    </a>
-
-    <a class="card" data-tier="entry" href="pieces/the-herald.html">
-      <img src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 28.png" alt="The Herald — Rose Quartz Solo Eagle" loading="lazy">
-      <div class="card-info"><h4>The Herald</h4><div class="price">Entry · $16,500</div><span class="inquire">View Piece →</span></div>
-      <div class="card-sku">SKU-0033</div>
-    </a>
-
-    <a class="card" data-tier="entry" href="pieces/the-embrace.html">
-      <img src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 29.png" alt="The Embrace — Rose Quartz Chalice Duo" loading="lazy">
-      <div class="card-info"><h4>The Embrace</h4><div class="price">Entry · $14,500</div><span class="inquire">View Piece →</span></div>
-      <div class="card-sku">SKU-0034</div>
-    </a>
-
-    <a class="card" data-tier="entry" href="pieces/the-grace.html">
-      <img src="IMG_7035.JPG" alt="The Grace — Clear Quartz Vertical Duo" loading="lazy">
-      <div class="card-info"><h4>The Grace</h4><div class="price">Entry · $14,500</div><span class="inquire">View Piece →</span></div>
-      <div class="card-sku">SKU-0035</div>
-    </a>
-
-    <a class="card" data-tier="entry" href="pieces/the-perch.html">
-      <img src="img/IMG_6958.JPG" alt="The Perch — White Quartz Cockatoo Duo" loading="lazy">
-      <div class="card-info"><h4>The Perch</h4><div class="price">Entry · $16,500</div><span class="inquire">View Piece →</span></div>
-      <div class="card-sku">SKU-0036</div>
-    </a>
-
-    <a class="card" data-tier="entry" href="pieces/the-tenderness.html">
-      <img src="img/IMG_6962.JPG" alt="The Tenderness — Rose Quartz Soft Duo" loading="lazy">
-      <div class="card-info"><h4>The Tenderness</h4><div class="price">Entry · $14,500</div><span class="inquire">View Piece →</span></div>
-      <div class="card-sku">SKU-0037</div>
-    </a>
-
-    <a class="card" data-tier="entry" href="pieces/the-orbit.html">
-      <img src="IMG_6963.JPG" alt="The Orbit — Clear Quartz Compact Duo" loading="lazy">
-      <div class="card-info"><h4>The Orbit</h4><div class="price">Entry · $12,500</div><span class="inquire">View Piece →</span></div>
-      <div class="card-sku">SKU-0038</div>
-    </a>
-
-    <a class="card" data-tier="statement" href="pieces/the-vessel.html">
-      <img src="Untitled (4320 x 1350 px) (2160 x 1000 px) (720 x 1000 px) - 14.png" alt="The Vessel — Aquamarine Carved Basin" loading="lazy">
-      <div class="card-info"><h4>The Vessel</h4><div class="price">Statement · $35,000</div><span class="inquire">View Piece →</span></div>
-      <div class="card-tag">1 Available</div>
-      <div class="card-sku">SKU-0039</div>
-    </a>
-
-    <a class="card" data-tier="statement" href="pieces/the-driftwood-cockatoos.html">
-      <img src="1.png" alt="Cockatoos on Driftwood Tree" loading="lazy">
-      <div class="card-info"><h4>Cockatoos on Driftwood Tree</h4><div class="price">Statement · $68,000</div><span class="inquire">View Piece →</span></div>
-      <div class="card-tag">New Arrival</div>
-      <div class="card-sku">SKU-0040</div>
-    </a>
-
-    <a class="card" data-tier="statement" href="pieces/the-white-cockatoos.html">
-      <img src="Untitled%20(4320%20x%201350%20px)%20(2160%20x%201000%20px)%20(720%20x%201000%20px)%20-%2011.png" alt="White Cockatoos on Amethyst" loading="lazy">
-      <div class="card-info"><h4>White Cockatoos on Amethyst</h4><div class="price">Statement · $44,000</div><span class="inquire">View Piece →</span></div>
-      <div class="card-tag">New Arrival</div>
-      <div class="card-sku">SKU-0041</div>
-    </a>
-
-    <a class="card" data-tier="signature" href="pieces/the-twin-parrots.html">
-      <img src="8.png" alt="Twin Parrots on Amethyst" loading="lazy">
-      <div class="card-info"><h4>Twin Parrots on Amethyst</h4><div class="price">Signature · $28,000</div><span class="inquire">View Piece →</span></div>
-      <div class="card-tag">New Arrival</div>
-      <div class="card-sku">SKU-0042</div>
-    </a>
-
-    <a class="card" data-tier="signature" href="pieces/the-blue-macaws.html">
-      <img src="6.png" alt="Blue Macaws on Sliced Geode" loading="lazy">
-      <div class="card-info"><h4>Blue Macaws on Sliced Geode</h4><div class="price">Signature · $26,000</div><span class="inquire">View Piece →</span></div>
-      <div class="card-tag">New Arrival</div>
-      <div class="card-sku">SKU-0043</div>
-    </a>
-
-    <a class="card" data-tier="signature" href="pieces/the-brown-macaws.html">
-      <img src="Untitled%20(4320%20x%201350%20px)%20(2160%20x%201000%20px)%20(720%20x%201000%20px)%20-%2025.png" alt="Brown Macaws on White Crystal" loading="lazy">
-      <div class="card-info"><h4>Brown Macaws on White Crystal</h4><div class="price">Signature · $24,000</div><span class="inquire">View Piece →</span></div>
-      <div class="card-tag">New Arrival</div>
-      <div class="card-sku">SKU-0044</div>
-    </a>
-
+  <div class="p-grid pat-b">
+    <div class="g-tile" data-cap="Perch · Plate 1"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-1.jpeg" alt="Perch — view 1" loading="lazy"><div class="g-caption">Perch · Plate 1</div></div>
+    <div class="g-tile" data-cap="Perch · Plate 2"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-2.jpeg" alt="Perch — view 2" loading="lazy"><div class="g-caption">Perch · Plate 2</div></div>
+    <div class="g-tile" data-cap="Perch · Plate 3"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-3.jpeg" alt="Perch — view 3" loading="lazy"><div class="g-caption">Perch · Plate 3</div></div>
+    <div class="g-tile" data-cap="Perch · Plate 4"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-4.jpeg" alt="Perch — view 4" loading="lazy"><div class="g-caption">Perch · Plate 4</div></div>
+    <div class="g-tile" data-cap="Perch · Plate 5"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-5.jpeg" alt="Perch — view 5" loading="lazy"><div class="g-caption">Perch · Plate 5</div></div>
+    <div class="g-tile" data-cap="Perch · Plate 6"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-6.jpeg" alt="Perch — view 6" loading="lazy"><div class="g-caption">Perch · Plate 6</div></div>
   </div>
 </section>
 
-<section class="mid-cta">
-  <h2>Begin the <em>Dialogue</em></h2>
-  <p>Every acquisition begins with a conversation. David responds personally within 24 hours — no sales team, no pressure.</p>
-  <a href="index.html#contact" class="btn-primary">Inquire About a Piece ✦</a>
+<!-- ═══ PIECE III — DYNASTY ═══ -->
+<section class="piece-section reveal">
+  <div class="piece-header">
+    <span class="piece-num">III</span>
+    <span class="piece-name">Dynasty</span>
+    <span class="piece-count">Six photographs</span>
+  </div>
+  <div class="p-grid pat-c">
+    <div class="g-tile" data-cap="Dynasty · Plate 1"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-1.jpeg" alt="Dynasty — view 1" loading="lazy"><div class="g-caption">Dynasty · Plate 1</div></div>
+    <div class="g-tile" data-cap="Dynasty · Plate 2"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-2.jpeg" alt="Dynasty — view 2" loading="lazy"><div class="g-caption">Dynasty · Plate 2</div></div>
+    <div class="g-tile" data-cap="Dynasty · Plate 3"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-3.jpeg" alt="Dynasty — view 3" loading="lazy"><div class="g-caption">Dynasty · Plate 3</div></div>
+    <div class="g-tile" data-cap="Dynasty · Plate 4"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-4.jpeg" alt="Dynasty — view 4" loading="lazy"><div class="g-caption">Dynasty · Plate 4</div></div>
+    <div class="g-tile" data-cap="Dynasty · Plate 5"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-5.jpeg" alt="Dynasty — view 5" loading="lazy"><div class="g-caption">Dynasty · Plate 5</div></div>
+    <div class="g-tile" data-cap="Dynasty · Plate 6"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-6.jpeg" alt="Dynasty — view 6" loading="lazy"><div class="g-caption">Dynasty · Plate 6</div></div>
+  </div>
 </section>
 
+<!-- ═══ PIECE IV — PORTAL ═══ -->
+<section class="piece-section reveal">
+  <div class="piece-header">
+    <span class="piece-num">IV</span>
+    <span class="piece-name">Portal</span>
+    <span class="piece-count">Six photographs</span>
+  </div>
+  <div class="p-grid pat-d">
+    <div class="g-tile" data-cap="Portal · Plate 1"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-1.jpeg" alt="Portal — view 1" loading="lazy"><div class="g-caption">Portal · Plate 1</div></div>
+    <div class="g-tile" data-cap="Portal · Plate 2"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-2.jpeg" alt="Portal — view 2" loading="lazy"><div class="g-caption">Portal · Plate 2</div></div>
+    <div class="g-tile" data-cap="Portal · Plate 3"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-3.jpeg" alt="Portal — view 3" loading="lazy"><div class="g-caption">Portal · Plate 3</div></div>
+    <div class="g-tile" data-cap="Portal · Plate 4"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-4.jpeg" alt="Portal — view 4" loading="lazy"><div class="g-caption">Portal · Plate 4</div></div>
+    <div class="g-tile" data-cap="Portal · Plate 5"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-5.jpeg" alt="Portal — view 5" loading="lazy"><div class="g-caption">Portal · Plate 5</div></div>
+    <div class="g-tile" data-cap="Portal · Plate 6"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-6.jpeg" alt="Portal — view 6" loading="lazy"><div class="g-caption">Portal · Plate 6</div></div>
+  </div>
+</section>
+
+<!-- ═══ PIECE V — CRIMSON DUO ═══ -->
+<section class="piece-section reveal">
+  <div class="piece-header">
+    <span class="piece-num">V</span>
+    <span class="piece-name">Crimson Duo</span>
+    <span class="piece-count">Six photographs</span>
+  </div>
+  <div class="p-grid pat-e">
+    <div class="g-tile" data-cap="Crimson Duo · Plate 1"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-1.jpeg" alt="Crimson Duo — view 1" loading="lazy"><div class="g-caption">Crimson Duo · Plate 1</div></div>
+    <div class="g-tile" data-cap="Crimson Duo · Plate 2"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-2.jpeg" alt="Crimson Duo — view 2" loading="lazy"><div class="g-caption">Crimson Duo · Plate 2</div></div>
+    <div class="g-tile" data-cap="Crimson Duo · Plate 3"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-3.jpeg" alt="Crimson Duo — view 3" loading="lazy"><div class="g-caption">Crimson Duo · Plate 3</div></div>
+    <div class="g-tile" data-cap="Crimson Duo · Plate 4"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-4.jpeg" alt="Crimson Duo — view 4" loading="lazy"><div class="g-caption">Crimson Duo · Plate 4</div></div>
+    <div class="g-tile" data-cap="Crimson Duo · Plate 5"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-5.jpeg" alt="Crimson Duo — view 5" loading="lazy"><div class="g-caption">Crimson Duo · Plate 5</div></div>
+    <div class="g-tile" data-cap="Crimson Duo · Plate 6"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-6.jpeg" alt="Crimson Duo — view 6" loading="lazy"><div class="g-caption">Crimson Duo · Plate 6</div></div>
+  </div>
+</section>
+
+<!-- ═══ COMMISSION BAND ═══ -->
+<section class="commission reveal">
+  <div class="commission-content">
+    <span class="super-label">— Private commission —</span>
+    <h3>Shape something <em>singular</em> with us</h3>
+    <p>Every sculpture begins as raw crystal. Tell us what you envision, and the stone will answer.</p>
+    <div class="commission-ctas">
+      <a href="mailto:david@phaora.com?subject=Sculpture%20Commission%20Enquiry" class="btn btn-amber">Commission a piece <span class="arrow">&rarr;</span></a>
+      <a href="contact.html" class="btn btn-outline">Visit the studio <span class="arrow">&rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER (verbatim from index.html) ═══ -->
 <footer class="footer">
-  <div class="brand">PHAÖRA</div>
-  <div class="info">
-    From The Earth To Your Estate<br>
-    <a href="tel:+19548719991">(954) 871-9991</a> · <a href="mailto:david@phaora.com">david@phaora.com</a><br>
-    Boca Raton, Florida · A StyleArtStoneCraft Company<br><br>
-    <a href="index.html">← Back to Home</a>
+  <div class="footer-inner">
+    <div>
+      <span class="footer-logo">PHAÖRA</span>
+      <p class="footer-tagline">Hardscape and crystal for the estates that demand permanence.</p>
+    </div>
+    <div class="footer-col">
+      <h5>The House</h5>
+      <a href="/">About</a>
+      <a href="/#studio">Studio</a>
+      <a href="#">Press</a>
+      <a href="#">Journal</a>
+    </div>
+    <div class="footer-col">
+      <h5>Divisions</h5>
+      <a href="hardscape-gallery.html">Hardscape</a>
+      <a href="sculptures.html">Sculpture</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="sculptures.html">Pieces</a>
+    </div>
+    <div class="footer-col">
+      <h5>Connect</h5>
+      <a href="contact.html">Contact</a>
+      <a href="agents.html">Agents</a>
+      <a href="#">Instagram</a>
+      <a href="mailto:david@phaora.com">Email</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>Phaöra · MMXXVI</span>
+    <span class="motto">Built on standards. Not inherited. Decided.</span>
+    <span>Boca Raton · All rights reserved</span>
   </div>
 </footer>
 
-<div class="floating-cta"><a href="index.html#contact"><span class="pulse"></span>Inquire</a></div>
-<a href="stellar-gallery.html" class="stellar-fab visible" aria-label="Open Stellar 3D Gallery">✦ Stellar View</a>
+<!-- ═══ LIGHTBOX ═══ -->
+<div class="lb" id="lb">
+  <button class="lb-close" id="lb-close">&#x2715;</button>
+  <button class="lb-prev" id="lb-prev">&#x2039;</button>
+  <img class="lb-img" id="lb-img" src="" alt="">
+  <button class="lb-next" id="lb-next">&#x203A;</button>
+  <div class="lb-info">
+    <div class="lb-title" id="lb-title"></div>
+    <div class="lb-sub" id="lb-sub"></div>
+  </div>
+  <span class="lb-counter" id="lb-counter"></span>
+</div>
 
+<!-- ═══ SCRIPT ═══ -->
 <script>
-// Filters
-const tabs = document.querySelectorAll('.filter-tab');
-const cards = document.querySelectorAll('.card');
-const countEl = document.getElementById('countDisplay');
-
-tabs.forEach(tab => {
-  tab.addEventListener('click', () => {
-    tabs.forEach(t => t.classList.remove('active'));
-    tab.classList.add('active');
-    const f = tab.dataset.filter;
-    let c = 0;
-    cards.forEach(card => {
-      const show = f === 'all' || card.dataset.tier === f;
-      card.style.display = show ? '' : 'none';
-      if (show) c++;
+(function(){
+  /* Scroll reveal */
+  var reveals = document.querySelectorAll('.reveal');
+  var revealObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) {
+        e.target.classList.add('revealed');
+        revealObs.unobserve(e.target);
+      }
     });
-    countEl.textContent = c;
+  }, { threshold: 0.1 });
+  reveals.forEach(function(el){ revealObs.observe(el); });
+
+  /* Lightbox */
+  var tiles = Array.from(document.querySelectorAll('.g-tile'));
+  var lb = document.getElementById('lb');
+  var lbImg = document.getElementById('lb-img');
+  var lbTitle = document.getElementById('lb-title');
+  var lbSub = document.getElementById('lb-sub');
+  var lbCounter = document.getElementById('lb-counter');
+  var idx = 0;
+  var total = tiles.length;
+
+  function show(i) {
+    idx = (i % total + total) % total;
+    var tile = tiles[idx];
+    var cap = tile.getAttribute('data-cap') || '';
+    var parts = cap.split(' \u00B7 ');
+    lbImg.src = tile.querySelector('img').src;
+    lbTitle.textContent = parts[0] || '';
+    lbSub.textContent = parts[1] || '';
+    lbCounter.textContent = (idx + 1) + ' / ' + total;
+  }
+
+  function open(i) {
+    show(i);
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  tiles.forEach(function(tile, i) {
+    tile.addEventListener('click', function() { open(i); });
   });
-});
+
+  document.getElementById('lb-close').addEventListener('click', close);
+  document.getElementById('lb-prev').addEventListener('click', function() { show(idx - 1); });
+  document.getElementById('lb-next').addEventListener('click', function() { show(idx + 1); });
+
+  lb.addEventListener('click', function(e) {
+    if (e.target === lb) close();
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    else if (e.key === 'ArrowLeft') show(idx - 1);
+    else if (e.key === 'ArrowRight') show(idx + 1);
+  });
+})();
 </script>
+
 </body>
 </html>
