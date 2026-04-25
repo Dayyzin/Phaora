@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   PHAÖRA — 10 × 10 Patio Visualization  ·  scene.js
+   PHAÖRA — 10 × 12 Patio Visualization  ·  scene.js
    All geometry is procedural (no external GLB loads).
    HDRI lazy-loaded for environment lighting; fallback sky while
    it streams in.
@@ -19,8 +19,8 @@ const PAVER_SIZE     = 1.98;   // 2 ft minus grout gap (~1/4″ visible joint)
 const PAVER_HEIGHT   = 0.08;   // ~1″ thick
 const PAVER_SPACING  = 2.0;    // center-to-center
 const PATIO_COLS     = 5;      // 10 ft / 2 ft
-const PATIO_ROWS     = 5;
-const PORCH_COLS     = 5;
+const PATIO_ROWS     = 6;      // 12 ft / 2 ft
+const PORCH_COLS     = 6;      // 12 ft / 2 ft
 const PORCH_ROWS     = 3;      // 6 ft / 2 ft
 const PORCH_ELEV     = 0.75;   // 9 in
 const COL_W          = 10 / 12; // 10 in
@@ -143,7 +143,7 @@ function makePaverNormal (sz = 512) {
 
 const scene    = new THREE.Scene();
 const camera   = new THREE.PerspectiveCamera(40, innerWidth / innerHeight, 0.1, 500);
-camera.position.set(8, 5.5, -7);
+camera.position.set(9, 5.5, -9);
 
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(innerWidth, innerHeight);
@@ -220,10 +220,10 @@ sun.shadow.mapSize.width    = 2048;
 sun.shadow.mapSize.height   = 2048;
 sun.shadow.camera.near      = 0.5;
 sun.shadow.camera.far       = 60;
-sun.shadow.camera.left      = -18;
-sun.shadow.camera.right     =  18;
-sun.shadow.camera.top       =  18;
-sun.shadow.camera.bottom    = -18;
+sun.shadow.camera.left      = -20;
+sun.shadow.camera.right     =  20;
+sun.shadow.camera.top       =  20;
+sun.shadow.camera.bottom    = -20;
 sun.shadow.bias              = -0.0004;
 sun.shadow.normalBias        = 0.02;
 scene.add(sun);
@@ -264,11 +264,11 @@ function sm (geo, mat, { cast = true, recv = true } = {}) {
 
 /* ─── 5a. Patio grout base ────────────────────────────────── */
 
-const patioBase = sm(new THREE.BoxGeometry(10, 0.02, 10), matGrout, { cast: false });
+const patioBase = sm(new THREE.BoxGeometry(10, 0.02, 12), matGrout, { cast: false });
 patioBase.position.set(0, -0.005, 0);
 scene.add(patioBase);
 
-/* ─── 5b. Patio pavers (InstancedMesh, 5 × 5 = 25) ──────── */
+/* ─── 5b. Patio pavers (InstancedMesh, 5 × 6 = 30) ──────── */
 
 const paverGeo = new THREE.BoxGeometry(PAVER_SIZE, PAVER_HEIGHT, PAVER_SIZE);
 
@@ -295,17 +295,19 @@ function layPavers (cols, rows, x0, z0, baseY) {
   return im;
 }
 
-scene.add(layPavers(PATIO_COLS, PATIO_ROWS, -4, -4, 0));
+const patioPavers = layPavers(PATIO_COLS, PATIO_ROWS, -4, -5, 0);
+console.log(`[PHAÖRA] Patio paver count: ${PATIO_COLS} cols × ${PATIO_ROWS} rows = ${PATIO_COLS * PATIO_ROWS} instances`);
+scene.add(patioPavers);
 
 /* ─── 5c. Porch slab ─────────────────────────────────────── */
 
-const porchSlab = sm(new THREE.BoxGeometry(10, PORCH_ELEV, 6), matGrout);
-porchSlab.position.set(0, PORCH_ELEV / 2, 8);    // z  5 → 11
+const porchSlab = sm(new THREE.BoxGeometry(12, PORCH_ELEV, 6), matGrout);
+porchSlab.position.set(0, PORCH_ELEV / 2, 9);    // z  6 → 12
 scene.add(porchSlab);
 
-/* ─── 5d. Porch pavers (5 × 3 = 15) ──────────────────────── */
+/* ─── 5d. Porch pavers (6 × 3 = 18) ──────────────────────── */
 
-scene.add(layPavers(PORCH_COLS, PORCH_ROWS, -4, 6, PORCH_ELEV));
+scene.add(layPavers(PORCH_COLS, PORCH_ROWS, -5, 7, PORCH_ELEV));
 
 /* ─── 5e. Columns ─────────────────────────────────────────── */
 
@@ -316,15 +318,15 @@ function addColumn (x, z) {
 }
 
 const colInset = COL_W / 2;
-addColumn(-5 + colInset, 5 + colInset);
-addColumn( 5 - colInset, 5 + colInset);
+addColumn(-6 + colInset, 6 + colInset);
+addColumn( 6 - colInset, 6 + colInset);
 
 /* ─── 5f. Soffit / roof overhang ──────────────────────────── */
 
 const soffitThk = 0.35;
 const soffitY   = PORCH_ELEV + COL_H;                  // top of columns
-const soffit = sm(new THREE.BoxGeometry(10.4, soffitThk, 6.8), matStucco);
-soffit.position.set(0, soffitY + soffitThk / 2, 8);    // covers porch footprint
+const soffit = sm(new THREE.BoxGeometry(12.4, soffitThk, 6.8), matStucco);
+soffit.position.set(0, soffitY + soffitThk / 2, 9);    // covers porch footprint
 scene.add(soffit);
 
 /* ─── 5g. Grass plane ─────────────────────────────────────── */
@@ -338,15 +340,15 @@ scene.add(grass);
 
 (function addEdge () {
   const ew = 0.25, eh = 0.15;
-  const half = 5;
+  const halfX = 5, halfZ = 6;
 
   const front = sm(new THREE.BoxGeometry(10 + ew * 2, eh, ew), matEdge);
-  front.position.set(0, eh / 2, -half - ew / 2);
+  front.position.set(0, eh / 2, -halfZ - ew / 2);
   scene.add(front);
 
   [[-1, 'left'], [1, 'right']].forEach(([sign]) => {
-    const side = sm(new THREE.BoxGeometry(ew, eh, 10), matEdge);
-    side.position.set(sign * (half + ew / 2), eh / 2, 0);
+    const side = sm(new THREE.BoxGeometry(ew, eh, 12), matEdge);
+    side.position.set(sign * (halfX + ew / 2), eh / 2, 0);
     scene.add(side);
   });
 })();
@@ -374,8 +376,8 @@ function addPlanter (x, z) {
   addBall(0.18, 2.9, -0.12, 0.45);
 }
 
-addPlanter(-3.5, 4.3);
-addPlanter( 3.5, 4.3);
+addPlanter(-5.5, 5.3);
+addPlanter( 5.5, 5.3);
 
 /* ─── 5k. Furniture (lifestyle dressing) ─────────────────── */
 
@@ -418,7 +420,7 @@ const matCush  = new THREE.MeshStandardMaterial({ color: 0xE8E2D5, roughness: 0.
     chair.add(leg);
   });
 
-  chair.position.set(2, 0, 1.5);
+  chair.position.set(2, 0, 0.5);
   chair.rotation.y = THREE.MathUtils.degToRad(-20);   // faces diag outward
   scene.add(chair);
 
@@ -440,7 +442,7 @@ const matCush  = new THREE.MeshStandardMaterial({ color: 0xE8E2D5, roughness: 0.
   tBase.position.y = 0.02;
   table.add(tBase);
 
-  table.position.set(0.4, 0, 1.7);
+  table.position.set(0.4, 0, 0.7);
   scene.add(table);
 
   /* ── C. Ceramic mug / candle on table ── */
@@ -448,7 +450,7 @@ const matCush  = new THREE.MeshStandardMaterial({ color: 0xE8E2D5, roughness: 0.
     new THREE.CylinderGeometry(0.08, 0.07, 0.2, 12),
     new THREE.MeshStandardMaterial({ color: 0xC26E4A, roughness: 0.7 })
   );
-  mug.position.set(0.5, 1.74, 1.55);
+  mug.position.set(0.5, 1.74, 0.55);
   scene.add(mug);
 
 })();
@@ -500,9 +502,9 @@ composer.addPass(new ShaderPass(VignetteShader));
    ══════════════════════════════════════════════════════════════ */
 
 const PRESETS = {
-  hero:     { pos: [8, 5.5, -7],    tgt: [0, 0.5, 4]  },
-  topdown:  { pos: [0, 24, 3],      tgt: [0, 0, 3]     },
-  eyelevel: { pos: [0, 5.5, -11],   tgt: [0, 1.5, 7]   },
+  hero:     { pos: [9, 5.5, -9],    tgt: [0, 0.5, 4]  },
+  topdown:  { pos: [0, 28, 3],      tgt: [0, 0, 3]     },
+  eyelevel: { pos: [0, 5.5, -14],   tgt: [0, 1.5, 8]   },
 };
 
 function flyTo (preset, dur = 1200) {
