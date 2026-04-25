@@ -48,6 +48,12 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
 .mh-lede{font-family:var(--serif);font-style:italic;font-size:clamp(15px,1.4vw,18px);line-height:1.55;color:rgba(232,220,196,0.7);max-width:520px;font-variation-settings:'opsz' 18,'SOFT' 50;margin-bottom:2rem}
 .mh-strip{width:100%;max-width:700px;border-top:0.5px solid var(--stroke);padding-top:1.5rem;font-family:var(--mono);font-size:13px;font-weight:300;letter-spacing:0.08em;color:var(--muted)}
 
+/* FILTER PILLS */
+.filter-bar{display:flex;justify-content:center;gap:8px;padding:2.5rem 1.5rem 2rem;flex-wrap:wrap}
+.filter-pill{background:transparent;color:var(--bone);border:0.5px solid var(--amber);padding:10px 20px;font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;transition:all 0.5s cubic-bezier(.2,.8,.2,1)}
+.filter-pill:hover{background:rgba(184,115,51,0.15)}
+.filter-pill.active{background:var(--amber);color:var(--ink);border-color:var(--amber)}
+
 /* MASONRY GRID */
 .hp-grid{columns:3;column-gap:1px;max-width:1440px;margin:0 auto;padding:0 2.5rem 4rem}
 .hp-tile{break-inside:avoid;margin-bottom:1px;position:relative;overflow:hidden;cursor:pointer}
@@ -117,6 +123,7 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
   .m-overlay-link:hover{color:var(--amber)}
   .m-overlay-footer{position:absolute;bottom:2rem;font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:0.32em;text-transform:uppercase;color:var(--muted)}
   .mh{padding:6rem 1.5rem 3rem;min-height:auto}.mh h1{font-size:clamp(56px,16vw,100px)}
+  .filter-bar{padding:2rem 1.5rem 1.5rem;gap:6px}.filter-pill{padding:8px 16px;font-size:10px}
   .hp-grid{columns:2;padding:0 1.5rem 3rem}
   .corr{padding:3rem 1.5rem}
   .footer{padding:3rem 1.5rem 0}.footer-inner{grid-template-columns:1fr;text-align:center}.footer-tagline{margin:0 auto}
@@ -124,6 +131,7 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
   .lb-prev{left:0.5rem}.lb-next{right:0.5rem}.lb-prev,.lb-next{width:36px;height:36px;font-size:1.2rem}
 }
 @media(max-width:600px){
+  .filter-bar{gap:4px}.filter-pill{padding:7px 12px;font-size:9px;letter-spacing:0.12em}
   .hp-grid{columns:1;padding:0 1rem 2rem}
   .mh h1{font-size:clamp(48px,14vw,72px)}
 }
@@ -142,597 +150,606 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
   <div class="mh-strip">148 works · South Florida</div>
 </section>
 
+<!-- FILTERS -->
+<div class="filter-bar">
+  <button class="filter-pill active" data-f="all">All</button>
+  <button class="filter-pill" data-f="pool">Pool Decks</button>
+  <button class="filter-pill" data-f="patios">Patios & Fire</button>
+  <button class="filter-pill" data-f="walls">Walls & Entries</button>
+  <button class="filter-pill" data-f="outdoor">Outdoor Living</button>
+</div>
+
 <!-- MASONRY GALLERY -->
 <div class="hp-grid">
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-001.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-001.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-001.jpg" loading="lazy" alt="Hardscape work — Nº I" />
       <span class="hp-tile-num">Nº I</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-002.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-002.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-002.jpg" loading="lazy" alt="Hardscape work — Nº II" />
       <span class="hp-tile-num">Nº II</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-003.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-003.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-003.jpg" loading="lazy" alt="Hardscape work — Nº III" />
       <span class="hp-tile-num">Nº III</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-004.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-004.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-004.jpg" loading="lazy" alt="Hardscape work — Nº IV" />
       <span class="hp-tile-num">Nº IV</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-005.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-005.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-005.jpg" loading="lazy" alt="Hardscape work — Nº V" />
       <span class="hp-tile-num">Nº V</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-006.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-006.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-006.jpg" loading="lazy" alt="Hardscape work — Nº VI" />
       <span class="hp-tile-num">Nº VI</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-007.jpg">
+    <div class="hp-tile" data-category="pool" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-007.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-007.jpg" loading="lazy" alt="Hardscape work — Nº VII" />
       <span class="hp-tile-num">Nº VII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-008.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-008.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-008.jpg" loading="lazy" alt="Hardscape work — Nº VIII" />
       <span class="hp-tile-num">Nº VIII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-009.jpg">
+    <div class="hp-tile" data-category="outdoor" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-009.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-009.jpg" loading="lazy" alt="Hardscape work — Nº IX" />
       <span class="hp-tile-num">Nº IX</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-010.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-010.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-010.jpg" loading="lazy" alt="Hardscape work — Nº X" />
       <span class="hp-tile-num">Nº X</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-011.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-011.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-011.jpg" loading="lazy" alt="Hardscape work — Nº XI" />
       <span class="hp-tile-num">Nº XI</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-012.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-012.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-012.jpg" loading="lazy" alt="Hardscape work — Nº XII" />
       <span class="hp-tile-num">Nº XII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-013.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-013.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-013.jpg" loading="lazy" alt="Hardscape work — Nº XIII" />
       <span class="hp-tile-num">Nº XIII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-014.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-014.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-014.jpg" loading="lazy" alt="Hardscape work — Nº XIV" />
       <span class="hp-tile-num">Nº XIV</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-015.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-015.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-015.jpg" loading="lazy" alt="Hardscape work — Nº XV" />
       <span class="hp-tile-num">Nº XV</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-016.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-016.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-016.jpg" loading="lazy" alt="Hardscape work — Nº XVI" />
       <span class="hp-tile-num">Nº XVI</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-017.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-017.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-017.jpg" loading="lazy" alt="Hardscape work — Nº XVII" />
       <span class="hp-tile-num">Nº XVII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-018.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-018.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-018.jpg" loading="lazy" alt="Hardscape work — Nº XVIII" />
       <span class="hp-tile-num">Nº XVIII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-019.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-019.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-019.jpg" loading="lazy" alt="Hardscape work — Nº XIX" />
       <span class="hp-tile-num">Nº XIX</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-020.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-020.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-020.jpg" loading="lazy" alt="Hardscape work — Nº XX" />
       <span class="hp-tile-num">Nº XX</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-021.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-021.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-021.jpg" loading="lazy" alt="Hardscape work — Nº XXI" />
       <span class="hp-tile-num">Nº XXI</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-022.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-022.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-022.jpg" loading="lazy" alt="Hardscape work — Nº XXII" />
       <span class="hp-tile-num">Nº XXII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-023.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-023.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-023.jpg" loading="lazy" alt="Hardscape work — Nº XXIII" />
       <span class="hp-tile-num">Nº XXIII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-024.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-024.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-024.jpg" loading="lazy" alt="Hardscape work — Nº XXIV" />
       <span class="hp-tile-num">Nº XXIV</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-025.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-025.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-025.jpg" loading="lazy" alt="Hardscape work — Nº XXV" />
       <span class="hp-tile-num">Nº XXV</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-026.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-026.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-026.jpg" loading="lazy" alt="Hardscape work — Nº XXVI" />
       <span class="hp-tile-num">Nº XXVI</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-027.jpg">
+    <div class="hp-tile" data-category="outdoor" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-027.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-027.jpg" loading="lazy" alt="Hardscape work — Nº XXVII" />
       <span class="hp-tile-num">Nº XXVII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-028.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-028.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-028.jpg" loading="lazy" alt="Hardscape work — Nº XXVIII" />
       <span class="hp-tile-num">Nº XXVIII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-029.jpg">
+    <div class="hp-tile" data-category="outdoor" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-029.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-029.jpg" loading="lazy" alt="Hardscape work — Nº XXIX" />
       <span class="hp-tile-num">Nº XXIX</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-030.jpg">
+    <div class="hp-tile" data-category="outdoor" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-030.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-030.jpg" loading="lazy" alt="Hardscape work — Nº XXX" />
       <span class="hp-tile-num">Nº XXX</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-031.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-031.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-031.jpg" loading="lazy" alt="Hardscape work — Nº XXXI" />
       <span class="hp-tile-num">Nº XXXI</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-032.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-032.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-032.jpg" loading="lazy" alt="Hardscape work — Nº XXXII" />
       <span class="hp-tile-num">Nº XXXII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-033.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-033.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-033.jpg" loading="lazy" alt="Hardscape work — Nº XXXIII" />
       <span class="hp-tile-num">Nº XXXIII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-034.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-034.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-034.jpg" loading="lazy" alt="Hardscape work — Nº XXXIV" />
       <span class="hp-tile-num">Nº XXXIV</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-035.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-035.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-035.jpg" loading="lazy" alt="Hardscape work — Nº XXXV" />
       <span class="hp-tile-num">Nº XXXV</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-036.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-036.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-036.jpg" loading="lazy" alt="Hardscape work — Nº XXXVI" />
       <span class="hp-tile-num">Nº XXXVI</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-037.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-037.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-037.jpg" loading="lazy" alt="Hardscape work — Nº XXXVII" />
       <span class="hp-tile-num">Nº XXXVII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-038.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-038.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-038.jpg" loading="lazy" alt="Hardscape work — Nº XXXVIII" />
       <span class="hp-tile-num">Nº XXXVIII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-039.jpg">
+    <div class="hp-tile" data-category="outdoor" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-039.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-039.jpg" loading="lazy" alt="Hardscape work — Nº XXXIX" />
       <span class="hp-tile-num">Nº XXXIX</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-040.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-040.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-040.jpg" loading="lazy" alt="Hardscape work — Nº XL" />
       <span class="hp-tile-num">Nº XL</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-041.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-041.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-041.jpg" loading="lazy" alt="Hardscape work — Nº XLI" />
       <span class="hp-tile-num">Nº XLI</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-042.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-042.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-042.jpg" loading="lazy" alt="Hardscape work — Nº XLII" />
       <span class="hp-tile-num">Nº XLII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-043.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-043.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-043.jpg" loading="lazy" alt="Hardscape work — Nº XLIII" />
       <span class="hp-tile-num">Nº XLIII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-044.jpg">
+    <div class="hp-tile" data-category="outdoor" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-044.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-044.jpg" loading="lazy" alt="Hardscape work — Nº XLIV" />
       <span class="hp-tile-num">Nº XLIV</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-045.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-045.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-045.jpg" loading="lazy" alt="Hardscape work — Nº XLV" />
       <span class="hp-tile-num">Nº XLV</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-046.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-046.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-046.jpg" loading="lazy" alt="Hardscape work — Nº XLVI" />
       <span class="hp-tile-num">Nº XLVI</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-047.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-047.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-047.jpg" loading="lazy" alt="Hardscape work — Nº XLVII" />
       <span class="hp-tile-num">Nº XLVII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-048.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-048.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-048.jpg" loading="lazy" alt="Hardscape work — Nº XLVIII" />
       <span class="hp-tile-num">Nº XLVIII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-049.jpg">
+    <div class="hp-tile" data-category="outdoor" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-049.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-049.jpg" loading="lazy" alt="Hardscape work — Nº XLIX" />
       <span class="hp-tile-num">Nº XLIX</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-050.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-050.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-050.jpg" loading="lazy" alt="Hardscape work — Nº L" />
       <span class="hp-tile-num">Nº L</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-051.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-051.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-051.jpg" loading="lazy" alt="Hardscape work — Nº LI" />
       <span class="hp-tile-num">Nº LI</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-052.jpg">
+    <div class="hp-tile" data-category="outdoor" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-052.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-052.jpg" loading="lazy" alt="Hardscape work — Nº LII" />
       <span class="hp-tile-num">Nº LII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-053.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-053.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-053.jpg" loading="lazy" alt="Hardscape work — Nº LIII" />
       <span class="hp-tile-num">Nº LIII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-054.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-054.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-054.jpg" loading="lazy" alt="Hardscape work — Nº LIV" />
       <span class="hp-tile-num">Nº LIV</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-055.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-055.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-055.jpg" loading="lazy" alt="Hardscape work — Nº LV" />
       <span class="hp-tile-num">Nº LV</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-056.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-056.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-056.jpg" loading="lazy" alt="Hardscape work — Nº LVI" />
       <span class="hp-tile-num">Nº LVI</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-057.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-057.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-057.jpg" loading="lazy" alt="Hardscape work — Nº LVII" />
       <span class="hp-tile-num">Nº LVII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-058.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-058.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-058.jpg" loading="lazy" alt="Hardscape work — Nº LVIII" />
       <span class="hp-tile-num">Nº LVIII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-059.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-059.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-059.jpg" loading="lazy" alt="Hardscape work — Nº LIX" />
       <span class="hp-tile-num">Nº LIX</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-060.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-060.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-060.jpg" loading="lazy" alt="Hardscape work — Nº LX" />
       <span class="hp-tile-num">Nº LX</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-061.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-061.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-061.jpg" loading="lazy" alt="Hardscape work — Nº LXI" />
       <span class="hp-tile-num">Nº LXI</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-062.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-062.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-062.jpg" loading="lazy" alt="Hardscape work — Nº LXII" />
       <span class="hp-tile-num">Nº LXII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-063.jpg">
+    <div class="hp-tile" data-category="pool" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-063.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-063.jpg" loading="lazy" alt="Hardscape work — Nº LXIII" />
       <span class="hp-tile-num">Nº LXIII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-064.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-064.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-064.jpg" loading="lazy" alt="Hardscape work — Nº LXIV" />
       <span class="hp-tile-num">Nº LXIV</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-065.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-065.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-065.jpg" loading="lazy" alt="Hardscape work — Nº LXV" />
       <span class="hp-tile-num">Nº LXV</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-066.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-066.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-066.jpg" loading="lazy" alt="Hardscape work — Nº LXVI" />
       <span class="hp-tile-num">Nº LXVI</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-067.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-067.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-067.jpg" loading="lazy" alt="Hardscape work — Nº LXVII" />
       <span class="hp-tile-num">Nº LXVII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-068.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-068.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-068.jpg" loading="lazy" alt="Hardscape work — Nº LXVIII" />
       <span class="hp-tile-num">Nº LXVIII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-069.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-069.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-069.jpg" loading="lazy" alt="Hardscape work — Nº LXIX" />
       <span class="hp-tile-num">Nº LXIX</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-070.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-070.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-070.jpg" loading="lazy" alt="Hardscape work — Nº LXX" />
       <span class="hp-tile-num">Nº LXX</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-071.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-071.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-071.jpg" loading="lazy" alt="Hardscape work — Nº LXXI" />
       <span class="hp-tile-num">Nº LXXI</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-072.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-072.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-072.jpg" loading="lazy" alt="Hardscape work — Nº LXXII" />
       <span class="hp-tile-num">Nº LXXII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-073.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-073.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-073.jpg" loading="lazy" alt="Hardscape work — Nº LXXIII" />
       <span class="hp-tile-num">Nº LXXIII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-074.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-074.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-074.jpg" loading="lazy" alt="Hardscape work — Nº LXXIV" />
       <span class="hp-tile-num">Nº LXXIV</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-075.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-075.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-075.jpg" loading="lazy" alt="Hardscape work — Nº LXXV" />
       <span class="hp-tile-num">Nº LXXV</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-076.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-076.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-076.jpg" loading="lazy" alt="Hardscape work — Nº LXXVI" />
       <span class="hp-tile-num">Nº LXXVI</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-077.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-077.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-077.jpg" loading="lazy" alt="Hardscape work — Nº LXXVII" />
       <span class="hp-tile-num">Nº LXXVII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-078.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-078.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-078.jpg" loading="lazy" alt="Hardscape work — Nº LXXVIII" />
       <span class="hp-tile-num">Nº LXXVIII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-079.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-079.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-079.jpg" loading="lazy" alt="Hardscape work — Nº LXXIX" />
       <span class="hp-tile-num">Nº LXXIX</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-080.jpg">
+    <div class="hp-tile" data-category="outdoor" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-080.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-080.jpg" loading="lazy" alt="Hardscape work — Nº LXXX" />
       <span class="hp-tile-num">Nº LXXX</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-081.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-081.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-081.jpg" loading="lazy" alt="Hardscape work — Nº LXXXI" />
       <span class="hp-tile-num">Nº LXXXI</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-082.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-082.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-082.jpg" loading="lazy" alt="Hardscape work — Nº LXXXII" />
       <span class="hp-tile-num">Nº LXXXII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-083.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-083.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-083.jpg" loading="lazy" alt="Hardscape work — Nº LXXXIII" />
       <span class="hp-tile-num">Nº LXXXIII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-084.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-084.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-084.jpg" loading="lazy" alt="Hardscape work — Nº LXXXIV" />
       <span class="hp-tile-num">Nº LXXXIV</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-085.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-085.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-085.jpg" loading="lazy" alt="Hardscape work — Nº LXXXV" />
       <span class="hp-tile-num">Nº LXXXV</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-086.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-086.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-086.jpg" loading="lazy" alt="Hardscape work — Nº LXXXVI" />
       <span class="hp-tile-num">Nº LXXXVI</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-087.jpg">
+    <div class="hp-tile" data-category="outdoor" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-087.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-087.jpg" loading="lazy" alt="Hardscape work — Nº LXXXVII" />
       <span class="hp-tile-num">Nº LXXXVII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-088.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-088.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-088.jpg" loading="lazy" alt="Hardscape work — Nº LXXXVIII" />
       <span class="hp-tile-num">Nº LXXXVIII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-089.jpg">
+    <div class="hp-tile" data-category="outdoor" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-089.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-089.jpg" loading="lazy" alt="Hardscape work — Nº LXXXIX" />
       <span class="hp-tile-num">Nº LXXXIX</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-090.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-090.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-090.jpg" loading="lazy" alt="Hardscape work — Nº XC" />
       <span class="hp-tile-num">Nº XC</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-091.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-091.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-091.jpg" loading="lazy" alt="Hardscape work — Nº XCI" />
       <span class="hp-tile-num">Nº XCI</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-092.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-092.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-092.jpg" loading="lazy" alt="Hardscape work — Nº XCII" />
       <span class="hp-tile-num">Nº XCII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-093.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-093.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-093.jpg" loading="lazy" alt="Hardscape work — Nº XCIII" />
       <span class="hp-tile-num">Nº XCIII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-094.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-094.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-094.jpg" loading="lazy" alt="Hardscape work — Nº XCIV" />
       <span class="hp-tile-num">Nº XCIV</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-095.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-095.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-095.jpg" loading="lazy" alt="Hardscape work — Nº XCV" />
       <span class="hp-tile-num">Nº XCV</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-096.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-096.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-096.jpg" loading="lazy" alt="Hardscape work — Nº XCVI" />
       <span class="hp-tile-num">Nº XCVI</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-097.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-097.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-097.jpg" loading="lazy" alt="Hardscape work — Nº XCVII" />
       <span class="hp-tile-num">Nº XCVII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-098.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-098.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-098.jpg" loading="lazy" alt="Hardscape work — Nº XCVIII" />
       <span class="hp-tile-num">Nº XCVIII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-099.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-099.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-099.jpg" loading="lazy" alt="Hardscape work — Nº XCIX" />
       <span class="hp-tile-num">Nº XCIX</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-100.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-100.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-100.jpg" loading="lazy" alt="Hardscape work — Nº C" />
       <span class="hp-tile-num">Nº C</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-101.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-101.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-101.jpg" loading="lazy" alt="Hardscape work — Nº CI" />
       <span class="hp-tile-num">Nº CI</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-102.jpg">
+    <div class="hp-tile" data-category="outdoor" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-102.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-102.jpg" loading="lazy" alt="Hardscape work — Nº CII" />
       <span class="hp-tile-num">Nº CII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-103.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-103.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-103.jpg" loading="lazy" alt="Hardscape work — Nº CIII" />
       <span class="hp-tile-num">Nº CIII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-104.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-104.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-104.jpg" loading="lazy" alt="Hardscape work — Nº CIV" />
       <span class="hp-tile-num">Nº CIV</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-105.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-105.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-105.jpg" loading="lazy" alt="Hardscape work — Nº CV" />
       <span class="hp-tile-num">Nº CV</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-106.jpg">
+    <div class="hp-tile" data-category="outdoor" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-106.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-106.jpg" loading="lazy" alt="Hardscape work — Nº CVI" />
       <span class="hp-tile-num">Nº CVI</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-107.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-107.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-107.jpg" loading="lazy" alt="Hardscape work — Nº CVII" />
       <span class="hp-tile-num">Nº CVII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-108.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-108.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-108.jpg" loading="lazy" alt="Hardscape work — Nº CVIII" />
       <span class="hp-tile-num">Nº CVIII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-109.jpg">
+    <div class="hp-tile" data-category="pool" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-109.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-109.jpg" loading="lazy" alt="Hardscape work — Nº CIX" />
       <span class="hp-tile-num">Nº CIX</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-110.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-110.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-110.jpg" loading="lazy" alt="Hardscape work — Nº CX" />
       <span class="hp-tile-num">Nº CX</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-111.jpg">
+    <div class="hp-tile" data-category="outdoor" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-111.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-111.jpg" loading="lazy" alt="Hardscape work — Nº CXI" />
       <span class="hp-tile-num">Nº CXI</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-112.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-112.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-112.jpg" loading="lazy" alt="Hardscape work — Nº CXII" />
       <span class="hp-tile-num">Nº CXII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-113.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-113.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-113.jpg" loading="lazy" alt="Hardscape work — Nº CXIII" />
       <span class="hp-tile-num">Nº CXIII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-114.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-114.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-114.jpg" loading="lazy" alt="Hardscape work — Nº CXIV" />
       <span class="hp-tile-num">Nº CXIV</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-115.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-115.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-115.jpg" loading="lazy" alt="Hardscape work — Nº CXV" />
       <span class="hp-tile-num">Nº CXV</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-116.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-116.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-116.jpg" loading="lazy" alt="Hardscape work — Nº CXVI" />
       <span class="hp-tile-num">Nº CXVI</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-117.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-117.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-117.jpg" loading="lazy" alt="Hardscape work — Nº CXVII" />
       <span class="hp-tile-num">Nº CXVII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-118.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-118.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-118.jpg" loading="lazy" alt="Hardscape work — Nº CXVIII" />
       <span class="hp-tile-num">Nº CXVIII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-119.jpg">
+    <div class="hp-tile" data-category="outdoor" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-119.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-119.jpg" loading="lazy" alt="Hardscape work — Nº CXIX" />
       <span class="hp-tile-num">Nº CXIX</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-120.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-120.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-120.jpg" loading="lazy" alt="Hardscape work — Nº CXX" />
       <span class="hp-tile-num">Nº CXX</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-121.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-121.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-121.jpg" loading="lazy" alt="Hardscape work — Nº CXXI" />
       <span class="hp-tile-num">Nº CXXI</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-122.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-122.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-122.jpg" loading="lazy" alt="Hardscape work — Nº CXXII" />
       <span class="hp-tile-num">Nº CXXII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-123.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-123.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-123.jpg" loading="lazy" alt="Hardscape work — Nº CXXIII" />
       <span class="hp-tile-num">Nº CXXIII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-124.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-124.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-124.jpg" loading="lazy" alt="Hardscape work — Nº CXXIV" />
       <span class="hp-tile-num">Nº CXXIV</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-125.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-125.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-125.jpg" loading="lazy" alt="Hardscape work — Nº CXXV" />
       <span class="hp-tile-num">Nº CXXV</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-126.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-126.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-126.jpg" loading="lazy" alt="Hardscape work — Nº CXXVI" />
       <span class="hp-tile-num">Nº CXXVI</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-127.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-127.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-127.jpg" loading="lazy" alt="Hardscape work — Nº CXXVII" />
       <span class="hp-tile-num">Nº CXXVII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-128.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-128.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-128.jpg" loading="lazy" alt="Hardscape work — Nº CXXVIII" />
       <span class="hp-tile-num">Nº CXXVIII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-129.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-129.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-129.jpg" loading="lazy" alt="Hardscape work — Nº CXXIX" />
       <span class="hp-tile-num">Nº CXXIX</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-130.jpg">
+    <div class="hp-tile" data-category="outdoor" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-130.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-130.jpg" loading="lazy" alt="Hardscape work — Nº CXXX" />
       <span class="hp-tile-num">Nº CXXX</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-131.jpg">
+    <div class="hp-tile" data-category="outdoor" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-131.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-131.jpg" loading="lazy" alt="Hardscape work — Nº CXXXI" />
       <span class="hp-tile-num">Nº CXXXI</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-132.jpg">
+    <div class="hp-tile" data-category="outdoor" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-132.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-132.jpg" loading="lazy" alt="Hardscape work — Nº CXXXII" />
       <span class="hp-tile-num">Nº CXXXII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-133.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-133.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-133.jpg" loading="lazy" alt="Hardscape work — Nº CXXXIII" />
       <span class="hp-tile-num">Nº CXXXIII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-134.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-134.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-134.jpg" loading="lazy" alt="Hardscape work — Nº CXXXIV" />
       <span class="hp-tile-num">Nº CXXXIV</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-135.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-135.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-135.jpg" loading="lazy" alt="Hardscape work — Nº CXXXV" />
       <span class="hp-tile-num">Nº CXXXV</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-136.jpg">
+    <div class="hp-tile" data-category="pool" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-136.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-136.jpg" loading="lazy" alt="Hardscape work — Nº CXXXVI" />
       <span class="hp-tile-num">Nº CXXXVI</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-137.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-137.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-137.jpg" loading="lazy" alt="Hardscape work — Nº CXXXVII" />
       <span class="hp-tile-num">Nº CXXXVII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-138.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-138.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-138.jpg" loading="lazy" alt="Hardscape work — Nº CXXXVIII" />
       <span class="hp-tile-num">Nº CXXXVIII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-139.jpg">
+    <div class="hp-tile" data-category="outdoor" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-139.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-139.jpg" loading="lazy" alt="Hardscape work — Nº CXXXIX" />
       <span class="hp-tile-num">Nº CXXXIX</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-140.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-140.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-140.jpg" loading="lazy" alt="Hardscape work — Nº CXL" />
       <span class="hp-tile-num">Nº CXL</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-141.jpg">
+    <div class="hp-tile" data-category="pool" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-141.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-141.jpg" loading="lazy" alt="Hardscape work — Nº CXLI" />
       <span class="hp-tile-num">Nº CXLI</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-142.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-142.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-142.jpg" loading="lazy" alt="Hardscape work — Nº CXLII" />
       <span class="hp-tile-num">Nº CXLII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-143.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-143.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-143.jpg" loading="lazy" alt="Hardscape work — Nº CXLIII" />
       <span class="hp-tile-num">Nº CXLIII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-144.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-144.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-144.jpg" loading="lazy" alt="Hardscape work — Nº CXLIV" />
       <span class="hp-tile-num">Nº CXLIV</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-145.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-145.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-145.jpg" loading="lazy" alt="Hardscape work — Nº CXLV" />
       <span class="hp-tile-num">Nº CXLV</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-146.jpg">
+    <div class="hp-tile" data-category="walls" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-146.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-146.jpg" loading="lazy" alt="Hardscape work — Nº CXLVI" />
       <span class="hp-tile-num">Nº CXLVI</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-147.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-147.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-147.jpg" loading="lazy" alt="Hardscape work — Nº CXLVII" />
       <span class="hp-tile-num">Nº CXLVII</span>
     </div>
-    <div class="hp-tile" data-category="all" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-148.jpg">
+    <div class="hp-tile" data-category="patios" data-img="assets/PHAORA%20IMAGES/Hardscape/portfolio/phaora-hardscape-148.jpg">
       <img src="assets/PHAORA%20IMAGES/Hardscape/portfolio-thumbs/phaora-hardscape-148.jpg" loading="lazy" alt="Hardscape work — Nº CXLVIII" />
       <span class="hp-tile-num">Nº CXLVIII</span>
     </div>
@@ -823,6 +840,20 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
   ham.addEventListener('click',openM);
   cl.addEventListener('click',closeM);
   ov.addEventListener('click',function(e){if(e.target===ov)closeM()});
+
+  // Filters
+  var pills=document.querySelectorAll('.filter-pill');
+  var tiles=document.querySelectorAll('.hp-tile');
+  pills.forEach(function(p){
+    p.addEventListener('click',function(){
+      pills.forEach(function(x){x.classList.remove('active')});
+      p.classList.add('active');
+      var f=p.dataset.f;
+      tiles.forEach(function(t){
+        t.classList.toggle('hidden',f!=='all'&&t.dataset.category!==f);
+      });
+    });
+  });
 
   // Lightbox
   var lb=document.getElementById('lb');
