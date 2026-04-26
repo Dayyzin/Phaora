@@ -156,13 +156,13 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
       <h3>Through the studio form</h3>
       <p>Routes to the same inbox.</p>
       <div class="thank-you" id="thank-you">Your message reached the studio. David will write within 24 hours.</div>
-      <form action="https://formspree.io/f/mlgokvnj" method="POST">
-        <input type="hidden" name="_subject" value="Phaöra — Contact form submission">
-        <input type="hidden" name="_next" value="https://phaora.com/contact.html?sent=1">
+      <form id="contact-form">
         <div class="form-group"><input type="text" name="name" placeholder="Name" required></div>
         <div class="form-group"><input type="email" name="email" placeholder="Email" required></div>
+        <div class="form-group"><input type="tel" name="phone" placeholder="Phone (optional)"></div>
         <div class="form-group"><textarea name="message" placeholder="Message" rows="4" required></textarea></div>
-        <div class="form-submit"><button type="submit" class="btn btn-amber">Send <span class="arrow">&rarr;</span></button></div>
+        <div id="form-error" style="display:none;font-family:var(--sans);font-size:13px;color:#c4634e;margin-bottom:1rem"></div>
+        <div class="form-submit"><button type="submit" class="btn btn-amber" id="contact-btn">Send <span class="arrow">&rarr;</span></button></div>
       </form>
     </div>
   </div>
@@ -226,8 +226,43 @@ reveals.forEach(function(el){rObs.observe(el)});
 /* Thank you message on ?sent=1 */
 if(new URLSearchParams(window.location.search).get('sent')==='1'){
   var ty=document.getElementById('thank-you');
-  if(ty)ty.style.display='block';
+  if(ty){ty.style.display='block';var cf=document.getElementById('contact-form');if(cf)cf.style.display='none'}
 }
+
+/* Contact form → admin.phaora.com webhook */
+var cForm=document.getElementById('contact-form');
+if(cForm)cForm.addEventListener('submit',function(e){
+  e.preventDefault();
+  var btn=document.getElementById('contact-btn');
+  var errEl=document.getElementById('form-error');
+  var fd=new FormData(cForm);
+  var fullName=(fd.get('name')||'').toString().trim();
+  var parts=fullName.split(/\s+/);
+  var firstName=parts[0]||'';
+  var lastName=parts.length>1?parts.slice(1).join(' '):'';
+  btn.textContent='Sending\u2026';btn.disabled=true;
+  errEl.style.display='none';
+  fetch('https://admin.phaora.com/api/webhooks/contact',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      first_name:firstName,
+      last_name:lastName,
+      email:(fd.get('email')||'').toString().trim(),
+      phone:(fd.get('phone')||'').toString().trim(),
+      message:(fd.get('message')||'').toString().trim()
+    })
+  }).then(function(r){
+    if(!r.ok)throw new Error('Server error');
+    cForm.style.display='none';
+    var ty2=document.getElementById('thank-you');
+    if(ty2)ty2.style.display='block';
+  }).catch(function(){
+    errEl.textContent='Something went wrong. Please try again or email hello@phaora.com directly.';
+    errEl.style.display='block';
+    btn.innerHTML='Send <span class="arrow">\u2192</span>';btn.disabled=false;
+  });
+});
 
 /* Mobile menu */
 var ham=document.getElementById('m-hamburger'),ov=document.getElementById('m-overlay'),cl=document.getElementById('m-overlay-close');
