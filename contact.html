@@ -63,9 +63,6 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
 .form-group textarea{resize:vertical;min-height:100px}
 .form-submit{margin-top:2rem}
 
-/* THANK YOU */
-.thank-you{display:none;font-family:var(--serif);font-style:italic;font-size:17px;color:var(--amber);font-variation-settings:'opsz' 18,'SOFT' 50;margin-bottom:2rem;padding:1.5rem;border:0.5px solid var(--stroke)}
-
 /* BUTTONS */
 .btn{display:inline-flex;align-items:center;gap:10px;padding:1rem 2rem;font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:all .4s var(--ease)}
 .btn .arrow{transition:transform .4s var(--ease)}
@@ -155,8 +152,7 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
       <span class="col-eye">&mdash; Or send a message &mdash;</span>
       <h3>Through the studio form</h3>
       <p>Routes to the same inbox.</p>
-      <div class="thank-you" id="thank-you">Your message reached the studio. David will write within 24 hours.</div>
-      <form id="contact-form">
+      <form id="contactForm">
         <div class="form-group"><input type="text" name="first_name" placeholder="First name" required></div>
         <div class="form-group"><input type="text" name="last_name" placeholder="Last name" required></div>
         <div class="form-group"><input type="email" name="email" placeholder="Email" required></div>
@@ -164,8 +160,7 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
         <div class="form-group"><input type="text" name="project_type" placeholder="Project type (e.g. hardscape, sculpture, commission)"></div>
         <div class="form-group"><input type="text" name="location" placeholder="Property location (optional)"></div>
         <div class="form-group"><textarea name="message" placeholder="Message" rows="4" required></textarea></div>
-        <div id="form-error" style="display:none;font-family:var(--sans);font-size:13px;color:#c4634e;margin-bottom:1rem"></div>
-        <div class="form-submit"><button type="submit" class="btn btn-amber" id="contact-btn">Send <span class="arrow">&rarr;</span></button></div>
+        <div class="form-submit"><button type="submit" class="btn btn-amber">Send <span class="arrow">&rarr;</span></button></div>
       </form>
     </div>
   </div>
@@ -226,43 +221,33 @@ var reveals=document.querySelectorAll('.reveal');
 var rObs=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){en.target.classList.add('revealed');rObs.unobserve(en.target)}})},{threshold:0.08});
 reveals.forEach(function(el){rObs.observe(el)});
 
-/* Thank you message on ?sent=1 */
-if(new URLSearchParams(window.location.search).get('sent')==='1'){
-  var ty=document.getElementById('thank-you');
-  if(ty){ty.style.display='block';var cf=document.getElementById('contact-form');if(cf)cf.style.display='none'}
-}
-
 /* Contact form → admin.phaora.com webhook */
-var cForm=document.getElementById('contact-form');
-if(cForm)cForm.addEventListener('submit',function(e){
+document.getElementById('contactForm').addEventListener('submit',async function(e){
   e.preventDefault();
-  var btn=document.getElementById('contact-btn');
-  var errEl=document.getElementById('form-error');
-  var fd=new FormData(cForm);
-  btn.textContent='Sending\u2026';btn.disabled=true;
-  errEl.style.display='none';
-  fetch('https://admin.phaora.com/api/webhooks/contact',{
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({
-      first_name:(fd.get('first_name')||'').toString().trim(),
-      last_name:(fd.get('last_name')||'').toString().trim(),
-      email:(fd.get('email')||'').toString().trim(),
-      phone:(fd.get('phone')||'').toString().trim(),
-      project_type:(fd.get('project_type')||'').toString().trim(),
-      location:(fd.get('location')||'').toString().trim(),
-      message:(fd.get('message')||'').toString().trim()
-    })
-  }).then(function(r){
-    if(!r.ok)throw new Error('Server error');
-    cForm.style.display='none';
-    var ty2=document.getElementById('thank-you');
-    if(ty2)ty2.style.display='block';
-  }).catch(function(){
-    errEl.textContent='Something went wrong. Please try again or email hello@phaora.com directly.';
-    errEl.style.display='block';
-    btn.innerHTML='Send <span class="arrow">\u2192</span>';btn.disabled=false;
-  });
+  var f=e.target;
+  var payload={
+    first_name:f.first_name.value||'',
+    last_name:f.last_name.value||'',
+    email:f.email.value||'',
+    phone:f.phone.value||'',
+    project_type:f.project_type.value||'',
+    location:f.location.value||'',
+    message:f.message.value||''
+  };
+  try{
+    var res=await fetch('https://admin.phaora.com/api/webhooks/contact',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(payload)
+    });
+    if(res.ok){
+      f.innerHTML='<p style="color:var(--amber);font-family:var(--serif);font-style:italic;font-size:17px;font-variation-settings:\'opsz\' 18,\'SOFT\' 50;padding:1.5rem 0;">Your message reached the studio. David will write within 24 hours.</p>';
+    }else{
+      alert('Submission failed. Please try again or email david@phaora.com.');
+    }
+  }catch(err){
+    alert('Submission failed. Please try again or email david@phaora.com.');
+  }
 });
 
 /* Mobile menu */
