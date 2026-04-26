@@ -1,0 +1,6 @@
+.env
+.DS_Store
+node_modules/
+tools/visual-check/.env
+tools/visual-check/node_modules/
+tools/visual-check/screenshots/

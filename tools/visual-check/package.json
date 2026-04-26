@@ -1,0 +1,15 @@
+{
+  "name": "phaora-visual-check",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Automated visual verification for PHAÖRA patio visualizations",
+  "scripts": {
+    "check": "node check-patio.js",
+    "setup": "npx playwright install chromium"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
+    "dotenv": "^16.4.7",
+    "playwright": "^1.52.0"
+  }
+}
