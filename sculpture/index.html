@@ -121,8 +121,8 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
 
 <!-- HERO -->
 <section class="mh">
-  <video class="hero-bg-video" autoplay muted loop playsinline preload="metadata">
-    <source src="/assets/video/canopy.mp4" type="video/mp4">
+  <video class="hero-bg-video" id="heroVideo" autoplay muted loop playsinline preload="auto" poster="/assets/sculptures/amethyst-crown/00-hero.jpg">
+    <source src="/assets/video/sculpture-hero.mp4" type="video/mp4">
   </video>
   <div class="mh-overlay"></div>
   <h1>PHAÖRA</h1>
@@ -172,6 +172,17 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
 <script src="/sculpture/cart.js"></script>
 <script>
 (function(){
+  /* Hero video playback speed */
+  var hv=document.getElementById('heroVideo');
+  if(hv){
+    function setSpeed(){hv.playbackRate=0.80}
+    hv.addEventListener('loadedmetadata',setSpeed);
+    hv.addEventListener('canplay',setSpeed);
+    hv.addEventListener('playing',setSpeed);
+    if(hv.readyState>=1)setSpeed();
+    hv.play().catch(function(){});
+  }
+
   /* Hamburger */
   var ham=document.getElementById('m-hamburger'),ov=document.getElementById('m-overlay'),cl=document.getElementById('m-overlay-close');
   function openM(){ov.classList.add('open');document.body.style.overflow='hidden'}
@@ -182,6 +193,24 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
 
   /* Catalog */
   var catalog=null,activeFilter='all',activeSort='featured',showSold=false,expandedPlate=null;
+
+  function shuffle(arr){
+    for(var i=arr.length-1;i>0;i--){
+      var j=Math.floor(Math.random()*(i+1));
+      var t=arr[i];arr[i]=arr[j];arr[j]=t;
+    }
+    return arr;
+  }
+
+  function classifySpecies(sp){
+    if(!sp)return 'other';
+    var s=sp.toLowerCase();
+    if(s.indexOf('macaw')!==-1)return 'macaw';
+    if(s.indexOf('eagle')!==-1||s.indexOf('hawk')!==-1||s.indexOf('falcon')!==-1)return 'eagle';
+    if(s.indexOf('cockatoo')!==-1||s.indexOf('cackatoo')!==-1)return 'cockatoo';
+    if(s.indexOf('parrot')!==-1||s.indexOf('conure')!==-1||s.indexOf('lori')!==-1)return 'parrot';
+    return 'other';
+  }
 
   fetch('/assets/sculptures/catalog.json').then(function(r){return r.json()}).then(function(data){
     catalog=data.pieces;
@@ -200,16 +229,6 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
   document.getElementById('sortSelect').addEventListener('change',function(){activeSort=this.value;render()});
   document.getElementById('showSold').addEventListener('change',function(){showSold=this.checked;render()});
 
-  function classifySpecies(sp){
-    if(!sp)return 'other';
-    var s=sp.toLowerCase();
-    if(s.indexOf('macaw')!==-1)return 'macaw';
-    if(s.indexOf('eagle')!==-1||s.indexOf('hawk')!==-1||s.indexOf('falcon')!==-1)return 'eagle';
-    if(s.indexOf('cockatoo')!==-1||s.indexOf('cackatoo')!==-1)return 'cockatoo';
-    if(s.indexOf('parrot')!==-1||s.indexOf('conure')!==-1||s.indexOf('lori')!==-1)return 'parrot';
-    return 'other';
-  }
-
   function render(){
     if(!catalog)return;
     var grid=document.getElementById('pieceGrid');
@@ -221,17 +240,21 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
       return true;
     });
 
-    items.sort(function(a,b){
-      if(activeSort==='featured'){
+    if(activeSort==='featured'){
+      /* Shuffle randomizes order; featured pieces float to top */
+      shuffle(items);
+      items.sort(function(a,b){
         if(a.is_featured&&!b.is_featured)return -1;
         if(!a.is_featured&&b.is_featured)return 1;
         return 0;
-      }
-      if(activeSort==='newest')return(b.added_at||'').localeCompare(a.added_at||'');
-      if(activeSort==='price-asc')return(a.price_usd||999999)-(b.price_usd||999999);
-      if(activeSort==='price-desc')return(b.price_usd||0)-(a.price_usd||0);
-      return 0;
-    });
+      });
+    }else if(activeSort==='newest'){
+      items.sort(function(a,b){return(b.added_at||'').localeCompare(a.added_at||'')});
+    }else if(activeSort==='price-asc'){
+      items.sort(function(a,b){return(a.price_usd||999999)-(b.price_usd||999999)});
+    }else if(activeSort==='price-desc'){
+      items.sort(function(a,b){return(b.price_usd||0)-(a.price_usd||0)});
+    }
 
     items.forEach(function(piece){
       var plate=document.createElement('div');

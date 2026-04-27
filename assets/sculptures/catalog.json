@@ -3,7 +3,7 @@
     {
       "slug": "amethyst-crown",
       "name": "The Amethyst Crown",
-      "species": "",
+      "species": "Macaw",
       "base_material": "",
       "base_size_lbs": 0,
       "wingspan_inches": 0,
@@ -29,7 +29,7 @@
     {
       "slug": "aurora",
       "name": "The Aurora",
-      "species": "",
+      "species": "Macaw",
       "base_material": "",
       "base_size_lbs": 0,
       "wingspan_inches": 0,
@@ -55,7 +55,7 @@
     {
       "slug": "beacon",
       "name": "The Beacon",
-      "species": "",
+      "species": "Macaw",
       "base_material": "",
       "base_size_lbs": 0,
       "wingspan_inches": 0,
@@ -81,7 +81,7 @@
     {
       "slug": "consort",
       "name": "The Consort",
-      "species": "",
+      "species": "Macaw",
       "base_material": "",
       "base_size_lbs": 0,
       "wingspan_inches": 0,
@@ -107,7 +107,7 @@
     {
       "slug": "covenant",
       "name": "The Covenant",
-      "species": "",
+      "species": "Macaw",
       "base_material": "",
       "base_size_lbs": 0,
       "wingspan_inches": 0,
@@ -133,7 +133,7 @@
     {
       "slug": "diviner",
       "name": "The Diviner",
-      "species": "",
+      "species": "Macaw",
       "base_material": "",
       "base_size_lbs": 0,
       "wingspan_inches": 0,
@@ -159,7 +159,7 @@
     {
       "slug": "ember",
       "name": "The Ember",
-      "species": "",
+      "species": "Macaw",
       "base_material": "",
       "base_size_lbs": 0,
       "wingspan_inches": 0,
@@ -185,7 +185,7 @@
     {
       "slug": "emissary",
       "name": "The Emissary",
-      "species": "",
+      "species": "Parrot",
       "base_material": "",
       "base_size_lbs": 0,
       "wingspan_inches": 0,
@@ -211,7 +211,7 @@
     {
       "slug": "ezio-e-presa",
       "name": "The Ezio e Presa",
-      "species": "",
+      "species": "Macaw",
       "base_material": "",
       "base_size_lbs": 0,
       "wingspan_inches": 0,
@@ -237,7 +237,7 @@
     {
       "slug": "garnet",
       "name": "The Garnet",
-      "species": "",
+      "species": "Macaw",
       "base_material": "",
       "base_size_lbs": 0,
       "wingspan_inches": 0,
@@ -263,7 +263,7 @@
     {
       "slug": "gilded-pair",
       "name": "The Gilded Pair",
-      "species": "",
+      "species": "Macaw",
       "base_material": "",
       "base_size_lbs": 0,
       "wingspan_inches": 0,
@@ -289,7 +289,7 @@
     {
       "slug": "harvest",
       "name": "The Harvest",
-      "species": "",
+      "species": "Macaw",
       "base_material": "",
       "base_size_lbs": 0,
       "wingspan_inches": 0,
@@ -315,7 +315,7 @@
     {
       "slug": "lapis",
       "name": "The Lapis",
-      "species": "",
+      "species": "Macaw",
       "base_material": "",
       "base_size_lbs": 0,
       "wingspan_inches": 0,
@@ -341,7 +341,7 @@
     {
       "slug": "luminary",
       "name": "The Luminary",
-      "species": "",
+      "species": "Macaw",
       "base_material": "",
       "base_size_lbs": 0,
       "wingspan_inches": 0,
@@ -367,7 +367,7 @@
     {
       "slug": "maresia",
       "name": "The Maresia",
-      "species": "",
+      "species": "Macaw",
       "base_material": "",
       "base_size_lbs": 0,
       "wingspan_inches": 0,
@@ -393,7 +393,7 @@
     {
       "slug": "mariner",
       "name": "The Mariner",
-      "species": "",
+      "species": "Eagle",
       "base_material": "",
       "base_size_lbs": 0,
       "wingspan_inches": 0,
@@ -419,7 +419,7 @@
     {
       "slug": "meridian",
       "name": "The Meridian",
-      "species": "",
+      "species": "Macaw",
       "base_material": "",
       "base_size_lbs": 0,
       "wingspan_inches": 0,
@@ -445,7 +445,7 @@
     {
       "slug": "obsidian",
       "name": "The Obsidian",
-      "species": "",
+      "species": "Macaw",
       "base_material": "",
       "base_size_lbs": 0,
       "wingspan_inches": 0,
@@ -471,7 +471,7 @@
     {
       "slug": "onyx-pair",
       "name": "The Onyx Pair",
-      "species": "",
+      "species": "Macaw",
       "base_material": "",
       "base_size_lbs": 0,
       "wingspan_inches": 0,
@@ -497,7 +497,7 @@
     {
       "slug": "opal",
       "name": "The Opal",
-      "species": "",
+      "species": "Eagle",
       "base_material": "",
       "base_size_lbs": 0,
       "wingspan_inches": 0,
@@ -523,7 +523,7 @@
     {
       "slug": "oracle",
       "name": "The Oracle",
-      "species": "",
+      "species": "Macaw",
       "base_material": "",
       "base_size_lbs": 0,
       "wingspan_inches": 0,
@@ -549,7 +549,7 @@
     {
       "slug": "orchid",
       "name": "The Orchid",
-      "species": "",
+      "species": "Eagle",
       "base_material": "",
       "base_size_lbs": 0,
       "wingspan_inches": 0,
@@ -575,7 +575,7 @@
     {
       "slug": "pilgrim",
       "name": "The Pilgrim",
-      "species": "",
+      "species": "Cockatoo",
       "base_material": "",
       "base_size_lbs": 0,
       "wingspan_inches": 0,
@@ -601,7 +601,7 @@
     {
       "slug": "quartz-twin",
       "name": "The Quartz Twin",
-      "species": "",
+      "species": "Macaw",
       "base_material": "",
       "base_size_lbs": 0,
       "wingspan_inches": 0,
@@ -627,7 +627,7 @@
     {
       "slug": "rose-duet",
       "name": "The Rose Duet",
-      "species": "",
+      "species": "Parrot",
       "base_material": "",
       "base_size_lbs": 0,
       "wingspan_inches": 0,
@@ -653,7 +653,7 @@
     {
       "slug": "rose-oracle",
       "name": "The Rose Oracle",
-      "species": "",
+      "species": "Macaw",
       "base_material": "",
       "base_size_lbs": 0,
       "wingspan_inches": 0,
@@ -679,7 +679,7 @@
     {
       "slug": "rose-solo",
       "name": "The Rose Solo",
-      "species": "",
+      "species": "Cockatoo",
       "base_material": "",
       "base_size_lbs": 0,
       "wingspan_inches": 0,
@@ -705,7 +705,7 @@
     {
       "slug": "sanctum",
       "name": "The Sanctum",
-      "species": "",
+      "species": "Cockatoo",
       "base_material": "",
       "base_size_lbs": 0,
       "wingspan_inches": 0,
@@ -731,7 +731,7 @@
     {
       "slug": "reverie",
       "name": "The Reverie",
-      "species": "",
+      "species": "Macaw",
       "base_material": "",
       "base_size_lbs": 0,
       "wingspan_inches": 0,
@@ -757,7 +757,7 @@
     {
       "slug": "seraph",
       "name": "The Seraph",
-      "species": "",
+      "species": "Macaw",
       "base_material": "",
       "base_size_lbs": 0,
       "wingspan_inches": 0,
@@ -783,7 +783,7 @@
     {
       "slug": "sky-pair",
       "name": "The Sky Pair",
-      "species": "",
+      "species": "Cockatoo",
       "base_material": "",
       "base_size_lbs": 0,
       "wingspan_inches": 0,
@@ -809,7 +809,7 @@
     {
       "slug": "solara",
       "name": "The Solara",
-      "species": "",
+      "species": "Macaw",
       "base_material": "",
       "base_size_lbs": 0,
       "wingspan_inches": 0,
@@ -835,7 +835,7 @@
     {
       "slug": "vigil",
       "name": "The Vigil",
-      "species": "",
+      "species": "Macaw",
       "base_material": "",
       "base_size_lbs": 0,
       "wingspan_inches": 0,
@@ -861,7 +861,7 @@
     {
       "slug": "violet",
       "name": "The Violet",
-      "species": "",
+      "species": "Macaw",
       "base_material": "",
       "base_size_lbs": 0,
       "wingspan_inches": 0,
