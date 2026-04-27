@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PHAORA — Pieces</title>
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<meta name="description" content="Hand-carved crystal sculptures from Minas Gerais, Brazil. Each piece is a single original.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Carattere&family=Ephesis&family=Jost:wght@200;300;400&family=JetBrains+Mono:wght@300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/sculpture/styles.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="/" class="nav-logo">PHAORA</a>
+  <div class="nav-links">
+    <a href="/sculpture/">Pieces</a>
+    <a href="/hardscape-gallery.html">Hardscape</a>
+    <a href="/contact.html">Contact</a>
+    <a href="/sculpture/cart.html" class="nav-cart">
+      <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+      <span class="cart-badge">0</span>
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero-video">
+  <video autoplay muted loop playsinline>
+    <source src="/assets/video/canopy.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay">
+    <h1>Pieces</h1>
+    <p>The Collection, MMXXVI</p>
+  </div>
+</section>
+
+<!-- FILTER BAR -->
+<div class="filter-bar" id="filterBar">
+  <div class="filter-group" id="speciesFilters">
+    <button class="filter-btn active" data-species="all">All</button>
+    <button class="filter-btn" data-species="macaw">Macaws</button>
+    <button class="filter-btn" data-species="eagle">Eagles</button>
+    <button class="filter-btn" data-species="cockatoo">Cockatoos</button>
+    <button class="filter-btn" data-species="parrot">Parrots</button>
+    <button class="filter-btn" data-species="other">Other</button>
+  </div>
+  <select class="filter-sort" id="sortSelect">
+    <option value="featured">Featured</option>
+    <option value="newest">Newest</option>
+    <option value="price-asc">Price &#8593;</option>
+    <option value="price-desc">Price &#8595;</option>
+  </select>
+  <label class="filter-toggle">
+    <input type="checkbox" id="showSold"> Show reserved
+  </label>
+</div>
+
+<!-- PIECE GRID -->
+<div class="piece-grid" id="pieceGrid"></div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <p>PHAORA &mdash; Boca Raton, Florida</p>
+</footer>
+
+<script src="/sculpture/cart.js"></script>
+<script>
+(function(){
+  var catalog = null;
+  var activeSpecies = 'all';
+  var activeSort = 'featured';
+  var showSold = false;
+
+  /* Mobile tap tracking */
+  var expandedPlate = null;
+
+  fetch('/assets/sculptures/catalog.json')
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      catalog = data.pieces;
+      render();
+    });
+
+  /* Filter buttons */
+  document.getElementById('speciesFilters').addEventListener('click', function(e){
+    if(!e.target.classList.contains('filter-btn')) return;
+    activeSpecies = e.target.dataset.species;
+    var btns = this.querySelectorAll('.filter-btn');
+    for(var i=0;i<btns.length;i++) btns[i].classList.remove('active');
+    e.target.classList.add('active');
+    render();
+  });
+
+  document.getElementById('sortSelect').addEventListener('change', function(){
+    activeSort = this.value;
+    render();
+  });
+
+  document.getElementById('showSold').addEventListener('change', function(){
+    showSold = this.checked;
+    render();
+  });
+
+  function classifySpecies(sp){
+    if(!sp) return 'other';
+    var s = sp.toLowerCase();
+    if(s.indexOf('macaw')!==-1) return 'macaw';
+    if(s.indexOf('eagle')!==-1 || s.indexOf('hawk')!==-1 || s.indexOf('falcon')!==-1) return 'eagle';
+    if(s.indexOf('cockatoo')!==-1 || s.indexOf('cackatoo')!==-1) return 'cockatoo';
+    if(s.indexOf('parrot')!==-1 || s.indexOf('conure')!==-1 || s.indexOf('lori')!==-1) return 'parrot';
+    return 'other';
+  }
+
+  function formatPrice(p){
+    if(!p) return null;
+    return '$' + p.toLocaleString('en-US');
+  }
+
+  function render(){
+    if(!catalog) return;
+    var grid = document.getElementById('pieceGrid');
+    grid.innerHTML = '';
+
+    /* Filter */
+    var items = catalog.filter(function(p){
+      if(!showSold && p.is_sold) return false;
+      if(activeSpecies !== 'all' && classifySpecies(p.species) !== activeSpecies) return false;
+      return true;
+    });
+
+    /* Sort */
+    items.sort(function(a,b){
+      if(activeSort === 'featured'){
+        if(a.is_featured && !b.is_featured) return -1;
+        if(!a.is_featured && b.is_featured) return 1;
+        return 0;
+      }
+      if(activeSort === 'newest'){
+        return (b.added_at||'').localeCompare(a.added_at||'');
+      }
+      if(activeSort === 'price-asc'){
+        var pa = a.price_usd || 999999;
+        var pb = b.price_usd || 999999;
+        return pa - pb;
+      }
+      if(activeSort === 'price-desc'){
+        var pa2 = a.price_usd || 0;
+        var pb2 = b.price_usd || 0;
+        return pb2 - pa2;
+      }
+      return 0;
+    });
+
+    items.forEach(function(piece){
+      var plate = document.createElement('div');
+      plate.className = 'plate' + (piece.is_sold ? ' sold' : '');
+      plate.dataset.slug = piece.slug;
+
+      var collage = document.createElement('div');
+      collage.className = 'plate-collage';
+
+      var photos = ['00-hero.jpg','01.jpg','02.jpg','03.jpg'];
+      photos.forEach(function(fname){
+        var img = document.createElement('img');
+        img.src = '/assets/sculptures/' + piece.slug + '/' + fname;
+        img.alt = piece.name;
+        img.loading = 'lazy';
+        img.onerror = function(){ this.style.display='none'; };
+        collage.appendChild(img);
+      });
+
+      var info = document.createElement('div');
+      info.className = 'plate-info';
+
+      var name = document.createElement('div');
+      name.className = 'plate-name';
+      name.textContent = piece.name;
+
+      var price = document.createElement('div');
+      var fp = formatPrice(piece.price_usd);
+      if(fp){
+        price.className = 'plate-price has-price';
+        price.textContent = fp;
+      } else {
+        price.className = 'plate-price no-price';
+        price.textContent = 'Inquire';
+      }
+
+      info.appendChild(name);
+      info.appendChild(price);
+      plate.appendChild(collage);
+      plate.appendChild(info);
+
+      /* Click/tap navigation */
+      plate.addEventListener('click', function(e){
+        /* On mobile, first tap fans out, second navigates */
+        if('ontouchstart' in window){
+          if(expandedPlate === plate){
+            window.location.href = '/sculpture/piece.html?slug=' + piece.slug;
+          } else {
+            expandedPlate = plate;
+            plate.classList.add('plate-touch-expanded');
+            return;
+          }
+        } else {
+          window.location.href = '/sculpture/piece.html?slug=' + piece.slug;
+        }
+      });
+
+      grid.appendChild(plate);
+    });
+  }
+})();
+</script>
+
+<style>
+/* Touch expansion class — mirrors hover fan on mobile */
+.plate-touch-expanded .plate-collage img:nth-child(1){
+  transform:translate(-6%,-4%) rotate(-2deg) scale(1.04);z-index:4;
+}
+.plate-touch-expanded .plate-collage img:nth-child(2){
+  transform:translate(8%,-6%) rotate(3deg) scale(1.04);z-index:3;
+}
+.plate-touch-expanded .plate-collage img:nth-child(3){
+  transform:translate(-8%,8%) rotate(-3deg) scale(1.04);z-index:2;
+}
+.plate-touch-expanded .plate-collage img:nth-child(4){
+  transform:translate(10%,6%) rotate(2deg) scale(1.04);z-index:1;
+}
+</style>
+
+</body>
+</html>

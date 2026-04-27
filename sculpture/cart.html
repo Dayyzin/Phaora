@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PHAORA — Cart</title>
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Carattere&family=Ephesis&family=Jost:wght@200;300;400&family=JetBrains+Mono:wght@300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/sculpture/styles.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="/" class="nav-logo">PHAORA</a>
+  <div class="nav-links">
+    <a href="/sculpture/">Pieces</a>
+    <a href="/hardscape-gallery.html">Hardscape</a>
+    <a href="/contact.html">Contact</a>
+    <a href="/sculpture/cart.html" class="nav-cart">
+      <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+      <span class="cart-badge">0</span>
+    </a>
+  </div>
+</nav>
+
+<div class="cart-page">
+  <h1>Cart</h1>
+  <div id="cartContent"></div>
+</div>
+
+<footer class="site-footer">
+  <p>PHAORA &mdash; Boca Raton, Florida</p>
+</footer>
+
+<script src="/sculpture/config.js"></script>
+<script src="/sculpture/cart.js"></script>
+<script>
+(function(){
+  function renderCart(){
+    var el = document.getElementById('cartContent');
+    var cart = window.PhaoraCart.getCart();
+
+    if(cart.length === 0){
+      el.innerHTML =
+        '<div class="cart-empty">' +
+          '<p>No pieces selected.</p>' +
+          '<a href="/sculpture/" class="btn-ghost">Browse the catalog &#8599;</a>' +
+        '</div>';
+      return;
+    }
+
+    var html = '';
+    var subtotal = 0;
+    var allHaveStripe = true;
+
+    cart.forEach(function(item){
+      var priceStr = item.price ? '$' + item.price.toLocaleString('en-US') : 'Inquire';
+      if(item.price) subtotal += item.price;
+      if(!item.stripeId) allHaveStripe = false;
+
+      html +=
+        '<div class="cart-item" data-slug="' + item.slug + '">' +
+          '<img src="/assets/sculptures/' + item.slug + '/00-hero.jpg" alt="' + item.name + '">' +
+          '<div class="cart-item-info">' +
+            '<div class="cart-item-name">' + item.name + '</div>' +
+            '<div class="cart-item-price">' + priceStr + '</div>' +
+          '</div>' +
+          '<button class="cart-item-remove" data-slug="' + item.slug + '">Remove</button>' +
+        '</div>';
+    });
+
+    html +=
+      '<div class="cart-subtotal">' +
+        '<span class="cart-subtotal-label">Subtotal</span>' +
+        '<span class="cart-subtotal-value">$' + subtotal.toLocaleString('en-US') + '</span>' +
+      '</div>' +
+      '<div class="cart-checkout">' +
+        '<button class="btn-ghost" id="checkoutBtn">CHECKOUT &#8594;</button>' +
+        '<div class="cart-error" id="cartError"></div>' +
+      '</div>';
+
+    el.innerHTML = html;
+
+    /* Remove buttons */
+    var removeBtns = el.querySelectorAll('.cart-item-remove');
+    for(var i=0;i<removeBtns.length;i++){
+      removeBtns[i].addEventListener('click', function(){
+        window.PhaoraCart.removeFromCart(this.dataset.slug);
+        renderCart();
+      });
+    }
+
+    /* Checkout */
+    document.getElementById('checkoutBtn').addEventListener('click', function(){
+      var errEl = document.getElementById('cartError');
+
+      if(!allHaveStripe){
+        errEl.style.display = 'block';
+        errEl.innerHTML = 'Checkout unavailable for one or more pieces &mdash; email <a href="mailto:david@phaora.com">david@phaora.com</a>';
+        return;
+      }
+
+      var pk = window.PHAORA_CONFIG && window.PHAORA_CONFIG.stripePublicKey;
+      if(!pk || pk === 'pk_live_REPLACE_ME'){
+        errEl.style.display = 'block';
+        errEl.innerHTML = 'Checkout is not yet configured. Please contact <a href="mailto:david@phaora.com">david@phaora.com</a>';
+        return;
+      }
+
+      var lineItems = cart.map(function(item){
+        return { price: item.stripeId, quantity: 1 };
+      });
+
+      var stripe = Stripe(pk);
+      stripe.redirectToCheckout({
+        lineItems: lineItems,
+        mode: 'payment',
+        successUrl: window.location.origin + '/sculpture/order-confirmed.html',
+        cancelUrl: window.location.origin + '/sculpture/cart.html'
+      }).then(function(result){
+        if(result.error){
+          errEl.style.display = 'block';
+          errEl.textContent = result.error.message;
+        }
+      });
+    });
+  }
+
+  renderCart();
+})();
+</script>
+<script src="https://js.stripe.com/v3/" async></script>
+
+</body>
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PHAORA — Piece</title>
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Carattere&family=Ephesis&family=Jost:wght@200;300;400&family=JetBrains+Mono:wght@300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/sculpture/styles.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="/" class="nav-logo">PHAORA</a>
+  <div class="nav-links">
+    <a href="/sculpture/">Pieces</a>
+    <a href="/hardscape-gallery.html">Hardscape</a>
+    <a href="/contact.html">Contact</a>
+    <a href="/sculpture/cart.html" class="nav-cart">
+      <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+      <span class="cart-badge">0</span>
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="piece-hero" id="pieceHero"></div>
+
+<!-- HEADER -->
+<div class="piece-header" id="pieceHeader"></div>
+
+<!-- GALLERY -->
+<div class="piece-gallery" id="pieceGallery"></div>
+
+<!-- SPECS -->
+<div class="piece-specs" id="pieceSpecs" style="display:none"></div>
+
+<!-- BUY -->
+<div class="piece-buy" id="pieceBuy"></div>
+
+<!-- PROVENANCE -->
+<div class="provenance">
+  <p>Hand-carved in our atelier. Crystal bases sourced personally from Minas Gerais and Rio Grande do Sul, Brazil. Each piece is a single original &mdash; the mold does not exist.</p>
+</div>
+
+<!-- RELATED -->
+<div class="related">
+  <h3>From the Collection</h3>
+  <div class="related-grid" id="relatedGrid"></div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" aria-label="Close">&times;</button>
+  <button class="lightbox-prev" aria-label="Previous">&lsaquo;</button>
+  <img src="" alt="">
+  <button class="lightbox-next" aria-label="Next">&rsaquo;</button>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <p>PHAORA &mdash; Boca Raton, Florida</p>
+</footer>
+
+<script src="/sculpture/cart.js"></script>
+<script>
+(function(){
+  var slug = new URLSearchParams(window.location.search).get('slug');
+  if(!slug){ window.location.href = '/sculpture/'; return; }
+
+  var catalog, piece;
+
+  fetch('/assets/sculptures/catalog.json')
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      catalog = data.pieces;
+      piece = catalog.find(function(p){ return p.slug === slug; });
+      if(!piece){ window.location.href = '/sculpture/'; return; }
+      document.title = 'PHAORA — ' + piece.name;
+      renderHero();
+      renderHeader();
+      renderGallery();
+      renderSpecs();
+      renderBuy();
+      renderRelated();
+    });
+
+  /* ── Hero ── */
+  function renderHero(){
+    var el = document.getElementById('pieceHero');
+    var img = document.createElement('img');
+    img.src = '/assets/sculptures/' + slug + '/00-hero.jpg';
+    img.alt = piece.name;
+    el.appendChild(img);
+  }
+
+  /* ── Header ── */
+  function renderHeader(){
+    var el = document.getElementById('pieceHeader');
+    var h1 = document.createElement('h1');
+    h1.textContent = piece.name;
+    el.appendChild(h1);
+
+    var metaParts = [];
+    if(piece.species) metaParts.push(piece.species);
+    if(piece.base_material) metaParts.push(piece.base_material);
+    if(metaParts.length){
+      var meta = document.createElement('div');
+      meta.className = 'piece-meta';
+      meta.textContent = metaParts.join(' \u00b7 ');
+      el.appendChild(meta);
+    }
+
+    if(piece.description){
+      var desc = document.createElement('p');
+      desc.className = 'piece-desc';
+      desc.textContent = piece.description;
+      el.appendChild(desc);
+    }
+  }
+
+  /* ── Gallery ── */
+  var galleryImages = [];
+  var currentLightboxIdx = 0;
+
+  function renderGallery(){
+    var el = document.getElementById('pieceGallery');
+    /* Try loading 01-12 */
+    for(var i=1;i<=12;i++){
+      (function(idx){
+        var fname = (idx<10?'0':'')+idx+'.jpg';
+        var img = document.createElement('img');
+        img.src = '/assets/sculptures/' + slug + '/' + fname;
+        img.alt = piece.name + ' — view ' + idx;
+        img.loading = 'lazy';
+        img.onerror = function(){ this.remove(); };
+        img.onload = function(){
+          galleryImages.push(this);
+          this.dataset.galleryIdx = galleryImages.length - 1;
+        };
+        img.addEventListener('click', function(){
+          openLightbox(parseInt(this.dataset.galleryIdx)||0);
+        });
+        el.appendChild(img);
+      })(i);
+    }
+  }
+
+  /* ── Specs ── */
+  function renderSpecs(){
+    var el = document.getElementById('pieceSpecs');
+    var specs = piece.specs || {};
+    var rows = [];
+
+    if(specs.total_height_inches)
+      rows.push(['Height', specs.total_height_inches + '"']);
+    if(specs.weight_lbs_total)
+      rows.push(['Weight', specs.weight_lbs_total + ' lbs']);
+    if(piece.carve_hours)
+      rows.push(['Carve Time', piece.carve_hours + ' hours']);
+    if(piece.wingspan_inches)
+      rows.push(['Wingspan', piece.wingspan_inches + '"']);
+    if(piece.lead_time_weeks && piece.lead_time_weeks[0])
+      rows.push(['Lead Time', piece.lead_time_weeks[0] + '–' + piece.lead_time_weeks[1] + ' weeks']);
+    if(specs.finish)
+      rows.push(['Finish', specs.finish]);
+
+    if(rows.length === 0) return;
+    el.style.display = 'block';
+
+    rows.forEach(function(r){
+      var row = document.createElement('div');
+      row.className = 'spec-row';
+      row.innerHTML = '<span class="spec-label">' + r[0] + '</span><span class="spec-value">' + r[1] + '</span>';
+      el.appendChild(row);
+    });
+  }
+
+  /* ── Buy ── */
+  function renderBuy(){
+    var el = document.getElementById('pieceBuy');
+
+    if(piece.is_sold){
+      el.innerHTML =
+        '<div class="piece-reserved">RESERVED</div>' +
+        '<div class="piece-reserved"><a href="mailto:david@phaora.com?subject=' +
+        encodeURIComponent('Commission: ' + piece.name) +
+        '">Inquire about commissioning a similar piece</a></div>';
+      return;
+    }
+
+    if(!piece.price_usd){
+      el.innerHTML =
+        '<a href="mailto:david@phaora.com?subject=' +
+        encodeURIComponent('Inquiry: ' + piece.name) +
+        '" class="btn-ghost">INQUIRE</a>';
+      return;
+    }
+
+    var priceStr = '$' + piece.price_usd.toLocaleString('en-US');
+    el.innerHTML =
+      '<div class="piece-price-display">' + priceStr + '</div>' +
+      '<button class="btn-ghost" id="addCartBtn">ADD TO CART</button>' +
+      '<div class="added-msg" id="addedMsg">Added &mdash; <a href="/sculpture/cart.html">view cart &#8599;</a></div>';
+
+    document.getElementById('addCartBtn').addEventListener('click', function(){
+      var added = window.PhaoraCart.addToCart(
+        piece.slug, piece.name, piece.price_usd, piece.stripe_price_id
+      );
+      if(added){
+        document.getElementById('addedMsg').style.display = 'block';
+        this.textContent = 'IN CART';
+        this.style.opacity = '0.5';
+        this.style.pointerEvents = 'none';
+      }
+    });
+
+    /* If already in cart, reflect state */
+    var cart = window.PhaoraCart.getCart();
+    for(var i=0;i<cart.length;i++){
+      if(cart[i].slug === piece.slug){
+        document.getElementById('addCartBtn').textContent = 'IN CART';
+        document.getElementById('addCartBtn').style.opacity = '0.5';
+        document.getElementById('addCartBtn').style.pointerEvents = 'none';
+        document.getElementById('addedMsg').style.display = 'block';
+        break;
+      }
+    }
+  }
+
+  /* ── Related ── */
+  function renderRelated(){
+    var el = document.getElementById('relatedGrid');
+    var others = catalog.filter(function(p){ return p.slug !== slug; });
+    /* Featured first, then shuffle */
+    others.sort(function(a,b){
+      if(a.is_featured && !b.is_featured) return -1;
+      if(!a.is_featured && b.is_featured) return 1;
+      return Math.random() - 0.5;
+    });
+    var picks = others.slice(0,3);
+
+    picks.forEach(function(p){
+      var card = document.createElement('div');
+      card.className = 'related-card';
+      card.innerHTML =
+        '<img src="/assets/sculptures/' + p.slug + '/00-hero.jpg" alt="' + p.name + '" loading="lazy">' +
+        '<span>' + p.name + '</span>';
+      card.addEventListener('click', function(){
+        window.location.href = '/sculpture/piece.html?slug=' + p.slug;
+      });
+      el.appendChild(card);
+    });
+  }
+
+  /* ── Lightbox ── */
+  var lb = document.getElementById('lightbox');
+  var lbImg = lb.querySelector('img');
+
+  function openLightbox(idx){
+    if(!galleryImages.length) return;
+    currentLightboxIdx = idx;
+    lbImg.src = galleryImages[idx].src;
+    lbImg.alt = galleryImages[idx].alt;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox(){
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  lb.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+  lb.querySelector('.lightbox-prev').addEventListener('click', function(e){
+    e.stopPropagation();
+    currentLightboxIdx = (currentLightboxIdx - 1 + galleryImages.length) % galleryImages.length;
+    lbImg.src = galleryImages[currentLightboxIdx].src;
+  });
+  lb.querySelector('.lightbox-next').addEventListener('click', function(e){
+    e.stopPropagation();
+    currentLightboxIdx = (currentLightboxIdx + 1) % galleryImages.length;
+    lbImg.src = galleryImages[currentLightboxIdx].src;
+  });
+  lb.addEventListener('click', function(e){
+    if(e.target === lb) closeLightbox();
+  });
+
+  document.addEventListener('keydown', function(e){
+    if(!lb.classList.contains('open')) return;
+    if(e.key === 'Escape') closeLightbox();
+    if(e.key === 'ArrowLeft'){
+      currentLightboxIdx = (currentLightboxIdx - 1 + galleryImages.length) % galleryImages.length;
+      lbImg.src = galleryImages[currentLightboxIdx].src;
+    }
+    if(e.key === 'ArrowRight'){
+      currentLightboxIdx = (currentLightboxIdx + 1) % galleryImages.length;
+      lbImg.src = galleryImages[currentLightboxIdx].src;
+    }
+  });
+
+  /* Swipe support */
+  var touchStartX = 0;
+  lb.addEventListener('touchstart', function(e){ touchStartX = e.changedTouches[0].screenX; });
+  lb.addEventListener('touchend', function(e){
+    var diff = e.changedTouches[0].screenX - touchStartX;
+    if(Math.abs(diff) < 40) return;
+    if(diff > 0){
+      currentLightboxIdx = (currentLightboxIdx - 1 + galleryImages.length) % galleryImages.length;
+    } else {
+      currentLightboxIdx = (currentLightboxIdx + 1) % galleryImages.length;
+    }
+    lbImg.src = galleryImages[currentLightboxIdx].src;
+  });
+})();
+</script>
+
+</body>
+</html>
