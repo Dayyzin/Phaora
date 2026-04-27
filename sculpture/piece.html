@@ -3,320 +3,361 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PHAORA — Piece</title>
+<title>PHAÖRA — Piece</title>
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<meta name="description" content="One of one crystal sculpture. Hand-carved in Minas Gerais, Brazil. By appointment.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Carattere&family=Ephesis&family=Jost:wght@200;300;400&family=JetBrains+Mono:wght@300&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/sculpture/styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--ink:#0a0908;--surface:#12100c;--bone:#e8dcc4;--amber:#B87333;--amber-bright:#D4A254;--muted:#8a7355;--stroke:rgba(184,115,51,0.2);--serif:'Fraunces',Georgia,serif;--sans:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;--ease:cubic-bezier(0.22,1,0.36,1)}
+html{scroll-behavior:smooth;background:var(--ink)}
+body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 2.5rem;height:60px;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(24px) saturate(1.2);-webkit-backdrop-filter:blur(24px) saturate(1.2);background:rgba(10,9,8,0.85);border-bottom:0.5px solid var(--stroke)}
+.nav-left,.nav-right{display:flex;align-items:center;gap:2rem}
+.nav-left a,.nav-right a{font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;color:var(--bone);transition:color .3s ease;position:relative}
+.nav-left a::after,.nav-right a:not(.nav-enquire):not(.nav-cart-link)::after{content:'';position:absolute;bottom:-3px;left:0;width:100%;height:0.5px;background:var(--amber);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+.nav-left a:hover::after,.nav-right a:not(.nav-enquire):not(.nav-cart-link):hover::after{transform:scaleX(1)}
+.nav-logo{font-family:var(--sans);font-size:14px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;text-decoration:none;color:var(--bone)}
+.nav-enquire{padding:8px 18px;border:0.5px solid rgba(232,220,196,0.3);transition:all .3s ease !important;display:inline-flex;align-items:center;gap:6px}
+.nav-enquire .arrow{font-size:10px;transition:transform .3s var(--ease)}
+.nav-enquire:hover .arrow{transform:translateX(4px)}
+.nav-enquire:hover{background:rgba(232,220,196,0.06)}
+.nav-cart-link{position:relative}
+.cart-badge{position:absolute;top:-8px;right:-12px;min-width:16px;height:16px;border-radius:50%;background:var(--amber);color:var(--ink);font-family:var(--sans);font-size:9px;font-weight:600;display:none;align-items:center;justify-content:center;padding:0 4px}
+
+/* GF */
+.gf{position:relative;isolation:isolate}
+.gf::after{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:0.55;background-image:radial-gradient(1.5px 1.5px at 8% 15%,rgba(184,115,51,0.35),transparent),radial-gradient(1px 1px at 22% 48%,rgba(212,162,84,0.25),transparent),radial-gradient(2px 1px at 38% 78%,rgba(184,115,51,0.2),transparent),radial-gradient(1px 1.5px at 55% 22%,rgba(212,162,84,0.3),transparent),radial-gradient(1.5px 1px at 72% 58%,rgba(184,115,51,0.25),transparent),radial-gradient(1px 1px at 85% 82%,rgba(212,162,84,0.2),transparent),radial-gradient(1px 2px at 15% 92%,rgba(184,115,51,0.15),transparent),radial-gradient(2px 1px at 92% 35%,rgba(212,162,84,0.25),transparent)}
+
+/* CRUMB */
+.crumb{margin-top:60px;padding:1rem 2.5rem;border-bottom:0.5px solid var(--stroke);display:flex;justify-content:space-between;align-items:center}
+.crumb a{font-family:var(--sans);font-size:10.5px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .3s}
+.crumb a:hover{color:var(--amber)}
+
+/* HERO */
+.piece-hero{min-height:70vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:6rem 2.5rem;position:relative;overflow:hidden}
+.piece-hero-bg{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center;filter:brightness(0.45) contrast(1.05)}
+.piece-hero>*{position:relative;z-index:1}
+.piece-super{font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:0.32em;text-transform:uppercase;color:var(--amber);margin-bottom:2rem}
+.piece-hero h1{font-family:var(--serif);font-size:clamp(56px,8vw,120px);font-weight:300;line-height:0.95;letter-spacing:-0.025em;color:var(--bone);font-variation-settings:'opsz' 144,'SOFT' 0;margin-bottom:1rem}
+.piece-hero h1 em{font-style:italic}
+.piece-sub{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2vw,26px);line-height:1.4;color:rgba(232,220,196,0.85);font-weight:300;font-variation-settings:'opsz' 36,'SOFT' 80;max-width:600px;margin-bottom:3rem}
+.piece-meta{border-top:0.5px solid var(--stroke);padding-top:1.25rem;font-family:var(--mono);font-size:12px;font-weight:300;letter-spacing:0.08em;color:var(--muted);display:flex;gap:1.5rem;flex-wrap:wrap}
+.piece-meta .sep{color:var(--amber);font-size:10px}
+
+/* BODY */
+.piece-body{padding:5rem 2.5rem}
+.piece-body-inner{display:grid;grid-template-columns:1fr 2fr;gap:5rem;max-width:1200px;margin:0 auto;align-items:start}
+.meta-card{border:0.5px solid var(--stroke)}
+.mc-price{padding:2rem;border-bottom:0.5px solid var(--stroke)}
+.mc-price-label{display:block;font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem}
+.mc-price-val{font-family:var(--mono);font-size:22px;font-weight:300;color:var(--bone)}
+.mc-price-ed{display:block;font-family:var(--serif);font-style:italic;font-size:13px;color:var(--muted);margin-top:0.5rem;font-variation-settings:'opsz' 18}
+.mc-row{display:flex;justify-content:space-between;align-items:baseline;padding:0.875rem 2rem;border-bottom:0.5px solid var(--stroke)}
+.mc-row:last-child{border-bottom:none}
+.mc-label{font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted)}
+.mc-val{font-family:var(--mono);font-size:13px;font-weight:300;color:var(--bone);text-align:right;max-width:55%}
+.mc-cta{display:block;padding:1.25rem 2rem;text-align:center;background:var(--amber);color:var(--ink);font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;transition:background .4s var(--ease);cursor:pointer;border:none;width:100%}
+.mc-cta:hover{background:var(--amber-bright)}
+.mc-cta-outline{display:block;padding:1.25rem 2rem;text-align:center;background:none;color:var(--amber);font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;border:1px solid var(--amber);transition:all .4s var(--ease);cursor:pointer;width:100%;margin-top:-1px}
+.mc-cta-outline:hover{background:rgba(184,115,51,0.08);color:var(--bone)}
+.mc-reserved{display:block;padding:1.25rem 2rem;text-align:center;font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:0.35em;text-transform:uppercase;color:var(--amber);border-top:0.5px solid var(--stroke)}
+.added-msg{display:none;padding:0.75rem 2rem;text-align:center;font-family:var(--serif);font-style:italic;font-size:13px;color:var(--amber);font-variation-settings:'opsz' 18}
+.added-msg a{color:var(--amber);text-decoration:underline;text-underline-offset:3px}
+.editorial p{font-family:var(--serif);font-size:18px;font-weight:400;line-height:1.65;color:rgba(232,220,196,0.88);margin-bottom:1.5rem;font-variation-settings:'opsz' 18,'SOFT' 50}
+.editorial blockquote{font-family:var(--serif);font-style:italic;font-size:clamp(22px,2.5vw,28px);line-height:1.4;color:var(--bone);padding-left:2rem;border-left:1px solid var(--amber);margin:2.5rem 0;font-variation-settings:'opsz' 36,'SOFT' 50}
+
+/* PHOTOS */
+.photos{padding:0 2.5rem 5rem;border-top:0.5px solid var(--stroke)}
+.photos-label{max-width:1440px;margin:0 auto;padding:1rem 0;font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--amber);margin-bottom:2rem}
+.p-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:90px;gap:1.25rem;max-width:1440px;margin:0 auto;grid-auto-flow:dense}
+.g-tile{position:relative;overflow:hidden;cursor:pointer}
+.g-tile img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(10%) brightness(0.75) contrast(1.08);transition:all 1.2s cubic-bezier(0.22,1,0.36,1)}
+.g-tile:hover img{filter:grayscale(0%) brightness(1) contrast(1.08);transform:scale(1.04)}
+.g-caption{position:absolute;bottom:0;left:0;right:0;padding:3rem 1.25rem 1rem;background:linear-gradient(transparent,rgba(10,9,8,0.85));font-family:var(--sans);font-size:10.5px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:var(--bone);transform:translateY(100%);transition:transform .6s var(--ease)}
+.g-tile:hover .g-caption{transform:translateY(0)}
+
+/* RELATED */
+.related-section{border-top:0.5px solid var(--stroke);padding:4rem 2.5rem;max-width:1440px;margin:0 auto}
+.related-label{font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--amber);margin-bottom:2rem;text-align:center}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.related-card{cursor:pointer;text-decoration:none;color:var(--bone);display:block;text-align:center}
+.related-card img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:0;transition:transform .6s var(--ease);filter:grayscale(10%) brightness(0.75)}
+.related-card:hover img{transform:scale(1.04);filter:none}
+.related-card span{display:block;margin-top:0.75rem;font-family:var(--serif);font-size:18px;font-weight:300;font-variation-settings:'opsz' 36,'SOFT' 0}
+
+/* CORRESPONDENCE */
+.corr{padding:6rem 2.5rem;text-align:center;border-top:0.5px solid var(--stroke)}
+.corr-inner{max-width:680px;margin:0 auto}
+.super-label{display:block;font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:0.32em;text-transform:uppercase;color:var(--muted);margin-bottom:2.5rem}
+.corr-inner h3{font-family:var(--serif);font-size:clamp(36px,5vw,56px);font-weight:300;line-height:1.1;color:var(--bone);margin-bottom:1.5rem;font-variation-settings:'opsz' 144,'SOFT' 0}
+.corr-inner h3 em{font-style:italic}
+.corr-inner>p{font-family:var(--serif);font-size:17px;font-weight:400;line-height:1.55;color:rgba(232,220,196,0.5);margin-bottom:3rem;font-variation-settings:'opsz' 18,'SOFT' 50}
+.corr-ctas{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:1rem 2rem;font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:all .4s var(--ease)}
+.btn .arrow{transition:transform .4s var(--ease)}
+.btn:hover .arrow{transform:translateX(6px)}
+.btn-amber{background:var(--amber);color:var(--ink);border:1px solid var(--amber)}
+.btn-amber:hover{background:var(--amber-bright);border-color:var(--amber-bright)}
+.btn-outline{background:transparent;color:var(--bone);border:1px solid rgba(232,220,196,0.3)}
+.btn-outline:hover{background:var(--bone);color:var(--ink);border-color:var(--bone)}
+
+/* LIGHTBOX */
+.lb{position:fixed;inset:0;z-index:10000;background:rgba(10,9,8,0.96);display:flex;align-items:center;justify-content:center;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .3s ease}
+.lb.open{opacity:1;pointer-events:all}
+.lb-img{max-width:90vw;max-height:85vh;object-fit:contain;display:block}
+.lb-close{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;color:var(--bone);font-size:1.5rem;cursor:pointer;transition:color .3s;padding:0.5rem}
+.lb-close:hover{color:var(--amber)}
+.lb-prev,.lb-next{position:absolute;top:50%;transform:translateY(-50%);background:none;border:1px solid rgba(232,220,196,0.15);color:var(--bone);font-size:1.5rem;width:48px;height:48px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s ease}
+.lb-prev{left:1.5rem}.lb-next{right:1.5rem}
+.lb-prev:hover,.lb-next:hover{color:var(--amber);border-color:var(--amber)}
+.lb-counter{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:0.15em;color:var(--muted)}
+
+/* FOOTER */
+.footer{background:var(--ink);border-top:0.5px solid var(--stroke);padding:5rem 2.5rem 0}
+.footer-inner{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem;max-width:1440px;margin:0 auto;padding-bottom:4rem}
+.footer-logo{font-family:var(--serif);font-size:40px;font-weight:300;color:var(--bone);margin-bottom:1rem;display:block;font-variation-settings:'opsz' 72,'SOFT' 0}
+.footer-tagline{font-family:var(--serif);font-style:italic;font-size:15px;line-height:1.55;color:rgba(232,220,196,0.55);max-width:320px;font-variation-settings:'opsz' 18,'SOFT' 50}
+.footer-col h5{font-family:var(--sans);font-size:10.5px;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);margin-bottom:1.25rem}
+.footer-col a{display:block;font-family:var(--sans);font-size:13px;font-weight:400;color:rgba(232,220,196,0.5);text-decoration:none;margin-bottom:0.75rem;transition:color .3s ease}
+.footer-col a:hover{color:var(--amber)}
+.footer-bottom{max-width:1440px;margin:0 auto;padding:1.5rem 0;border-top:0.5px solid var(--stroke);display:flex;justify-content:space-between;align-items:center}
+.footer-bottom span{font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:0.06em;color:var(--muted)}
+.footer-bottom .motto{font-family:var(--serif);font-style:italic;font-size:13px;color:rgba(232,220,196,0.6);font-variation-settings:'opsz' 18}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
+.reveal.revealed{opacity:1;transform:translateY(0)}
+
+/* MOBILE */
+.m-hamburger{display:none}
+.m-overlay{display:none}
+@media(max-width:900px){
+  .nav-left,.nav-right{display:none}.nav{justify-content:space-between}
+  .m-hamburger{display:flex !important;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;padding:10px;background:none;border:none;cursor:pointer}
+  .m-hamburger span{display:block;width:100%;height:2px;background:var(--bone)}
+  .m-overlay{display:flex !important;position:fixed;inset:0;z-index:9999;background:var(--ink);flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s ease}
+  .m-overlay.open{opacity:1;pointer-events:all;transition-duration:.3s}
+  .m-overlay:not(.open){transition-duration:.2s}
+  .m-overlay-close{position:absolute;top:1rem;right:1.5rem;background:none;border:none;color:var(--bone);font-size:32px;width:44px;height:44px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .m-overlay-link{font-family:var(--serif);font-style:italic;font-size:clamp(36px,8vw,56px);color:var(--bone);text-decoration:none;display:block;padding:0.75rem 0;font-variation-settings:'opsz' 72,'SOFT' 50;transition:color .3s}
+  .m-overlay-link:hover{color:var(--amber)}
+  .m-overlay-footer{position:absolute;bottom:2rem;font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:0.32em;text-transform:uppercase;color:var(--muted)}
+  .crumb{padding:0.75rem 1.5rem}
+  .piece-hero{padding:4rem 1.5rem;min-height:60vh}.piece-hero h1{font-size:clamp(40px,12vw,72px)}
+  .piece-meta{flex-direction:column;gap:0.5rem}
+  .piece-body{padding:3rem 1.5rem}.piece-body-inner{grid-template-columns:1fr;gap:3rem}
+  .photos{padding:0 1.5rem 3rem}
+  .p-grid{grid-template-columns:repeat(6,1fr);grid-auto-rows:80px;gap:0.75rem}
+  .p-grid .g-tile{grid-column:span 3 !important;grid-row:span 4 !important}
+  .related-section{padding:3rem 1.5rem}.related-grid{grid-template-columns:repeat(3,1fr);gap:1rem}
+  .corr{padding:4rem 1.5rem}.corr-ctas{flex-direction:column;align-items:center}
+  .footer{padding:3rem 1.5rem 0}.footer-inner{grid-template-columns:1fr;text-align:center}.footer-tagline{margin:0 auto}
+  .footer-bottom{flex-direction:column;gap:0.5rem;text-align:center;padding:1.25rem 0}
+  .lb-prev{left:0.5rem}.lb-next{right:0.5rem}.lb-prev,.lb-next{width:36px;height:36px;font-size:1.2rem}
+}
+</style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="nav">
-  <a href="/" class="nav-logo">PHAORA</a>
-  <div class="nav-links">
-    <a href="/sculpture/">Pieces</a>
-    <a href="/hardscape-gallery.html">Hardscape</a>
-    <a href="/contact.html">Contact</a>
-    <a href="/sculpture/cart.html" class="nav-cart">
-      <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
-      <span class="cart-badge">0</span>
-    </a>
-  </div>
-</nav>
+<nav class="nav"><div class="nav-left"><a href="/hardscape-gallery.html">Hardscape</a><a href="/sculptures.html">Sculpture</a><a href="/gallery.html">Gallery</a><a href="/agents.html">Agents</a></div><a href="/" class="nav-logo">PHAÖRA</a><div class="nav-right"><a href="/#studio">Studio</a><a href="/contact.html">Contact</a><a href="/sculpture/cart.html" class="nav-cart-link">Cart <span class="cart-badge">0</span></a><a href="/#invitation" class="nav-enquire">Enquire <span class="arrow">&rarr;</span></a></div><button class="m-hamburger" id="m-hamburger" aria-label="Menu"><span></span><span></span><span></span></button></nav>
 
-<!-- HERO -->
-<div class="piece-hero" id="pieceHero"></div>
+<div class="crumb"><a href="/sculpture/">&larr; Back to the collection</a></div>
 
-<!-- HEADER -->
-<div class="piece-header" id="pieceHeader"></div>
+<section class="piece-hero gf" id="pieceHero"></section>
 
-<!-- GALLERY -->
-<div class="piece-gallery" id="pieceGallery"></div>
+<section class="piece-body reveal" id="pieceBody"></section>
 
-<!-- SPECS -->
-<div class="piece-specs" id="pieceSpecs" style="display:none"></div>
+<section class="photos reveal" id="photosSection" style="display:none"></section>
 
-<!-- BUY -->
-<div class="piece-buy" id="pieceBuy"></div>
-
-<!-- PROVENANCE -->
-<div class="provenance">
-  <p>Hand-carved in our atelier. Crystal bases sourced personally from Minas Gerais and Rio Grande do Sul, Brazil. Each piece is a single original &mdash; the mold does not exist.</p>
-</div>
-
-<!-- RELATED -->
-<div class="related">
-  <h3>From the Collection</h3>
+<div class="related-section" id="relatedSection">
+  <div class="related-label">From the collection</div>
   <div class="related-grid" id="relatedGrid"></div>
 </div>
 
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox">
-  <button class="lightbox-close" aria-label="Close">&times;</button>
-  <button class="lightbox-prev" aria-label="Previous">&lsaquo;</button>
-  <img src="" alt="">
-  <button class="lightbox-next" aria-label="Next">&rsaquo;</button>
-</div>
+<section class="corr gf reveal" id="corrSection"></section>
 
-<!-- FOOTER -->
-<footer class="site-footer">
-  <p>PHAORA &mdash; Boca Raton, Florida</p>
-</footer>
+<footer class="footer"><div class="footer-inner"><div><span class="footer-logo">PHAÖRA</span><p class="footer-tagline">Hardscape and crystal for the estates that demand permanence.</p></div><div class="footer-col"><h5>The House</h5><a href="/">About</a><a href="/#studio">Studio</a><a href="#">Press</a><a href="#">Journal</a></div><div class="footer-col"><h5>Divisions</h5><a href="/hardscape-gallery.html">Hardscape</a><a href="/sculptures.html">Sculpture</a><a href="/gallery.html">Gallery</a><a href="/sculptures.html">Pieces</a></div><div class="footer-col"><h5>Connect</h5><a href="/contact.html">Contact</a><a href="/agents.html">Agents</a><a href="#">Instagram</a><a href="mailto:david@phaora.com">Email</a></div></div><div class="footer-bottom"><span>Phaöra &middot; MMXXVI</span><span class="motto">Built on standards. Not inherited. Decided.</span><span>Boca Raton &middot; All rights reserved</span></div></footer>
+
+<div class="lb" id="lb"><button class="lb-close" id="lb-close">&#x2715;</button><button class="lb-prev" id="lb-prev">&#x2039;</button><img class="lb-img" id="lb-img" src="" alt=""><button class="lb-next" id="lb-next">&#x203A;</button><span class="lb-counter" id="lb-counter"></span></div>
+
+<div class="m-overlay" id="m-overlay">
+<button class="m-overlay-close" id="m-overlay-close">&#x2715;</button>
+<a href="/hardscape-gallery.html" class="m-overlay-link">Hardscape</a>
+<a href="/sculptures.html" class="m-overlay-link">Sculpture</a>
+<a href="/gallery.html" class="m-overlay-link">Gallery</a>
+<a href="/agents.html" class="m-overlay-link">Agents</a>
+<a href="/#studio" class="m-overlay-link">Studio</a>
+<a href="/contact.html" class="m-overlay-link">Contact</a>
+<a href="/sculpture/cart.html" class="m-overlay-link">Cart</a>
+<a href="/#invitation" class="m-overlay-link">Enquire</a>
+<span class="m-overlay-footer">MMXXVI &middot; Boca Raton</span>
+</div>
 
 <script src="/sculpture/cart.js"></script>
 <script>
 (function(){
-  var slug = new URLSearchParams(window.location.search).get('slug');
-  if(!slug){ window.location.href = '/sculpture/'; return; }
+  /* Hamburger */
+  var ham=document.getElementById('m-hamburger'),ov=document.getElementById('m-overlay'),cl=document.getElementById('m-overlay-close');
+  function openM(){ov.classList.add('open');document.body.style.overflow='hidden'}
+  function closeM(){ov.classList.remove('open');document.body.style.overflow=''}
+  ham.addEventListener('click',openM);cl.addEventListener('click',closeM);
+  ov.addEventListener('click',function(e){if(e.target===ov)closeM()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('open'))closeM()});
 
-  var catalog, piece;
+  /* Scroll reveal */
+  var reveals=document.querySelectorAll('.reveal');
+  var rObs=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){en.target.classList.add('revealed');rObs.unobserve(en.target)}})},{threshold:0.1});
+  reveals.forEach(function(el){rObs.observe(el)});
 
-  fetch('/assets/sculptures/catalog.json')
-    .then(function(r){ return r.json(); })
-    .then(function(data){
-      catalog = data.pieces;
-      piece = catalog.find(function(p){ return p.slug === slug; });
-      if(!piece){ window.location.href = '/sculpture/'; return; }
-      document.title = 'PHAORA — ' + piece.name;
-      renderHero();
-      renderHeader();
-      renderGallery();
-      renderSpecs();
-      renderBuy();
-      renderRelated();
-    });
+  /* Slug */
+  var slug=new URLSearchParams(window.location.search).get('slug');
+  if(!slug){window.location.href='/sculpture/';return}
 
-  /* ── Hero ── */
-  function renderHero(){
-    var el = document.getElementById('pieceHero');
-    var img = document.createElement('img');
-    img.src = '/assets/sculptures/' + slug + '/00-hero.jpg';
-    img.alt = piece.name;
-    el.appendChild(img);
+  var catalog,piece;
+  fetch('/assets/sculptures/catalog.json').then(function(r){return r.json()}).then(function(data){
+    catalog=data.pieces;
+    piece=catalog.find(function(p){return p.slug===slug});
+    if(!piece){window.location.href='/sculpture/';return}
+    document.title='PHAÖRA — '+piece.name+' · By appointment';
+    buildHero();buildBody();buildPhotos();buildRelated();buildCorr();
+  });
+
+  function buildHero(){
+    var el=document.getElementById('pieceHero');
+    el.innerHTML='<div class="piece-hero-bg" style="background-image:url(/assets/sculptures/'+slug+'/00-hero.jpg)"></div>'+
+      '<div class="piece-super">Piece</div>'+
+      '<h1>'+piece.name+'</h1>'+
+      '<p class="piece-sub">Crystal sculpture &middot; Minas Gerais, Brazil</p>'+
+      '<div class="piece-meta"><span>Edition &middot; One of one</span><span class="sep">&#x25C6;</span><span>Origin &middot; Minas Gerais</span><span class="sep">&#x25C6;</span><span>By appointment</span></div>';
   }
 
-  /* ── Header ── */
-  function renderHeader(){
-    var el = document.getElementById('pieceHeader');
-    var h1 = document.createElement('h1');
-    h1.textContent = piece.name;
-    el.appendChild(h1);
-
-    var metaParts = [];
-    if(piece.species) metaParts.push(piece.species);
-    if(piece.base_material) metaParts.push(piece.base_material);
-    if(metaParts.length){
-      var meta = document.createElement('div');
-      meta.className = 'piece-meta';
-      meta.textContent = metaParts.join(' \u00b7 ');
-      el.appendChild(meta);
+  function buildBody(){
+    var el=document.getElementById('pieceBody');
+    var priceHtml;
+    if(piece.is_sold){
+      priceHtml='<div class="mc-price"><span class="mc-price-label">Status</span><div class="mc-price-val" style="color:var(--amber)">Reserved</div><span class="mc-price-ed">One of one</span></div>';
+    }else if(piece.price_usd){
+      priceHtml='<div class="mc-price"><span class="mc-price-label">Price</span><div class="mc-price-val">USD '+piece.price_usd.toLocaleString('en-US')+'</div><span class="mc-price-ed">One of one</span></div>';
+    }else{
+      priceHtml='<div class="mc-price"><span class="mc-price-label">Price</span><div class="mc-price-val">By appointment</div><span class="mc-price-ed">One of one</span></div>';
     }
 
-    if(piece.description){
-      var desc = document.createElement('p');
-      desc.className = 'piece-desc';
-      desc.textContent = piece.description;
-      el.appendChild(desc);
+    var rows='';
+    if(piece.species)rows+='<div class="mc-row"><span class="mc-label">Species</span><span class="mc-val">'+piece.species+'</span></div>';
+    if(piece.base_material)rows+='<div class="mc-row"><span class="mc-label">Base</span><span class="mc-val">'+piece.base_material+'</span></div>';
+    rows+='<div class="mc-row"><span class="mc-label">Origin</span><span class="mc-val">Minas Gerais, Brazil</span></div>';
+    rows+='<div class="mc-row"><span class="mc-label">Edition</span><span class="mc-val">One of one</span></div>';
+    rows+='<div class="mc-row"><span class="mc-label">Signed</span><span class="mc-val">David Machado Vaz</span></div>';
+    var specs=piece.specs||{};
+    if(specs.total_height_inches)rows+='<div class="mc-row"><span class="mc-label">Height</span><span class="mc-val">'+specs.total_height_inches+'"</span></div>';
+    if(specs.weight_lbs_total)rows+='<div class="mc-row"><span class="mc-label">Weight</span><span class="mc-val">'+specs.weight_lbs_total+' lbs</span></div>';
+    if(specs.finish)rows+='<div class="mc-row"><span class="mc-label">Finish</span><span class="mc-val">'+specs.finish+'</span></div>';
+
+    var ctaHtml;
+    if(piece.is_sold){
+      ctaHtml='<div class="mc-reserved">Reserved</div><a href="mailto:david@phaora.com?subject='+encodeURIComponent('Commission: '+piece.name)+'" class="mc-cta-outline">Commission a similar piece</a>';
+    }else if(piece.price_usd){
+      ctaHtml='<button class="mc-cta" id="addCartBtn">Add to cart</button><div class="added-msg" id="addedMsg">Added &mdash; <a href="/sculpture/cart.html">view cart</a></div>';
+    }else{
+      ctaHtml='<a href="mailto:david@phaora.com?subject='+encodeURIComponent('Enquiry: '+piece.name)+'" class="mc-cta">Inquire about this piece</a>';
+    }
+
+    var descHtml=piece.description?'<p>'+piece.description+'</p>':'<p style="font-family:var(--serif);font-style:italic;font-size:16px;color:rgba(232,220,196,0.6);font-variation-settings:\'opsz\' 18">Full piece narrative forthcoming. By appointment.</p>';
+
+    var provenanceHtml='<blockquote>Hand-carved in our atelier. Crystal bases sourced personally from Minas Gerais and Rio Grande do Sul, Brazil. Each piece is a single original — the mold does not exist.</blockquote>';
+
+    el.innerHTML='<div class="piece-body-inner"><div class="meta-card">'+priceHtml+rows+ctaHtml+'</div><div class="editorial">'+descHtml+provenanceHtml+'</div></div>';
+
+    /* Cart button */
+    var btn=document.getElementById('addCartBtn');
+    if(btn){
+      var cart=window.PhaoraCart.getCart();
+      for(var i=0;i<cart.length;i++){
+        if(cart[i].slug===slug){
+          btn.textContent='In cart';btn.style.opacity='0.5';btn.style.pointerEvents='none';
+          document.getElementById('addedMsg').style.display='block';break;
+        }
+      }
+      btn.addEventListener('click',function(){
+        var added=window.PhaoraCart.addToCart(slug,piece.name,piece.price_usd,piece.stripe_price_id);
+        if(added){document.getElementById('addedMsg').style.display='block';btn.textContent='In cart';btn.style.opacity='0.5';btn.style.pointerEvents='none'}
+      });
     }
   }
 
-  /* ── Gallery ── */
-  var galleryImages = [];
-  var currentLightboxIdx = 0;
+  /* Photos + Lightbox */
+  var galleryTiles=[];
+  function buildPhotos(){
+    var section=document.getElementById('photosSection');
+    var loaded=0;
+    var gridHtml='<div class="p-grid" id="pGrid"></div>';
+    section.innerHTML='<div class="photos-label" id="photosLabel"></div>'+gridHtml;
+    var grid=document.getElementById('pGrid');
+    var layouts=[[8,5],[4,5],[5,4],[4,4],[3,4],[12,3],[6,4],[6,4],[4,3],[4,3],[4,3]];
 
-  function renderGallery(){
-    var el = document.getElementById('pieceGallery');
-    /* Try loading 01-12 */
-    for(var i=1;i<=12;i++){
+    for(var i=0;i<=11;i++){
       (function(idx){
-        var fname = (idx<10?'0':'')+idx+'.jpg';
-        var img = document.createElement('img');
-        img.src = '/assets/sculptures/' + slug + '/' + fname;
-        img.alt = piece.name + ' — view ' + idx;
-        img.loading = 'lazy';
-        img.onerror = function(){ this.remove(); };
-        img.onload = function(){
-          galleryImages.push(this);
-          this.dataset.galleryIdx = galleryImages.length - 1;
+        var fname=(idx<10?'0':'')+idx+'.jpg';
+        var img=document.createElement('img');
+        img.src='/assets/sculptures/'+slug+'/'+fname;
+        img.alt=piece.name+' — view '+(idx+1);
+        img.loading=idx===0?'eager':'lazy';
+        img.onload=function(){
+          loaded++;
+          document.getElementById('photosLabel').textContent=loaded+' photographs &middot; '+piece.name;
+          section.style.display='';
         };
-        img.addEventListener('click', function(){
-          openLightbox(parseInt(this.dataset.galleryIdx)||0);
-        });
-        el.appendChild(img);
+        img.onerror=function(){this.parentElement.remove()};
+        var lay=layouts[idx]||[4,3];
+        var tile=document.createElement('div');
+        tile.className='g-tile';
+        tile.style.cssText='grid-column:span '+lay[0]+';grid-row:span '+lay[1];
+        tile.setAttribute('data-cap',piece.name+' · Plate '+(idx+1));
+        var cap=document.createElement('div');
+        cap.className='g-caption';cap.textContent=piece.name+' · Plate '+(idx+1);
+        tile.appendChild(img);tile.appendChild(cap);
+        tile.addEventListener('click',function(){openLb(galleryTiles.indexOf(tile))});
+        grid.appendChild(tile);
+        galleryTiles.push(tile);
       })(i);
     }
   }
 
-  /* ── Specs ── */
-  function renderSpecs(){
-    var el = document.getElementById('pieceSpecs');
-    var specs = piece.specs || {};
-    var rows = [];
+  /* Lightbox */
+  var lb=document.getElementById('lb'),lbImg=document.getElementById('lb-img'),lbCounter=document.getElementById('lb-counter');
+  var lbIdx=0;
+  function openLb(i){lbIdx=i;showLb();lb.classList.add('open');document.body.style.overflow='hidden'}
+  function closeLb(){lb.classList.remove('open');document.body.style.overflow=''}
+  function showLb(){var t=galleryTiles[lbIdx];if(!t)return;lbImg.src=t.querySelector('img').src;lbCounter.textContent=(lbIdx+1)+' / '+galleryTiles.length}
+  document.getElementById('lb-close').addEventListener('click',closeLb);
+  document.getElementById('lb-prev').addEventListener('click',function(){lbIdx=(lbIdx-1+galleryTiles.length)%galleryTiles.length;showLb()});
+  document.getElementById('lb-next').addEventListener('click',function(){lbIdx=(lbIdx+1)%galleryTiles.length;showLb()});
+  lb.addEventListener('click',function(e){if(e.target===lb)closeLb()});
+  document.addEventListener('keydown',function(e){if(!lb.classList.contains('open'))return;if(e.key==='Escape')closeLb();else if(e.key==='ArrowLeft'){lbIdx=(lbIdx-1+galleryTiles.length)%galleryTiles.length;showLb()}else if(e.key==='ArrowRight'){lbIdx=(lbIdx+1)%galleryTiles.length;showLb()}});
+  var tx=0;lb.addEventListener('touchstart',function(e){tx=e.changedTouches[0].screenX});
+  lb.addEventListener('touchend',function(e){var d=e.changedTouches[0].screenX-tx;if(Math.abs(d)<40)return;lbIdx=d>0?(lbIdx-1+galleryTiles.length)%galleryTiles.length:(lbIdx+1)%galleryTiles.length;showLb()});
 
-    if(specs.total_height_inches)
-      rows.push(['Height', specs.total_height_inches + '"']);
-    if(specs.weight_lbs_total)
-      rows.push(['Weight', specs.weight_lbs_total + ' lbs']);
-    if(piece.carve_hours)
-      rows.push(['Carve Time', piece.carve_hours + ' hours']);
-    if(piece.wingspan_inches)
-      rows.push(['Wingspan', piece.wingspan_inches + '"']);
-    if(piece.lead_time_weeks && piece.lead_time_weeks[0])
-      rows.push(['Lead Time', piece.lead_time_weeks[0] + '–' + piece.lead_time_weeks[1] + ' weeks']);
-    if(specs.finish)
-      rows.push(['Finish', specs.finish]);
-
-    if(rows.length === 0) return;
-    el.style.display = 'block';
-
-    rows.forEach(function(r){
-      var row = document.createElement('div');
-      row.className = 'spec-row';
-      row.innerHTML = '<span class="spec-label">' + r[0] + '</span><span class="spec-value">' + r[1] + '</span>';
-      el.appendChild(row);
-    });
-  }
-
-  /* ── Buy ── */
-  function renderBuy(){
-    var el = document.getElementById('pieceBuy');
-
-    if(piece.is_sold){
-      el.innerHTML =
-        '<div class="piece-reserved">RESERVED</div>' +
-        '<div class="piece-reserved"><a href="mailto:david@phaora.com?subject=' +
-        encodeURIComponent('Commission: ' + piece.name) +
-        '">Inquire about commissioning a similar piece</a></div>';
-      return;
-    }
-
-    if(!piece.price_usd){
-      el.innerHTML =
-        '<a href="mailto:david@phaora.com?subject=' +
-        encodeURIComponent('Inquiry: ' + piece.name) +
-        '" class="btn-ghost">INQUIRE</a>';
-      return;
-    }
-
-    var priceStr = '$' + piece.price_usd.toLocaleString('en-US');
-    el.innerHTML =
-      '<div class="piece-price-display">' + priceStr + '</div>' +
-      '<button class="btn-ghost" id="addCartBtn">ADD TO CART</button>' +
-      '<div class="added-msg" id="addedMsg">Added &mdash; <a href="/sculpture/cart.html">view cart &#8599;</a></div>';
-
-    document.getElementById('addCartBtn').addEventListener('click', function(){
-      var added = window.PhaoraCart.addToCart(
-        piece.slug, piece.name, piece.price_usd, piece.stripe_price_id
-      );
-      if(added){
-        document.getElementById('addedMsg').style.display = 'block';
-        this.textContent = 'IN CART';
-        this.style.opacity = '0.5';
-        this.style.pointerEvents = 'none';
-      }
-    });
-
-    /* If already in cart, reflect state */
-    var cart = window.PhaoraCart.getCart();
-    for(var i=0;i<cart.length;i++){
-      if(cart[i].slug === piece.slug){
-        document.getElementById('addCartBtn').textContent = 'IN CART';
-        document.getElementById('addCartBtn').style.opacity = '0.5';
-        document.getElementById('addCartBtn').style.pointerEvents = 'none';
-        document.getElementById('addedMsg').style.display = 'block';
-        break;
-      }
-    }
-  }
-
-  /* ── Related ── */
-  function renderRelated(){
-    var el = document.getElementById('relatedGrid');
-    var others = catalog.filter(function(p){ return p.slug !== slug; });
-    /* Featured first, then shuffle */
-    others.sort(function(a,b){
-      if(a.is_featured && !b.is_featured) return -1;
-      if(!a.is_featured && b.is_featured) return 1;
-      return Math.random() - 0.5;
-    });
-    var picks = others.slice(0,3);
-
-    picks.forEach(function(p){
-      var card = document.createElement('div');
-      card.className = 'related-card';
-      card.innerHTML =
-        '<img src="/assets/sculptures/' + p.slug + '/00-hero.jpg" alt="' + p.name + '" loading="lazy">' +
-        '<span>' + p.name + '</span>';
-      card.addEventListener('click', function(){
-        window.location.href = '/sculpture/piece.html?slug=' + p.slug;
-      });
+  function buildRelated(){
+    var el=document.getElementById('relatedGrid');
+    var others=catalog.filter(function(p){return p.slug!==slug});
+    others.sort(function(a,b){if(a.is_featured&&!b.is_featured)return -1;if(!a.is_featured&&b.is_featured)return 1;return Math.random()-0.5});
+    others.slice(0,3).forEach(function(p){
+      var card=document.createElement('a');
+      card.className='related-card';card.href='/sculpture/piece.html?slug='+p.slug;
+      card.innerHTML='<img src="/assets/sculptures/'+p.slug+'/00-hero.jpg" alt="'+p.name+'" loading="lazy"><span>'+p.name+'</span>';
       el.appendChild(card);
     });
   }
 
-  /* ── Lightbox ── */
-  var lb = document.getElementById('lightbox');
-  var lbImg = lb.querySelector('img');
-
-  function openLightbox(idx){
-    if(!galleryImages.length) return;
-    currentLightboxIdx = idx;
-    lbImg.src = galleryImages[idx].src;
-    lbImg.alt = galleryImages[idx].alt;
-    lb.classList.add('open');
-    document.body.style.overflow = 'hidden';
+  function buildCorr(){
+    var el=document.getElementById('corrSection');
+    var name=piece.name;
+    el.innerHTML='<div class="corr-inner"><span class="super-label">&mdash; Correspondence &mdash;</span><h3>Enquire about <em>'+name+'</em></h3><p>David responds personally to every enquiry within twenty-four hours. No intermediary, no obligation.</p><div class="corr-ctas"><a href="mailto:david@phaora.com?subject='+encodeURIComponent('Enquiry: '+name)+'" class="btn btn-amber">Write to the studio <span class="arrow">&rarr;</span></a><a href="/sculpture/" class="btn btn-outline">View the collection <span class="arrow">&rarr;</span></a></div></div>';
   }
-
-  function closeLightbox(){
-    lb.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  lb.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
-  lb.querySelector('.lightbox-prev').addEventListener('click', function(e){
-    e.stopPropagation();
-    currentLightboxIdx = (currentLightboxIdx - 1 + galleryImages.length) % galleryImages.length;
-    lbImg.src = galleryImages[currentLightboxIdx].src;
-  });
-  lb.querySelector('.lightbox-next').addEventListener('click', function(e){
-    e.stopPropagation();
-    currentLightboxIdx = (currentLightboxIdx + 1) % galleryImages.length;
-    lbImg.src = galleryImages[currentLightboxIdx].src;
-  });
-  lb.addEventListener('click', function(e){
-    if(e.target === lb) closeLightbox();
-  });
-
-  document.addEventListener('keydown', function(e){
-    if(!lb.classList.contains('open')) return;
-    if(e.key === 'Escape') closeLightbox();
-    if(e.key === 'ArrowLeft'){
-      currentLightboxIdx = (currentLightboxIdx - 1 + galleryImages.length) % galleryImages.length;
-      lbImg.src = galleryImages[currentLightboxIdx].src;
-    }
-    if(e.key === 'ArrowRight'){
-      currentLightboxIdx = (currentLightboxIdx + 1) % galleryImages.length;
-      lbImg.src = galleryImages[currentLightboxIdx].src;
-    }
-  });
-
-  /* Swipe support */
-  var touchStartX = 0;
-  lb.addEventListener('touchstart', function(e){ touchStartX = e.changedTouches[0].screenX; });
-  lb.addEventListener('touchend', function(e){
-    var diff = e.changedTouches[0].screenX - touchStartX;
-    if(Math.abs(diff) < 40) return;
-    if(diff > 0){
-      currentLightboxIdx = (currentLightboxIdx - 1 + galleryImages.length) % galleryImages.length;
-    } else {
-      currentLightboxIdx = (currentLightboxIdx + 1) % galleryImages.length;
-    }
-    lbImg.src = galleryImages[currentLightboxIdx].src;
-  });
 })();
 </script>
-
 </body>
 </html>
