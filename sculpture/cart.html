@@ -121,7 +121,7 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
     var el=document.getElementById('cartContent');
     var cart=window.PhaoraCart.getCart();
     if(!cart.length){
-      el.innerHTML='<div class="cart-empty"><p>No pieces selected.</p><a href="/sculpture/" class="btn btn-outline">Browse the collection <span class="arrow">&rarr;</span></a></div>';
+      el.innerHTML='<div class="cart-empty"><p>No pieces selected.</p><a href="/sculptures.html" class="btn btn-outline">Browse the collection <span class="arrow">&rarr;</span></a></div>';
       return;
     }
     var html='',subtotal=0,allStripe=true;

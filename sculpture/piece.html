@@ -164,7 +164,7 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
 
 <nav class="nav"><div class="nav-left"><a href="/hardscape-gallery.html">Hardscape</a><a href="/sculptures.html">Sculpture</a><a href="/gallery.html">Gallery</a><a href="/agents.html">Agents</a></div><a href="/" class="nav-logo">PHAÖRA</a><div class="nav-right"><a href="/#studio">Studio</a><a href="/contact.html">Contact</a><a href="/sculpture/cart.html" class="nav-cart-link">Cart <span class="cart-badge">0</span></a><a href="/#invitation" class="nav-enquire">Enquire <span class="arrow">&rarr;</span></a></div><button class="m-hamburger" id="m-hamburger" aria-label="Menu"><span></span><span></span><span></span></button></nav>
 
-<div class="crumb"><a href="/sculpture/">&larr; Back to the collection</a></div>
+<div class="crumb"><a href="/sculptures.html">&larr; Back to the collection</a></div>
 
 <section class="piece-hero gf" id="pieceHero"></section>
 
@@ -214,13 +214,13 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
 
   /* Slug */
   var slug=new URLSearchParams(window.location.search).get('slug');
-  if(!slug){window.location.href='/sculpture/';return}
+  if(!slug){window.location.href='/sculptures.html';return}
 
   var catalog,piece;
   fetch('/assets/sculptures/catalog.json').then(function(r){return r.json()}).then(function(data){
     catalog=data.pieces;
     piece=catalog.find(function(p){return p.slug===slug});
-    if(!piece){window.location.href='/sculpture/';return}
+    if(!piece){window.location.href='/sculptures.html';return}
     document.title='PHAÖRA — '+piece.name+' · By appointment';
     buildHero();buildBody();buildPhotos();buildRelated();buildCorr();
   });
@@ -355,7 +355,7 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
   function buildCorr(){
     var el=document.getElementById('corrSection');
     var name=piece.name;
-    el.innerHTML='<div class="corr-inner"><span class="super-label">&mdash; Correspondence &mdash;</span><h3>Enquire about <em>'+name+'</em></h3><p>David responds personally to every enquiry within twenty-four hours. No intermediary, no obligation.</p><div class="corr-ctas"><a href="mailto:david@phaora.com?subject='+encodeURIComponent('Enquiry: '+name)+'" class="btn btn-amber">Write to the studio <span class="arrow">&rarr;</span></a><a href="/sculpture/" class="btn btn-outline">View the collection <span class="arrow">&rarr;</span></a></div></div>';
+    el.innerHTML='<div class="corr-inner"><span class="super-label">&mdash; Correspondence &mdash;</span><h3>Enquire about <em>'+name+'</em></h3><p>David responds personally to every enquiry within twenty-four hours. No intermediary, no obligation.</p><div class="corr-ctas"><a href="mailto:david@phaora.com?subject='+encodeURIComponent('Enquiry: '+name)+'" class="btn btn-amber">Write to the studio <span class="arrow">&rarr;</span></a><a href="/sculptures.html" class="btn btn-outline">View the collection <span class="arrow">&rarr;</span></a></div></div>';
   }
 })();
 </script>
