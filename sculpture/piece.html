@@ -162,9 +162,9 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
 </head>
 <body>
 
-<nav class="nav"><div class="nav-left"><a href="/hardscape-gallery.html">Hardscape</a><a href="https://phaora.com/sculptures.html">Sculpture</a><a href="/gallery.html">Gallery</a><a href="/agents.html">Agents</a></div><a href="/" class="nav-logo">PHAÖRA</a><div class="nav-right"><a href="/#studio">Studio</a><a href="/contact.html">Contact</a><a href="/sculpture/cart.html" class="nav-cart-link">Cart <span class="cart-badge">0</span></a><a href="/#invitation" class="nav-enquire">Enquire <span class="arrow">&rarr;</span></a></div><button class="m-hamburger" id="m-hamburger" aria-label="Menu"><span></span><span></span><span></span></button></nav>
+<nav class="nav"><div class="nav-left"><a href="/hardscape-gallery.html">Hardscape</a><a href="https://phaora.com/sculptures.html?v=4">Sculpture</a><a href="/gallery.html">Gallery</a><a href="/agents.html">Agents</a></div><a href="/" class="nav-logo">PHAÖRA</a><div class="nav-right"><a href="/#studio">Studio</a><a href="/contact.html">Contact</a><a href="/sculpture/cart.html" class="nav-cart-link">Cart <span class="cart-badge">0</span></a><a href="/#invitation" class="nav-enquire">Enquire <span class="arrow">&rarr;</span></a></div><button class="m-hamburger" id="m-hamburger" aria-label="Menu"><span></span><span></span><span></span></button></nav>
 
-<div class="crumb"><a href="https://phaora.com/sculptures.html">&larr; Back to the collection</a></div>
+<div class="crumb"><a href="https://phaora.com/sculptures.html?v=4">&larr; Back to the collection</a></div>
 
 <section class="piece-hero gf" id="pieceHero"></section>
 
@@ -179,14 +179,14 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
 
 <section class="corr gf reveal" id="corrSection"></section>
 
-<footer class="footer"><div class="footer-inner"><div><span class="footer-logo">PHAÖRA</span><p class="footer-tagline">Hardscape and crystal for the estates that demand permanence.</p></div><div class="footer-col"><h5>The House</h5><a href="/">About</a><a href="/#studio">Studio</a><a href="#">Press</a><a href="#">Journal</a></div><div class="footer-col"><h5>Divisions</h5><a href="/hardscape-gallery.html">Hardscape</a><a href="https://phaora.com/sculptures.html">Sculpture</a><a href="/gallery.html">Gallery</a><a href="https://phaora.com/sculptures.html">Pieces</a></div><div class="footer-col"><h5>Connect</h5><a href="/contact.html">Contact</a><a href="/agents.html">Agents</a><a href="#">Instagram</a><a href="mailto:david@phaora.com">Email</a></div></div><div class="footer-bottom"><span>Phaöra &middot; MMXXVI</span><span class="motto">Built on standards. Not inherited. Decided.</span><span>Boca Raton &middot; All rights reserved</span></div></footer>
+<footer class="footer"><div class="footer-inner"><div><span class="footer-logo">PHAÖRA</span><p class="footer-tagline">Hardscape and crystal for the estates that demand permanence.</p></div><div class="footer-col"><h5>The House</h5><a href="/">About</a><a href="/#studio">Studio</a><a href="#">Press</a><a href="#">Journal</a></div><div class="footer-col"><h5>Divisions</h5><a href="/hardscape-gallery.html">Hardscape</a><a href="https://phaora.com/sculptures.html?v=4">Sculpture</a><a href="/gallery.html">Gallery</a><a href="https://phaora.com/sculptures.html?v=4">Pieces</a></div><div class="footer-col"><h5>Connect</h5><a href="/contact.html">Contact</a><a href="/agents.html">Agents</a><a href="#">Instagram</a><a href="mailto:david@phaora.com">Email</a></div></div><div class="footer-bottom"><span>Phaöra &middot; MMXXVI</span><span class="motto">Built on standards. Not inherited. Decided.</span><span>Boca Raton &middot; All rights reserved</span></div></footer>
 
 <div class="lb" id="lb"><button class="lb-close" id="lb-close">&#x2715;</button><button class="lb-prev" id="lb-prev">&#x2039;</button><img class="lb-img" id="lb-img" src="" alt=""><button class="lb-next" id="lb-next">&#x203A;</button><span class="lb-counter" id="lb-counter"></span></div>
 
 <div class="m-overlay" id="m-overlay">
 <button class="m-overlay-close" id="m-overlay-close">&#x2715;</button>
 <a href="/hardscape-gallery.html" class="m-overlay-link">Hardscape</a>
-<a href="https://phaora.com/sculptures.html" class="m-overlay-link">Sculpture</a>
+<a href="https://phaora.com/sculptures.html?v=4" class="m-overlay-link">Sculpture</a>
 <a href="/gallery.html" class="m-overlay-link">Gallery</a>
 <a href="/agents.html" class="m-overlay-link">Agents</a>
 <a href="/#studio" class="m-overlay-link">Studio</a>
@@ -355,7 +355,7 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
   function buildCorr(){
     var el=document.getElementById('corrSection');
     var name=piece.name;
-    el.innerHTML='<div class="corr-inner"><span class="super-label">&mdash; Correspondence &mdash;</span><h3>Enquire about <em>'+name+'</em></h3><p>David responds personally to every enquiry within twenty-four hours. No intermediary, no obligation.</p><div class="corr-ctas"><a href="mailto:david@phaora.com?subject='+encodeURIComponent('Enquiry: '+name)+'" class="btn btn-amber">Write to the studio <span class="arrow">&rarr;</span></a><a href="https://phaora.com/sculptures.html" class="btn btn-outline">View the collection <span class="arrow">&rarr;</span></a></div></div>';
+    el.innerHTML='<div class="corr-inner"><span class="super-label">&mdash; Correspondence &mdash;</span><h3>Enquire about <em>'+name+'</em></h3><p>David responds personally to every enquiry within twenty-four hours. No intermediary, no obligation.</p><div class="corr-ctas"><a href="mailto:david@phaora.com?subject='+encodeURIComponent('Enquiry: '+name)+'" class="btn btn-amber">Write to the studio <span class="arrow">&rarr;</span></a><a href="https://phaora.com/sculptures.html?v=4" class="btn btn-outline">View the collection <span class="arrow">&rarr;</span></a></div></div>';
   }
 })();
 </script>
