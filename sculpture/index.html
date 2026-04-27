@@ -288,14 +288,14 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
       plate.addEventListener('click',function(){
         if('ontouchstart' in window){
           if(expandedPlate===plate){
-            window.location.href='/sculpture/piece.html?slug='+piece.slug;
+            window.location.href='/sculptures.html';
           }else{
             if(expandedPlate)expandedPlate.classList.remove('plate-touch-expanded');
             expandedPlate=plate;
             plate.classList.add('plate-touch-expanded');
           }
         }else{
-          window.location.href='/sculpture/piece.html?slug='+piece.slug;
+          window.location.href='/sculptures.html';
         }
       });
       grid.appendChild(plate);

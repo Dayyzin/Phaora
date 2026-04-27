@@ -346,7 +346,7 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
     others.sort(function(a,b){if(a.is_featured&&!b.is_featured)return -1;if(!a.is_featured&&b.is_featured)return 1;return Math.random()-0.5});
     others.slice(0,3).forEach(function(p){
       var card=document.createElement('a');
-      card.className='related-card';card.href='/sculpture/piece.html?slug='+p.slug;
+      card.className='related-card';card.href='/sculptures.html';
       card.innerHTML='<img src="/assets/sculptures/'+p.slug+'/00-hero.jpg" alt="'+p.name+'" loading="lazy"><span>'+p.name+'</span>';
       el.appendChild(card);
     });
