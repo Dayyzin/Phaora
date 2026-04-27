@@ -1,0 +1,63 @@
+{
+  "slug": "vigil",
+  "generated": "2026-04-26",
+  "note": "This piece is a carved stone bowl/vessel (not a bird sculpture). Labels adapted to canonical set as best-fit for a non-avian form.",
+  "classifications": [
+    {
+      "original": "01-hero.jpg",
+      "new": "09-base-detail.jpg",
+      "label": "base-detail",
+      "confidence": 0.85,
+      "reasoning": "Top-down three-quarter view showing the bowl interior surface, stone texture with golden veining inclusions, close perspective emphasizing material detail"
+    },
+    {
+      "original": "02-front.jpg",
+      "new": "03-side-left.jpg",
+      "label": "side-left",
+      "confidence": 0.85,
+      "reasoning": "Profile view from the left side showing the curved exterior wall with brown veining, metal stand partially visible behind"
+    },
+    {
+      "original": "03-side-left.jpg",
+      "new": "01-hero.jpg",
+      "label": "hero",
+      "confidence": 0.95,
+      "reasoning": "Best overall composition: front view with both sides of the bowl rising symmetrically, interior visible, full metal stand shown, overhead spotlight, strong balanced framing"
+    },
+    {
+      "original": "04-side-right.jpg",
+      "new": "04-side-right.jpg",
+      "label": "side-right",
+      "confidence": 0.85,
+      "reasoning": "Profile view from the right side showing the curved exterior wall, metal stand visible, gold particle effects"
+    },
+    {
+      "original": "05-back.jpg",
+      "new": "05-back.jpg",
+      "label": "back",
+      "confidence": 0.85,
+      "reasoning": "Rear view showing the narrower back edge of the bowl with metal stand visible below, full piece on turntable"
+    },
+    {
+      "original": "06-detail-face.jpg",
+      "new": "02-front.jpg",
+      "label": "front",
+      "confidence": 0.9,
+      "reasoning": "Straight-on front view showing the open face of the bowl with interior and both sides visible, full stand and base shown"
+    },
+    {
+      "original": "07-detail-feathers.jpg",
+      "new": "08-base-stone.jpg",
+      "label": "base-stone",
+      "confidence": 0.8,
+      "reasoning": "Three-quarter view prominently featuring the aquamarine stone material, veining patterns, and translucent quality of the carved stone"
+    },
+    {
+      "original": "08-base-stone.jpg",
+      "new": "12-editorial.jpg",
+      "label": "editorial",
+      "confidence": 0.8,
+      "reasoning": "Moody three-quarter rear view with dramatic side lighting showing the exterior curvature and veining, artistic composition with gold particles"
+    }
+  ]
+}

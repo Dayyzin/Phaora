@@ -1,0 +1,16 @@
+{
+  "slug": "emissary",
+  "sequence": [
+    { "original_filename": "01-hero.jpg", "label": "hero", "confidence": 92, "reasoning": "Front view showing both white parrots on amethyst geode, full sculpture with base and cave backdrop, strongest overall composition" },
+    { "original_filename": "02-front.jpg", "label": "side-right", "confidence": 80, "reasoning": "Close-up from right side showing larger bird in profile with smaller bird behind" },
+    { "original_filename": "03-side-left.jpg", "label": "back", "confidence": 85, "reasoning": "Rear view showing both birds from behind, amethyst geode between them" },
+    { "original_filename": "04-side-right.jpg", "label": "front", "confidence": 85, "reasoning": "Front elevated angle with both birds facing viewer, amethyst and base visible" },
+    { "original_filename": "05-back.jpg", "label": "detail-claws", "confidence": 80, "reasoning": "Right-rear elevated view showing golden claws gripping amethyst crystal clearly" },
+    { "original_filename": "06-detail-face.jpg", "label": "side-left", "confidence": 80, "reasoning": "Profile from the left showing both birds in side view with amethyst and cave backdrop" },
+    { "original_filename": "07-detail-feathers.jpg", "label": "detail-feathers", "confidence": 85, "reasoning": "Rear view highlighting wing and tail feather carving detail of both birds" },
+    { "original_filename": "08-base-stone.jpg", "label": "base-stone", "confidence": 88, "reasoning": "Front view with amethyst geode base prominently featured, full sculpture visible" },
+    { "original_filename": "09-base-detail.jpg", "label": "base-detail", "confidence": 82, "reasoning": "Elevated front-left angle with amethyst crystal formations and base platform clearly visible" },
+    { "original_filename": "10-scale-context.jpg", "label": "scale-context", "confidence": 78, "reasoning": "Full sculpture with cave backdrop environment providing scale context" },
+    { "original_filename": "11-lifestyle.jpg", "label": "editorial", "confidence": 85, "reasoning": "Intimate close-up of both birds facing each other, artistic moody composition with dramatic lighting" }
+  ]
+}

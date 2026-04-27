@@ -1,0 +1,16 @@
+{
+  "slug": "diviner",
+  "sequence": [
+    { "original_filename": "01-hero.jpg", "label": "back", "confidence": 90, "reasoning": "Rear view with wings spread, showing the bird from behind on dark crystal base" },
+    { "original_filename": "02-front.jpg", "label": "detail-feathers", "confidence": 80, "reasoning": "Rear angle highlighting amethyst feather and wing texture detail" },
+    { "original_filename": "03-side-left.jpg", "label": "side-left", "confidence": 95, "reasoning": "Left profile close-up with face, eye, beak, and gold claws visible" },
+    { "original_filename": "04-side-right.jpg", "label": "hero", "confidence": 90, "reasoning": "Full sculpture visible from flattering 3/4 right angle on pink hexagonal base, strongest overall composition" },
+    { "original_filename": "05-back.jpg", "label": "side-right", "confidence": 85, "reasoning": "Right side 3/4 view showing face turned left with colorful red and teal tail feathers" },
+    { "original_filename": "06-detail-face.jpg", "label": "detail-claws", "confidence": 85, "reasoning": "Bird looking down from front angle with golden claws clearly gripping crystal" },
+    { "original_filename": "07-detail-feathers.jpg", "label": "front", "confidence": 75, "reasoning": "Close-up from above showing head and breast facing slightly right, front-ish perspective" },
+    { "original_filename": "08-base-stone.jpg", "label": "base-stone", "confidence": 90, "reasoning": "Full frontal view with large crystal/stone base dominating the lower frame" },
+    { "original_filename": "09-base-detail.jpg", "label": "base-detail", "confidence": 80, "reasoning": "Low rear angle emphasizing base texture, crystal patterns, and hexagonal pink platform" },
+    { "original_filename": "10-scale-context.jpg", "label": "editorial", "confidence": 75, "reasoning": "Tight close-up of head from right side with dramatic dark lighting, no environment context" },
+    { "original_filename": "11-lifestyle.jpg", "label": "lifestyle", "confidence": 70, "reasoning": "Right-side view with styled sparkle/dust particle effects in dark background creating moody atmosphere" }
+  ]
+}

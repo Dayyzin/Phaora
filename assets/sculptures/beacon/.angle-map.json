@@ -1,0 +1,16 @@
+{
+  "slug": "beacon",
+  "sequence": [
+    { "original_filename": "01-hero.jpg", "label": "front", "confidence": 85, "reasoning": "Front view from slightly above, eagle facing viewer with wings fully spread, gold claws visible" },
+    { "original_filename": "02-front.jpg", "label": "side-right", "confidence": 88, "reasoning": "Close-up right profile, bird facing right with wing extended, red eye and gold beak prominent" },
+    { "original_filename": "03-side-left.jpg", "label": "back", "confidence": 85, "reasoning": "Rear view with wings spread and dramatic spotlight from above, tail feathers visible" },
+    { "original_filename": "04-side-right.jpg", "label": "hero", "confidence": 92, "reasoning": "Best overall composition: front 3/4 view, wings spread wide, full body on dark base, flattering angle" },
+    { "original_filename": "05-back.jpg", "label": "side-left", "confidence": 85, "reasoning": "Left side profile with wings spread, bird facing left, full body and base visible" },
+    { "original_filename": "06-detail-face.jpg", "label": "detail-claws", "confidence": 80, "reasoning": "Left 3/4 view from below showing gold talons gripping dark stone base prominently" },
+    { "original_filename": "07-detail-feathers.jpg", "label": "editorial", "confidence": 82, "reasoning": "Dramatic rear 3/4 view with artistic top spotlight, wings spread in V-shape" },
+    { "original_filename": "08-base-stone.jpg", "label": "base-stone", "confidence": 78, "reasoning": "Elevated angle showing bird on dark stone base with green mineral inclusions, base clearly visible" },
+    { "original_filename": "09-base-detail.jpg", "label": "detail-feathers", "confidence": 85, "reasoning": "Right side close-up showing translucent rose quartz wing carving detail and feather texture" },
+    { "original_filename": "10-scale-context.jpg", "label": "base-detail", "confidence": 75, "reasoning": "Close-up showing dark stone base texture with green mineral inclusions and gold claw attachment" },
+    { "original_filename": "11-lifestyle.jpg", "label": "scale-context", "confidence": 78, "reasoning": "Overhead perspective showing full wingspan and sculpture scale from above" }
+  ]
+}

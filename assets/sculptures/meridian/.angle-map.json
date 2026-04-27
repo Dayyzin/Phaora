@@ -1,0 +1,17 @@
+{
+  "slug": "meridian",
+  "generated": "2026-04-26",
+  "mappings": [
+    { "original": "01-hero.jpg", "label": "editorial", "prefix": "12", "new": "12-editorial.jpg", "confidence": 0.85, "reasoning": "Overhead top-down view with dramatic directional lighting and long shadows, artistic composition" },
+    { "original": "02-front.jpg", "label": "hero", "prefix": "01", "new": "01-hero.jpg", "confidence": 0.90, "reasoning": "Front-left 3/4 view with both birds fully visible, one wing extended, sparkly backdrop, strongest overall composition" },
+    { "original": "03-side-left.jpg", "label": "front", "prefix": "02", "new": "02-front.jpg", "confidence": 0.85, "reasoning": "Front-right angle showing both birds straight-on, wing extended, sparkly backdrop, balanced pair composition" },
+    { "original": "04-side-right.jpg", "label": "side-right", "prefix": "04", "new": "04-side-right.jpg", "confidence": 0.85, "reasoning": "Right side profile of both birds, darker moody lighting, birds and pedestal visible from right" },
+    { "original": "05-back.jpg", "label": "back", "prefix": "05", "new": "05-back.jpg", "confidence": 0.90, "reasoning": "Overhead rear view showing backs of both birds from above, tail feathers and wings visible" },
+    { "original": "06-detail-face.jpg", "label": "detail-feathers", "prefix": "07", "new": "07-detail-feathers.jpg", "confidence": 0.85, "reasoning": "Close-up front-left view emphasizing the carved feather texture on chest and wing of the front bird" },
+    { "original": "07-detail-feathers.jpg", "label": "side-left", "prefix": "03", "new": "03-side-left.jpg", "confidence": 0.85, "reasoning": "Left side profile of both birds on pedestal, darker moody lighting, clear left-side perspective" },
+    { "original": "08-base-stone.jpg", "label": "base-stone", "prefix": "08", "new": "08-base-stone.jpg", "confidence": 0.85, "reasoning": "Back-right view clearly showing the dark stone pedestal and blue/white stone base platform beneath the birds" },
+    { "original": "09-base-detail.jpg", "label": "base-detail", "prefix": "09", "new": "09-base-detail.jpg", "confidence": 0.85, "reasoning": "High-angle front view showing the stone base platform, gold details on pedestal, and full base composition" },
+    { "original": "10-scale-context.jpg", "label": "scale-context", "prefix": "10", "new": "10-scale-context.jpg", "confidence": 0.80, "reasoning": "Left side showing full height of sculpture on surface, providing sense of scale and proportions" },
+    { "original": "11-lifestyle.jpg", "label": "lifestyle", "prefix": "11", "new": "11-lifestyle.jpg", "confidence": 0.85, "reasoning": "Clean left-side full sculpture shot with neutral background, styled product presentation" }
+  ]
+}

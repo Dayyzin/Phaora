@@ -1,0 +1,55 @@
+{
+  "slug": "oracle",
+  "generated": "2026-04-26",
+  "classifications": [
+    {
+      "original": "01-hero.jpg",
+      "new": "01-hero.jpg",
+      "label": "hero",
+      "confidence": 0.95,
+      "reasoning": "Full sculpture visible, both crystal parrots on amethyst base, dramatic lighting, strongest overall composition"
+    },
+    {
+      "original": "02-front.jpg",
+      "new": "04-side-right.jpg",
+      "label": "side-right",
+      "confidence": 0.85,
+      "reasoning": "Profile view from the right side showing both birds, right bird's wing extended outward"
+    },
+    {
+      "original": "03-side-left.jpg",
+      "new": "02-front.jpg",
+      "label": "front",
+      "confidence": 0.9,
+      "reasoning": "Close-up straight-on front view of both birds facing each other, clear frontal perspective"
+    },
+    {
+      "original": "04-side-right.jpg",
+      "new": "03-side-left.jpg",
+      "label": "side-left",
+      "confidence": 0.85,
+      "reasoning": "Profile view from the left side, bird visible from behind with wing extended to the left"
+    },
+    {
+      "original": "05-back.jpg",
+      "new": "06-detail-claws.jpg",
+      "label": "detail-claws",
+      "confidence": 0.8,
+      "reasoning": "Back-facing view but gold claws/talons are prominently visible gripping the amethyst base"
+    },
+    {
+      "original": "06-detail-face.jpg",
+      "new": "05-back.jpg",
+      "label": "back",
+      "confidence": 0.9,
+      "reasoning": "Rear view from behind and above, both birds seen from the back"
+    },
+    {
+      "original": "07-detail-feathers.jpg",
+      "new": "07-detail-feathers.jpg",
+      "label": "detail-feathers",
+      "confidence": 0.9,
+      "reasoning": "Close-up of single bird showing carved feather and wing texture detail, dramatic upward angle"
+    }
+  ]
+}

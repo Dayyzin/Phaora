@@ -1,0 +1,69 @@
+{
+  "slug": "pilgrim",
+  "generated": "2026-04-26",
+  "classifications": [
+    {
+      "original": "01-hero.jpg",
+      "new": "01-hero.jpg",
+      "label": "hero",
+      "confidence": 0.95,
+      "reasoning": "Full sculpture visible with both birds, amethyst base, disc base, gold sparkle particles — strongest overall composition"
+    },
+    {
+      "original": "02-front.jpg",
+      "new": "02-front.jpg",
+      "label": "front",
+      "confidence": 0.85,
+      "reasoning": "Close-up frontal view of both birds facing each other, large bird with wing extended, gold sparkle"
+    },
+    {
+      "original": "03-side-left.jpg",
+      "new": "07-detail-feathers.jpg",
+      "label": "detail-feathers",
+      "confidence": 0.85,
+      "reasoning": "Close-up from left side showing intricate wing and feather carving detail, both birds visible"
+    },
+    {
+      "original": "04-side-right.jpg",
+      "new": "06-detail-claws.jpg",
+      "label": "detail-claws",
+      "confidence": 0.8,
+      "reasoning": "Top-down view showing gold claws/talons gripping the amethyst stone, both birds from above"
+    },
+    {
+      "original": "05-back.jpg",
+      "new": "04-side-right.jpg",
+      "label": "side-right",
+      "confidence": 0.8,
+      "reasoning": "Full side view from the right showing amethyst egg face and both birds in profile"
+    },
+    {
+      "original": "06-detail-face.jpg",
+      "new": "05-back.jpg",
+      "label": "back",
+      "confidence": 0.85,
+      "reasoning": "Rear view showing the back of the large bird with folded wings, gold sparkle, single bird visible from behind"
+    },
+    {
+      "original": "07-detail-feathers.jpg",
+      "new": "12-editorial.jpg",
+      "label": "editorial",
+      "confidence": 0.8,
+      "reasoning": "Dramatic top-down rear view of both birds from above, moody artistic overhead angle"
+    },
+    {
+      "original": "08-base-stone.jpg",
+      "new": "08-base-stone.jpg",
+      "label": "base-stone",
+      "confidence": 0.85,
+      "reasoning": "Close-up showing amethyst crystal texture of the base prominently, both birds perched, sparkle particles"
+    },
+    {
+      "original": "09-base-detail.jpg",
+      "new": "03-side-left.jpg",
+      "label": "side-left",
+      "confidence": 0.8,
+      "reasoning": "Full side view from the left showing large bird's back/side profile, long tail feathers, disc base visible"
+    }
+  ]
+}

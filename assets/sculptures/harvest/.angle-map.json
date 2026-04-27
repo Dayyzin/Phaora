@@ -1,0 +1,83 @@
+{
+  "slug": "harvest",
+  "generated": "2026-04-26",
+  "classifications": [
+    {
+      "original": "01-hero.jpg",
+      "label": "editorial",
+      "new": "12-editorial.jpg",
+      "confidence": 0.85,
+      "reasoning": "Dramatic moody side view of two birds, partial crop with one wing extending out of frame, artistic lighting"
+    },
+    {
+      "original": "02-front.jpg",
+      "label": "detail-claws",
+      "new": "06-detail-claws.jpg",
+      "confidence": 0.85,
+      "reasoning": "Close-up showing gold claws gripping amethyst geode rim, both birds' faces visible"
+    },
+    {
+      "original": "03-side-left.jpg",
+      "label": "base-stone",
+      "new": "08-base-stone.jpg",
+      "confidence": 0.9,
+      "reasoning": "Top-down elevated view clearly showing the amethyst geode cavity and white rim of the base"
+    },
+    {
+      "original": "04-side-right.jpg",
+      "label": "side-left",
+      "new": "03-side-left.jpg",
+      "confidence": 0.85,
+      "reasoning": "Profile view from the left side, two birds interacting close, dramatic lighting from right"
+    },
+    {
+      "original": "05-back.jpg",
+      "label": "detail-feathers",
+      "new": "07-detail-feathers.jpg",
+      "confidence": 0.9,
+      "reasoning": "Very tight close-up showing intricate carved feather texture on both birds' bodies and wings"
+    },
+    {
+      "original": "06-detail-face.jpg",
+      "label": "side-right",
+      "new": "04-side-right.jpg",
+      "confidence": 0.85,
+      "reasoning": "Profile view from the right side showing two main birds and baby bird below"
+    },
+    {
+      "original": "07-detail-feathers.jpg",
+      "label": "hero",
+      "new": "01-hero.jpg",
+      "confidence": 0.95,
+      "reasoning": "Best overall shot: all 3 birds visible, full sculpture, dramatic spotlight from above, strongest composition"
+    },
+    {
+      "original": "08-base-stone.jpg",
+      "label": "front",
+      "new": "02-front.jpg",
+      "confidence": 0.9,
+      "reasoning": "Straight-on front view, left bird with wing raised, right bird folded, both facing each other across amethyst"
+    },
+    {
+      "original": "09-base-detail.jpg",
+      "label": "back",
+      "new": "05-back.jpg",
+      "confidence": 0.8,
+      "reasoning": "Top-down view from above/behind showing all 3 birds around geode, gold claws and amethyst crystals visible"
+    },
+    {
+      "original": "10-scale-context.jpg",
+      "label": "scale-context",
+      "new": "10-scale-context.jpg",
+      "confidence": 0.8,
+      "reasoning": "Close-up from right showing large bird with spread wings next to smaller bird, giving sense of relative scale"
+    },
+    {
+      "original": "11-lifestyle.jpg",
+      "label": "lifestyle",
+      "new": "11-lifestyle.jpg",
+      "confidence": 0.8,
+      "reasoning": "Elevated rear-left angle showing full piece with dramatic cast shadow on surface, staged presentation"
+    }
+  ]
+}
