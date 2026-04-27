@@ -12,7 +12,7 @@
         4,
         8
       ],
-      "price_usd": 42000,
+      "price_usd": 25000,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -38,7 +38,7 @@
         4,
         8
       ],
-      "price_usd": 34000,
+      "price_usd": 25000,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -64,7 +64,7 @@
         4,
         8
       ],
-      "price_usd": 25500,
+      "price_usd": 25000,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -194,7 +194,7 @@
         4,
         8
       ],
-      "price_usd": 33000,
+      "price_usd": 25000,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -272,7 +272,7 @@
         4,
         8
       ],
-      "price_usd": 36000,
+      "price_usd": 25000,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -324,7 +324,7 @@
         4,
         8
       ],
-      "price_usd": 27000,
+      "price_usd": 25000,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -350,7 +350,7 @@
         4,
         8
       ],
-      "price_usd": 29500,
+      "price_usd": 25000,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -402,7 +402,7 @@
         4,
         8
       ],
-      "price_usd": 26000,
+      "price_usd": 25000,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -428,7 +428,7 @@
         4,
         8
       ],
-      "price_usd": 31000,
+      "price_usd": 25000,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -532,7 +532,7 @@
         4,
         8
       ],
-      "price_usd": 40000,
+      "price_usd": 25000,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -610,7 +610,7 @@
         4,
         8
       ],
-      "price_usd": 26500,
+      "price_usd": 25000,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -714,7 +714,7 @@
         4,
         8
       ],
-      "price_usd": 32000,
+      "price_usd": 25000,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -740,7 +740,7 @@
         4,
         8
       ],
-      "price_usd": 28500,
+      "price_usd": 25000,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -766,7 +766,7 @@
         4,
         8
       ],
-      "price_usd": 29000,
+      "price_usd": 25000,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -792,7 +792,7 @@
         4,
         8
       ],
-      "price_usd": 27500,
+      "price_usd": 25000,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -818,7 +818,7 @@
         4,
         8
       ],
-      "price_usd": 30000,
+      "price_usd": 25000,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
