@@ -3,10 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PHAÖRA — The Crimson Duo · USD 24,000</title>
+<title>PHAÖRA — The Reverie · By appointment</title>
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
-<meta name="description" content="The Crimson Duo — one of one crystal sculpture. Hand-carved in Minas Gerais, Brazil. By appointment.">
-<meta property="og:image" content="https://phaora.com/assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-1.jpeg">
+<meta name="description" content="The Reverie — one of one crystal sculpture. Hand-carved in Minas Gerais, Brazil. USD 25,000.">
+<meta property="og:type" content="product">
+<meta property="og:title" content="The Reverie — PHAÖRA">
+<meta property="og:description" content="One of one. Hand-mined in Minas Gerais. USD 25,000.">
+<meta property="og:image" content="https://phaora.com/assets/sculptures/reverie/00-hero.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300&display=swap" rel="stylesheet">
@@ -71,10 +74,6 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
 .g-tile:hover img{filter:grayscale(0%) brightness(1) contrast(1.08);transform:scale(1.04)}
 .g-caption{position:absolute;bottom:0;left:0;right:0;padding:3rem 1.25rem 1rem;background:linear-gradient(transparent,rgba(10,9,8,0.85));border-top:0.5px solid transparent;font-family:var(--sans);font-size:10.5px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:var(--bone);transform:translateY(100%);transition:transform .6s var(--ease),border-color .6s ease}
 .g-tile:hover .g-caption{transform:translateY(0);border-top-color:var(--stroke)}
-.accent-strip{padding:3rem 2.5rem 5rem}
-.accent-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;max-width:1440px;margin:0 auto}
-.accent-img{height:180px;overflow:hidden}
-.accent-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(10%) brightness(0.75) contrast(1.08)}
 .pn{border-top:0.5px solid var(--stroke);padding:3rem 2.5rem;max-width:1440px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:2rem}
 .pn a{text-decoration:none;color:var(--bone);transition:color .3s}
 .pn a:hover{color:var(--amber)}
@@ -120,91 +119,109 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
 .reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
 .reveal.revealed{opacity:1;transform:translateY(0)}
 @media(max-width:900px){
-.nav-left,.nav-right{display:none}.nav{justify-content:center}
-.crumb{padding:0.75rem 1.5rem}
-.piece-hero{padding:4rem 1.5rem;min-height:60vh}
-.piece-hero h1{font-size:clamp(40px,12vw,72px)}
-.piece-meta{flex-direction:column;gap:0.5rem}
-.piece-body{padding:3rem 1.5rem}
-.piece-body-inner{grid-template-columns:1fr;gap:3rem}
-.photos{padding:0 1.5rem 3rem}
-.p-grid{grid-template-columns:repeat(6,1fr);grid-auto-rows:80px;gap:0.75rem}
-.p-grid .g-tile{grid-column:span 3 !important;grid-row:span 4 !important}
-.accent-strip{padding:2rem 1.5rem 3rem}
-.accent-grid{grid-template-columns:1fr 1fr 1fr}
-.accent-img{height:120px}
-.pn{padding:2rem 1.5rem;grid-template-columns:1fr}.pn-next{text-align:left}
-.corr{padding:4rem 1.5rem}.corr-ctas{flex-direction:column;align-items:center}
-.footer{padding:3rem 1.5rem 0}.footer-inner{grid-template-columns:1fr;text-align:center}.footer-tagline{margin:0 auto}
-.footer-bottom{flex-direction:column;gap:0.5rem;text-align:center;padding:1.25rem 0}
-.lb-prev{left:0.5rem}.lb-next{right:0.5rem}.lb-prev,.lb-next{width:36px;height:36px;font-size:1.2rem}
+  .nav-left,.nav-right{display:none}.nav{justify-content:center}
+  .crumb{padding:0.75rem 1.5rem}
+  .piece-hero{padding:4rem 1.5rem;min-height:60vh}
+  .piece-hero h1{font-size:clamp(40px,12vw,72px)}
+  .piece-meta{flex-direction:column;gap:0.5rem}
+  .piece-body{padding:3rem 1.5rem}
+  .piece-body-inner{grid-template-columns:1fr;gap:3rem}
+  .photos{padding:0 1.5rem 3rem}
+  .p-grid{grid-template-columns:repeat(6,1fr);grid-auto-rows:80px;gap:0.75rem}
+  .p-grid .g-tile{grid-column:span 3 !important;grid-row:span 4 !important}
+  .pn{padding:2rem 1.5rem;grid-template-columns:1fr}.pn-next{text-align:left}
+  .corr{padding:4rem 1.5rem}.corr-ctas{flex-direction:column;align-items:center}
+  .footer{padding:3rem 1.5rem 0}.footer-inner{grid-template-columns:1fr;text-align:center}.footer-tagline{margin:0 auto}
+  .footer-bottom{flex-direction:column;gap:0.5rem;text-align:center;padding:1.25rem 0}
+  .lb-prev{left:0.5rem}.lb-next{right:0.5rem}.lb-prev,.lb-next{width:36px;height:36px;font-size:1.2rem}
 }
 </style>
 </head>
 <body>
+
 <nav class="nav"><div class="nav-left"><a href="../hardscape-gallery.html">Hardscape</a><a href="../sculptures.html">Sculpture</a><a href="../gallery.html">Gallery</a><a href="../agents.html">Agents</a></div><a href="../index.html" class="nav-logo">PHAÖRA</a><div class="nav-right"><a href="../index.html#studio">Studio</a><a href="../contact.html">Contact</a><a href="../index.html#invitation" class="nav-enquire">Enquire <span class="arrow">&rarr;</span></a></div></nav>
-<div class="crumb"><a href="../sculptures.html">&larr; Back to the collection</a><span class="crumb-num">08 of Forty-four</span></div>
+
+<div class="crumb"><a href="../sculptures.html">&larr; Back to the collection</a><span class="crumb-num">25 of Thirty-four</span></div>
+
+<!-- HERO -->
 <section class="piece-hero gf">
-  <div class="piece-hero-bg" style="background-image:url('../assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-1.jpeg')"></div>
-  <div class="piece-super">Piece &middot; 08</div>
-  <h1>The <em>Crimson Duo</em></h1>
-  <p class="piece-sub">Red Jasper Macaw Pair on White Quartz · Minas Gerais, Brazil</p>
-  <div class="piece-meta"><span>Edition &middot; One of one</span><span class="sep">&#x25C6;</span><span>Origin &middot; Minas Gerais</span><span class="sep">&#x25C6;</span><span>By appointment</span></div>
+  <div class="piece-hero-bg" style="background-image:url('../assets/sculptures/reverie/00-hero.jpg')"></div>
+  <div class="piece-super">Piece &middot; 25</div>
+  <h1>The <em>Reverie</em></h1>
+  <p class="piece-sub">Crystal sculpture &middot; Minas Gerais, Brazil</p>
+  <div class="piece-meta"><span>Edition &middot; One of one</span><span class="sep">&#x25C6;</span><span>Origin &middot; Minas Gerais</span><span class="sep">&#x25C6;</span><span>USD 25,000</span></div>
 </section>
+
+<!-- BODY -->
 <section class="piece-body reveal">
   <div class="piece-body-inner">
     <div class="meta-card">
-      <div class="mc-price"><span class="mc-price-label">Price</span><div class="mc-price-val">USD 24,000</div><span class="mc-price-ed">One of one</span></div>
-      <div class="mc-row"><span class="mc-label">Material</span><span class="mc-val">Red Jasper · White Quartz Cathedral · 18k Gold-Plated Talons</span></div>
-      <div class="mc-row"><span class="mc-label">Dimensions</span><span class="mc-val">H 28" × W 22" × D 16"</span></div>
-      <div class="mc-row"><span class="mc-label">Weight</span><span class="mc-val">Approx. 52 lbs (23.6 kg)</span></div>
-      <div class="mc-row"><span class="mc-label">Finish</span><span class="mc-val">Natural · Hand-Polished · Gold-Plated Accents</span></div>
-      <div class="mc-row"><span class="mc-label">Accents</span><span class="mc-val">Garnet eyes · Iron-oxide jasper veining</span></div>
+      <div class="mc-price"><span class="mc-price-label">Price</span><div class="mc-price-val">USD 25,000</div><span class="mc-price-ed">One of one</span></div>
+      <div class="mc-row"><span class="mc-label">Medium</span><span class="mc-val">Brazilian crystal</span></div>
       <div class="mc-row"><span class="mc-label">Origin</span><span class="mc-val">Minas Gerais, Brazil</span></div>
+      <div class="mc-row"><span class="mc-label">Edition</span><span class="mc-val">One of one</span></div>
       <div class="mc-row"><span class="mc-label">Signed</span><span class="mc-val">David Machado Vaz</span></div>
-      <a href="mailto:david@phaora.com?subject=Enquiry%3A%20The%20Crimson%20Duo" class="mc-cta">Inquire about this piece</a>
+      <a href="mailto:david@phaora.com?subject=Enquiry%3A%20The%20Reverie" class="mc-cta">Inquire about this piece</a>
     </div>
     <div class="editorial">
-      <h2>The last of the <em>red jasper</em> series.</h2>
-      <p>Three red jasper works were made. The Scarlets sold last quarter. The Parliament is reserved. The Crimson Duo is the final available entry into a series that will not be continued. When this piece sells, red jasper leaves the PHAÖRA collection permanently.</p>
-      <blockquote>Three red jasper works were made.</blockquote>
-      <div class="craft-points"><div class="craft-point"><span class="cp-num">I</span><div class="cp-body"><strong>Iron-rich red jasper</strong><span>The jasper used carries a high iron-oxide content — responsible for the deep burgundy-to-terracotta color shift under different light conditions. This vein is no longer in active use.</span></div></div><div class="craft-point"><span class="cp-num">II</span><div class="cp-body"><strong>Cathedral white quartz base</strong><span>The base is an unpolished cathedral fragment — raw, asymmetric, and deliberately chosen for the tension it creates against the smooth-carved birds.</span></div></div><div class="craft-point"><span class="cp-num">III</span><div class="cp-body"><strong>Individually scored feathers</strong><span>Each primary and secondary feather is individually scored by hand. Under close inspection, no two are identical — a level of detail that photography cannot convey.</span></div></div><div class="craft-point"><span class="cp-num">IV</span><div class="cp-body"><strong>Garnet eye inlay</strong><span>The eyes are inlaid garnet — a stone chosen for its deep red that reads as alive under light. They are set, not painted. They will not fade.</span></div></div></div>
+      <p style="font-family:var(--serif);font-style:italic;font-size:16px;color:rgba(232,220,196,0.6);font-variation-settings:'opsz' 18">Full piece narrative forthcoming. By appointment.</p>
     </div>
   </div>
 </section>
 
 <!-- PHOTOGRAPHY -->
 <section class="photos reveal">
-  <div class="photos-label">Six photographs · The Crimson Duo</div>
+  <div class="photos-label">8 photographs &middot; The Reverie</div>
   <div class="p-grid">
-    <div class="g-tile" style="grid-column:span 8;grid-row:span 5" data-cap="The Crimson Duo · Plate 1"><img src="../assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-1.jpeg" alt="The Crimson Duo — view 1" loading="lazy"><div class="g-caption">The Crimson Duo · Plate 1</div></div>
-    <div class="g-tile" style="grid-column:span 4;grid-row:span 5" data-cap="The Crimson Duo · Plate 2"><img src="../assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-2.jpeg" alt="The Crimson Duo — view 2" loading="lazy"><div class="g-caption">The Crimson Duo · Plate 2</div></div>
-    <div class="g-tile" style="grid-column:span 5;grid-row:span 4" data-cap="The Crimson Duo · Plate 3"><img src="../assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-3.jpeg" alt="The Crimson Duo — view 3" loading="lazy"><div class="g-caption">The Crimson Duo · Plate 3</div></div>
-    <div class="g-tile" style="grid-column:span 4;grid-row:span 4" data-cap="The Crimson Duo · Plate 4"><img src="../assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-4.jpeg" alt="The Crimson Duo — view 4" loading="lazy"><div class="g-caption">The Crimson Duo · Plate 4</div></div>
-    <div class="g-tile" style="grid-column:span 3;grid-row:span 4" data-cap="The Crimson Duo · Plate 5"><img src="../assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-5.jpeg" alt="The Crimson Duo — view 5" loading="lazy"><div class="g-caption">The Crimson Duo · Plate 5</div></div>
-    <div class="g-tile" style="grid-column:span 12;grid-row:span 3" data-cap="The Crimson Duo · Plate 6"><img src="../assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-6.jpeg" alt="The Crimson Duo — view 6" loading="lazy"><div class="g-caption">The Crimson Duo · Plate 6</div></div>
+    <div class="g-tile" style="grid-column:span 8;grid-row:span 5" data-cap="The Reverie · Plate 1"><img src="../assets/sculptures/reverie/00-hero.jpg" alt="The Reverie — view 1" loading="eager" onerror="this.parentElement.style.display='none'"><div class="g-caption">The Reverie &middot; Plate 1</div></div>
+    <div class="g-tile" style="grid-column:span 4;grid-row:span 5" data-cap="The Reverie · Plate 2"><img src="../assets/sculptures/reverie/01.jpg" alt="The Reverie — view 2" loading="lazy" onerror="this.parentElement.style.display='none'"><div class="g-caption">The Reverie &middot; Plate 2</div></div>
+    <div class="g-tile" style="grid-column:span 5;grid-row:span 4" data-cap="The Reverie · Plate 3"><img src="../assets/sculptures/reverie/02.jpg" alt="The Reverie — view 3" loading="lazy" onerror="this.parentElement.style.display='none'"><div class="g-caption">The Reverie &middot; Plate 3</div></div>
+    <div class="g-tile" style="grid-column:span 4;grid-row:span 4" data-cap="The Reverie · Plate 4"><img src="../assets/sculptures/reverie/03.jpg" alt="The Reverie — view 4" loading="lazy" onerror="this.parentElement.style.display='none'"><div class="g-caption">The Reverie &middot; Plate 4</div></div>
+    <div class="g-tile" style="grid-column:span 3;grid-row:span 4" data-cap="The Reverie · Plate 5"><img src="../assets/sculptures/reverie/04.jpg" alt="The Reverie — view 5" loading="lazy" onerror="this.parentElement.style.display='none'"><div class="g-caption">The Reverie &middot; Plate 5</div></div>
+    <div class="g-tile" style="grid-column:span 12;grid-row:span 3" data-cap="The Reverie · Plate 6"><img src="../assets/sculptures/reverie/05.jpg" alt="The Reverie — view 6" loading="lazy" onerror="this.parentElement.style.display='none'"><div class="g-caption">The Reverie &middot; Plate 6</div></div>
+    <div class="g-tile" style="grid-column:span 6;grid-row:span 4" data-cap="The Reverie · Plate 7"><img src="../assets/sculptures/reverie/06.jpg" alt="The Reverie — view 7" loading="lazy" onerror="this.parentElement.style.display='none'"><div class="g-caption">The Reverie &middot; Plate 7</div></div>
+    <div class="g-tile" style="grid-column:span 6;grid-row:span 4" data-cap="The Reverie · Plate 8"><img src="../assets/sculptures/reverie/07.jpg" alt="The Reverie — view 8" loading="lazy" onerror="this.parentElement.style.display='none'"><div class="g-caption">The Reverie &middot; Plate 8</div></div>
   </div>
 </section>
-<nav class="pn"><a href="the-courtship.html"><span class="pn-label">&larr; Previous</span><span class="pn-name">The Courtship</span></a><a href="the-devotion.html" class="pn-next"><span class="pn-label">Next &rarr;</span><span class="pn-name">The Devotion</span></a></nav>
+
+<!-- PREV / NEXT -->
+<nav class="pn"><a href="quartz-twin.html"><span class="pn-label">&larr; Previous</span><span class="pn-name">The Quartz Twin</span></a><a href="rose-duet.html" class="pn-next"><span class="pn-label">Next &rarr;</span><span class="pn-name">The Rose Duet</span></a></nav>
+
+<!-- CORRESPONDENCE -->
 <section class="corr gf reveal">
   <div class="corr-inner">
     <span class="super-label">&mdash; Correspondence &mdash;</span>
-    <h3>Enquire about <em>The Crimson Duo</em></h3>
+    <h3>Enquire about <em>The Reverie</em></h3>
     <p>David responds personally to every enquiry within twenty-four hours. No intermediary, no obligation.</p>
     <div class="corr-ctas">
-      <a href="mailto:david@phaora.com?subject=Enquiry%3A%20The%20Crimson%20Duo" class="btn btn-amber">Write to the studio <span class="arrow">&rarr;</span></a>
+      <a href="mailto:david@phaora.com?subject=Enquiry%3A%20The%20Reverie" class="btn btn-amber">Write to the studio <span class="arrow">&rarr;</span></a>
       <a href="../sculptures.html" class="btn btn-outline">View the collection <span class="arrow">&rarr;</span></a>
     </div>
   </div>
 </section>
+
 <footer class="footer"><div class="footer-inner"><div><span class="footer-logo">PHAÖRA</span><p class="footer-tagline">Hardscape and crystal for the estates that demand permanence.</p></div><div class="footer-col"><h5>The House</h5><a href="../index.html">About</a><a href="../index.html#studio">Studio</a><a href="#">Press</a><a href="#">Journal</a></div><div class="footer-col"><h5>Divisions</h5><a href="../hardscape-gallery.html">Hardscape</a><a href="../sculptures.html">Sculpture</a><a href="../gallery.html">Gallery</a><a href="../sculptures.html">Pieces</a></div><div class="footer-col"><h5>Connect</h5><a href="../contact.html">Contact</a><a href="../agents.html">Agents</a><a href="#">Instagram</a><a href="mailto:david@phaora.com">Email</a></div></div><div class="footer-bottom"><span>Phaöra &middot; MMXXVI</span><span class="motto">Built on standards. Not inherited. Decided.</span><span>Boca Raton &middot; All rights reserved</span></div></footer>
+
 <div class="lb" id="lb"><button class="lb-close" id="lb-close">&#x2715;</button><button class="lb-prev" id="lb-prev">&#x2039;</button><img class="lb-img" id="lb-img" src="" alt=""><button class="lb-next" id="lb-next">&#x203A;</button><div class="lb-info"><div class="lb-title" id="lb-title"></div><div class="lb-sub" id="lb-sub"></div></div><span class="lb-counter" id="lb-counter"></span></div>
+
 <script>
 (function(){
   var reveals=document.querySelectorAll('.reveal');
-  var rObs=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){en.target.classList.add('revealed');rObs.unobserve(en.target)}})},{threshold:0.1});
+  var rObs=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){en.target.classList.add('revealed');rObs.unobserve(en.target)}});},{threshold:0.1});
   reveals.forEach(function(el){rObs.observe(el)});
-  var tiles=Array.from(document.querySelectorAll('.g-tile'));if(!tiles.length)return;var lb=document.getElementById('lb'),lbImg=document.getElementById('lb-img'),lbTitle=document.getElementById('lb-title'),lbSub=document.getElementById('lb-sub'),lbCounter=document.getElementById('lb-counter');var idx=0,total=tiles.length;function show(i){idx=((i%total)+total)%total;var t=tiles[idx],cap=t.getAttribute('data-cap')||'',parts=cap.split(' \u00B7 ');lbImg.src=t.querySelector('img').src;lbTitle.textContent=parts[0]||'';lbSub.textContent=parts[1]||'';lbCounter.textContent=(idx+1)+' / '+total}function open(i){show(i);lb.classList.add('open');document.body.style.overflow='hidden'}function close(){lb.classList.remove('open');document.body.style.overflow=''}tiles.forEach(function(t,i){t.addEventListener('click',function(){open(i)})});document.getElementById('lb-close').addEventListener('click',close);document.getElementById('lb-prev').addEventListener('click',function(){show(idx-1)});document.getElementById('lb-next').addEventListener('click',function(){show(idx+1)});lb.addEventListener('click',function(e){if(e.target===lb)close()});document.addEventListener('keydown',function(e){if(!lb.classList.contains('open'))return;if(e.key==='Escape')close();else if(e.key==='ArrowLeft')show(idx-1);else if(e.key==='ArrowRight')show(idx+1)});
+  var tiles=Array.from(document.querySelectorAll('.g-tile'));
+  if(!tiles.length)return;
+  var lb=document.getElementById('lb'),lbImg=document.getElementById('lb-img'),lbTitle=document.getElementById('lb-title'),lbSub=document.getElementById('lb-sub'),lbCounter=document.getElementById('lb-counter');
+  var idx=0,total=tiles.length;
+  function show(i){idx=((i%total)+total)%total;var t=tiles[idx],cap=t.getAttribute('data-cap')||'',parts=cap.split(' · ');lbImg.src=t.querySelector('img').src;lbTitle.textContent=parts[0]||'';lbSub.textContent=parts[1]||'';lbCounter.textContent=(idx+1)+' / '+total}
+  function open(i){show(i);lb.classList.add('open');document.body.style.overflow='hidden'}
+  function close(){lb.classList.remove('open');document.body.style.overflow=''}
+  tiles.forEach(function(t,i){t.addEventListener('click',function(){open(i)})});
+  document.getElementById('lb-close').addEventListener('click',close);
+  document.getElementById('lb-prev').addEventListener('click',function(){show(idx-1)});
+  document.getElementById('lb-next').addEventListener('click',function(){show(idx+1)});
+  lb.addEventListener('click',function(e){if(e.target===lb)close()});
+  document.addEventListener('keydown',function(e){if(!lb.classList.contains('open'))return;if(e.key==='Escape')close();else if(e.key==='ArrowLeft')show(idx-1);else if(e.key==='ArrowRight')show(idx+1)});
 })();
 </script>
 </body>
