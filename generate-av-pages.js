@@ -23,7 +23,7 @@ const WORKS = [
       {f:'ab-15.jpg',span:1},{f:'ab-16.jpg',span:1},{f:'ab-17.jpg',span:1},{f:'ab-18.jpg',span:1},
       {f:'ab-19.jpg',span:4},
       {f:'ab-20.jpg',span:1},{f:'ab-21.jpg',span:1},{f:'ab-22.jpg',span:2},
-      {f:'ab-23.jpg',span:1},{f:'ab-24.jpg',span:1},{f:'ab-25.jpg',span:1},{f:'ab-26.jpg',span:1},
+      {f:'ab-23.jpg',span:1},{f:'ab-24.jpg',span:2},{f:'ab-26.jpg',span:2},
       {f:'ab-27.jpg',span:4},
       {f:'ab-28.jpg',span:2},{f:'ab-29.jpg',span:2},
     ]
@@ -76,7 +76,7 @@ function page(w, idx) {
     ).join('\n');
     return `<section class="ab-gallery">
   <div class="ab-gallery-header">
-    <h2 class="ab-gallery-title">Twenty-nine views<br>of <em>one work</em></h2>
+    <h2 class="ab-gallery-title">Twenty-eight views<br>of <em>one work</em></h2>
     <span class="ab-gallery-count">${total} photographs</span>
   </div>
   <div class="ab-grid" id="abGrid">${gridItems}</div>
