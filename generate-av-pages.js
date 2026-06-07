@@ -15,17 +15,17 @@ const WORKS = [
       {label:'Availability',value:'Private inquiry only'},
     ],
     photos:[
-      {f:'ab-01.jpg',span:2},{f:'ab-02.jpg',span:1},{f:'ab-03.jpg',span:1},
-      {f:'ab-04.jpg',span:1},{f:'ab-05.jpg',span:1},{f:'ab-06.jpg',span:1},{f:'ab-07.jpg',span:1},
-      {f:'ab-08.jpg',span:4},
-      {f:'ab-09.jpg',span:1},{f:'ab-10.jpg',span:2},{f:'ab-11.jpg',span:1},
-      {f:'ab-12.jpg',span:2},{f:'ab-13.jpg',span:1},{f:'ab-14.jpg',span:1},
-      {f:'ab-15.jpg',span:1},{f:'ab-16.jpg',span:1},{f:'ab-17.jpg',span:1},{f:'ab-18.jpg',span:1},
-      {f:'ab-19.jpg',span:4},
-      {f:'ab-20.jpg',span:1},{f:'ab-21.jpg',span:1},{f:'ab-22.jpg',span:2},
-      {f:'ab-23.jpg',span:1},{f:'ab-24.jpg',span:2},{f:'ab-26.jpg',span:2},
-      {f:'ab-27.jpg',span:4},
-      {f:'ab-28.jpg',span:2},{f:'ab-29.jpg',span:2},
+      'ab-01.jpg','ab-02.jpg','ab-03.jpg',
+      'ab-04.jpg','ab-05.jpg','ab-06.jpg','ab-07.jpg',
+      'ab-08.jpg',
+      'ab-09.jpg','ab-10.jpg','ab-11.jpg',
+      'ab-12.jpg','ab-13.jpg','ab-14.jpg',
+      'ab-15.jpg','ab-16.jpg','ab-17.jpg','ab-18.jpg',
+      'ab-19.jpg',
+      'ab-20.jpg','ab-21.jpg','ab-22.jpg',
+      'ab-23.jpg','ab-24.jpg','ab-26.jpg',
+      'ab-27.jpg',
+      'ab-28.jpg','ab-29.jpg',
     ]
   },
   {num:'II',   idx:2,  name:'La Corte',      tr:'The Court',      slug:'la-corte',      glow:'rgba(79,181,190,.28)'},
@@ -63,44 +63,40 @@ function page(w, idx) {
   const statusText = w.revealed ? 'Private inquiry open' : 'Sealed &middot; August MMXXVI';
 
   const galleryHtml = (w.revealed && w.photos && w.photos.length) ? (function() {
-    const total = w.photos.length;
-    const gridItems = w.photos.map((p, i) => {
-      const spanClass = p.span === 4 ? 'ab-photo--s4 ab-photo--hero' : p.span === 2 ? 'ab-photo--s2 ab-photo--wide' : 'ab-photo--sq';
-      return `<div class="ab-photo ${spanClass}" onclick="openLb(${i})" role="button" tabindex="0" aria-label="View photograph ${i+1}">
-  <img src="av/alba-bianca/${p.f}" loading="lazy" alt="Alba Bianca — photograph ${i+1} of ${total}">
-  <span class="ab-photo-num">${String(i+1).padStart(2,'0')}</span>
-</div>`;
-    }).join('\n');
-    const thumbItems = w.photos.map((p, i) =>
-      `<div class="ab-thumb${i===0?' active':''}" onclick="openLb(${i})" aria-label="Photo ${i+1}"><img src="av/alba-bianca/${p.f}" loading="lazy" alt="Thumbnail ${i+1}"></div>`
-    ).join('\n');
-    return `<section class="ab-gallery">
-  <div class="ab-gallery-header">
-    <h2 class="ab-gallery-title">Twenty-eight views<br>of <em>one work</em></h2>
-    <span class="ab-gallery-count">${total} photographs</span>
-  </div>
-  <div class="ab-grid" id="abGrid">${gridItems}</div>
-  <div class="ab-strip-wrap">
-    <p class="ab-strip-label">Scroll to explore all ${total}</p>
-    <div class="ab-strip" id="abStrip">${thumbItems}</div>
-  </div>
-</section>
+    const ph = w.photos;
+    const total = ph.length;
 
-<!-- LIGHTBOX -->
-<div class="ab-lb" id="abLb" role="dialog" aria-modal="true" aria-label="Photo viewer">
-  <button class="ab-lb-close" onclick="closeLb()" aria-label="Close">Close &times;</button>
-  <button class="ab-lb-prev" onclick="shiftLb(-1)" aria-label="Previous">&larr;</button>
-  <div class="ab-lb-img-wrap">
-    <img class="ab-lb-img" id="abLbImg" src="" alt="">
-  </div>
-  <button class="ab-lb-next" onclick="shiftLb(1)" aria-label="Next">&rarr;</button>
-  <div class="ab-lb-bar">
-    <span class="ab-lb-counter" id="abLbCounter">01 / ${total}</span>
-    <div class="ab-lb-progress"><div class="ab-lb-fill" id="abLbFill" style="width:${(1/total*100).toFixed(1)}%"></div></div>
-    <a href="mailto:david@phaora.com?subject=${encodeURIComponent('Inquiry — Alba Bianca · Águas Vivas')}" class="ab-lb-inq">Inquire &rarr;</a>
-  </div>
-</div>`;
+    function P(i) {
+      if (i >= total) return '';
+      return '<div class="ab-photo" onclick="openLb('+i+')" role="button" tabindex="0" aria-label="Photograph '+(i+1)+' of '+total+'"><img src="av/alba-bianca/'+ph[i]+'" loading="lazy" alt="Alba Bianca '+(i+1)+' of '+total+'"><span class="ab-photo-num">'+String(i+1).padStart(2,'0')+'</span></div>';
+    }
+
+    const panels = [
+      '<div class="ab-panel ab-panel--fl">'+P(0)+P(1)+P(2)+'</div>',
+      '<div class="ab-panel ab-panel--trio">'+P(3)+P(4)+P(5)+'</div>',
+      '<div class="ab-panel ab-panel--solo">'+P(6)+'</div>',
+      '<div class="ab-panel ab-panel--fr">'+P(8)+P(9)+P(7)+'</div>',
+      '<div class="ab-panel ab-panel--hero">'+P(18)+'</div>',
+      '<div class="ab-panel ab-panel--trio">'+P(10)+P(11)+P(12)+'</div>',
+      '<div class="ab-panel ab-panel--dnl">'+P(13)+P(14)+'</div>',
+      '<div class="ab-panel ab-panel--trio">'+P(15)+P(16)+P(17)+'</div>',
+      '<div class="ab-panel ab-panel--hero">'+P(25)+'</div>',
+      '<div class="ab-panel ab-panel--solo">'+P(19)+'</div>',
+      '<div class="ab-panel ab-panel--trio">'+P(20)+P(21)+P(22)+'</div>',
+      '<div class="ab-panel ab-panel--dnr">'+P(23)+P(24)+'</div>',
+      '<div class="ab-panel ab-panel--duo">'+P(26)+P(27)+'</div>',
+    ].join('\n    ');
+
+    const thumbItems = ph.map(function(f,i){
+      return '<div class="ab-thumb'+(i===0?' active':'')+'" onclick="openLb('+i+')" aria-label="Photo '+(i+1)+'"><img src="av/alba-bianca/'+f+'" loading="lazy" alt="Thumbnail '+(i+1)+'"></div>';
+    }).join('');
+
+    const pct = (1/total*100).toFixed(1);
+    const inqSubject = encodeURIComponent('Inquiry — Alba Bianca · Águas Vivas');
+
+    return '<section class="ab-gallery">\n  <div class="ab-gallery-header">\n    <h2 class="ab-gallery-title">Twenty-eight views<br>of <em>one work</em></h2>\n    <span class="ab-gallery-count">'+total+' photographs</span>\n  </div>\n  <div class="ab-gallery-panels">\n    '+panels+'\n  </div>\n  <div class="ab-strip-wrap">\n    <p class="ab-strip-label">All '+total+' photographs</p>\n    <div class="ab-strip" id="abStrip">'+thumbItems+'</div>\n  </div>\n</section>\n<div class="ab-lb" id="abLb" role="dialog" aria-modal="true" aria-label="Photo viewer">\n  <button class="ab-lb-close" onclick="closeLb()" aria-label="Close">Close &times;</button>\n  <button class="ab-lb-prev" onclick="shiftLb(-1)" aria-label="Previous">&larr;</button>\n  <div class="ab-lb-img-wrap"><img class="ab-lb-img" id="abLbImg" src="" alt=""></div>\n  <button class="ab-lb-next" onclick="shiftLb(1)" aria-label="Next">&rarr;</button>\n  <div class="ab-lb-bar">\n    <span class="ab-lb-counter" id="abLbCounter">01 / '+String(total).padStart(2,'0')+'</span>\n    <div class="ab-lb-progress"><div class="ab-lb-fill" id="abLbFill" style="width:'+pct+'%"></div></div>\n    <a href="mailto:david@phaora.com?subject='+inqSubject+'" class="ab-lb-inq">Inquire &rarr;</a>\n  </div>\n</div>';
   })() : '';
+
 
   const editorialHtml = (w.revealed && w.narrative && w.specs)
     ? `<section class="work-editorial">
@@ -251,22 +247,58 @@ nav.scrolled{background:rgba(2,8,18,.92);backdrop-filter:blur(14px);border-botto
 .piece-nav-link.prev:hover .piece-nav-arrow{transform:translateX(-4px)}
 
 /* PHOTO GALLERY */
-.ab-gallery{background:#010610}
+.ab-gallery{background:#010610;padding-bottom:clamp(48px,6vw,80px)}
 .ab-gallery-header{padding:clamp(48px,6vw,80px) clamp(32px,5vw,80px) clamp(28px,3vw,44px);display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
 .ab-gallery-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(26px,3.2vw,48px);color:var(--pearl);line-height:1.1}
 .ab-gallery-title em{font-style:italic;color:rgba(79,181,190,.7)}
 .ab-gallery-count{font-size:9px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:rgba(234,239,245,.28);flex-shrink:0}
-.ab-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;padding:0 3px 3px}
-.ab-photo{position:relative;overflow:hidden;cursor:zoom-in;background:#0a0e1a}
-.ab-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.22,1,.36,1),filter .5s;filter:brightness(.88) saturate(.9)}
-.ab-photo:hover img{transform:scale(1.04);filter:brightness(1) saturate(1)}
-.ab-photo--sq{aspect-ratio:1/1}
-.ab-photo--wide{aspect-ratio:16/9}
-.ab-photo--hero{aspect-ratio:21/7}
-.ab-photo--s2{grid-column:span 2}
-.ab-photo--s4{grid-column:span 4}
-.ab-photo-num{position:absolute;bottom:12px;right:14px;font-size:9px;font-weight:500;letter-spacing:.2em;color:rgba(234,239,245,.28);pointer-events:none;z-index:2;transition:color .2s}
-.ab-photo:hover .ab-photo-num{color:rgba(234,239,245,.65)}
+
+/* Panel container */
+.ab-gallery-panels{max-width:1440px;margin:0 auto;padding:0 clamp(24px,4vw,80px)}
+.ab-panel{margin-bottom:clamp(24px,3vw,44px)}
+
+/* Full-bleed panels break out of padding */
+.ab-panel--hero{margin-left:calc(-1 * clamp(24px,4vw,80px));margin-right:calc(-1 * clamp(24px,4vw,80px))}
+
+/* Feature-left: tall portrait left + 2 stacked right */
+.ab-panel--fl{display:grid;grid-template-columns:1.55fr 1fr;grid-template-rows:1fr 1fr;gap:clamp(6px,.8vw,14px)}
+.ab-panel--fl .ab-photo:first-child{grid-row:span 2;aspect-ratio:3/4}
+.ab-panel--fl .ab-photo:not(:first-child){aspect-ratio:1/1}
+
+/* Feature-right: 2 stacked left + tall portrait right */
+.ab-panel--fr{display:grid;grid-template-columns:1fr 1.55fr;grid-template-rows:1fr 1fr;gap:clamp(6px,.8vw,14px)}
+.ab-panel--fr .ab-photo:last-child{grid-row:span 2;aspect-ratio:3/4}
+.ab-panel--fr .ab-photo:not(:last-child){aspect-ratio:1/1}
+
+/* Three equal */
+.ab-panel--trio{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(6px,.8vw,14px)}
+.ab-panel--trio .ab-photo{aspect-ratio:1/1}
+
+/* Single centred — breathes */
+.ab-panel--solo{display:flex;justify-content:center}
+.ab-panel--solo .ab-photo{width:50%;max-width:660px;aspect-ratio:1/1}
+
+/* Two equal */
+.ab-panel--duo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(6px,.8vw,14px)}
+.ab-panel--duo .ab-photo{aspect-ratio:1/1}
+
+/* Duo narrow-left (40:60) */
+.ab-panel--dnl{display:grid;grid-template-columns:.65fr 1fr;gap:clamp(6px,.8vw,14px)}
+.ab-panel--dnl .ab-photo{aspect-ratio:1/1}
+
+/* Duo narrow-right (60:40) */
+.ab-panel--dnr{display:grid;grid-template-columns:1fr .65fr;gap:clamp(6px,.8vw,14px)}
+.ab-panel--dnr .ab-photo{aspect-ratio:1/1}
+
+/* Cinematic full-bleed hero */
+.ab-panel--hero .ab-photo{aspect-ratio:21/8;width:100%}
+
+/* Photo base */
+.ab-photo{position:relative;overflow:hidden;cursor:zoom-in;background:#0a0e1a;display:block}
+.ab-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.22,1,.36,1),filter .5s;filter:brightness(.82) saturate(.85)}
+.ab-photo:hover img{transform:scale(1.05);filter:brightness(1) saturate(1)}
+.ab-photo-num{position:absolute;bottom:10px;right:12px;font-size:8px;font-weight:500;letter-spacing:.2em;color:rgba(234,239,245,.2);pointer-events:none;z-index:2;transition:color .3s}
+.ab-photo:hover .ab-photo-num{color:rgba(234,239,245,.7)}
 
 /* FILMSTRIP */
 .ab-strip-wrap{padding:clamp(32px,4vw,56px) 0;border-top:1px solid rgba(234,239,245,.04);background:#010610;overflow:hidden}
@@ -299,10 +331,12 @@ nav.scrolled{background:rgba(2,8,18,.92);backdrop-filter:blur(14px);border-botto
 .ab-lb-inq:hover{color:var(--gold)}
 
 @media(max-width:768px){
-  .ab-grid{grid-template-columns:repeat(2,1fr)}
-  .ab-photo--s4,.ab-photo--s2{grid-column:span 2}
-  .ab-photo--hero{aspect-ratio:4/3}
-  .ab-photo--wide{aspect-ratio:4/3}
+  .ab-panel--fl,.ab-panel--fr{grid-template-columns:1fr;grid-template-rows:auto}
+  .ab-panel--fl .ab-photo:first-child,.ab-panel--fr .ab-photo:last-child{grid-row:span 1;aspect-ratio:1/1}
+  .ab-panel--trio{grid-template-columns:repeat(2,1fr)}
+  .ab-panel--solo .ab-photo{width:100%;max-width:100%}
+  .ab-panel--dnl,.ab-panel--dnr{grid-template-columns:1fr}
+  .ab-panel--hero .ab-photo{aspect-ratio:4/3}
   .ab-lb-img-wrap{padding:60px 12px 72px}
   .ab-lb-prev,.ab-lb-next{padding:12px 8px}
   .ab-thumb{flex:0 0 80px}
