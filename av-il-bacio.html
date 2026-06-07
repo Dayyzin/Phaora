@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Il Bacio — The Kiss. Work VI of eleven. Águas Vivas · Collection 003 by Phaöra. Hand-carved crystal from the mountains of Minas Gerais.">
+<meta property="og:title" content="Il Bacio — PHAÖRA · Águas Vivas">
+<meta property="og:description" content="The Kiss. Work VI of eleven. One of one. Private inquiry only.">
+<meta property="og:image" content="av/phaora-aguasvivas-06-il-bacio.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<title>Il Bacio — PHAÖRA · Águas Vivas</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--pearl:#EAEFF5;--silver:#DBE6F0;--teal:#4FB5BE;--teal-d:rgba(79,181,190,.55);--gold:#C8A45E;--gold-lt:#D9BC7C;--ink:#020812}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--pearl);font-family:'Inter',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+#pageStars{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.5}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 clamp(20px,4vw,60px);height:64px;transition:background .4s}
+nav.scrolled{background:rgba(2,8,18,.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(79,181,190,.08)}
+.nav-links{display:flex;gap:24px}
+.nav-links a{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(234,239,245,.38);transition:color .2s;white-space:nowrap}
+.nav-links a:hover{color:rgba(234,239,245,.82)}
+.nav-wm{font-family:'Cormorant Garamond',serif;font-size:19px;letter-spacing:.42em;text-indent:.42em;text-transform:uppercase;color:var(--pearl);text-align:center;white-space:nowrap}
+.nav-wm .o{color:var(--teal-d)}
+.nav-right{display:flex;gap:20px;align-items:center;justify-content:flex-end}
+.nav-right a{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(234,239,245,.38);transition:color .2s}
+.nav-right a:hover{color:rgba(234,239,245,.82)}
+.nav-right .enq{border:1px solid rgba(200,164,94,.28);padding:7px 16px;color:rgba(200,164,94,.75);transition:border-color .2s,color .2s}
+.nav-right .enq:hover{border-color:var(--gold);color:var(--gold)}
+.nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;z-index:201}
+.nav-burger span{display:block;width:22px;height:1.5px;background:rgba(234,239,245,.65);transition:transform .3s,opacity .3s}
+.nav-burger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.nav-burger.open span:nth-child(2){opacity:0}
+.nav-burger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mobile-menu{position:fixed;inset:0;z-index:200;background:rgba(2,8,18,.97);backdrop-filter:blur(16px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;opacity:0;pointer-events:none;transition:opacity .35s}
+.mobile-menu.open{opacity:1;pointer-events:auto}
+.mobile-menu a{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(28px,6vw,42px);color:rgba(234,239,245,.55);text-decoration:none;padding:12px 0;letter-spacing:.08em;transition:color .2s;text-align:center}
+.mobile-menu a:hover{color:var(--pearl)}
+.mobile-menu a.av{color:rgba(79,181,190,.65)}
+.mobile-menu .m-rule{width:32px;height:1px;background:linear-gradient(90deg,transparent,rgba(200,164,94,.3),transparent);margin:20px 0}
+.mobile-menu .m-small{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(14px,3vw,18px);font-style:italic;color:rgba(200,164,94,.6)}
+@media(max-width:768px){.nav-links{display:none}.nav-right a{display:none}.nav-burger{display:flex}}
+.nav-dropdown{position:relative;display:flex;align-items:center}
+.nav-dropdown-trigger{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(79,181,190,.95);white-space:nowrap;cursor:pointer;display:flex;align-items:center;gap:5px;transition:color .2s}
+.nav-dropdown-chevron{opacity:.88;transition:transform .28s,opacity .2s;flex-shrink:0}
+.nav-dropdown:hover .nav-dropdown-chevron{transform:rotate(180deg)}
+.nav-dropdown-panel{position:absolute;top:calc(100% + 18px);left:50%;transform:translateX(-50%) translateY(-6px);background:rgba(2,8,18,.97);border:1px solid rgba(79,181,190,.16);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);min-width:192px;padding:16px 0;opacity:0;pointer-events:none;transition:opacity .22s,transform .22s;z-index:300}
+.nav-dropdown:hover .nav-dropdown-panel{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+.nav-dropdown-panel::before{content:'';position:absolute;top:-18px;left:0;right:0;height:18px}
+.nav-dp-header{font-size:8px;letter-spacing:.28em;text-transform:uppercase;color:rgba(200,164,94,.38);padding:0 18px 12px;border-bottom:1px solid rgba(79,181,190,.08);margin-bottom:6px}
+.nav-dp-item{display:flex;align-items:baseline;gap:9px;padding:5px 18px;text-decoration:none;transition:background .15s}
+.nav-dp-item:hover,.nav-dp-active{background:rgba(79,181,190,.06)}
+.nav-dp-num{font-family:'Cormorant Garamond',serif;font-size:11px;font-style:italic;color:rgba(79,181,190,.22);width:18px;flex-shrink:0;transition:color .15s}
+.nav-dp-item:hover .nav-dp-num,.nav-dp-active .nav-dp-num{color:rgba(79,181,190,.6)}
+.nav-dp-name{font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(79,181,190,.48);transition:color .15s}
+.nav-dp-item:hover .nav-dp-name{color:rgba(79,181,190,1)}
+.nav-dp-active .nav-dp-name{color:rgba(79,181,190,.85)}
+.nav-dp-footer{margin-top:8px;padding:10px 18px 0;border-top:1px solid rgba(79,181,190,.08)}
+.nav-dp-footer a{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:rgba(200,164,94,.52);transition:color .2s}
+.nav-dp-footer a:hover{color:rgba(200,164,94,.9)}
+
+/* HERO */
+.piece-hero{position:relative;width:100%;height:100vh;min-height:640px;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
+.piece-bg{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center;filter:brightness(.42) saturate(.7);transform:scale(1.04);transition:transform 10s ease}
+.piece-bg.loaded{transform:scale(1)}
+.piece-video{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.4s ease;filter:brightness(.46) saturate(.72)}
+.piece-video.loaded{opacity:1}
+.piece-overlay{position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(to bottom,rgba(2,8,18,.75) 0%,rgba(2,8,18,.15) 28%,rgba(2,8,18,.15) 62%,rgba(2,8,18,.92) 100%),radial-gradient(ellipse 65% 52% at 50% 52%,rgba(180,80,100,.28) 0%,transparent 68%)}
+.piece-numeral{position:absolute;z-index:3;font-family:'Cormorant Garamond',serif;font-weight:300;font-style:italic;font-size:clamp(140px,22vw,320px);line-height:1;color:rgba(234,239,245,.035);pointer-events:none;top:50%;left:50%;transform:translate(-50%,-50%);letter-spacing:-.02em;user-select:none;white-space:nowrap}
+.piece-content{position:relative;z-index:4;text-align:center;display:flex;flex-direction:column;align-items:center;padding:0 clamp(24px,5vw,80px);animation:fadeUp 1.2s cubic-bezier(.22,1,.36,1) .3s both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.piece-eyebrow{font-size:9px;font-weight:500;letter-spacing:.46em;text-indent:.46em;text-transform:uppercase;color:rgba(79,181,190,.52);margin-bottom:28px}
+.piece-name{font-family:'Cormorant Garamond',serif;font-weight:300;font-style:italic;font-size:clamp(52px,9vw,124px);line-height:.95;color:var(--silver);letter-spacing:.01em;text-shadow:0 0 80px rgba(79,181,190,.22),0 4px 10px rgba(0,0,0,.55);margin-bottom:16px}
+.piece-tr{font-size:10px;font-weight:500;letter-spacing:.38em;text-transform:uppercase;color:rgba(79,181,190,.48);margin-bottom:36px}
+.piece-rule{width:36px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin-bottom:36px}
+.piece-status{font-size:9px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:rgba(200,164,94,.52);display:flex;align-items:center;gap:10px;margin-bottom:28px}
+.piece-status::before{content:'';width:4px;height:4px;border-radius:50%;background:rgba(200,164,94,.6);box-shadow:0 0 7px rgba(200,164,94,.4)}
+.piece-inq-cta{display:inline-flex;align-items:center;gap:12px;font-size:10px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:rgba(200,164,94,.8);border:1px solid rgba(200,164,94,.25);padding:13px 34px;transition:all .3s cubic-bezier(.22,1,.36,1)}
+.piece-inq-cta:hover{background:rgba(200,164,94,.07);border-color:var(--gold);color:var(--gold);gap:18px}
+.piece-inq-cta svg{transition:transform .3s}
+.piece-inq-cta:hover svg{transform:translateX(4px)}
+.piece-scroll{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:4;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fadeUp .8s ease 1.4s forwards}
+.piece-scroll-text{font-size:8px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:rgba(234,239,245,.2)}
+.piece-scroll-line{width:1px;height:0;background:linear-gradient(180deg,rgba(79,181,190,.5),transparent);animation:scrollLine 1s ease 2s forwards}
+@keyframes scrollLine{to{height:28px}}
+
+/* DETAILS */
+.piece-details{border-bottom:1px solid rgba(234,239,245,.04);padding:clamp(52px,7vw,96px) clamp(32px,5vw,80px);display:flex;align-items:center;justify-content:center;gap:clamp(36px,5vw,90px);flex-wrap:wrap}
+.piece-spec{text-align:center}
+.spec-label{font-size:8px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:rgba(234,239,245,.22);margin-bottom:10px;display:block}
+.spec-value{font-family:'Cormorant Garamond',serif;font-size:clamp(17px,1.8vw,22px);font-weight:300;color:rgba(234,239,245,.68);letter-spacing:.02em}
+.piece-details-sep{width:1px;height:36px;background:rgba(234,239,245,.06)}
+
+/* INQUIRY */
+.piece-inquiry{display:flex;flex-direction:column;align-items:center;text-align:center;padding:clamp(60px,8vw,100px) clamp(32px,5vw,80px);position:relative}
+.piece-inquiry::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:500px;height:280px;background:radial-gradient(ellipse,rgba(12,70,90,.15) 0%,transparent 70%);pointer-events:none}
+.inq-line{font-family:'Cormorant Garamond',serif;font-weight:300;font-style:italic;font-size:clamp(22px,2.8vw,36px);color:rgba(234,239,245,.52);margin-bottom:12px;line-height:1.4}
+.inq-sub{font-size:13px;line-height:1.8;color:rgba(234,239,245,.28);max-width:400px;margin-bottom:36px}
+.inq-cta{display:inline-block;border:1px solid rgba(200,164,94,.28);padding:15px 44px;font-size:10px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:rgba(200,164,94,.8);transition:all .3s}
+.inq-cta:hover{background:rgba(200,164,94,.07);border-color:var(--gold);color:var(--gold)}
+
+/* PREV / NEXT */
+.piece-nav{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(234,239,245,.04)}
+.piece-nav-link{padding:clamp(24px,3.5vw,44px) clamp(24px,4vw,60px);display:flex;flex-direction:column;transition:background .3s}
+.piece-nav-link:hover{background:rgba(234,239,245,.018)}
+.piece-nav-link.next{align-items:flex-end;text-align:right;border-left:1px solid rgba(234,239,245,.04)}
+.piece-nav-label{font-size:8px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:rgba(234,239,245,.2);margin-bottom:10px}
+.piece-nav-name{font-family:'Cormorant Garamond',serif;font-weight:300;font-style:italic;font-size:clamp(18px,2.2vw,28px);color:rgba(234,239,245,.52);transition:color .2s;line-height:1.2}
+.piece-nav-link:hover .piece-nav-name{color:rgba(234,239,245,.82)}
+.piece-nav-arrow{font-size:10px;color:rgba(200,164,94,.38);margin-top:8px;letter-spacing:.1em;transition:color .2s,transform .25s}
+.piece-nav-link:hover .piece-nav-arrow{color:var(--gold)}
+.piece-nav-link.prev .piece-nav-arrow{align-self:flex-start}
+.piece-nav-link.next:hover .piece-nav-arrow{transform:translateX(4px)}
+.piece-nav-link.prev:hover .piece-nav-arrow{transform:translateX(-4px)}
+
+/* FOOTER */
+footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rgba(79,181,190,.08);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-copy{font-size:10px;letter-spacing:.12em;color:rgba(234,239,245,.18)}
+.footer-coords{font-size:10px;letter-spacing:.14em;color:rgba(234,239,245,.14)}
+</style>
+</head>
+<body>
+<canvas id="pageStars"></canvas>
+
+<nav id="mainNav">
+  <div class="nav-links">
+    <a href="hardscape-gallery.html">Hardscape</a>
+    <div class="nav-dropdown active">
+      <a class="nav-dropdown-trigger" href="sculptures.html">&#193;guas Vivas <svg class="nav-dropdown-chevron" width="7" height="5" viewBox="0 0 7 5" fill="none"><path d="M.5 1L3.5 4l3-3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></a>
+      <div class="nav-dropdown-panel">
+        <p class="nav-dp-header">Collection 003 &nbsp;&middot;&nbsp; Eleven Works</p>
+        <a href="av-alba-bianca.html" class="nav-dp-item"><span class="nav-dp-num">I</span><span class="nav-dp-name">Alba Bianca</span></a>
+        <a href="av-la-corte.html" class="nav-dp-item"><span class="nav-dp-num">II</span><span class="nav-dp-name">La Corte</span></a>
+        <a href="av-crepuscolo.html" class="nav-dp-item"><span class="nav-dp-num">III</span><span class="nav-dp-name">Crepuscolo</span></a>
+        <a href="av-l-ascesa.html" class="nav-dp-item"><span class="nav-dp-num">IV</span><span class="nav-dp-name">L’Ascesa</span></a>
+        <a href="av-la-protezione.html" class="nav-dp-item"><span class="nav-dp-num">V</span><span class="nav-dp-name">La Protezione</span></a>
+        <a href="av-il-bacio.html" class="nav-dp-item nav-dp-active"><span class="nav-dp-num">VI</span><span class="nav-dp-name">Il Bacio</span></a>
+        <a href="av-origine.html" class="nav-dp-item"><span class="nav-dp-num">VII</span><span class="nav-dp-name">Origine</span></a>
+        <a href="av-duetto.html" class="nav-dp-item"><span class="nav-dp-num">VIII</span><span class="nav-dp-name">Duetto</span></a>
+        <a href="av-maesta.html" class="nav-dp-item"><span class="nav-dp-num">IX</span><span class="nav-dp-name">Maestà</span></a>
+        <a href="av-sull-altare.html" class="nav-dp-item"><span class="nav-dp-num">X</span><span class="nav-dp-name">Sull’Altare</span></a>
+        <a href="av-volo-d-amore.html" class="nav-dp-item"><span class="nav-dp-num">XI</span><span class="nav-dp-name">Volo d’Amore</span></a>
+        <div class="nav-dp-footer"><a href="sculptures.html#collection">View all works &rarr;</a></div>
+      </div>
+    </div>
+    <a href="hardscape-gallery.html">Gallery</a>
+  </div>
+  <a href="index.html" class="nav-wm">PHA<span class="o">&Ouml;</span>RA</a>
+  <div class="nav-right">
+    <button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <a href="#">Studio</a>
+    <a href="mailto:david@phaora.com">Contact</a>
+    <a href="mailto:david@phaora.com" class="enq">Enquire &rarr;</a>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="hardscape-gallery.html">Hardscape</a>
+  <a href="sculptures.html" class="av">&#193;guas Vivas &middot; Collection</a>
+  <a href="hardscape-gallery.html">Gallery</a>
+  <div class="m-rule"></div>
+  <a href="mailto:david@phaora.com" class="m-small">Contact &amp; Enquire &rarr;</a>
+</div>
+
+<section class="piece-hero">
+  <div class="piece-bg" id="pieceBg" style="background-image:url('av/phaora-aguasvivas-06-il-bacio.png')"></div>
+  <video class="piece-video" id="pieceVideo" autoplay loop muted playsinline>
+    <source src="av/videos/Il%20Bacio.mp4" type="video/mp4">
+  </video>
+  <div class="piece-overlay"></div>
+  <div class="piece-numeral">VI</div>
+  <div class="piece-content">
+    <p class="piece-eyebrow">Collection 003 &nbsp;&middot;&nbsp; Work 6 of Eleven</p>
+    <h1 class="piece-name">Il Bacio</h1>
+    <p class="piece-tr">The Kiss</p>
+    <div class="piece-rule"></div>
+    <p class="piece-status">Private inquiry open</p>
+    <a href="mailto:david@phaora.com?subject=Inquiry%20%E2%80%94%20Il%20Bacio%20%C2%B7%20%C3%81guas%20Vivas" class="piece-inq-cta">
+      Inquire privately
+      <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 5h12M8 1l4 4-4 4"/></svg>
+    </a>
+  </div>
+  <div class="piece-scroll">
+    <span class="piece-scroll-text">Details</span>
+    <div class="piece-scroll-line"></div>
+  </div>
+</section>
+
+<div class="piece-details">
+  <div class="piece-spec"><span class="spec-label">Material</span><span class="spec-value">Crystal &middot; Minas Gerais</span></div>
+  <div class="piece-details-sep"></div>
+  <div class="piece-spec"><span class="spec-label">Collection</span><span class="spec-value">&#193;guas Vivas &middot; 003</span></div>
+  <div class="piece-details-sep"></div>
+  <div class="piece-spec"><span class="spec-label">Edition</span><span class="spec-value">One of one</span></div>
+  <div class="piece-details-sep"></div>
+  <div class="piece-spec"><span class="spec-label">Reveal</span><span class="spec-value">23 August MMXXVI</span></div>
+</div>
+
+<div class="piece-inquiry">
+  <p class="inq-line">Each work is placed by private conversation.</p>
+  <p class="inq-sub">No public sale. No auction. David responds personally within twenty-four hours.</p>
+  <a href="mailto:david@phaora.com?subject=Inquiry%20%E2%80%94%20Il%20Bacio%20%C2%B7%20%C3%81guas%20Vivas" class="inq-cta">Request a private introduction &rarr;</a>
+</div>
+
+<div class="piece-nav">
+  <a class="piece-nav-link prev" href="av-la-protezione.html">
+    <span class="piece-nav-label">Previous work</span>
+    <span class="piece-nav-name">La Protezione</span>
+    <span class="piece-nav-arrow">&larr; V</span>
+  </a>
+  <a class="piece-nav-link next" href="av-origine.html">
+    <span class="piece-nav-label">Next work</span>
+    <span class="piece-nav-name">Origine</span>
+    <span class="piece-nav-arrow">VII &rarr;</span>
+  </a>
+</div>
+
+<footer>
+  <span class="footer-copy">Pha&ouml;ra &middot; MMXXVI &nbsp;&middot;&nbsp; &#193;guas Vivas &middot; Collection 003 &nbsp;&middot;&nbsp; Boca Raton</span>
+  <span class="footer-coords">26&deg;21&prime;N 80&deg;05&prime;W</span>
+</footer>
+
+<script>
+(function(){
+  var canvas=document.getElementById('pageStars'),ctx=canvas.getContext('2d'),stars=[];
+  function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;build();draw()}
+  function rng(s){var x=Math.sin(s+1)*10000;return x-Math.floor(x)}
+  function build(){stars=[];var n=Math.min(Math.max(Math.floor(canvas.width*canvas.height/2400),220),640);for(var i=0;i<n;i++){var r=rng(i*3.71+1);stars.push({x:rng(i*7.13)*canvas.width,y:rng(i*5.29)*canvas.height,size:r<.72?.5:r<.94?.85:1.35,op:.07+rng(i*2.87)*.26})}}
+  function draw(){ctx.clearRect(0,0,canvas.width,canvas.height);stars.forEach(function(s){ctx.beginPath();ctx.arc(s.x,s.y,s.size,0,Math.PI*2);ctx.fillStyle='rgba(190,215,235,'+s.op+')';ctx.fill()})}
+  resize();window.addEventListener('resize',resize);
+})();
+window.addEventListener('scroll',function(){document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>60)},{passive:true});
+(function(){
+  var v=document.getElementById('pieceVideo'),bg=document.getElementById('pieceBg');
+  bg.classList.add('loaded');
+  if(!v)return;
+  v.addEventListener('canplay',function(){v.classList.add('loaded')},{once:true});
+  v.load();
+})();
+(function(){
+  var b=document.getElementById('navBurger'),m=document.getElementById('mobileMenu');
+  if(!b||!m)return;
+  b.addEventListener('click',function(){b.classList.toggle('open');m.classList.toggle('open');document.body.style.overflow=m.classList.contains('open')?'hidden':''});
+  m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){b.classList.remove('open');m.classList.remove('open');document.body.style.overflow=''})});
+})();
+</script>
+</body>
+</html>

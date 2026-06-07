@@ -580,17 +580,17 @@ footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rg
       <a class="nav-dropdown-trigger" href="sculptures.html">Águas Vivas <svg class="nav-dropdown-chevron" width="7" height="5" viewBox="0 0 7 5" fill="none"><path d="M.5 1L3.5 4l3-3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></a>
       <div class="nav-dropdown-panel">
         <p class="nav-dp-header">Collection 003 &nbsp;·&nbsp; Eleven Works</p>
-        <a href="#collection" class="nav-dp-item"><span class="nav-dp-num">I</span><span class="nav-dp-name">Alba Bianca</span></a>
-        <a href="#collection" class="nav-dp-item"><span class="nav-dp-num">II</span><span class="nav-dp-name">La Corte</span></a>
-        <a href="#collection" class="nav-dp-item"><span class="nav-dp-num">III</span><span class="nav-dp-name">Crepuscolo</span></a>
-        <a href="#collection" class="nav-dp-item"><span class="nav-dp-num">IV</span><span class="nav-dp-name">L'Ascesa</span></a>
-        <a href="#collection" class="nav-dp-item"><span class="nav-dp-num">V</span><span class="nav-dp-name">La Protezione</span></a>
-        <a href="#collection" class="nav-dp-item"><span class="nav-dp-num">VI</span><span class="nav-dp-name">Il Bacio</span></a>
-        <a href="#collection" class="nav-dp-item"><span class="nav-dp-num">VII</span><span class="nav-dp-name">Origine</span></a>
-        <a href="#collection" class="nav-dp-item"><span class="nav-dp-num">VIII</span><span class="nav-dp-name">Duetto</span></a>
-        <a href="#collection" class="nav-dp-item"><span class="nav-dp-num">IX</span><span class="nav-dp-name">Maestà</span></a>
-        <a href="#collection" class="nav-dp-item"><span class="nav-dp-num">X</span><span class="nav-dp-name">Sull'Altare</span></a>
-        <a href="#collection" class="nav-dp-item"><span class="nav-dp-num">XI</span><span class="nav-dp-name">Volo d'Amore</span></a>
+        <a href="av-alba-bianca.html" class="nav-dp-item"><span class="nav-dp-num">I</span><span class="nav-dp-name">Alba Bianca</span></a>
+        <a href="av-la-corte.html"</span></a>
+        <a href="av-crepuscolo.html"</span></a>
+        <a href="av-l-ascesa.html"</span></a>
+        <a href="av-la-protezione.html"</span></a>
+        <a href="av-il-bacio.html"</span></a>
+        <a href="av-origine.html"</span></a>
+        <a href="av-duetto.html"</span></a>
+        <a href="av-maesta.html"</span></a>
+        <a href="av-sull-altare.html"</span></a>
+        <a href="av-volo-d-amore.html"</span></a>
         <div class="nav-dp-footer"><a href="#collection">View all works →</a></div>
       </div>
     </div>
@@ -828,22 +828,23 @@ window.addEventListener('scroll', function() {
   drift();
 })();
 var WORKS = [
-  {num:'I',   name:'Alba Bianca',    tr:'White Dawn',     glow:'rgba(220,200,160,.18)', video:'av/videos/Alba Bianca.mp4'},
-  {num:'II',  name:'La Corte',       tr:'The Court',      glow:'rgba(79,181,190,.14)', teased:true},
-  {num:'III', name:'Crepuscolo',     tr:'Twilight',       glow:'rgba(110,80,160,.16)'},
-  {num:'IV',  name:"L'Ascesa",      tr:'The Ascent',     glow:'rgba(79,181,190,.18)'},
-  {num:'V',   name:'La Protezione', tr:'The Protection', glow:'rgba(200,164,94,.14)'},
-  {num:'VI',  name:'Il Bacio',       tr:'The Kiss',       glow:'rgba(180,80,100,.14)'},
-  {num:'VII', name:'Origine',        tr:'Origin',         glow:'rgba(60,140,120,.16)'},
-  {num:'VIII',name:'Duetto',         tr:'Duet',           glow:'rgba(79,181,190,.12)'},
-  {num:'IX',  name:'Maest\u00e0',    tr:'Majesty',        glow:'rgba(200,164,94,.18)'},
-  {num:'X',   name:"Sull'Altare",   tr:'On the Altar',   glow:'rgba(160,120,200,.14)'},
-  {num:'XI',  name:"Volo d'Amore",  tr:'Flight of Love', glow:'rgba(79,181,190,.2)'},
+  {num:'I',   name:'Alba Bianca',    tr:'White Dawn',     glow:'rgba(220,200,160,.18)', video:'av/videos/Alba Bianca.mp4',   slug:'av-alba-bianca'},
+  {num:'II',  name:'La Corte',       tr:'The Court',      glow:'rgba(79,181,190,.14)', teased:true,                         slug:'av-la-corte'},
+  {num:'III', name:'Crepuscolo',     tr:'Twilight',       glow:'rgba(110,80,160,.16)',                                      slug:'av-crepuscolo'},
+  {num:'IV',  name:"L'Ascesa",      tr:'The Ascent',     glow:'rgba(79,181,190,.18)',                                      slug:'av-l-ascesa'},
+  {num:'V',   name:'La Protezione', tr:'The Protection', glow:'rgba(200,164,94,.14)',                                      slug:'av-la-protezione'},
+  {num:'VI',  name:'Il Bacio',       tr:'The Kiss',       glow:'rgba(180,80,100,.14)',                                      slug:'av-il-bacio'},
+  {num:'VII', name:'Origine',        tr:'Origin',         glow:'rgba(60,140,120,.16)',                                      slug:'av-origine'},
+  {num:'VIII',name:'Duetto',         tr:'Duet',           glow:'rgba(79,181,190,.12)',                                      slug:'av-duetto'},
+  {num:'IX',  name:'Maest\u00e0',    tr:'Majesty',        glow:'rgba(200,164,94,.18)',                                      slug:'av-maesta'},
+  {num:'X',   name:"Sull'Altare",   tr:'On the Altar',   glow:'rgba(160,120,200,.14)',                                     slug:'av-sull-altare'},
+  {num:'XI',  name:"Volo d'Amore",  tr:'Flight of Love', glow:'rgba(79,181,190,.2)',                                       slug:'av-volo-d-amore'},
 ];
 var grid = document.getElementById('vaultGrid');
 WORKS.forEach(function(w) {
   var glowStyle = 'radial-gradient(ellipse 65% 55% at 50% 55%,' + w.glow + ',transparent 70%)';
-  var cell = document.createElement('div');
+  var cell = document.createElement('a');
+  cell.href = w.slug + '.html';
   cell.className = 'vault-cell';
   if (w.video) cell.classList.add('vault-cell--revealed');
   if (w.teased) cell.classList.add('vault-cell--teased');
@@ -862,6 +863,7 @@ WORKS.forEach(function(w) {
       '<div class="cell-tr">' + w.tr + '</div>' +
       sealLabel +
     '</div>';
+  cell.style.display = 'flex';
   grid.appendChild(cell);
 });
 
