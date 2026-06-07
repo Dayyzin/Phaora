@@ -94,6 +94,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 .m-name{font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(234,239,245,.85)}
 @media(max-width:1100px){.masonry{columns:3}}
 @media(max-width:700px){.masonry{columns:2}}
+@media(max-width:768px){
+  .hero{min-height:480px}
+  .hero-body{flex-direction:column;align-items:flex-start;gap:24px;padding:32px 20px}
+  .hero-title{font-size:clamp(36px,9vw,80px);line-height:1.0}
+  .hero-stats{gap:24px}
+  .hero-stat-num{font-size:30px}
+  .cta-title{font-size:clamp(22px,5.5vw,40px)}
+  .cta-strip{padding:48px 20px}
+  footer{flex-direction:column;gap:6px}
+}
+@media(max-width:480px){.masonry{columns:1}}
 
 /* Lightbox */
 .lb{position:fixed;inset:0;z-index:200;background:rgba(2,6,16,.96);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center}
