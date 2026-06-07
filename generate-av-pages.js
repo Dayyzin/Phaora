@@ -72,10 +72,10 @@ function page(w, idx) {
     }
 
     const panels = [
-      '<div class="ab-panel ab-panel--fl">'+P(0)+P(1)+P(2)+'</div>',
+      '<div class="ab-panel ab-panel--fl">'+P(0)+'<div class="ab-pstack">'+P(1)+P(2)+'</div></div>',
       '<div class="ab-panel ab-panel--trio">'+P(3)+P(4)+P(5)+'</div>',
       '<div class="ab-panel ab-panel--solo">'+P(6)+'</div>',
-      '<div class="ab-panel ab-panel--fr">'+P(8)+P(9)+P(7)+'</div>',
+      '<div class="ab-panel ab-panel--fr"><div class="ab-pstack">'+P(8)+P(9)+'</div>'+P(7)+'</div>',
       '<div class="ab-panel ab-panel--hero">'+P(18)+'</div>',
       '<div class="ab-panel ab-panel--trio">'+P(10)+P(11)+P(12)+'</div>',
       '<div class="ab-panel ab-panel--dnl">'+P(13)+P(14)+'</div>',
@@ -261,14 +261,14 @@ nav.scrolled{background:rgba(2,8,18,.92);backdrop-filter:blur(14px);border-botto
 .ab-panel--hero{margin-left:calc(-1 * clamp(24px,4vw,80px));margin-right:calc(-1 * clamp(24px,4vw,80px))}
 
 /* Feature-left: tall portrait left + 2 stacked right */
-.ab-panel--fl{display:grid;grid-template-columns:1.55fr 1fr;grid-template-rows:1fr 1fr;gap:clamp(6px,.8vw,14px)}
-.ab-panel--fl .ab-photo:first-child{grid-row:span 2;aspect-ratio:3/4}
-.ab-panel--fl .ab-photo:not(:first-child){aspect-ratio:1/1}
-
+.ab-panel--fl{display:flex;gap:clamp(6px,.8vw,14px);align-items:stretch}
+.ab-panel--fl > .ab-photo{flex:1.55;aspect-ratio:3/4}
 /* Feature-right: 2 stacked left + tall portrait right */
-.ab-panel--fr{display:grid;grid-template-columns:1fr 1.55fr;grid-template-rows:1fr 1fr;gap:clamp(6px,.8vw,14px)}
-.ab-panel--fr .ab-photo:last-child{grid-row:span 2;aspect-ratio:3/4}
-.ab-panel--fr .ab-photo:not(:last-child){aspect-ratio:1/1}
+.ab-panel--fr{display:flex;gap:clamp(6px,.8vw,14px);align-items:stretch}
+.ab-panel--fr > .ab-photo{flex:1.55;aspect-ratio:3/4}
+/* Stacked pair inside feature panels */
+.ab-pstack{flex:1;display:flex;flex-direction:column;gap:clamp(6px,.8vw,14px)}
+.ab-pstack .ab-photo{flex:1;min-height:0}
 
 /* Three equal */
 .ab-panel--trio{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(6px,.8vw,14px)}
@@ -331,8 +331,8 @@ nav.scrolled{background:rgba(2,8,18,.92);backdrop-filter:blur(14px);border-botto
 .ab-lb-inq:hover{color:var(--gold)}
 
 @media(max-width:768px){
-  .ab-panel--fl,.ab-panel--fr{grid-template-columns:1fr;grid-template-rows:auto}
-  .ab-panel--fl .ab-photo:first-child,.ab-panel--fr .ab-photo:last-child{grid-row:span 1;aspect-ratio:1/1}
+  .ab-panel--fl,.ab-panel--fr{flex-direction:column}
+  .ab-panel--fl > .ab-photo,.ab-panel--fr > .ab-photo{aspect-ratio:16/9}
   .ab-panel--trio{grid-template-columns:repeat(2,1fr)}
   .ab-panel--solo .ab-photo{width:100%;max-width:100%}
   .ab-panel--dnl,.ab-panel--dnr{grid-template-columns:1fr}

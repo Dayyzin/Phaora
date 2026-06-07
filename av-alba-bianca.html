@@ -136,14 +136,14 @@ nav.scrolled{background:rgba(2,8,18,.92);backdrop-filter:blur(14px);border-botto
 .ab-panel--hero{margin-left:calc(-1 * clamp(24px,4vw,80px));margin-right:calc(-1 * clamp(24px,4vw,80px))}
 
 /* Feature-left: tall portrait left + 2 stacked right */
-.ab-panel--fl{display:grid;grid-template-columns:1.55fr 1fr;grid-template-rows:1fr 1fr;gap:clamp(6px,.8vw,14px)}
-.ab-panel--fl .ab-photo:first-child{grid-row:span 2;aspect-ratio:3/4}
-.ab-panel--fl .ab-photo:not(:first-child){aspect-ratio:1/1}
-
+.ab-panel--fl{display:flex;gap:clamp(6px,.8vw,14px);align-items:stretch}
+.ab-panel--fl > .ab-photo{flex:1.55;aspect-ratio:3/4}
 /* Feature-right: 2 stacked left + tall portrait right */
-.ab-panel--fr{display:grid;grid-template-columns:1fr 1.55fr;grid-template-rows:1fr 1fr;gap:clamp(6px,.8vw,14px)}
-.ab-panel--fr .ab-photo:last-child{grid-row:span 2;aspect-ratio:3/4}
-.ab-panel--fr .ab-photo:not(:last-child){aspect-ratio:1/1}
+.ab-panel--fr{display:flex;gap:clamp(6px,.8vw,14px);align-items:stretch}
+.ab-panel--fr > .ab-photo{flex:1.55;aspect-ratio:3/4}
+/* Stacked pair inside feature panels */
+.ab-pstack{flex:1;display:flex;flex-direction:column;gap:clamp(6px,.8vw,14px)}
+.ab-pstack .ab-photo{flex:1;min-height:0}
 
 /* Three equal */
 .ab-panel--trio{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(6px,.8vw,14px)}
@@ -206,8 +206,8 @@ nav.scrolled{background:rgba(2,8,18,.92);backdrop-filter:blur(14px);border-botto
 .ab-lb-inq:hover{color:var(--gold)}
 
 @media(max-width:768px){
-  .ab-panel--fl,.ab-panel--fr{grid-template-columns:1fr;grid-template-rows:auto}
-  .ab-panel--fl .ab-photo:first-child,.ab-panel--fr .ab-photo:last-child{grid-row:span 1;aspect-ratio:1/1}
+  .ab-panel--fl,.ab-panel--fr{flex-direction:column}
+  .ab-panel--fl > .ab-photo,.ab-panel--fr > .ab-photo{aspect-ratio:16/9}
   .ab-panel--trio{grid-template-columns:repeat(2,1fr)}
   .ab-panel--solo .ab-photo{width:100%;max-width:100%}
   .ab-panel--dnl,.ab-panel--dnr{grid-template-columns:1fr}
@@ -352,10 +352,10 @@ footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rg
     <span class="ab-gallery-count">28 photographs</span>
   </div>
   <div class="ab-gallery-panels">
-    <div class="ab-panel ab-panel--fl"><div class="ab-photo" onclick="openLb(0)" role="button" tabindex="0" aria-label="Photograph 1 of 28"><img src="av/alba-bianca/ab-01.jpg" loading="lazy" alt="Alba Bianca 1 of 28"><span class="ab-photo-num">01</span></div><div class="ab-photo" onclick="openLb(1)" role="button" tabindex="0" aria-label="Photograph 2 of 28"><img src="av/alba-bianca/ab-02.jpg" loading="lazy" alt="Alba Bianca 2 of 28"><span class="ab-photo-num">02</span></div><div class="ab-photo" onclick="openLb(2)" role="button" tabindex="0" aria-label="Photograph 3 of 28"><img src="av/alba-bianca/ab-03.jpg" loading="lazy" alt="Alba Bianca 3 of 28"><span class="ab-photo-num">03</span></div></div>
+    <div class="ab-panel ab-panel--fl"><div class="ab-photo" onclick="openLb(0)" role="button" tabindex="0" aria-label="Photograph 1 of 28"><img src="av/alba-bianca/ab-01.jpg" loading="lazy" alt="Alba Bianca 1 of 28"><span class="ab-photo-num">01</span></div><div class="ab-pstack"><div class="ab-photo" onclick="openLb(1)" role="button" tabindex="0" aria-label="Photograph 2 of 28"><img src="av/alba-bianca/ab-02.jpg" loading="lazy" alt="Alba Bianca 2 of 28"><span class="ab-photo-num">02</span></div><div class="ab-photo" onclick="openLb(2)" role="button" tabindex="0" aria-label="Photograph 3 of 28"><img src="av/alba-bianca/ab-03.jpg" loading="lazy" alt="Alba Bianca 3 of 28"><span class="ab-photo-num">03</span></div></div></div>
     <div class="ab-panel ab-panel--trio"><div class="ab-photo" onclick="openLb(3)" role="button" tabindex="0" aria-label="Photograph 4 of 28"><img src="av/alba-bianca/ab-04.jpg" loading="lazy" alt="Alba Bianca 4 of 28"><span class="ab-photo-num">04</span></div><div class="ab-photo" onclick="openLb(4)" role="button" tabindex="0" aria-label="Photograph 5 of 28"><img src="av/alba-bianca/ab-05.jpg" loading="lazy" alt="Alba Bianca 5 of 28"><span class="ab-photo-num">05</span></div><div class="ab-photo" onclick="openLb(5)" role="button" tabindex="0" aria-label="Photograph 6 of 28"><img src="av/alba-bianca/ab-06.jpg" loading="lazy" alt="Alba Bianca 6 of 28"><span class="ab-photo-num">06</span></div></div>
     <div class="ab-panel ab-panel--solo"><div class="ab-photo" onclick="openLb(6)" role="button" tabindex="0" aria-label="Photograph 7 of 28"><img src="av/alba-bianca/ab-07.jpg" loading="lazy" alt="Alba Bianca 7 of 28"><span class="ab-photo-num">07</span></div></div>
-    <div class="ab-panel ab-panel--fr"><div class="ab-photo" onclick="openLb(8)" role="button" tabindex="0" aria-label="Photograph 9 of 28"><img src="av/alba-bianca/ab-09.jpg" loading="lazy" alt="Alba Bianca 9 of 28"><span class="ab-photo-num">09</span></div><div class="ab-photo" onclick="openLb(9)" role="button" tabindex="0" aria-label="Photograph 10 of 28"><img src="av/alba-bianca/ab-10.jpg" loading="lazy" alt="Alba Bianca 10 of 28"><span class="ab-photo-num">10</span></div><div class="ab-photo" onclick="openLb(7)" role="button" tabindex="0" aria-label="Photograph 8 of 28"><img src="av/alba-bianca/ab-08.jpg" loading="lazy" alt="Alba Bianca 8 of 28"><span class="ab-photo-num">08</span></div></div>
+    <div class="ab-panel ab-panel--fr"><div class="ab-pstack"><div class="ab-photo" onclick="openLb(8)" role="button" tabindex="0" aria-label="Photograph 9 of 28"><img src="av/alba-bianca/ab-09.jpg" loading="lazy" alt="Alba Bianca 9 of 28"><span class="ab-photo-num">09</span></div><div class="ab-photo" onclick="openLb(9)" role="button" tabindex="0" aria-label="Photograph 10 of 28"><img src="av/alba-bianca/ab-10.jpg" loading="lazy" alt="Alba Bianca 10 of 28"><span class="ab-photo-num">10</span></div></div><div class="ab-photo" onclick="openLb(7)" role="button" tabindex="0" aria-label="Photograph 8 of 28"><img src="av/alba-bianca/ab-08.jpg" loading="lazy" alt="Alba Bianca 8 of 28"><span class="ab-photo-num">08</span></div></div>
     <div class="ab-panel ab-panel--hero"><div class="ab-photo" onclick="openLb(18)" role="button" tabindex="0" aria-label="Photograph 19 of 28"><img src="av/alba-bianca/ab-19.jpg" loading="lazy" alt="Alba Bianca 19 of 28"><span class="ab-photo-num">19</span></div></div>
     <div class="ab-panel ab-panel--trio"><div class="ab-photo" onclick="openLb(10)" role="button" tabindex="0" aria-label="Photograph 11 of 28"><img src="av/alba-bianca/ab-11.jpg" loading="lazy" alt="Alba Bianca 11 of 28"><span class="ab-photo-num">11</span></div><div class="ab-photo" onclick="openLb(11)" role="button" tabindex="0" aria-label="Photograph 12 of 28"><img src="av/alba-bianca/ab-12.jpg" loading="lazy" alt="Alba Bianca 12 of 28"><span class="ab-photo-num">12</span></div><div class="ab-photo" onclick="openLb(12)" role="button" tabindex="0" aria-label="Photograph 13 of 28"><img src="av/alba-bianca/ab-13.jpg" loading="lazy" alt="Alba Bianca 13 of 28"><span class="ab-photo-num">13</span></div></div>
     <div class="ab-panel ab-panel--dnl"><div class="ab-photo" onclick="openLb(13)" role="button" tabindex="0" aria-label="Photograph 14 of 28"><img src="av/alba-bianca/ab-14.jpg" loading="lazy" alt="Alba Bianca 14 of 28"><span class="ab-photo-num">14</span></div><div class="ab-photo" onclick="openLb(14)" role="button" tabindex="0" aria-label="Photograph 15 of 28"><img src="av/alba-bianca/ab-15.jpg" loading="lazy" alt="Alba Bianca 15 of 28"><span class="ab-photo-num">15</span></div></div>
