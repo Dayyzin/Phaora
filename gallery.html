@@ -38,7 +38,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 .nav-right .enquire:hover{border-color:var(--teal);color:var(--teal)}
 /* Águas Vivas nav dropdown */
 .nav-dropdown{position:relative;display:flex;align-items:center}
-.nav-dropdown-trigger{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(79,181,190,.62);white-space:nowrap;cursor:default;display:flex;align-items:center;gap:5px;transition:color .2s}
+.nav-dropdown-trigger{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(79,181,190,.62);white-space:nowrap;cursor:pointer;display:flex;align-items:center;gap:5px;transition:color .2s}
 .nav-dropdown:hover .nav-dropdown-trigger{color:rgba(79,181,190,.95)}
 .nav-dropdown-chevron{opacity:.42;transition:transform .28s,opacity .2s;flex-shrink:0}
 .nav-dropdown:hover .nav-dropdown-chevron{transform:rotate(180deg);opacity:.88}
@@ -204,7 +204,7 @@ footer{padding:clamp(32px,5vw,60px) clamp(24px,5vw,80px);border-top:1px solid rg
   <div class="nav-links">
     <a href="hardscape-gallery.html">Hardscape</a>
     <div class="nav-dropdown">
-      <span class="nav-dropdown-trigger">Águas Vivas <svg class="nav-dropdown-chevron" width="7" height="5" viewBox="0 0 7 5" fill="none"><path d="M.5 1L3.5 4l3-3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></span>
+      <a class="nav-dropdown-trigger" href="sculptures.html">Águas Vivas <svg class="nav-dropdown-chevron" width="7" height="5" viewBox="0 0 7 5" fill="none"><path d="M.5 1L3.5 4l3-3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></a>
       <div class="nav-dropdown-panel">
         <p class="nav-dp-header">Collection 003 &nbsp;·&nbsp; Eleven Works</p>
         <a href="Phaora Sculpture.html#collection" class="nav-dp-item"><span class="nav-dp-num">I</span><span class="nav-dp-name">Alba Bianca</span></a>
