@@ -13,6 +13,19 @@ const WORKS = [
       {label:'Work',        value:'I of Eleven'},
       {label:'Edition',     value:'One of one'},
       {label:'Availability',value:'Private inquiry only'},
+    ],
+    photos:[
+      {f:'ab-01.jpg',span:2},{f:'ab-02.jpg',span:1},{f:'ab-03.jpg',span:1},
+      {f:'ab-04.jpg',span:1},{f:'ab-05.jpg',span:1},{f:'ab-06.jpg',span:1},{f:'ab-07.jpg',span:1},
+      {f:'ab-08.jpg',span:4},
+      {f:'ab-09.jpg',span:1},{f:'ab-10.jpg',span:2},{f:'ab-11.jpg',span:1},
+      {f:'ab-12.jpg',span:2},{f:'ab-13.jpg',span:1},{f:'ab-14.jpg',span:1},
+      {f:'ab-15.jpg',span:1},{f:'ab-16.jpg',span:1},{f:'ab-17.jpg',span:1},{f:'ab-18.jpg',span:1},
+      {f:'ab-19.jpg',span:4},
+      {f:'ab-20.jpg',span:1},{f:'ab-21.jpg',span:1},{f:'ab-22.jpg',span:2},
+      {f:'ab-23.jpg',span:1},{f:'ab-24.jpg',span:1},{f:'ab-25.jpg',span:1},{f:'ab-26.jpg',span:1},
+      {f:'ab-27.jpg',span:4},
+      {f:'ab-28.jpg',span:2},{f:'ab-29.jpg',span:2},
     ]
   },
   {num:'II',   idx:2,  name:'La Corte',      tr:'The Court',      slug:'la-corte',      glow:'rgba(79,181,190,.28)'},
@@ -48,6 +61,46 @@ function page(w, idx) {
     : '';
 
   const statusText = w.revealed ? 'Private inquiry open' : 'Sealed &middot; August MMXXVI';
+
+  const galleryHtml = (w.revealed && w.photos && w.photos.length) ? (function() {
+    const total = w.photos.length;
+    const gridItems = w.photos.map((p, i) => {
+      const spanClass = p.span === 4 ? 'ab-photo--s4 ab-photo--hero' : p.span === 2 ? 'ab-photo--s2 ab-photo--wide' : 'ab-photo--sq';
+      return `<div class="ab-photo ${spanClass}" onclick="openLb(${i})" role="button" tabindex="0" aria-label="View photograph ${i+1}">
+  <img src="av/alba-bianca/${p.f}" loading="lazy" alt="Alba Bianca — photograph ${i+1} of ${total}">
+  <span class="ab-photo-num">${String(i+1).padStart(2,'0')}</span>
+</div>`;
+    }).join('\n');
+    const thumbItems = w.photos.map((p, i) =>
+      `<div class="ab-thumb${i===0?' active':''}" onclick="openLb(${i})" aria-label="Photo ${i+1}"><img src="av/alba-bianca/${p.f}" loading="lazy" alt="Thumbnail ${i+1}"></div>`
+    ).join('\n');
+    return `<section class="ab-gallery">
+  <div class="ab-gallery-header">
+    <h2 class="ab-gallery-title">Twenty-nine views<br>of <em>one work</em></h2>
+    <span class="ab-gallery-count">${total} photographs</span>
+  </div>
+  <div class="ab-grid" id="abGrid">${gridItems}</div>
+  <div class="ab-strip-wrap">
+    <p class="ab-strip-label">Scroll to explore all ${total}</p>
+    <div class="ab-strip" id="abStrip">${thumbItems}</div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="ab-lb" id="abLb" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="ab-lb-close" onclick="closeLb()" aria-label="Close">Close &times;</button>
+  <button class="ab-lb-prev" onclick="shiftLb(-1)" aria-label="Previous">&larr;</button>
+  <div class="ab-lb-img-wrap">
+    <img class="ab-lb-img" id="abLbImg" src="" alt="">
+  </div>
+  <button class="ab-lb-next" onclick="shiftLb(1)" aria-label="Next">&rarr;</button>
+  <div class="ab-lb-bar">
+    <span class="ab-lb-counter" id="abLbCounter">01 / ${total}</span>
+    <div class="ab-lb-progress"><div class="ab-lb-fill" id="abLbFill" style="width:${(1/total*100).toFixed(1)}%"></div></div>
+    <a href="mailto:david@phaora.com?subject=${encodeURIComponent('Inquiry — Alba Bianca · Águas Vivas')}" class="ab-lb-inq">Inquire &rarr;</a>
+  </div>
+</div>`;
+  })() : '';
 
   const editorialHtml = (w.revealed && w.narrative && w.specs)
     ? `<section class="work-editorial">
@@ -197,6 +250,64 @@ nav.scrolled{background:rgba(2,8,18,.92);backdrop-filter:blur(14px);border-botto
 .piece-nav-link.next:hover .piece-nav-arrow{transform:translateX(4px)}
 .piece-nav-link.prev:hover .piece-nav-arrow{transform:translateX(-4px)}
 
+/* PHOTO GALLERY */
+.ab-gallery{background:#010610}
+.ab-gallery-header{padding:clamp(48px,6vw,80px) clamp(32px,5vw,80px) clamp(28px,3vw,44px);display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.ab-gallery-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(26px,3.2vw,48px);color:var(--pearl);line-height:1.1}
+.ab-gallery-title em{font-style:italic;color:rgba(79,181,190,.7)}
+.ab-gallery-count{font-size:9px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:rgba(234,239,245,.28);flex-shrink:0}
+.ab-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;padding:0 3px 3px}
+.ab-photo{position:relative;overflow:hidden;cursor:zoom-in;background:#0a0e1a}
+.ab-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.22,1,.36,1),filter .5s;filter:brightness(.88) saturate(.9)}
+.ab-photo:hover img{transform:scale(1.04);filter:brightness(1) saturate(1)}
+.ab-photo--sq{aspect-ratio:1/1}
+.ab-photo--wide{aspect-ratio:16/9}
+.ab-photo--hero{aspect-ratio:21/7}
+.ab-photo--s2{grid-column:span 2}
+.ab-photo--s4{grid-column:span 4}
+.ab-photo-num{position:absolute;bottom:12px;right:14px;font-size:9px;font-weight:500;letter-spacing:.2em;color:rgba(234,239,245,.28);pointer-events:none;z-index:2;transition:color .2s}
+.ab-photo:hover .ab-photo-num{color:rgba(234,239,245,.65)}
+
+/* FILMSTRIP */
+.ab-strip-wrap{padding:clamp(32px,4vw,56px) 0;border-top:1px solid rgba(234,239,245,.04);background:#010610;overflow:hidden}
+.ab-strip-label{font-size:9px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:rgba(234,239,245,.22);padding:0 clamp(24px,4vw,60px) 20px}
+.ab-strip{display:flex;gap:4px;overflow-x:auto;padding:0 clamp(24px,4vw,60px) 8px;scrollbar-width:none;cursor:grab}
+.ab-strip::-webkit-scrollbar{display:none}
+.ab-strip.dragging{cursor:grabbing;user-select:none}
+.ab-thumb{flex:0 0 120px;aspect-ratio:1/1;overflow:hidden;cursor:pointer;position:relative;background:#0a0e1a}
+.ab-thumb img{width:100%;height:100%;object-fit:cover;filter:brightness(.7) saturate(.8);transition:filter .3s,transform .3s}
+.ab-thumb:hover img,.ab-thumb.active img{filter:brightness(1) saturate(1);transform:scale(1.06)}
+.ab-thumb.active::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--teal)}
+
+/* LIGHTBOX */
+.ab-lb{position:fixed;inset:0;z-index:2000;background:rgba(2,6,16,.97);backdrop-filter:blur(12px);display:none;flex-direction:column;align-items:center;justify-content:center}
+.ab-lb.open{display:flex}
+.ab-lb-img-wrap{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:64px 80px 80px}
+.ab-lb-img{max-width:100%;max-height:100%;object-fit:contain;opacity:0;transition:opacity .35s ease;display:block}
+.ab-lb-img.visible{opacity:1}
+.ab-lb-close{position:absolute;top:20px;right:24px;font-size:9px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:rgba(234,239,245,.4);cursor:pointer;background:none;border:none;padding:8px;transition:color .2s;z-index:10}
+.ab-lb-close:hover{color:var(--pearl)}
+.ab-lb-prev,.ab-lb-next{position:absolute;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(234,239,245,.3);cursor:pointer;padding:20px 16px;font-size:18px;transition:color .2s;z-index:10}
+.ab-lb-prev:hover,.ab-lb-next:hover{color:rgba(234,239,245,.9)}
+.ab-lb-prev{left:12px}
+.ab-lb-next{right:12px}
+.ab-lb-bar{position:absolute;bottom:0;left:0;right:0;padding:16px 24px;display:flex;align-items:center;justify-content:space-between}
+.ab-lb-counter{font-size:10px;font-weight:500;letter-spacing:.24em;color:rgba(234,239,245,.35)}
+.ab-lb-progress{flex:1;height:1px;background:rgba(234,239,245,.08);margin:0 24px;position:relative;overflow:hidden}
+.ab-lb-fill{height:100%;background:var(--teal);transition:width .3s ease;position:absolute;top:0;left:0}
+.ab-lb-inq{font-size:9px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:rgba(200,164,94,.5);text-decoration:none;transition:color .2s}
+.ab-lb-inq:hover{color:var(--gold)}
+
+@media(max-width:768px){
+  .ab-grid{grid-template-columns:repeat(2,1fr)}
+  .ab-photo--s4,.ab-photo--s2{grid-column:span 2}
+  .ab-photo--hero{aspect-ratio:4/3}
+  .ab-photo--wide{aspect-ratio:4/3}
+  .ab-lb-img-wrap{padding:60px 12px 72px}
+  .ab-lb-prev,.ab-lb-next{padding:12px 8px}
+  .ab-thumb{flex:0 0 80px}
+}
+
 /* EDITORIAL */
 .work-editorial{padding:clamp(60px,8vw,100px) clamp(32px,5vw,80px);border-bottom:1px solid rgba(234,239,245,.04);display:grid;grid-template-columns:1fr 1fr;gap:clamp(48px,7vw,100px);align-items:start}
 .work-edit-eyebrow{font-size:9px;font-weight:500;letter-spacing:.36em;text-transform:uppercase;color:rgba(79,181,190,.48);margin-bottom:24px}
@@ -298,6 +409,8 @@ ${mediaHtml}
 
 ${editorialHtml}
 
+${galleryHtml}
+
 <div class="piece-inquiry">
   <p class="inq-line">Each work is placed by private conversation.</p>
   <p class="inq-sub">No public sale. No auction. David responds personally within twenty-four hours.</p>
@@ -343,6 +456,73 @@ ${videoJS}
   b.addEventListener('click',function(){b.classList.toggle('open');m.classList.toggle('open');document.body.style.overflow=m.classList.contains('open')?'hidden':''});
   m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){b.classList.remove('open');m.classList.remove('open');document.body.style.overflow=''})});
 })();
+
+${w.photos ? `
+/* Lightbox + filmstrip */
+(function(){
+  var PHOTOS=${JSON.stringify(w.photos.map((p,i)=>({f:p.f,i})))};
+  var TOTAL=PHOTOS.length;
+  var cur=0;
+  var lb=document.getElementById('abLb');
+  var img=document.getElementById('abLbImg');
+  var counter=document.getElementById('abLbCounter');
+  var fill=document.getElementById('abLbFill');
+  var strip=document.getElementById('abStrip');
+
+  function pad(n){return n<10?'0'+n:String(n)}
+  function updateStrip(i){
+    if(!strip)return;
+    var thumbs=strip.querySelectorAll('.ab-thumb');
+    thumbs.forEach(function(t,j){t.classList.toggle('active',j===i)});
+    var th=thumbs[i];
+    if(th) th.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  }
+  function loadImg(i,cb){
+    var src='av/alba-bianca/'+PHOTOS[i].f;
+    img.classList.remove('visible');
+    setTimeout(function(){
+      img.onload=function(){img.classList.add('visible');if(cb)cb()};
+      img.onerror=function(){img.classList.add('visible')};
+      img.src=src;
+      img.alt='Alba Bianca — photograph '+(i+1)+' of '+TOTAL;
+    },160);
+  }
+  function setLb(i){
+    cur=(i+TOTAL)%TOTAL;
+    loadImg(cur);
+    counter.textContent=pad(cur+1)+' / '+pad(TOTAL);
+    fill.style.width=((cur+1)/TOTAL*100).toFixed(1)+'%';
+    updateStrip(cur);
+  }
+  window.openLb=function(i){cur=i;lb.classList.add('open');document.body.style.overflow='hidden';setLb(i)};
+  window.closeLb=function(){lb.classList.remove('open');document.body.style.overflow=''};
+  window.shiftLb=function(d){setLb(cur+d)};
+
+  /* keyboard */
+  document.addEventListener('keydown',function(e){
+    if(!lb.classList.contains('open'))return;
+    if(e.key==='ArrowLeft')shiftLb(-1);
+    if(e.key==='ArrowRight')shiftLb(1);
+    if(e.key==='Escape')closeLb();
+  });
+
+  /* touch swipe */
+  var tx=0;
+  lb.addEventListener('touchstart',function(e){tx=e.touches[0].clientX},{passive:true});
+  lb.addEventListener('touchend',function(e){
+    var dx=e.changedTouches[0].clientX-tx;
+    if(Math.abs(dx)>40)shiftLb(dx<0?1:-1);
+  },{passive:true});
+
+  /* filmstrip drag scroll */
+  if(strip){
+    var dragging=false,startX=0,scrollLeft=0;
+    strip.addEventListener('mousedown',function(e){dragging=true;strip.classList.add('dragging');startX=e.pageX-strip.offsetLeft;scrollLeft=strip.scrollLeft});
+    document.addEventListener('mouseup',function(){dragging=false;strip.classList.remove('dragging')});
+    strip.addEventListener('mousemove',function(e){if(!dragging)return;e.preventDefault();var x=e.pageX-strip.offsetLeft;strip.scrollLeft=scrollLeft-(x-startX)*1.4});
+  }
+})();
+` : ''}
 </script>
 </body>
 </html>`;
