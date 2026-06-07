@@ -494,7 +494,7 @@ ${videoJS}
 ${w.photos ? `
 /* Lightbox + filmstrip */
 (function(){
-  var PHOTOS=${JSON.stringify(w.photos.map((p,i)=>({f:p.f,i})))};
+  var PHOTOS=${JSON.stringify(w.photos.map((p,i)=>({f:p,i})))};
   var TOTAL=PHOTOS.length;
   var cur=0;
   var lb=document.getElementById('abLb');
