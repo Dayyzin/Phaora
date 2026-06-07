@@ -425,25 +425,25 @@ footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rg
 
 /* Grid of sealed cells */
 .vault-grid{
-  display:grid;
-  grid-template-columns:repeat(4,minmax(0,280px));
+  display:flex;
+  flex-wrap:wrap;
   justify-content:center;
-  gap:1px;
-  background:rgba(234,239,245,.04);
-  border-top:1px solid rgba(234,239,245,.04);
-  border-bottom:1px solid rgba(234,239,245,.04);
+  gap:clamp(16px,2vw,28px);
+  padding:clamp(32px,4vw,60px) clamp(24px,4vw,60px);
 }
-@media(max-width:1200px){.vault-grid{grid-template-columns:repeat(3,minmax(0,280px))}}
-@media(max-width:700px){.vault-grid{grid-template-columns:repeat(2,minmax(0,240px))}}
 
 .vault-cell{
-  position:relative;
+  flex:0 0 280px;
   aspect-ratio:4/5;
-  background:#020812;
+  position:relative;
+  background:rgba(3,10,22,.82);
+  box-shadow:0 12px 48px rgba(0,0,0,.55);
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   overflow:hidden;cursor:default;
-  transition:background .6s;
+  transition:background .6s,box-shadow .4s,transform .4s cubic-bezier(.22,1,.36,1);
 }
+.vault-cell:hover{box-shadow:0 20px 64px rgba(0,0,0,.65);transform:translateY(-4px)}
+@media(max-width:700px){.vault-cell{flex-basis:240px}}
 
 /* Inner atmosphere glow — unique per cell */
 .vault-cell::before{
