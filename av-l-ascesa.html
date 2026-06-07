@@ -121,6 +121,17 @@ nav.scrolled{background:rgba(2,8,18,.92);backdrop-filter:blur(14px);border-botto
 .piece-nav-link.next:hover .piece-nav-arrow{transform:translateX(4px)}
 .piece-nav-link.prev:hover .piece-nav-arrow{transform:translateX(-4px)}
 
+/* EDITORIAL */
+.work-editorial{padding:clamp(60px,8vw,100px) clamp(32px,5vw,80px);border-bottom:1px solid rgba(234,239,245,.04);display:grid;grid-template-columns:1fr 1fr;gap:clamp(48px,7vw,100px);align-items:start}
+.work-edit-eyebrow{font-size:9px;font-weight:500;letter-spacing:.36em;text-transform:uppercase;color:rgba(79,181,190,.48);margin-bottom:24px}
+.work-edit-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(28px,3.2vw,46px);line-height:1.15;color:var(--pearl);margin-bottom:28px}
+.work-edit-title em{font-style:italic;color:rgba(79,181,190,.72)}
+.work-edit-body{font-size:14px;line-height:1.88;color:rgba(234,239,245,.42);max-width:480px}
+.work-edit-specs{display:flex;flex-direction:column;gap:0;border-top:1px solid rgba(234,239,245,.06)}
+.work-spec-row{display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding:14px 0;border-bottom:1px solid rgba(234,239,245,.04)}
+.work-spec-label{font-size:9px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(234,239,245,.28);flex-shrink:0}
+.work-spec-value{font-family:'Cormorant Garamond',serif;font-size:17px;color:rgba(234,239,245,.68);letter-spacing:.02em;text-align:right}
+
 /* FOOTER */
 footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rgba(79,181,190,.08);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
 .footer-copy{font-size:10px;letter-spacing:.12em;color:rgba(234,239,245,.18)}
@@ -128,6 +139,9 @@ footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rg
 
 /* ═══ MOBILE ═══ */
 @media(max-width:768px){
+  .work-editorial{grid-template-columns:1fr;gap:40px;padding:48px 20px}
+  .work-edit-title{font-size:clamp(24px,6vw,38px)}
+  .work-spec-value{font-size:15px}
   .piece-hero{min-height:480px}
   .piece-name{font-size:clamp(40px,11vw,100px);line-height:1.02}
   .piece-eyebrow{font-size:8px;letter-spacing:.3em;margin-bottom:20px}
@@ -213,10 +227,6 @@ footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rg
       Inquire privately
       <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 5h12M8 1l4 4-4 4"/></svg>
     </a>
-  </div>
-  <div class="piece-scroll">
-    <span class="piece-scroll-text">Details</span>
-    <div class="piece-scroll-line"></div>
   </div>
 </section>
 

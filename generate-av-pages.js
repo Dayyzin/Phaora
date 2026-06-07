@@ -3,7 +3,18 @@
 const fs = require('fs');
 
 const WORKS = [
-  {num:'I',    idx:1,  name:'Alba Bianca',   tr:'White Dawn',     slug:'alba-bianca',   glow:'rgba(220,200,160,.35)', img:'av/phaora-aguasvivas-01-alba-bianca.png',   video:'av/videos/Alba Bianca.mp4',   revealed:true},
+  {num:'I', idx:1, name:'Alba Bianca', tr:'White Dawn', slug:'alba-bianca', glow:'rgba(220,200,160,.35)', img:'av/phaora-aguasvivas-01-alba-bianca.png', video:'av/videos/Alba Bianca.mp4', revealed:true,
+    narrative:'Alba Bianca — White Dawn — is the work that opens the collection. Carved from a single formation of selenite and amethyst, extracted from the mountains of Minas Gerais, it carries the mineral light of the interior for which Águas Vivas is named. No tool touched it that was not guided by hand.',
+    specs:[
+      {label:'Material',    value:'Selenite · Amethyst · 24k Gold'},
+      {label:'Origin',      value:'Minas Gerais, Brazil'},
+      {label:'Craft',       value:'Hand-carved by Fabiano'},
+      {label:'Collection',  value:'Águas Vivas · 003'},
+      {label:'Work',        value:'I of Eleven'},
+      {label:'Edition',     value:'One of one'},
+      {label:'Availability',value:'Private inquiry only'},
+    ]
+  },
   {num:'II',   idx:2,  name:'La Corte',      tr:'The Court',      slug:'la-corte',      glow:'rgba(79,181,190,.28)'},
   {num:'III',  idx:3,  name:'Crepuscolo',    tr:'Twilight',       slug:'crepuscolo',    glow:'rgba(110,80,160,.30)'},
   {num:'IV',   idx:4,  name:"L'Ascesa",      tr:'The Ascent',     slug:'l-ascesa',      glow:'rgba(79,181,190,.32)'},
@@ -37,6 +48,27 @@ function page(w, idx) {
     : '';
 
   const statusText = w.revealed ? 'Private inquiry open' : 'Sealed &middot; August MMXXVI';
+
+  const editorialHtml = (w.revealed && w.narrative && w.specs)
+    ? `<section class="work-editorial">
+  <div class="work-editorial-text">
+    <p class="work-edit-eyebrow">Work ${w.num} of XI &nbsp;&middot;&nbsp; &#193;guas Vivas &nbsp;&middot;&nbsp; Collection 003</p>
+    <h2 class="work-edit-title">The first light.<br><em>The opening work.</em></h2>
+    <p class="work-edit-body">${w.narrative}</p>
+  </div>
+  <dl class="work-edit-specs">
+    ${w.specs.map(s => `<div class="work-spec-row"><dt class="work-spec-label">${s.label}</dt><dd class="work-spec-value">${s.value}</dd></div>`).join('\n    ')}
+  </dl>
+</section>`
+    : `<div class="piece-details">
+  <div class="piece-spec"><span class="spec-label">Material</span><span class="spec-value">Crystal &middot; Minas Gerais</span></div>
+  <div class="piece-details-sep"></div>
+  <div class="piece-spec"><span class="spec-label">Collection</span><span class="spec-value">&#193;guas Vivas &middot; 003</span></div>
+  <div class="piece-details-sep"></div>
+  <div class="piece-spec"><span class="spec-label">Edition</span><span class="spec-value">One of one</span></div>
+  <div class="piece-details-sep"></div>
+  <div class="piece-spec"><span class="spec-label">Reveal</span><span class="spec-value">23 August MMXXVI</span></div>
+</div>`;
 
   const videoJS = w.revealed
     ? `(function(){\n  var v=document.getElementById('pieceVideo'),bg=document.getElementById('pieceBg');\n  bg.classList.add('loaded');\n  if(!v)return;\n  v.addEventListener('canplay',function(){v.classList.add('loaded')},{once:true});\n  v.load();\n})();`
@@ -165,6 +197,17 @@ nav.scrolled{background:rgba(2,8,18,.92);backdrop-filter:blur(14px);border-botto
 .piece-nav-link.next:hover .piece-nav-arrow{transform:translateX(4px)}
 .piece-nav-link.prev:hover .piece-nav-arrow{transform:translateX(-4px)}
 
+/* EDITORIAL */
+.work-editorial{padding:clamp(60px,8vw,100px) clamp(32px,5vw,80px);border-bottom:1px solid rgba(234,239,245,.04);display:grid;grid-template-columns:1fr 1fr;gap:clamp(48px,7vw,100px);align-items:start}
+.work-edit-eyebrow{font-size:9px;font-weight:500;letter-spacing:.36em;text-transform:uppercase;color:rgba(79,181,190,.48);margin-bottom:24px}
+.work-edit-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(28px,3.2vw,46px);line-height:1.15;color:var(--pearl);margin-bottom:28px}
+.work-edit-title em{font-style:italic;color:rgba(79,181,190,.72)}
+.work-edit-body{font-size:14px;line-height:1.88;color:rgba(234,239,245,.42);max-width:480px}
+.work-edit-specs{display:flex;flex-direction:column;gap:0;border-top:1px solid rgba(234,239,245,.06)}
+.work-spec-row{display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding:14px 0;border-bottom:1px solid rgba(234,239,245,.04)}
+.work-spec-label{font-size:9px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(234,239,245,.28);flex-shrink:0}
+.work-spec-value{font-family:'Cormorant Garamond',serif;font-size:17px;color:rgba(234,239,245,.68);letter-spacing:.02em;text-align:right}
+
 /* FOOTER */
 footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rgba(79,181,190,.08);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
 .footer-copy{font-size:10px;letter-spacing:.12em;color:rgba(234,239,245,.18)}
@@ -172,6 +215,9 @@ footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rg
 
 /* ═══ MOBILE ═══ */
 @media(max-width:768px){
+  .work-editorial{grid-template-columns:1fr;gap:40px;padding:48px 20px}
+  .work-edit-title{font-size:clamp(24px,6vw,38px)}
+  .work-spec-value{font-size:15px}
   .piece-hero{min-height:480px}
   .piece-name{font-size:clamp(40px,11vw,100px);line-height:1.02}
   .piece-eyebrow{font-size:8px;letter-spacing:.3em;margin-bottom:20px}
@@ -248,21 +294,9 @@ ${mediaHtml}
       <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 5h12M8 1l4 4-4 4"/></svg>
     </a>
   </div>
-  <div class="piece-scroll">
-    <span class="piece-scroll-text">Details</span>
-    <div class="piece-scroll-line"></div>
-  </div>
 </section>
 
-<div class="piece-details">
-  <div class="piece-spec"><span class="spec-label">Material</span><span class="spec-value">Crystal &middot; Minas Gerais</span></div>
-  <div class="piece-details-sep"></div>
-  <div class="piece-spec"><span class="spec-label">Collection</span><span class="spec-value">&#193;guas Vivas &middot; 003</span></div>
-  <div class="piece-details-sep"></div>
-  <div class="piece-spec"><span class="spec-label">Edition</span><span class="spec-value">One of one</span></div>
-  <div class="piece-details-sep"></div>
-  <div class="piece-spec"><span class="spec-label">Reveal</span><span class="spec-value">23 August MMXXVI</span></div>
-</div>
+${editorialHtml}
 
 <div class="piece-inquiry">
   <p class="inq-line">Each work is placed by private conversation.</p>
