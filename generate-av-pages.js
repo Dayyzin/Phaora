@@ -3,17 +3,17 @@
 const fs = require('fs');
 
 const WORKS = [
-  {num:'I',    idx:1,  name:'Alba Bianca',   tr:'White Dawn',     slug:'alba-bianca',   glow:'rgba(220,200,160,.35)', img:'av/phaora-aguasvivas-01-alba-bianca.png',   video:'av/videos/Alba Bianca.mp4'},
-  {num:'II',   idx:2,  name:'La Corte',      tr:'The Court',      slug:'la-corte',      glow:'rgba(79,181,190,.28)',  img:'av/phaora-aguasvivas-02-la-corte.png',      video:'av/videos/La Corte.mp4'},
-  {num:'III',  idx:3,  name:'Crepuscolo',    tr:'Twilight',       slug:'crepuscolo',    glow:'rgba(110,80,160,.30)',  img:'av/phaora-aguasvivas-03-crepuscolo.png',    video:'av/videos/Crepuscolo.mp4'},
-  {num:'IV',   idx:4,  name:"L’Ascesa", tr:'The Ascent',     slug:'l-ascesa',      glow:'rgba(79,181,190,.32)',  img:'av/phaora-aguasvivas-04-lascesa.png',       video:"av/videos/L’Ascesa.mp4"},
-  {num:'V',    idx:5,  name:'La Protezione', tr:'The Protection', slug:'la-protezione', glow:'rgba(200,164,94,.26)',  img:'av/phaora-aguasvivas-05-la-protezione.png', video:'av/videos/La Protezione.mp4'},
-  {num:'VI',   idx:6,  name:'Il Bacio',      tr:'The Kiss',       slug:'il-bacio',      glow:'rgba(180,80,100,.28)', img:'av/phaora-aguasvivas-06-il-bacio.png',      video:'av/videos/Il Bacio.mp4'},
-  {num:'VII',  idx:7,  name:'Origine',       tr:'Origin',         slug:'origine',       glow:'rgba(60,140,120,.30)', img:'av/phaora-aguasvivas-07-origine.png',       video:'av/videos/Origine.mp4'},
-  {num:'VIII', idx:8,  name:'Duetto',        tr:'Duet',           slug:'duetto',        glow:'rgba(79,181,190,.24)', img:'av/phaora-aguasvivas-08-duetto.png',        video:'av/videos/Duetto.mp4'},
-  {num:'IX',   idx:9,  name:'Maestà',  tr:'Majesty',        slug:'maesta',        glow:'rgba(200,164,94,.32)', img:'av/phaora-aguasvivas-09-maesta.png',        video:'av/videos/Majesta.mp4'},
-  {num:'X',    idx:10, name:"Sull’Altare", tr:'On the Altar', slug:'sull-altare', glow:'rgba(160,120,200,.28)',img:'av/phaora-aguasvivas-10-sullaltare.png',    video:"av/videos/Sull’Altare.mp4"},
-  {num:'XI',   idx:11, name:"Volo d’Amore", tr:'Flight of Love', slug:'volo-d-amore', glow:'rgba(79,181,190,.32)', img:'av/phaora-aguasvivas-11-volo-damore.png', video:"av/videos/Volo d’Amore.mp4"},
+  {num:'I',    idx:1,  name:'Alba Bianca',   tr:'White Dawn',     slug:'alba-bianca',   glow:'rgba(220,200,160,.35)', img:'av/phaora-aguasvivas-01-alba-bianca.png',   video:'av/videos/Alba Bianca.mp4',   revealed:true},
+  {num:'II',   idx:2,  name:'La Corte',      tr:'The Court',      slug:'la-corte',      glow:'rgba(79,181,190,.28)'},
+  {num:'III',  idx:3,  name:'Crepuscolo',    tr:'Twilight',       slug:'crepuscolo',    glow:'rgba(110,80,160,.30)'},
+  {num:'IV',   idx:4,  name:"L'Ascesa",      tr:'The Ascent',     slug:'l-ascesa',      glow:'rgba(79,181,190,.32)'},
+  {num:'V',    idx:5,  name:'La Protezione', tr:'The Protection', slug:'la-protezione', glow:'rgba(200,164,94,.26)'},
+  {num:'VI',   idx:6,  name:'Il Bacio',      tr:'The Kiss',       slug:'il-bacio',      glow:'rgba(180,80,100,.28)'},
+  {num:'VII',  idx:7,  name:'Origine',       tr:'Origin',         slug:'origine',       glow:'rgba(60,140,120,.30)'},
+  {num:'VIII', idx:8,  name:'Duetto',        tr:'Duet',           slug:'duetto',        glow:'rgba(79,181,190,.24)'},
+  {num:'IX',   idx:9,  name:'Maestà',        tr:'Majesty',        slug:'maesta',        glow:'rgba(200,164,94,.32)'},
+  {num:'X',    idx:10, name:"Sull'Altare",   tr:'On the Altar',   slug:'sull-altare',   glow:'rgba(160,120,200,.28)'},
+  {num:'XI',   idx:11, name:"Volo d'Amore",  tr:'Flight of Love', slug:'volo-d-amore',  glow:'rgba(79,181,190,.32)'},
 ];
 
 function ep(p) {
@@ -31,6 +31,16 @@ function page(w, idx) {
   const prev = idx > 0 ? WORKS[idx - 1] : null;
   const next = idx < WORKS.length - 1 ? WORKS[idx + 1] : null;
   const emailSubject = encodeURIComponent(`Inquiry — ${w.name} · Águas Vivas`);
+
+  const mediaHtml = w.revealed
+    ? `  <div class="piece-bg" id="pieceBg" style="background-image:url('${w.img}')"></div>\n  <video class="piece-video" id="pieceVideo" autoplay loop muted playsinline>\n    <source src="${ep(w.video)}" type="video/mp4">\n  </video>`
+    : '';
+
+  const statusText = w.revealed ? 'Private inquiry open' : 'Sealed &middot; August MMXXVI';
+
+  const videoJS = w.revealed
+    ? `(function(){\n  var v=document.getElementById('pieceVideo'),bg=document.getElementById('pieceBg');\n  bg.classList.add('loaded');\n  if(!v)return;\n  v.addEventListener('canplay',function(){v.classList.add('loaded')},{once:true});\n  v.load();\n})();`
+    : '';
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -224,10 +234,7 @@ ${navDropdown(w.slug)}
 </div>
 
 <section class="piece-hero">
-  <div class="piece-bg" id="pieceBg" style="background-image:url('${w.img}')"></div>
-  <video class="piece-video" id="pieceVideo" autoplay loop muted playsinline>
-    <source src="${ep(w.video)}" type="video/mp4">
-  </video>
+${mediaHtml}
   <div class="piece-overlay"></div>
   <div class="piece-numeral">${w.num}</div>
   <div class="piece-content">
@@ -235,7 +242,7 @@ ${navDropdown(w.slug)}
     <h1 class="piece-name">${w.name}</h1>
     <p class="piece-tr">${w.tr}</p>
     <div class="piece-rule"></div>
-    <p class="piece-status">Private inquiry open</p>
+    <p class="piece-status">${statusText}</p>
     <a href="mailto:david@phaora.com?subject=${emailSubject}" class="piece-inq-cta">
       Inquire privately
       <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 5h12M8 1l4 4-4 4"/></svg>
@@ -295,13 +302,7 @@ ${next
   resize();window.addEventListener('resize',resize);
 })();
 window.addEventListener('scroll',function(){document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>60)},{passive:true});
-(function(){
-  var v=document.getElementById('pieceVideo'),bg=document.getElementById('pieceBg');
-  bg.classList.add('loaded');
-  if(!v)return;
-  v.addEventListener('canplay',function(){v.classList.add('loaded')},{once:true});
-  v.load();
-})();
+${videoJS}
 (function(){
   var b=document.getElementById('navBurger'),m=document.getElementById('mobileMenu');
   if(!b||!m)return;

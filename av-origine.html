@@ -10,7 +10,7 @@
 <meta name="description" content="Origine — Origin. Work VII of eleven. Águas Vivas · Collection 003 by Phaöra. Hand-carved crystal from the mountains of Minas Gerais.">
 <meta property="og:title" content="Origine — PHAÖRA · Águas Vivas">
 <meta property="og:description" content="Origin. Work VII of eleven. One of one. Private inquiry only.">
-<meta property="og:image" content="av/phaora-aguasvivas-07-origine.png">
+<meta property="og:image" content="undefined">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <title>Origine — PHAÖRA · Águas Vivas</title>
@@ -168,14 +168,14 @@ footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rg
         <a href="av-alba-bianca.html" class="nav-dp-item"><span class="nav-dp-num">I</span><span class="nav-dp-name">Alba Bianca</span></a>
         <a href="av-la-corte.html" class="nav-dp-item"><span class="nav-dp-num">II</span><span class="nav-dp-name">La Corte</span></a>
         <a href="av-crepuscolo.html" class="nav-dp-item"><span class="nav-dp-num">III</span><span class="nav-dp-name">Crepuscolo</span></a>
-        <a href="av-l-ascesa.html" class="nav-dp-item"><span class="nav-dp-num">IV</span><span class="nav-dp-name">L’Ascesa</span></a>
+        <a href="av-l-ascesa.html" class="nav-dp-item"><span class="nav-dp-num">IV</span><span class="nav-dp-name">L'Ascesa</span></a>
         <a href="av-la-protezione.html" class="nav-dp-item"><span class="nav-dp-num">V</span><span class="nav-dp-name">La Protezione</span></a>
         <a href="av-il-bacio.html" class="nav-dp-item"><span class="nav-dp-num">VI</span><span class="nav-dp-name">Il Bacio</span></a>
         <a href="av-origine.html" class="nav-dp-item nav-dp-active"><span class="nav-dp-num">VII</span><span class="nav-dp-name">Origine</span></a>
         <a href="av-duetto.html" class="nav-dp-item"><span class="nav-dp-num">VIII</span><span class="nav-dp-name">Duetto</span></a>
         <a href="av-maesta.html" class="nav-dp-item"><span class="nav-dp-num">IX</span><span class="nav-dp-name">Maestà</span></a>
-        <a href="av-sull-altare.html" class="nav-dp-item"><span class="nav-dp-num">X</span><span class="nav-dp-name">Sull’Altare</span></a>
-        <a href="av-volo-d-amore.html" class="nav-dp-item"><span class="nav-dp-num">XI</span><span class="nav-dp-name">Volo d’Amore</span></a>
+        <a href="av-sull-altare.html" class="nav-dp-item"><span class="nav-dp-num">X</span><span class="nav-dp-name">Sull'Altare</span></a>
+        <a href="av-volo-d-amore.html" class="nav-dp-item"><span class="nav-dp-num">XI</span><span class="nav-dp-name">Volo d'Amore</span></a>
         <div class="nav-dp-footer"><a href="sculptures.html#collection">View all works &rarr;</a></div>
       </div>
     </div>
@@ -200,10 +200,7 @@ footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rg
 </div>
 
 <section class="piece-hero">
-  <div class="piece-bg" id="pieceBg" style="background-image:url('av/phaora-aguasvivas-07-origine.png')"></div>
-  <video class="piece-video" id="pieceVideo" autoplay loop muted playsinline>
-    <source src="av/videos/Origine.mp4" type="video/mp4">
-  </video>
+
   <div class="piece-overlay"></div>
   <div class="piece-numeral">VII</div>
   <div class="piece-content">
@@ -211,7 +208,7 @@ footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rg
     <h1 class="piece-name">Origine</h1>
     <p class="piece-tr">Origin</p>
     <div class="piece-rule"></div>
-    <p class="piece-status">Private inquiry open</p>
+    <p class="piece-status">Sealed &middot; August MMXXVI</p>
     <a href="mailto:david@phaora.com?subject=Inquiry%20%E2%80%94%20Origine%20%C2%B7%20%C3%81guas%20Vivas" class="piece-inq-cta">
       Inquire privately
       <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 5h12M8 1l4 4-4 4"/></svg>
@@ -267,13 +264,7 @@ footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rg
   resize();window.addEventListener('resize',resize);
 })();
 window.addEventListener('scroll',function(){document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>60)},{passive:true});
-(function(){
-  var v=document.getElementById('pieceVideo'),bg=document.getElementById('pieceBg');
-  bg.classList.add('loaded');
-  if(!v)return;
-  v.addEventListener('canplay',function(){v.classList.add('loaded')},{once:true});
-  v.load();
-})();
+
 (function(){
   var b=document.getElementById('navBurger'),m=document.getElementById('mobileMenu');
   if(!b||!m)return;
