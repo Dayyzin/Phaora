@@ -2,728 +2,420 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PHAÖRA — Sculpture Gallery · Five Pieces, Thirty Works</title>
-<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
-<meta name="description" content="The complete sculpture register — hand-carved Brazilian crystal by master craftsman Fabiano. Five singular pieces, thirty photographs.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Phaöra — The permanent record. Every hardscape project documented. Palm Beach, Boca Raton, Jupiter Island, Manalapan, Coral Gables.">
+<meta property="og:title" content="PHAÖRA — Gallery · All Works">
+<meta property="og:description" content="The permanent record. Every project documented. Stone set by hand across South Florida's finest estates.">
+<meta property="og:image" content="uploads/353697D0-1A1F-47CC-BA02-83026DA91EF5_1_105_c.jpeg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PHAÖRA — Gallery · All Works">
+<meta name="twitter:description" content="The permanent record. Every project documented.">
+<meta name="twitter:image" content="uploads/353697D0-1A1F-47CC-BA02-83026DA91EF5_1_105_c.jpeg">
 <style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--pearl:#EAEFF5;--silver:#DBE6F0;--teal:#4FB5BE;--teal-d:rgba(79,181,190,.55);--gold:#C8A45E;--gold-lt:#D9BC7C;--ink:#020610}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--pearl);font-family:'Inter',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
 
-/* ═══ RESET & ROOT ═══ */
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --ink:#0a0908;
-  --surface:#12100c;
-  --bone:#e8dcc4;
-  --amber:#B87333;
-  --amber-bright:#D4A254;
-  --muted:#8a7355;
-  --stroke:rgba(184,115,51,0.2);
-  --serif:'Fraunces',Georgia,serif;
-  --sans:'Inter',system-ui,sans-serif;
-  --mono:'JetBrains Mono',monospace;
-  --ease:cubic-bezier(0.22,1,0.36,1);
-}
-html{scroll-behavior:smooth;background:var(--ink)}
-body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 clamp(20px,4vw,60px);height:64px;background:rgba(2,6,16,.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(79,181,190,.08)}
+.nav-links{display:flex;gap:24px;align-items:center}
+.nav-links a{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(234,239,245,.38);transition:color .2s;white-space:nowrap}
+.nav-links a:hover,.nav-links a.active{color:rgba(234,239,245,.82)}
+.nav-links a.av-link{color:rgba(79,181,190,.7)}
+.nav-wm{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:19px;letter-spacing:.42em;text-indent:.42em;text-transform:uppercase;color:var(--pearl);text-align:center;white-space:nowrap}
+.nav-wm .o{color:var(--teal-d)}
+.nav-right{display:flex;gap:20px;align-items:center;justify-content:flex-end}
+.nav-right a{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(234,239,245,.38);transition:color .2s}
+.nav-right a:hover{color:rgba(234,239,245,.82)}
+.nav-right .enquire{border:1px solid rgba(79,181,190,.28);padding:7px 16px;color:rgba(79,181,190,.8);transition:border-color .2s,color .2s}
+.nav-right .enquire:hover{border-color:var(--teal);color:var(--teal)}
+/* Águas Vivas nav dropdown */
+.nav-dropdown{position:relative;display:flex;align-items:center}
+.nav-dropdown-trigger{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(79,181,190,.62);white-space:nowrap;cursor:default;display:flex;align-items:center;gap:5px;transition:color .2s}
+.nav-dropdown:hover .nav-dropdown-trigger{color:rgba(79,181,190,.95)}
+.nav-dropdown-chevron{opacity:.42;transition:transform .28s,opacity .2s;flex-shrink:0}
+.nav-dropdown:hover .nav-dropdown-chevron{transform:rotate(180deg);opacity:.88}
+.nav-dropdown-panel{position:absolute;top:calc(100% + 18px);left:50%;transform:translateX(-50%) translateY(-6px);background:rgba(2,8,18,.97);border:1px solid rgba(79,181,190,.16);backdrop-filter:blur(20px);min-width:192px;padding:16px 0;opacity:0;pointer-events:none;transition:opacity .22s,transform .22s;z-index:300}
+.nav-dropdown:hover .nav-dropdown-panel{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+.nav-dropdown-panel::before{content:'';position:absolute;top:-18px;left:0;right:0;height:18px}
+.nav-dp-header{font-size:8px;letter-spacing:.28em;text-transform:uppercase;color:rgba(200,164,94,.38);padding:0 18px 12px;border-bottom:1px solid rgba(79,181,190,.08);margin-bottom:6px}
+.nav-dp-item{display:flex;align-items:baseline;gap:9px;padding:5px 18px;text-decoration:none;transition:background .15s}
+.nav-dp-item:hover{background:rgba(79,181,190,.06)}
+.nav-dp-num{font-size:9px;font-weight:500;letter-spacing:.18em;color:rgba(200,164,94,.45);min-width:18px}
+.nav-dp-name{font-size:11px;color:rgba(234,239,245,.62);letter-spacing:.04em;transition:color .15s}
+.nav-dp-item:hover .nav-dp-name{color:rgba(234,239,245,.92)}
+.nav-dp-footer{padding:12px 18px 0;border-top:1px solid rgba(79,181,190,.08);margin-top:6px}
+.nav-dp-footer a{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:rgba(200,164,94,.52);transition:color .2s}
+.nav-dp-footer a:hover{color:rgba(200,164,94,.9)}
+/* MOBILE NAV */
+.nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;z-index:201}
+.nav-burger span{display:block;width:22px;height:1.5px;background:rgba(234,239,245,.65);transition:transform .3s,opacity .3s}
+.nav-burger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.nav-burger.open span:nth-child(2){opacity:0}
+.nav-burger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mobile-menu{position:fixed;inset:0;z-index:200;background:rgba(2,6,16,.97);backdrop-filter:blur(16px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;opacity:0;pointer-events:none;transition:opacity .35s}
+.mobile-menu.open{opacity:1;pointer-events:auto}
+.mobile-menu a{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(28px,6vw,42px);color:rgba(234,239,245,.55);text-decoration:none;padding:12px 0;letter-spacing:.08em;transition:color .2s;text-align:center}
+.mobile-menu a:hover{color:var(--pearl)}
+.mobile-menu a.av{color:rgba(79,181,190,.65)}
+.mobile-menu .m-rule{width:32px;height:1px;background:linear-gradient(90deg,transparent,rgba(200,164,94,.3),transparent);margin:20px 0}
+.mobile-menu .m-small{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(14px,3vw,18px);font-style:italic;color:rgba(200,164,94,.6)}
+@media(max-width:768px){.nav-links{display:none}.nav-right a{display:none}.nav-burger{display:flex}}
 
-/* ═══ NAV (verbatim from index.html) ═══ */
-.nav{
-  position:fixed;top:0;left:0;right:0;z-index:1000;
-  padding:0 2.5rem;height:60px;
-  display:flex;align-items:center;justify-content:space-between;
-  transition:background .5s ease,border-color .5s ease;
-  backdrop-filter:blur(24px) saturate(1.2);-webkit-backdrop-filter:blur(24px) saturate(1.2);
-  background:rgba(10,9,8,0.85);
-  border-bottom:0.5px solid var(--stroke);
+/* PAGE HEADER */
+.pg-header{
+  padding-top:64px;
+  height:72vh;min-height:500px;
+  position:relative;overflow:hidden;
+  display:flex;align-items:flex-end;
 }
-.nav-left,.nav-right{display:flex;align-items:center;gap:2rem}
-.nav-left a,.nav-right a{
-  font-family:var(--sans);font-size:11px;font-weight:400;
-  letter-spacing:0.22em;text-transform:uppercase;
-  text-decoration:none;color:var(--bone);
-  transition:color .3s ease;position:relative;
-}
-.nav-left a::after,.nav-right a:not(.nav-enquire)::after{
-  content:'';position:absolute;bottom:-3px;left:0;
-  width:100%;height:0.5px;background:var(--amber);
-  transform:scaleX(0);transform-origin:left;
-  transition:transform .4s var(--ease);
-}
-.nav-left a:hover::after,.nav-right a:not(.nav-enquire):hover::after{transform:scaleX(1)}
-.nav-logo{
-  font-family:var(--serif);font-size:18px;font-weight:300;
-  letter-spacing:0.42em;text-transform:uppercase;
-  text-decoration:none;color:var(--bone);
-}
-.nav-enquire{
-  padding:8px 18px;border:0.5px solid rgba(232,220,196,0.3);
-  transition:all .3s ease !important;
-  display:inline-flex;align-items:center;gap:6px;
-}
-.nav-enquire .arrow{font-size:10px;transition:transform .3s var(--ease)}
-.nav-enquire:hover .arrow{transform:translateX(4px)}
-.nav-enquire:hover{background:rgba(232,220,196,0.06)}
+.pg-header img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.42) saturate(.72)}
+.pg-header-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(2,6,16,.12) 0%,transparent 40%,rgba(2,6,16,.9) 100%)}
+.pg-header-body{position:relative;z-index:2;padding:clamp(40px,6vw,80px);width:100%}
+.pg-header-eyebrow{font-size:10px;font-weight:500;letter-spacing:.38em;text-transform:uppercase;color:rgba(79,181,190,.6);margin-bottom:16px}
+.pg-header-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(44px,7vw,96px);line-height:.92;color:var(--pearl)}
+.pg-header-title em{font-style:italic;color:var(--silver)}
+.pg-header-sub{font-size:12px;line-height:1.7;color:rgba(234,239,245,.38);margin-top:18px;max-width:400px}
+.pg-edge{position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(79,181,190,.5) 50%,transparent)}
 
-/* ═══ HEADER ═══ */
-.gh{
-  min-height:55vh;display:flex;flex-direction:column;
-  justify-content:center;align-items:center;
-  text-align:center;padding:8rem 2.5rem 4rem;
-  background:var(--ink);
+/* CATEGORY NAV */
+.cat-nav{
+  display:flex;gap:0;border-bottom:1px solid rgba(234,239,245,.05);
+  overflow-x:auto;scrollbar-width:none;
 }
-.gh-meta{
-  width:100%;max-width:1000px;
-  display:flex;justify-content:space-between;align-items:center;
-  margin-bottom:3rem;
+.cat-nav::-webkit-scrollbar{display:none}
+.cat-btn{
+  flex-shrink:0;
+  padding:20px 28px;
+  font-size:9px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;
+  color:rgba(234,239,245,.32);cursor:pointer;border:none;background:none;
+  border-bottom:1px solid transparent;margin-bottom:-1px;
+  transition:color .2s,border-color .2s;white-space:nowrap;
 }
-.gh-meta span{
-  font-family:var(--sans);font-size:10.5px;font-weight:400;
-  letter-spacing:0.32em;text-transform:uppercase;
-  color:rgba(232,220,196,0.65);
-}
-.gh-meta-center{
-  font-family:var(--serif) !important;font-style:italic;
-  font-size:12px !important;letter-spacing:0.06em !important;
-  text-transform:none !important;
-  color:rgba(232,220,196,0.55) !important;
-  font-variation-settings:'opsz' 18,'SOFT' 80;
-  display:inline-flex;align-items:center;gap:10px;
-}
-.pulse-dot{
-  width:6px;height:6px;border-radius:50%;
-  background:var(--amber);flex-shrink:0;
-  animation:dotPulse 2.4s ease-in-out infinite;
-}
-.gh h1{
-  font-family:var(--serif);
-  font-size:clamp(56px,8vw,120px);
-  font-weight:300;line-height:0.95;
-  letter-spacing:-0.03em;color:var(--bone);
-  font-variation-settings:'opsz' 144,'SOFT' 0;
-  margin-bottom:1.25rem;
-}
-.gh h1 em{font-style:italic}
-.gh-sub{
-  font-family:var(--serif);font-style:italic;
-  font-size:clamp(18px,2vw,24px);line-height:1.4;
-  color:rgba(232,220,196,0.85);font-weight:300;
-  font-variation-settings:'opsz' 36,'SOFT' 80;
-  max-width:520px;margin-bottom:3rem;
-}
-.gh-strip{
-  width:100%;max-width:800px;
-  border-top:0.5px solid var(--stroke);
-  padding-top:1.5rem;
-  font-family:var(--mono);font-size:13px;font-weight:300;
-  letter-spacing:0.08em;color:var(--muted);
-}
+.cat-btn:hover{color:rgba(234,239,245,.6)}
+.cat-btn.active{color:rgba(234,239,245,.82);border-bottom-color:var(--teal)}
 
-/* ═══ PIECE SECTIONS ═══ */
-.piece-section{padding:0 2.5rem 6rem;background:var(--ink)}
-.piece-header{
-  max-width:1440px;margin:0 auto 2.5rem;
-  display:grid;grid-template-columns:auto 1fr auto;
-  align-items:center;gap:2rem;
-  padding:1.5rem 0;
-  border-top:0.5px solid var(--stroke);
-  border-bottom:0.5px solid var(--stroke);
+/* CATEGORY SECTIONS */
+.cat-section{display:none;padding:0 0 80px}
+.cat-section.active{display:block}
+
+/* Section intro row */
+.section-intro{
+  display:flex;align-items:baseline;justify-content:space-between;
+  padding:clamp(36px,5vw,64px) clamp(24px,4vw,60px) 24px;
 }
-.piece-num{
-  font-family:var(--serif);font-style:italic;font-size:48px;
-  font-weight:300;color:var(--amber);
-  font-variation-settings:'opsz' 72,'SOFT' 0;
-  line-height:1;
+.section-num{
+  font-family:'Cormorant Garamond',serif;font-size:clamp(80px,12vw,160px);
+  font-weight:300;color:rgba(234,239,245,.04);line-height:1;
+  letter-spacing:-.02em;user-select:none;flex-shrink:0;
 }
-.piece-name{
-  font-family:var(--serif);font-size:clamp(32px,4vw,56px);
-  font-weight:300;color:var(--bone);text-align:center;
-  font-variation-settings:'opsz' 144,'SOFT' 0;
-  line-height:1;
-}
-.piece-count{
-  font-family:var(--mono);font-size:12px;font-weight:300;
-  letter-spacing:0.12em;color:var(--muted);
+.section-label{
   text-align:right;
 }
+.section-cat{font-size:9px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:rgba(234,239,245,.28);margin-bottom:8px}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,2.8vw,38px);font-weight:300;color:var(--pearl)}
+.section-title em{font-style:italic}
 
-/* ═══ GALLERY TILES ═══ */
-.p-grid{
-  display:grid;grid-template-columns:repeat(12,1fr);
-  grid-auto-rows:90px;gap:1.25rem;
-  max-width:1440px;margin:0 auto;
-  grid-auto-flow:dense;
+/* Feature grid — different per category */
+.grid-feature{
+  display:grid;gap:2px;
+  padding:0 2px;
 }
-.g-tile{position:relative;overflow:hidden;cursor:pointer}
-.g-tile img{
+
+/* Layout A: 1 large left + 2 stacked right */
+.grid-a{grid-template-columns:1.6fr 1fr;grid-template-rows:auto}
+.grid-a .g-item:first-child{grid-row:span 2}
+
+/* Layout B: 3 equal */
+.grid-b{grid-template-columns:repeat(3,1fr)}
+
+/* Layout C: 2 tall + 1 wide bottom */
+.grid-c{grid-template-columns:1fr 1fr;grid-template-rows:auto auto}
+.grid-c .g-item:last-child{grid-column:span 2}
+
+/* Layout D: asymmetric 2+1 */
+.grid-d{grid-template-columns:2fr 1fr}
+
+/* Layout E: 4 equal */
+.grid-e{grid-template-columns:repeat(4,1fr)}
+@media(max-width:900px){.grid-e{grid-template-columns:repeat(2,1fr)}}
+
+/* Layout F: hero full + 3 below */
+.grid-f{grid-template-columns:repeat(3,1fr);grid-template-rows:auto auto}
+.grid-f .g-item:first-child{grid-column:span 3}
+
+.g-item{
+  position:relative;overflow:hidden;cursor:zoom-in;
+}
+.g-item img{
   width:100%;height:100%;object-fit:cover;display:block;
-  filter:grayscale(10%) brightness(0.75) contrast(1.08);
-  transition:all 1.2s cubic-bezier(0.22,1,0.36,1);
+  filter:brightness(.74) saturate(.82);
+  transition:filter .5s,transform .65s;
 }
-.g-tile:hover img{
-  filter:grayscale(0%) brightness(1) contrast(1.08);
-  transform:scale(1.04);
-}
+.g-item:hover img{filter:brightness(.9) saturate(.96);transform:scale(1.04)}
+.g-item--tall{aspect-ratio:4/5}
+.g-item--sq{aspect-ratio:1/1}
+.g-item--wide{aspect-ratio:16/9}
+.g-item--hero{aspect-ratio:16/7}
+.g-item--std{aspect-ratio:4/3}
+
 .g-caption{
   position:absolute;bottom:0;left:0;right:0;
-  padding:3rem 1.25rem 1rem;
-  background:linear-gradient(transparent,rgba(10,9,8,0.85));
-  border-top:0.5px solid transparent;
-  font-family:var(--sans);font-size:10.5px;font-weight:400;
-  letter-spacing:0.22em;text-transform:uppercase;
-  color:var(--bone);
-  transform:translateY(100%);
-  transition:transform .6s var(--ease),border-color .6s ease;
+  padding:32px 20px 18px;
+  background:linear-gradient(180deg,transparent,rgba(2,6,16,.85));
+  opacity:0;transition:opacity .3s;
 }
-.g-tile:hover .g-caption{
-  transform:translateY(0);
-  border-top-color:var(--stroke);
-}
+.g-item:hover .g-caption{opacity:1}
+.g-cap-div{font-size:8px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:rgba(79,181,190,.55);margin-bottom:4px}
+.g-cap-name{font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(234,239,245,.85)}
 
-/* Pattern A — Canopy */
-.pat-a .g-tile:nth-child(1){grid-column:span 8;grid-row:span 5}
-.pat-a .g-tile:nth-child(2){grid-column:span 4;grid-row:span 5}
-.pat-a .g-tile:nth-child(3){grid-column:span 5;grid-row:span 4}
-.pat-a .g-tile:nth-child(4){grid-column:span 4;grid-row:span 4}
-.pat-a .g-tile:nth-child(5){grid-column:span 3;grid-row:span 4}
-.pat-a .g-tile:nth-child(6){grid-column:span 12;grid-row:span 3}
+/* Divider strip */
+.divider{height:1px;background:linear-gradient(90deg,transparent,rgba(234,239,245,.06) 50%,transparent);margin:0 clamp(24px,4vw,60px)}
 
-/* Pattern B — Perch */
-.pat-b .g-tile:nth-child(1){grid-column:span 7;grid-row:span 5}
-.pat-b .g-tile:nth-child(2){grid-column:span 5;grid-row:span 5}
-.pat-b .g-tile:nth-child(3){grid-column:span 6;grid-row:span 4}
-.pat-b .g-tile:nth-child(4){grid-column:span 6;grid-row:span 4}
-.pat-b .g-tile:nth-child(5){grid-column:span 4;grid-row:span 3}
-.pat-b .g-tile:nth-child(6){grid-column:span 8;grid-row:span 3}
+/* CTA */
+.cta-strip{padding:clamp(60px,8vw,100px) clamp(24px,5vw,80px);text-align:center;border-top:1px solid rgba(234,239,245,.05)}
+.cta-eyebrow{font-size:10px;font-weight:500;letter-spacing:.36em;text-transform:uppercase;color:rgba(79,181,190,.5);margin-bottom:20px}
+.cta-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(28px,3.5vw,48px);margin-bottom:36px}
+.cta-title em{font-style:italic}
+.cta-btn{display:inline-block;border:1px solid rgba(79,181,190,.28);padding:13px 32px;font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:rgba(79,181,190,.8);transition:all .22s}
+.cta-btn:hover{border-color:var(--teal);color:var(--teal)}
+footer{padding:clamp(32px,5vw,60px) clamp(24px,5vw,80px);border-top:1px solid rgba(79,181,190,.08);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.footer-copy{font-size:10px;letter-spacing:.12em;color:rgba(234,239,245,.2)}
+.footer-coords{font-size:10px;letter-spacing:.14em;color:rgba(234,239,245,.18)}
 
-/* Pattern C — Dynasty */
-.pat-c .g-tile:nth-child(1){grid-column:span 5;grid-row:span 5}
-.pat-c .g-tile:nth-child(2){grid-column:span 7;grid-row:span 6}
-.pat-c .g-tile:nth-child(3){grid-column:span 4;grid-row:span 3}
-.pat-c .g-tile:nth-child(4){grid-column:span 4;grid-row:span 3}
-.pat-c .g-tile:nth-child(5){grid-column:span 4;grid-row:span 3}
-.pat-c .g-tile:nth-child(6){grid-column:span 12;grid-row:span 3}
-
-/* Pattern D — Portal */
-.pat-d .g-tile:nth-child(1){grid-column:span 8;grid-row:span 6}
-.pat-d .g-tile:nth-child(2){grid-column:span 4;grid-row:span 4}
-.pat-d .g-tile:nth-child(3){grid-column:span 4;grid-row:span 3}
-.pat-d .g-tile:nth-child(4){grid-column:span 8;grid-row:span 3}
-.pat-d .g-tile:nth-child(5){grid-column:span 6;grid-row:span 4}
-.pat-d .g-tile:nth-child(6){grid-column:span 6;grid-row:span 4}
-
-/* Pattern E — Crimson Duo */
-.pat-e .g-tile:nth-child(1){grid-column:span 6;grid-row:span 5}
-.pat-e .g-tile:nth-child(2){grid-column:span 6;grid-row:span 5}
-.pat-e .g-tile:nth-child(3){grid-column:span 5;grid-row:span 4}
-.pat-e .g-tile:nth-child(4){grid-column:span 3;grid-row:span 4}
-.pat-e .g-tile:nth-child(5){grid-column:span 4;grid-row:span 4}
-.pat-e .g-tile:nth-child(6){grid-column:span 12;grid-row:span 3}
-
-/* ═══ LIGHTBOX ═══ */
-.lb{
-  position:fixed;inset:0;z-index:10000;
-  background:rgba(10,9,8,0.96);
-  display:flex;align-items:center;justify-content:center;
-  flex-direction:column;
-  opacity:0;pointer-events:none;
-  transition:opacity .3s ease;
-}
-.lb.open{opacity:1;pointer-events:all}
-.lb-img{
-  max-width:90vw;max-height:85vh;object-fit:contain;
-  display:block;
-}
-.lb-close{
-  position:absolute;top:1.5rem;right:1.5rem;
-  background:none;border:none;color:var(--bone);
-  font-size:1.5rem;cursor:pointer;
-  transition:color .3s;padding:0.5rem;
-}
-.lb-close:hover{color:var(--amber)}
-.lb-prev,.lb-next{
-  position:absolute;top:50%;transform:translateY(-50%);
-  background:none;border:1px solid rgba(232,220,196,0.15);
-  color:var(--bone);font-size:1.5rem;
-  width:48px;height:48px;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  transition:all .3s ease;
-}
-.lb-prev{left:1.5rem}
-.lb-next{right:1.5rem}
-.lb-prev:hover,.lb-next:hover{
-  color:var(--amber);border-color:var(--amber);
-}
-.lb-info{margin-top:1.25rem;text-align:center}
-.lb-title{
-  font-family:var(--serif);font-style:italic;font-size:18px;
-  color:var(--bone);margin-bottom:4px;
-  font-variation-settings:'opsz' 24;
-}
-.lb-sub{
-  font-family:var(--sans);font-size:11px;font-weight:400;
-  letter-spacing:0.18em;text-transform:uppercase;
-  color:var(--muted);
-}
-.lb-counter{
-  position:absolute;bottom:1.5rem;left:50%;
-  transform:translateX(-50%);
-  font-family:var(--sans);font-size:11px;font-weight:400;
-  letter-spacing:0.15em;color:var(--muted);
-}
-
-/* ═══ COMMISSION BAND ═══ */
-.commission{
-  padding:6rem 2.5rem;background:var(--ink);
-  text-align:center;
-  border-top:0.5px solid var(--stroke);
-}
-.commission-content{max-width:680px;margin:0 auto}
-.super-label{
-  display:block;font-family:var(--sans);font-size:11px;font-weight:500;
-  letter-spacing:0.32em;text-transform:uppercase;
-  color:var(--muted);margin-bottom:2.5rem;
-}
-.commission-content h3{
-  font-family:var(--serif);
-  font-size:clamp(36px,5vw,58px);
-  font-weight:300;line-height:1.1;color:var(--bone);
-  margin-bottom:1.5rem;
-  font-variation-settings:'opsz' 144,'SOFT' 0;
-}
-.commission-content h3 em{font-style:italic}
-.commission-content>p{
-  font-family:var(--serif);font-size:17px;font-weight:400;
-  line-height:1.55;color:rgba(232,220,196,0.5);
-  margin-bottom:3rem;
-  font-variation-settings:'opsz' 18,'SOFT' 50;
-}
-.commission-ctas{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-
-/* ═══ BUTTONS (verbatim from index.html) ═══ */
-.btn{
-  display:inline-flex;align-items:center;gap:10px;
-  padding:1rem 2rem;
-  font-family:var(--sans);font-size:11px;font-weight:500;
-  letter-spacing:0.22em;text-transform:uppercase;
-  text-decoration:none;cursor:pointer;
-  transition:all .4s var(--ease);
-}
-.btn .arrow{transition:transform .4s var(--ease)}
-.btn:hover .arrow{transform:translateX(6px)}
-.btn-amber{
-  background:var(--amber);color:var(--ink);
-  border:1px solid var(--amber);
-}
-.btn-amber:hover{
-  background:var(--amber-bright);
-  border-color:var(--amber-bright);
-}
-.btn-outline{
-  background:transparent;color:var(--bone);
-  border:1px solid rgba(232,220,196,0.3);
-}
-.btn-outline:hover{
-  background:var(--bone);color:var(--ink);
-  border-color:var(--bone);
-}
-
-/* ═══ FOOTER (verbatim from index.html) ═══ */
-.footer{
-  background:var(--ink);
-  border-top:0.5px solid var(--stroke);
-  padding:5rem 2.5rem 0;
-}
-.footer-inner{
-  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;
-  gap:2.5rem;max-width:1440px;margin:0 auto;
-  padding-bottom:4rem;
-}
-.footer-logo{
-  font-family:var(--serif);font-size:40px;font-weight:300;
-  color:var(--bone);margin-bottom:1rem;display:block;
-  font-variation-settings:'opsz' 72,'SOFT' 0;
-}
-.footer-tagline{
-  font-family:var(--serif);font-style:italic;font-size:15px;
-  line-height:1.55;color:rgba(232,220,196,0.55);
-  max-width:320px;font-variation-settings:'opsz' 18,'SOFT' 50;
-}
-.footer-col h5{
-  font-family:var(--sans);font-size:10.5px;font-weight:600;
-  letter-spacing:0.25em;text-transform:uppercase;
-  color:var(--muted);margin-bottom:1.25rem;
-}
-.footer-col a{
-  display:block;font-family:var(--sans);font-size:13px;
-  font-weight:400;color:rgba(232,220,196,0.5);
-  text-decoration:none;margin-bottom:0.75rem;
-  transition:color .3s ease;
-}
-.footer-col a:hover{color:var(--amber)}
-.footer-bottom{
-  max-width:1440px;margin:0 auto;
-  padding:1.5rem 0;
-  border-top:0.5px solid var(--stroke);
-  display:flex;justify-content:space-between;align-items:center;
-}
-.footer-bottom span{
-  font-family:var(--sans);font-size:11px;font-weight:400;
-  letter-spacing:0.06em;color:var(--muted);
-}
-.footer-bottom .motto{
-  font-family:var(--serif);font-style:italic;font-size:13px;
-  color:rgba(232,220,196,0.6);
-  font-variation-settings:'opsz' 18;
-}
-
-/* ═══ REVEAL ═══ */
-.reveal{
-  opacity:0;transform:translateY(40px);
-  transition:opacity .8s ease,transform .8s ease;
-}
-.reveal.revealed{opacity:1;transform:translateY(0)}
-
-/* ═══ KEYFRAMES ═══ */
-@keyframes dotPulse{
-  0%,100%{opacity:1;transform:scale(1)}
-  50%{opacity:.4;transform:scale(.75)}
-}
-
-.m-hamburger{display:none}
-.m-overlay{display:none}
-
-/* ═══ RESPONSIVE ═══ */
-@media(max-width:900px){
-  .nav-left,.nav-right{display:none}
-  .nav{justify-content:space-between}
-  .m-hamburger{display:flex !important;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;padding:10px;background:none;border:none;cursor:pointer}
-  .m-hamburger span{display:block;width:100%;height:2px;background:var(--bone)}
-  .m-overlay{display:flex !important;position:fixed;inset:0;z-index:9999;background:var(--ink);flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s ease}
-  .m-overlay.open{opacity:1;pointer-events:all;transition-duration:.3s}
-  .m-overlay:not(.open){transition-duration:.2s}
-  .m-overlay-close{position:absolute;top:1rem;right:1.5rem;background:none;border:none;color:var(--bone);font-size:32px;width:44px;height:44px;cursor:pointer;display:flex;align-items:center;justify-content:center}
-  .m-overlay-link{font-family:var(--serif);font-style:italic;font-size:clamp(36px,8vw,56px);color:var(--bone);text-decoration:none;display:block;padding:0.75rem 0;font-variation-settings:'opsz' 72,'SOFT' 50;transition:color .3s}
-  .m-overlay-link:hover{color:var(--amber)}
-  .m-overlay-footer{position:absolute;bottom:2rem;font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:0.32em;text-transform:uppercase;color:var(--muted)}
-
-  .gh{padding:6rem 1.5rem 3rem;min-height:auto}
-  .gh-meta{display:none}
-  .gh h1{font-size:clamp(40px,12vw,72px)}
-  .gh-strip{font-size:11px}
-
-  .piece-section{padding:0 1.5rem 4rem}
-  .piece-header{grid-template-columns:1fr;gap:0.75rem;text-align:center}
-  .piece-num{font-size:32px;text-align:center}
-  .piece-count{text-align:center}
-
-  .p-grid{
-    grid-template-columns:repeat(6,1fr);grid-auto-rows:80px;gap:0.75rem;
-  }
-  .pat-a .g-tile:nth-child(1),.pat-a .g-tile:nth-child(2),
-  .pat-a .g-tile:nth-child(3),.pat-a .g-tile:nth-child(4),
-  .pat-a .g-tile:nth-child(5),.pat-a .g-tile:nth-child(6),
-  .pat-b .g-tile:nth-child(1),.pat-b .g-tile:nth-child(2),
-  .pat-b .g-tile:nth-child(3),.pat-b .g-tile:nth-child(4),
-  .pat-b .g-tile:nth-child(5),.pat-b .g-tile:nth-child(6),
-  .pat-c .g-tile:nth-child(1),.pat-c .g-tile:nth-child(2),
-  .pat-c .g-tile:nth-child(3),.pat-c .g-tile:nth-child(4),
-  .pat-c .g-tile:nth-child(5),.pat-c .g-tile:nth-child(6),
-  .pat-d .g-tile:nth-child(1),.pat-d .g-tile:nth-child(2),
-  .pat-d .g-tile:nth-child(3),.pat-d .g-tile:nth-child(4),
-  .pat-d .g-tile:nth-child(5),.pat-d .g-tile:nth-child(6),
-  .pat-e .g-tile:nth-child(1),.pat-e .g-tile:nth-child(2),
-  .pat-e .g-tile:nth-child(3),.pat-e .g-tile:nth-child(4),
-  .pat-e .g-tile:nth-child(5),.pat-e .g-tile:nth-child(6){
-    grid-column:span 3;grid-row:span 4;
-  }
-
-  .lb-prev{left:0.5rem}
-  .lb-next{right:0.5rem}
-  .lb-prev,.lb-next{width:36px;height:36px;font-size:1.2rem}
-
-  .commission{padding:4rem 1.5rem}
-  .commission-ctas{flex-direction:column;align-items:center}
-
-  .footer{padding:3rem 1.5rem 0}
-  .footer-inner{grid-template-columns:1fr;text-align:center}
-  .footer-tagline{margin:0 auto}
-  .footer-bottom{flex-direction:column;gap:0.5rem;text-align:center;padding:1.25rem 0}
-}
-
+/* Lightbox */
+.lb{position:fixed;inset:0;z-index:200;background:rgba(2,6,16,.96);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center}
+.lb.open{display:flex}
+.lb img{max-width:90vw;max-height:88vh;object-fit:contain}
+.lb-close{position:absolute;top:24px;right:28px;font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:rgba(234,239,245,.4);cursor:pointer;background:none;border:none;transition:color .2s}
+.lb-close:hover{color:var(--pearl)}
 </style>
 </head>
 <body>
 
-<!-- ═══ NAV (verbatim from index.html) ═══ -->
-<nav class="nav" id="nav">
-  <div class="nav-left">
+<nav>
+  <div class="nav-links">
     <a href="hardscape-gallery.html">Hardscape</a>
-    <a href="https://phaora.com/sculptures.html?v=4">Sculpture</a>
-    <a href="gallery.html">Gallery</a>
-    <a href="agents.html">Agents</a>
+    <div class="nav-dropdown">
+      <span class="nav-dropdown-trigger">Águas Vivas <svg class="nav-dropdown-chevron" width="7" height="5" viewBox="0 0 7 5" fill="none"><path d="M.5 1L3.5 4l3-3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></span>
+      <div class="nav-dropdown-panel">
+        <p class="nav-dp-header">Collection 003 &nbsp;·&nbsp; Eleven Works</p>
+        <a href="Phaora Sculpture.html#collection" class="nav-dp-item"><span class="nav-dp-num">I</span><span class="nav-dp-name">Alba Bianca</span></a>
+        <a href="Phaora Sculpture.html#collection" class="nav-dp-item"><span class="nav-dp-num">II</span><span class="nav-dp-name">La Corte</span></a>
+        <a href="Phaora Sculpture.html#collection" class="nav-dp-item"><span class="nav-dp-num">III</span><span class="nav-dp-name">Crepuscolo</span></a>
+        <a href="Phaora Sculpture.html#collection" class="nav-dp-item"><span class="nav-dp-num">IV</span><span class="nav-dp-name">L'Ascesa</span></a>
+        <a href="Phaora Sculpture.html#collection" class="nav-dp-item"><span class="nav-dp-num">V</span><span class="nav-dp-name">La Protezione</span></a>
+        <a href="Phaora Sculpture.html#collection" class="nav-dp-item"><span class="nav-dp-num">VI</span><span class="nav-dp-name">Il Bacio</span></a>
+        <a href="Phaora Sculpture.html#collection" class="nav-dp-item"><span class="nav-dp-num">VII</span><span class="nav-dp-name">Origine</span></a>
+        <a href="Phaora Sculpture.html#collection" class="nav-dp-item"><span class="nav-dp-num">VIII</span><span class="nav-dp-name">Duetto</span></a>
+        <a href="Phaora Sculpture.html#collection" class="nav-dp-item"><span class="nav-dp-num">IX</span><span class="nav-dp-name">Maestà</span></a>
+        <a href="Phaora Sculpture.html#collection" class="nav-dp-item"><span class="nav-dp-num">X</span><span class="nav-dp-name">Sull'Altare</span></a>
+        <a href="Phaora Sculpture.html#collection" class="nav-dp-item"><span class="nav-dp-num">XI</span><span class="nav-dp-name">Volo d'Amore</span></a>
+        <div class="nav-dp-footer"><a href="sculptures.html">Enter the collection →</a></div>
+      </div>
+    </div>
+    <a href="gallery.html" class="active">Gallery</a>
   </div>
-  <a href="index.html" class="nav-logo">PHAÖRA</a>
+  <a href="index.html" class="nav-wm">PHA<span class="o">&Ouml;</span>RA</a>
   <div class="nav-right">
-    <a href="/#studio">Studio</a>
-    <a href="contact.html">Contact</a>
-    <a href="/#invitation" class="nav-enquire">Enquire <span class="arrow">&rarr;</span></a>
+  <button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <a href="#">Studio</a>
+    <a href="mailto:david@phaora.com">Contact</a>
+    <a href="mailto:david@phaora.com" class="enquire">Enquire →</a>
   </div>
-  <button class="m-hamburger" id="m-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 
-<!-- ═══ HEADER ═══ -->
-<section class="gh">
-  <div class="gh-meta">
-    <span>Gallery · Sculpture</span>
-    <span class="gh-meta-center"><span class="pulse-dot"></span>Five pieces · Thirty works</span>
-    <span>By commission only</span>
-  </div>
-  <h1>The Crystal <em>Register</em></h1>
-  <p class="gh-sub">Hand-carved from Brazilian earth, each work exists once and will never be repeated.</p>
-  <div class="gh-strip">Thirty works · Five pieces · Updated MMXXVI</div>
-</section>
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="hardscape-gallery.html">Hardscape</a>
+  <a href="sculptures.html" class="av">Águas Vivas</a>
+  <a href="gallery.html">Gallery</a>
+  <div class="m-rule"></div>
+  <a href="mailto:david@phaora.com" class="m-small">Contact &amp; Enquire →</a>
+</div>
 
-<!-- ═══ PIECE I — CANOPY ═══ -->
-<section class="piece-section reveal">
-  <div class="piece-header">
-    <span class="piece-num">I</span>
-    <span class="piece-name">Canopy</span>
-    <span class="piece-count">Six photographs</span>
+<!-- PAGE HEADER -->
+<div class="pg-header">
+  <img src="uploads/353697D0-1A1F-47CC-BA02-83026DA91EF5_1_105_c.jpeg" alt="PHAÖRA works">
+  <div class="pg-header-overlay"></div>
+  <div class="pg-header-body">
+    <p class="pg-header-eyebrow">Division 01 &nbsp;·&nbsp; The work</p>
+    <h1 class="pg-header-title">Selected<br><em>projects</em></h1>
+    <p class="pg-header-sub">Five categories. Dozens of projects. Every stone placed by hand.</p>
   </div>
-  <div class="p-grid pat-a">
-    <div class="g-tile" data-cap="Canopy · Plate 1"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-1.jpeg" alt="Canopy — view 1" loading="lazy"><div class="g-caption">Canopy · Plate 1</div></div>
-    <div class="g-tile" data-cap="Canopy · Plate 2"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-2.jpeg" alt="Canopy — view 2" loading="lazy"><div class="g-caption">Canopy · Plate 2</div></div>
-    <div class="g-tile" data-cap="Canopy · Plate 3"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-3.jpeg" alt="Canopy — view 3" loading="lazy"><div class="g-caption">Canopy · Plate 3</div></div>
-    <div class="g-tile" data-cap="Canopy · Plate 4"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-4.jpeg" alt="Canopy — view 4" loading="lazy"><div class="g-caption">Canopy · Plate 4</div></div>
-    <div class="g-tile" data-cap="Canopy · Plate 5"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-5.jpeg" alt="Canopy — view 5" loading="lazy"><div class="g-caption">Canopy · Plate 5</div></div>
-    <div class="g-tile" data-cap="Canopy · Plate 6"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-6.jpeg" alt="Canopy — view 6" loading="lazy"><div class="g-caption">Canopy · Plate 6</div></div>
-  </div>
-</section>
+  <div class="pg-edge"></div>
+</div>
 
-<!-- ═══ PIECE II — PERCH ═══ -->
-<section class="piece-section reveal">
-  <div class="piece-header">
-    <span class="piece-num">II</span>
-    <span class="piece-name">Perch</span>
-    <span class="piece-count">Six photographs</span>
-  </div>
-  <div class="p-grid pat-b">
-    <div class="g-tile" data-cap="Perch · Plate 1"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-1.jpeg" alt="Perch — view 1" loading="lazy"><div class="g-caption">Perch · Plate 1</div></div>
-    <div class="g-tile" data-cap="Perch · Plate 2"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-2.jpeg" alt="Perch — view 2" loading="lazy"><div class="g-caption">Perch · Plate 2</div></div>
-    <div class="g-tile" data-cap="Perch · Plate 3"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-3.jpeg" alt="Perch — view 3" loading="lazy"><div class="g-caption">Perch · Plate 3</div></div>
-    <div class="g-tile" data-cap="Perch · Plate 4"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-4.jpeg" alt="Perch — view 4" loading="lazy"><div class="g-caption">Perch · Plate 4</div></div>
-    <div class="g-tile" data-cap="Perch · Plate 5"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-5.jpeg" alt="Perch — view 5" loading="lazy"><div class="g-caption">Perch · Plate 5</div></div>
-    <div class="g-tile" data-cap="Perch · Plate 6"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-6.jpeg" alt="Perch — view 6" loading="lazy"><div class="g-caption">Perch · Plate 6</div></div>
-  </div>
-</section>
+<!-- CATEGORY NAV -->
+<div class="cat-nav">
+  <button class="cat-btn active" onclick="showCat('driveways',this)">Driveways &amp; Pavers</button>
+  <button class="cat-btn" onclick="showCat('walls',this)">Stone Walls &amp; Entry</button>
+  <button class="cat-btn" onclick="showCat('steps',this)">Steps &amp; Transitions</button>
+  <button class="cat-btn" onclick="showCat('patios',this)">Patios &amp; Outdoor Living</button>
+  <button class="cat-btn" onclick="showCat('fire',this)">Fire Features</button>
+</div>
 
-<!-- ═══ PIECE III — DYNASTY ═══ -->
-<section class="piece-section reveal">
-  <div class="piece-header">
-    <span class="piece-num">III</span>
-    <span class="piece-name">Dynasty</span>
-    <span class="piece-count">Six photographs</span>
-  </div>
-  <div class="p-grid pat-c">
-    <div class="g-tile" data-cap="Dynasty · Plate 1"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-1.jpeg" alt="Dynasty — view 1" loading="lazy"><div class="g-caption">Dynasty · Plate 1</div></div>
-    <div class="g-tile" data-cap="Dynasty · Plate 2"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-2.jpeg" alt="Dynasty — view 2" loading="lazy"><div class="g-caption">Dynasty · Plate 2</div></div>
-    <div class="g-tile" data-cap="Dynasty · Plate 3"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-3.jpeg" alt="Dynasty — view 3" loading="lazy"><div class="g-caption">Dynasty · Plate 3</div></div>
-    <div class="g-tile" data-cap="Dynasty · Plate 4"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-4.jpeg" alt="Dynasty — view 4" loading="lazy"><div class="g-caption">Dynasty · Plate 4</div></div>
-    <div class="g-tile" data-cap="Dynasty · Plate 5"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-5.jpeg" alt="Dynasty — view 5" loading="lazy"><div class="g-caption">Dynasty · Plate 5</div></div>
-    <div class="g-tile" data-cap="Dynasty · Plate 6"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-6.jpeg" alt="Dynasty — view 6" loading="lazy"><div class="g-caption">Dynasty · Plate 6</div></div>
-  </div>
-</section>
-
-<!-- ═══ PIECE IV — PORTAL ═══ -->
-<section class="piece-section reveal">
-  <div class="piece-header">
-    <span class="piece-num">IV</span>
-    <span class="piece-name">Portal</span>
-    <span class="piece-count">Six photographs</span>
-  </div>
-  <div class="p-grid pat-d">
-    <div class="g-tile" data-cap="Portal · Plate 1"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-1.jpeg" alt="Portal — view 1" loading="lazy"><div class="g-caption">Portal · Plate 1</div></div>
-    <div class="g-tile" data-cap="Portal · Plate 2"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-2.jpeg" alt="Portal — view 2" loading="lazy"><div class="g-caption">Portal · Plate 2</div></div>
-    <div class="g-tile" data-cap="Portal · Plate 3"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-3.jpeg" alt="Portal — view 3" loading="lazy"><div class="g-caption">Portal · Plate 3</div></div>
-    <div class="g-tile" data-cap="Portal · Plate 4"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-4.jpeg" alt="Portal — view 4" loading="lazy"><div class="g-caption">Portal · Plate 4</div></div>
-    <div class="g-tile" data-cap="Portal · Plate 5"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-5.jpeg" alt="Portal — view 5" loading="lazy"><div class="g-caption">Portal · Plate 5</div></div>
-    <div class="g-tile" data-cap="Portal · Plate 6"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-6.jpeg" alt="Portal — view 6" loading="lazy"><div class="g-caption">Portal · Plate 6</div></div>
-  </div>
-</section>
-
-<!-- ═══ PIECE V — CRIMSON DUO ═══ -->
-<section class="piece-section reveal">
-  <div class="piece-header">
-    <span class="piece-num">V</span>
-    <span class="piece-name">Crimson Duo</span>
-    <span class="piece-count">Six photographs</span>
-  </div>
-  <div class="p-grid pat-e">
-    <div class="g-tile" data-cap="Crimson Duo · Plate 1"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-1.jpeg" alt="Crimson Duo — view 1" loading="lazy"><div class="g-caption">Crimson Duo · Plate 1</div></div>
-    <div class="g-tile" data-cap="Crimson Duo · Plate 2"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-2.jpeg" alt="Crimson Duo — view 2" loading="lazy"><div class="g-caption">Crimson Duo · Plate 2</div></div>
-    <div class="g-tile" data-cap="Crimson Duo · Plate 3"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-3.jpeg" alt="Crimson Duo — view 3" loading="lazy"><div class="g-caption">Crimson Duo · Plate 3</div></div>
-    <div class="g-tile" data-cap="Crimson Duo · Plate 4"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-4.jpeg" alt="Crimson Duo — view 4" loading="lazy"><div class="g-caption">Crimson Duo · Plate 4</div></div>
-    <div class="g-tile" data-cap="Crimson Duo · Plate 5"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-5.jpeg" alt="Crimson Duo — view 5" loading="lazy"><div class="g-caption">Crimson Duo · Plate 5</div></div>
-    <div class="g-tile" data-cap="Crimson Duo · Plate 6"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-6.jpeg" alt="Crimson Duo — view 6" loading="lazy"><div class="g-caption">Crimson Duo · Plate 6</div></div>
-  </div>
-</section>
-
-<!-- ═══ COMMISSION BAND ═══ -->
-<section class="commission reveal">
-  <div class="commission-content">
-    <span class="super-label">— Private commission —</span>
-    <h3>Shape something <em>singular</em> with us</h3>
-    <p>Every sculpture begins as raw crystal. Tell us what you envision, and the stone will answer.</p>
-    <div class="commission-ctas">
-      <a href="mailto:david@phaora.com?subject=Sculpture%20Commission%20Enquiry" class="btn btn-amber">Commission a piece <span class="arrow">&rarr;</span></a>
-      <a href="contact.html" class="btn btn-outline">Visit the studio <span class="arrow">&rarr;</span></a>
+<!-- DRIVEWAYS -->
+<div class="cat-section active" id="cat-driveways">
+  <div class="section-intro">
+    <div class="section-num">01</div>
+    <div class="section-label">
+      <p class="section-cat">Category 01</p>
+      <h2 class="section-title">Driveways<br><em>&amp; Pavers</em></h2>
     </div>
   </div>
-</section>
+  <div class="grid-feature grid-a">
+    <div class="g-item g-item--tall" onclick="openLb(this)"><img src="uploads/1C299DFC-6F0C-4F4C-9E9D-1405B98F7DE7_1_105_c.jpeg" loading="lazy"><div class="g-caption"><div class="g-cap-div">Driveways · 01</div><div class="g-cap-name">Paver Driveway · Granite Cobble Border</div></div></div>
+    <div class="g-item g-item--std" onclick="openLb(this)"><img src="uploads/A8988CB6-2DDF-4902-AD22-3F3E1F515355_1_105_c.jpeg" loading="lazy"><div class="g-caption"><div class="g-cap-div">Driveways · 01</div><div class="g-cap-name">Paver Driveway</div></div></div>
+    <div class="g-item g-item--std" onclick="openLb(this)"><img src="uploads/0D2F2D4D-1F10-4A54-9FBC-0E5DD75B76C6_1_105_c.jpeg" loading="lazy"><div class="g-caption"><div class="g-cap-div">Driveways · 01</div><div class="g-cap-name">Paver Driveway · Residential</div></div></div>
+  </div>
+  <div style="height:2px"></div>
+  <div class="grid-feature grid-b">
+    <div class="g-item g-item--std" onclick="openLb(this)"><img src="uploads/C5DA2011-A7CE-40C3-83E6-D55DC320F558_1_105_c.jpeg" loading="lazy"><div class="g-caption"><div class="g-cap-div">Driveways · 01</div><div class="g-cap-name">Paver Walk · Garden</div></div></div>
+    <div class="g-item g-item--std" onclick="openLb(this)"><img src="uploads/59D8DB4D-50B1-46CF-81CD-22A1E7942BEB_1_105_c.jpeg" loading="lazy"><div class="g-caption"><div class="g-cap-div">Driveways · 01</div><div class="g-cap-name">Paver Driveway · Cobble Border</div></div></div>
+    <div class="g-item g-item--std" onclick="openLb(this)"><img src="uploads/7C73F24B-94FC-4CE0-9E4C-ADB3924B947C_1_105_c.jpeg" loading="lazy"><div class="g-caption"><div class="g-cap-div">Driveways · 01</div><div class="g-cap-name">Paver Medallion · Commercial Entry</div></div></div>
+  </div>
+  <div style="height:2px"></div>
+  <div class="grid-feature grid-d">
+    <div class="g-item g-item--wide" onclick="openLb(this)"><img src="uploads/BA529C8F-2690-470A-A4E9-9ED28D79E4E7_1_105_c.jpeg" loading="lazy"><div class="g-caption"><div class="g-cap-div">Driveways · 01</div><div class="g-cap-name">Cobblestone Path · Curved</div></div></div>
+    <div class="g-item g-item--wide" onclick="openLb(this)"><img src="uploads/1E743784-D8D7-4D20-A566-6D78C5DD037F_1_105_c.jpeg" loading="lazy"><div class="g-caption"><div class="g-cap-div">Driveways · 01</div><div class="g-cap-name">Cobblestone Path · Straight</div></div></div>
+  </div>
+</div>
 
-<!-- ═══ FOOTER (verbatim from index.html) ═══ -->
-<footer class="footer">
-  <div class="footer-inner">
-    <div>
-      <span class="footer-logo">PHAÖRA</span>
-      <p class="footer-tagline">Hardscape and crystal for the estates that demand permanence.</p>
-    </div>
-    <div class="footer-col">
-      <h5>The House</h5>
-      <a href="/">About</a>
-      <a href="/#studio">Studio</a>
-      <a href="#">Press</a>
-      <a href="#">Journal</a>
-    </div>
-    <div class="footer-col">
-      <h5>Divisions</h5>
-      <a href="hardscape-gallery.html">Hardscape</a>
-      <a href="https://phaora.com/sculptures.html?v=4">Sculpture</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="https://phaora.com/sculptures.html?v=4">Pieces</a>
-    </div>
-    <div class="footer-col">
-      <h5>Connect</h5>
-      <a href="contact.html">Contact</a>
-      <a href="agents.html">Agents</a>
-      <a href="#">Instagram</a>
-      <a href="mailto:david@phaora.com">Email</a>
+<!-- STONE WALLS -->
+<div class="cat-section" id="cat-walls">
+  <div class="section-intro">
+    <div class="section-num">02</div>
+    <div class="section-label">
+      <p class="section-cat">Category 02</p>
+      <h2 class="section-title">Stone Walls<br><em>&amp; Entry</em></h2>
     </div>
   </div>
-  <div class="footer-bottom">
-    <span>Phaöra · MMXXVI</span>
-    <span class="motto">Built on standards. Not inherited. Decided.</span>
-    <span>Boca Raton · All rights reserved</span>
+  <div class="grid-feature grid-f">
+    <div class="g-item g-item--hero" onclick="openLb(this)"><img src="uploads/86F159C2-CC5D-4858-8FE3-2143ED9CEC1B_1_105_c.jpeg" loading="lazy"><div class="g-caption"><div class="g-cap-div">Stone Walls · 01</div><div class="g-cap-name">Estate Driveway · Stone Walls · Presidential Drive</div></div></div>
+    <div class="g-item g-item--sq" onclick="openLb(this)"><img src="uploads/353697D0-1A1F-47CC-BA02-83026DA91EF5_1_105_c.jpeg" loading="lazy"><div class="g-caption"><div class="g-cap-div">Stone Walls · 01</div><div class="g-cap-name">Stone Entry Wall · Copper Lantern</div></div></div>
+    <div class="g-item g-item--sq" onclick="openLb(this)"><img src="uploads/AF7B2A44-D2C6-44B5-9AC3-7D12F180FD00_1_105_c.jpeg" loading="lazy"><div class="g-caption"><div class="g-cap-div">Stone Walls · 01</div><div class="g-cap-name">Stone Entry Pillar · Lantern</div></div></div>
+    <div class="g-item g-item--sq" onclick="openLb(this)"><img src="uploads/6FE22F8E-B917-40D8-9121-10784F55213E_1_105_c.jpeg" loading="lazy"><div class="g-caption"><div class="g-cap-div">Stone Walls · 01</div><div class="g-cap-name">Stone Pillar · Brass Lantern</div></div></div>
   </div>
+  <div style="height:2px"></div>
+  <div class="grid-feature grid-b">
+    <div class="g-item g-item--tall" onclick="openLb(this)"><img src="uploads/845EE385-DD1E-4D20-A932-7B2CEFA66023_1_105_c.jpeg" loading="lazy"><div class="g-caption"><div class="g-cap-div">Stone Walls · 01</div><div class="g-cap-name">Stone Wall · Hydrangeas</div></div></div>
+    <div class="g-item g-item--tall" onclick="openLb(this)"><img src="uploads/6EF8ECAD-CA6B-41AA-ACE1-560E93172CDC_1_105_c.jpeg" loading="lazy"><div class="g-caption"><div class="g-cap-div">Stone Walls · 01</div><div class="g-cap-name">Stone Retaining Wall</div></div></div>
+    <div class="g-item g-item--tall" onclick="openLb(this)"><img src="uploads/C92BB790-21DC-4A7E-8330-85E1227381EF_1_105_c.jpeg" loading="lazy"><div class="g-caption"><div class="g-cap-div">Stone Walls · 01</div><div class="g-cap-name">Stone Wall · Boulder Feature</div></div></div>
+  </div>
+  <div style="height:2px"></div>
+  <div class="grid-feature grid-d">
+    <div class="g-item g-item--std" onclick="openLb(this)"><img src="uploads/409B4C62-CBBE-4C61-9E93-2EDB69860429_1_105_c.jpeg" loading="lazy"><div class="g-caption"><div class="g-cap-div">Stone Walls · 01</div><div class="g-cap-name">Stone Gate Arch · Construction</div></div></div>
+    <div class="g-item g-item--std" onclick="openLb(this)"><img src="uploads/6021DFB3-A0F6-4744-BCA3-249D1F355EFC_1_105_c.jpeg" loading="lazy"><div class="g-caption"><div class="g-cap-div">Stone Walls · 01</div><div class="g-cap-name">Stone Arch · Estate Entry</div></div></div>
+  </div>
+</div>
+
+<!-- STEPS -->
+<div class="cat-section" id="cat-steps">
+  <div class="section-intro">
+    <div class="section-num">03</div>
+    <div class="section-label">
+      <p class="section-cat">Category 03</p>
+      <h2 class="section-title">Steps<br><em>&amp; Transitions</em></h2>
+    </div>
+  </div>
+  <div class="grid-feature grid-a">
+    <div class="g-item g-item--tall" onclick="openLb(this)"><img src="uploads/31C2EB15-F143-4E64-8532-ED8131BC9531_1_105_c.jpeg" loading="lazy"><div class="g-caption"><div class="g-cap-div">Steps · 01</div><div class="g-cap-name">Granite Steps · Natural Stone Risers</div></div></div>
+    <div class="g-item g-item--std" onclick="openLb(this)"><img src="uploads/89CE1B81-79D1-49C0-8E6D-E94EBCE0988F_1_105_c.jpeg" loading="lazy"><div class="g-caption"><div class="g-cap-div">Steps · 01</div><div class="g-cap-name">Entry Steps · Bluestone</div></div></div>
+    <div class="g-item g-item--std" onclick="openLb(this)"><img src="uploads/B6B4E2D3-46B3-4D16-B5E8-641928D6C2B4_1_105_c.jpeg" loading="lazy"><div class="g-caption"><div class="g-cap-div">Steps · 01</div><div class="g-cap-name">Stone Steps · Walkway · Retaining</div></div></div>
+  </div>
+  <div style="height:2px"></div>
+  <div class="grid-feature grid-b">
+    <div class="g-item g-item--std" onclick="openLb(this)"><img src="uploads/6CF90303-7980-4D61-B11D-17CD2BCBE40A_1_105_c.jpeg" loading="lazy"><div class="g-caption"><div class="g-cap-div">Steps · 01</div><div class="g-cap-name">Paver Walk · Stone Steps · Garden</div></div></div>
+    <div class="g-item g-item--std" onclick="openLb(this)"><img src="uploads/FD73AFCD-BF3A-4902-ABCB-B78771E373B2_1_105_c.jpeg" loading="lazy"><div class="g-caption"><div class="g-cap-div">Steps · 01</div><div class="g-cap-name">Entry Steps · Stone Wall</div></div></div>
+    <div class="g-item g-item--std" onclick="openLb(this)"><img src="uploads/3A856C43-12F6-4BBC-8E6E-4075B9FEEA05_1_105_c.jpeg" loading="lazy"><div class="g-caption"><div class="g-cap-div">Steps · 01</div><div class="g-cap-name">Cobblestone · River Rock Surround</div></div></div>
+  </div>
+</div>
+
+<!-- PATIOS -->
+<div class="cat-section" id="cat-patios">
+  <div class="section-intro">
+    <div class="section-num">04</div>
+    <div class="section-label">
+      <p class="section-cat">Category 04</p>
+      <h2 class="section-title">Patios<br><em>&amp; Outdoor Living</em></h2>
+    </div>
+  </div>
+  <div class="grid-feature grid-c">
+    <div class="g-item g-item--tall" onclick="openLb(this)"><img src="uploads/DAC09F74-2C5E-4821-B09F-8E1FE1542088_1_105_c.jpeg" loading="lazy"><div class="g-caption"><div class="g-cap-div">Patios · 01</div><div class="g-cap-name">Paver Patio · Seat Wall · Outdoor Living</div></div></div>
+    <div class="g-item g-item--tall" onclick="openLb(this)"><img src="uploads/30BFE061-B5C4-45B8-9149-353091258236_1_105_c.jpeg" loading="lazy"><div class="g-caption"><div class="g-cap-div">Patios · 01</div><div class="g-cap-name">Curved Patio · Stone Seat Wall</div></div></div>
+    <div class="g-item g-item--wide" onclick="openLb(this)"><img src="uploads/3901601A-A2C2-452D-938F-98B945856D16_1_105_c.jpeg" loading="lazy"><div class="g-caption"><div class="g-cap-div">Patios · 01</div><div class="g-cap-name">Elevated Round Patio · Stone Base</div></div></div>
+  </div>
+  <div style="height:2px"></div>
+  <div class="grid-feature grid-b">
+    <div class="g-item g-item--std" onclick="openLb(this)"><img src="uploads/D7DA10C6-0AA1-48E4-920E-04DBDF6CECDD_1_105_c.jpeg" loading="lazy"><div class="g-caption"><div class="g-cap-div">Patios · 01</div><div class="g-cap-name">Stone Bench · Paver Patio</div></div></div>
+    <div class="g-item g-item--std" onclick="openLb(this)"><img src="uploads/CB18B283-56EE-4A98-A98E-F7AECB300659_1_105_c.jpeg" loading="lazy"><div class="g-caption"><div class="g-cap-div">Patios · 01</div><div class="g-cap-name">Stone Seat Wall · Patio</div></div></div>
+
+  </div>
+</div>
+
+<!-- FIRE -->
+<div class="cat-section" id="cat-fire">
+  <div class="section-intro">
+    <div class="section-num">05</div>
+    <div class="section-label">
+      <p class="section-cat">Category 05</p>
+      <h2 class="section-title">Fire<br><em>Features</em></h2>
+    </div>
+  </div>
+  <div class="grid-feature" style="display:block;padding:0 2px">
+    <div class="g-item g-item--wide" style="max-height:60vh" onclick="openLb(this)">
+      <img src="uploads/5AE266AE-C7E8-48A6-B905-5C995AE85918_1_105_c.jpeg" loading="lazy">
+      <div class="g-caption"><div class="g-cap-div">Fire Features · 01</div><div class="g-cap-name">Patio Build · Stone Fireplace</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-strip">
+  <p class="cta-eyebrow">Every project begins with a site visit</p>
+  <h2 class="cta-title">Stone selected by hand,<br><em>set to last centuries</em></h2>
+  <a href="mailto:david@phaora.com" class="cta-btn">Begin an enquiry →</a>
+</div>
+
+<footer>
+  <span class="footer-copy">Phaöra · MMXXVI &nbsp;·&nbsp; Division 01 · Hardscape &nbsp;·&nbsp; All rights reserved</span>
+  <span class="footer-coords">26°21′N 80°05′W</span>
 </footer>
 
-<!-- ═══ LIGHTBOX ═══ -->
-<div class="lb" id="lb">
-  <button class="lb-close" id="lb-close">&#x2715;</button>
-  <button class="lb-prev" id="lb-prev">&#x2039;</button>
-  <img class="lb-img" id="lb-img" src="" alt="">
-  <button class="lb-next" id="lb-next">&#x203A;</button>
-  <div class="lb-info">
-    <div class="lb-title" id="lb-title"></div>
-    <div class="lb-sub" id="lb-sub"></div>
-  </div>
-  <span class="lb-counter" id="lb-counter"></span>
-</div>
-
-<!-- ═══ SCRIPT ═══ -->
-<script>
-(function(){
-  /* Scroll reveal */
-  var reveals = document.querySelectorAll('.reveal');
-  var revealObs = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if (e.isIntersecting) {
-        e.target.classList.add('revealed');
-        revealObs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  reveals.forEach(function(el){ revealObs.observe(el); });
-
-  /* Lightbox */
-  var tiles = Array.from(document.querySelectorAll('.g-tile'));
-  var lb = document.getElementById('lb');
-  var lbImg = document.getElementById('lb-img');
-  var lbTitle = document.getElementById('lb-title');
-  var lbSub = document.getElementById('lb-sub');
-  var lbCounter = document.getElementById('lb-counter');
-  var idx = 0;
-  var total = tiles.length;
-
-  function show(i) {
-    idx = (i % total + total) % total;
-    var tile = tiles[idx];
-    var cap = tile.getAttribute('data-cap') || '';
-    var parts = cap.split(' \u00B7 ');
-    lbImg.src = tile.querySelector('img').src;
-    lbTitle.textContent = parts[0] || '';
-    lbSub.textContent = parts[1] || '';
-    lbCounter.textContent = (idx + 1) + ' / ' + total;
-  }
-
-  function open(i) {
-    show(i);
-    lb.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function close() {
-    lb.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  tiles.forEach(function(tile, i) {
-    tile.addEventListener('click', function() { open(i); });
-  });
-
-  document.getElementById('lb-close').addEventListener('click', close);
-  document.getElementById('lb-prev').addEventListener('click', function() { show(idx - 1); });
-  document.getElementById('lb-next').addEventListener('click', function() { show(idx + 1); });
-
-  lb.addEventListener('click', function(e) {
-    if (e.target === lb) close();
-  });
-
-  document.addEventListener('keydown', function(e) {
-    if (!lb.classList.contains('open')) return;
-    if (e.key === 'Escape') close();
-    else if (e.key === 'ArrowLeft') show(idx - 1);
-    else if (e.key === 'ArrowRight') show(idx + 1);
-  });
-})();
-</script>
-
-<div class="m-overlay" id="m-overlay">
-<button class="m-overlay-close" id="m-overlay-close">&#x2715;</button>
-<a href="hardscape-gallery.html" class="m-overlay-link">Hardscape</a>
-<a href="https://phaora.com/sculptures.html?v=4" class="m-overlay-link">Sculpture</a>
-<a href="gallery.html" class="m-overlay-link">Gallery</a>
-<a href="agents.html" class="m-overlay-link">Agents</a>
-<a href="index.html#studio" class="m-overlay-link">Studio</a>
-<a href="contact.html" class="m-overlay-link">Contact</a>
-<a href="#invitation" class="m-overlay-link">Enquire</a>
-<span class="m-overlay-footer">MMXXVI · Boca Raton</span>
+<div class="lb" id="lb" onclick="closeLb()">
+  <button class="lb-close" onclick="closeLb()">Close ✕</button>
+  <img id="lb-img" src="" alt="">
 </div>
 
 <script>
+function showCat(id, btn) {
+  document.querySelectorAll('.cat-section').forEach(function(s){s.classList.remove('active')});
+  document.querySelectorAll('.cat-btn').forEach(function(b){b.classList.remove('active')});
+  document.getElementById('cat-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+function openLb(el) {
+  var img = el.querySelector('img');
+  document.getElementById('lb-img').src = img.src;
+  document.getElementById('lb').classList.add('open');
+}
+function closeLb(){document.getElementById('lb').classList.remove('open')}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLb()});
+// MOBILE NAV
 (function(){
-var ham=document.getElementById('m-hamburger'),ov=document.getElementById('m-overlay'),cl=document.getElementById('m-overlay-close');
-function openM(){ov.classList.add('open');document.body.style.overflow='hidden'}
-function closeM(){ov.classList.remove('open');document.body.style.overflow=''}
-ham.addEventListener('click',openM);
-cl.addEventListener('click',closeM);
-ov.addEventListener('click',function(e){if(e.target===ov)closeM()});
-document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('open'))closeM()});
+  var burger=document.getElementById('navBurger'),menu=document.getElementById('mobileMenu');
+  if(!burger||!menu)return;
+  burger.addEventListener('click',function(){burger.classList.toggle('open');menu.classList.toggle('open');document.body.style.overflow=menu.classList.contains('open')?'hidden':'';});
+  menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){burger.classList.remove('open');menu.classList.remove('open');document.body.style.overflow='';});});
 })();
 </script>
-
 </body>
 </html>
