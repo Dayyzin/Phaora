@@ -85,8 +85,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 /* Gallery Grid */
 .gallery-wrap{padding:2px;margin-top:64px}
 .masonry{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
-.m-item{position:relative;overflow:hidden;display:block;cursor:zoom-in;aspect-ratio:4/3}
-.m-item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.75) saturate(.84);transition:filter .45s,transform .55s}
+.m-item{position:relative;overflow:hidden;display:block;cursor:zoom-in;aspect-ratio:4/3 !important;height:0;padding-bottom:75%}
+.m-item img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important;display:block;filter:brightness(.75) saturate(.84);transition:filter .45s,transform .55s}
 .m-item:hover img{filter:brightness(.92) saturate(.98);transform:scale(1.04)}
 .m-overlay{position:absolute;bottom:0;left:0;right:0;padding:40px 18px 18px;background:linear-gradient(180deg,transparent,rgba(2,6,16,.9));opacity:0;transition:opacity .3s;z-index:1}
 .m-item:hover .m-overlay{opacity:1}
