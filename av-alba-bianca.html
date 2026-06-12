@@ -76,7 +76,7 @@ nav.scrolled{background:rgba(2,8,18,.92);backdrop-filter:blur(14px);border-botto
 .bg-title span{display:block}
 .glow{position:absolute;z-index:2;inset:0;background:radial-gradient(ellipse 55% 45% at 50% 30%,rgba(22,95,130,.2),transparent 65%);filter:blur(32px);pointer-events:none}
 .sculpture-slot{position:absolute;z-index:10;bottom:0;left:50%;transform:translateX(-50%);height:100%;display:flex;align-items:flex-end;justify-content:center}
-.sculpture-slot img{height:100%;width:auto;object-fit:contain;-webkit-mask-image:linear-gradient(90deg,#000 0%,#000 78%,rgba(0,0,0,.75) 90%,rgba(0,0,0,.45) 100%);mask-image:linear-gradient(90deg,#000 0%,#000 78%,rgba(0,0,0,.75) 90%,rgba(0,0,0,.45) 100%)}
+.sculpture-slot img{height:100%;width:auto;object-fit:contain;-webkit-mask-image:linear-gradient(90deg,transparent 1%,#000 11%,#000 80%,rgba(0,0,0,.5) 95%,transparent 100%),linear-gradient(180deg,#000 0%,#000 70%,transparent 100%);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent 1%,#000 11%,#000 80%,rgba(0,0,0,.5) 95%,transparent 100%),linear-gradient(180deg,#000 0%,#000 70%,transparent 100%);mask-composite:intersect}
 .sculpture-slot::after{content:'';position:absolute;bottom:0;left:0;right:0;height:32%;background:linear-gradient(to top,#04080F 0%,rgba(4,8,15,.8) 22%,rgba(4,8,15,.4) 60%,transparent 100%);pointer-events:none;z-index:1}
 .text-overlay{position:absolute;top:84px;left:clamp(20px,4vw,60px);max-width:250px;z-index:20;animation:fadeUp 1.2s cubic-bezier(.22,1,.36,1) .3s both}
 .lp-eye{font-size:8.5px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:rgba(79,181,190,.48);margin-bottom:22px;display:flex;align-items:center;gap:8px}
@@ -291,7 +291,7 @@ nav.scrolled{background:rgba(2,8,18,.92);backdrop-filter:blur(14px);border-botto
 .ph-amb{position:absolute;z-index:0;top:5%;right:4%;width:520px;height:420px;background:radial-gradient(ellipse,rgba(200,164,94,.2) 0%,rgba(200,164,94,.09) 38%,rgba(200,164,94,0) 74%);filter:blur(64px);pointer-events:none}
 .ph-wrap{position:relative;min-height:80vh;display:flex;align-items:stretch}
 .ph-img-col{position:absolute;inset:0;z-index:1;overflow:hidden;pointer-events:none}
-.ph-img-col::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 38%,rgba(4,8,15,.35) 56%,rgba(4,8,15,.78) 76%,#04080F 94%);z-index:3}
+.ph-img-col::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,#04080F 0%,rgba(4,8,15,.55) 7%,transparent 24%),linear-gradient(0deg,#04080F 0%,rgba(4,8,15,.45) 8%,transparent 24%),linear-gradient(90deg,transparent 38%,rgba(4,8,15,.35) 56%,rgba(4,8,15,.78) 76%,#04080F 94%);z-index:3}
 .ph-img-col::before{content:'';position:absolute;inset:0;z-index:3;background:linear-gradient(270deg,#04080F 0%,#04080F 26%,rgba(4,8,15,.55) 46%,transparent 66%)}
 .ph-img-col img{position:absolute;width:80%;height:auto;top:50%;left:-6%;transform:translateY(-52%);display:block;transition:opacity .6s ease}
 .ph-img-col video{position:absolute;width:72%;height:auto;top:50%;left:-2%;transform:translateY(-38%);display:block;opacity:0;object-fit:contain;transition:opacity .6s ease}
@@ -607,6 +607,153 @@ footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rg
       </div>
     </div>
   </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     GALLERY · Infinite mood board
+     ═══════════════════════════════════ -->
+<section id="gallery" style="width:100%;background:#04080F;position:relative;z-index:10;">
+<style>
+.gl-section{position:relative;padding:90px 0 70px;}
+.gl-fade-top{position:absolute;top:0;left:0;right:0;height:140px;background:linear-gradient(to bottom,#04080F 0%,transparent 100%);z-index:5;pointer-events:none;}
+.gl-amb{position:absolute;z-index:0;top:60px;left:50%;transform:translateX(-50%);width:900px;height:500px;max-width:100vw;border-radius:50%;background:radial-gradient(ellipse,rgba(206,168,92,.28) 0%,rgba(206,168,92,.10) 40%,rgba(206,168,92,0) 74%);filter:blur(90px);pointer-events:none;}
+.gl-head{max-width:1400px;margin:0 auto 46px;padding:0 32px;text-align:center;position:relative;z-index:2;}
+.gl-sub{font-size:10px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:rgba(79,181,190,.45);margin-bottom:10px;}
+.gl-heading{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(40px,5vw,80px);color:rgba(219,230,240,.88);letter-spacing:-.01em;}
+
+/* GRID */
+.gl-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:1fr;grid-auto-flow:dense;gap:6px;padding:0 6px;position:relative;z-index:2;}
+.gl-item{position:relative;overflow:hidden;background:#070d17;cursor:pointer;aspect-ratio:1/1;}
+.gl-item img{width:100%;height:100%;object-fit:cover;display:block;border:0;outline:0;transform:scale(1.015);transition:transform .8s cubic-bezier(.16,1,.3,1),filter .5s ease;filter:brightness(.94) saturate(.96);}
+.gl-item:hover img{transform:scale(1.06);filter:brightness(1.06) saturate(1);}
+.gl-item::after{content:'';position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(234,239,245,.04);pointer-events:none;transition:box-shadow .4s;}
+.gl-item:hover::after{box-shadow:inset 0 0 0 1px rgba(79,181,190,.28);}
+.gl-item.wide2{grid-column:span 2;grid-row:span 2;}
+
+/* CENTER TITLE TILE */
+.gl-title-tile{grid-column:2/span 2;grid-row:span 2;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:radial-gradient(ellipse 75% 65% at 50% 45%,rgba(22,95,130,.22),rgba(4,8,15,0) 70%),#04080F;position:relative;overflow:hidden;}
+.gl-title-tile::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(206,168,92,.10),transparent 70%);filter:blur(30px);pointer-events:none;}
+.gl-title-tile::after{content:'';position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(234,239,245,.05);pointer-events:none;}
+.gl-tile-eye{font-size:9px;font-weight:500;letter-spacing:.4em;text-transform:uppercase;color:rgba(79,181,190,.55);margin-bottom:18px;}
+.gl-tile-name{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(34px,4.4vw,68px);line-height:1;color:#DBE6F0;margin-bottom:8px;}
+.gl-tile-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:rgba(200,164,94,.6);margin-bottom:26px;}
+.gl-tile-cta{font-size:9px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:rgba(234,239,245,.6);border:1px solid rgba(234,239,245,.18);border-radius:999px;padding:11px 26px;transition:all .25s;}
+.gl-tile-cta:hover{color:#04080F;background:rgba(219,230,240,.92);border-color:transparent;}
+.gl-tile-dots{display:flex;align-items:center;gap:7px;margin-top:24px;}
+.gl-tile-dots span{display:block;width:3px;height:3px;border-radius:50%;background:rgba(234,239,245,.18);}
+.gl-tile-dots span.on{width:14px;height:3px;border-radius:2px;background:rgba(79,181,190,.5);}
+
+/* GALLERY LIGHTBOX */
+.gl-lightbox{position:fixed;inset:0;z-index:3000;background:rgba(4,8,15,.97);backdrop-filter:blur(20px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .35s;}
+.gl-lightbox.open{opacity:1;pointer-events:auto;}
+.gl-lightbox img{max-height:92vh;max-width:92vw;object-fit:contain;filter:drop-shadow(0 0 60px rgba(79,181,190,.18)) brightness(1.05);}
+.gl-lb-close{position:absolute;top:24px;right:28px;background:none;border:1px solid rgba(234,239,245,.15);color:rgba(234,239,245,.45);width:38px;height:38px;border-radius:50%;font-size:16px;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;z-index:2;}
+.gl-lb-close:hover{border-color:rgba(79,181,190,.5);color:rgba(79,181,190,.8);}
+.gl-lb-btn{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;border:1px solid rgba(201,168,76,.35);background:rgba(4,8,15,.6);cursor:pointer;display:flex;align-items:center;justify-content:center;color:#C9A84C;z-index:2;transition:all .2s;}
+.gl-lb-btn:hover{border-color:rgba(201,168,76,.75);color:#E8C86A;background:rgba(201,168,76,.12);}
+.gl-lb-btn svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.6;}
+#glPrev{left:24px;}#glNext{right:24px;}
+.gl-lb-count{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);font-size:10px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:rgba(234,239,245,.3);}
+
+/* TABLET */
+@media(max-width:1024px){
+  .gl-grid{grid-template-columns:repeat(3,1fr);}
+  .gl-title-tile{grid-column:1/span 3;grid-row:span 1;aspect-ratio:auto;min-height:240px;}
+}
+/* MOBILE */
+@media(max-width:640px){
+  .gl-section{padding:64px 0 50px;}
+  .gl-grid{grid-template-columns:repeat(2,1fr);gap:4px;padding:0 4px;}
+  .gl-item.wide2{grid-column:span 2;grid-row:span 2;}
+  .gl-title-tile{grid-column:1/span 2;min-height:200px;}
+  #glPrev{left:10px;}#glNext{right:10px;}
+}
+</style>
+<div class="gl-section">
+  <div class="gl-fade-top"></div>
+  <div class="gl-amb"></div>
+  <div class="gl-head">
+    <p class="gl-sub">Twenty&#8209;Eight Studies &middot; One Piece</p>
+    <h2 class="gl-heading">The Gallery</h2>
+  </div>
+  <div class="gl-grid" id="glGrid">
+    <div class="gl-item"            data-gl="0"><img src="av/alba-bianca/gallery/g01.jpg" loading="lazy" alt="Alba Bianca — full spread"></div>
+    <div class="gl-item"            data-gl="1"><img src="av/alba-bianca/gallery/g02.jpg" loading="lazy" alt="Alba Bianca — head study"></div>
+    <div class="gl-item"            data-gl="2"><img src="av/alba-bianca/gallery/g03.jpg" loading="lazy" alt="Alba Bianca — ensemble"></div>
+    <div class="gl-item"            data-gl="3"><img src="av/alba-bianca/gallery/g04.jpg" loading="lazy" alt="Alba Bianca — ascent"></div>
+    <div class="gl-item wide2"      data-gl="4"><img src="av/alba-bianca/gallery/g05.jpg" loading="lazy" alt="Alba Bianca — wings"></div>
+    <div class="gl-item"            data-gl="5"><img src="av/alba-bianca/gallery/g06.jpg" loading="lazy" alt="Alba Bianca — profile"></div>
+    <div class="gl-item"            data-gl="6"><img src="av/alba-bianca/gallery/g07.jpg" loading="lazy" alt="Alba Bianca — gaze"></div>
+    <div class="gl-item"            data-gl="7"><img src="av/alba-bianca/gallery/g08.jpg" loading="lazy" alt="Alba Bianca — eye detail"></div>
+    <div class="gl-item"            data-gl="8"><img src="av/alba-bianca/gallery/g09.jpg" loading="lazy" alt="Alba Bianca — the watcher"></div>
+    <div class="gl-title-tile">
+      <p class="gl-tile-eye">Infinite Gallery</p>
+      <h3 class="gl-tile-name">Alba Bianca</h3>
+      <p class="gl-tile-sub">White Dawn &middot; I of XI</p>
+      <a href="mailto:david@phaora.com?subject=Inquiry%20%E2%80%94%20Alba%20Bianca%20%C2%B7%20%C3%81guas%20Vivas" class="gl-tile-cta">Enquire</a>
+      <div class="gl-tile-dots"><span></span><span class="on"></span><span></span></div>
+    </div>
+    <div class="gl-item"            data-gl="9"><img src="av/alba-bianca/gallery/g10.jpg" loading="lazy" alt="Alba Bianca — front"></div>
+    <div class="gl-item"            data-gl="10"><img src="av/alba-bianca/gallery/g11.jpg" loading="lazy" alt="Alba Bianca — wing back"></div>
+    <div class="gl-item"            data-gl="11"><img src="av/alba-bianca/gallery/g12.jpg" loading="lazy" alt="Alba Bianca — head turn"></div>
+    <div class="gl-item"            data-gl="12"><img src="av/alba-bianca/gallery/g13.jpg" loading="lazy" alt="Alba Bianca — feathers"></div>
+    <div class="gl-item"            data-gl="13"><img src="av/alba-bianca/gallery/g14.jpg" loading="lazy" alt="Alba Bianca — amethyst"></div>
+    <div class="gl-item wide2"      data-gl="14"><img src="av/alba-bianca/gallery/g15.jpg" loading="lazy" alt="Alba Bianca — trio"></div>
+    <div class="gl-item"            data-gl="15"><img src="av/alba-bianca/gallery/g16.jpg" loading="lazy" alt="Alba Bianca — perched"></div>
+    <div class="gl-item"            data-gl="16"><img src="av/alba-bianca/gallery/g17.jpg" loading="lazy" alt="Alba Bianca — base"></div>
+    <div class="gl-item"            data-gl="17"><img src="av/alba-bianca/gallery/g18.jpg" loading="lazy" alt="Alba Bianca — silhouette"></div>
+    <div class="gl-item"            data-gl="18"><img src="av/alba-bianca/gallery/g19.jpg" loading="lazy" alt="Alba Bianca — backlit"></div>
+    <div class="gl-item"            data-gl="19"><img src="av/alba-bianca/gallery/g20.jpg" loading="lazy" alt="Alba Bianca — crown"></div>
+    <div class="gl-item"            data-gl="20"><img src="av/alba-bianca/gallery/g21.jpg" loading="lazy" alt="Alba Bianca — close wing"></div>
+    <div class="gl-item wide2"      data-gl="21"><img src="av/alba-bianca/gallery/g22.jpg" loading="lazy" alt="Alba Bianca — full piece"></div>
+    <div class="gl-item wide2"      data-gl="26"><img src="av/alba-bianca/gallery/g27.jpg" loading="lazy" alt="Alba Bianca — talons"></div>
+    <div class="gl-item"            data-gl="22"><img src="av/alba-bianca/gallery/g23.jpg" loading="lazy" alt="Alba Bianca — side"></div>
+    <div class="gl-item"            data-gl="23"><img src="av/alba-bianca/gallery/g24.jpg" loading="lazy" alt="Alba Bianca — pair"></div>
+    <div class="gl-item"            data-gl="24"><img src="av/alba-bianca/gallery/g25.jpg" loading="lazy" alt="Alba Bianca — above"></div>
+    <div class="gl-item"            data-gl="25"><img src="av/alba-bianca/gallery/g26.jpg" loading="lazy" alt="Alba Bianca — detail"></div>
+    <div class="gl-item"            data-gl="27"><img src="av/alba-bianca/gallery/g28.jpg" loading="lazy" alt="Alba Bianca — dawn"></div>
+  </div>
+</div>
+
+<!-- GALLERY LIGHTBOX -->
+<div class="gl-lightbox" id="glLightbox">
+  <button class="gl-lb-close" id="glClose">&#x2715;</button>
+  <button class="gl-lb-btn" id="glPrev"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <button class="gl-lb-btn" id="glNext"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <img id="glImg" src="" alt="Alba Bianca">
+  <span class="gl-lb-count" id="glCount"></span>
+</div>
+
+<script>
+(function(){
+  var srcs = [];
+  for (var i = 1; i <= 28; i++) srcs.push('av/alba-bianca/gallery/g' + String(i).padStart(2,'0') + '.jpg');
+  var lb = document.getElementById('glLightbox');
+  var img = document.getElementById('glImg');
+  var count = document.getElementById('glCount');
+  var cur = 0;
+  function show(i){
+    cur = (i + srcs.length) % srcs.length;
+    img.src = srcs[cur];
+    count.textContent = (cur + 1) + ' / ' + srcs.length;
+  }
+  function open(i){ show(i); lb.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function close(){ lb.classList.remove('open'); document.body.style.overflow = ''; }
+  document.querySelectorAll('.gl-item[data-gl]').forEach(function(it){
+    it.addEventListener('click', function(){ open(parseInt(it.dataset.gl)); });
+  });
+  document.getElementById('glClose').addEventListener('click', close);
+  document.getElementById('glPrev').addEventListener('click', function(e){ e.stopPropagation(); show(cur - 1); });
+  document.getElementById('glNext').addEventListener('click', function(e){ e.stopPropagation(); show(cur + 1); });
+  lb.addEventListener('click', function(e){ if (e.target === lb) close(); });
+  document.addEventListener('keydown', function(e){
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') show(cur - 1);
+    if (e.key === 'ArrowRight') show(cur + 1);
+  });
+})();
+</script>
 </section>
 
 <div class="piece-inquiry">
