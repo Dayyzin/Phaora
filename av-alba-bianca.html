@@ -70,15 +70,15 @@ nav.scrolled{background:rgba(2,8,18,.92);backdrop-filter:blur(14px);border-botto
 /* HERO — STAGE */
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 .amb-pool{position:absolute;border-radius:50%;pointer-events:none;filter:blur(72px)}
-.stage{position:relative;width:100%;min-height:calc(100vh - 64px);background:#04080F;overflow:hidden;padding-top:64px}
+.stage{position:relative;width:100%;min-height:calc(100vh - 64px);background:#04080F;overflow:hidden}
 .cp{position:relative;height:100%;min-height:calc(100vh - 64px);overflow:hidden}
-.bg-title{position:absolute;top:0;left:0;right:0;padding-top:140px;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:25vw;line-height:.82;letter-spacing:-.01em;text-transform:uppercase;background:linear-gradient(160deg,#C8D0DC 0%,#8898AC 30%,#D0DAE8 55%,#6A7A90 80%,#C0CCD8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;pointer-events:none;user-select:none;text-align:center;z-index:1}
+.bg-title{position:absolute;top:0;left:0;right:0;padding-top:118px;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:23vw;line-height:.82;letter-spacing:-.01em;text-transform:uppercase;background:linear-gradient(160deg,#C8D0DC 0%,#8898AC 30%,#D0DAE8 55%,#6A7A90 80%,#C0CCD8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;pointer-events:none;user-select:none;text-align:center;z-index:1}
 .bg-title span{display:block}
 .glow{position:absolute;z-index:2;inset:0;background:radial-gradient(ellipse 55% 45% at 50% 30%,rgba(22,95,130,.2),transparent 65%);filter:blur(32px);pointer-events:none}
 .sculpture-slot{position:absolute;z-index:10;bottom:0;left:50%;transform:translateX(-50%);height:100%;display:flex;align-items:flex-end;justify-content:center}
 .sculpture-slot img{height:100%;width:auto;object-fit:contain;-webkit-mask-image:linear-gradient(90deg,#000 0%,#000 78%,rgba(0,0,0,.75) 90%,rgba(0,0,0,.45) 100%);mask-image:linear-gradient(90deg,#000 0%,#000 78%,rgba(0,0,0,.75) 90%,rgba(0,0,0,.45) 100%)}
 .sculpture-slot::after{content:'';position:absolute;bottom:0;left:0;right:0;height:32%;background:linear-gradient(to top,#04080F 0%,rgba(4,8,15,.8) 22%,rgba(4,8,15,.4) 60%,transparent 100%);pointer-events:none;z-index:1}
-.text-overlay{position:absolute;top:24px;left:clamp(20px,4vw,60px);max-width:250px;z-index:20;animation:fadeUp 1.2s cubic-bezier(.22,1,.36,1) .3s both}
+.text-overlay{position:absolute;top:84px;left:clamp(20px,4vw,60px);max-width:250px;z-index:20;animation:fadeUp 1.2s cubic-bezier(.22,1,.36,1) .3s both}
 .lp-eye{font-size:8.5px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:rgba(79,181,190,.48);margin-bottom:22px;display:flex;align-items:center;gap:8px}
 .lp-eye::before{content:'';display:block;width:16px;height:1px;background:rgba(79,181,190,.25)}
 .lp-name{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:30px;line-height:1.05;color:var(--silver);margin-bottom:4px}
@@ -290,9 +290,10 @@ nav.scrolled{background:rgba(2,8,18,.92);backdrop-filter:blur(14px);border-botto
 .ph-amb{position:absolute;z-index:0;top:5%;right:4%;width:520px;height:420px;background:radial-gradient(ellipse,rgba(200,164,94,.2) 0%,rgba(200,164,94,.09) 38%,rgba(200,164,94,0) 74%);filter:blur(64px);pointer-events:none}
 .ph-wrap{position:relative;min-height:80vh;display:flex;align-items:stretch}
 .ph-img-col{position:absolute;inset:0;z-index:1;overflow:hidden;pointer-events:none}
-.ph-img-col::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 30%,rgba(2,8,18,.5) 58%,rgba(2,8,18,.92) 80%,var(--ink) 100%)}
-.ph-img-col img,.ph-img-col video{position:absolute;width:78%;height:auto;top:50%;left:-4%;transform:translateY(-50%);display:block;transition:opacity .6s ease}
-.ph-img-col video{opacity:0;object-fit:contain}
+.ph-img-col::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 38%,rgba(4,8,15,.35) 56%,rgba(4,8,15,.78) 76%,#04080F 94%);z-index:3}
+.ph-img-col::before{content:'';position:absolute;inset:0;z-index:3;background:linear-gradient(270deg,#04080F 0%,#04080F 26%,rgba(4,8,15,.55) 46%,transparent 66%)}
+.ph-img-col img{position:absolute;width:80%;height:auto;top:50%;left:-6%;transform:translateY(-52%);display:block;transition:opacity .6s ease}
+.ph-img-col video{position:absolute;width:72%;height:auto;top:50%;left:-2%;transform:translateY(-38%);display:block;opacity:0;object-fit:contain;transition:opacity .6s ease}
 .ph-img-col.playing video{opacity:1}
 .ph-img-col.playing img{opacity:0}
 .ph-content-col{position:relative;z-index:2;margin-left:50%;width:50%;display:flex;flex-direction:column;justify-content:center;padding:clamp(48px,7vw,96px) clamp(32px,5vw,80px)}
@@ -565,7 +566,7 @@ footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rg
   <div class="ph-amb"></div>
   <div class="ph-wrap">
     <div class="ph-img-col" id="phImgCol">
-      <img src="av/alba-bianca/piece/piece-wing.png" alt="Alba Bianca — wing detail">
+      <img src="av/alba-bianca/wing.png" alt="Alba Bianca — wing detail">
       <video id="phVideo" playsinline preload="metadata">
         <source src="av/videos/Alba%20Bianca.mp4" type="video/mp4">
       </video>
@@ -622,7 +623,7 @@ footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rg
 window.addEventListener('scroll',function(){document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>60)},{passive:true});
 /* HERO CAROUSEL — arc layout */
 (function(){
-  var srcs=['av/alba-bianca/ab-01.jpg','av/alba-bianca/ab-05.jpg','av/alba-bianca/ab-17.jpg','av/alba-bianca/ab-25.jpg','av/alba-bianca/ab-29.jpg'];
+  var srcs=['av/alba-bianca/car-01.png','av/alba-bianca/car-02.png','av/alba-bianca/car-03.png','av/alba-bianca/car-04.png'];
   var n=srcs.length;
   var current=0;
 
