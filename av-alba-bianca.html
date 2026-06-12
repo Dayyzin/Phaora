@@ -67,30 +67,49 @@ nav.scrolled{background:rgba(2,8,18,.92);backdrop-filter:blur(14px);border-botto
 .nav-dp-footer a{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:rgba(200,164,94,.52);transition:color .2s}
 .nav-dp-footer a:hover{color:rgba(200,164,94,.9)}
 
-/* HERO */
-.piece-hero{position:relative;width:100%;height:100vh;min-height:640px;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
-.piece-bg{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center;filter:brightness(.42) saturate(.7);transform:scale(1.04);transition:transform 10s ease}
-.piece-bg.loaded{transform:scale(1)}
-.piece-video{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.4s ease;filter:brightness(.50) saturate(.80) contrast(1.08);image-rendering:high-quality}
-.piece-video.loaded{opacity:1}
-.piece-overlay{position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(to bottom,rgba(2,8,18,.75) 0%,rgba(2,8,18,.15) 28%,rgba(2,8,18,.15) 62%,rgba(2,8,18,.92) 100%),radial-gradient(ellipse 65% 52% at 50% 52%,rgba(220,200,160,.35) 0%,transparent 68%)}
-.piece-numeral{position:absolute;z-index:3;font-family:'Cormorant Garamond',serif;font-weight:300;font-style:italic;font-size:clamp(140px,22vw,320px);line-height:1;color:rgba(234,239,245,.035);pointer-events:none;top:50%;left:50%;transform:translate(-50%,-50%);letter-spacing:-.02em;user-select:none;white-space:nowrap}
-.piece-content{position:relative;z-index:4;text-align:center;display:flex;flex-direction:column;align-items:center;padding:0 clamp(24px,5vw,80px);animation:fadeUp 1.2s cubic-bezier(.22,1,.36,1) .3s both}
+/* HERO — STAGE */
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-.piece-eyebrow{font-size:9px;font-weight:500;letter-spacing:.46em;text-indent:.46em;text-transform:uppercase;color:rgba(79,181,190,.52);margin-bottom:28px}
-.piece-name{font-family:'Cormorant Garamond',serif;font-weight:300;font-style:italic;font-size:clamp(52px,9vw,124px);line-height:.95;color:var(--silver);letter-spacing:.01em;text-shadow:0 0 80px rgba(79,181,190,.22),0 4px 10px rgba(0,0,0,.55);margin-bottom:16px}
-.piece-tr{font-size:10px;font-weight:500;letter-spacing:.38em;text-transform:uppercase;color:rgba(79,181,190,.48);margin-bottom:36px}
-.piece-rule{width:36px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin-bottom:36px}
-.piece-status{font-size:9px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:rgba(200,164,94,.52);display:flex;align-items:center;gap:10px;margin-bottom:28px}
-.piece-status::before{content:'';width:4px;height:4px;border-radius:50%;background:rgba(200,164,94,.6);box-shadow:0 0 7px rgba(200,164,94,.4)}
-.piece-inq-cta{display:inline-flex;align-items:center;gap:12px;font-size:10px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:rgba(200,164,94,.8);border:1px solid rgba(200,164,94,.25);padding:13px 34px;transition:all .3s cubic-bezier(.22,1,.36,1)}
-.piece-inq-cta:hover{background:rgba(200,164,94,.07);border-color:var(--gold);color:var(--gold);gap:18px}
-.piece-inq-cta svg{transition:transform .3s}
-.piece-inq-cta:hover svg{transform:translateX(4px)}
-.piece-scroll{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:4;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fadeUp .8s ease 1.4s forwards}
-.piece-scroll-text{font-size:8px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:rgba(234,239,245,.2)}
-.piece-scroll-line{width:1px;height:0;background:linear-gradient(180deg,rgba(79,181,190,.5),transparent);animation:scrollLine 1s ease 2s forwards}
-@keyframes scrollLine{to{height:28px}}
+.amb-pool{position:absolute;border-radius:50%;pointer-events:none;filter:blur(72px)}
+.stage{position:relative;width:100%;min-height:calc(100vh - 64px);background:#04080F;overflow:hidden;padding-top:64px}
+.cp{position:relative;height:100%;min-height:calc(100vh - 64px);overflow:hidden}
+.bg-title{position:absolute;top:0;left:0;right:0;padding-top:140px;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:25vw;line-height:.82;letter-spacing:-.01em;text-transform:uppercase;background:linear-gradient(160deg,#C8D0DC 0%,#8898AC 30%,#D0DAE8 55%,#6A7A90 80%,#C0CCD8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;pointer-events:none;user-select:none;text-align:center;z-index:1}
+.bg-title span{display:block}
+.glow{position:absolute;z-index:2;inset:0;background:radial-gradient(ellipse 55% 45% at 50% 30%,rgba(22,95,130,.2),transparent 65%);filter:blur(32px);pointer-events:none}
+.sculpture-slot{position:absolute;z-index:10;bottom:0;left:50%;transform:translateX(-50%);height:100%;display:flex;align-items:flex-end;justify-content:center}
+.sculpture-slot img{height:100%;width:auto;object-fit:contain;-webkit-mask-image:linear-gradient(90deg,#000 0%,#000 78%,rgba(0,0,0,.75) 90%,rgba(0,0,0,.45) 100%);mask-image:linear-gradient(90deg,#000 0%,#000 78%,rgba(0,0,0,.75) 90%,rgba(0,0,0,.45) 100%)}
+.sculpture-slot::after{content:'';position:absolute;bottom:0;left:0;right:0;height:32%;background:linear-gradient(to top,#04080F 0%,rgba(4,8,15,.8) 22%,rgba(4,8,15,.4) 60%,transparent 100%);pointer-events:none;z-index:1}
+.text-overlay{position:absolute;top:24px;left:clamp(20px,4vw,60px);max-width:250px;z-index:20;animation:fadeUp 1.2s cubic-bezier(.22,1,.36,1) .3s both}
+.lp-eye{font-size:8.5px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:rgba(79,181,190,.48);margin-bottom:22px;display:flex;align-items:center;gap:8px}
+.lp-eye::before{content:'';display:block;width:16px;height:1px;background:rgba(79,181,190,.25)}
+.lp-name{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:30px;line-height:1.05;color:var(--silver);margin-bottom:4px}
+.lp-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:rgba(200,164,94,.6);margin-bottom:16px}
+.lp-rule{width:26px;height:1px;background:linear-gradient(90deg,var(--gold),transparent);margin-bottom:14px}
+.lp-body{font-size:13px;line-height:1.82;color:rgba(234,239,245,.42);margin-bottom:22px}
+.lp-cta{font-size:8.5px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(79,181,190,.65);border-bottom:1px solid rgba(79,181,190,.16);padding-bottom:3px;width:fit-content;transition:all .2s;display:inline-block}
+.lp-cta:hover{color:var(--teal);border-color:rgba(79,181,190,.45)}
+.ov-meta{margin-top:22px;display:flex;flex-direction:column;gap:8px;border-top:1px solid rgba(234,239,245,.06);padding-top:18px}
+.om{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.om-v{font-family:'Cormorant Garamond',serif;font-size:13px;color:rgba(234,239,245,.5)}
+.om-k{font-size:8px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(234,239,245,.2)}
+
+/* CAROUSEL */
+.carousel-section{position:relative;width:100%;padding:8px 0 0;background:#04080F;overflow:hidden}
+.carousel-track{position:relative;width:100%;height:165px}
+.car-item{position:absolute;display:flex;flex-direction:column;align-items:center;cursor:pointer;transition:all .45s cubic-bezier(.16,1,.3,1)}
+.car-item img{object-fit:contain;display:block;transition:filter .3s ease}
+.car-item:hover img{filter:drop-shadow(0 0 14px rgba(82,180,200,.45)) brightness(1.06)}
+.car-nav{display:flex;align-items:center;justify-content:center;gap:32px;margin-top:10px}
+.car-btn{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;border:1px solid rgba(201,168,76,.35);background:rgba(4,8,15,.6);cursor:pointer;display:flex;align-items:center;justify-content:center;color:#C9A84C;z-index:10;transition:border-color .2s,color .2s,background .2s}
+#carPrev{left:calc(50% - 328px)}#carNext{right:calc(50% - 328px)}
+.car-btn:hover{border-color:rgba(201,168,76,.75);color:#E8C86A;background:rgba(201,168,76,.12)}
+.car-btn svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.6}
+.car-counter{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(234,239,245,.28);min-width:52px;text-align:center}
+
+/* BOTTOM BAR */
+.bot{height:34px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,4vw,60px);border-bottom:1px solid rgba(234,239,245,.04)}
+.bt{font-size:8px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(234,239,245,.16)}
+.bt.dim{color:rgba(234,239,245,.09)}
+.bsep{width:20px;height:1px;background:rgba(234,239,245,.07)}
 
 /* DETAILS */
 .piece-details{border-bottom:1px solid rgba(234,239,245,.04);padding:clamp(52px,7vw,96px) clamp(32px,5vw,80px);display:flex;align-items:center;justify-content:center;gap:clamp(36px,5vw,90px);flex-wrap:wrap}
@@ -301,14 +320,14 @@ footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rg
   .work-editorial{grid-template-columns:1fr;gap:40px;padding:48px 20px}
   .work-edit-title{font-size:clamp(24px,6vw,38px)}
   .work-spec-value{font-size:15px}
-  .piece-hero{min-height:480px}
-  .piece-name{font-size:clamp(40px,11vw,100px);line-height:1.02}
-  .piece-eyebrow{font-size:8px;letter-spacing:.3em;margin-bottom:20px}
-  .piece-tr{font-size:9px;letter-spacing:.26em;margin-bottom:28px}
-  .piece-rule{margin-bottom:24px}
-  .piece-status{margin-bottom:20px}
-  .piece-content{padding:0 20px}
-  .piece-inq-cta{padding:14px 28px;font-size:9px}
+  .stage{min-height:auto;padding-top:48px;padding-bottom:32px}
+  .cp{min-height:auto}
+  .bg-title{font-size:clamp(60px,30vw,160px);padding-top:64px}
+  .sculpture-slot{position:relative;height:45vh;margin-top:24px}
+  .text-overlay{position:relative;top:auto;left:auto;max-width:none;padding:0 20px;margin-bottom:24px}
+  .carousel-track{height:120px}
+  #carPrev{left:8px}#carNext{right:8px}
+  .bot{flex-direction:column;align-items:flex-start;gap:8px;height:auto;padding:14px 20px}
   .piece-details{flex-direction:column;align-items:flex-start;gap:20px;padding:36px 20px}
   .piece-details-sep{display:none}
   .piece-spec{display:flex;align-items:baseline;gap:16px}
@@ -342,8 +361,7 @@ footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rg
   .ph-footer{flex-direction:column;align-items:flex-start;gap:16px}
 }
 @media(max-width:480px){
-  .piece-numeral{font-size:clamp(100px,28vw,220px)}
-  .piece-hero{min-height:420px}
+  .bg-title{font-size:clamp(48px,32vw,120px)}
 }
 </style>
 </head>
@@ -391,25 +409,50 @@ footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rg
   <a href="mailto:david@phaora.com" class="m-small">Contact &amp; Enquire &rarr;</a>
 </div>
 
-<section class="piece-hero">
-  <div class="piece-bg" id="pieceBg" style="background-image:url('av/phaora-aguasvivas-01-alba-bianca.png')"></div>
-  <video class="piece-video" id="pieceVideo" autoplay loop muted playsinline>
-    <source src="av/videos/Alba%20Bianca.mp4" type="video/mp4">
-  </video>
-  <div class="piece-overlay"></div>
-  <div class="piece-numeral">I</div>
-  <div class="piece-content">
-    <p class="piece-eyebrow">Collection 003 &nbsp;&middot;&nbsp; Work 1 of Eleven</p>
-    <h1 class="piece-name">Alba Bianca</h1>
-    <p class="piece-tr">White Dawn</p>
-    <div class="piece-rule"></div>
-    <p class="piece-status">Private inquiry open</p>
-    <a href="mailto:david@phaora.com?subject=Inquiry%20%E2%80%94%20Alba%20Bianca%20%C2%B7%20%C3%81guas%20Vivas" class="piece-inq-cta">
-      Inquire privately
-      <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 5h12M8 1l4 4-4 4"/></svg>
-    </a>
+<section class="stage">
+  <div class="amb-pool" style="z-index:0;top:20%;left:calc(50% + 110px);transform:translateX(-50%);width:800px;height:470px;background:radial-gradient(ellipse at 50% 92%,rgba(214,244,252,.62) 0%,rgba(158,218,242,.34) 26%,rgba(120,194,228,.11) 46%,rgba(120,194,228,0) 68%);filter:blur(50px)"></div>
+  <div class="cp">
+    <div class="amb-pool" style="z-index:0;top:4%;left:50%;transform:translateX(-50%);width:86%;height:560px;background:radial-gradient(ellipse,rgba(206,168,92,.32) 0%,rgba(206,168,92,.14) 38%,rgba(206,168,92,0) 76%);filter:blur(80px)"></div>
+    <div class="bg-title"><span>Alba</span><span>Bianca</span></div>
+    <div class="glow"></div>
+    <div class="sculpture-slot"><img src="av/alba-bianca/hero-solid.png" alt="Alba Bianca — White Dawn"></div>
+    <div class="text-overlay">
+      <p class="lp-eye">I of XI &middot; &Aacute;guas Vivas</p>
+      <h1 class="lp-name">Alba Bianca</h1>
+      <p class="lp-sub">White Dawn</p>
+      <div class="lp-rule"></div>
+      <p class="lp-body">Hand-carved white quartz on amethyst. Five birds — each a singular moment in flight, each placed once. 24-karat gold talons. Two years of silence.</p>
+      <a href="mailto:david@phaora.com?subject=Inquiry%20%E2%80%94%20Alba%20Bianca%20%C2%B7%20%C3%81guas%20Vivas" class="lp-cta">Enquire &rarr;</a>
+      <div class="ov-meta">
+        <div class="om"><span class="om-v">White Quartz</span><span class="om-k">Stone</span></div>
+        <div class="om"><span class="om-v">Amethyst</span><span class="om-k">Base</span></div>
+        <div class="om"><span class="om-v">24K Gold</span><span class="om-k">Talons</span></div>
+        <div class="om"><span class="om-v">Minas Gerais</span><span class="om-k">Origin</span></div>
+      </div>
+    </div>
   </div>
 </section>
+
+<div class="carousel-section">
+  <div class="carousel-track" id="carTrack">
+    <div class="car-item" data-pos="0"><img src="" alt=""></div>
+    <div class="car-item" data-pos="1"><img src="" alt=""></div>
+    <div class="car-item" data-pos="2"><img src="" alt=""></div>
+    <div class="car-item" data-pos="3"><img src="" alt=""></div>
+    <div class="car-item" data-pos="4"><img src="" alt=""></div>
+  </div>
+  <button class="car-btn" id="carPrev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <button class="car-btn" id="carNext" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <div class="car-nav"><span class="car-counter" id="carCounter">1 / 5</span></div>
+</div>
+
+<div class="bot">
+  <div style="display:flex;align-items:center;gap:12px">
+    <span class="bt">Alba Bianca</span><span class="bsep"></span>
+    <span class="bt dim">Collection 003 &nbsp;&middot;&nbsp; &Aacute;guas Vivas</span>
+  </div>
+  <span class="bt dim">Pha&ouml;ra &nbsp;&middot;&nbsp; MMXXVI &nbsp;&middot;&nbsp; 26&deg;21&prime;N 80&deg;05&prime;W</span>
+</div>
 
 <section class="work-editorial">
   <div class="work-editorial-text">
@@ -626,12 +669,57 @@ footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rg
   resize();window.addEventListener('resize',resize);
 })();
 window.addEventListener('scroll',function(){document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>60)},{passive:true});
+/* HERO CAROUSEL — arc layout */
 (function(){
-  var v=document.getElementById('pieceVideo'),bg=document.getElementById('pieceBg');
-  bg.classList.add('loaded');
-  if(!v)return;
-  v.addEventListener('canplay',function(){v.classList.add('loaded')},{once:true});
-  v.load();
+  var srcs=['av/alba-bianca/ab-01.jpg','av/alba-bianca/ab-08.jpg','av/alba-bianca/ab-12.jpg','av/alba-bianca/ab-19.jpg','av/alba-bianca/ab-25.jpg'];
+  var n=srcs.length;
+  var current=0;
+
+  var SLOTS=[
+    { x:-260, y:45, scale:0.45, opacity:0.22, imgH:72 },
+    { x:-135, y:20, scale:0.68, opacity:0.45, imgH:100 },
+    { x:   0, y: 0, scale:1.00, opacity:1.00, imgH:145 },
+    { x: 135, y:20, scale:0.68, opacity:0.45, imgH:100 },
+    { x: 260, y:45, scale:0.45, opacity:0.22, imgH:72 }
+  ];
+
+  var track=document.getElementById('carTrack');
+  var counter=document.getElementById('carCounter');
+  if(!track)return;
+
+  function layout(){
+    var cx=(track.offsetWidth||900)/2;
+    var items=track.querySelectorAll('.car-item');
+    var indices=[
+      (current-2+n)%n,
+      (current-1+n)%n,
+      current,
+      (current+1)%n,
+      (current+2)%n
+    ];
+    items.forEach(function(item,i){
+      var s=SLOTS[i],idx=indices[i];
+      item.style.left=(cx+s.x-s.imgH*0.5)+'px';
+      item.style.top=s.y+'px';
+      item.style.opacity=s.opacity;
+      item.style.transform='scale('+s.scale+')';
+      var img=item.querySelector('img');
+      img.src=srcs[idx];
+      img.style.height=s.imgH+'px';
+      img.style.width='auto';
+    });
+    counter.textContent=(current+1)+' / '+n;
+  }
+
+  function rotate(dir){
+    current=(current+dir+n)%n;
+    layout();
+  }
+
+  window.addEventListener('load',layout);
+  window.addEventListener('resize',layout);
+  document.getElementById('carPrev').addEventListener('click',function(){rotate(-1)});
+  document.getElementById('carNext').addEventListener('click',function(){rotate(1)});
 })();
 (function(){
   var b=document.getElementById('navBurger'),m=document.getElementById('mobileMenu');
