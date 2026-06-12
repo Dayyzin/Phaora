@@ -17,7 +17,7 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--pearl:#EAEFF5;--silver:#DBE6F0;--teal:#4FB5BE;--teal-d:rgba(79,181,190,.55);--gold:#C8A45E;--gold-lt:#D9BC7C;--ink:#020812}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:hidden}
 body{background:var(--ink);color:var(--pearl);font-family:'Inter',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 #pageStars{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.5}
@@ -93,10 +93,10 @@ nav.scrolled{background:rgba(2,8,18,.92);backdrop-filter:blur(14px);border-botto
 .om-k{font-size:8px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(234,239,245,.2)}
 
 /* CAROUSEL */
-.carousel-section{position:relative;width:100%;padding:8px 0 0;background:#04080F;overflow:hidden}
+.carousel-section{position:relative;width:100%;padding:8px 0 0;background:#04080F;overflow:hidden;touch-action:pan-y;-webkit-user-select:none;user-select:none}
 .carousel-track{position:relative;width:100%;height:165px}
 .car-item{position:absolute;display:flex;flex-direction:column;align-items:center;cursor:pointer;transition:all .45s cubic-bezier(.16,1,.3,1)}
-.car-item img{object-fit:contain;display:block;transition:filter .3s ease}
+.car-item img{object-fit:contain;display:block;transition:filter .3s ease;-webkit-user-drag:none;user-drag:none;pointer-events:none}
 .car-item:hover img{filter:drop-shadow(0 0 14px rgba(82,180,200,.45)) brightness(1.06)}
 .car-nav{display:flex;align-items:center;justify-content:center;gap:32px;margin-top:10px}
 .car-btn{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;border:1px solid rgba(201,168,76,.35);background:rgba(4,8,15,.6);cursor:pointer;display:flex;align-items:center;justify-content:center;color:#C9A84C;z-index:10;transition:border-color .2s,color .2s,background .2s}
@@ -104,6 +104,7 @@ nav.scrolled{background:rgba(2,8,18,.92);backdrop-filter:blur(14px);border-botto
 .car-btn:hover{border-color:rgba(201,168,76,.75);color:#E8C86A;background:rgba(201,168,76,.12)}
 .car-btn svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.6}
 .car-counter{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(234,239,245,.28);min-width:52px;text-align:center}
+.car-hint{display:none;font-size:8.5px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:rgba(234,239,245,.2);text-align:center;margin-top:6px}
 
 /* BOTTOM BAR */
 .bot{height:34px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,4vw,60px);border-bottom:1px solid rgba(234,239,245,.04)}
@@ -323,10 +324,14 @@ footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rg
   .stage{min-height:auto;padding-top:48px;padding-bottom:32px}
   .cp{min-height:auto}
   .bg-title{font-size:clamp(60px,30vw,160px);padding-top:64px}
-  .sculpture-slot{position:relative;height:45vh;margin-top:24px}
+  .sculpture-slot{position:relative;height:42vh;margin-top:20px}
   .text-overlay{position:relative;top:auto;left:auto;max-width:none;padding:0 20px;margin-bottom:24px}
-  .carousel-track{height:120px}
-  #carPrev{left:8px}#carNext{right:8px}
+  .carousel-section{padding-top:4px}
+  .carousel-track{height:130px}
+  .car-btn{width:30px;height:30px}
+  .car-btn svg{width:11px;height:11px}
+  #carPrev{left:6px}#carNext{right:6px}
+  .car-hint{display:block}
   .bot{flex-direction:column;align-items:flex-start;gap:8px;height:auto;padding:14px 20px}
   .piece-details{flex-direction:column;align-items:flex-start;gap:20px;padding:36px 20px}
   .piece-details-sep{display:none}
@@ -444,6 +449,7 @@ footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rg
   <button class="car-btn" id="carPrev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   <button class="car-btn" id="carNext" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   <div class="car-nav"><span class="car-counter" id="carCounter">1 / 5</span></div>
+  <p class="car-hint">&larr;&nbsp; Swipe &nbsp;&rarr;</p>
 </div>
 
 <div class="bot">
@@ -633,7 +639,9 @@ window.addEventListener('scroll',function(){document.getElementById('mainNav').c
   if(!track)return;
 
   function layout(){
-    var cx=(track.offsetWidth||900)/2;
+    var w=track.offsetWidth||900;
+    var cx=w/2;
+    var k=Math.max(0.55,Math.min(1,w/600)); /* shrink the arc on narrow screens */
     var items=track.querySelectorAll('.car-item');
     var indices=[
       (current-2+n)%n,
@@ -644,13 +652,14 @@ window.addEventListener('scroll',function(){document.getElementById('mainNav').c
     ];
     items.forEach(function(item,i){
       var s=SLOTS[i],idx=indices[i];
-      item.style.left=(cx+s.x-s.imgH*0.5)+'px';
-      item.style.top=s.y+'px';
+      var imgH=s.imgH*k;
+      item.style.left=(cx+s.x*k-imgH*0.5)+'px';
+      item.style.top=(s.y*k)+'px';
       item.style.opacity=s.opacity;
       item.style.transform='scale('+s.scale+')';
       var img=item.querySelector('img');
       img.src=srcs[idx];
-      img.style.height=s.imgH+'px';
+      img.style.height=imgH+'px';
       img.style.width='auto';
     });
     counter.textContent=(current+1)+' / '+n;
@@ -665,6 +674,26 @@ window.addEventListener('scroll',function(){document.getElementById('mainNav').c
   window.addEventListener('resize',layout);
   document.getElementById('carPrev').addEventListener('click',function(){rotate(-1)});
   document.getElementById('carNext').addEventListener('click',function(){rotate(1)});
+
+  /* finger swipe — rotate on horizontal drag, leave vertical scroll alone */
+  var swipeZone=track.parentElement,sx=0,sy=0,active=false;
+  swipeZone.addEventListener('touchstart',function(e){
+    sx=e.touches[0].clientX;sy=e.touches[0].clientY;active=true;
+  },{passive:true});
+  swipeZone.addEventListener('touchend',function(e){
+    if(!active)return;active=false;
+    var dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;
+    if(Math.abs(dx)>36&&Math.abs(dx)>Math.abs(dy)) rotate(dx<0?1:-1);
+  },{passive:true});
+
+  /* mouse/trackpad drag on desktop too */
+  var md=false,mx=0;
+  swipeZone.addEventListener('mousedown',function(e){md=true;mx=e.clientX});
+  window.addEventListener('mouseup',function(e){
+    if(!md)return;md=false;
+    var dx=e.clientX-mx;
+    if(Math.abs(dx)>40) rotate(dx<0?1:-1);
+  });
 })();
 (function(){
   var b=document.getElementById('navBurger'),m=document.getElementById('mobileMenu');
