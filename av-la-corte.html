@@ -10,14 +10,14 @@
 <meta name="description" content="La Corte — The Court. Work II of eleven. Águas Vivas · Collection 003 by Phaöra. Hand-carved crystal from the mountains of Minas Gerais.">
 <meta property="og:title" content="La Corte — PHAÖRA · Águas Vivas">
 <meta property="og:description" content="The Court. Work II of eleven. One of one. Private inquiry only.">
-<meta property="og:image" content="undefined">
+<meta property="og:image" content="av/phaora-aguasvivas-01-alba-bianca.png">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <title>La Corte — PHAÖRA · Águas Vivas</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--pearl:#EAEFF5;--silver:#DBE6F0;--teal:#4FB5BE;--teal-d:rgba(79,181,190,.55);--gold:#C8A45E;--gold-lt:#D9BC7C;--ink:#020812}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:hidden}
 body{background:var(--ink);color:var(--pearl);font-family:'Inter',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 #pageStars{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.5}
@@ -67,30 +67,50 @@ nav.scrolled{background:rgba(2,8,18,.92);backdrop-filter:blur(14px);border-botto
 .nav-dp-footer a{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:rgba(200,164,94,.52);transition:color .2s}
 .nav-dp-footer a:hover{color:rgba(200,164,94,.9)}
 
-/* HERO */
-.piece-hero{position:relative;width:100%;height:100vh;min-height:640px;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
-.piece-bg{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center;filter:brightness(.42) saturate(.7);transform:scale(1.04);transition:transform 10s ease}
-.piece-bg.loaded{transform:scale(1)}
-.piece-video{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.4s ease;filter:brightness(.50) saturate(.80) contrast(1.08);image-rendering:high-quality}
-.piece-video.loaded{opacity:1}
-.piece-overlay{position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(to bottom,rgba(2,8,18,.75) 0%,rgba(2,8,18,.15) 28%,rgba(2,8,18,.15) 62%,rgba(2,8,18,.92) 100%),radial-gradient(ellipse 65% 52% at 50% 52%,rgba(79,181,190,.28) 0%,transparent 68%)}
-.piece-numeral{position:absolute;z-index:3;font-family:'Cormorant Garamond',serif;font-weight:300;font-style:italic;font-size:clamp(140px,22vw,320px);line-height:1;color:rgba(234,239,245,.035);pointer-events:none;top:50%;left:50%;transform:translate(-50%,-50%);letter-spacing:-.02em;user-select:none;white-space:nowrap}
-.piece-content{position:relative;z-index:4;text-align:center;display:flex;flex-direction:column;align-items:center;padding:0 clamp(24px,5vw,80px);animation:fadeUp 1.2s cubic-bezier(.22,1,.36,1) .3s both}
+/* HERO — STAGE */
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-.piece-eyebrow{font-size:9px;font-weight:500;letter-spacing:.46em;text-indent:.46em;text-transform:uppercase;color:rgba(79,181,190,.52);margin-bottom:28px}
-.piece-name{font-family:'Cormorant Garamond',serif;font-weight:300;font-style:italic;font-size:clamp(52px,9vw,124px);line-height:.95;color:var(--silver);letter-spacing:.01em;text-shadow:0 0 80px rgba(79,181,190,.22),0 4px 10px rgba(0,0,0,.55);margin-bottom:16px}
-.piece-tr{font-size:10px;font-weight:500;letter-spacing:.38em;text-transform:uppercase;color:rgba(79,181,190,.48);margin-bottom:36px}
-.piece-rule{width:36px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin-bottom:36px}
-.piece-status{font-size:9px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:rgba(200,164,94,.52);display:flex;align-items:center;gap:10px;margin-bottom:28px}
-.piece-status::before{content:'';width:4px;height:4px;border-radius:50%;background:rgba(200,164,94,.6);box-shadow:0 0 7px rgba(200,164,94,.4)}
-.piece-inq-cta{display:inline-flex;align-items:center;gap:12px;font-size:10px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:rgba(200,164,94,.8);border:1px solid rgba(200,164,94,.25);padding:13px 34px;transition:all .3s cubic-bezier(.22,1,.36,1)}
-.piece-inq-cta:hover{background:rgba(200,164,94,.07);border-color:var(--gold);color:var(--gold);gap:18px}
-.piece-inq-cta svg{transition:transform .3s}
-.piece-inq-cta:hover svg{transform:translateX(4px)}
-.piece-scroll{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:4;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fadeUp .8s ease 1.4s forwards}
-.piece-scroll-text{font-size:8px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:rgba(234,239,245,.2)}
-.piece-scroll-line{width:1px;height:0;background:linear-gradient(180deg,rgba(79,181,190,.5),transparent);animation:scrollLine 1s ease 2s forwards}
-@keyframes scrollLine{to{height:28px}}
+.amb-pool{position:absolute;border-radius:50%;pointer-events:none;filter:blur(72px)}
+.stage{position:relative;width:100%;min-height:calc(100vh - 64px);background:#04080F;overflow:hidden}
+.cp{position:relative;height:100%;min-height:calc(100vh - 64px);overflow:hidden}
+.bg-title{position:absolute;top:0;left:0;right:0;padding-top:118px;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:23vw;line-height:.82;letter-spacing:-.01em;text-transform:uppercase;background:radial-gradient(ellipse 62% 80% at 58% 44%,#E2F1FA 0%,#AFC4D8 20%,#64788F 45%,#334154 68%,#16202E 90%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;pointer-events:none;user-select:none;text-align:center;z-index:1}
+.bg-title span{display:block}
+.glow{position:absolute;z-index:2;inset:0;background:radial-gradient(ellipse 55% 45% at 50% 30%,rgba(22,95,130,.2),transparent 65%);filter:blur(32px);pointer-events:none}
+.sculpture-slot{position:absolute;z-index:10;bottom:0;left:50%;transform:translateX(-50%);height:100%;display:flex;align-items:flex-end;justify-content:center}
+.sculpture-slot img{height:100%;width:auto;object-fit:contain}
+.sculpture-slot::after{content:'';position:absolute;bottom:0;left:0;right:0;height:28%;background:linear-gradient(to top,#04080F 0%,rgba(4,8,15,.72) 22%,rgba(4,8,15,.38) 48%,rgba(4,8,15,.14) 74%,transparent 100%);pointer-events:none;z-index:1}
+.text-overlay{position:absolute;top:84px;left:clamp(20px,4vw,60px);max-width:250px;z-index:20;animation:fadeUp 1.2s cubic-bezier(.22,1,.36,1) .3s both}
+.lp-eye{font-size:8.5px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:rgba(79,181,190,.48);margin-bottom:22px;display:flex;align-items:center;gap:8px}
+.lp-eye::before{content:'';display:block;width:16px;height:1px;background:rgba(79,181,190,.25)}
+.lp-name{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:30px;line-height:1.05;color:var(--silver);margin-bottom:4px}
+.lp-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:rgba(200,164,94,.6);margin-bottom:16px}
+.lp-rule{width:26px;height:1px;background:linear-gradient(90deg,var(--gold),transparent);margin-bottom:14px}
+.lp-body{font-size:13px;line-height:1.82;color:rgba(234,239,245,.42);margin-bottom:22px}
+.lp-cta{font-size:8.5px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(79,181,190,.65);border-bottom:1px solid rgba(79,181,190,.16);padding-bottom:3px;width:fit-content;transition:all .2s;display:inline-block}
+.lp-cta:hover{color:var(--teal);border-color:rgba(79,181,190,.45)}
+.ov-meta{margin-top:22px;display:flex;flex-direction:column;gap:8px;border-top:1px solid rgba(234,239,245,.06);padding-top:18px}
+.om{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.om-v{font-family:'Cormorant Garamond',serif;font-size:13px;color:rgba(234,239,245,.5)}
+.om-k{font-size:8px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(234,239,245,.2)}
+
+/* CAROUSEL */
+.carousel-section{position:relative;width:100%;padding:160px 0 90px;background:#04080F;overflow:hidden;touch-action:pan-y;-webkit-user-select:none;user-select:none}
+.carousel-track{position:relative;width:100%;height:165px}
+.car-item{position:absolute;display:flex;flex-direction:column;align-items:center;cursor:pointer;transition:all .45s cubic-bezier(.16,1,.3,1)}
+.car-item img{object-fit:contain;display:block;transition:filter .3s ease;-webkit-user-drag:none;user-drag:none;pointer-events:none}
+.car-item:hover img{filter:drop-shadow(0 0 14px rgba(82,180,200,.45)) brightness(1.06)}
+.car-nav{display:flex;align-items:center;justify-content:center;gap:32px;margin-top:10px}
+.car-btn{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;border:1px solid rgba(201,168,76,.35);background:rgba(4,8,15,.6);cursor:pointer;display:flex;align-items:center;justify-content:center;color:#C9A84C;z-index:10;transition:border-color .2s,color .2s,background .2s}
+#carPrev{left:calc(50% - 328px)}#carNext{right:calc(50% - 328px)}
+.car-btn:hover{border-color:rgba(201,168,76,.75);color:#E8C86A;background:rgba(201,168,76,.12)}
+.car-btn svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.6}
+.car-counter{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(234,239,245,.28);min-width:52px;text-align:center}
+.car-hint{display:none;font-size:8.5px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:rgba(234,239,245,.2);text-align:center;margin-top:6px}
+
+/* BOTTOM BAR */
+.bot{height:34px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,4vw,60px);border-bottom:1px solid rgba(234,239,245,.04)}
+.bt{font-size:8px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(234,239,245,.16)}
+.bt.dim{color:rgba(234,239,245,.09)}
+.bsep{width:20px;height:1px;background:rgba(234,239,245,.07)}
 
 /* DETAILS */
 .piece-details{border-bottom:1px solid rgba(234,239,245,.04);padding:clamp(52px,7vw,96px) clamp(32px,5vw,80px);display:flex;align-items:center;justify-content:center;gap:clamp(36px,5vw,90px);flex-wrap:wrap}
@@ -228,6 +248,71 @@ nav.scrolled{background:rgba(2,8,18,.92);backdrop-filter:blur(14px);border-botto
 .work-spec-label{font-size:9px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(234,239,245,.28);flex-shrink:0}
 .work-spec-value{font-family:'Cormorant Garamond',serif;font-size:17px;color:rgba(234,239,245,.68);letter-spacing:.02em;text-align:right}
 
+/* THE PIECE */
+.tp-section{width:100%;padding:clamp(60px,8vw,100px) clamp(32px,5vw,80px);border-bottom:1px solid rgba(234,239,245,.04);position:relative;overflow:hidden}
+.tp-amb{position:absolute;z-index:0;top:0;left:50%;transform:translateX(-50%);width:1000px;height:620px;background:radial-gradient(ellipse,rgba(200,164,94,.16) 0%,rgba(200,164,94,.07) 40%,rgba(200,164,94,0) 74%);filter:blur(90px);pointer-events:none}
+.tp-inner{position:relative;z-index:1;max-width:1400px;margin:0 auto}
+.tp-eyebrow{font-size:9px;font-weight:500;letter-spacing:.36em;text-transform:uppercase;color:rgba(79,181,190,.48);margin-bottom:24px}
+.tp-heading{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(32px,4vw,64px);color:var(--pearl);margin-bottom:40px}
+.tp-tabs{display:flex;gap:0;border-bottom:1px solid rgba(234,239,245,.07);margin-bottom:48px;position:relative;flex-wrap:wrap;justify-content:center}
+.tp-tab{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(234,239,245,.32);padding:12px 22px 14px;cursor:pointer;transition:color .2s;white-space:nowrap}
+.tp-tab:hover{color:rgba(234,239,245,.6)}
+.tp-tab.active{color:var(--gold)}
+.tp-tab-line{position:absolute;bottom:-1px;left:0;height:1px;background:rgba(200,164,94,.55);transition:all .35s cubic-bezier(.16,1,.3,1)}
+.tp-body{display:flex;flex-direction:row;gap:clamp(24px,3vw,48px);align-items:flex-start;justify-content:center;width:100%}
+.tp-left-text{flex:0 0 200px;min-width:0}
+.tp-left{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;min-width:0}
+.tp-img-wrap{position:relative;overflow:hidden;background:#000;display:flex;align-items:center;justify-content:center;width:clamp(360px,40vw,520px);height:clamp(340px,38vw,480px)}
+.tp-img-wrap img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:contrast(1.06) saturate(.92);transition:opacity .4s}
+.tp-img-label{margin-top:12px;font-size:9px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:rgba(234,239,245,.22);text-align:center}
+.tp-mini-car{display:flex;gap:10px;margin-top:14px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;max-width:clamp(360px,40vw,520px)}
+.tp-mini-car::-webkit-scrollbar{display:none}
+.tp-mini-thumb{flex:0 0 56px;height:56px;overflow:hidden;cursor:pointer;opacity:.35;transition:opacity .2s;border:1px solid transparent}
+.tp-mini-thumb.active{opacity:1;border-color:rgba(200,164,94,.4)}
+.tp-mini-thumb:hover{opacity:.7}
+.tp-mini-thumb img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.85) saturate(.85)}
+.tp-right{flex:0 0 280px;min-width:0}
+.tp-panel{display:none}
+.tp-panel.active{display:block;animation:fadeUp .5s ease both}
+.tp-panel-eye{font-size:9px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:rgba(79,181,190,.48);margin-bottom:14px}
+.tp-panel-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(26px,3vw,40px);color:var(--silver);line-height:1.1;margin-bottom:18px}
+.tp-panel-rule{width:30px;height:1px;background:linear-gradient(90deg,var(--gold),transparent);margin-bottom:22px}
+.tp-panel-body{font-size:13px;line-height:1.9;color:rgba(234,239,245,.4);max-width:none;margin-bottom:28px}
+.tp-items{display:flex;flex-direction:column;gap:18px;margin-bottom:30px;max-width:none}
+.tp-item{display:grid;grid-template-columns:32px 1fr;gap:16px;align-items:start}
+.tp-item-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:rgba(200,164,94,.5)}
+.tp-item-title{font-size:12px;font-weight:500;letter-spacing:.08em;color:rgba(234,239,245,.65);margin-bottom:4px}
+.tp-item-desc{font-size:12.5px;line-height:1.8;color:rgba(234,239,245,.32)}
+.tp-cta{display:inline-block;font-size:9px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:rgba(79,181,190,.65);border-bottom:1px solid rgba(79,181,190,.18);padding-bottom:3px;transition:all .2s}
+.tp-cta:hover{color:var(--teal);border-color:rgba(79,181,190,.5)}
+
+/* PHILOSOPHY */
+#philosophy{width:100%;border-bottom:1px solid rgba(234,239,245,.04);position:relative;overflow:hidden}
+.ph-amb{position:absolute;z-index:0;top:5%;right:4%;width:520px;height:420px;background:radial-gradient(ellipse,rgba(200,164,94,.2) 0%,rgba(200,164,94,.09) 38%,rgba(200,164,94,0) 74%);filter:blur(64px);pointer-events:none}
+.ph-wrap{position:relative;min-height:80vh;display:flex;align-items:stretch}
+.ph-img-col{position:absolute;inset:0;z-index:1;overflow:hidden;pointer-events:none}
+.ph-img-col::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,#04080F 0%,rgba(4,8,15,.55) 7%,transparent 24%),linear-gradient(0deg,#04080F 0%,rgba(4,8,15,.45) 8%,transparent 24%),linear-gradient(90deg,transparent 38%,rgba(4,8,15,.35) 56%,rgba(4,8,15,.78) 76%,#04080F 94%);z-index:3}
+.ph-img-col::before{content:'';position:absolute;inset:0;z-index:3;background:linear-gradient(270deg,#04080F 0%,#04080F 26%,rgba(4,8,15,.55) 46%,transparent 66%)}
+.ph-img-col img{position:absolute;width:80%;height:auto;top:50%;left:-6%;transform:translateY(-52%);display:block;transition:opacity .6s ease}
+.ph-img-col video{position:absolute;width:72%;height:auto;top:50%;left:-2%;transform:translateY(-38%);display:block;opacity:0;object-fit:contain;transition:opacity .6s ease}
+.ph-img-col.playing video{opacity:1}
+.ph-img-col.playing img{opacity:0}
+.ph-content-col{position:relative;z-index:2;margin-left:50%;width:50%;display:flex;flex-direction:column;justify-content:center;padding:clamp(48px,7vw,96px) clamp(32px,5vw,80px)}
+.ph-eyebrow{font-size:9px;font-weight:500;letter-spacing:.34em;text-transform:uppercase;color:rgba(79,181,190,.48);margin-bottom:32px}
+.ph-heading{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(36px,5vw,72px);line-height:1.05;color:var(--silver);margin-bottom:32px}
+.ph-rule{width:32px;height:1px;background:linear-gradient(90deg,var(--gold),transparent);margin-bottom:32px}
+.ph-body{font-size:14px;line-height:1.9;color:rgba(234,239,245,.4);max-width:420px;margin-bottom:40px}
+.ph-watch{display:inline-flex;align-items:center;gap:12px;font-size:9px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:rgba(234,239,245,.5);transition:color .2s;cursor:pointer;width:fit-content}
+.ph-watch:hover{color:rgba(234,239,245,.85)}
+.ph-watch-icon{width:32px;height:32px;border-radius:50%;border:1px solid rgba(234,239,245,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:border-color .2s}
+.ph-watch:hover .ph-watch-icon{border-color:rgba(200,164,94,.5)}
+.ph-watch-icon svg{width:9px;height:9px;fill:currentColor;margin-left:2px}
+.ph-footer{display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(234,239,245,.06);padding-top:28px;margin-top:48px}
+.ph-footer-links{display:flex;gap:24px}
+.ph-footer-links a{font-size:9px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(234,239,245,.25);transition:color .2s}
+.ph-footer-links a:hover{color:rgba(234,239,245,.65)}
+.ph-monogram{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:26px;letter-spacing:.18em;color:rgba(200,164,94,.35)}
+
 /* FOOTER */
 footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rgba(79,181,190,.08);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
 .footer-copy{font-size:10px;letter-spacing:.12em;color:rgba(234,239,245,.18)}
@@ -238,14 +323,24 @@ footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rg
   .work-editorial{grid-template-columns:1fr;gap:40px;padding:48px 20px}
   .work-edit-title{font-size:clamp(24px,6vw,38px)}
   .work-spec-value{font-size:15px}
-  .piece-hero{min-height:480px}
-  .piece-name{font-size:clamp(40px,11vw,100px);line-height:1.02}
-  .piece-eyebrow{font-size:8px;letter-spacing:.3em;margin-bottom:20px}
-  .piece-tr{font-size:9px;letter-spacing:.26em;margin-bottom:28px}
-  .piece-rule{margin-bottom:24px}
-  .piece-status{margin-bottom:20px}
-  .piece-content{padding:0 20px}
-  .piece-inq-cta{padding:14px 28px;font-size:9px}
+  .stage{min-height:80vh;padding:0}
+  .cp{min-height:80vh}
+  .bg-title{font-size:clamp(48px,23vw,120px);padding-top:16vh;background:radial-gradient(ellipse 120% 85% at 50% 48%,#E2F1FA 0%,#AFC4D8 30%,#64788F 58%,#334154 82%,#16202E 100%);-webkit-background-clip:text;background-clip:text}
+  .stage>.amb-pool{left:50% !important;width:140vw !important;top:-6% !important;height:62vh !important}
+  .cp>.amb-pool,.glow{display:none}
+  .sculpture-slot{position:absolute;bottom:auto;top:10vh;height:72vh}
+  .sculpture-slot img{-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 72%,transparent 99%);mask-image:linear-gradient(180deg,#000 0%,#000 72%,transparent 99%)}
+  .sculpture-slot::after{display:none}
+  .text-overlay{display:none}
+  .tp-left-text .tp-items{display:grid;grid-template-columns:1fr 1fr;gap:16px 22px}
+  .tp-left-text .tp-item{grid-template-columns:24px 1fr;gap:10px}
+  .carousel-section{padding:100px 0 56px}
+  .carousel-track{height:130px}
+  .car-btn{width:30px;height:30px}
+  .car-btn svg{width:11px;height:11px}
+  #carPrev{left:6px}#carNext{right:6px}
+  .car-hint{display:block}
+  .bot{flex-direction:column;align-items:flex-start;gap:8px;height:auto;padding:14px 20px}
   .piece-details{flex-direction:column;align-items:flex-start;gap:20px;padding:36px 20px}
   .piece-details-sep{display:none}
   .piece-spec{display:flex;align-items:baseline;gap:16px}
@@ -258,10 +353,36 @@ footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rg
   .piece-nav-link.next{border-left:none;border-top:1px solid rgba(234,239,245,.04);align-items:flex-start;text-align:left}
   .piece-nav-link{padding:24px 20px}
   footer{flex-direction:column;gap:6px}
+
+  /* THE PIECE */
+  .tp-section{padding:48px 20px}
+  .tp-heading{font-size:clamp(28px,7vw,40px)}
+  .tp-tabs{margin-bottom:32px}
+  .tp-tab{padding:10px 14px 12px;font-size:9px}
+  .tp-body{flex-direction:column;gap:36px;align-items:stretch}
+  .tp-left-text{flex:1 1 auto;width:100%}
+  .tp-left{flex:1 1 auto;width:100%;align-items:stretch}
+  .tp-img-wrap{width:100%;height:auto;aspect-ratio:4/3}
+  .tp-mini-car{max-width:100%}
+  .tp-mini-thumb{flex:0 0 56px}
+  .tp-right{flex:1 1 auto;width:100%}
+  .tp-panel-title{font-size:clamp(22px,6vw,32px)}
+
+  /* PHILOSOPHY */
+  .ph-wrap{min-height:auto;flex-direction:column;position:relative;overflow:hidden}
+  .ph-img-col{position:absolute;inset:auto;top:10px;left:0;width:60%;height:340px}
+  .ph-img-col img{width:100%;left:0;top:0;transform:none;-webkit-mask-image:linear-gradient(270deg,transparent 0%,#000 38%),linear-gradient(180deg,#000 55%,transparent 98%);-webkit-mask-composite:source-in;mask-image:linear-gradient(270deg,transparent 0%,#000 38%),linear-gradient(180deg,#000 55%,transparent 98%);mask-composite:intersect}
+  .ph-img-col video{width:100%;left:0;top:0;transform:none;-webkit-mask-image:linear-gradient(270deg,transparent 0%,#000 38%),linear-gradient(180deg,#000 55%,transparent 98%);-webkit-mask-composite:source-in;mask-image:linear-gradient(270deg,transparent 0%,#000 38%),linear-gradient(180deg,#000 55%,transparent 98%);mask-composite:intersect}
+  .ph-img-col::before,.ph-img-col::after{display:none}
+  .ph-content-col{margin-left:0;width:100%;padding:48px 20px 40px;position:relative;z-index:2}
+  .ph-eyebrow,.ph-heading{max-width:55%;margin-left:45%}
+  .ph-heading{min-height:210px;display:flex;flex-direction:column;justify-content:flex-start}
+  .ph-heading{font-size:clamp(30px,8vw,48px)}
+  .ph-body{max-width:100%}
+  .ph-footer{flex-direction:column;align-items:flex-start;gap:16px}
 }
 @media(max-width:480px){
-  .piece-numeral{font-size:clamp(100px,28vw,220px)}
-  .piece-hero{min-height:420px}
+  .bg-title{font-size:clamp(48px,32vw,120px)}
 }
 </style>
 </head>
@@ -309,34 +430,330 @@ footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rg
   <a href="mailto:david@phaora.com" class="m-small">Contact &amp; Enquire &rarr;</a>
 </div>
 
-<section class="piece-hero">
-
-  <div class="piece-overlay"></div>
-  <div class="piece-numeral">II</div>
-  <div class="piece-content">
-    <p class="piece-eyebrow">Collection 003 &nbsp;&middot;&nbsp; Work 2 of Eleven</p>
-    <h1 class="piece-name">La Corte</h1>
-    <p class="piece-tr">The Court</p>
-    <div class="piece-rule"></div>
-    <p class="piece-status">Sealed &middot; August MMXXVI</p>
-    <a href="mailto:david@phaora.com?subject=Inquiry%20%E2%80%94%20La%20Corte%20%C2%B7%20%C3%81guas%20Vivas" class="piece-inq-cta">
-      Inquire privately
-      <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 5h12M8 1l4 4-4 4"/></svg>
-    </a>
+<section class="stage">
+  <div class="amb-pool" style="z-index:0;top:2%;left:calc(50% + 110px);transform:translateX(-50%);width:980px;height:820px;background:radial-gradient(ellipse at 50% 52%,rgba(214,244,252,.55) 0%,rgba(158,218,242,.30) 24%,rgba(120,194,228,.10) 44%,rgba(120,194,228,0) 64%);filter:blur(60px)"></div>
+  <div class="cp">
+    <div class="amb-pool" style="z-index:0;top:4%;left:50%;transform:translateX(-50%);width:86%;height:560px;background:radial-gradient(ellipse,rgba(206,168,92,.32) 0%,rgba(206,168,92,.14) 38%,rgba(206,168,92,0) 76%);filter:blur(80px)"></div>
+    <div class="bg-title"><span>La</span><span>Corte</span></div>
+    <div class="glow"></div>
+    <div class="sculpture-slot"><img src="av/la-corte/hero.jpg" alt="La Corte — The Court"></div>
+    <div class="text-overlay">
+      <p class="lp-eye">II of XI &middot; &Aacute;guas Vivas</p>
+      <h1 class="lp-name">La Corte</h1>
+      <p class="lp-sub">The Court</p>
+      <div class="lp-rule"></div>
+      <p class="lp-body">Hand-carved crystal on amethyst. Five macaws &mdash; the court in session, each placed once. 24-karat gold talons. Minas Gerais.</p>
+      <a href="mailto:david@phaora.com?subject=Inquiry%20%E2%80%94%20La%20Corte%20%C2%B7%20%C3%81guas%20Vivas" class="lp-cta">Enquire &rarr;</a>
+      <div class="ov-meta">
+        <div class="om"><span class="om-v">Carved Crystal</span><span class="om-k">Stone</span></div>
+        <div class="om"><span class="om-v">Amethyst</span><span class="om-k">Base</span></div>
+        <div class="om"><span class="om-v">24K Gold</span><span class="om-k">Talons</span></div>
+        <div class="om"><span class="om-v">Minas Gerais</span><span class="om-k">Origin</span></div>
+      </div>
+    </div>
   </div>
 </section>
 
-<div class="piece-details">
-  <div class="piece-spec"><span class="spec-label">Material</span><span class="spec-value">Crystal &middot; Minas Gerais</span></div>
-  <div class="piece-details-sep"></div>
-  <div class="piece-spec"><span class="spec-label">Collection</span><span class="spec-value">&#193;guas Vivas &middot; 003</span></div>
-  <div class="piece-details-sep"></div>
-  <div class="piece-spec"><span class="spec-label">Edition</span><span class="spec-value">One of one</span></div>
-  <div class="piece-details-sep"></div>
-  <div class="piece-spec"><span class="spec-label">Reveal</span><span class="spec-value">23 August MMXXVI</span></div>
+<div class="carousel-section">
+  <div class="carousel-track" id="carTrack">
+    <div class="car-item" data-pos="0"><img src="" alt=""></div>
+    <div class="car-item" data-pos="1"><img src="" alt=""></div>
+    <div class="car-item" data-pos="2"><img src="" alt=""></div>
+    <div class="car-item" data-pos="3"><img src="" alt=""></div>
+    <div class="car-item" data-pos="4"><img src="" alt=""></div>
+  </div>
+  <button class="car-btn" id="carPrev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <button class="car-btn" id="carNext" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <div class="car-nav"><span class="car-counter" id="carCounter">1 / 5</span></div>
+  <p class="car-hint">&larr;&nbsp; Swipe &nbsp;&rarr;</p>
 </div>
 
+<div class="bot">
+  <div style="display:flex;align-items:center;gap:12px">
+    <span class="bt">La Corte</span><span class="bsep"></span>
+    <span class="bt dim">Collection 003 &nbsp;&middot;&nbsp; &Aacute;guas Vivas</span>
+  </div>
+  <span class="bt dim">Pha&ouml;ra &nbsp;&middot;&nbsp; MMXXVI &nbsp;&middot;&nbsp; 26&deg;21&prime;N 80&deg;05&prime;W</span>
+</div>
 
+<section class="tp-section" id="thePiece">
+  <div class="tp-amb"></div>
+  <div class="tp-inner">
+    <p class="tp-eyebrow" style="text-align:center">La Corte &middot; II of XI</p>
+    <h2 class="tp-heading" style="text-align:center">The Piece</h2>
+    <div class="tp-tabs" id="tpTabs">
+      <div class="tp-tab active" data-tab="0">Materials</div>
+      <div class="tp-tab" data-tab="1">The Process</div>
+      <div class="tp-tab" data-tab="2">Provenance</div>
+      <div class="tp-tab" data-tab="3">Care &amp; Display</div>
+      <div class="tp-tab" data-tab="4">The Birds</div>
+      <div class="tp-tab-line" id="tpTabLine"></div>
+    </div>
+    <div class="tp-body">
+      <div class="tp-left-text">
+        <p class="tp-panel-eye">The Piece</p>
+        <h3 class="tp-panel-title">Alba<br>Bianca</h3>
+        <div class="tp-panel-rule"></div>
+        <div class="tp-items">
+          <div class="tp-item"><span class="tp-item-num">I</span><div><p class="tp-item-title">Carved Crystal</p><p class="tp-item-desc">Stone</p></div></div>
+          <div class="tp-item"><span class="tp-item-num">II</span><div><p class="tp-item-title">Amethyst</p><p class="tp-item-desc">Base</p></div></div>
+          <div class="tp-item"><span class="tp-item-num">III</span><div><p class="tp-item-title">24K Gold</p><p class="tp-item-desc">Talons</p></div></div>
+          <div class="tp-item"><span class="tp-item-num">IV</span><div><p class="tp-item-title">Minas Gerais</p><p class="tp-item-desc">Origin, Brazil</p></div></div>
+          <div class="tp-item"><span class="tp-item-num">V</span><div><p class="tp-item-title">Two Years</p><p class="tp-item-desc">In the making</p></div></div>
+        </div>
+        <a href="mailto:david@phaora.com?subject=Inquiry%20%E2%80%94%20La%20Corte%20%C2%B7%20%C3%81guas%20Vivas" class="tp-cta">Enquire &rarr;</a>
+      </div>
+      <div class="tp-left">
+        <div class="tp-img-wrap"><img id="tpMainImg" src="av/la-corte/gallery/g01.jpg" alt="La Corte — Carved Crystal, full spread"></div>
+        <p class="tp-img-label" id="tpImgLabel">Carved Crystal · Full Spread</p>
+        <div class="tp-mini-car" id="tpMiniCar">
+          <div class="tp-mini-thumb active" data-label="Carved Crystal · Full Spread"><img src="av/la-corte/gallery/g01.jpg" alt=""></div>
+          <div class="tp-mini-thumb" data-label="The Amethyst Base"><img src="av/la-corte/gallery/g02.jpg" alt=""></div>
+          <div class="tp-mini-thumb" data-label="Gold Talons · Detail"><img src="av/la-corte/gallery/g03.jpg" alt=""></div>
+          <div class="tp-mini-thumb" data-label="Side Profile"><img src="av/la-corte/gallery/g04.jpg" alt=""></div>
+          <div class="tp-mini-thumb" data-label="Amethyst Base · Birds"><img src="av/la-corte/gallery/g05.jpg" alt=""></div>
+          <div class="tp-mini-thumb" data-label="Wing Close-up"><img src="av/la-corte/gallery/g06.jpg" alt=""></div>
+          <div class="tp-mini-thumb" data-label="Gold Talons · Close-up"><img src="av/la-corte/gallery/g07.jpg" alt=""></div>
+          <div class="tp-mini-thumb" data-label="Wings Spread"><img src="av/la-corte/gallery/g08.jpg" alt=""></div>
+          <div class="tp-mini-thumb" data-label="The Trio"><img src="av/la-corte/gallery/g09.jpg" alt=""></div>
+        </div>
+      </div>
+      <div class="tp-right">
+
+        <div class="tp-panel active" data-panel="0">
+          <p class="tp-panel-eye">Stone &amp; Metal</p>
+          <h3 class="tp-panel-title">Carved Crystal<br>on Amethyst</h3>
+          <div class="tp-panel-rule"></div>
+          <p class="tp-panel-body">Every material in La Corte was chosen for its relationship to the others. The carved crystal and the amethyst share a single origin in Minas Gerais &mdash; brought together over two years of deliberate work.</p>
+          <div class="tp-items">
+            <div class="tp-item"><span class="tp-item-num">I</span><div><p class="tp-item-title">Carved Crystal</p><p class="tp-item-desc">Sourced from Minas Gerais, Brazil. Carved from a single block per bird. No composite, no adhesive &mdash; each figure is one unbroken stone.</p></div></div>
+            <div class="tp-item"><span class="tp-item-num">II</span><div><p class="tp-item-title">Amethyst Base</p><p class="tp-item-desc">Deep violet amethyst from the same region as the quartz. A natural formation &mdash; not shaped, not cut. The birds rest on the earth as it came.</p></div></div>
+            <div class="tp-item"><span class="tp-item-num">III</span><div><p class="tp-item-title">24K Gold Talons</p><p class="tp-item-desc">Each talon is hand-cast in 24-karat gold and set individually. The beaks are obsidian, shaped over three weeks with a dental drill.</p></div></div>
+          </div>
+          <a href="mailto:david@phaora.com?subject=Inquiry%20%E2%80%94%20La%20Corte%20%C2%B7%20%C3%81guas%20Vivas" class="tp-cta">Enquire about this piece &rarr;</a>
+        </div>
+
+        <div class="tp-panel" data-panel="1">
+          <p class="tp-panel-eye">Two Years &middot; By Hand</p>
+          <h3 class="tp-panel-title">How It<br>Was Made</h3>
+          <div class="tp-panel-rule"></div>
+          <p class="tp-panel-body">No machine touched this work. Every form was arrived at through hours of silence, stone dust, and revision. The sculptor worked alone, in a single studio, from first mark to final placement.</p>
+          <div class="tp-items">
+            <div class="tp-item"><span class="tp-item-num">I</span><div><p class="tp-item-title">Rough Form</p><p class="tp-item-desc">Each bird began as a block of raw quartz. The rough silhouette was established with diamond-tipped chisels over the first three months.</p></div></div>
+            <div class="tp-item"><span class="tp-item-num">II</span><div><p class="tp-item-title">Feather by Feather</p><p class="tp-item-desc">Individual feathers were carved with a dental drill &mdash; the same tool used for the gold beaks. Each feather took between one and four hours.</p></div></div>
+            <div class="tp-item"><span class="tp-item-num">III</span><div><p class="tp-item-title">Final Placement</p><p class="tp-item-desc">The five birds were placed on the branch once. No rehearsal, no adjustment. The arrangement was decided in a single afternoon.</p></div></div>
+          </div>
+          <a href="mailto:david@phaora.com?subject=Inquiry%20%E2%80%94%20La%20Corte%20%C2%B7%20%C3%81guas%20Vivas" class="tp-cta">Request the full process notes &rarr;</a>
+        </div>
+
+        <div class="tp-panel" data-panel="2">
+          <p class="tp-panel-eye">Origin &amp; Record</p>
+          <h3 class="tp-panel-title">Provenance &amp;<br>Documentation</h3>
+          <div class="tp-panel-rule"></div>
+          <p class="tp-panel-body">La Corte is accompanied by a complete provenance document, signed by the sculptor and notarised in Brazil. The collector receives the full material record, photographic archive, and a sealed certificate of authenticity.</p>
+          <div class="tp-items">
+            <div class="tp-item"><span class="tp-item-num">I</span><div><p class="tp-item-title">Certificate of Authenticity</p><p class="tp-item-desc">Signed by David Machado Vaz and the sculptor. Notarised and registered. One copy travels with the piece, one remains in the Pha&ouml;ra archive.</p></div></div>
+            <div class="tp-item"><span class="tp-item-num">II</span><div><p class="tp-item-title">Photographic Archive</p><p class="tp-item-desc">Over 400 photographs documenting the full two-year process, from raw stone to final placement. Delivered on archival media.</p></div></div>
+            <div class="tp-item"><span class="tp-item-num">III</span><div><p class="tp-item-title">Material Record</p><p class="tp-item-desc">Full geological documentation of the quartz and amethyst: quarry coordinates, extraction date, assay report, and material weight pre- and post-carving.</p></div></div>
+          </div>
+          <a href="mailto:david@phaora.com?subject=Inquiry%20%E2%80%94%20La%20Corte%20%C2%B7%20%C3%81guas%20Vivas" class="tp-cta">Request the provenance summary &rarr;</a>
+        </div>
+
+        <div class="tp-panel" data-panel="3">
+          <p class="tp-panel-eye">Preservation &middot; Display</p>
+          <h3 class="tp-panel-title">Care &amp;<br>Installation</h3>
+          <div class="tp-panel-rule"></div>
+          <p class="tp-panel-body">La Corte was designed to live in interior light. The quartz responds to warm directional lighting from above; the amethyst deepens under natural daylight. Both materials are stable and require minimal maintenance.</p>
+          <div class="tp-items">
+            <div class="tp-item"><span class="tp-item-num">I</span><div><p class="tp-item-title">Lighting</p><p class="tp-item-desc">Halogen or warm-white LED at 2700&ndash;3000K, aimed from directly above. The quartz will appear to glow from within. Avoid cold-white or blue-spectrum light sources.</p></div></div>
+            <div class="tp-item"><span class="tp-item-num">II</span><div><p class="tp-item-title">Cleaning</p><p class="tp-item-desc">Dry microfibre cloth only. Never wet, never chemical. The gold talons can be polished with a jeweller's cloth annually if desired.</p></div></div>
+            <div class="tp-item"><span class="tp-item-num">III</span><div><p class="tp-item-title">Installation</p><p class="tp-item-desc">Pha&ouml;ra offers a white-glove installation service. Our team travels to the collector's location and places the piece with the same care as its original setting.</p></div></div>
+          </div>
+          <a href="mailto:david@phaora.com?subject=Inquiry%20%E2%80%94%20La%20Corte%20%C2%B7%20%C3%81guas%20Vivas" class="tp-cta">Ask about installation &rarr;</a>
+        </div>
+
+        <div class="tp-panel" data-panel="4">
+          <p class="tp-panel-eye">Five Figures &middot; One Branch</p>
+          <h3 class="tp-panel-title">The Birds</h3>
+          <div class="tp-panel-rule"></div>
+          <p class="tp-panel-body">Each of the five birds in La Corte is carved at a distinct moment of flight. None repeat. Each has a name &mdash; given by the sculptor on the day of final placement, not before.</p>
+          <div class="tp-items">
+            <div class="tp-item"><span class="tp-item-num">I</span><div><p class="tp-item-title">The Ascendant</p><p class="tp-item-desc">Wings fully spread, body vertical. The central figure. The loudest moment of lift.</p></div></div>
+            <div class="tp-item"><span class="tp-item-num">II</span><div><p class="tp-item-title">The Watcher</p><p class="tp-item-desc">Wings folded, head turned. Still &mdash; but not resting. The one that noticed something the others did not.</p></div></div>
+            <div class="tp-item"><span class="tp-item-num">III</span><div><p class="tp-item-title">The Arriving</p><p class="tp-item-desc">Mid-descent, one wing dipped. Just landed, or about to. The ambiguity is intentional.</p></div></div>
+          </div>
+          <a href="mailto:david@phaora.com?subject=Inquiry%20%E2%80%94%20La%20Corte%20%C2%B7%20%C3%81guas%20Vivas" class="tp-cta">Read the full bird notes &rarr;</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="philosophy">
+  <div class="ph-amb"></div>
+  <div class="ph-wrap">
+    <div class="ph-img-col" id="phImgCol">
+      <img src="av/la-corte/phil.jpg" alt="La Corte — wing detail">
+      <video id="phVideo" playsinline preload="metadata">
+        <source src="av/videos/La%20Corte.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="ph-content-col">
+      <p class="ph-eyebrow">&Aacute;guas Vivas &middot; La Corte</p>
+      <h2 class="ph-heading">The stone<br>holds court</h2>
+      <div class="ph-rule"></div>
+      <p class="ph-body">Five macaws in carved crystal, gathered on a single amethyst throne. La Corte does not pose its subjects &mdash; it catches a conversation mid-sentence, and lets the stone keep talking.</p>
+      <a href="#" class="ph-watch" id="phWatch">
+        <span class="ph-watch-icon"><svg viewBox="0 0 10 10"><path d="M3 1.8l5 3.2-5 3.2z"/></svg></span>
+        Watch Video
+      </a>
+      <div class="ph-footer">
+        <div class="ph-footer-links">
+          <a href="mailto:david@phaora.com?subject=Inquiry%20%E2%80%94%20La%20Corte%20%C2%B7%20%C3%81guas%20Vivas">Enquire</a>
+          <a href="#thePiece">View Piece</a>
+        </div>
+        <span class="ph-monogram">P</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     GALLERY · Infinite mood board
+     ═══════════════════════════════════ -->
+<section id="gallery" style="width:100%;background:#04080F;position:relative;z-index:10;">
+<style>
+.gl-section{position:relative;padding:90px 0 70px;}
+.gl-fade-top{position:absolute;top:0;left:0;right:0;height:140px;background:linear-gradient(to bottom,#04080F 0%,transparent 100%);z-index:5;pointer-events:none;}
+.gl-amb{position:absolute;z-index:0;top:60px;left:50%;transform:translateX(-50%);width:900px;height:500px;max-width:100vw;border-radius:50%;background:radial-gradient(ellipse,rgba(206,168,92,.28) 0%,rgba(206,168,92,.10) 40%,rgba(206,168,92,0) 74%);filter:blur(90px);pointer-events:none;}
+.gl-head{max-width:1400px;margin:0 auto 46px;padding:0 32px;text-align:center;position:relative;z-index:2;}
+.gl-sub{font-size:10px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:rgba(79,181,190,.45);margin-bottom:10px;}
+.gl-heading{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(40px,5vw,80px);color:rgba(219,230,240,.88);letter-spacing:-.01em;}
+
+/* GRID */
+.gl-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:1fr;grid-auto-flow:dense;gap:6px;padding:0 6px;position:relative;z-index:2;}
+.gl-item{position:relative;overflow:hidden;background:#070d17;cursor:pointer;aspect-ratio:1/1;}
+.gl-item img{width:100%;height:100%;object-fit:cover;display:block;border:0;outline:0;transform:scale(1.015);transition:transform .8s cubic-bezier(.16,1,.3,1),filter .5s ease;filter:brightness(.94) saturate(.96);}
+.gl-item:hover img{transform:scale(1.06);filter:brightness(1.06) saturate(1);}
+.gl-item::after{content:'';position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(234,239,245,.04);pointer-events:none;transition:box-shadow .4s;}
+.gl-item:hover::after{box-shadow:inset 0 0 0 1px rgba(79,181,190,.28);}
+.gl-item.wide2{grid-column:span 2;grid-row:span 2;}
+
+/* CENTER TITLE TILE */
+.gl-title-tile{grid-column:2/span 2;grid-row:span 2;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:radial-gradient(ellipse 75% 65% at 50% 45%,rgba(22,95,130,.22),rgba(4,8,15,0) 70%),#04080F;position:relative;overflow:hidden;}
+.gl-title-tile::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(206,168,92,.10),transparent 70%);filter:blur(30px);pointer-events:none;}
+.gl-title-tile::after{content:'';position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(234,239,245,.05);pointer-events:none;}
+.gl-tile-eye{font-size:9px;font-weight:500;letter-spacing:.4em;text-transform:uppercase;color:rgba(79,181,190,.55);margin-bottom:18px;}
+.gl-tile-name{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(34px,4.4vw,68px);line-height:1;color:#DBE6F0;margin-bottom:8px;}
+.gl-tile-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:rgba(200,164,94,.6);margin-bottom:26px;}
+.gl-tile-cta{font-size:9px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:rgba(234,239,245,.6);border:1px solid rgba(234,239,245,.18);border-radius:999px;padding:11px 26px;transition:all .25s;}
+.gl-tile-cta:hover{color:#04080F;background:rgba(219,230,240,.92);border-color:transparent;}
+.gl-tile-dots{display:flex;align-items:center;gap:7px;margin-top:24px;}
+.gl-tile-dots span{display:block;width:3px;height:3px;border-radius:50%;background:rgba(234,239,245,.18);}
+.gl-tile-dots span.on{width:14px;height:3px;border-radius:2px;background:rgba(79,181,190,.5);}
+
+/* GALLERY LIGHTBOX */
+.gl-lightbox{position:fixed;inset:0;z-index:3000;background:rgba(4,8,15,.97);backdrop-filter:blur(20px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .35s;}
+.gl-lightbox.open{opacity:1;pointer-events:auto;}
+.gl-lightbox img{max-height:92vh;max-width:92vw;object-fit:contain;filter:drop-shadow(0 0 60px rgba(79,181,190,.18)) brightness(1.05);}
+.gl-lb-close{position:absolute;top:24px;right:28px;background:none;border:1px solid rgba(234,239,245,.15);color:rgba(234,239,245,.45);width:38px;height:38px;border-radius:50%;font-size:16px;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;z-index:2;}
+.gl-lb-close:hover{border-color:rgba(79,181,190,.5);color:rgba(79,181,190,.8);}
+.gl-lb-btn{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;border:1px solid rgba(201,168,76,.35);background:rgba(4,8,15,.6);cursor:pointer;display:flex;align-items:center;justify-content:center;color:#C9A84C;z-index:2;transition:all .2s;}
+.gl-lb-btn:hover{border-color:rgba(201,168,76,.75);color:#E8C86A;background:rgba(201,168,76,.12);}
+.gl-lb-btn svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.6;}
+#glPrev{left:24px;}#glNext{right:24px;}
+.gl-lb-count{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);font-size:10px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:rgba(234,239,245,.3);}
+
+/* TABLET */
+@media(max-width:1024px){
+  .gl-grid{grid-template-columns:repeat(3,1fr);}
+  .gl-title-tile{grid-column:1/span 3;grid-row:span 1;aspect-ratio:auto;min-height:240px;}
+}
+/* MOBILE */
+@media(max-width:640px){
+  .gl-section{padding:64px 0 50px;}
+  .gl-grid{grid-template-columns:repeat(2,1fr);gap:4px;padding:0 4px;}
+  .gl-item.wide2{grid-column:span 2;grid-row:span 2;}
+  .gl-title-tile{grid-column:1/span 2;min-height:200px;}
+  #glPrev{left:10px;}#glNext{right:10px;}
+}
+</style>
+<div class="gl-section">
+  <div class="gl-fade-top"></div>
+  <div class="gl-amb"></div>
+  <div class="gl-head">
+    <p class="gl-sub">Seventeen Studies &middot; One Piece</p>
+    <h2 class="gl-heading">The Gallery</h2>
+  </div>
+  <div class="gl-grid" id="glGrid">
+    <div class="gl-item" data-gl="0"><img src="av/la-corte/gallery/g01.jpg" loading="lazy" alt="La Corte — the court"></div>
+    <div class="gl-item wide2" data-gl="1"><img src="av/la-corte/gallery/g02.jpg" loading="lazy" alt="La Corte — full piece"></div>
+    <div class="gl-item" data-gl="2"><img src="av/la-corte/gallery/g03.jpg" loading="lazy" alt="La Corte — from below"></div>
+    <div class="gl-item" data-gl="3"><img src="av/la-corte/gallery/g04.jpg" loading="lazy" alt="La Corte — ascendant"></div>
+    <div class="gl-item" data-gl="4"><img src="av/la-corte/gallery/g05.jpg" loading="lazy" alt="La Corte — ensemble"></div>
+    <div class="gl-item" data-gl="5"><img src="av/la-corte/gallery/g06.jpg" loading="lazy" alt="La Corte — poolside"></div>
+    <div class="gl-item" data-gl="6"><img src="av/la-corte/gallery/g07.jpg" loading="lazy" alt="La Corte — twilight"></div>
+    <div class="gl-item" data-gl="7"><img src="av/la-corte/gallery/g08.jpg" loading="lazy" alt="La Corte — the pair"></div>
+    <div class="gl-item" data-gl="8"><img src="av/la-corte/gallery/g09.jpg" loading="lazy" alt="La Corte — gathering"></div>
+    <div class="gl-title-tile">
+      <p class="gl-tile-eye">Infinite Gallery</p>
+      <h3 class="gl-tile-name">La Corte</h3>
+      <p class="gl-tile-sub">The Court &middot; II of XI</p>
+      <a href="mailto:david@phaora.com?subject=Inquiry%20%E2%80%94%20La%20Corte%20%C2%B7%20%C3%81guas%20Vivas" class="gl-tile-cta">Enquire</a>
+      <div class="gl-tile-dots"><span></span><span class="on"></span><span></span></div>
+    </div>
+    <div class="gl-item" data-gl="9"><img src="av/la-corte/gallery/g10.jpg" loading="lazy" alt="La Corte — perched"></div>
+    <div class="gl-item" data-gl="10"><img src="av/la-corte/gallery/g11.jpg" loading="lazy" alt="La Corte — watch"></div>
+    <div class="gl-item" data-gl="11"><img src="av/la-corte/gallery/g12.jpg" loading="lazy" alt="La Corte — crown"></div>
+    <div class="gl-item wide2" data-gl="12"><img src="av/la-corte/gallery/g13.jpg" loading="lazy" alt="La Corte — court study"></div>
+    <div class="gl-item" data-gl="13"><img src="av/la-corte/gallery/g14.jpg" loading="lazy" alt="La Corte — dusk"></div>
+    <div class="gl-item" data-gl="14"><img src="av/la-corte/gallery/g15.jpg" loading="lazy" alt="La Corte — amethyst"></div>
+    <div class="gl-item" data-gl="15"><img src="av/la-corte/gallery/g16.jpg" loading="lazy" alt="La Corte — portrait"></div>
+    <div class="gl-item" data-gl="16"><img src="av/la-corte/gallery/g17.jpg" loading="lazy" alt="La Corte — talons"></div>
+  </div>
+</div>
+
+<!-- GALLERY LIGHTBOX -->
+<div class="gl-lightbox" id="glLightbox">
+  <button class="gl-lb-close" id="glClose">&#x2715;</button>
+  <button class="gl-lb-btn" id="glPrev"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <button class="gl-lb-btn" id="glNext"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <img id="glImg" src="" alt="La Corte">
+  <span class="gl-lb-count" id="glCount"></span>
+</div>
+
+<script>
+(function(){
+  var srcs = [];
+  for (var i = 1; i <= 17; i++) srcs.push('av/la-corte/gallery/g' + String(i).padStart(2,'0') + '.jpg');
+  var lb = document.getElementById('glLightbox');
+  var img = document.getElementById('glImg');
+  var count = document.getElementById('glCount');
+  var cur = 0;
+  function show(i){
+    cur = (i + srcs.length) % srcs.length;
+    img.src = srcs[cur];
+    count.textContent = (cur + 1) + ' / ' + srcs.length;
+  }
+  function open(i){ show(i); lb.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function close(){ lb.classList.remove('open'); document.body.style.overflow = ''; }
+  document.querySelectorAll('.gl-item[data-gl]').forEach(function(it){
+    it.addEventListener('click', function(){ open(parseInt(it.dataset.gl)); });
+  });
+  document.getElementById('glClose').addEventListener('click', close);
+  document.getElementById('glPrev').addEventListener('click', function(e){ e.stopPropagation(); show(cur - 1); });
+  document.getElementById('glNext').addEventListener('click', function(e){ e.stopPropagation(); show(cur + 1); });
+  lb.addEventListener('click', function(e){ if (e.target === lb) close(); });
+  document.addEventListener('keydown', function(e){
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') show(cur - 1);
+    if (e.key === 'ArrowRight') show(cur + 1);
+  });
+})();
+</script>
+</section>
 
 <div class="piece-inquiry">
   <p class="inq-line">Each work is placed by private conversation.</p>
@@ -345,7 +762,7 @@ footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rg
 </div>
 
 <div class="piece-nav">
-  <a class="piece-nav-link prev" href="av-alba-bianca.html">
+  <a class="piece-nav-link" href="av-alba-bianca.html">
     <span class="piece-nav-label">Previous work</span>
     <span class="piece-nav-name">Alba Bianca</span>
     <span class="piece-nav-arrow">&larr; I</span>
@@ -372,7 +789,81 @@ footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rg
   resize();window.addEventListener('resize',resize);
 })();
 window.addEventListener('scroll',function(){document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>60)},{passive:true});
+/* HERO CAROUSEL — arc layout */
+(function(){
+  var srcs=['av/la-corte/gallery/g04.jpg','av/la-corte/gallery/g10.jpg','av/la-corte/gallery/g16.jpg','av/la-corte/gallery/g01.jpg','av/la-corte/gallery/g05.jpg','av/la-corte/gallery/g06.jpg','av/la-corte/gallery/g09.jpg','av/la-corte/gallery/g15.jpg','av/la-corte/gallery/g17.jpg','av/la-corte/gallery/g03.jpg'];
+  var n=srcs.length;
+  var current=0;
 
+  var SLOTS=[
+    { x:-260, y:-42, scale:0.45, opacity:0.22, imgH:72 },
+    { x:-135, y:-16, scale:0.68, opacity:0.45, imgH:100 },
+    { x:   0, y: 10, scale:1.00, opacity:1.00, imgH:145 },
+    { x: 135, y:-16, scale:0.68, opacity:0.45, imgH:100 },
+    { x: 260, y:-42, scale:0.45, opacity:0.22, imgH:72 }
+  ];
+
+  var track=document.getElementById('carTrack');
+  var counter=document.getElementById('carCounter');
+  if(!track)return;
+
+  function layout(){
+    var w=track.offsetWidth||900;
+    var cx=w/2;
+    var k=Math.max(0.55,Math.min(1,w/600)); /* shrink the arc on narrow screens */
+    var items=track.querySelectorAll('.car-item');
+    var indices=[
+      (current-2+n)%n,
+      (current-1+n)%n,
+      current,
+      (current+1)%n,
+      (current+2)%n
+    ];
+    items.forEach(function(item,i){
+      var s=SLOTS[i],idx=indices[i];
+      var imgH=s.imgH*k;
+      item.style.left=(cx+s.x*k-imgH*0.5)+'px';
+      item.style.top=(s.y*k)+'px';
+      item.style.opacity=s.opacity;
+      item.style.transform='scale('+s.scale+')';
+      var img=item.querySelector('img');
+      img.src=srcs[idx];
+      img.style.height=imgH+'px';
+      img.style.width='auto';
+    });
+    counter.textContent=(current+1)+' / '+n;
+  }
+
+  function rotate(dir){
+    current=(current+dir+n)%n;
+    layout();
+  }
+
+  window.addEventListener('load',layout);
+  window.addEventListener('resize',layout);
+  document.getElementById('carPrev').addEventListener('click',function(){rotate(-1)});
+  document.getElementById('carNext').addEventListener('click',function(){rotate(1)});
+
+  /* finger swipe — rotate on horizontal drag, leave vertical scroll alone */
+  var swipeZone=track.parentElement,sx=0,sy=0,active=false;
+  swipeZone.addEventListener('touchstart',function(e){
+    sx=e.touches[0].clientX;sy=e.touches[0].clientY;active=true;
+  },{passive:true});
+  swipeZone.addEventListener('touchend',function(e){
+    if(!active)return;active=false;
+    var dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;
+    if(Math.abs(dx)>36&&Math.abs(dx)>Math.abs(dy)) rotate(dx<0?1:-1);
+  },{passive:true});
+
+  /* mouse/trackpad drag on desktop too */
+  var md=false,mx=0;
+  swipeZone.addEventListener('mousedown',function(e){md=true;mx=e.clientX});
+  window.addEventListener('mouseup',function(e){
+    if(!md)return;md=false;
+    var dx=e.clientX-mx;
+    if(Math.abs(dx)>40) rotate(dx<0?1:-1);
+  });
+})();
 (function(){
   var b=document.getElementById('navBurger'),m=document.getElementById('mobileMenu');
   if(!b||!m)return;
@@ -381,6 +872,84 @@ window.addEventListener('scroll',function(){document.getElementById('mainNav').c
 })();
 
 
+/* THE PIECE — tabs + mini carousel */
+(function(){
+  var tabs=document.querySelectorAll('#tpTabs .tp-tab');
+  var panels=document.querySelectorAll('.tp-panel');
+  var line=document.getElementById('tpTabLine');
+  if(!tabs.length)return;
+
+  function moveLine(tab){line.style.left=tab.offsetLeft+'px';line.style.width=tab.offsetWidth+'px'}
+
+  tabs.forEach(function(tab){
+    tab.addEventListener('click',function(){
+      tabs.forEach(function(t){t.classList.remove('active')});
+      panels.forEach(function(p){p.classList.remove('active')});
+      tab.classList.add('active');
+      document.querySelector('.tp-panel[data-panel="'+tab.dataset.tab+'"]').classList.add('active');
+      moveLine(tab);
+    });
+  });
+
+  window.addEventListener('load',function(){var a=document.querySelector('#tpTabs .tp-tab.active');if(a)moveLine(a)});
+  window.addEventListener('resize',function(){var a=document.querySelector('#tpTabs .tp-tab.active');if(a)moveLine(a)});
+
+  var mainImg=document.getElementById('tpMainImg');
+  var label=document.getElementById('tpImgLabel');
+  var thumbs=document.querySelectorAll('.tp-mini-thumb');
+  thumbs.forEach(function(thumb){
+    thumb.addEventListener('click',function(){
+      thumbs.forEach(function(t){t.classList.remove('active')});
+      thumb.classList.add('active');
+      mainImg.src=thumb.querySelector('img').src;
+      label.textContent=thumb.dataset.label;
+    });
+  });
+})();
+
+/* PHILOSOPHY — video reveal with audio fade */
+(function(){
+  var watch=document.getElementById('phWatch');
+  var col=document.getElementById('phImgCol');
+  var vid=document.getElementById('phVideo');
+  if(!watch||!col||!vid)return;
+  var fadeTimer=null;
+
+  function clearFade(){if(fadeTimer){clearInterval(fadeTimer);fadeTimer=null}}
+  function fadeAudio(target,dur,done){
+    clearFade();
+    var start=vid.volume,t0=performance.now();
+    fadeTimer=setInterval(function(){
+      var k=Math.min(1,(performance.now()-t0)/dur);
+      vid.volume=start+(target-start)*k;
+      if(k>=1){clearFade();if(done)done()}
+    },30);
+  }
+
+  watch.addEventListener('click',function(e){
+    e.preventDefault();
+    if(col.classList.contains('playing'))return;
+    col.classList.add('playing');
+    vid.currentTime=0;
+    vid.muted=false;
+    vid.volume=0.85;
+    vid.play();
+  });
+
+  function restore(){clearFade();col.classList.remove('playing')}
+  vid.addEventListener('ended',restore);
+  vid.addEventListener('timeupdate',function(){
+    if(!col.classList.contains('playing')||!vid.duration)return;
+    var remaining=vid.duration-vid.currentTime;
+    if(remaining<=0.9&&!fadeTimer&&vid.volume>0.05){fadeAudio(0,Math.max(120,remaining*1000))}
+  });
+})();
+
 </script>
+<style>
+.sculpture-slot img{-webkit-mask-image:radial-gradient(ellipse 72% 64% at 50% 52%,#000 55%,rgba(0,0,0,.55) 76%,transparent 97%);mask-image:radial-gradient(ellipse 72% 64% at 50% 52%,#000 55%,rgba(0,0,0,.55) 76%,transparent 97%)}
+.car-item img{border-radius:5px;object-fit:cover}
+.ph-img-col img{-webkit-mask-image:radial-gradient(ellipse 70% 70% at 42% 48%,#000 50%,rgba(0,0,0,.5) 74%,transparent 96%);mask-image:radial-gradient(ellipse 70% 70% at 42% 48%,#000 50%,rgba(0,0,0,.5) 74%,transparent 96%)}
+</style>
 </body>
 </html>
