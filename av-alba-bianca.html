@@ -76,8 +76,8 @@ nav.scrolled{background:rgba(2,8,18,.92);backdrop-filter:blur(14px);border-botto
 .bg-title span{display:block}
 .glow{position:absolute;z-index:2;inset:0;background:radial-gradient(ellipse 55% 45% at 50% 30%,rgba(22,95,130,.2),transparent 65%);filter:blur(32px);pointer-events:none}
 .sculpture-slot{position:absolute;z-index:10;bottom:0;left:50%;transform:translateX(-50%);height:100%;display:flex;align-items:flex-end;justify-content:center}
-.sculpture-slot img{height:100%;width:auto;object-fit:contain;-webkit-mask-image:linear-gradient(90deg,transparent 1%,#000 11%,#000 80%,rgba(0,0,0,.5) 95%,transparent 100%),linear-gradient(180deg,#000 0%,#000 70%,transparent 100%);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent 1%,#000 11%,#000 80%,rgba(0,0,0,.5) 95%,transparent 100%),linear-gradient(180deg,#000 0%,#000 70%,transparent 100%);mask-composite:intersect}
-.sculpture-slot::after{content:'';position:absolute;bottom:0;left:0;right:0;height:32%;background:linear-gradient(to top,#04080F 0%,rgba(4,8,15,.8) 22%,rgba(4,8,15,.4) 60%,transparent 100%);pointer-events:none;z-index:1}
+.sculpture-slot img{height:100%;width:auto;object-fit:contain}
+.sculpture-slot::after{content:'';position:absolute;bottom:0;left:0;right:0;height:14%;background:linear-gradient(to top,#04080F 0%,rgba(4,8,15,.5) 40%,transparent 100%);pointer-events:none;z-index:1}
 .text-overlay{position:absolute;top:84px;left:clamp(20px,4vw,60px);max-width:250px;z-index:20;animation:fadeUp 1.2s cubic-bezier(.22,1,.36,1) .3s both}
 .lp-eye{font-size:8.5px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:rgba(79,181,190,.48);margin-bottom:22px;display:flex;align-items:center;gap:8px}
 .lp-eye::before{content:'';display:block;width:16px;height:1px;background:rgba(79,181,190,.25)}
