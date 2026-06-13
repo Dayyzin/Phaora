@@ -328,7 +328,7 @@ footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rg
   .bg-title{font-size:clamp(48px,23vw,120px);padding-top:16vh;background:radial-gradient(ellipse 120% 85% at 50% 48%,#E2F1FA 0%,#AFC4D8 30%,#64788F 58%,#334154 82%,#16202E 100%);-webkit-background-clip:text;background-clip:text}
   .stage>.amb-pool{left:50% !important;width:140vw !important;top:-6% !important;height:62vh !important}
   .cp>.amb-pool,.glow{display:none}
-  .sculpture-slot{position:absolute;bottom:auto;top:10vh;height:72vh}
+  .sculpture-slot{position:absolute;bottom:auto;top:8vh;height:78vh}
   .sculpture-slot img{-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 50%,rgba(0,0,0,.5) 75%,transparent 95%);mask-image:linear-gradient(180deg,#000 0%,#000 50%,rgba(0,0,0,.5) 75%,transparent 95%)}
   .sculpture-slot::after{display:none}
   .text-overlay{display:none}
@@ -811,6 +811,7 @@ window.addEventListener('scroll',function(){document.getElementById('mainNav').c
     var w=track.offsetWidth||900;
     var cx=w/2;
     var k=Math.max(0.55,Math.min(1,w/600)); /* shrink the arc on narrow screens */
+    var xk=w<560?k*0.78:k; /* pull side cards inward on mobile so they don't clip the edges */
     var items=track.querySelectorAll('.car-item');
     var indices=[
       (current-2+n)%n,
@@ -822,7 +823,7 @@ window.addEventListener('scroll',function(){document.getElementById('mainNav').c
     items.forEach(function(item,i){
       var s=SLOTS[i],idx=indices[i];
       var imgH=s.imgH*k;
-      item.style.left=(cx+s.x*k-imgH*0.5)+'px';
+      item.style.left=(cx+s.x*xk-imgH*0.5)+'px';
       item.style.top=(s.y*k)+'px';
       item.style.opacity=s.opacity;
       item.style.transform='scale('+s.scale+')';
