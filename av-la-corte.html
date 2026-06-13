@@ -61,7 +61,7 @@ nav.scrolled{background:rgba(2,8,18,.92);backdrop-filter:blur(14px);border-botto
 .nav-dp-num{font-family:'Cormorant Garamond',serif;font-size:11px;font-style:italic;color:rgba(79,181,190,.22);width:18px;flex-shrink:0;transition:color .15s}
 .nav-dp-item:hover .nav-dp-num,.nav-dp-active .nav-dp-num{color:rgba(79,181,190,.6)}
 .nav-dp-name{font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(79,181,190,.48);transition:color .15s}
-.nav-dp-item:hover .nav-dp-name{color:rgba(79,181,190,1)}
+.nav-dp-item:hover .nav-dp-name{color:rgba(79,181,190,1)}.nav-dp-gold .nav-dp-name{color:rgba(201,168,76,.8)!important}.nav-dp-item.nav-dp-gold:hover .nav-dp-name{color:rgba(201,168,76,1)!important}
 .nav-dp-active .nav-dp-name{color:rgba(79,181,190,.85)}
 .nav-dp-footer{margin-top:8px;padding:10px 18px 0;border-top:1px solid rgba(79,181,190,.08)}
 .nav-dp-footer a{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:rgba(200,164,94,.52);transition:color .2s}
@@ -294,7 +294,7 @@ nav.scrolled{background:rgba(2,8,18,.92);backdrop-filter:blur(14px);border-botto
 .ph-img-col::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,#04080F 0%,rgba(4,8,15,.55) 7%,transparent 24%),linear-gradient(0deg,#04080F 0%,rgba(4,8,15,.45) 8%,transparent 24%),linear-gradient(90deg,transparent 38%,rgba(4,8,15,.35) 56%,rgba(4,8,15,.78) 76%,#04080F 94%);z-index:3}
 .ph-img-col::before{content:'';position:absolute;inset:0;z-index:3;background:linear-gradient(270deg,#04080F 0%,#04080F 26%,rgba(4,8,15,.55) 46%,transparent 66%)}
 .ph-img-col img{position:absolute;width:80%;height:auto;top:50%;left:-6%;transform:translateY(-52%);display:block;transition:opacity .6s ease}
-.ph-img-col video{position:absolute;width:72%;height:auto;top:50%;left:-2%;transform:translateY(-38%);display:block;opacity:0;object-fit:contain;transition:opacity .6s ease}
+.ph-img-col video{position:absolute;width:72%;height:auto;top:50%;left:-2%;transform:translateY(-38%);display:block;opacity:0;object-fit:contain;transition:opacity .6s ease;-webkit-mask-image:linear-gradient(90deg,#000 45%,transparent 97%);mask-image:linear-gradient(90deg,#000 45%,transparent 97%)}
 .ph-img-col.playing video{opacity:1}
 .ph-img-col.playing img{opacity:0}
 .ph-content-col{position:relative;z-index:2;margin-left:50%;width:50%;display:flex;flex-direction:column;justify-content:center;padding:clamp(48px,7vw,96px) clamp(32px,5vw,80px)}
@@ -329,7 +329,7 @@ footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rg
   .stage>.amb-pool{left:50% !important;width:140vw !important;top:-6% !important;height:62vh !important}
   .cp>.amb-pool,.glow{display:none}
   .sculpture-slot{position:absolute;bottom:auto;top:10vh;height:72vh}
-  .sculpture-slot img{-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 72%,transparent 99%);mask-image:linear-gradient(180deg,#000 0%,#000 72%,transparent 99%)}
+  .sculpture-slot img{-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 50%,rgba(0,0,0,.5) 75%,transparent 95%);mask-image:linear-gradient(180deg,#000 0%,#000 50%,rgba(0,0,0,.5) 75%,transparent 95%)}
   .sculpture-slot::after{display:none}
   .text-overlay{display:none}
   .tp-left-text .tp-items{display:grid;grid-template-columns:1fr 1fr;gap:16px 22px}
@@ -372,7 +372,7 @@ footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rg
   .ph-wrap{min-height:auto;flex-direction:column;position:relative;overflow:hidden}
   .ph-img-col{position:absolute;inset:auto;top:10px;left:0;width:60%;height:340px}
   .ph-img-col img{width:100%;left:0;top:0;transform:none;-webkit-mask-image:linear-gradient(270deg,transparent 0%,#000 38%),linear-gradient(180deg,#000 55%,transparent 98%);-webkit-mask-composite:source-in;mask-image:linear-gradient(270deg,transparent 0%,#000 38%),linear-gradient(180deg,#000 55%,transparent 98%);mask-composite:intersect}
-  .ph-img-col video{width:100%;left:0;top:0;transform:none;-webkit-mask-image:linear-gradient(270deg,transparent 0%,#000 38%),linear-gradient(180deg,#000 55%,transparent 98%);-webkit-mask-composite:source-in;mask-image:linear-gradient(270deg,transparent 0%,#000 38%),linear-gradient(180deg,#000 55%,transparent 98%);mask-composite:intersect}
+  .ph-img-col video{width:100%;left:0;top:0;transform:none;-webkit-mask-image:linear-gradient(270deg,transparent 2%,#000 52%),linear-gradient(180deg,#000 55%,transparent 98%);-webkit-mask-composite:source-in;mask-image:linear-gradient(270deg,transparent 2%,#000 52%),linear-gradient(180deg,#000 55%,transparent 98%);mask-composite:intersect}
   .ph-img-col::before,.ph-img-col::after{display:none}
   .ph-content-col{margin-left:0;width:100%;padding:48px 20px 40px;position:relative;z-index:2}
   .ph-eyebrow,.ph-heading{max-width:55%;margin-left:45%}
@@ -396,8 +396,8 @@ footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rg
       <a class="nav-dropdown-trigger" href="sculptures.html">&#193;guas Vivas <svg class="nav-dropdown-chevron" width="7" height="5" viewBox="0 0 7 5" fill="none"><path d="M.5 1L3.5 4l3-3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></a>
       <div class="nav-dropdown-panel">
         <p class="nav-dp-header">Collection 003 &nbsp;&middot;&nbsp; Eleven Works</p>
-        <a href="av-alba-bianca.html" class="nav-dp-item"><span class="nav-dp-num">I</span><span class="nav-dp-name">Alba Bianca</span></a>
-        <a href="av-la-corte.html" class="nav-dp-item nav-dp-active"><span class="nav-dp-num">II</span><span class="nav-dp-name">La Corte</span></a>
+        <a href="av-alba-bianca.html" class="nav-dp-item nav-dp-gold"><span class="nav-dp-num">I</span><span class="nav-dp-name">Alba Bianca</span></a>
+        <a href="av-la-corte.html" class="nav-dp-item nav-dp-active nav-dp-gold"><span class="nav-dp-num">II</span><span class="nav-dp-name">La Corte</span></a>
         <a href="av-crepuscolo.html" class="nav-dp-item"><span class="nav-dp-num">III</span><span class="nav-dp-name">Crepuscolo</span></a>
         <a href="av-l-ascesa.html" class="nav-dp-item"><span class="nav-dp-num">IV</span><span class="nav-dp-name">L'Ascesa</span></a>
         <a href="av-la-protezione.html" class="nav-dp-item"><span class="nav-dp-num">V</span><span class="nav-dp-name">La Protezione</span></a>
@@ -945,7 +945,7 @@ window.addEventListener('scroll',function(){document.getElementById('mainNav').c
 
 </script>
 <style>
-.sculpture-slot img{max-width:96vw;object-fit:contain;object-position:bottom}
+.sculpture-slot img{max-width:84vw;max-height:86%;object-fit:contain;object-position:bottom;-webkit-mask-image:linear-gradient(180deg,#000 52%,rgba(0,0,0,.55) 74%,transparent 94%);mask-image:linear-gradient(180deg,#000 52%,rgba(0,0,0,.55) 74%,transparent 94%)}
 .car-item img[src*="car-06"],.car-item img[src*="car-08"]{border-radius:8px}
 .ph-img-col img{-webkit-mask-image:radial-gradient(ellipse 70% 70% at 42% 48%,#000 50%,rgba(0,0,0,.5) 74%,transparent 96%);mask-image:radial-gradient(ellipse 70% 70% at 42% 48%,#000 50%,rgba(0,0,0,.5) 74%,transparent 96%)}
 </style>
