@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PHAÖRA — Sculpture Gallery · Five Pieces, Thirty Works</title>
+<meta name="description" content="The complete sculpture register — hand-carved Brazilian crystal by master craftsman Fabiano. Five singular pieces, thirty photographs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300&display=swap" rel="stylesheet">
+<style>
+
+/* ═══ RESET & ROOT ═══ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ink:#0a0908;
+  --surface:#12100c;
+  --bone:#e8dcc4;
+  --amber:#B87333;
+  --amber-bright:#D4A254;
+  --muted:#8a7355;
+  --stroke:rgba(184,115,51,0.2);
+  --serif:'Fraunces',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+  --ease:cubic-bezier(0.22,1,0.36,1);
+}
+html{scroll-behavior:smooth;background:var(--ink)}
+body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+
+/* ═══ NAV (verbatim from index.html) ═══ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  padding:0 2.5rem;height:60px;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:background .5s ease,border-color .5s ease;
+  backdrop-filter:blur(24px) saturate(1.2);-webkit-backdrop-filter:blur(24px) saturate(1.2);
+  background:rgba(10,9,8,0.85);
+  border-bottom:0.5px solid var(--stroke);
+}
+.nav-left,.nav-right{display:flex;align-items:center;gap:2rem}
+.nav-left a,.nav-right a{
+  font-family:var(--sans);font-size:11px;font-weight:400;
+  letter-spacing:0.22em;text-transform:uppercase;
+  text-decoration:none;color:var(--bone);
+  transition:color .3s ease;position:relative;
+}
+.nav-left a::after,.nav-right a:not(.nav-enquire)::after{
+  content:'';position:absolute;bottom:-3px;left:0;
+  width:100%;height:0.5px;background:var(--amber);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .4s var(--ease);
+}
+.nav-left a:hover::after,.nav-right a:not(.nav-enquire):hover::after{transform:scaleX(1)}
+.nav-logo{
+  font-family:var(--sans);font-size:14px;font-weight:600;
+  letter-spacing:0.32em;text-transform:uppercase;
+  text-decoration:none;color:var(--bone);
+}
+.nav-enquire{
+  padding:8px 18px;border:0.5px solid rgba(232,220,196,0.3);
+  transition:all .3s ease !important;
+  display:inline-flex;align-items:center;gap:6px;
+}
+.nav-enquire .arrow{font-size:10px;transition:transform .3s var(--ease)}
+.nav-enquire:hover .arrow{transform:translateX(4px)}
+.nav-enquire:hover{background:rgba(232,220,196,0.06)}
+
+/* ═══ HEADER ═══ */
+.gh{
+  min-height:55vh;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;
+  text-align:center;padding:8rem 2.5rem 4rem;
+  background:var(--ink);
+}
+.gh-meta{
+  width:100%;max-width:1000px;
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:3rem;
+}
+.gh-meta span{
+  font-family:var(--sans);font-size:10.5px;font-weight:400;
+  letter-spacing:0.32em;text-transform:uppercase;
+  color:rgba(232,220,196,0.65);
+}
+.gh-meta-center{
+  font-family:var(--serif) !important;font-style:italic;
+  font-size:12px !important;letter-spacing:0.06em !important;
+  text-transform:none !important;
+  color:rgba(232,220,196,0.55) !important;
+  font-variation-settings:'opsz' 18,'SOFT' 80;
+  display:inline-flex;align-items:center;gap:10px;
+}
+.pulse-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--amber);flex-shrink:0;
+  animation:dotPulse 2.4s ease-in-out infinite;
+}
+.gh h1{
+  font-family:var(--serif);
+  font-size:clamp(56px,8vw,120px);
+  font-weight:300;line-height:0.95;
+  letter-spacing:-0.03em;color:var(--bone);
+  font-variation-settings:'opsz' 144,'SOFT' 0;
+  margin-bottom:1.25rem;
+}
+.gh h1 em{font-style:italic}
+.gh-sub{
+  font-family:var(--serif);font-style:italic;
+  font-size:clamp(18px,2vw,24px);line-height:1.4;
+  color:rgba(232,220,196,0.85);font-weight:300;
+  font-variation-settings:'opsz' 36,'SOFT' 80;
+  max-width:520px;margin-bottom:3rem;
+}
+.gh-strip{
+  width:100%;max-width:800px;
+  border-top:0.5px solid var(--stroke);
+  padding-top:1.5rem;
+  font-family:var(--mono);font-size:13px;font-weight:300;
+  letter-spacing:0.08em;color:var(--muted);
+}
+
+/* ═══ PIECE SECTIONS ═══ */
+.piece-section{padding:0 2.5rem 6rem;background:var(--ink)}
+.piece-header{
+  max-width:1440px;margin:0 auto 2.5rem;
+  display:grid;grid-template-columns:auto 1fr auto;
+  align-items:center;gap:2rem;
+  padding:1.5rem 0;
+  border-top:0.5px solid var(--stroke);
+  border-bottom:0.5px solid var(--stroke);
+}
+.piece-num{
+  font-family:var(--serif);font-style:italic;font-size:48px;
+  font-weight:300;color:var(--amber);
+  font-variation-settings:'opsz' 72,'SOFT' 0;
+  line-height:1;
+}
+.piece-name{
+  font-family:var(--serif);font-size:clamp(32px,4vw,56px);
+  font-weight:300;color:var(--bone);text-align:center;
+  font-variation-settings:'opsz' 144,'SOFT' 0;
+  line-height:1;
+}
+.piece-count{
+  font-family:var(--mono);font-size:12px;font-weight:300;
+  letter-spacing:0.12em;color:var(--muted);
+  text-align:right;
+}
+
+/* ═══ GALLERY TILES ═══ */
+.p-grid{
+  display:grid;grid-template-columns:repeat(12,1fr);
+  grid-auto-rows:90px;gap:1.25rem;
+  max-width:1440px;margin:0 auto;
+  grid-auto-flow:dense;
+}
+.g-tile{position:relative;overflow:hidden;cursor:pointer}
+.g-tile img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  filter:grayscale(10%) brightness(0.75) contrast(1.08);
+  transition:all 1.2s cubic-bezier(0.22,1,0.36,1);
+}
+.g-tile:hover img{
+  filter:grayscale(0%) brightness(1) contrast(1.08);
+  transform:scale(1.04);
+}
+.g-caption{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:3rem 1.25rem 1rem;
+  background:linear-gradient(transparent,rgba(10,9,8,0.85));
+  border-top:0.5px solid transparent;
+  font-family:var(--sans);font-size:10.5px;font-weight:400;
+  letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--bone);
+  transform:translateY(100%);
+  transition:transform .6s var(--ease),border-color .6s ease;
+}
+.g-tile:hover .g-caption{
+  transform:translateY(0);
+  border-top-color:var(--stroke);
+}
+
+/* Pattern A — Canopy */
+.pat-a .g-tile:nth-child(1){grid-column:span 8;grid-row:span 5}
+.pat-a .g-tile:nth-child(2){grid-column:span 4;grid-row:span 5}
+.pat-a .g-tile:nth-child(3){grid-column:span 5;grid-row:span 4}
+.pat-a .g-tile:nth-child(4){grid-column:span 4;grid-row:span 4}
+.pat-a .g-tile:nth-child(5){grid-column:span 3;grid-row:span 4}
+.pat-a .g-tile:nth-child(6){grid-column:span 12;grid-row:span 3}
+
+/* Pattern B — Perch */
+.pat-b .g-tile:nth-child(1){grid-column:span 7;grid-row:span 5}
+.pat-b .g-tile:nth-child(2){grid-column:span 5;grid-row:span 5}
+.pat-b .g-tile:nth-child(3){grid-column:span 6;grid-row:span 4}
+.pat-b .g-tile:nth-child(4){grid-column:span 6;grid-row:span 4}
+.pat-b .g-tile:nth-child(5){grid-column:span 4;grid-row:span 3}
+.pat-b .g-tile:nth-child(6){grid-column:span 8;grid-row:span 3}
+
+/* Pattern C — Dynasty */
+.pat-c .g-tile:nth-child(1){grid-column:span 5;grid-row:span 5}
+.pat-c .g-tile:nth-child(2){grid-column:span 7;grid-row:span 6}
+.pat-c .g-tile:nth-child(3){grid-column:span 4;grid-row:span 3}
+.pat-c .g-tile:nth-child(4){grid-column:span 4;grid-row:span 3}
+.pat-c .g-tile:nth-child(5){grid-column:span 4;grid-row:span 3}
+.pat-c .g-tile:nth-child(6){grid-column:span 12;grid-row:span 3}
+
+/* Pattern D — Portal */
+.pat-d .g-tile:nth-child(1){grid-column:span 8;grid-row:span 6}
+.pat-d .g-tile:nth-child(2){grid-column:span 4;grid-row:span 4}
+.pat-d .g-tile:nth-child(3){grid-column:span 4;grid-row:span 3}
+.pat-d .g-tile:nth-child(4){grid-column:span 8;grid-row:span 3}
+.pat-d .g-tile:nth-child(5){grid-column:span 6;grid-row:span 4}
+.pat-d .g-tile:nth-child(6){grid-column:span 6;grid-row:span 4}
+
+/* Pattern E — Crimson Duo */
+.pat-e .g-tile:nth-child(1){grid-column:span 6;grid-row:span 5}
+.pat-e .g-tile:nth-child(2){grid-column:span 6;grid-row:span 5}
+.pat-e .g-tile:nth-child(3){grid-column:span 5;grid-row:span 4}
+.pat-e .g-tile:nth-child(4){grid-column:span 3;grid-row:span 4}
+.pat-e .g-tile:nth-child(5){grid-column:span 4;grid-row:span 4}
+.pat-e .g-tile:nth-child(6){grid-column:span 12;grid-row:span 3}
+
+/* ═══ LIGHTBOX ═══ */
+.lb{
+  position:fixed;inset:0;z-index:10000;
+  background:rgba(10,9,8,0.96);
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;
+  opacity:0;pointer-events:none;
+  transition:opacity .3s ease;
+}
+.lb.open{opacity:1;pointer-events:all}
+.lb-img{
+  max-width:90vw;max-height:85vh;object-fit:contain;
+  display:block;
+}
+.lb-close{
+  position:absolute;top:1.5rem;right:1.5rem;
+  background:none;border:none;color:var(--bone);
+  font-size:1.5rem;cursor:pointer;
+  transition:color .3s;padding:0.5rem;
+}
+.lb-close:hover{color:var(--amber)}
+.lb-prev,.lb-next{
+  position:absolute;top:50%;transform:translateY(-50%);
+  background:none;border:1px solid rgba(232,220,196,0.15);
+  color:var(--bone);font-size:1.5rem;
+  width:48px;height:48px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .3s ease;
+}
+.lb-prev{left:1.5rem}
+.lb-next{right:1.5rem}
+.lb-prev:hover,.lb-next:hover{
+  color:var(--amber);border-color:var(--amber);
+}
+.lb-info{margin-top:1.25rem;text-align:center}
+.lb-title{
+  font-family:var(--serif);font-style:italic;font-size:18px;
+  color:var(--bone);margin-bottom:4px;
+  font-variation-settings:'opsz' 24;
+}
+.lb-sub{
+  font-family:var(--sans);font-size:11px;font-weight:400;
+  letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--muted);
+}
+.lb-counter{
+  position:absolute;bottom:1.5rem;left:50%;
+  transform:translateX(-50%);
+  font-family:var(--sans);font-size:11px;font-weight:400;
+  letter-spacing:0.15em;color:var(--muted);
+}
+
+/* ═══ COMMISSION BAND ═══ */
+.commission{
+  padding:6rem 2.5rem;background:var(--ink);
+  text-align:center;
+  border-top:0.5px solid var(--stroke);
+}
+.commission-content{max-width:680px;margin:0 auto}
+.super-label{
+  display:block;font-family:var(--sans);font-size:11px;font-weight:500;
+  letter-spacing:0.32em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:2.5rem;
+}
+.commission-content h3{
+  font-family:var(--serif);
+  font-size:clamp(36px,5vw,58px);
+  font-weight:300;line-height:1.1;color:var(--bone);
+  margin-bottom:1.5rem;
+  font-variation-settings:'opsz' 144,'SOFT' 0;
+}
+.commission-content h3 em{font-style:italic}
+.commission-content>p{
+  font-family:var(--serif);font-size:17px;font-weight:400;
+  line-height:1.55;color:rgba(232,220,196,0.5);
+  margin-bottom:3rem;
+  font-variation-settings:'opsz' 18,'SOFT' 50;
+}
+.commission-ctas{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+/* ═══ BUTTONS (verbatim from index.html) ═══ */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:1rem 2rem;
+  font-family:var(--sans);font-size:11px;font-weight:500;
+  letter-spacing:0.22em;text-transform:uppercase;
+  text-decoration:none;cursor:pointer;
+  transition:all .4s var(--ease);
+}
+.btn .arrow{transition:transform .4s var(--ease)}
+.btn:hover .arrow{transform:translateX(6px)}
+.btn-amber{
+  background:var(--amber);color:var(--ink);
+  border:1px solid var(--amber);
+}
+.btn-amber:hover{
+  background:var(--amber-bright);
+  border-color:var(--amber-bright);
+}
+.btn-outline{
+  background:transparent;color:var(--bone);
+  border:1px solid rgba(232,220,196,0.3);
+}
+.btn-outline:hover{
+  background:var(--bone);color:var(--ink);
+  border-color:var(--bone);
+}
+
+/* ═══ FOOTER (verbatim from index.html) ═══ */
+.footer{
+  background:var(--ink);
+  border-top:0.5px solid var(--stroke);
+  padding:5rem 2.5rem 0;
+}
+.footer-inner{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:2.5rem;max-width:1440px;margin:0 auto;
+  padding-bottom:4rem;
+}
+.footer-logo{
+  font-family:var(--serif);font-size:40px;font-weight:300;
+  color:var(--bone);margin-bottom:1rem;display:block;
+  font-variation-settings:'opsz' 72,'SOFT' 0;
+}
+.footer-tagline{
+  font-family:var(--serif);font-style:italic;font-size:15px;
+  line-height:1.55;color:rgba(232,220,196,0.55);
+  max-width:320px;font-variation-settings:'opsz' 18,'SOFT' 50;
+}
+.footer-col h5{
+  font-family:var(--sans);font-size:10.5px;font-weight:600;
+  letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:1.25rem;
+}
+.footer-col a{
+  display:block;font-family:var(--sans);font-size:13px;
+  font-weight:400;color:rgba(232,220,196,0.5);
+  text-decoration:none;margin-bottom:0.75rem;
+  transition:color .3s ease;
+}
+.footer-col a:hover{color:var(--amber)}
+.footer-bottom{
+  max-width:1440px;margin:0 auto;
+  padding:1.5rem 0;
+  border-top:0.5px solid var(--stroke);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.footer-bottom span{
+  font-family:var(--sans);font-size:11px;font-weight:400;
+  letter-spacing:0.06em;color:var(--muted);
+}
+.footer-bottom .motto{
+  font-family:var(--serif);font-style:italic;font-size:13px;
+  color:rgba(232,220,196,0.6);
+  font-variation-settings:'opsz' 18;
+}
+
+/* ═══ REVEAL ═══ */
+.reveal{
+  opacity:0;transform:translateY(40px);
+  transition:opacity .8s ease,transform .8s ease;
+}
+.reveal.revealed{opacity:1;transform:translateY(0)}
+
+/* ═══ KEYFRAMES ═══ */
+@keyframes dotPulse{
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.4;transform:scale(.75)}
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:900px){
+  .nav-left,.nav-right{display:none}
+  .nav{justify-content:center}
+
+  .gh{padding:6rem 1.5rem 3rem;min-height:auto}
+  .gh-meta{display:none}
+  .gh h1{font-size:clamp(40px,12vw,72px)}
+  .gh-strip{font-size:11px}
+
+  .piece-section{padding:0 1.5rem 4rem}
+  .piece-header{grid-template-columns:1fr;gap:0.75rem;text-align:center}
+  .piece-num{font-size:32px;text-align:center}
+  .piece-count{text-align:center}
+
+  .p-grid{
+    grid-template-columns:repeat(6,1fr);grid-auto-rows:80px;gap:0.75rem;
+  }
+  .pat-a .g-tile:nth-child(1),.pat-a .g-tile:nth-child(2),
+  .pat-a .g-tile:nth-child(3),.pat-a .g-tile:nth-child(4),
+  .pat-a .g-tile:nth-child(5),.pat-a .g-tile:nth-child(6),
+  .pat-b .g-tile:nth-child(1),.pat-b .g-tile:nth-child(2),
+  .pat-b .g-tile:nth-child(3),.pat-b .g-tile:nth-child(4),
+  .pat-b .g-tile:nth-child(5),.pat-b .g-tile:nth-child(6),
+  .pat-c .g-tile:nth-child(1),.pat-c .g-tile:nth-child(2),
+  .pat-c .g-tile:nth-child(3),.pat-c .g-tile:nth-child(4),
+  .pat-c .g-tile:nth-child(5),.pat-c .g-tile:nth-child(6),
+  .pat-d .g-tile:nth-child(1),.pat-d .g-tile:nth-child(2),
+  .pat-d .g-tile:nth-child(3),.pat-d .g-tile:nth-child(4),
+  .pat-d .g-tile:nth-child(5),.pat-d .g-tile:nth-child(6),
+  .pat-e .g-tile:nth-child(1),.pat-e .g-tile:nth-child(2),
+  .pat-e .g-tile:nth-child(3),.pat-e .g-tile:nth-child(4),
+  .pat-e .g-tile:nth-child(5),.pat-e .g-tile:nth-child(6){
+    grid-column:span 3;grid-row:span 4;
+  }
+
+  .lb-prev{left:0.5rem}
+  .lb-next{right:0.5rem}
+  .lb-prev,.lb-next{width:36px;height:36px;font-size:1.2rem}
+
+  .commission{padding:4rem 1.5rem}
+  .commission-ctas{flex-direction:column;align-items:center}
+
+  .footer{padding:3rem 1.5rem 0}
+  .footer-inner{grid-template-columns:1fr;text-align:center}
+  .footer-tagline{margin:0 auto}
+  .footer-bottom{flex-direction:column;gap:0.5rem;text-align:center;padding:1.25rem 0}
+}
+
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV (verbatim from index.html) ═══ -->
+<nav class="nav" id="nav">
+  <div class="nav-left">
+    <a href="hardscape-gallery.html">Hardscape</a>
+    <a href="https://phaora.com/sculptures.html?v=4">Sculpture</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="agents.html">Agents</a>
+  </div>
+  <a href="index.html" class="nav-logo">PHAÖRA</a>
+  <div class="nav-right">
+    <a href="/#studio">Studio</a>
+    <a href="contact.html">Contact</a>
+    <a href="/#invitation" class="nav-enquire">Enquire <span class="arrow">&rarr;</span></a>
+  </div>
+</nav>
+
+<!-- ═══ HEADER ═══ -->
+<section class="gh">
+  <div class="gh-meta">
+    <span>Gallery · Sculpture</span>
+    <span class="gh-meta-center"><span class="pulse-dot"></span>Five pieces · Thirty works</span>
+    <span>By commission only</span>
+  </div>
+  <h1>The Crystal <em>Register</em></h1>
+  <p class="gh-sub">Hand-carved from Brazilian earth, each work exists once and will never be repeated.</p>
+  <div class="gh-strip">Thirty works · Five pieces · Updated MMXXVI</div>
+</section>
+
+<!-- ═══ PIECE I — CANOPY ═══ -->
+<section class="piece-section reveal">
+  <div class="piece-header">
+    <span class="piece-num">I</span>
+    <span class="piece-name">Canopy</span>
+    <span class="piece-count">Six photographs</span>
+  </div>
+  <div class="p-grid pat-a">
+    <div class="g-tile" data-cap="Canopy · Plate 1"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-1.jpeg" alt="Canopy — view 1" loading="lazy"><div class="g-caption">Canopy · Plate 1</div></div>
+    <div class="g-tile" data-cap="Canopy · Plate 2"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-2.jpeg" alt="Canopy — view 2" loading="lazy"><div class="g-caption">Canopy · Plate 2</div></div>
+    <div class="g-tile" data-cap="Canopy · Plate 3"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-3.jpeg" alt="Canopy — view 3" loading="lazy"><div class="g-caption">Canopy · Plate 3</div></div>
+    <div class="g-tile" data-cap="Canopy · Plate 4"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-4.jpeg" alt="Canopy — view 4" loading="lazy"><div class="g-caption">Canopy · Plate 4</div></div>
+    <div class="g-tile" data-cap="Canopy · Plate 5"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-5.jpeg" alt="Canopy — view 5" loading="lazy"><div class="g-caption">Canopy · Plate 5</div></div>
+    <div class="g-tile" data-cap="Canopy · Plate 6"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-6.jpeg" alt="Canopy — view 6" loading="lazy"><div class="g-caption">Canopy · Plate 6</div></div>
+  </div>
+</section>
+
+<!-- ═══ PIECE II — PERCH ═══ -->
+<section class="piece-section reveal">
+  <div class="piece-header">
+    <span class="piece-num">II</span>
+    <span class="piece-name">Perch</span>
+    <span class="piece-count">Six photographs</span>
+  </div>
+  <div class="p-grid pat-b">
+    <div class="g-tile" data-cap="Perch · Plate 1"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-1.jpeg" alt="Perch — view 1" loading="lazy"><div class="g-caption">Perch · Plate 1</div></div>
+    <div class="g-tile" data-cap="Perch · Plate 2"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-2.jpeg" alt="Perch — view 2" loading="lazy"><div class="g-caption">Perch · Plate 2</div></div>
+    <div class="g-tile" data-cap="Perch · Plate 3"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-3.jpeg" alt="Perch — view 3" loading="lazy"><div class="g-caption">Perch · Plate 3</div></div>
+    <div class="g-tile" data-cap="Perch · Plate 4"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-4.jpeg" alt="Perch — view 4" loading="lazy"><div class="g-caption">Perch · Plate 4</div></div>
+    <div class="g-tile" data-cap="Perch · Plate 5"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-5.jpeg" alt="Perch — view 5" loading="lazy"><div class="g-caption">Perch · Plate 5</div></div>
+    <div class="g-tile" data-cap="Perch · Plate 6"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-6.jpeg" alt="Perch — view 6" loading="lazy"><div class="g-caption">Perch · Plate 6</div></div>
+  </div>
+</section>
+
+<!-- ═══ PIECE III — DYNASTY ═══ -->
+<section class="piece-section reveal">
+  <div class="piece-header">
+    <span class="piece-num">III</span>
+    <span class="piece-name">Dynasty</span>
+    <span class="piece-count">Six photographs</span>
+  </div>
+  <div class="p-grid pat-c">
+    <div class="g-tile" data-cap="Dynasty · Plate 1"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-1.jpeg" alt="Dynasty — view 1" loading="lazy"><div class="g-caption">Dynasty · Plate 1</div></div>
+    <div class="g-tile" data-cap="Dynasty · Plate 2"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-2.jpeg" alt="Dynasty — view 2" loading="lazy"><div class="g-caption">Dynasty · Plate 2</div></div>
+    <div class="g-tile" data-cap="Dynasty · Plate 3"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-3.jpeg" alt="Dynasty — view 3" loading="lazy"><div class="g-caption">Dynasty · Plate 3</div></div>
+    <div class="g-tile" data-cap="Dynasty · Plate 4"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-4.jpeg" alt="Dynasty — view 4" loading="lazy"><div class="g-caption">Dynasty · Plate 4</div></div>
+    <div class="g-tile" data-cap="Dynasty · Plate 5"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-5.jpeg" alt="Dynasty — view 5" loading="lazy"><div class="g-caption">Dynasty · Plate 5</div></div>
+    <div class="g-tile" data-cap="Dynasty · Plate 6"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-6.jpeg" alt="Dynasty — view 6" loading="lazy"><div class="g-caption">Dynasty · Plate 6</div></div>
+  </div>
+</section>
+
+<!-- ═══ PIECE IV — PORTAL ═══ -->
+<section class="piece-section reveal">
+  <div class="piece-header">
+    <span class="piece-num">IV</span>
+    <span class="piece-name">Portal</span>
+    <span class="piece-count">Six photographs</span>
+  </div>
+  <div class="p-grid pat-d">
+    <div class="g-tile" data-cap="Portal · Plate 1"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-1.jpeg" alt="Portal — view 1" loading="lazy"><div class="g-caption">Portal · Plate 1</div></div>
+    <div class="g-tile" data-cap="Portal · Plate 2"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-2.jpeg" alt="Portal — view 2" loading="lazy"><div class="g-caption">Portal · Plate 2</div></div>
+    <div class="g-tile" data-cap="Portal · Plate 3"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-3.jpeg" alt="Portal — view 3" loading="lazy"><div class="g-caption">Portal · Plate 3</div></div>
+    <div class="g-tile" data-cap="Portal · Plate 4"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-4.jpeg" alt="Portal — view 4" loading="lazy"><div class="g-caption">Portal · Plate 4</div></div>
+    <div class="g-tile" data-cap="Portal · Plate 5"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-5.jpeg" alt="Portal — view 5" loading="lazy"><div class="g-caption">Portal · Plate 5</div></div>
+    <div class="g-tile" data-cap="Portal · Plate 6"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-6.jpeg" alt="Portal — view 6" loading="lazy"><div class="g-caption">Portal · Plate 6</div></div>
+  </div>
+</section>
+
+<!-- ═══ PIECE V — CRIMSON DUO ═══ -->
+<section class="piece-section reveal">
+  <div class="piece-header">
+    <span class="piece-num">V</span>
+    <span class="piece-name">Crimson Duo</span>
+    <span class="piece-count">Six photographs</span>
+  </div>
+  <div class="p-grid pat-e">
+    <div class="g-tile" data-cap="Crimson Duo · Plate 1"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-1.jpeg" alt="Crimson Duo — view 1" loading="lazy"><div class="g-caption">Crimson Duo · Plate 1</div></div>
+    <div class="g-tile" data-cap="Crimson Duo · Plate 2"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-2.jpeg" alt="Crimson Duo — view 2" loading="lazy"><div class="g-caption">Crimson Duo · Plate 2</div></div>
+    <div class="g-tile" data-cap="Crimson Duo · Plate 3"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-3.jpeg" alt="Crimson Duo — view 3" loading="lazy"><div class="g-caption">Crimson Duo · Plate 3</div></div>
+    <div class="g-tile" data-cap="Crimson Duo · Plate 4"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-4.jpeg" alt="Crimson Duo — view 4" loading="lazy"><div class="g-caption">Crimson Duo · Plate 4</div></div>
+    <div class="g-tile" data-cap="Crimson Duo · Plate 5"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-5.jpeg" alt="Crimson Duo — view 5" loading="lazy"><div class="g-caption">Crimson Duo · Plate 5</div></div>
+    <div class="g-tile" data-cap="Crimson Duo · Plate 6"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-6.jpeg" alt="Crimson Duo — view 6" loading="lazy"><div class="g-caption">Crimson Duo · Plate 6</div></div>
+  </div>
+</section>
+
+<!-- ═══ COMMISSION BAND ═══ -->
+<section class="commission reveal">
+  <div class="commission-content">
+    <span class="super-label">— Private commission —</span>
+    <h3>Shape something <em>singular</em> with us</h3>
+    <p>Every sculpture begins as raw crystal. Tell us what you envision, and the stone will answer.</p>
+    <div class="commission-ctas">
+      <a href="mailto:david@phaora.com?subject=Sculpture%20Commission%20Enquiry" class="btn btn-amber">Commission a piece <span class="arrow">&rarr;</span></a>
+      <a href="contact.html" class="btn btn-outline">Visit the studio <span class="arrow">&rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER (verbatim from index.html) ═══ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <span class="footer-logo">PHAÖRA</span>
+      <p class="footer-tagline">Hardscape and crystal for the estates that demand permanence.</p>
+    </div>
+    <div class="footer-col">
+      <h5>The House</h5>
+      <a href="/">About</a>
+      <a href="/#studio">Studio</a>
+      <a href="#">Press</a>
+      <a href="#">Journal</a>
+    </div>
+    <div class="footer-col">
+      <h5>Divisions</h5>
+      <a href="hardscape-gallery.html">Hardscape</a>
+      <a href="https://phaora.com/sculptures.html?v=4">Sculpture</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="https://phaora.com/sculptures.html?v=4">Pieces</a>
+    </div>
+    <div class="footer-col">
+      <h5>Connect</h5>
+      <a href="contact.html">Contact</a>
+      <a href="agents.html">Agents</a>
+      <a href="#">Instagram</a>
+      <a href="mailto:david@phaora.com">Email</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>Phaöra · MMXXVI</span>
+    <span class="motto">Built on standards. Not inherited. Decided.</span>
+    <span>Boca Raton · All rights reserved</span>
+  </div>
+</footer>
+
+<!-- ═══ LIGHTBOX ═══ -->
+<div class="lb" id="lb">
+  <button class="lb-close" id="lb-close">&#x2715;</button>
+  <button class="lb-prev" id="lb-prev">&#x2039;</button>
+  <img class="lb-img" id="lb-img" src="" alt="">
+  <button class="lb-next" id="lb-next">&#x203A;</button>
+  <div class="lb-info">
+    <div class="lb-title" id="lb-title"></div>
+    <div class="lb-sub" id="lb-sub"></div>
+  </div>
+  <span class="lb-counter" id="lb-counter"></span>
+</div>
+
+<!-- ═══ SCRIPT ═══ -->
+<script>
+(function(){
+  /* Scroll reveal */
+  var reveals = document.querySelectorAll('.reveal');
+  var revealObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) {
+        e.target.classList.add('revealed');
+        revealObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(function(el){ revealObs.observe(el); });
+
+  /* Lightbox */
+  var tiles = Array.from(document.querySelectorAll('.g-tile'));
+  var lb = document.getElementById('lb');
+  var lbImg = document.getElementById('lb-img');
+  var lbTitle = document.getElementById('lb-title');
+  var lbSub = document.getElementById('lb-sub');
+  var lbCounter = document.getElementById('lb-counter');
+  var idx = 0;
+  var total = tiles.length;
+
+  function show(i) {
+    idx = (i % total + total) % total;
+    var tile = tiles[idx];
+    var cap = tile.getAttribute('data-cap') || '';
+    var parts = cap.split(' \u00B7 ');
+    lbImg.src = tile.querySelector('img').src;
+    lbTitle.textContent = parts[0] || '';
+    lbSub.textContent = parts[1] || '';
+    lbCounter.textContent = (idx + 1) + ' / ' + total;
+  }
+
+  function open(i) {
+    show(i);
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  tiles.forEach(function(tile, i) {
+    tile.addEventListener('click', function() { open(i); });
+  });
+
+  document.getElementById('lb-close').addEventListener('click', close);
+  document.getElementById('lb-prev').addEventListener('click', function() { show(idx - 1); });
+  document.getElementById('lb-next').addEventListener('click', function() { show(idx + 1); });
+
+  lb.addEventListener('click', function(e) {
+    if (e.target === lb) close();
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    else if (e.key === 'ArrowLeft') show(idx - 1);
+    else if (e.key === 'ArrowRight') show(idx + 1);
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PHAÖRA — The Collection, MMXXVI</title>
+<meta name="description" content="Five crystal sculptures. Hand-mined in Minas Gerais. Shaped by a craftsman of forty years.">
+<link rel="canonical" href="https://phaora.com/sculptures.html?v=4">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PHAÖRA — The Collection, MMXXVI">
+<meta property="og:description" content="Five crystal sculptures. Hand-mined in Minas Gerais. Shaped by a craftsman of forty years.">
+<meta property="og:image" content="https://phaora.com/assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-1.jpeg">
+<meta property="og:url" content="https://phaora.com/sculptures.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PHAÖRA — The Collection, MMXXVI">
+<meta name="twitter:description" content="Five crystal sculptures. Hand-mined in Minas Gerais. Shaped by a craftsman of forty years.">
+<meta name="twitter:image" content="https://phaora.com/assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-1.jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--ink:#0a0908;--surface:#12100c;--bone:#e8dcc4;--amber:#B87333;--amber-bright:#D4A254;--muted:#8a7355;--stroke:rgba(184,115,51,0.2);--serif:'Fraunces',Georgia,serif;--sans:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;--ease:cubic-bezier(0.22,1,0.36,1)}
+html{scroll-behavior:smooth;background:var(--ink)}
+body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 2.5rem;height:60px;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(24px) saturate(1.2);-webkit-backdrop-filter:blur(24px) saturate(1.2);background:rgba(10,9,8,0.85);border-bottom:0.5px solid var(--stroke)}
+.nav-left,.nav-right{display:flex;align-items:center;gap:2rem}
+.nav-left a,.nav-right a{font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;color:var(--bone);transition:color .3s ease;position:relative}
+.nav-left a::after,.nav-right a:not(.nav-enquire)::after{content:'';position:absolute;bottom:-3px;left:0;width:100%;height:0.5px;background:var(--amber);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+.nav-left a:hover::after,.nav-right a:not(.nav-enquire):hover::after{transform:scaleX(1)}
+.nav-logo{font-family:var(--sans);font-size:14px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;text-decoration:none;color:var(--bone)}
+.nav-enquire{padding:8px 18px;border:0.5px solid rgba(232,220,196,0.3);transition:all .3s ease !important;display:inline-flex;align-items:center;gap:6px}
+.nav-enquire .arrow{font-size:10px;transition:transform .3s var(--ease)}
+.nav-enquire:hover .arrow{transform:translateX(4px)}
+.nav-enquire:hover{background:rgba(232,220,196,0.06)}
+
+/* GOLD FLAKES */
+.gf{position:relative;isolation:isolate}
+.gf::after{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:0.55;background-image:radial-gradient(1.5px 1.5px at 8% 15%,rgba(184,115,51,0.35),transparent),radial-gradient(1px 1px at 22% 48%,rgba(212,162,84,0.25),transparent),radial-gradient(2px 1px at 38% 78%,rgba(184,115,51,0.2),transparent),radial-gradient(1px 1.5px at 55% 22%,rgba(212,162,84,0.3),transparent),radial-gradient(1.5px 1px at 72% 58%,rgba(184,115,51,0.25),transparent),radial-gradient(1px 1px at 85% 82%,rgba(212,162,84,0.2),transparent),radial-gradient(1px 2px at 15% 92%,rgba(184,115,51,0.15),transparent),radial-gradient(2px 1px at 92% 35%,rgba(212,162,84,0.25),transparent)}
+
+/* MASTHEAD */
+.mh{min-height:55vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:8rem 2.5rem 4rem}
+.mh-meta{width:100%;max-width:1000px;display:flex;justify-content:space-between;align-items:center;margin-bottom:3rem}
+.mh-meta span{font-family:var(--sans);font-size:10.5px;font-weight:400;letter-spacing:0.32em;text-transform:uppercase;color:rgba(232,220,196,0.65)}
+.mh-meta-c{font-family:var(--serif) !important;font-style:italic;font-size:12px !important;letter-spacing:0.06em !important;text-transform:none !important;color:rgba(232,220,196,0.55) !important;font-variation-settings:'opsz' 18,'SOFT' 80;display:inline-flex;align-items:center;gap:10px}
+.pulse-dot{width:6px;height:6px;border-radius:50%;background:var(--amber);flex-shrink:0;animation:dotPulse 2.4s ease-in-out infinite}
+.mh h1{font-family:var(--serif);font-size:clamp(88px,13vw,180px);font-weight:300;line-height:0.85;letter-spacing:-0.03em;color:var(--bone);font-variation-settings:'opsz' 144,'SOFT' 100;margin-bottom:0.5rem}
+.mh-sub{font-family:var(--serif);font-style:italic;font-size:clamp(24px,3vw,40px);color:var(--amber);font-weight:300;font-variation-settings:'opsz' 72,'SOFT' 80;margin-bottom:1.5rem}
+.mh-lede{font-family:var(--serif);font-style:italic;font-size:clamp(16px,1.6vw,20px);line-height:1.55;color:rgba(232,220,196,0.85);max-width:580px;margin-bottom:3rem;font-variation-settings:'opsz' 18,'SOFT' 50}
+.mh-strip{width:100%;max-width:800px;border-top:0.5px solid var(--stroke);padding-top:1.5rem;font-family:var(--mono);font-size:13px;font-weight:300;letter-spacing:0.08em;color:var(--muted)}
+
+/* OPENING PLATE */
+.plate{padding:0 0 4rem;border-top:0.5px solid var(--stroke)}
+.plate-label{max-width:1440px;margin:0 auto;padding:1rem 2.5rem;font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--amber)}
+.plate-hero{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden}
+.plate-hero img{width:100%;height:100%;object-fit:cover;filter:brightness(0.95) contrast(1.05)}
+.plate-ov{position:absolute;bottom:0;left:0;right:0;padding:3rem 2.5rem;background:linear-gradient(transparent,rgba(10,9,8,0.8))}
+.plate-ov h2{font-family:var(--serif);font-size:clamp(48px,6vw,88px);font-weight:300;color:var(--bone);font-variation-settings:'opsz' 144,'SOFT' 0;letter-spacing:-0.02em;margin-bottom:0.5rem}
+.plate-ov p{font-family:var(--serif);font-style:italic;font-size:clamp(16px,1.6vw,20px);color:rgba(232,220,196,0.85);font-variation-settings:'opsz' 18,'SOFT' 50}
+.plate-info{max-width:1440px;margin:0 auto;padding:2rem 2.5rem;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:2rem}
+.plate-pb{text-align:right}
+.plate-pb-label{display:block;font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.plate-pb-val{font-family:var(--mono);font-size:22px;font-weight:300;color:var(--bone);margin-bottom:4px}
+.plate-pb-ed{font-family:var(--serif);font-style:italic;font-size:13px;color:var(--muted);font-variation-settings:'opsz' 18;margin-bottom:12px;display:block}
+.plate-inq{font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--amber);text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:gap .4s var(--ease)}
+.plate-inq:hover{gap:12px}
+.spec-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--amber);border-left:1px solid var(--amber);max-width:1440px;margin:0 auto 2rem;margin-left:2.5rem;margin-right:2.5rem}
+.spec-cell{padding:1.25rem;border-bottom:1px solid var(--amber);border-right:1px solid var(--amber)}
+.spec-label{display:block;font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.spec-val{font-family:var(--mono);font-size:14px;font-weight:300;color:var(--bone);letter-spacing:0.02em}
+
+/* POOL GALLERY */
+.pool{padding:6rem 2.5rem;border-top:0.5px solid var(--stroke)}
+.pool-inner{max-width:1440px;margin:0 auto}
+.pool-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:1rem}
+.pool-label{font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--amber)}
+.pool-count{font-family:var(--mono);font-size:12px;font-weight:300;color:var(--muted)}
+.pool-sub{font-family:var(--serif);font-style:italic;font-size:17px;color:rgba(232,220,196,0.85);font-variation-settings:'opsz' 18,'SOFT' 50;margin-bottom:3rem;max-width:680px}
+.p-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:90px;gap:1.25rem;grid-auto-flow:dense}
+.g-tile{position:relative;overflow:hidden;cursor:pointer}
+.g-tile img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(10%) brightness(0.75) contrast(1.08);transition:all 1.2s cubic-bezier(0.22,1,0.36,1)}
+.g-tile:hover img{filter:grayscale(0%) brightness(1) contrast(1.08);transform:scale(1.04)}
+.g-tile:hover::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--amber)}
+
+/* CATALOG */
+.catalog{padding:6rem 2.5rem;border-top:0.5px solid var(--stroke)}
+.catalog-inner{max-width:1440px;margin:0 auto}
+.catalog-head{text-align:center;margin-bottom:3rem}
+.catalog-head .sec-label{font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--amber);margin-bottom:1rem;display:block}
+.catalog-head p{font-family:var(--serif);font-style:italic;font-size:17px;color:rgba(232,220,196,0.55);font-variation-settings:'opsz' 18,'SOFT' 50}
+.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.cat-tile{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:1.5rem;background:var(--surface);border:0.5px solid var(--stroke);text-decoration:none;color:var(--bone);min-height:220px;transition:border-color .4s ease}
+.cat-tile:hover{border-color:var(--amber)}
+.cat-bg{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center;opacity:0;transition:opacity .6s ease}
+.cat-tile:hover .cat-bg{opacity:0.35}
+.cat-tile>*:not(.cat-bg){position:relative;z-index:1}
+.cat-num{position:absolute;top:1rem;right:1rem;font-family:var(--serif);font-style:italic;font-size:14px;color:var(--amber);font-variation-settings:'opsz' 18;z-index:1}
+.cat-name{display:block;font-family:var(--serif);font-size:24px;font-weight:300;color:var(--bone);font-variation-settings:'opsz' 36,'SOFT' 0;margin-bottom:0.5rem}
+.cat-price{display:block;font-family:var(--mono);font-size:14px;font-weight:300;color:var(--muted);margin-bottom:0.25rem}
+.cat-price-req{font-family:var(--serif);font-style:italic}
+.cat-ed{display:block;font-family:var(--serif);font-style:italic;font-size:11px;color:var(--muted);font-variation-settings:'opsz' 18;margin-bottom:1rem}
+.cat-link{font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--amber);display:inline-flex;align-items:center;gap:6px}
+.cat-link .arrow{transition:transform .3s var(--ease)}
+.cat-tile:hover .cat-link .arrow{transform:translateX(4px)}
+.cat-photo .cat-bg{opacity:0}
+.cat-photo:hover .cat-bg{opacity:0.35}
+
+/* CORRESPONDENCE */
+.corr{padding:6rem 2.5rem;text-align:center;border-top:0.5px solid var(--stroke)}
+.corr-inner{max-width:680px;margin:0 auto}
+.super-label{display:block;font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:0.32em;text-transform:uppercase;color:var(--muted);margin-bottom:2.5rem}
+.corr-inner h3{font-family:var(--serif);font-size:clamp(36px,5vw,56px);font-weight:300;line-height:1.1;color:var(--bone);margin-bottom:1.5rem;font-variation-settings:'opsz' 144,'SOFT' 0}
+.corr-inner h3 em{font-style:italic}
+.corr-inner>p{font-family:var(--serif);font-size:17px;font-weight:400;line-height:1.55;color:rgba(232,220,196,0.5);margin-bottom:3rem;font-variation-settings:'opsz' 18,'SOFT' 50}
+.corr-ctas{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:1rem 2rem;font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:all .4s var(--ease)}
+.btn .arrow{transition:transform .4s var(--ease)}
+.btn:hover .arrow{transform:translateX(6px)}
+.btn-amber{background:var(--amber);color:var(--ink);border:1px solid var(--amber)}
+.btn-amber:hover{background:var(--amber-bright);border-color:var(--amber-bright)}
+.btn-outline{background:transparent;color:var(--bone);border:1px solid rgba(232,220,196,0.3)}
+.btn-outline:hover{background:var(--bone);color:var(--ink);border-color:var(--bone)}
+
+/* FOOTER */
+.footer{background:var(--ink);border-top:0.5px solid var(--stroke);padding:5rem 2.5rem 0}
+.footer-inner{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem;max-width:1440px;margin:0 auto;padding-bottom:4rem}
+.footer-logo{font-family:var(--serif);font-size:40px;font-weight:300;color:var(--bone);margin-bottom:1rem;display:block;font-variation-settings:'opsz' 72,'SOFT' 0}
+.footer-tagline{font-family:var(--serif);font-style:italic;font-size:15px;line-height:1.55;color:rgba(232,220,196,0.55);max-width:320px;font-variation-settings:'opsz' 18,'SOFT' 50}
+.footer-col h5{font-family:var(--sans);font-size:10.5px;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);margin-bottom:1.25rem}
+.footer-col a{display:block;font-family:var(--sans);font-size:13px;font-weight:400;color:rgba(232,220,196,0.5);text-decoration:none;margin-bottom:0.75rem;transition:color .3s ease}
+.footer-col a:hover{color:var(--amber)}
+.footer-bottom{max-width:1440px;margin:0 auto;padding:1.5rem 0;border-top:0.5px solid var(--stroke);display:flex;justify-content:space-between;align-items:center}
+.footer-bottom span{font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:0.06em;color:var(--muted)}
+.footer-bottom .motto{font-family:var(--serif);font-style:italic;font-size:13px;color:rgba(232,220,196,0.6);font-variation-settings:'opsz' 18}
+
+/* LIGHTBOX */
+.lb{position:fixed;inset:0;z-index:10000;background:rgba(10,9,8,0.96);display:flex;align-items:center;justify-content:center;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .3s ease}
+.lb.open{opacity:1;pointer-events:all}
+.lb-img{max-width:90vw;max-height:85vh;object-fit:contain;display:block}
+.lb-close{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;color:var(--bone);font-size:1.5rem;cursor:pointer;transition:color .3s;padding:0.5rem}
+.lb-close:hover{color:var(--amber)}
+.lb-prev,.lb-next{position:absolute;top:50%;transform:translateY(-50%);background:none;border:1px solid rgba(232,220,196,0.15);color:var(--bone);font-size:1.5rem;width:48px;height:48px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s ease}
+.lb-prev{left:1.5rem}.lb-next{right:1.5rem}
+.lb-prev:hover,.lb-next:hover{color:var(--amber);border-color:var(--amber)}
+.lb-counter{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:0.15em;color:var(--muted)}
+
+/* REVEAL + KEYFRAMES */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
+.reveal.revealed{opacity:1;transform:translateY(0)}
+@keyframes dotPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.75)}}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .nav-left,.nav-right{display:none}.nav{justify-content:center}
+  .mh{padding:6rem 1.5rem 3rem;min-height:auto}.mh-meta{display:none}.mh h1{font-size:clamp(56px,16vw,100px)}
+  .plate-hero{aspect-ratio:4/5}.plate-ov{padding:2rem 1.5rem}.plate-info{padding:1.5rem;flex-direction:column}.plate-pb{text-align:left}
+  .spec-grid{grid-template-columns:repeat(2,1fr);margin-left:1.5rem;margin-right:1.5rem}
+  .pool{padding:4rem 1.5rem}
+  .p-grid{grid-template-columns:repeat(6,1fr);grid-auto-rows:80px;gap:0.75rem}
+  .p-grid .g-tile{grid-column:span 3 !important;grid-row:span 4 !important}
+  .catalog{padding:4rem 1.5rem}
+  .cat-grid{grid-template-columns:repeat(2,1fr)}
+  .cat-tile{min-height:180px}
+  .corr{padding:4rem 1.5rem}.corr-ctas{flex-direction:column;align-items:center}
+  .footer{padding:3rem 1.5rem 0}.footer-inner{grid-template-columns:1fr;text-align:center}.footer-tagline{margin:0 auto}
+  .footer-bottom{flex-direction:column;gap:0.5rem;text-align:center;padding:1.25rem 0}
+  .lb-prev{left:0.5rem}.lb-next{right:0.5rem}.lb-prev,.lb-next{width:36px;height:36px;font-size:1.2rem}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav"><div class="nav-left"><a href="hardscape-gallery.html">Hardscape</a><a href="https://phaora.com/sculptures.html?v=4">Sculpture</a><a href="gallery.html">Gallery</a><a href="agents.html">Agents</a></div><a href="index.html" class="nav-logo">PHAÖRA</a><div class="nav-right"><a href="/#studio">Studio</a><a href="contact.html">Contact</a><a href="/#invitation" class="nav-enquire">Enquire <span class="arrow">&rarr;</span></a></div></nav>
+
+<!-- MASTHEAD -->
+<section class="mh gf">
+  <div class="mh-meta"><span>The Collection</span><span class="mh-meta-c"><span class="pulse-dot"></span>Five pieces. Minas Gerais.</span><span>Hand-mined. Hand-shaped.</span></div>
+  <h1>PHAÖRA</h1>
+  <p class="mh-sub">The Collection, MMXXVI</p>
+  <p class="mh-lede">Five crystal sculptures. Hand-mined in Minas Gerais. Shaped by a craftsman of forty years.</p>
+  <div class="mh-strip">Five works · By appointment</div>
+</section>
+
+<!-- OPENING PLATE -->
+<section class="plate reveal">
+  <div class="plate-label">Plate I · Featured piece</div>
+  <div class="plate-hero"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-1.jpeg" alt="The Canopy"><div class="plate-ov"><h2>The Canopy</h2><p>White quartz flock on Brazilian driftwood — the flagship of the collection.</p></div></div>
+  <div class="plate-info"><div></div><div class="plate-pb"><span class="plate-pb-label">Price</span><div class="plate-pb-val">USD 68,000</div><span class="plate-pb-ed">One of one</span><a href="mailto:david@phaora.com?subject=Enquiry:%20The%20Canopy" class="plate-inq">Inquire <span>&rarr;</span></a></div></div>
+  <div class="spec-grid">
+    <div class="spec-cell"><span class="spec-label">Collection</span><span class="spec-val">The Canopy</span></div>
+    <div class="spec-cell"><span class="spec-label">Medium</span><span class="spec-val">White Quartz on Driftwood</span></div>
+    <div class="spec-cell"><span class="spec-label">Origin</span><span class="spec-val">Minas Gerais, Brazil</span></div>
+    <div class="spec-cell"><span class="spec-label">Edition</span><span class="spec-val">One of one</span></div>
+    <div class="spec-cell"><span class="spec-label">Tier</span><span class="spec-val">Statement</span></div>
+    <div class="spec-cell"><span class="spec-label">Status</span><span class="spec-val">Available</span></div>
+  </div>
+</section>
+
+<!-- THE POOL -->
+<section class="pool reveal">
+  <div class="pool-inner">
+    <div class="pool-head"><span class="pool-label">— The Studio Archive —</span><span class="pool-count">Thirty photographs</span></div>
+    <p class="pool-sub">Forty years of crystal carving, documented across five bodies of work in the Minas Gerais studio.</p>
+    <div class="p-grid">
+      <div class="g-tile" style="grid-column:span 7;grid-row:span 5"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-1.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 5;grid-row:span 4"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-2.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 4;grid-row:span 3"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-3.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 4;grid-row:span 3"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-4.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 4;grid-row:span 3"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-5.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 8;grid-row:span 5"><img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-6.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 4;grid-row:span 5"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-1.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 5;grid-row:span 4"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-2.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 7;grid-row:span 5"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-3.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 4;grid-row:span 3"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-4.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 4;grid-row:span 3"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-5.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 4;grid-row:span 3"><img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-6.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 6;grid-row:span 5"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-1.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 6;grid-row:span 5"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-2.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 4;grid-row:span 3"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-3.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 4;grid-row:span 3"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-4.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 4;grid-row:span 3"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-5.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 8;grid-row:span 4"><img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-6.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 4;grid-row:span 4"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-1.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 7;grid-row:span 5"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-2.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 5;grid-row:span 5"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-3.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 4;grid-row:span 3"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-4.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 4;grid-row:span 3"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-5.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 4;grid-row:span 3"><img src="assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-6.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 6;grid-row:span 5"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-1.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 6;grid-row:span 5"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-2.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 4;grid-row:span 3"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-3.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 8;grid-row:span 3"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-4.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 5;grid-row:span 4"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-5.jpeg" alt="" loading="lazy"></div>
+      <div class="g-tile" style="grid-column:span 7;grid-row:span 4"><img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-6.jpeg" alt="" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- THE FIVE -->
+<section class="catalog reveal">
+  <div class="catalog-inner">
+    <div class="catalog-head"><span class="sec-label">— The Forty-Four —</span><p>Each carved by hand. Each signed. Each one of one.</p></div>
+    <div class="cat-grid">
+      <a href="pieces/the-canopy.html" class="cat-tile"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-1.jpeg)"></div><span class="cat-num">Nº I</span><span class="cat-name">The Canopy</span><span class="cat-price">USD 68,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-dynasty.html" class="cat-tile"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-1.jpeg)"></div><span class="cat-num">Nº II</span><span class="cat-name">The Dynasty</span><span class="cat-price">USD 52,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-portal.html" class="cat-tile"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-1.jpeg)"></div><span class="cat-num">Nº III</span><span class="cat-name">The Portal</span><span class="cat-price">USD 35,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-crimson-duo.html" class="cat-tile"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-1.jpeg)"></div><span class="cat-num">Nº IV</span><span class="cat-name">The Crimson Duo</span><span class="cat-price">USD 24,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <a href="pieces/the-perch.html" class="cat-tile"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-1.jpeg)"></div><span class="cat-num">Nº V</span><span class="cat-name">The Perch</span><span class="cat-price">USD 16,500</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></a>
+      <div class="cat-tile cat-photo" style="cursor:pointer" data-img="assets/PHAORA%20IMAGES/Sculptures/IMG_6958.JPG"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/IMG_6958.JPG)"></div><span class="cat-num">Nº VI</span><span class="cat-name">The Azure Pair</span><span class="cat-price">USD 28,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></div>
+      <div class="cat-tile cat-photo" style="cursor:pointer" data-img="assets/PHAORA%20IMAGES/Sculptures/IMG_6959.JPG"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/IMG_6959.JPG)"></div><span class="cat-num">Nº VII</span><span class="cat-name">The Flock</span><span class="cat-price">USD 44,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></div>
+      <div class="cat-tile cat-photo" style="cursor:pointer" data-img="assets/PHAORA%20IMAGES/Sculptures/IMG_6960.JPG"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/IMG_6960.JPG)"></div><span class="cat-num">Nº VIII</span><span class="cat-name">The Gemini</span><span class="cat-price">USD 22,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></div>
+      <div class="cat-tile cat-photo" style="cursor:pointer" data-img="assets/PHAORA%20IMAGES/Sculptures/IMG_6961.JPG"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/IMG_6961.JPG)"></div><span class="cat-num">Nº IX</span><span class="cat-name">The Raptor</span><span class="cat-price">USD 38,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></div>
+      <div class="cat-tile cat-photo" style="cursor:pointer" data-img="assets/PHAORA%20IMAGES/Sculptures/IMG_6962.JPG"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/IMG_6962.JPG)"></div><span class="cat-num">Nº X</span><span class="cat-name">The Rose Duet</span><span class="cat-price">USD 19,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></div>
+      <div class="cat-tile cat-photo" style="cursor:pointer" data-img="assets/PHAORA%20IMAGES/Sculptures/IMG_6963.JPG"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/IMG_6963.JPG)"></div><span class="cat-num">Nº XI</span><span class="cat-name">The Sanctum</span><span class="cat-price">USD 32,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></div>
+      <div class="cat-tile cat-photo" style="cursor:pointer" data-img="assets/PHAORA%20IMAGES/Sculptures/IMG_6964.JPG"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/IMG_6964.JPG)"></div><span class="cat-num">Nº XII</span><span class="cat-name">The Mariner</span><span class="cat-price">USD 26,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></div>
+      <div class="cat-tile cat-photo" style="cursor:pointer" data-img="assets/PHAORA%20IMAGES/Sculptures/IMG_6965.JPG"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/IMG_6965.JPG)"></div><span class="cat-num">Nº XIII</span><span class="cat-name">The Vigil</span><span class="cat-price">USD 20,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></div>
+      <div class="cat-tile cat-photo" style="cursor:pointer" data-img="assets/PHAORA%20IMAGES/Sculptures/IMG_6966.JPG"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/IMG_6966.JPG)"></div><span class="cat-num">Nº XIV</span><span class="cat-name">The Whisper Pair</span><span class="cat-price">USD 14,500</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></div>
+      <div class="cat-tile cat-photo" style="cursor:pointer" data-img="assets/PHAORA%20IMAGES/Sculptures/IMG_6967.JPG"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/IMG_6967.JPG)"></div><span class="cat-num">Nº XV</span><span class="cat-name">The Solara</span><span class="cat-price">USD 30,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></div>
+      <div class="cat-tile cat-photo" style="cursor:pointer" data-img="assets/PHAORA%20IMAGES/Sculptures/IMG_6968.JPG"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/IMG_6968.JPG)"></div><span class="cat-num">Nº XVI</span><span class="cat-name">The Nebula</span><span class="cat-price">USD 25,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></div>
+      <div class="cat-tile cat-photo" style="cursor:pointer" data-img="assets/PHAORA%20IMAGES/Sculptures/IMG_6969.JPG"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/IMG_6969.JPG)"></div><span class="cat-num">Nº XVII</span><span class="cat-name">The Orchid</span><span class="cat-price">USD 18,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></div>
+      <div class="cat-tile cat-photo" style="cursor:pointer" data-img="assets/PHAORA%20IMAGES/Sculptures/IMG_6971.JPG"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/IMG_6971.JPG)"></div><span class="cat-num">Nº XVIII</span><span class="cat-name">The Concord</span><span class="cat-price">USD 23,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></div>
+      <div class="cat-tile cat-photo" style="cursor:pointer" data-img="assets/PHAORA%20IMAGES/Sculptures/IMG_6972.JPG"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/IMG_6972.JPG)"></div><span class="cat-num">Nº XIX</span><span class="cat-name">The Lapis</span><span class="cat-price">USD 27,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></div>
+      <div class="cat-tile cat-photo" style="cursor:pointer" data-img="assets/PHAORA%20IMAGES/Sculptures/IMG_6973.JPG"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/IMG_6973.JPG)"></div><span class="cat-num">Nº XX</span><span class="cat-name">The Aurora</span><span class="cat-price">USD 34,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></div>
+      <div class="cat-tile cat-photo" style="cursor:pointer" data-img="assets/PHAORA%20IMAGES/Sculptures/IMG_6974.JPG"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/IMG_6974.JPG)"></div><span class="cat-num">Nº XXI</span><span class="cat-name">The Covenant</span><span class="cat-price">USD 21,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></div>
+      <div class="cat-tile cat-photo" style="cursor:pointer" data-img="assets/PHAORA%20IMAGES/Sculptures/IMG_6975.JPG"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/IMG_6975.JPG)"></div><span class="cat-num">Nº XXII</span><span class="cat-name">The Amethyst Crown</span><span class="cat-price">USD 42,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></div>
+      <div class="cat-tile cat-photo" style="cursor:pointer" data-img="assets/PHAORA%20IMAGES/Sculptures/IMG_7035.JPG"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/IMG_7035.JPG)"></div><span class="cat-num">Nº XXIII</span><span class="cat-name">The Pilgrim</span><span class="cat-price">USD 17,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></div>
+      <div class="cat-tile cat-photo" style="cursor:pointer" data-img="assets/PHAORA%20IMAGES/Sculptures/IMG_7036.JPG"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/IMG_7036.JPG)"></div><span class="cat-num">Nº XXIV</span><span class="cat-name">The Garnet</span><span class="cat-price">USD 24,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></div>
+      <div class="cat-tile cat-photo" style="cursor:pointer" data-img="assets/PHAORA%20IMAGES/Sculptures/IMG_7037.JPG"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/IMG_7037.JPG)"></div><span class="cat-num">Nº XXV</span><span class="cat-name">The Seraph</span><span class="cat-price">USD 29,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></div>
+      <div class="cat-tile cat-photo" style="cursor:pointer" data-img="assets/PHAORA%20IMAGES/Sculptures/IMG_7038.JPG"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/IMG_7038.JPG)"></div><span class="cat-num">Nº XXVI</span><span class="cat-name">The Onyx Pair</span><span class="cat-price">USD 22,500</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></div>
+      <div class="cat-tile cat-photo" style="cursor:pointer" data-img="assets/PHAORA%20IMAGES/Sculptures/IMG_7039.JPG"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/IMG_7039.JPG)"></div><span class="cat-num">Nº XXVII</span><span class="cat-name">The Ember</span><span class="cat-price">USD 19,500</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></div>
+      <div class="cat-tile cat-photo" style="cursor:pointer" data-img="assets/PHAORA%20IMAGES/Sculptures/IMG_7040.JPG"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/IMG_7040.JPG)"></div><span class="cat-num">Nº XXVIII</span><span class="cat-name">The Meridian</span><span class="cat-price">USD 31,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></div>
+      <div class="cat-tile cat-photo" style="cursor:pointer" data-img="assets/PHAORA%20IMAGES/Sculptures/IMG_7041.JPG"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/IMG_7041.JPG)"></div><span class="cat-num">Nº XXIX</span><span class="cat-name">The Quartz Twin</span><span class="cat-price">USD 26,500</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></div>
+      <div class="cat-tile cat-photo" style="cursor:pointer" data-img="assets/PHAORA%20IMAGES/Sculptures/IMG_7042.JPG"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/IMG_7042.JPG)"></div><span class="cat-num">Nº XXX</span><span class="cat-name">The Diviner</span><span class="cat-price">USD 23,500</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></div>
+      <div class="cat-tile cat-photo" style="cursor:pointer" data-img="assets/PHAORA%20IMAGES/Sculptures/IMG_7043.JPG"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/IMG_7043.JPG)"></div><span class="cat-num">Nº XXXI</span><span class="cat-name">The Sentinel</span><span class="cat-price">USD 28,500</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></div>
+      <div class="cat-tile cat-photo" style="cursor:pointer" data-img="assets/PHAORA%20IMAGES/Sculptures/IMG_7044.JPG"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/IMG_7044.JPG)"></div><span class="cat-num">Nº XXXII</span><span class="cat-name">The Reverie</span><span class="cat-price">USD 20,500</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></div>
+      <div class="cat-tile cat-photo" style="cursor:pointer" data-img="assets/PHAORA%20IMAGES/Sculptures/IMG_7045.JPG"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/IMG_7045.JPG)"></div><span class="cat-num">Nº XXXIII</span><span class="cat-name">The Gilded Pair</span><span class="cat-price">USD 36,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></div>
+      <div class="cat-tile cat-photo" style="cursor:pointer" data-img="assets/PHAORA%20IMAGES/Sculptures/IMG_7046.JPG"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/IMG_7046.JPG)"></div><span class="cat-num">Nº XXXIV</span><span class="cat-name">The Beacon</span><span class="cat-price">USD 25,500</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></div>
+      <div class="cat-tile cat-photo" style="cursor:pointer" data-img="assets/PHAORA%20IMAGES/Sculptures/IMG_7047.JPG"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/IMG_7047.JPG)"></div><span class="cat-num">Nº XXXV</span><span class="cat-name">The Opal</span><span class="cat-price">USD 17,500</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></div>
+      <div class="cat-tile cat-photo" style="cursor:pointer" data-img="assets/PHAORA%20IMAGES/Sculptures/IMG_7048.JPG"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/IMG_7048.JPG)"></div><span class="cat-num">Nº XXXVI</span><span class="cat-name">The Obsidian</span><span class="cat-price">USD 21,500</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></div>
+      <div class="cat-tile cat-photo" style="cursor:pointer" data-img="assets/PHAORA%20IMAGES/Sculptures/IMG_7049.JPG"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/IMG_7049.JPG)"></div><span class="cat-num">Nº XXXVII</span><span class="cat-name">The Consort</span><span class="cat-price">USD 24,500</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></div>
+      <div class="cat-tile cat-photo" style="cursor:pointer" data-img="assets/PHAORA%20IMAGES/Sculptures/IMG_7050.JPG"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/IMG_7050.JPG)"></div><span class="cat-num">Nº XXXVIII</span><span class="cat-name">The Rose Solo</span><span class="cat-price">USD 15,500</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></div>
+      <div class="cat-tile cat-photo" style="cursor:pointer" data-img="assets/PHAORA%20IMAGES/Sculptures/IMG_7051.JPG"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/IMG_7051.JPG)"></div><span class="cat-num">Nº XXXIX</span><span class="cat-name">The Sky Pair</span><span class="cat-price">USD 27,500</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></div>
+      <div class="cat-tile cat-photo" style="cursor:pointer" data-img="assets/PHAORA%20IMAGES/Sculptures/IMG_7052.JPG"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/IMG_7052.JPG)"></div><span class="cat-num">Nº XL</span><span class="cat-name">The Emissary</span><span class="cat-price">USD 33,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></div>
+      <div class="cat-tile cat-photo" style="cursor:pointer" data-img="assets/PHAORA%20IMAGES/Sculptures/IMG_7053.JPG"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/IMG_7053.JPG)"></div><span class="cat-num">Nº XLI</span><span class="cat-name">The Harvest</span><span class="cat-price">USD 18,500</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></div>
+      <div class="cat-tile cat-photo" style="cursor:pointer" data-img="assets/PHAORA%20IMAGES/Sculptures/IMG_7054.JPG"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/IMG_7054.JPG)"></div><span class="cat-num">Nº XLII</span><span class="cat-name">The Violet</span><span class="cat-price">USD 16,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></div>
+      <div class="cat-tile cat-photo" style="cursor:pointer" data-img="assets/PHAORA%20IMAGES/Sculptures/IMG_7055.JPG"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/IMG_7055.JPG)"></div><span class="cat-num">Nº XLIII</span><span class="cat-name">The Luminary</span><span class="cat-price">USD 29,500</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></div>
+      <div class="cat-tile cat-photo" style="cursor:pointer" data-img="assets/PHAORA%20IMAGES/Sculptures/IMG_7056.JPG"><div class="cat-bg" style="background-image:url(assets/PHAORA%20IMAGES/Sculptures/IMG_7056.JPG)"></div><span class="cat-num">Nº XLIV</span><span class="cat-name">The Oracle</span><span class="cat-price">USD 40,000</span><span class="cat-ed">One of one</span><span class="cat-link">View the piece <span class="arrow">&rarr;</span></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CORRESPONDENCE -->
+<section class="corr gf reveal">
+  <div class="corr-inner">
+    <span class="super-label">— Correspondence —</span>
+    <h3>Write to the studio about a <em>piece</em></h3>
+    <p>Every enquiry is answered personally by David within twenty-four hours. Private viewings arranged at the Boca Raton studio.</p>
+    <div class="corr-ctas">
+      <a href="mailto:david@phaora.com?subject=Sculpture%20Enquiry" class="btn btn-amber">Write to the studio <span class="arrow">&rarr;</span></a>
+      <a href="gallery.html" class="btn btn-outline">Visit the gallery <span class="arrow">&rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer"><div class="footer-inner"><div><span class="footer-logo">PHAÖRA</span><p class="footer-tagline">Hardscape and crystal for the estates that demand permanence.</p></div><div class="footer-col"><h5>The House</h5><a href="/">About</a><a href="/#studio">Studio</a><a href="#">Press</a><a href="#">Journal</a></div><div class="footer-col"><h5>Divisions</h5><a href="hardscape-gallery.html">Hardscape</a><a href="https://phaora.com/sculptures.html?v=4">Sculpture</a><a href="gallery.html">Gallery</a><a href="https://phaora.com/sculptures.html?v=4">Pieces</a></div><div class="footer-col"><h5>Connect</h5><a href="contact.html">Contact</a><a href="agents.html">Agents</a><a href="#">Instagram</a><a href="mailto:david@phaora.com">Email</a></div></div><div class="footer-bottom"><span>Phaöra · MMXXVI</span><span class="motto">Built on standards. Not inherited. Decided.</span><span>Boca Raton · All rights reserved</span></div></footer>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb"><button class="lb-close" id="lb-close">&#x2715;</button><button class="lb-prev" id="lb-prev">&#x2039;</button><img class="lb-img" id="lb-img" src="" alt=""><button class="lb-next" id="lb-next">&#x203A;</button><span class="lb-counter" id="lb-counter"></span></div>
+
+<script>
+(function(){
+/* Lightbox for pool gallery */
+var tiles=Array.from(document.querySelectorAll('.g-tile'));
+var lb=document.getElementById('lb'),lbImg=document.getElementById('lb-img'),lbCounter=document.getElementById('lb-counter');
+var idx=0,total=tiles.length;
+function show(i){idx=((i%total)+total)%total;lbImg.src=tiles[idx].querySelector('img').src;lbCounter.textContent=(idx+1)+' / '+total}
+function open(i){show(i);lb.classList.add('open');document.body.style.overflow='hidden'}
+function close(){lb.classList.remove('open');document.body.style.overflow=''}
+tiles.forEach(function(t,i){t.addEventListener('click',function(){open(i)})});
+document.getElementById('lb-close').addEventListener('click',close);
+document.getElementById('lb-prev').addEventListener('click',function(){show(idx-1)});
+document.getElementById('lb-next').addEventListener('click',function(){show(idx+1)});
+lb.addEventListener('click',function(e){if(e.target===lb)close()});
+document.addEventListener('keydown',function(e){if(!lb.classList.contains('open'))return;if(e.key==='Escape')close();else if(e.key==='ArrowLeft')show(idx-1);else if(e.key==='ArrowRight')show(idx+1)});
+
+/* Catalog photo tile lightbox */
+document.querySelectorAll('.cat-photo').forEach(function(t){
+  t.addEventListener('click',function(){
+    lbImg.src=t.getAttribute('data-img');
+    lbCounter.textContent='';
+    lb.classList.add('open');
+    document.body.style.overflow='hidden';
+  });
+});
+
+/* Scroll reveal */
+var reveals=document.querySelectorAll('.reveal');
+var rObs=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){en.target.classList.add('revealed');rObs.unobserve(en.target)}})},{threshold:0.08});
+reveals.forEach(function(el){rObs.observe(el)});
+})();
+</script>
+</body>
+</html>

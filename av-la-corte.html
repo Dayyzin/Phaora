@@ -436,7 +436,7 @@ footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rg
     <div class="amb-pool" style="z-index:0;top:4%;left:50%;transform:translateX(-50%);width:86%;height:560px;background:radial-gradient(ellipse,rgba(206,168,92,.32) 0%,rgba(206,168,92,.14) 38%,rgba(206,168,92,0) 76%);filter:blur(80px)"></div>
     <div class="bg-title"><span>La</span><span>Corte</span></div>
     <div class="glow"></div>
-    <div class="sculpture-slot"><img src="av/la-corte/hero.jpg" alt="La Corte — The Court"></div>
+    <div class="sculpture-slot"><img src="av/la-corte/hero.png" alt="La Corte — The Court"></div>
     <div class="text-overlay">
       <p class="lp-eye">II of XI &middot; &Aacute;guas Vivas</p>
       <h1 class="lp-name">La Corte</h1>
@@ -594,7 +594,7 @@ footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rg
   <div class="ph-amb"></div>
   <div class="ph-wrap">
     <div class="ph-img-col" id="phImgCol">
-      <img src="av/la-corte/phil.jpg" alt="La Corte — wing detail">
+      <img src="av/la-corte/hero.png" alt="La Corte — wing detail">
       <video id="phVideo" playsinline preload="metadata">
         <source src="av/videos/La%20Corte.mp4" type="video/mp4">
       </video>
@@ -791,7 +791,7 @@ footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rg
 window.addEventListener('scroll',function(){document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>60)},{passive:true});
 /* HERO CAROUSEL — arc layout */
 (function(){
-  var srcs=['av/la-corte/gallery/g04.jpg','av/la-corte/gallery/g10.jpg','av/la-corte/gallery/g16.jpg','av/la-corte/gallery/g01.jpg','av/la-corte/gallery/g05.jpg','av/la-corte/gallery/g06.jpg','av/la-corte/gallery/g09.jpg','av/la-corte/gallery/g15.jpg','av/la-corte/gallery/g17.jpg','av/la-corte/gallery/g03.jpg'];
+  var srcs=['av/la-corte/car-01.png','av/la-corte/car-02.png','av/la-corte/car-03.png','av/la-corte/car-04.png','av/la-corte/car-05.png','av/la-corte/car-06.png','av/la-corte/car-07.png','av/la-corte/car-08.png'];
   var n=srcs.length;
   var current=0;
 
@@ -947,8 +947,7 @@ window.addEventListener('scroll',function(){document.getElementById('mainNav').c
 
 </script>
 <style>
-.sculpture-slot img{-webkit-mask-image:radial-gradient(ellipse 72% 64% at 50% 52%,#000 55%,rgba(0,0,0,.55) 76%,transparent 97%);mask-image:radial-gradient(ellipse 72% 64% at 50% 52%,#000 55%,rgba(0,0,0,.55) 76%,transparent 97%)}
-.car-item img{border-radius:5px;object-fit:cover}
+.car-item img[src*="car-06"],.car-item img[src*="car-08"]{border-radius:8px}
 .ph-img-col img{-webkit-mask-image:radial-gradient(ellipse 70% 70% at 42% 48%,#000 50%,rgba(0,0,0,.5) 74%,transparent 96%);mask-image:radial-gradient(ellipse 70% 70% at 42% 48%,#000 50%,rgba(0,0,0,.5) 74%,transparent 96%)}
 </style>
 </body>

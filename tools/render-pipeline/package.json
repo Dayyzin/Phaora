@@ -1,0 +1,16 @@
+{
+  "name": "phaora-render-pipeline",
+  "version": "1.0.0",
+  "private": true,
+  "description": "PHAORA render pipeline — Higgsfield img2img + Claude Vision scoring",
+  "bin": {
+    "phaora": "./bin/phaora.js"
+  },
+  "scripts": {
+    "render": "node render.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
+    "dotenv": "^16.4.7"
+  }
+}

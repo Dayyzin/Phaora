@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PHAÖRA — Built on Standards</title>
+<meta name="description" content="Phaöra is a Boca Raton luxury house — premium hardscape and hand-carved crystal sculptures for South Florida's finest estates.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300&display=swap" rel="stylesheet">
+<style>
+
+/* ═══ RESET & ROOT ═══ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ink:#0a0908;
+  --surface:#12100c;
+  --bone:#e8dcc4;
+  --amber:#B87333;
+  --amber-bright:#D4A254;
+  --muted:#8a7355;
+  --stroke:rgba(184,115,51,0.2);
+  --serif:'Fraunces',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+  --ease:cubic-bezier(0.22,1,0.36,1);
+}
+html{scroll-behavior:smooth;background:var(--ink)}
+body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+
+/* ═══ NAV ═══ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  padding:0 2.5rem;height:60px;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:background .5s ease,border-color .5s ease;
+  backdrop-filter:blur(24px) saturate(1.2);-webkit-backdrop-filter:blur(24px) saturate(1.2);
+  background:rgba(10,9,8,0.85);
+  border-bottom:0.5px solid var(--stroke);
+}
+.nav.nav-light{
+  background:rgba(232,220,196,0.9);
+  border-bottom-color:rgba(184,115,51,0.3);
+}
+.nav-left,.nav-right{display:flex;align-items:center;gap:2rem}
+.nav-left a,.nav-right a{
+  font-family:var(--sans);font-size:11px;font-weight:400;
+  letter-spacing:0.22em;text-transform:uppercase;
+  text-decoration:none;color:var(--bone);
+  transition:color .3s ease;position:relative;
+}
+.nav.nav-light .nav-left a,
+.nav.nav-light .nav-right a{color:var(--ink)}
+.nav-left a::after,.nav-right a:not(.nav-enquire)::after{
+  content:'';position:absolute;bottom:-3px;left:0;
+  width:100%;height:0.5px;background:var(--amber);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .4s var(--ease);
+}
+.nav-left a:hover::after,.nav-right a:not(.nav-enquire):hover::after{transform:scaleX(1)}
+.nav-logo{
+  font-family:var(--sans);font-size:14px;font-weight:600;
+  letter-spacing:0.32em;text-transform:uppercase;
+  text-decoration:none;color:var(--bone);
+  transition:color .3s ease;
+}
+.nav.nav-light .nav-logo{color:var(--ink)}
+.nav-enquire{
+  padding:8px 18px;border:0.5px solid rgba(232,220,196,0.3);
+  transition:all .3s ease !important;
+  display:inline-flex;align-items:center;gap:6px;
+}
+.nav-enquire .arrow{font-size:10px;transition:transform .3s var(--ease)}
+.nav-enquire:hover .arrow{transform:translateX(4px)}
+.nav-enquire:hover{background:rgba(232,220,196,0.06)}
+.nav.nav-light .nav-enquire{border-color:rgba(10,9,8,0.2)}
+.nav.nav-light .nav-enquire:hover{background:rgba(10,9,8,0.04)}
+
+/* ═══ HERO ═══ */
+.hero{
+  position:relative;
+  min-height:max(100vh,760px);
+  display:flex;flex-direction:column;
+  overflow:hidden;background:var(--ink);
+}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{
+  width:100%;height:100%;object-fit:cover;
+  filter:brightness(0.55) contrast(1.08) saturate(1.1);
+  animation:heroZoom 24s ease-out forwards;
+}
+.hero-bg::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,
+    rgba(10,9,8,0.3) 0%,
+    rgba(10,9,8,0.15) 40%,
+    rgba(10,9,8,0.92) 100%
+  );
+}
+.hero-content{
+  position:relative;z-index:2;flex:1;
+  display:flex;flex-direction:column;
+  max-width:1440px;width:100%;margin:0 auto;
+  padding:0 2.5rem;
+}
+.hero-top{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.25rem 0;margin-top:60px;
+  border-bottom:0.5px solid var(--stroke);
+}
+.hero-top span{
+  font-family:var(--sans);font-size:10.5px;font-weight:400;
+  letter-spacing:0.32em;text-transform:uppercase;
+  color:rgba(232,220,196,0.65);
+}
+.hero-top-center{
+  font-family:var(--serif) !important;font-style:italic;
+  font-size:12px !important;letter-spacing:0.06em !important;
+  text-transform:none !important;
+  color:rgba(232,220,196,0.55) !important;
+  font-variation-settings:'opsz' 18,'SOFT' 80;
+  display:inline-flex;align-items:center;gap:10px;
+}
+.pulse-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--amber);flex-shrink:0;
+  animation:dotPulse 2.4s ease-in-out infinite;
+}
+.hero-middle{
+  flex:1;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;
+  text-align:center;padding:2.5rem 0;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:14px;
+  font-family:var(--sans);font-size:10.5px;font-weight:500;
+  letter-spacing:0.3em;text-transform:uppercase;
+  color:rgba(232,220,196,0.7);margin-bottom:2rem;
+}
+.eyebrow-bar{
+  display:block;width:0;height:1px;background:var(--amber);
+  animation:barDraw .8s var(--ease) .5s forwards;
+}
+.hero h1{
+  font-family:var(--serif);
+  font-size:clamp(88px,14vw,220px);
+  font-weight:400;line-height:0.85;
+  letter-spacing:-0.035em;
+  color:var(--bone);
+  font-variation-settings:'opsz' 144,'SOFT' 100;
+  margin-bottom:1rem;
+}
+.hero-subtitle{
+  font-family:var(--serif);font-style:italic;
+  font-size:clamp(24px,2.5vw,38px);line-height:1.3;
+  color:rgba(232,220,196,0.85);font-weight:300;
+  font-variation-settings:'opsz' 144,'SOFT' 100;
+  max-width:600px;
+}
+.hero-subtitle em{font-style:normal}
+.hero-stats{
+  width:100%;border-top:0.5px solid var(--stroke);
+  display:grid;grid-template-columns:repeat(4,1fr);
+  padding:2rem 0 2.5rem;
+}
+.stat{text-align:center}
+.stat-label{
+  display:block;font-family:var(--sans);font-size:10.5px;
+  font-weight:400;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:8px;
+}
+.stat-value{
+  font-family:var(--mono);font-size:16px;font-weight:300;
+  color:var(--bone);letter-spacing:0.04em;
+}
+.scroll-ind{
+  position:absolute;bottom:1.5rem;left:50%;
+  transform:translateX(-50%);z-index:3;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+}
+.scroll-text{
+  font-family:var(--sans);font-size:9.5px;font-weight:500;
+  letter-spacing:0.4em;color:rgba(232,220,196,0.35);
+}
+.scroll-line{
+  width:1px;height:32px;background:var(--amber);
+  transform-origin:top;
+  animation:scrollPulse 2.4s ease-in-out infinite;
+}
+
+/* ═══ TICKER ═══ */
+.ticker{
+  background:var(--ink);min-height:180px;
+  border-top:0.5px solid var(--stroke);
+  border-bottom:0.5px solid var(--stroke);
+  display:flex;align-items:center;justify-content:center;
+  padding:2.5rem;text-align:center;
+}
+.ticker-text{
+  font-family:var(--sans);font-size:22px;font-weight:400;
+  letter-spacing:0.15em;text-transform:uppercase;
+  color:rgba(232,220,196,0.88);line-height:1.6;
+  max-width:1000px;
+}
+.diamond{
+  color:var(--amber);font-size:12px;
+  opacity:0.7;margin:0 0.5em;vertical-align:1px;
+}
+
+/* ═══ FEATURED PROJECT ═══ */
+.featured{background:var(--ink)}
+.featured-image-wrap{
+  position:relative;width:100%;
+  aspect-ratio:21/9;overflow:hidden;
+}
+.featured-image-wrap img{
+  width:100%;height:100%;object-fit:cover;
+  filter:brightness(0.7);
+}
+.featured-overlay{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;
+  padding:2rem 2.5rem;
+}
+.featured-tag-left{
+  position:absolute;top:2rem;left:2.5rem;
+  font-family:var(--sans);font-size:10.5px;font-weight:500;
+  letter-spacing:0.32em;text-transform:uppercase;
+  color:var(--amber);
+}
+.featured-tag-right{
+  position:absolute;top:2rem;right:2.5rem;
+  font-family:var(--sans);font-size:10.5px;font-weight:400;
+  letter-spacing:0.22em;text-transform:uppercase;
+  color:rgba(232,220,196,0.5);
+}
+.featured-center{
+  margin:auto 0;text-align:center;
+  padding:0 2rem;
+}
+.featured-center h2{
+  font-family:var(--serif);
+  font-size:clamp(44px,6vw,84px);
+  font-weight:300;line-height:1.05;
+  color:var(--bone);
+  font-variation-settings:'opsz' 144,'SOFT' 0;
+}
+.featured-center h2 em{font-style:italic}
+.featured-cta{
+  position:absolute;bottom:2rem;right:2.5rem;
+  font-family:var(--sans);font-size:11px;font-weight:500;
+  letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--amber);text-decoration:none;
+  display:inline-flex;align-items:center;gap:8px;
+  transition:gap .4s var(--ease);
+}
+.featured-cta:hover{gap:14px}
+.featured-specs{
+  max-width:1440px;margin:0 auto;
+  padding:0 2.5rem 4rem;
+}
+.spec-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  border-top:1px solid var(--amber);
+  border-left:1px solid var(--amber);
+  margin-bottom:1rem;
+}
+.spec-cell{
+  padding:1.25rem;
+  border-bottom:1px solid var(--amber);
+  border-right:1px solid var(--amber);
+}
+.spec-label{
+  display:block;font-family:var(--sans);font-size:10.5px;
+  font-weight:500;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:8px;
+}
+.spec-val{
+  font-family:var(--mono);font-size:15px;font-weight:300;
+  color:var(--bone);letter-spacing:0.02em;
+}
+.featured-footnote{
+  display:block;text-align:right;
+  font-family:var(--serif);font-style:italic;font-size:12px;
+  color:var(--muted);font-variation-settings:'opsz' 18;
+}
+
+/* ═══ DIVISIONS ═══ */
+.divisions{background:var(--ink);padding:0}
+.divisions-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:2px;
+}
+.div-tile{
+  position:relative;aspect-ratio:3/4;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  text-decoration:none;color:var(--bone);
+}
+.div-tile img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;
+  transition:transform .8s var(--ease),filter .6s ease;
+}
+.div-tile:hover img{transform:scale(1.04);filter:brightness(1.05)}
+.div-overlay{
+  position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,
+    rgba(10,9,8,0.2) 0%,
+    rgba(10,9,8,0.2) 40%,
+    rgba(10,9,8,0.92) 100%
+  );
+}
+.div-corner{
+  position:absolute;top:2rem;left:2rem;z-index:2;
+  font-family:var(--sans);font-size:10.5px;font-weight:500;
+  letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--amber);
+}
+.div-bottom{
+  position:relative;z-index:2;padding:2rem;
+}
+.div-bottom h3{
+  font-family:var(--serif);font-size:clamp(36px,4.5vw,56px);
+  font-weight:300;line-height:1;margin-bottom:0.75rem;
+  font-variation-settings:'opsz' 144,'SOFT' 0;
+}
+.div-tag{
+  display:block;font-family:var(--sans);font-size:10.5px;
+  font-weight:500;letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:1rem;
+}
+.div-bottom p{
+  font-family:var(--sans);font-size:13px;font-weight:300;
+  line-height:1.7;color:rgba(232,220,196,0.6);
+  max-width:380px;margin-bottom:1.5rem;
+}
+.div-link{
+  font-family:var(--sans);font-size:11px;font-weight:500;
+  letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--bone);display:inline-flex;align-items:center;gap:8px;
+  position:relative;padding-bottom:4px;
+}
+.div-link::after{
+  content:'';position:absolute;bottom:0;left:0;
+  width:100%;height:0.5px;background:var(--amber);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .4s var(--ease);
+}
+.div-tile:hover .div-link::after{transform:scaleX(1)}
+.div-link .arrow{transition:transform .4s var(--ease)}
+.div-tile:hover .div-link .arrow{transform:translateX(6px)}
+
+/* ═══ STUDIO NOTE (LIGHT RELIEF) ═══ */
+.studio-note{
+  background:var(--bone);color:var(--ink);
+  padding:7rem 2.5rem;
+  border-top:1px solid var(--amber);
+  border-bottom:1px solid var(--amber);
+}
+.studio-note-inner{
+  display:grid;grid-template-columns:1fr 2fr;
+  gap:5rem;max-width:1200px;margin:0 auto;
+}
+.snm-row{
+  padding:1rem 0;
+  border-bottom:1px solid rgba(184,115,51,0.25);
+  display:flex;justify-content:space-between;align-items:baseline;
+}
+.snm-row:first-child{border-top:1px solid rgba(184,115,51,0.25)}
+.snm-label{
+  font-family:var(--sans);font-size:10.5px;font-weight:500;
+  letter-spacing:0.22em;text-transform:uppercase;
+  color:rgba(10,9,8,0.35);
+}
+.snm-value{
+  font-family:var(--serif);font-style:italic;font-size:14px;
+  color:var(--ink);font-variation-settings:'opsz' 18;
+}
+.studio-note-body{max-width:640px}
+.dropcap{
+  font-family:var(--serif);font-size:17px;font-weight:400;
+  line-height:1.55;color:rgba(10,9,8,0.7);
+  margin-bottom:3rem;
+  font-variation-settings:'opsz' 18,'SOFT' 50;
+}
+.dropcap::first-letter{
+  font-family:var(--serif);float:left;
+  font-size:120px;line-height:0.78;
+  padding-right:14px;padding-top:4px;
+  color:var(--ink);font-weight:500;
+  font-variation-settings:'opsz' 144,'SOFT' 0;
+}
+.studio-note-body blockquote{
+  font-family:var(--serif);font-style:italic;
+  font-size:clamp(24px,2.8vw,32px);line-height:1.4;
+  color:var(--ink);padding-left:2rem;
+  border-left:1px solid var(--amber);
+  margin:3rem 0;font-variation-settings:'opsz' 36,'SOFT' 50;
+}
+.studio-note-body .closing{
+  font-family:var(--serif);font-size:17px;font-weight:400;
+  line-height:1.55;color:rgba(10,9,8,0.7);
+  margin-bottom:3rem;
+  font-variation-settings:'opsz' 18,'SOFT' 50;
+}
+.so-name{
+  display:block;font-family:var(--serif);font-style:italic;
+  font-size:16px;color:var(--ink);margin-bottom:4px;
+  font-variation-settings:'opsz' 18;
+}
+.so-title{
+  font-family:var(--sans);font-size:11px;font-weight:400;
+  letter-spacing:0.12em;color:rgba(10,9,8,0.4);
+}
+
+/* ═══ GALLERY ═══ */
+.gallery-section{
+  background:var(--ink);padding:7rem 2.5rem;
+}
+.gallery-inner{max-width:1440px;margin:0 auto}
+.gallery-header{
+  display:flex;justify-content:space-between;
+  align-items:flex-end;margin-bottom:3.5rem;
+}
+.gallery-kicker{
+  display:block;font-family:var(--sans);font-size:10.5px;
+  font-weight:500;letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:1rem;
+}
+.gallery-header h2{
+  font-family:var(--serif);
+  font-size:clamp(42px,5.2vw,74px);
+  font-weight:300;line-height:1.05;color:var(--bone);
+  font-variation-settings:'opsz' 144,'SOFT' 0;
+}
+.gallery-header h2 em{font-style:italic}
+.gallery-meta{text-align:right}
+.gallery-count{
+  display:block;font-family:var(--serif);font-style:italic;
+  font-size:14px;color:var(--muted);margin-bottom:6px;
+  font-variation-settings:'opsz' 18;
+}
+.gallery-archive{
+  font-family:var(--sans);font-size:11px;font-weight:500;
+  letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--amber);text-decoration:none;
+  display:inline-flex;align-items:center;gap:6px;
+  transition:gap .4s var(--ease);
+}
+.gallery-archive:hover{gap:12px}
+.g-grid{
+  display:grid;grid-template-columns:repeat(12,1fr);
+  grid-auto-rows:90px;gap:1.25rem;
+  grid-auto-flow:dense;
+}
+.g-tile{position:relative;overflow:hidden;cursor:pointer}
+.g-tile:nth-child(1){grid-column:span 7;grid-row:span 5}
+.g-tile:nth-child(2){grid-column:span 5;grid-row:span 6}
+.g-tile:nth-child(3){grid-column:span 4;grid-row:span 3}
+.g-tile:nth-child(4){grid-column:span 4;grid-row:span 3}
+.g-tile:nth-child(5){grid-column:span 4;grid-row:span 3}
+.g-tile:nth-child(6){grid-column:span 8;grid-row:span 5}
+.g-tile:nth-child(7){grid-column:span 4;grid-row:span 5}
+.g-tile:nth-child(8){grid-column:span 5;grid-row:span 4}
+.g-tile:nth-child(9){grid-column:span 7;grid-row:span 5}
+.g-tile:nth-child(10){grid-column:span 4;grid-row:span 3}
+.g-tile:nth-child(11){grid-column:span 4;grid-row:span 3}
+.g-tile:nth-child(12){grid-column:span 4;grid-row:span 3}
+.g-tile:nth-child(13){grid-column:span 12;grid-row:span 3}
+.g-tile img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  filter:grayscale(10%) brightness(0.75) contrast(1.08);
+  transition:all 1.2s cubic-bezier(0.22,1,0.36,1);
+}
+.g-tile:hover img{
+  filter:grayscale(0%) brightness(1) contrast(1.08);
+  transform:scale(1.04);
+}
+.g-caption{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:3rem 1.25rem 1rem;
+  background:linear-gradient(transparent,rgba(10,9,8,0.85));
+  border-top:0.5px solid transparent;
+  font-family:var(--sans);font-size:10.5px;font-weight:400;
+  letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--bone);
+  transform:translateY(100%);
+  transition:transform .6s var(--ease),border-color .6s ease;
+}
+.g-tile:hover .g-caption{
+  transform:translateY(0);
+  border-top-color:var(--stroke);
+}
+
+/* ═══ PROVENANCE ═══ */
+.provenance{
+  background:var(--ink);padding:7rem 2.5rem;
+  border-top:0.5px solid var(--stroke);
+}
+.provenance-inner{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:5rem;max-width:1440px;margin:0 auto;
+  align-items:start;
+}
+.prov-image{position:relative;aspect-ratio:4/5;overflow:hidden}
+.prov-image img{width:100%;height:100%;object-fit:cover;display:block}
+.prov-content{padding:2.5rem 0}
+.prov-kicker{
+  display:block;font-family:var(--sans);font-size:10.5px;
+  font-weight:500;letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--amber);margin-bottom:1.5rem;
+}
+.prov-content h3{
+  font-family:var(--serif);
+  font-size:clamp(36px,4.5vw,64px);
+  font-weight:300;line-height:1.05;color:var(--bone);
+  margin-bottom:1.5rem;
+  font-variation-settings:'opsz' 144,'SOFT' 0;
+}
+.prov-content h3 em{font-style:italic}
+.prov-content>p{
+  font-family:var(--serif);font-size:17px;font-weight:400;
+  line-height:1.55;color:rgba(232,220,196,0.55);
+  margin-bottom:3rem;max-width:440px;
+  font-variation-settings:'opsz' 18,'SOFT' 50;
+}
+.territory-list{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+}
+.territory-item{
+  padding:0.875rem 0;
+  border-bottom:0.5px solid var(--stroke);
+  display:flex;align-items:baseline;gap:1rem;
+}
+.territory-item::before{
+  content:'';width:12px;height:0.5px;
+  background:var(--amber);flex-shrink:0;
+  margin-top:0.5em;
+}
+.territory-item:nth-child(odd){padding-right:1.5rem}
+.territory-item:nth-child(even){padding-left:1.5rem}
+.territory-name{
+  font-family:var(--serif);font-size:15px;font-weight:400;
+  color:var(--bone);font-variation-settings:'opsz' 18;
+  flex:1;
+}
+.territory-since{
+  font-family:var(--sans);font-size:10px;font-weight:400;
+  letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--muted);white-space:nowrap;
+}
+
+/* ═══ INVITATION ═══ */
+.invitation{
+  position:relative;padding:10rem 2.5rem;
+  background:var(--ink);overflow:hidden;
+  text-align:center;
+}
+.invitation-bg{
+  position:absolute;inset:0;z-index:0;overflow:hidden;
+}
+.invitation-bg img{
+  width:100%;height:100%;object-fit:cover;
+  filter:blur(1px) saturate(0.75) brightness(0.5);
+  opacity:0.15;
+}
+.invitation-dim{
+  position:absolute;inset:0;z-index:1;
+  background:rgba(10,9,8,0.85);
+}
+.invitation-content{
+  position:relative;z-index:2;
+  max-width:680px;margin:0 auto;
+}
+.super-label{
+  display:block;font-family:var(--sans);font-size:11px;font-weight:500;
+  letter-spacing:0.32em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:2.5rem;
+}
+.invitation-content h3{
+  font-family:var(--serif);
+  font-size:clamp(44px,6vw,72px);
+  font-weight:300;line-height:1.1;color:var(--bone);
+  margin-bottom:1.5rem;
+  font-variation-settings:'opsz' 144,'SOFT' 0;
+}
+.invitation-content h3 em{font-style:italic}
+.invitation-content>p{
+  font-family:var(--serif);font-size:17px;font-weight:400;
+  line-height:1.55;color:rgba(232,220,196,0.5);
+  margin-bottom:3rem;
+  font-variation-settings:'opsz' 18,'SOFT' 50;
+}
+.invitation-ctas{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+/* ═══ BUTTONS ═══ */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:1rem 2rem;
+  font-family:var(--sans);font-size:11px;font-weight:500;
+  letter-spacing:0.22em;text-transform:uppercase;
+  text-decoration:none;cursor:pointer;
+  transition:all .4s var(--ease);
+}
+.btn .arrow{transition:transform .4s var(--ease)}
+.btn:hover .arrow{transform:translateX(6px)}
+.btn-amber{
+  background:var(--amber);color:var(--ink);
+  border:1px solid var(--amber);
+}
+.btn-amber:hover{
+  background:var(--amber-bright);
+  border-color:var(--amber-bright);
+}
+.btn-outline{
+  background:transparent;color:var(--bone);
+  border:1px solid rgba(232,220,196,0.3);
+}
+.btn-outline:hover{
+  background:var(--bone);color:var(--ink);
+  border-color:var(--bone);
+}
+
+/* ═══ FOOTER ═══ */
+.footer{
+  background:var(--ink);
+  border-top:0.5px solid var(--stroke);
+  padding:5rem 2.5rem 0;
+}
+.footer-inner{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:2.5rem;max-width:1440px;margin:0 auto;
+  padding-bottom:4rem;
+}
+.footer-logo{
+  font-family:var(--serif);font-size:40px;font-weight:300;
+  color:var(--bone);margin-bottom:1rem;display:block;
+  font-variation-settings:'opsz' 72,'SOFT' 0;
+}
+.footer-tagline{
+  font-family:var(--serif);font-style:italic;font-size:15px;
+  line-height:1.55;color:rgba(232,220,196,0.55);
+  max-width:320px;font-variation-settings:'opsz' 18,'SOFT' 50;
+}
+.footer-col h5{
+  font-family:var(--sans);font-size:10.5px;font-weight:600;
+  letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:1.25rem;
+}
+.footer-col a{
+  display:block;font-family:var(--sans);font-size:13px;
+  font-weight:400;color:rgba(232,220,196,0.5);
+  text-decoration:none;margin-bottom:0.75rem;
+  transition:color .3s ease;position:relative;
+}
+.footer-col a:hover{color:var(--amber)}
+.footer-bottom{
+  max-width:1440px;margin:0 auto;
+  padding:1.5rem 0;
+  border-top:0.5px solid var(--stroke);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.footer-bottom span{
+  font-family:var(--sans);font-size:11px;font-weight:400;
+  letter-spacing:0.06em;color:var(--muted);
+}
+.footer-bottom .motto{
+  font-family:var(--serif);font-style:italic;font-size:13px;
+  color:rgba(232,220,196,0.6);
+  font-variation-settings:'opsz' 18;
+}
+
+/* ═══ REVEAL ═══ */
+.reveal{
+  opacity:0;transform:translateY(40px);
+  transition:opacity .8s ease,transform .8s ease;
+}
+.reveal.revealed{opacity:1;transform:translateY(0)}
+
+/* ═══ KEYFRAMES ═══ */
+@keyframes heroZoom{from{transform:scale(1.08)}to{transform:scale(1)}}
+@keyframes barDraw{to{width:40px}}
+@keyframes scrollPulse{
+  0%,100%{opacity:.25;transform:scaleY(.6)}
+  50%{opacity:.8;transform:scaleY(1)}
+}
+@keyframes dotPulse{
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.4;transform:scale(.75)}
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:900px){
+  .nav-left,.nav-right{display:none}
+  .nav{justify-content:center}
+
+  .hero-content{padding:0 1.5rem}
+  .hero-top{display:none}
+  .hero h1{font-size:clamp(56px,16vw,100px)}
+  .hero-subtitle{font-size:clamp(18px,4vw,28px)}
+  .hero-stats{grid-template-columns:repeat(2,1fr);gap:1.5rem}
+
+  .ticker{padding:2rem 1.5rem;min-height:auto}
+  .ticker-text{font-size:16px;letter-spacing:0.1em}
+
+  .featured-image-wrap{aspect-ratio:16/10}
+  .featured-center h2{font-size:clamp(28px,7vw,48px)}
+  .featured-specs{padding:0 1.5rem 3rem}
+  .spec-grid{grid-template-columns:repeat(2,1fr)}
+
+  .divisions-grid{grid-template-columns:1fr}
+  .div-tile{aspect-ratio:3/4}
+
+  .studio-note{padding:4rem 1.5rem}
+  .studio-note-inner{grid-template-columns:1fr;gap:3rem}
+
+  .gallery-section{padding:4rem 1.5rem}
+  .gallery-header{flex-direction:column;align-items:flex-start;gap:1.5rem}
+  .gallery-meta{text-align:left}
+  .g-grid{
+    grid-template-columns:repeat(6,1fr);grid-auto-rows:80px;gap:0.75rem;
+  }
+  .g-tile:nth-child(1),.g-tile:nth-child(2),.g-tile:nth-child(3),
+  .g-tile:nth-child(4),.g-tile:nth-child(5),.g-tile:nth-child(6),
+  .g-tile:nth-child(7),.g-tile:nth-child(8),.g-tile:nth-child(9),
+  .g-tile:nth-child(10),.g-tile:nth-child(11),.g-tile:nth-child(12),
+  .g-tile:nth-child(13){grid-column:span 6;grid-row:span 4}
+
+  .provenance{padding:4rem 1.5rem}
+  .provenance-inner{grid-template-columns:1fr;gap:3rem}
+  .territory-list{grid-template-columns:1fr}
+  .territory-item:nth-child(even){padding-left:0}
+  .territory-item:nth-child(odd){padding-right:0}
+
+  .invitation{padding:6rem 1.5rem}
+
+  .footer{padding:3rem 1.5rem 0}
+  .footer-inner{grid-template-columns:1fr;text-align:center}
+  .footer-tagline{margin:0 auto}
+  .footer-bottom{flex-direction:column;gap:0.5rem;text-align:center;padding:1.25rem 0}
+}
+
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav class="nav" id="nav">
+  <div class="nav-left">
+    <a href="hardscape-gallery.html">Hardscape</a>
+    <a href="https://phaora.com/sculptures.html?v=4">Sculpture</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="agents.html">Agents</a>
+  </div>
+  <a href="index.html" class="nav-logo">PHAÖRA</a>
+  <div class="nav-right">
+    <a href="#studio">Studio</a>
+    <a href="contact.html">Contact</a>
+    <a href="#invitation" class="nav-enquire">Enquire <span class="arrow">&rarr;</span></a>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <img src="hs/hero-estate.jpeg" alt="Luxury estate at dusk">
+  </div>
+  <div class="hero-content">
+    <div class="hero-top">
+      <span>PHAÖRA · BOCA RATON</span>
+      <span class="hero-top-center"><span class="pulse-dot"></span>Est. MMXIX · Two divisions</span>
+      <span>26°21′N 80°05′W</span>
+    </div>
+    <div class="hero-middle">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-bar"></span>
+        STONE · CRYSTAL · SOUTH FLORIDA
+      </div>
+      <h1>PHAÖRA</h1>
+      <p class="hero-subtitle">Stone and crystal, shaped with <em>uncommon</em> discipline.</p>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-label">Territory</span>
+        <span class="stat-value">South Florida</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Divisions</span>
+        <span class="stat-value">02</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Since</span>
+        <span class="stat-value">MMXIX</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Status</span>
+        <span class="stat-value">In studio</span>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-ind">
+    <span class="scroll-text">SCROLL</span>
+    <span class="scroll-line"></span>
+  </div>
+</section>
+
+<!-- ═══ TICKER ═══ -->
+<section class="ticker reveal">
+  <div class="ticker-text">
+    Now accepting summer commissions.<span class="diamond">&#x25C6;</span>Pool deck delivered in Palm Beach, April.<span class="diamond">&#x25C6;</span>Studio open by appointment.
+  </div>
+</section>
+
+<!-- ═══ FEATURED PROJECT ═══ -->
+<section class="featured reveal">
+  <div class="featured-image-wrap">
+    <img src="hs/hardscape-gallery-pool-featured.jpg" alt="Estate pool deck — Palm Beach">
+    <div class="featured-overlay">
+      <span class="featured-tag-left">Project 001</span>
+      <span class="featured-tag-right">Palm Beach · Completed MMXXV</span>
+      <div class="featured-center">
+        <h2>A surface built to <em>outlast</em> the estate</h2>
+      </div>
+      <a href="contact.html" class="featured-cta">Begin an enquiry <span class="arrow">&rarr;</span></a>
+    </div>
+  </div>
+  <div class="featured-specs">
+    <div class="spec-grid">
+      <div class="spec-cell">
+        <span class="spec-label">Material</span>
+        <span class="spec-val">Travertine</span>
+      </div>
+      <div class="spec-cell">
+        <span class="spec-label">Territory</span>
+        <span class="spec-val">Palm Beach</span>
+      </div>
+      <div class="spec-cell">
+        <span class="spec-label">Completion</span>
+        <span class="spec-val">April MMXXV</span>
+      </div>
+      <div class="spec-cell">
+        <span class="spec-label">Area</span>
+        <span class="spec-val">1,240 sqft</span>
+      </div>
+      <div class="spec-cell">
+        <span class="spec-label">Delivered</span>
+        <span class="spec-val">On time</span>
+      </div>
+      <div class="spec-cell">
+        <span class="spec-label">Status</span>
+        <span class="spec-val">Registered</span>
+      </div>
+    </div>
+    <span class="featured-footnote"><em>Photography · Studio Phaöra</em></span>
+  </div>
+</section>
+
+<!-- ═══ TWO DIVISIONS ═══ -->
+<section class="divisions reveal">
+  <div class="divisions-grid">
+    <a href="hardscape-gallery.html" class="div-tile">
+      <img src="hs/hero-waterfall.jpeg" alt="Hardscape waterfall feature">
+      <div class="div-overlay"></div>
+      <span class="div-corner">Division 01</span>
+      <div class="div-bottom">
+        <h3>Hardscape</h3>
+        <span class="div-tag">THE GROUND BENEATH THE HOUSE</span>
+        <p>Pool decks, driveways, outdoor kitchens, patios. Every stone quarried, selected, and set by hand. We build surfaces that outlast the architecture above them.</p>
+        <span class="div-link">Enter the gallery <span class="arrow">&rarr;</span></span>
+      </div>
+    </a>
+    <a href="https://phaora.com/sculptures.html?v=4" class="div-tile">
+      <img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-1.jpeg" alt="Crystal sculpture — The Canopy">
+      <div class="div-overlay"></div>
+      <span class="div-corner">Division 02</span>
+      <div class="div-bottom">
+        <h3>Sculpture</h3>
+        <span class="div-tag">THE EARTH, GIVEN FORM</span>
+        <p>Hand-carved crystal from the mountains of Minas Gerais, Brazil. Forty-four pieces in the collection, each shaped by forty years of devotion.</p>
+        <span class="div-link">Enter the collection <span class="arrow">&rarr;</span></span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ═══ STUDIO NOTE (LIGHT RELIEF) ═══ -->
+<section class="studio-note" id="studio" data-nav-light>
+  <div class="studio-note-inner">
+    <div class="studio-note-meta">
+      <div class="snm-row">
+        <span class="snm-label">From the studio</span>
+        <span class="snm-value">No. 001</span>
+      </div>
+      <div class="snm-row">
+        <span class="snm-label">Founder</span>
+        <span class="snm-value">DMV</span>
+      </div>
+      <div class="snm-row">
+        <span class="snm-label">Filed</span>
+        <span class="snm-value">22 April MMXXVI</span>
+      </div>
+      <div class="snm-row">
+        <span class="snm-label">Read time</span>
+        <span class="snm-value">2 min</span>
+      </div>
+      <div class="snm-row">
+        <span class="snm-label">Territory</span>
+        <span class="snm-value">South Florida</span>
+      </div>
+    </div>
+    <div class="studio-note-body">
+      <p class="dropcap">Most firms in South Florida work from catalogs. We work from quarries. Every surface we deliver began as a conversation about the land beneath it — its grade, its drainage, its exposure to salt air. The material follows. The design follows. Nothing is rushed.</p>
+      <blockquote>The stone was here before the house. We intend it to remain after.</blockquote>
+      <p class="closing">We take fewer projects than we could. This is by design. Every commission receives the full attention of the studio, from first site visit to final seal.</p>
+      <div class="signoff">
+        <span class="so-name">— David Machado Vaz</span>
+        <span class="so-title">Founder, Phaöra</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ GALLERY ═══ -->
+<section class="gallery-section reveal" id="gallery">
+  <div class="gallery-inner">
+    <div class="gallery-header">
+      <div>
+        <span class="gallery-kicker">Selected works</span>
+        <h2>The <em>permanent</em> record</h2>
+      </div>
+      <div class="gallery-meta">
+        <span class="gallery-count">Thirteen of forty-seven</span>
+        <a href="gallery.html" class="gallery-archive">Archive <span>&rarr;</span></a>
+      </div>
+    </div>
+    <div class="g-grid">
+      <div class="g-tile" data-cap="Boca Raton · Pool Deck">
+        <img src="hs/hardscape-gallery-pool-featured.jpg" alt="Pool deck" loading="lazy">
+        <div class="g-caption">Boca Raton · Pool Deck</div>
+      </div>
+      <div class="g-tile" data-cap="Palm Beach · Outdoor Fireplace">
+        <img src="hs/hardscape-gallery-fireplace.jpg" alt="Outdoor fireplace" loading="lazy">
+        <div class="g-caption">Palm Beach · Outdoor Fireplace</div>
+      </div>
+      <div class="g-tile" data-cap="Delray Beach · Elevated Patio">
+        <img src="hs/hardscape-gallery-elevated-patio.jpg" alt="Elevated patio" loading="lazy">
+        <div class="g-caption">Delray Beach · Elevated Patio</div>
+      </div>
+      <div class="g-tile" data-cap="Coral Gables · Outdoor Kitchen">
+        <img src="hs/hardscape-gallery-outdoor-kitchen.jpg" alt="Outdoor kitchen" loading="lazy">
+        <div class="g-caption">Coral Gables · Outdoor Kitchen</div>
+      </div>
+      <div class="g-tile" data-cap="Manalapan · Entry Walk">
+        <img src="hs/hardscape-gallery-walkway.jpg" alt="Entry walkway" loading="lazy">
+        <div class="g-caption">Manalapan · Entry Walk</div>
+      </div>
+      <div class="g-tile" data-cap="Boca Raton · Pool Steps">
+        <img src="hs/hardscape-gallery-pool-steps.jpg" alt="Pool steps" loading="lazy">
+        <div class="g-caption">Boca Raton · Pool Steps</div>
+      </div>
+      <div class="g-tile" data-cap="Palm Beach · Stone Detail">
+        <img src="hs/hardscape-gallery-stone-detail.jpg" alt="Stone detail" loading="lazy">
+        <div class="g-caption">Palm Beach · Stone Detail</div>
+      </div>
+      <div class="g-tile" data-cap="Jupiter Island · Retaining Wall">
+        <img src="hs/hardscape-gallery-retaining-wall.jpg" alt="Retaining wall" loading="lazy">
+        <div class="g-caption">Jupiter Island · Retaining Wall</div>
+      </div>
+      <div class="g-tile" data-cap="Coral Gables · Stone Fireplace">
+        <img src="hs/hardscape-gallery-stone-fireplace.jpg" alt="Stone fireplace" loading="lazy">
+        <div class="g-caption">Coral Gables · Stone Fireplace</div>
+      </div>
+      <div class="g-tile" data-cap="Delray Beach · Fire Pit">
+        <img src="hs/hardscape-gallery-fire-pit.jpg" alt="Fire pit" loading="lazy">
+        <div class="g-caption">Delray Beach · Fire Pit</div>
+      </div>
+      <div class="g-tile" data-cap="Boca Raton · The Craft">
+        <img src="hs/hardscape-gallery-the-craft.jpg" alt="The craft" loading="lazy">
+        <div class="g-caption">Boca Raton · The Craft</div>
+      </div>
+      <div class="g-tile" data-cap="Manalapan · Paver Detail">
+        <img src="hs/hardscape-gallery-paver-closeup.jpg" alt="Paver detail" loading="lazy">
+        <div class="g-caption">Manalapan · Paver Detail</div>
+      </div>
+      <div class="g-tile" data-cap="Fisher Island · Crystal Commission">
+        <img src="assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-1.jpeg" alt="Crystal commission" loading="lazy">
+        <div class="g-caption">Fisher Island · Crystal Commission</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROVENANCE ═══ -->
+<section class="provenance reveal" id="provenance">
+  <div class="provenance-inner">
+    <div class="prov-image">
+      <img src="assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-1.jpeg" alt="Crystal sculpture — The Portal">
+    </div>
+    <div class="prov-content">
+      <span class="prov-kicker">Studio</span>
+      <h3>The territories we <em>serve</em></h3>
+      <p>Six corridors across South Florida's Gold Coast, from the barrier islands to the inland estates. Each territory earned through referral, never through advertising. The work speaks first.</p>
+      <div class="territory-list">
+        <div class="territory-item">
+          <span class="territory-name">Boca Raton</span>
+          <span class="territory-since">Since MMXIX</span>
+        </div>
+        <div class="territory-item">
+          <span class="territory-name">Palm Beach</span>
+          <span class="territory-since">Since MMXX</span>
+        </div>
+        <div class="territory-item">
+          <span class="territory-name">Coral Gables</span>
+          <span class="territory-since">Since MMXXI</span>
+        </div>
+        <div class="territory-item">
+          <span class="territory-name">Delray Beach</span>
+          <span class="territory-since">Since MMXXI</span>
+        </div>
+        <div class="territory-item">
+          <span class="territory-name">Manalapan</span>
+          <span class="territory-since">Since MMXXII</span>
+        </div>
+        <div class="territory-item">
+          <span class="territory-name">Jupiter Island</span>
+          <span class="territory-since">Since MMXXIII</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ INVITATION ═══ -->
+<section class="invitation" id="invitation">
+  <div class="invitation-bg">
+    <img src="assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-2.jpeg" alt="">
+    <div class="invitation-dim"></div>
+  </div>
+  <div class="invitation-content">
+    <span class="super-label">— Begin a project —</span>
+    <h3>Every project begins with a <em>single</em> conversation</h3>
+    <p>Materials, territory, timeline. No intermediary, no obligation. David responds personally within twenty-four hours.</p>
+    <div class="invitation-ctas">
+      <a href="mailto:david@phaora.com" class="btn btn-amber">Speak with the studio <span class="arrow">&rarr;</span></a>
+      <a href="gallery.html" class="btn btn-outline">View the portfolio <span class="arrow">&rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <span class="footer-logo">PHAÖRA</span>
+      <p class="footer-tagline">Hardscape and crystal for the estates that demand permanence.</p>
+    </div>
+    <div class="footer-col">
+      <h5>The House</h5>
+      <a href="#">About</a>
+      <a href="#studio">Studio</a>
+      <a href="#">Press</a>
+      <a href="#">Journal</a>
+    </div>
+    <div class="footer-col">
+      <h5>Divisions</h5>
+      <a href="hardscape-gallery.html">Hardscape</a>
+      <a href="https://phaora.com/sculptures.html?v=4">Sculpture</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="https://phaora.com/sculptures.html?v=4">Pieces</a>
+    </div>
+    <div class="footer-col">
+      <h5>Connect</h5>
+      <a href="contact.html">Contact</a>
+      <a href="agents.html">Agents</a>
+      <a href="#">Instagram</a>
+      <a href="mailto:david@phaora.com">Email</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>Phaöra · MMXXVI</span>
+    <span class="motto">Built on standards. Not inherited. Decided.</span>
+    <span>Boca Raton · All rights reserved</span>
+  </div>
+</footer>
+
+<!-- ═══ SCRIPT ═══ -->
+<script>
+(function(){
+  var nav = document.getElementById('nav');
+
+  /* Nav light/dark on ivory section */
+  var lightSection = document.querySelector('[data-nav-light]');
+  if (lightSection) {
+    new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        nav.classList.toggle('nav-light', e.isIntersecting);
+      });
+    }, { rootMargin: '0px 0px -92% 0px' }).observe(lightSection);
+  }
+
+  /* Scroll reveal */
+  var reveals = document.querySelectorAll('.reveal');
+  var revealObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) {
+        e.target.classList.add('revealed');
+        revealObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(function(el){ revealObs.observe(el); });
+})();
+</script>
+
+</body>
+</html>

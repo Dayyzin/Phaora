@@ -1,0 +1,443 @@
+#!/usr/bin/env node
+// Generate all 43 piece pages (skip the-canopy, already done)
+const fs = require('fs');
+const path = require('path');
+
+const LEGACY = path.join(__dirname, 'pieces-legacy');
+const OUT = path.join(__dirname, 'pieces');
+
+const POOL = [
+'assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-1.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-2.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-3.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-4.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-5.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-6.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-1.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-2.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-3.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-4.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-5.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/crimson-duo/phaora-crimson-duo-6.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-1.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-2.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-3.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-4.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-5.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/dynasty/phaora-dynasty-6.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-1.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-2.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-3.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-4.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-5.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/perch/phaora-perch-6.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-1.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-2.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-3.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-4.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-5.jpeg',
+'assets/PHAORA%20IMAGES/Sculptures/portal/phaora-portal-6.jpeg'
+];
+
+const PHOTOGRAPHED = {
+  'the-crimson-duo': 'crimson-duo',
+  'the-dynasty': 'dynasty',
+  'the-perch': 'perch',
+  'the-portal': 'portal'
+};
+
+// Lowest-wins price table
+const PRICES = {
+'the-aerie':48000,'the-ascent':14000,'the-cathedral':26000,'the-cluster':44000,
+'the-companions':10500,'the-courtship':13000,'the-crimson-duo':24000,'the-devotion':14500,
+'the-driftwood':'On request','the-duet':11000,'the-dynasty':52000,'the-eclipse':23000,
+'the-eden':18000,'the-embrace':14500,'the-ethereals':20000,'the-gathering':26000,
+'the-grace':7500,'the-grotto':19000,'the-guardians':16500,'the-herald':16000,
+'the-hyacinths':22000,'the-indigos':20000,'the-lovers':11500,'the-monolith':38000,
+'the-nest':8500,'the-orbit':12500,'the-pair':9000,'the-parliament':26000,
+'the-perch':16500,'the-portal':35000,'the-radiance':21000,'the-raptor':28000,
+'the-scarlets':27000,'the-sentinels':22000,'the-sliced':26000,'the-smoke':24000,
+'the-soloist':12000,'the-sovereign':32000,'the-tenderness':9500,'the-twins':28000,
+'the-vessel':35000,'the-violet':13500,'the-whisper':6500
+};
+
+// All slugs in alphabetical order
+const ALL = ['the-aerie','the-ascent','the-canopy','the-cathedral','the-cluster','the-companions',
+'the-courtship','the-crimson-duo','the-devotion','the-driftwood','the-duet','the-dynasty',
+'the-eclipse','the-eden','the-embrace','the-ethereals','the-gathering','the-grace','the-grotto',
+'the-guardians','the-herald','the-hyacinths','the-indigos','the-lovers','the-monolith','the-nest',
+'the-orbit','the-pair','the-parliament','the-perch','the-portal','the-radiance','the-raptor',
+'the-scarlets','the-sentinels','the-sliced','the-smoke','the-soloist','the-sovereign',
+'the-tenderness','the-twins','the-vessel','the-violet','the-whisper'];
+
+function hashSlug(s){let h=0;for(let i=0;i<s.length;i++)h=((h<<5)-h)+s.charCodeAt(i);return Math.abs(h)}
+
+function slugToName(s){return s.replace(/^the-/,'The ').replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase()).replace(/^The /,'The ')}
+
+function fmtPrice(p){
+  if(p==='On request')return'<span class="mc-price-val" style="font-family:var(--serif);font-style:italic">On request</span>';
+  return`<div class="mc-price-val">USD ${p.toLocaleString('en-US')}</div>`;
+}
+function fmtPriceTitle(p){return p==='On request'?'By Appointment':`USD ${p.toLocaleString('en-US')}`}
+
+function extractData(slug){
+  const file = path.join(LEGACY, slug+'.html');
+  const html = fs.readFileSync(file,'utf8');
+  const d = {};
+
+  // Name
+  d.name = slugToName(slug);
+
+  // Subtitle
+  const subM = html.match(/piece-subtitle">([^<]+)/);
+  d.subtitle = subM ? subM[1].trim() : '';
+
+  // Specs
+  d.specs = [];
+  const specMatches = html.matchAll(/spec-label">([^<]+)<\/span><span class="spec-val">([^<]+)/g);
+  for(const m of specMatches) d.specs.push({label:m[1].trim(), val:m[2].trim()});
+
+  // Narrative: heading, paragraphs, points
+  d.hasNarrative = /diff-text/.test(html);
+  d.narrativeH2 = '';
+  d.narrativeP = [];
+  d.points = [];
+
+  if(d.hasNarrative){
+    // Extract h2 from diff-text section
+    const h2M = html.match(/<div class="diff-text">[\s\S]*?<h2[^>]*>([\s\S]*?)<\/h2>/);
+    if(h2M) d.narrativeH2 = h2M[1].replace(/<br\s*\/?>/g,'<br>').trim();
+
+    // Extract paragraphs from diff-text
+    const dtMatch = html.match(/<div class="diff-text">([\s\S]*?)<\/div>\s*<div class="diff-points">/);
+    if(dtMatch){
+      const pMatches = dtMatch[1].matchAll(/<p>([\s\S]*?)<\/p>/g);
+      for(const pm of pMatches) d.narrativeP.push(pm[1].trim());
+    }
+
+    // Extract diff points
+    const ptMatches = html.matchAll(/<div class="dp-body">\s*<strong>([^<]+)<\/strong>\s*<span>([^<]+)<\/span>/g);
+    for(const pm of ptMatches) d.points.push({title:pm[1].trim(), text:pm[2].trim()});
+    // Filter out generic/scarcity points
+    d.points = d.points.filter(p => !p.title.match(/^1 of|^One of|remaining|Placed by Hand/i));
+  }
+
+  return d;
+}
+
+function buildPage(slug, batchSlugs){
+  const idx = ALL.indexOf(slug);
+  const num = String(idx+1).padStart(2,'0');
+  const prevIdx = (idx-1+ALL.length)%ALL.length;
+  const nextIdx = (idx+1)%ALL.length;
+  const prevSlug = ALL[prevIdx];
+  const nextSlug = ALL[nextIdx];
+  const prevName = slugToName(prevSlug);
+  const nextName = slugToName(nextSlug);
+
+  const d = extractData(slug);
+  const price = PRICES[slug];
+  const priceDisplay = price === 'On request' ? 'On request' : `USD ${price.toLocaleString('en-US')}`;
+  const priceTitle = price === 'On request' ? 'By Appointment' : `USD ${price.toLocaleString('en-US')}`;
+  const priceValHtml = price === 'On request'
+    ? '<div class="mc-price-val" style="font-family:var(--serif);font-style:italic">On request</div>'
+    : `<div class="mc-price-val">USD ${price.toLocaleString('en-US')}</div>`;
+
+  const isPhotographed = slug in PHOTOGRAPHED;
+  const photoFolder = isPhotographed ? PHOTOGRAPHED[slug] : null;
+  const hi = hashSlug(slug);
+  const heroImg = isPhotographed
+    ? `../assets/PHAORA%20IMAGES/Sculptures/${photoFolder}/phaora-${photoFolder}-1.jpeg`
+    : '../'+POOL[hi % POOL.length];
+  const accent1 = '../'+POOL[(hi+1)%POOL.length];
+  const accent2 = '../'+POOL[(hi+2)%POOL.length];
+  const accent3 = '../'+POOL[(hi+3)%POOL.length];
+
+  // Subtitle display
+  const subHtml = d.subtitle
+    ? `<p class="piece-sub">${d.subtitle}</p>`
+    : '';
+
+  // Specs — use extracted or defaults
+  let specsHtml = '';
+  if(d.specs.length > 0){
+    // Filter out delivery/edition rows (handled separately)
+    const filteredSpecs = d.specs.filter(s => !s.label.match(/Edition|Delivery|Craftsman/i));
+    specsHtml = filteredSpecs.map(s =>
+      `<div class="mc-row"><span class="mc-label">${s.label}</span><span class="mc-val">${s.val}</span></div>`
+    ).join('\n      ');
+  } else {
+    specsHtml = `<div class="mc-row"><span class="mc-label">Medium</span><span class="mc-val">Brazilian crystal</span></div>
+      <div class="mc-row"><span class="mc-label">Origin</span><span class="mc-val">Minas Gerais, Brazil</span></div>`;
+  }
+
+  // Narrative body
+  let narrativeHtml;
+  if(d.hasNarrative && d.narrativeP.length > 0){
+    const h2 = d.narrativeH2 ? `<h2>${d.narrativeH2}</h2>` : '';
+    const paras = d.narrativeP.map(p => `<p>${p}</p>`).join('\n      ');
+    // Pick a pull-quote from the first paragraph if long enough
+    let quoteHtml = '';
+    if(d.narrativeP.length > 0){
+      const firstP = d.narrativeP[0];
+      const sentences = firstP.split(/(?<=\.)\s+/);
+      if(sentences.length > 1){
+        quoteHtml = `<blockquote>${sentences[0]}</blockquote>`;
+      }
+    }
+    let pointsHtml = '';
+    if(d.points.length > 0){
+      const nums = ['I','II','III','IV'];
+      pointsHtml = '<div class="craft-points">' +
+        d.points.slice(0,4).map((p,i) =>
+          `<div class="craft-point"><span class="cp-num">${nums[i]||i+1}</span><div class="cp-body"><strong>${p.title}</strong><span>${p.text}</span></div></div>`
+        ).join('') + '</div>';
+    }
+    narrativeHtml = `${h2}\n      ${paras}\n      ${quoteHtml}\n      ${pointsHtml}`;
+  } else {
+    narrativeHtml = `<p style="font-family:var(--serif);font-style:italic;font-size:16px;color:rgba(232,220,196,0.6);font-variation-settings:'opsz' 18">Full piece narrative forthcoming. By appointment.</p>`;
+  }
+
+  // Photo block for photographed pieces
+  let photoBlockHtml = '';
+  if(isPhotographed){
+    const folder = photoFolder;
+    photoBlockHtml = `
+<!-- PHOTOGRAPHY -->
+<section class="photos reveal">
+  <div class="photos-label">Six photographs · ${d.name}</div>
+  <div class="p-grid">
+    <div class="g-tile" style="grid-column:span 8;grid-row:span 5" data-cap="${d.name} · Plate 1"><img src="../assets/PHAORA%20IMAGES/Sculptures/${folder}/phaora-${folder}-1.jpeg" alt="${d.name} — view 1" loading="lazy"><div class="g-caption">${d.name} · Plate 1</div></div>
+    <div class="g-tile" style="grid-column:span 4;grid-row:span 5" data-cap="${d.name} · Plate 2"><img src="../assets/PHAORA%20IMAGES/Sculptures/${folder}/phaora-${folder}-2.jpeg" alt="${d.name} — view 2" loading="lazy"><div class="g-caption">${d.name} · Plate 2</div></div>
+    <div class="g-tile" style="grid-column:span 5;grid-row:span 4" data-cap="${d.name} · Plate 3"><img src="../assets/PHAORA%20IMAGES/Sculptures/${folder}/phaora-${folder}-3.jpeg" alt="${d.name} — view 3" loading="lazy"><div class="g-caption">${d.name} · Plate 3</div></div>
+    <div class="g-tile" style="grid-column:span 4;grid-row:span 4" data-cap="${d.name} · Plate 4"><img src="../assets/PHAORA%20IMAGES/Sculptures/${folder}/phaora-${folder}-4.jpeg" alt="${d.name} — view 4" loading="lazy"><div class="g-caption">${d.name} · Plate 4</div></div>
+    <div class="g-tile" style="grid-column:span 3;grid-row:span 4" data-cap="${d.name} · Plate 5"><img src="../assets/PHAORA%20IMAGES/Sculptures/${folder}/phaora-${folder}-5.jpeg" alt="${d.name} — view 5" loading="lazy"><div class="g-caption">${d.name} · Plate 5</div></div>
+    <div class="g-tile" style="grid-column:span 12;grid-row:span 3" data-cap="${d.name} · Plate 6"><img src="../assets/PHAORA%20IMAGES/Sculptures/${folder}/phaora-${folder}-6.jpeg" alt="${d.name} — view 6" loading="lazy"><div class="g-caption">${d.name} · Plate 6</div></div>
+  </div>
+</section>`;
+  } else {
+    // 3-photo accent strip
+    photoBlockHtml = `
+<!-- STUDIO CONTEXT -->
+<section class="accent-strip reveal">
+  <div class="accent-grid">
+    <div class="accent-img"><img src="${accent1}" alt="" loading="lazy"></div>
+    <div class="accent-img"><img src="${accent2}" alt="" loading="lazy"></div>
+    <div class="accent-img"><img src="${accent3}" alt="" loading="lazy"></div>
+  </div>
+</section>`;
+  }
+
+  const subjectEnc = encodeURIComponent('Enquiry: '+d.name);
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PHAÖRA — ${d.name} · ${priceTitle}</title>
+<meta name="description" content="${d.name} — one of one crystal sculpture. Hand-carved in Minas Gerais, Brazil. By appointment.">
+<meta property="og:image" content="https://phaora.com/assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-1.jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--ink:#0a0908;--surface:#12100c;--bone:#e8dcc4;--amber:#B87333;--amber-bright:#D4A254;--muted:#8a7355;--stroke:rgba(184,115,51,0.2);--serif:'Fraunces',Georgia,serif;--sans:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;--ease:cubic-bezier(0.22,1,0.36,1)}
+html{scroll-behavior:smooth;background:var(--ink)}
+body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 2.5rem;height:60px;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(24px) saturate(1.2);-webkit-backdrop-filter:blur(24px) saturate(1.2);background:rgba(10,9,8,0.85);border-bottom:0.5px solid var(--stroke)}
+.nav-left,.nav-right{display:flex;align-items:center;gap:2rem}
+.nav-left a,.nav-right a{font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;color:var(--bone);transition:color .3s ease;position:relative}
+.nav-left a::after,.nav-right a:not(.nav-enquire)::after{content:'';position:absolute;bottom:-3px;left:0;width:100%;height:0.5px;background:var(--amber);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+.nav-left a:hover::after,.nav-right a:not(.nav-enquire):hover::after{transform:scaleX(1)}
+.nav-logo{font-family:var(--sans);font-size:14px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;text-decoration:none;color:var(--bone)}
+.nav-enquire{padding:8px 18px;border:0.5px solid rgba(232,220,196,0.3);transition:all .3s ease !important;display:inline-flex;align-items:center;gap:6px}
+.nav-enquire .arrow{font-size:10px;transition:transform .3s var(--ease)}
+.nav-enquire:hover .arrow{transform:translateX(4px)}
+.nav-enquire:hover{background:rgba(232,220,196,0.06)}
+.gf{position:relative;isolation:isolate}
+.gf::after{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:0.55;background-image:radial-gradient(1.5px 1.5px at 8% 15%,rgba(184,115,51,0.35),transparent),radial-gradient(1px 1px at 22% 48%,rgba(212,162,84,0.25),transparent),radial-gradient(2px 1px at 38% 78%,rgba(184,115,51,0.2),transparent),radial-gradient(1px 1.5px at 55% 22%,rgba(212,162,84,0.3),transparent),radial-gradient(1.5px 1px at 72% 58%,rgba(184,115,51,0.25),transparent),radial-gradient(1px 1px at 85% 82%,rgba(212,162,84,0.2),transparent),radial-gradient(1px 2px at 15% 92%,rgba(184,115,51,0.15),transparent),radial-gradient(2px 1px at 92% 35%,rgba(212,162,84,0.25),transparent)}
+.crumb{margin-top:60px;padding:1rem 2.5rem;border-bottom:0.5px solid var(--stroke);display:flex;justify-content:space-between;align-items:center}
+.crumb a{font-family:var(--sans);font-size:10.5px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .3s}
+.crumb a:hover{color:var(--amber)}
+.crumb-num{font-family:var(--mono);font-size:12px;font-weight:300;letter-spacing:0.1em;color:var(--muted)}
+.piece-hero{min-height:70vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:6rem 2.5rem;position:relative;overflow:hidden}
+.piece-hero-bg{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center;filter:brightness(0.45) contrast(1.05)}
+.piece-hero>*{position:relative;z-index:1}
+.piece-super{font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:0.32em;text-transform:uppercase;color:var(--amber);margin-bottom:2rem}
+.piece-hero h1{font-family:var(--serif);font-size:clamp(56px,8vw,120px);font-weight:300;line-height:0.95;letter-spacing:-0.025em;color:var(--bone);font-variation-settings:'opsz' 144,'SOFT' 0;margin-bottom:1rem}
+.piece-hero h1 em{font-style:italic}
+.piece-sub{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2vw,26px);line-height:1.4;color:rgba(232,220,196,0.85);font-weight:300;font-variation-settings:'opsz' 36,'SOFT' 80;max-width:600px;margin-bottom:3rem}
+.piece-meta{border-top:0.5px solid var(--stroke);padding-top:1.25rem;font-family:var(--mono);font-size:12px;font-weight:300;letter-spacing:0.08em;color:var(--muted);display:flex;gap:1.5rem;flex-wrap:wrap}
+.piece-meta .sep{color:var(--amber);font-size:10px}
+.piece-body{padding:5rem 2.5rem}
+.piece-body-inner{display:grid;grid-template-columns:1fr 2fr;gap:5rem;max-width:1200px;margin:0 auto;align-items:start}
+.meta-card{border:0.5px solid var(--stroke)}
+.mc-price{padding:2rem;border-bottom:0.5px solid var(--stroke)}
+.mc-price-label{display:block;font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem}
+.mc-price-val{font-family:var(--mono);font-size:22px;font-weight:300;color:var(--bone)}
+.mc-price-ed{display:block;font-family:var(--serif);font-style:italic;font-size:13px;color:var(--muted);margin-top:0.5rem;font-variation-settings:'opsz' 18}
+.mc-row{display:flex;justify-content:space-between;align-items:baseline;padding:0.875rem 2rem;border-bottom:0.5px solid var(--stroke)}
+.mc-row:last-child{border-bottom:none}
+.mc-label{font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted)}
+.mc-val{font-family:var(--mono);font-size:13px;font-weight:300;color:var(--bone);text-align:right;max-width:55%}
+.mc-cta{display:block;padding:1.25rem 2rem;text-align:center;background:var(--amber);color:var(--ink);font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;transition:background .4s var(--ease)}
+.mc-cta:hover{background:var(--amber-bright)}
+.editorial h2{font-family:var(--serif);font-size:clamp(28px,3vw,40px);font-weight:300;line-height:1.15;color:var(--bone);font-variation-settings:'opsz' 72,'SOFT' 0;margin-bottom:2rem}
+.editorial h2 em{font-style:italic}
+.editorial p{font-family:var(--serif);font-size:18px;font-weight:400;line-height:1.65;color:rgba(232,220,196,0.88);margin-bottom:1.5rem;font-variation-settings:'opsz' 18,'SOFT' 50}
+.editorial blockquote{font-family:var(--serif);font-style:italic;font-size:clamp(22px,2.5vw,28px);line-height:1.4;color:var(--bone);padding-left:2rem;border-left:1px solid var(--amber);margin:2.5rem 0;font-variation-settings:'opsz' 36,'SOFT' 50}
+.craft-points{margin-top:3rem;border-top:0.5px solid var(--stroke);padding-top:2rem}
+.craft-point{display:flex;gap:1.25rem;padding:1.25rem 0;border-bottom:0.5px solid var(--stroke)}
+.craft-point:last-child{border-bottom:none}
+.cp-num{font-family:var(--serif);font-style:italic;font-size:24px;font-weight:300;color:var(--amber);line-height:1;flex-shrink:0;width:2rem;font-variation-settings:'opsz' 36}
+.cp-body strong{display:block;font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:0.06em;color:var(--bone);margin-bottom:4px}
+.cp-body span{font-family:var(--serif);font-size:15px;font-weight:400;color:rgba(232,220,196,0.6);line-height:1.55;font-variation-settings:'opsz' 18}
+.photos{padding:0 2.5rem 5rem;border-top:0.5px solid var(--stroke)}
+.photos-label{max-width:1440px;margin:0 auto;padding:1rem 0;font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--amber);margin-bottom:2rem}
+.p-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:90px;gap:1.25rem;max-width:1440px;margin:0 auto;grid-auto-flow:dense}
+.g-tile{position:relative;overflow:hidden;cursor:pointer}
+.g-tile img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(10%) brightness(0.75) contrast(1.08);transition:all 1.2s cubic-bezier(0.22,1,0.36,1)}
+.g-tile:hover img{filter:grayscale(0%) brightness(1) contrast(1.08);transform:scale(1.04)}
+.g-caption{position:absolute;bottom:0;left:0;right:0;padding:3rem 1.25rem 1rem;background:linear-gradient(transparent,rgba(10,9,8,0.85));border-top:0.5px solid transparent;font-family:var(--sans);font-size:10.5px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:var(--bone);transform:translateY(100%);transition:transform .6s var(--ease),border-color .6s ease}
+.g-tile:hover .g-caption{transform:translateY(0);border-top-color:var(--stroke)}
+.accent-strip{padding:3rem 2.5rem 5rem}
+.accent-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;max-width:1440px;margin:0 auto}
+.accent-img{height:180px;overflow:hidden}
+.accent-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(10%) brightness(0.75) contrast(1.08)}
+.pn{border-top:0.5px solid var(--stroke);padding:3rem 2.5rem;max-width:1440px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.pn a{text-decoration:none;color:var(--bone);transition:color .3s}
+.pn a:hover{color:var(--amber)}
+.pn-label{display:block;font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem}
+.pn-name{font-family:var(--serif);font-style:italic;font-size:22px;font-weight:300;font-variation-settings:'opsz' 36}
+.pn-next{text-align:right}
+.corr{padding:6rem 2.5rem;text-align:center;border-top:0.5px solid var(--stroke)}
+.corr-inner{max-width:680px;margin:0 auto}
+.super-label{display:block;font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:0.32em;text-transform:uppercase;color:var(--muted);margin-bottom:2.5rem}
+.corr-inner h3{font-family:var(--serif);font-size:clamp(36px,5vw,56px);font-weight:300;line-height:1.1;color:var(--bone);margin-bottom:1.5rem;font-variation-settings:'opsz' 144,'SOFT' 0}
+.corr-inner h3 em{font-style:italic}
+.corr-inner>p{font-family:var(--serif);font-size:17px;font-weight:400;line-height:1.55;color:rgba(232,220,196,0.5);margin-bottom:3rem;font-variation-settings:'opsz' 18,'SOFT' 50}
+.corr-ctas{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:1rem 2rem;font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:all .4s var(--ease)}
+.btn .arrow{transition:transform .4s var(--ease)}
+.btn:hover .arrow{transform:translateX(6px)}
+.btn-amber{background:var(--amber);color:var(--ink);border:1px solid var(--amber)}
+.btn-amber:hover{background:var(--amber-bright);border-color:var(--amber-bright)}
+.btn-outline{background:transparent;color:var(--bone);border:1px solid rgba(232,220,196,0.3)}
+.btn-outline:hover{background:var(--bone);color:var(--ink);border-color:var(--bone)}
+.footer{background:var(--ink);border-top:0.5px solid var(--stroke);padding:5rem 2.5rem 0}
+.footer-inner{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem;max-width:1440px;margin:0 auto;padding-bottom:4rem}
+.footer-logo{font-family:var(--serif);font-size:40px;font-weight:300;color:var(--bone);margin-bottom:1rem;display:block;font-variation-settings:'opsz' 72,'SOFT' 0}
+.footer-tagline{font-family:var(--serif);font-style:italic;font-size:15px;line-height:1.55;color:rgba(232,220,196,0.55);max-width:320px;font-variation-settings:'opsz' 18,'SOFT' 50}
+.footer-col h5{font-family:var(--sans);font-size:10.5px;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);margin-bottom:1.25rem}
+.footer-col a{display:block;font-family:var(--sans);font-size:13px;font-weight:400;color:rgba(232,220,196,0.5);text-decoration:none;margin-bottom:0.75rem;transition:color .3s ease}
+.footer-col a:hover{color:var(--amber)}
+.footer-bottom{max-width:1440px;margin:0 auto;padding:1.5rem 0;border-top:0.5px solid var(--stroke);display:flex;justify-content:space-between;align-items:center}
+.footer-bottom span{font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:0.06em;color:var(--muted)}
+.footer-bottom .motto{font-family:var(--serif);font-style:italic;font-size:13px;color:rgba(232,220,196,0.6);font-variation-settings:'opsz' 18}
+.lb{position:fixed;inset:0;z-index:10000;background:rgba(10,9,8,0.96);display:flex;align-items:center;justify-content:center;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .3s ease}
+.lb.open{opacity:1;pointer-events:all}
+.lb-img{max-width:90vw;max-height:85vh;object-fit:contain;display:block}
+.lb-close{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;color:var(--bone);font-size:1.5rem;cursor:pointer;transition:color .3s;padding:0.5rem}
+.lb-close:hover{color:var(--amber)}
+.lb-prev,.lb-next{position:absolute;top:50%;transform:translateY(-50%);background:none;border:1px solid rgba(232,220,196,0.15);color:var(--bone);font-size:1.5rem;width:48px;height:48px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s ease}
+.lb-prev{left:1.5rem}.lb-next{right:1.5rem}
+.lb-prev:hover,.lb-next:hover{color:var(--amber);border-color:var(--amber)}
+.lb-info{margin-top:1.25rem;text-align:center}
+.lb-title{font-family:var(--serif);font-style:italic;font-size:18px;color:var(--bone);margin-bottom:4px;font-variation-settings:'opsz' 24}
+.lb-sub{font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted)}
+.lb-counter{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:0.15em;color:var(--muted)}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
+.reveal.revealed{opacity:1;transform:translateY(0)}
+@media(max-width:900px){
+.nav-left,.nav-right{display:none}.nav{justify-content:center}
+.crumb{padding:0.75rem 1.5rem}
+.piece-hero{padding:4rem 1.5rem;min-height:60vh}
+.piece-hero h1{font-size:clamp(40px,12vw,72px)}
+.piece-meta{flex-direction:column;gap:0.5rem}
+.piece-body{padding:3rem 1.5rem}
+.piece-body-inner{grid-template-columns:1fr;gap:3rem}
+.photos{padding:0 1.5rem 3rem}
+.p-grid{grid-template-columns:repeat(6,1fr);grid-auto-rows:80px;gap:0.75rem}
+.p-grid .g-tile{grid-column:span 3 !important;grid-row:span 4 !important}
+.accent-strip{padding:2rem 1.5rem 3rem}
+.accent-grid{grid-template-columns:1fr 1fr 1fr}
+.accent-img{height:120px}
+.pn{padding:2rem 1.5rem;grid-template-columns:1fr}.pn-next{text-align:left}
+.corr{padding:4rem 1.5rem}.corr-ctas{flex-direction:column;align-items:center}
+.footer{padding:3rem 1.5rem 0}.footer-inner{grid-template-columns:1fr;text-align:center}.footer-tagline{margin:0 auto}
+.footer-bottom{flex-direction:column;gap:0.5rem;text-align:center;padding:1.25rem 0}
+.lb-prev{left:0.5rem}.lb-next{right:0.5rem}.lb-prev,.lb-next{width:36px;height:36px;font-size:1.2rem}
+}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="nav-left"><a href="../hardscape-gallery.html">Hardscape</a><a href="https://phaora.com/sculptures.html?v=4">Sculpture</a><a href="../gallery.html">Gallery</a><a href="../agents.html">Agents</a></div><a href="../index.html" class="nav-logo">PHAÖRA</a><div class="nav-right"><a href="../index.html#studio">Studio</a><a href="../contact.html">Contact</a><a href="../index.html#invitation" class="nav-enquire">Enquire <span class="arrow">&rarr;</span></a></div></nav>
+<div class="crumb"><a href="https://phaora.com/sculptures.html?v=4">&larr; Back to the collection</a><span class="crumb-num">${num} of Forty-four</span></div>
+<section class="piece-hero gf">
+  <div class="piece-hero-bg" style="background-image:url('${heroImg}')"></div>
+  <div class="piece-super">Piece &middot; ${num}</div>
+  <h1>The <em>${d.name.replace('The ','')}</em></h1>
+  ${subHtml}
+  <div class="piece-meta"><span>Edition &middot; One of one</span><span class="sep">&#x25C6;</span><span>Origin &middot; Minas Gerais</span><span class="sep">&#x25C6;</span><span>By appointment</span></div>
+</section>
+<section class="piece-body reveal">
+  <div class="piece-body-inner">
+    <div class="meta-card">
+      <div class="mc-price"><span class="mc-price-label">Price</span>${priceValHtml}<span class="mc-price-ed">One of one</span></div>
+      ${specsHtml}
+      <div class="mc-row"><span class="mc-label">Signed</span><span class="mc-val">David Machado Vaz</span></div>
+      <a href="mailto:david@phaora.com?subject=${subjectEnc}" class="mc-cta">Inquire about this piece</a>
+    </div>
+    <div class="editorial">
+      ${narrativeHtml}
+    </div>
+  </div>
+</section>
+${photoBlockHtml}
+<nav class="pn"><a href="${prevSlug}.html"><span class="pn-label">&larr; Previous</span><span class="pn-name">${prevName}</span></a><a href="${nextSlug}.html" class="pn-next"><span class="pn-label">Next &rarr;</span><span class="pn-name">${nextName}</span></a></nav>
+<section class="corr gf reveal">
+  <div class="corr-inner">
+    <span class="super-label">&mdash; Correspondence &mdash;</span>
+    <h3>Enquire about <em>${d.name}</em></h3>
+    <p>David responds personally to every enquiry within twenty-four hours. No intermediary, no obligation.</p>
+    <div class="corr-ctas">
+      <a href="mailto:david@phaora.com?subject=${subjectEnc}" class="btn btn-amber">Write to the studio <span class="arrow">&rarr;</span></a>
+      <a href="https://phaora.com/sculptures.html?v=4" class="btn btn-outline">View the collection <span class="arrow">&rarr;</span></a>
+    </div>
+  </div>
+</section>
+<footer class="footer"><div class="footer-inner"><div><span class="footer-logo">PHAÖRA</span><p class="footer-tagline">Hardscape and crystal for the estates that demand permanence.</p></div><div class="footer-col"><h5>The House</h5><a href="../index.html">About</a><a href="../index.html#studio">Studio</a><a href="#">Press</a><a href="#">Journal</a></div><div class="footer-col"><h5>Divisions</h5><a href="../hardscape-gallery.html">Hardscape</a><a href="https://phaora.com/sculptures.html?v=4">Sculpture</a><a href="../gallery.html">Gallery</a><a href="https://phaora.com/sculptures.html?v=4">Pieces</a></div><div class="footer-col"><h5>Connect</h5><a href="../contact.html">Contact</a><a href="../agents.html">Agents</a><a href="#">Instagram</a><a href="mailto:david@phaora.com">Email</a></div></div><div class="footer-bottom"><span>Phaöra &middot; MMXXVI</span><span class="motto">Built on standards. Not inherited. Decided.</span><span>Boca Raton &middot; All rights reserved</span></div></footer>
+${isPhotographed ? `<div class="lb" id="lb"><button class="lb-close" id="lb-close">&#x2715;</button><button class="lb-prev" id="lb-prev">&#x2039;</button><img class="lb-img" id="lb-img" src="" alt=""><button class="lb-next" id="lb-next">&#x203A;</button><div class="lb-info"><div class="lb-title" id="lb-title"></div><div class="lb-sub" id="lb-sub"></div></div><span class="lb-counter" id="lb-counter"></span></div>` : ''}
+<script>
+(function(){
+  var reveals=document.querySelectorAll('.reveal');
+  var rObs=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){en.target.classList.add('revealed');rObs.unobserve(en.target)}})},{threshold:0.1});
+  reveals.forEach(function(el){rObs.observe(el)});
+  ${isPhotographed ? `var tiles=Array.from(document.querySelectorAll('.g-tile'));if(!tiles.length)return;var lb=document.getElementById('lb'),lbImg=document.getElementById('lb-img'),lbTitle=document.getElementById('lb-title'),lbSub=document.getElementById('lb-sub'),lbCounter=document.getElementById('lb-counter');var idx=0,total=tiles.length;function show(i){idx=((i%total)+total)%total;var t=tiles[idx],cap=t.getAttribute('data-cap')||'',parts=cap.split(' \\u00B7 ');lbImg.src=t.querySelector('img').src;lbTitle.textContent=parts[0]||'';lbSub.textContent=parts[1]||'';lbCounter.textContent=(idx+1)+' / '+total}function open(i){show(i);lb.classList.add('open');document.body.style.overflow='hidden'}function close(){lb.classList.remove('open');document.body.style.overflow=''}tiles.forEach(function(t,i){t.addEventListener('click',function(){open(i)})});document.getElementById('lb-close').addEventListener('click',close);document.getElementById('lb-prev').addEventListener('click',function(){show(idx-1)});document.getElementById('lb-next').addEventListener('click',function(){show(idx+1)});lb.addEventListener('click',function(e){if(e.target===lb)close()});document.addEventListener('keydown',function(e){if(!lb.classList.contains('open'))return;if(e.key==='Escape')close();else if(e.key==='ArrowLeft')show(idx-1);else if(e.key==='ArrowRight')show(idx+1)});` : ''}
+})();
+</script>
+</body>
+</html>`;
+}
+
+// Generate specified slugs or all
+const target = process.argv[2]; // 'all' or 'batch1' etc
+const batches = {
+  batch1: ALL.filter(s=>s!=='the-canopy').slice(0,9),
+  batch2: ALL.filter(s=>s!=='the-canopy').slice(9,18),
+  batch3: ALL.filter(s=>s!=='the-canopy').slice(18,27),
+  batch4: ALL.filter(s=>s!=='the-canopy').slice(27,35),
+  batch5: ALL.filter(s=>s!=='the-canopy').slice(35),
+  all: ALL.filter(s=>s!=='the-canopy')
+};
+
+const slugs = batches[target] || batches.all;
+slugs.forEach(slug => {
+  const html = buildPage(slug);
+  const outFile = path.join(OUT, slug+'.html');
+  fs.writeFileSync(outFile, html, 'utf8');
+  console.log(`  wrote ${slug}.html`);
+});
+console.log(`\nGenerated ${slugs.length} pages.`);

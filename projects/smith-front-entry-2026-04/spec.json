@@ -1,0 +1,21 @@
+{
+  "client_slug": "smith-front-entry-2026-04",
+  "client_name": "Smith Residence",
+  "job_type": "patio",
+  "dimensions": {
+    "width_ft": 10,
+    "depth_ft": 12,
+    "shape": "rectangle"
+  },
+  "paver": {
+    "size_inches": 24,
+    "color": "grey",
+    "pattern": "stack-bond grid",
+    "supplier": "Tremron",
+    "product_name": "Mega Olde Towne Slab"
+  },
+  "surface_area": "patio in front of covered porch",
+  "style_description": "modern Florida coastal home with white stucco walls",
+  "lighting_description": "late afternoon golden hour, warm raking sunlight from camera-left, clear blue Florida sky with light cumulus clouds",
+  "source_photo": "./source.jpg"
+}
