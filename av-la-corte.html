@@ -325,11 +325,11 @@ footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rg
   .work-spec-value{font-size:15px}
   .stage{min-height:80vh;padding:0}
   .cp{min-height:80vh}
-  .bg-title{font-size:clamp(48px,23vw,120px);padding-top:16vh;background:radial-gradient(ellipse 120% 85% at 50% 48%,#E2F1FA 0%,#AFC4D8 30%,#64788F 58%,#334154 82%,#16202E 100%);-webkit-background-clip:text;background-clip:text}
+  .bg-title{font-size:clamp(48px,23vw,120px);padding-top:20vh;background:radial-gradient(ellipse 120% 85% at 50% 48%,#E2F1FA 0%,#AFC4D8 30%,#64788F 58%,#334154 82%,#16202E 100%);-webkit-background-clip:text;background-clip:text}
   .stage>.amb-pool{left:50% !important;width:140vw !important;top:-6% !important;height:62vh !important}
   .cp>.amb-pool,.glow{display:none}
-  .sculpture-slot{position:absolute;bottom:auto;top:8vh;height:78vh}
-  .sculpture-slot img{-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 50%,rgba(0,0,0,.5) 75%,transparent 95%);mask-image:linear-gradient(180deg,#000 0%,#000 50%,rgba(0,0,0,.5) 75%,transparent 95%)}
+  .sculpture-slot{position:absolute;bottom:auto;top:-4vh;height:86vh;z-index:10}
+  .sculpture-slot img{transform:translateY(-12vh);-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 50%,rgba(0,0,0,.5) 75%,transparent 95%);mask-image:linear-gradient(180deg,#000 0%,#000 50%,rgba(0,0,0,.5) 75%,transparent 95%)}
   .sculpture-slot::after{display:none}
   .text-overlay{display:none}
   .tp-left-text .tp-items{display:grid;grid-template-columns:1fr 1fr;gap:16px 22px}
@@ -950,7 +950,7 @@ window.addEventListener('scroll',function(){document.getElementById('mainNav').c
 <style>
 .sculpture-slot img{max-width:84vw;max-height:86%;object-fit:contain;object-position:bottom;-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 90%,transparent 100%);mask-image:linear-gradient(180deg,#000 0%,#000 90%,transparent 100%)}
 .car-item img[src*="car-06"],.car-item img[src*="car-08"]{border-radius:8px}
-.ph-img-col img{-webkit-mask-image:radial-gradient(ellipse 70% 70% at 42% 48%,#000 50%,rgba(0,0,0,.5) 74%,transparent 96%);mask-image:radial-gradient(ellipse 70% 70% at 42% 48%,#000 50%,rgba(0,0,0,.5) 74%,transparent 96%)}
+.ph-img-col img{-webkit-mask-image:radial-gradient(ellipse 70% 70% at 42% 48%,#000 50%,rgba(0,0,0,.5) 74%,transparent 96%),linear-gradient(180deg,#000 48%,rgba(0,0,0,.4) 74%,transparent 95%);-webkit-mask-composite:source-in;mask-image:radial-gradient(ellipse 70% 70% at 42% 48%,#000 50%,rgba(0,0,0,.5) 74%,transparent 96%),linear-gradient(180deg,#000 48%,rgba(0,0,0,.4) 74%,transparent 95%);mask-composite:intersect}
 </style>
 </body>
 </html>
