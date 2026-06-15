@@ -609,6 +609,57 @@ footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rg
   </div>
 </section>
 
+<!-- THE PROCESS · dream-bubble easter egg (revealed by the "The Process" tab) -->
+<style>
+.dream{margin:8px auto 56px;max-width:980px;width:100%;padding:0 24px;display:flex;flex-direction:column;align-items:flex-start;opacity:0;transform:translateY(30px) scale(.95);filter:blur(7px);transition:opacity 1s ease,transform 1.15s cubic-bezier(.2,.85,.2,1),filter 1s ease,margin .6s ease;pointer-events:none;height:0;overflow:visible}
+.dream.awake{opacity:1;transform:none;filter:none;pointer-events:auto;height:auto;margin:36px auto 72px}
+.dream-bubble{position:relative;width:min(300px,72vw);aspect-ratio:1}
+.dream-rim{position:absolute;inset:0;border-radius:50%;overflow:hidden;border:1px solid rgba(234,239,245,.14);box-shadow:0 0 0 1px rgba(212,175,110,.12),0 30px 80px -22px rgba(0,0,0,.75),inset 0 0 44px rgba(212,175,110,.06);animation:dreamFloat 7s ease-in-out infinite;background:#0a0c10}
+.dream-video{width:100%;height:100%;object-fit:cover;display:block;border-radius:50%}
+.dream-glow{position:absolute;inset:-20%;border-radius:50%;background:radial-gradient(circle at 50% 45%,rgba(212,175,110,.22),rgba(212,175,110,0) 62%);filter:blur(16px);animation:dreamFloat 7s ease-in-out infinite;pointer-events:none}
+.dream-bubbles-deco span{position:absolute;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.55),rgba(212,175,110,.16) 60%,transparent 72%);opacity:.6;pointer-events:none}
+.dream-bubbles-deco span:nth-child(1){width:14px;height:14px;left:-6px;bottom:40px;animation:dreamRise 6s ease-in-out infinite}
+.dream-bubbles-deco span:nth-child(2){width:8px;height:8px;left:20px;bottom:-4px;animation:dreamRise 5s ease-in-out infinite .9s}
+.dream-bubbles-deco span:nth-child(3){width:20px;height:20px;right:8px;bottom:-12px;animation:dreamRise 7.5s ease-in-out infinite 1.5s}
+.dream-nav{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;border:1px solid rgba(234,239,245,.16);background:rgba(10,12,16,.55);color:rgba(234,239,245,.8);font-size:20px;line-height:1;cursor:pointer;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:.3s;display:flex;align-items:center;justify-content:center}
+.dream-nav:hover{border-color:var(--gold);color:var(--gold)}
+.dream-prev{left:-54px}
+.dream-next{right:-54px}
+.dream-cap{margin-top:24px;font-size:15px;letter-spacing:.02em;color:rgba(234,239,245,.55);font-family:'Cormorant Garamond',serif;font-style:italic}
+.dream-cap-eye{display:block;font-family:'Cormorant Garamond',serif;font-style:normal;font-size:9px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);opacity:.7;margin-bottom:7px}
+.dream-count{margin-left:10px;font-size:10px;letter-spacing:.18em;color:rgba(234,239,245,.35);font-style:normal}
+@keyframes dreamFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes dreamRise{0%{transform:translateY(0);opacity:0}20%{opacity:.7}100%{transform:translateY(-48px);opacity:0}}
+@media(max-width:560px){.dream-prev{left:-8px}.dream-next{right:-8px}.dream-nav{background:rgba(10,12,16,.72)}}
+</style>
+<div class="dream" id="dream" aria-hidden="true">
+  <div class="dream-bubble">
+    <div class="dream-glow"></div>
+    <div class="dream-rim">
+      <video class="dream-video" id="dreamVideo" playsinline muted loop preload="none"></video>
+    </div>
+    <div class="dream-bubbles-deco"><span></span><span></span><span></span></div>
+    <button class="dream-nav dream-prev" id="dreamPrev" aria-label="Previous">&lsaquo;</button>
+    <button class="dream-nav dream-next" id="dreamNext" aria-label="Next">&rsaquo;</button>
+  </div>
+  <p class="dream-cap"><span class="dream-cap-eye">&mdash; and, by the way &mdash;</span>How it was made<span class="dream-count" id="dreamCount">01 / 12</span></p>
+</div>
+<script>
+(function(){
+  var dream=document.getElementById('dream');
+  var vid=document.getElementById('dreamVideo');
+  if(!dream||!vid)return;
+  var SRC=[];for(var k=1;k<=12;k++){SRC.push('av/atelier/atelier-'+(k<10?'0':'')+k+'.mp4')}
+  var idx=0,loaded=false;
+  function show(n){idx=(n%SRC.length+SRC.length)%SRC.length;vid.src=SRC[idx];vid.play().catch(function(){});document.getElementById('dreamCount').textContent=(idx<9?'0':'')+(idx+1)+' / '+SRC.length}
+  function wake(){if(!dream.classList.contains('awake')){dream.classList.add('awake');dream.setAttribute('aria-hidden','false');if(!loaded){loaded=true;show(0)}else{vid.play().catch(function(){})}}dream.scrollIntoView({behavior:'smooth',block:'center'})}
+  function sleep(){dream.classList.remove('awake');dream.setAttribute('aria-hidden','true');vid.pause()}
+  document.querySelectorAll('#tpTabs .tp-tab').forEach(function(t){t.addEventListener('click',function(){if(t.dataset.tab==='1'){setTimeout(wake,80)}else{sleep()}})});
+  document.getElementById('dreamPrev').addEventListener('click',function(){show(idx-1)});
+  document.getElementById('dreamNext').addEventListener('click',function(){show(idx+1)});
+})();
+</script>
+
 <section id="philosophy">
   <div class="ph-amb"></div>
   <div class="ph-wrap">
