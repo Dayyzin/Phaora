@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reel I — PHAÖRA · Águas Vivas</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+html,body{
+  width:100%;height:100%;
+  background:#000;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+
+/* ── STAGE: 9:16, scales to fit viewport ── */
+.stage{
+  position:relative;
+  width:min(100vw, 56.25vh);
+  aspect-ratio:9/16;
+  overflow:hidden;
+  background:
+    radial-gradient(ellipse 75% 55% at 50% 32%,rgba(16,82,104,.32) 0%,rgba(8,52,72,.14) 42%,transparent 68%),
+    radial-gradient(ellipse 100% 65% at 50% 0%,rgba(10,42,62,.38) 0%,transparent 48%),
+    linear-gradient(180deg,#0b1b28 0%,#060e18 28%,#030a12 58%,#010508 100%);
+  font-family:'Georgia','Times New Roman',serif;
+  -webkit-font-smoothing:antialiased;
+}
+
+canvas{position:absolute;inset:0;pointer-events:none;z-index:0}
+
+/* ── ANIMATION DEFAULTS ── */
+.reveal{
+  opacity:0;
+  animation-fill-mode:both;
+  animation-timing-function:cubic-bezier(.22,1,.36,1);
+}
+.fade-out{
+  animation-fill-mode:both;
+  animation-name:fadeOut;
+  animation-timing-function:ease-in;
+}
+
+@keyframes surfaceUp{
+  from{opacity:0;transform:translateY(14px);filter:blur(8px)}
+  to  {opacity:1;transform:translateY(0);  filter:blur(0)}
+}
+@keyframes surfaceIn{
+  from{opacity:0;filter:blur(12px)}
+  to  {opacity:1;filter:blur(0)}
+}
+@keyframes ruleExpand{
+  from{width:0;opacity:0}
+  to  {width:var(--rule-w,38px);opacity:1}
+}
+@keyframes numeralRise{
+  from{opacity:0;transform:translateY(20px) scale(.94);filter:blur(6px)}
+  to  {opacity:1;transform:translateY(0)    scale(1);  filter:blur(0)}
+}
+@keyframes glowPulse{
+  0%,100%{opacity:.55;transform:translate(-50%,-50%) scale(1)}
+  50%    {opacity:.75;transform:translate(-50%,-50%) scale(1.08)}
+}
+@keyframes fadeOut{
+  from{opacity:1}
+  to  {opacity:0}
+}
+@keyframes headerRules{
+  from{width:0;opacity:0}
+  to  {width:clamp(28px,6cqw,64px);opacity:.55}
+}
+
+/* ── LAYOUT ── */
+.header{
+  position:absolute;top:0;left:0;right:0;
+  display:flex;align-items:center;justify-content:center;
+  gap:clamp(8px,2cqw,18px);
+  padding:clamp(20px,4cqh,36px) 0;
+  z-index:2;
+}
+.header-rule{
+  height:1px;
+  background:rgba(234,239,245,.3);
+  width:0;opacity:0;
+  animation:headerRules 0.9s cubic-bezier(.22,1,.36,1) 0.3s both;
+}
+.wordmark{
+  font-family:'Georgia',serif;
+  font-size:clamp(11px,2.2cqw,22px);
+  font-weight:400;
+  letter-spacing:.48em;
+  text-indent:.48em;
+  text-transform:uppercase;
+  color:rgba(234,239,245,.82);
+  white-space:nowrap;
+  opacity:0;
+  animation:surfaceIn 0.9s cubic-bezier(.22,1,.36,1) 0.3s both;
+}
+.wordmark .o{color:rgba(79,181,190,.55)}
+
+/* ── BODY: centred column ── */
+.body{
+  position:absolute;
+  inset:0;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:0;
+  padding:0 clamp(24px,5cqw,52px);
+  z-index:2;
+}
+
+.eyebrow{
+  font-family:'Georgia',serif;
+  font-size:clamp(7px,1.45cqw,14px);
+  font-weight:400;letter-spacing:.48em;text-indent:.48em;
+  text-transform:uppercase;
+  color:rgba(79,181,190,.62);
+  margin-bottom:clamp(22px,5cqh,48px);
+  animation:surfaceIn .7s cubic-bezier(.22,1,.36,1) 1.0s both;
+}
+
+/* Numeral + glow wrapper */
+.numeral-wrap{
+  position:relative;
+  display:flex;align-items:center;justify-content:center;
+  width:100%;
+  margin-bottom:clamp(12px,2.5cqh,24px);
+}
+.numeral-glow{
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:clamp(120px,36cqw,360px);
+  height:clamp(120px,36cqw,360px);
+  border-radius:50%;
+  background:radial-gradient(ellipse,rgba(30,130,158,.28) 0%,rgba(18,80,104,.14) 38%,transparent 68%);
+  filter:blur(clamp(8px,2cqw,20px));
+  opacity:0;
+  animation:glowPulse 3.8s ease-in-out 1.6s infinite both;
+  pointer-events:none;
+}
+.numeral{
+  position:relative;z-index:1;
+  font-family:'Georgia',serif;
+  font-size:clamp(110px,28cqw,280px);
+  font-weight:400;
+  color:#E8EFF5;
+  line-height:1;
+  letter-spacing:-.01em;
+  text-shadow:
+    0 0 clamp(20px,5cqw,50px) rgba(200,220,240,.4),
+    0 0 clamp(50px,12cqw,120px) rgba(30,130,158,.22),
+    0 2px 4px rgba(0,0,0,.6);
+  animation:numeralRise 1.0s cubic-bezier(.22,1,.36,1) 1.6s both;
+}
+
+.subtitle{
+  font-family:'Georgia',serif;
+  font-size:clamp(12px,2.6cqw,26px);
+  font-style:italic;
+  font-weight:400;
+  letter-spacing:.04em;
+  color:rgba(200,164,94,.82);
+  margin-bottom:clamp(16px,3.5cqh,32px);
+  animation:surfaceUp .7s cubic-bezier(.22,1,.36,1) 2.5s both;
+}
+
+.rule{
+  --rule-w:clamp(28px,5.5cqw,52px);
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(200,164,94,.55),transparent);
+  width:0;opacity:0;
+  margin-bottom:clamp(18px,4cqh,38px);
+  animation:ruleExpand .5s cubic-bezier(.22,1,.36,1) 2.9s both;
+}
+
+.headline{
+  text-align:center;
+  display:flex;flex-direction:column;gap:clamp(1px,0.5cqh,6px);
+  margin-bottom:0;
+}
+.hl-line{
+  font-family:'Georgia',serif;
+  font-size:clamp(24px,5.8cqw,58px);
+  font-weight:400;
+  color:#E8EFF5;
+  line-height:1.15;
+  letter-spacing:-.005em;
+}
+.hl-line em{font-style:italic;color:rgba(234,239,245,.88)}
+.hl-line:nth-child(1){animation:surfaceUp .7s cubic-bezier(.22,1,.36,1) 3.2s both}
+.hl-line:nth-child(2){animation:surfaceUp .7s cubic-bezier(.22,1,.36,1) 3.65s both}
+
+/* ── FOOTER ── */
+.footer{
+  position:absolute;
+  bottom:0;left:0;right:0;
+  display:flex;align-items:center;justify-content:center;
+  padding:clamp(18px,3.5cqh,34px) 0;
+  z-index:2;
+}
+.footer-text{
+  font-family:'Georgia',serif;
+  font-size:clamp(6.5px,1.3cqw,13px);
+  font-weight:400;letter-spacing:.44em;text-indent:.44em;
+  text-transform:uppercase;
+  color:rgba(79,181,190,.44);
+  animation:surfaceIn .7s cubic-bezier(.22,1,.36,1) 4.2s both;
+}
+.footer-dot{color:rgba(200,164,94,.35);padding:0 .6em}
+
+/* ── FADE OUT OVERLAY (loop) ── */
+.fade-veil{
+  position:absolute;inset:0;
+  background:#000;z-index:10;
+  pointer-events:none;
+  opacity:0;
+  animation:fadeOut 1.4s ease-in 11s both reverse,
+             fadeOut 1.2s ease-in  12.8s both;
+}
+/* The second fadeOut brings it back to black before loop;
+   screen-record 0→14.5s for a clean Reel clip */
+</style>
+</head>
+<body>
+
+<div class="stage" id="stage">
+
+  <canvas id="stars"></canvas>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-rule"></div>
+    <span class="wordmark">PHA<span class="o">&Ouml;</span>RA</span>
+    <div class="header-rule"></div>
+  </header>
+
+  <!-- Body -->
+  <div class="body">
+
+    <p class="eyebrow reveal">Before the Name</p>
+
+    <div class="numeral-wrap">
+      <div class="numeral-glow"></div>
+      <span class="numeral">I</span>
+    </div>
+
+    <p class="subtitle">the first water</p>
+
+    <div class="rule"></div>
+
+    <div class="headline">
+      <span class="hl-line">Born of stone.</span>
+      <span class="hl-line"><em>Released by water.</em></span>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <span class="footer-text">
+      Águas Vivas<span class="footer-dot">·</span>A Collection Unseen
+    </span>
+  </footer>
+
+  <!-- Fade veil for loop -->
+  <div class="fade-veil"></div>
+
+</div>
+
+<script>
+(function(){
+  var stage  = document.getElementById('stage');
+  var canvas = document.getElementById('stars');
+  var ctx    = canvas.getContext('2d');
+  var W, H, parts = [];
+
+  function mulberry32(a){
+    return function(){
+      a|=0;a=(a+0x6D2B79F5)|0;
+      var t=Math.imul(a^(a>>>15),1|a);
+      t=(t+Math.imul(t^(t>>>7),61|t))^t;
+      return((t^(t>>>14))>>>0)/4294967296;
+    };
+  }
+
+  function resize(){
+    W = canvas.width  = stage.offsetWidth;
+    H = canvas.height = stage.offsetHeight;
+    buildStars();
+  }
+
+  function buildStars(){
+    parts = [];
+    var rnd = mulberry32(2741), count = 90;
+    for(var i=0;i<count;i++){
+      var r = rnd();
+      parts.push({
+        x:  rnd()*W,
+        y:  rnd()*H,
+        r:  r<.75 ? .9 : r<.93 ? 1.6 : 2.2,
+        op: rnd()*.28+.04,
+        ph: rnd()*Math.PI*2,
+        sp: rnd()*.0004+.0002,   // twinkle speed
+        vx: (rnd()-.5)*.06,      // very slow drift
+        vy: (rnd()-.5)*.04
+      });
+    }
+  }
+
+  var startT = null;
+  function tick(ts){
+    if(!startT) startT = ts;
+    ctx.clearRect(0,0,W,H);
+    parts.forEach(function(p){
+      p.x += p.vx; p.y += p.vy;
+      if(p.x<0) p.x=W; if(p.x>W) p.x=0;
+      if(p.y<0) p.y=H; if(p.y>H) p.y=0;
+      var tw = .5+.5*Math.sin(ts*p.sp+p.ph);
+      var a  = p.op*tw;
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle='rgba(196,214,230,'+a.toFixed(3)+')';
+      ctx.fill();
+    });
+    requestAnimationFrame(tick);
+  }
+
+  resize();
+  window.addEventListener('resize', resize, {passive:true});
+  requestAnimationFrame(tick);
+
+  /* ── LOOP RESTART ──
+     At 14.5s (after the fade veil completes) we reload,
+     creating a seamless loop when screen-recording. */
+  setTimeout(function(){
+    location.reload();
+  }, 14500);
+
+})();
+</script>
+
+</body>
+</html>
