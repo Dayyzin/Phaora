@@ -179,7 +179,69 @@ for s in prior_screenshots:
 
 story.append(HRFlowable(width="100%", thickness=1, color=colors.grey))
 story.append(Spacer(1, 0.1*inch))
-story.append(Paragraph("PART 2: JUNE 21, 2026 — IN-APP SUPPORT CHAT", heading_style))
+story.append(Paragraph("PART 2: IN-PERSON VISIT — UBER GREENLIGHT HUB, BOSTON AREA (2023)", heading_style))
+story.append(Spacer(1, 0.05*inch))
+story.append(Paragraph(
+    "CRITICAL: In 2023, David physically visited the Uber Greenlight Hub in the Boston area "
+    "(the only such facility in the region — location is unambiguous). During this visit, Uber staff "
+    "showed David the fraudster's full name and photograph on their system. Despite having the perpetrator's "
+    "complete identity confirmed, Uber staff stated they could not take action because they did not have "
+    "CONSENT FROM THE PERPETRATOR. No paperwork or documentation was provided to David during this visit. "
+    "David was in shock and unable to document the interaction at the time.",
+    key_style))
+story.append(Spacer(1, 0.1*inch))
+
+inperson_data = [
+    ["Field", "Detail"],
+    ["Year of Visit", "2023 (exact date to be confirmed via phone location history)"],
+    ["Location", "Uber Greenlight Hub — Boston area, MA (only one facility in region)"],
+    ["What Uber Showed David", "Fraudster's full name and photograph on Uber's internal system"],
+    ["Uber's Stated Reason for Inaction", "\"We cannot take action without consent from the perpetrator\""],
+    ["Documentation Provided", "None — David was in shock"],
+    ["Uber Staff Names", "Unknown — to be obtained via subpoena of hub visitor/staff logs"],
+    ["Legal Significance", "Uber identified the perpetrator and knowingly chose not to act"],
+]
+inperson_table = Table(inperson_data, colWidths=[2.2*inch, 4.4*inch])
+inperson_table.setStyle(TableStyle([
+    ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#8B0000')),
+    ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
+    ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+    ('FONTSIZE', (0, 0), (-1, 0), 9),
+    ('FONTSIZE', (0, 1), (-1, -1), 9),
+    ('ROWBACKGROUNDS', (0, 1), (-1, -1), [colors.white, colors.HexColor('#fff0f0')]),
+    ('GRID', (0, 0), (-1, -1), 0.5, colors.grey),
+    ('VALIGN', (0, 0), (-1, -1), 'TOP'),
+    ('TOPPADDING', (0, 0), (-1, -1), 5),
+    ('BOTTOMPADDING', (0, 0), (-1, -1), 5),
+    ('LEFTPADDING', (0, 0), (-1, -1), 5),
+]))
+story.append(inperson_table)
+story.append(Spacer(1, 0.1*inch))
+
+story.append(Paragraph("WHY THIS IS LEGALLY SIGNIFICANT:", subheading_style))
+legal_visit_points = [
+    "Uber's own staff IDENTIFIED the perpetrator by name and photo — proving Uber has full knowledge of who committed the fraud.",
+    "Uber's stated reason for inaction — requiring the PERPETRATOR'S CONSENT — is legally indefensible and potentially constitutes obstruction.",
+    "No legitimate platform requires a criminal's permission to stop a crime being committed on their platform.",
+    "The Uber Greenlight Hub has visitor logs, staff records, and internal case notes that can be obtained via court subpoena.",
+    "Staff members who showed David the fraudster's identity are compellable witnesses.",
+    "This visit, combined with the January 2023 email chain, proves Uber had full knowledge of the fraud and the fraudster's identity for years — and chose to protect the perpetrator over the victim.",
+]
+for point in legal_visit_points:
+    story.append(Paragraph(f"• {point}", body_style))
+story.append(Spacer(1, 0.1*inch))
+
+story.append(Paragraph(
+    "ACTION REQUIRED: Request police issue a subpoena to Uber Technologies for: (1) the full identity of the "
+    "person whose photo and name were shown to David at the Boston Greenlight Hub in 2023, (2) all internal "
+    "case notes from that visit, (3) staff member names present during the visit, (4) any record of the "
+    "stated 'perpetrator consent' policy.",
+    key_style))
+
+story.append(Spacer(1, 0.1*inch))
+story.append(HRFlowable(width="100%", thickness=1, color=colors.grey))
+story.append(Spacer(1, 0.1*inch))
+story.append(Paragraph("PART 3: JUNE 21, 2026 — IN-APP SUPPORT CHAT", heading_style))
 story.append(Spacer(1, 0.05*inch))
 story.append(Paragraph(
     "The following support chat took place 3.5 years after Uber's initial failure to resolve the identity theft. "
@@ -466,6 +528,9 @@ table_data = [
     ["21", "PRIOR NOTICE: Uber's 2023 circular trap (email from hacked account) is the same tactic used in 2026", "IMG_8451/8453"],
     ["22", "PRIOR NOTICE: Fraudster's email changed between 2023 (p...5@gmail.com) and 2026 (davidm*******1@hotmail.com)", "IMG_8451/8427"],
     ["23", "Uber had documented knowledge of this fraud for 3.5 years and failed to permanently resolve it", "ALL 2023 EMAILS"],
+    ["24", "IN PERSON: Uber staff showed David the fraudster's full name and photo at Boston Greenlight Hub (2023)", "Witness testimony"],
+    ["25", "IN PERSON: Uber refused to act citing need for 'perpetrator's consent' — protecting the criminal over the victim", "Witness testimony"],
+    ["26", "IN PERSON: Uber had the perpetrator's identity and knowingly chose not to remove stolen documents", "Witness testimony"],
 ]
 
 table = Table(table_data, colWidths=[0.3*inch, 5.2*inch, 1.1*inch])
@@ -496,6 +561,7 @@ legal_points = [
     ("5. PROCEDURAL ENTRAPMENT", "Uber's repeated instruction to 'contact us from your original account email' — an email controlled by the fraudster — constitutes a procedural trap that made resolution impossible by design. This occurred in both 2023 and 2026."),
     ("6. PRIVACY INVERSION", "Uber cited 'privacy' to protect information about the fraudulent account from the victim whose identity was stolen. Uber effectively shielded the perpetrator from the victim using its own privacy policy."),
     ("7. REFUSAL TO CONFIRM LIABILITY", "When asked directly whether David bears legal liability if the fraudulent account causes harm, Uber refused to answer yes or no on multiple occasions. This failure to deny liability is legally significant."),
+    ("8. KNOWING PROTECTION OF A CRIMINAL (Most Severe)", "At the Boston Greenlight Hub in 2023, Uber staff identified the fraudster by name and photo to David, then refused to act citing need for 'the perpetrator's consent.' Knowingly maintaining a fraudulent account — after identifying the fraudster — and requiring the criminal's permission to stop the crime is the most egregious finding in this case. It raises questions beyond civil negligence, potentially touching on criminal facilitation."),
 ]
 
 for title, text in legal_points:
