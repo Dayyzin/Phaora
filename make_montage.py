@@ -24,26 +24,66 @@ W, H = 576, 1024
 FPS  = 30
 
 
+def _cap_height(font):
+    """Return the pixel height of a capital H for this font (optical size ref)."""
+    bb = font.getbbox("H")
+    return bb[3] - bb[1]
+
+
+def _baseline_top(font, ch):
+    """y offset from draw origin to the top of the glyph (bb[1])."""
+    return font.getbbox(ch)[1]
+
+
+def _playfair_size_for_cap(cor_size):
+    """Find Playfair point size whose cap height matches Cormorant at cor_size."""
+    font_cor = ImageFont.truetype(FONT_MEDIUM, cor_size)
+    target = _cap_height(font_cor)
+    lo, hi = 4, cor_size * 2
+    for _ in range(20):
+        mid = (lo + hi) / 2
+        fnt = ImageFont.truetype(FONT_PLAYFAIR, int(mid))
+        if _cap_height(fnt) < target:
+            lo = mid
+        else:
+            hi = mid
+    return int(round((lo + hi) / 2))
+
+
 def draw_wordmark(draw, img, text, x, y, size, color, alpha=1.0):
-    """Render text with Cormorant glyphs except Ö which uses Playfair Display."""
+    """Render text with Cormorant glyphs except Ö from Playfair, seamlessly sized."""
     font_cor = ImageFont.truetype(FONT_MEDIUM, size)
-    font_pla = ImageFont.truetype(FONT_PLAYFAIR, size)
+    pla_size = _playfair_size_for_cap(size)
+    font_pla = ImageFont.truetype(FONT_PLAYFAIR, pla_size)
+
+    # Baseline: align by matching the bottom of capital H across both fonts
+    cor_bb_H = font_cor.getbbox("H")
+    pla_bb_H = font_pla.getbbox("H")
+    # baseline_y = y - bb[1] makes the top of H land at y
+    cor_base = cor_bb_H[3]   # distance from draw origin to bottom of H
+    pla_base = pla_bb_H[3]
+    pla_y_offset = cor_base - pla_base  # shift Playfair so bottoms align
+
     r, g, b = color
     a = int(alpha * 255)
-
     cursor = x
     for ch in text:
-        font = font_pla if ch == 'Ö' else font_cor
-        bb = font.getbbox(ch)
-        draw.text((cursor, y), ch, font=font, fill=(r, g, b, a))
-        cursor += bb[2] - bb[0]
-    return cursor  # final x
+        if ch == 'Ö':
+            bb = font_pla.getbbox(ch)
+            draw.text((cursor, y + pla_y_offset), ch, font=font_pla, fill=(r, g, b, a))
+            cursor += bb[2] - bb[0]
+        else:
+            bb = font_cor.getbbox(ch)
+            draw.text((cursor, y), ch, font=font_cor, fill=(r, g, b, a))
+            cursor += bb[2] - bb[0]
+    return cursor
 
 
 def measure_wordmark(text, size):
     """Measure total pixel width of the mixed wordmark."""
     font_cor = ImageFont.truetype(FONT_MEDIUM, size)
-    font_pla = ImageFont.truetype(FONT_PLAYFAIR, size)
+    pla_size = _playfair_size_for_cap(size)
+    font_pla = ImageFont.truetype(FONT_PLAYFAIR, pla_size)
     w = 0
     for ch in text:
         font = font_pla if ch == 'Ö' else font_cor
