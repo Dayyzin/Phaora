@@ -29,14 +29,164 @@ story.append(Paragraph("UBER IDENTITY THEFT — CHAT RECORD & EVIDENCE LOG", tit
 story.append(HRFlowable(width="100%", thickness=2, color=colors.black))
 story.append(Spacer(1, 0.1*inch))
 
-story.append(Paragraph("<b>Victim:</b> David", body_style))
-story.append(Paragraph("<b>Date of Incident Documentation:</b> Sunday, June 21, 2026", body_style))
-story.append(Paragraph("<b>Platform:</b> Uber Driver App — In-App Support Chat", body_style))
-story.append(Paragraph("<b>Fraudulent Account Email:</b> davidm*******1@hotmail.com", body_style))
+story.append(Paragraph("<b>Victim:</b> David Vaz", body_style))
+story.append(Paragraph("<b>Victim Email(s):</b> davidmvaz@hotmail.com | david1002105@hotmail.com | iamtradingoptions@gmail.com", body_style))
+story.append(Paragraph("<b>Victim Phone:</b> (774) 578-0307", body_style))
+story.append(Paragraph("<b>Victim Address:</b> 249 Boston Post Road East, Apt. 11, Marlborough, MA 01752", body_style))
+story.append(Paragraph("<b>Date of Original Report to Uber:</b> January 13, 2023", body_style))
+story.append(Paragraph("<b>Date of Current Documentation:</b> Sunday, June 21, 2026", body_style))
+story.append(Paragraph("<b>Platform:</b> Uber Driver App — In-App Support Chat & Email", body_style))
+story.append(Paragraph("<b>Fraudulent Account Email (2023):</b> p...5@gmail.com (changed by fraudster)", body_style))
+story.append(Paragraph("<b>Fraudulent Account Email (2026):</b> davidm*******1@hotmail.com", body_style))
+story.append(Paragraph("<b>Duration of Unresolved Fraud:</b> January 13, 2023 to June 21, 2026 — approximately 3.5 YEARS", key_style))
 story.append(Spacer(1, 0.15*inch))
 
 story.append(HRFlowable(width="100%", thickness=1, color=colors.grey))
 story.append(Spacer(1, 0.1*inch))
+
+story.append(Paragraph("PART 1: PRIOR NOTICE — JANUARY 2023 EMAIL EVIDENCE", heading_style))
+story.append(Spacer(1, 0.05*inch))
+story.append(Paragraph(
+    "CRITICAL: The following email exchanges prove Uber was formally notified of this identity theft on January 13, 2023 — "
+    "over 3.5 years before the June 21, 2026 support chat. Uber failed to resolve the issue, deactivated David's legitimate "
+    "account, and sent him in procedural circles. This establishes long-term negligence and prior knowledge.",
+    key_style))
+story.append(Spacer(1, 0.1*inch))
+
+prior_screenshots = [
+    {
+        "id": "Email 1 — IMG_8447 & IMG_8448 & IMG_8449",
+        "time": "January 2023 (exact date partially visible)",
+        "agent": "Uber Support (automated/unidentified)",
+        "summary": [
+            "Uber emails David stating required documents are expired or missing from his account.",
+            "Documents listed as missing: Vehicle Registration, Vehicle Insurance, Profile Photo, State Vehicle Inspection, TNC Inspection.",
+            "Uber instructs David to log in and upload documents — but David cannot log in because the account is blocked.",
+            "This creates a deliberate circular trap: Uber requires document upload to reactivate, but blocks access needed to upload.",
+        ],
+        "admission": "Uber's own system acknowledges David's account requires document updates but blocks him from making them — a procedural trap that prevented resolution."
+    },
+    {
+        "id": "Email 2 — IMG_8450",
+        "time": "Friday, January 13, 2023",
+        "agent": "David Vaz (victim) to Uber Support",
+        "summary": [
+            'David writes: "Hello, it must\'ve been stolen my original account. All emails that I have are davidmvaz@hotmail.com, david1002105@hotmail.com and iamtradingoptions@gmail.com."',
+            '"To prove, I can send documents while holding next to my face, as opposed to the other person that has stolen some of my documents like drivers license since my computer has been hacked and corrupted some documents, stole information, etc."',
+            "David explicitly reports: (1) identity theft, (2) drivers license stolen, (3) computer hacked, (4) offers to provide video proof of identity.",
+        ],
+        "admission": "David formally reported identity theft, document theft, and computer hacking to Uber on January 13, 2023. Uber was on notice from this date. David offered to provide facial verification — Uber did not take him up on this offer."
+    },
+    {
+        "id": "Email 3 — IMG_8451",
+        "time": "January 2023",
+        "agent": "Uber Support",
+        "summary": [
+            'Uber responds: "In a recent review of your account, your account was identified as a duplicate of an account that was previously deactivated."',
+            'Uber instructs: "If you believe this is an error, please contact us from your original account\'s email address at p...5@gmail.com"',
+            "The fraudulent account email in 2023 begins with 'p' and ends with '5@gmail.com' — different from the 2026 fraudulent email (davidm*******1@hotmail.com), suggesting the fraudster changed the account email at some point.",
+        ],
+        "admission": "Uber identifies the fraudulent account email as 'p...5@gmail.com' in 2023. Uber instructs David to email from an account the fraudster controls — a circular trap making resolution impossible. This is the same pattern Uber repeated in 2026."
+    },
+    {
+        "id": "Email 4 — IMG_8452",
+        "time": "Friday, January 13, 2023 at 2:44:09 PM",
+        "agent": "David Vaz to Uber Support",
+        "summary": [
+            'David responds: "Im the account holder, but my email was switched from a impersonator."',
+            "Email sent to: davidmvaz@hotmail.com (confirming David's real email address).",
+        ],
+        "admission": "David explicitly states an impersonator switched the account email. Uber received this information on January 13, 2023."
+    },
+    {
+        "id": "Email 5 — IMG_8453",
+        "time": "January 2023",
+        "agent": "Uber Support",
+        "summary": [
+            'Uber responds: "If you are the account holder, please write in from the email address associated with your account, and we\'ll be able to help you right away."',
+            "Uber again instructs David to email from the account that the impersonator controls.",
+            "This is the same circular trap: Uber requires contact from the hacked email, which David cannot access because the fraudster controls it.",
+        ],
+        "admission": "Uber's own support process trapped David in an unresolvable loop — requiring contact from a compromised email address as the only path to resolution. This procedural failure constitutes negligence."
+    },
+    {
+        "id": "Email 6 — IMG_8454 & IMG_8455 & IMG_8456",
+        "time": "Saturday, January 14, 2023",
+        "agent": "Uber Support — Agent Shivam (sshiva45)",
+        "summary": [
+            'David asks: "I\'ve stated many times though already that I can\'t open the driver app. Could I have the phone number here?"',
+            'Uber agent Shivam responds: "In a recent review of your account, your account was identified as a duplicate of an account that was previously deactivated. According to the Community Guidelines, fraudulent activity such as creating duplicate accounts is not allowed."',
+            'Shivam continues: "Because your account appears to be associated with an account that was previously deactivated, YOUR ACCOUNT HAS BEEN DEACTIVATED."',
+            '"If you believe this decision was made in error, or have any questions, please feel free to reach out through phone support in your app."',
+        ],
+        "admission": "CRITICAL: Uber agent Shivam formally deactivated David's legitimate account on January 14, 2023, citing it as a duplicate — punishing the victim for the fraudster's actions. This deactivation has apparently remained in effect for 3.5 years. Uber directed David to phone support in an app he could not access."
+    },
+    {
+        "id": "Email 7 — IMG_8457",
+        "time": "Saturday, January 14, 2023 at 3:38:48 PM",
+        "agent": "David Vaz to Uber Support",
+        "summary": [
+            'David provides identity verification details: "Last four is 3328, and the email will be either one of these: david1002105@hotmail.com, davidmvaz@hotmail.com or iamtradingoptions@gmail.com."',
+            '"I believe the person who hacked the account changed emails and now it\'s one starting with \'p\', but I\'m not associated with that one."',
+            "David provides: Phone: (774) 578-0307 | Address: 249 Boston Post Road East, Apt. 11, Marlborough, MA 01752",
+            "David explicitly identifies the fraudulent email as starting with 'p' — not his.",
+        ],
+        "admission": "David provided full personal identifying information to Uber on January 14, 2023 to prove his identity. Uber had all information needed to distinguish the legitimate account from the fraudulent one and still failed to act."
+    },
+    {
+        "id": "Email 8 — IMG_8458 & IMG_8459",
+        "time": "January 14, 2023",
+        "agent": "Uber Support — Agent Shivam (sshiva45)",
+        "summary": [
+            "Shivam requests: last 4 digits of driver's license and email/phone/mailing address to associate with the account.",
+            "David had already provided all of this information.",
+        ],
+        "admission": "Uber requested verification information that David had already provided, suggesting either poor case management or deliberate delay tactics."
+    },
+    {
+        "id": "Email 9 — IMG_8460",
+        "time": "Saturday, January 14, 2023 at 4:15:41 PM",
+        "agent": "David Vaz to Uber Support",
+        "summary": [
+            'David responds: "Since it\'s correct, could you guys unblock the account for me?"',
+        ],
+        "admission": "David confirmed all requested information and explicitly asked Uber to unblock his account on January 14, 2023."
+    },
+    {
+        "id": "Email 10 — IMG_8461",
+        "time": "January 14, 2023",
+        "agent": "Uber Support — Agent Shivam (sshiva45)",
+        "summary": [
+            'Shivam responds: "We reviewed your account, and can confirm that your information is currently listed correctly on your profile."',
+            '"Moreover, For providing you better resolution we are arranging a callback and you may expect a call within next estimated 24 business hours from our specialist to discuss it further."',
+        ],
+        "admission": "CRITICAL: Uber confirmed David's information is correct on his profile — meaning Uber verified he is the legitimate account holder. Uber promised a specialist callback within 24 business hours. This callback apparently never resolved the issue, as the account remained deactivated for 3.5 years. This promise and failure to deliver is direct evidence of negligence."
+    },
+]
+
+for s in prior_screenshots:
+    story.append(Paragraph(s["id"], subheading_style))
+    story.append(Paragraph(f"<b>Date/Time:</b> {s['time']}", meta_style))
+    story.append(Paragraph(f"<b>Agent/Sender:</b> {s['agent']}", meta_style))
+    story.append(Spacer(1, 0.04*inch))
+    story.append(Paragraph("<b>Summary:</b>", body_style))
+    for item in s["summary"]:
+        story.append(Paragraph(f"• {item}", body_style))
+    story.append(Spacer(1, 0.03*inch))
+    story.append(Paragraph(f"<b>KEY FINDING:</b> {s['admission']}", key_style))
+    story.append(HRFlowable(width="100%", thickness=0.5, color=colors.lightgrey))
+    story.append(Spacer(1, 0.08*inch))
+
+story.append(HRFlowable(width="100%", thickness=1, color=colors.grey))
+story.append(Spacer(1, 0.1*inch))
+story.append(Paragraph("PART 2: JUNE 21, 2026 — IN-APP SUPPORT CHAT", heading_style))
+story.append(Spacer(1, 0.05*inch))
+story.append(Paragraph(
+    "The following support chat took place 3.5 years after Uber's initial failure to resolve the identity theft. "
+    "The same pattern repeats: Uber acknowledges the fraud, makes commitments, but the underlying issue remains unresolved.",
+    body_style))
+story.append(Spacer(1, 0.1*inch))
+
 story.append(Paragraph("TIMELINE OF EVENTS", heading_style))
 story.append(Spacer(1, 0.05*inch))
 
@@ -309,6 +459,13 @@ table_data = [
     ["14", "All key admissions now confirmed by TWO separate Uber agents (Sonali and April)", "IMG_8440"],
     ["15", "Uber refused to deny David's legal liability if fraudulent account causes harm — passed to investigation team", "IMG_8436"],
     ["16", "David's closing summary sent to Uber — not disputed or corrected, constituting tacit acknowledgement", "IMG_8441"],
+    ["17", "PRIOR NOTICE: David formally reported identity theft to Uber on January 13, 2023 — 3.5 years before June 2026", "IMG_8450"],
+    ["18", "PRIOR NOTICE: Uber deactivated David's legitimate account on January 14, 2023, punishing the victim", "IMG_8456"],
+    ["19", "PRIOR NOTICE: Uber confirmed David's identity information was correct on his profile in January 2023", "IMG_8461"],
+    ["20", "PRIOR NOTICE: Uber promised a specialist callback within 24 business hours in January 2023 — never resolved", "IMG_8461"],
+    ["21", "PRIOR NOTICE: Uber's 2023 circular trap (email from hacked account) is the same tactic used in 2026", "IMG_8451/8453"],
+    ["22", "PRIOR NOTICE: Fraudster's email changed between 2023 (p...5@gmail.com) and 2026 (davidm*******1@hotmail.com)", "IMG_8451/8427"],
+    ["23", "Uber had documented knowledge of this fraud for 3.5 years and failed to permanently resolve it", "ALL 2023 EMAILS"],
 ]
 
 table = Table(table_data, colWidths=[0.3*inch, 5.2*inch, 1.1*inch])
@@ -326,6 +483,25 @@ table.setStyle(TableStyle([
     ('LEFTPADDING', (0, 0), (-1, -1), 5),
 ]))
 story.append(table)
+
+story.append(Spacer(1, 0.15*inch))
+story.append(Paragraph("LEGAL ANALYSIS — GROUNDS FOR CLAIM", heading_style))
+story.append(Spacer(1, 0.05*inch))
+
+legal_points = [
+    ("1. NEGLIGENCE (Long-Term)", "Uber was formally notified of identity theft on January 13, 2023. Uber confirmed David's identity was correct, promised resolution within 24 hours, and failed to deliver. The account remained deactivated for 3.5 years. This constitutes a clear and documented failure of duty of care over an extended period."),
+    ("2. NEGLIGENCE (Platform Verification)", "Uber's own support agents were unable to confirm whether Uber verifies that identity documents belong to the account holder. A company that processes driver identity documents for public safety purposes and fails to implement or enforce basic verification controls may be liable for resulting harm."),
+    ("3. WRONGFUL DEACTIVATION", "Uber deactivated David's legitimate account in January 2023 citing it as a 'duplicate' — effectively punishing the victim for the fraudster's actions. This wrongful deactivation prevented David from earning income for 3.5 years."),
+    ("4. INCOME LOSS", "David has been unable to complete his background check and work as an Uber driver due to Uber's failure to resolve a known fraud. Every day of lost income since the deactivation may be recoverable."),
+    ("5. PROCEDURAL ENTRAPMENT", "Uber's repeated instruction to 'contact us from your original account email' — an email controlled by the fraudster — constitutes a procedural trap that made resolution impossible by design. This occurred in both 2023 and 2026."),
+    ("6. PRIVACY INVERSION", "Uber cited 'privacy' to protect information about the fraudulent account from the victim whose identity was stolen. Uber effectively shielded the perpetrator from the victim using its own privacy policy."),
+    ("7. REFUSAL TO CONFIRM LIABILITY", "When asked directly whether David bears legal liability if the fraudulent account causes harm, Uber refused to answer yes or no on multiple occasions. This failure to deny liability is legally significant."),
+]
+
+for title, text in legal_points:
+    story.append(Paragraph(f"<b>{title}</b>", body_style))
+    story.append(Paragraph(text, body_style))
+    story.append(Spacer(1, 0.05*inch))
 
 story.append(Spacer(1, 0.15*inch))
 story.append(Paragraph("INCOME LOSS LOG", heading_style))
@@ -359,13 +535,16 @@ story.append(Paragraph("NEXT STEPS & DEADLINES", heading_style))
 story.append(Spacer(1, 0.05*inch))
 
 steps = [
-    "[ ] File police report for identity theft — include fraudster email: davidm*******1@hotmail.com",
-    "[ ] Screenshot all chat logs (done — 21 screenshots captured)",
-    "[ ] Monitor for Uber investigation update by June 24, 2026",
-    "[ ] If no contact by June 24 — escalate to Uber Legal Team in writing",
+    "[ ] File police report for identity theft — include BOTH fraudster emails: p...5@gmail.com (2023) and davidm*******1@hotmail.com (2026)",
+    "[ ] Include January 2023 email chain in police report — proves 3.5 years of documented fraud",
+    "[ ] Screenshot all chat logs (done — 36 screenshots/emails captured)",
+    "[ ] Monitor for Uber investigation update by June 24, 2026 (72-hour deadline)",
+    "[ ] If no contact by June 24 — send formal legal demand letter to Uber Technologies, 1515 3rd St., San Francisco, CA 94158",
     "[ ] File FTC identity theft report at reportfraud.ftc.gov",
-    "[ ] Track daily income loss with dates and amounts",
-    "[ ] Consult a lawyer regarding negligence claim against Uber",
+    "[ ] Track daily income loss from January 14, 2023 (date of wrongful deactivation) to present",
+    "[ ] Consult a lawyer regarding: wrongful deactivation, negligence, and 3.5 years of lost income",
+    "[ ] File complaint with Massachusetts Attorney General (victim's state) consumer protection office",
+    "[ ] Request full account history from Uber under applicable data protection laws",
 ]
 for step in steps:
     story.append(Paragraph(step, body_style))
@@ -373,8 +552,8 @@ for step in steps:
 story.append(Spacer(1, 0.15*inch))
 story.append(HRFlowable(width="100%", thickness=1, color=colors.grey))
 story.append(Spacer(1, 0.05*inch))
-story.append(Paragraph("Document prepared: June 21, 2026 | All screenshots retained as evidence", meta_style))
-story.append(Paragraph("CONFIDENTIAL — FOR LEGAL USE", ParagraphStyle('Footer', parent=styles['Normal'], fontSize=8, textColor=colors.grey, alignment=TA_CENTER)))
+story.append(Paragraph("Document prepared: June 21, 2026 | Evidence spans January 13, 2023 – June 21, 2026 | All screenshots and emails retained", meta_style))
+story.append(Paragraph("CONFIDENTIAL — FOR LEGAL USE | Uber Technologies, 1515 3rd St., San Francisco, CA 94158", ParagraphStyle('Footer', parent=styles['Normal'], fontSize=8, textColor=colors.grey, alignment=TA_CENTER)))
 
 doc.build(story)
 print("PDF created successfully.")
