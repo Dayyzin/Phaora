@@ -14,13 +14,42 @@ PEARL     = (234, 239, 245)      # #EAEFF5
 
 VIDEO_IN  = "/root/.claude/uploads/d27d9729-463f-5d17-b1eb-69eccf3f5fdc/264b3e58-7015734372fb4f8eaf12df51c9bb9cb4.mov"
 MARK_PNG  = "/root/.claude/uploads/d27d9729-463f-5d17-b1eb-69eccf3f5fdc/fc7f14c8-markgold.png"
-FONT_LIGHT = "/tmp/CormorantGaramond-Light.ttf"
-FONT_REG   = "/tmp/CormorantGaramond-Regular.ttf"
-FONT_ITALIC = "/tmp/CormorantGaramond-LightItalic.ttf"
+FONT_LIGHT   = "/tmp/Cormorant-Regular.ttf"
+FONT_MEDIUM  = "/tmp/Cormorant-Medium.ttf"
+FONT_ITALIC  = "/tmp/CormorantGaramond-LightItalic.ttf"
+FONT_PLAYFAIR = "/tmp/PlayfairDisplay-Regular.ttf"
 OUT_PATH   = "/home/user/Phaora/phaora-montage.mp4"
 
 W, H = 576, 1024
 FPS  = 30
+
+
+def draw_wordmark(draw, img, text, x, y, size, color, alpha=1.0):
+    """Render text with Cormorant glyphs except Ö which uses Playfair Display."""
+    font_cor = ImageFont.truetype(FONT_MEDIUM, size)
+    font_pla = ImageFont.truetype(FONT_PLAYFAIR, size)
+    r, g, b = color
+    a = int(alpha * 255)
+
+    cursor = x
+    for ch in text:
+        font = font_pla if ch == 'Ö' else font_cor
+        bb = font.getbbox(ch)
+        draw.text((cursor, y), ch, font=font, fill=(r, g, b, a))
+        cursor += bb[2] - bb[0]
+    return cursor  # final x
+
+
+def measure_wordmark(text, size):
+    """Measure total pixel width of the mixed wordmark."""
+    font_cor = ImageFont.truetype(FONT_MEDIUM, size)
+    font_pla = ImageFont.truetype(FONT_PLAYFAIR, size)
+    w = 0
+    for ch in text:
+        font = font_pla if ch == 'Ö' else font_cor
+        bb = font.getbbox(ch)
+        w += bb[2] - bb[0]
+    return w
 
 
 def make_intro(duration=3.0):
@@ -35,7 +64,6 @@ def make_intro(duration=3.0):
     mark_h = int(mark_src.height * ratio)
     mark = mark_src.resize((mark_w, mark_h), Image.LANCZOS)
 
-    font_wm  = ImageFont.truetype(FONT_LIGHT, 58)
     font_sub = ImageFont.truetype(FONT_ITALIC, 22)
 
     def build_frame(alpha):
@@ -60,15 +88,13 @@ def make_intro(duration=3.0):
             r, g, b = GOLD
             draw.point((W // 2 - rule_len // 2 + x, rule_y), fill=(r, g, b, a_px))
 
-        # Wordmark
+        # Wordmark (Cormorant + Playfair Ö)
         wm_text = "PHAÖRA"
-        bbox = font_wm.getbbox(wm_text)
-        tw = bbox[2] - bbox[0]
+        wm_size = 58
+        tw = measure_wordmark(wm_text, wm_size)
         tx = (W - tw) // 2
         ty = rule_y + 20
-        r, g, b = PEARL
-        a_wm = int(alpha * 255)
-        draw.text((tx, ty), wm_text, font=font_wm, fill=(r, g, b, a_wm))
+        draw_wordmark(draw, bg, wm_text, tx, ty, wm_size, PEARL, alpha)
 
         # Tagline
         tag = "Landscape · Architecture · Design"
@@ -112,7 +138,6 @@ def make_outro(duration=3.5):
     mark_h = int(mark_src.height * ratio)
     mark = mark_src.resize((mark_w, mark_h), Image.LANCZOS)
 
-    font_wm  = ImageFont.truetype(FONT_LIGHT, 50)
     font_url = ImageFont.truetype(FONT_ITALIC, 16)
 
     def build_frame(alpha):
@@ -128,14 +153,13 @@ def make_outro(duration=3.5):
         ))
         bg.paste(mark_a, (mx, my), mark_a)
 
-        # Wordmark
+        # Wordmark (Cormorant + Playfair Ö)
         wm_text = "PHAÖRA"
-        bbox = font_wm.getbbox(wm_text)
-        tw = bbox[2] - bbox[0]
+        wm_size = 50
+        tw = measure_wordmark(wm_text, wm_size)
         tx = (W - tw) // 2
         ty = my + mark_h + 30
-        r, g, b = PEARL
-        draw.text((tx, ty), wm_text, font=font_wm, fill=(r, g, b, int(alpha * 255)))
+        draw_wordmark(draw, bg, wm_text, tx, ty, wm_size, PEARL, alpha)
 
         # Website
         url = "phaora.com"
