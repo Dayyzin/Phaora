@@ -204,6 +204,72 @@ screenshots = [
         ],
         "admission": "Uber acknowledges ID theft occurred but denies responsibility for compensation, stating it was not done by Uber — implicitly confirming the theft was carried out by a third party using their platform."
     },
+    {
+        "id": "Screenshot 16 — IMG_8436",
+        "time": "Sun, Jun 21 at 10:29 AM",
+        "agent": "Sonali",
+        "summary": [
+            'David asks: "If the account using my identity is currently active and causes an incident, am I legally exposed in any way?"',
+            'Sonali deflects: "As I mentioned we are not authorized to share the personal details of the other account."',
+            'Sonali adds: "It will be handled by the investigation team."',
+        ],
+        "admission": "Sonali refuses to answer whether David bears legal liability, deflecting twice and passing the question to the investigation team rather than providing a direct denial. The failure to say 'No, you bear no liability' is significant — it cannot be interpreted as reassurance."
+    },
+    {
+        "id": "Screenshot 17 — IMG_8437",
+        "time": "Sun, Jun 21, 2026",
+        "agent": "Sonali",
+        "summary": [
+            'David asks: "Will my personal identity documents be removed from the fraudulent account regardless of the investigation outcome?"',
+            'Sonali confirms: "Yes, David, your documents will be removed."',
+            'David asks: "If the account using my identity is currently active and causes an incident, am I legally exposed in any way?"',
+            'Sonali deflects: "As I mentioned we are not authorized to share the personal details of the other account."',
+        ],
+        "admission": "Uber confirms in writing that David's personal identity documents WILL be removed from the fraudulent account regardless of investigation outcome. Uber refuses to answer whether David bears legal liability if the fraudulent account causes harm — citing privacy rather than denying liability."
+    },
+    {
+        "id": "Screenshot 17 — IMG_8438",
+        "time": "Sun, Jun 21 at 10:40 AM",
+        "agent": "April (new agent)",
+        "summary": [
+            'David repeats legal liability question, asking for a yes or no answer.',
+            'New agent April joins the chat.',
+            'April attempts to minimize: "I want to reassure you that the only impact this issue has is that it temporarily pauses your sign-up process."',
+            'April incorrectly states: "You won\'t be able to finish creating your account until we get this resolved." — implying David is a new user, not an existing driver.',
+        ],
+        "admission": "New agent April directly contradicts all previous admissions by characterizing the identity theft situation as merely a \"sign-up pause\" — a significantly lesser framing. April also incorrectly identifies David as a new user creating an account rather than an existing Uber driver. This contradiction between agents is itself evidence of inconsistent handling of the case.",
+        "note": "CRITICAL: April's attempt to reframe the situation as a minor sign-up issue directly contradicts Sonali's admissions of identity theft, account suspension, document removal, and reinstatement promise."
+    },
+    {
+        "id": "Screenshot 18 — IMG_8439",
+        "time": "Sun, Jun 21 at 10:40 AM",
+        "agent": "April",
+        "summary": [
+            'David challenges April directly: "April, with respect, this is not a sign-up pause. Earlier today, Sonali confirmed this is an identity theft case, that a fraudulent account using my documents has been suspended, that my documents will be removed, and that my account will be fully reinstated after investigation. Are you saying that information was incorrect?"',
+            'David also clarifies: "I am not creating a new account. I am an existing Uber driver whose background check has been blocked due to a fraudulent account using my identity."',
+        ],
+        "admission": "David formally challenges April's contradictory statements on record, citing all prior admissions by Sonali. This exchange demonstrates Uber's inconsistent communication and establishes that David is an existing driver, not a new applicant."
+    },
+    {
+        "id": "Screenshot 19 — IMG_8440",
+        "time": "Sun, Jun 21 at 10:42 AM",
+        "agent": "April",
+        "summary": [
+            'April backs down and aligns with Sonali\'s admissions: "I understand your concerns, and I can confirm that the investigation is ongoing with the appropriate actions being taken, including suspension of the fraudulent account and removal of your documents. Your account reinstatement will proceed once the investigation is complete."',
+        ],
+        "admission": "After being challenged, April reverses her earlier minimization and CONFIRMS all key admissions: (1) investigation is active, (2) fraudulent account has been suspended, (3) David's documents are being removed, (4) David's account WILL be reinstated. This is now confirmed by TWO separate Uber agents in writing.",
+        "note": "April's reversal after pressure demonstrates that her earlier minimization was inaccurate and that the full scope of admissions made by Sonali stand as the authoritative Uber position."
+    },
+    {
+        "id": "Screenshot 20 — IMG_8441",
+        "time": "Sun, Jun 21, 2026 (closing exchange)",
+        "agent": "April",
+        "summary": [
+            'April confirms in final message: "...active, and once completed, your account will be reinstated and your background check will proceed accordingly. We greatly appreciate your understanding regarding this matter."',
+            'David sends formal closing summary: "Thank you April. To summarize what has been confirmed today by multiple Uber agents: a fraudulent account using my identity documents has been identified, suspended, and my documents will be removed. My account will be fully reinstated and background check will proceed once the investigation completes within 72 hours. I have this entire conversation saved for my records. Thank you."',
+        ],
+        "admission": "David's closing summary — placing the full scope of all admissions on record — was sent to Uber without contradiction or correction. April's final message confirms account reinstatement and background check proceeding. Uber's failure to correct or dispute David's summary constitutes tacit acknowledgement of all stated facts."
+    },
 ]
 
 for s in screenshots:
@@ -236,6 +302,13 @@ table_data = [
     ["7", "Investigation to begin within 72 hours (by June 24, 2026)", "IMG_8430"],
     ["8", "Account will be reinstated and background check will proceed post-investigation", "IMG_8432"],
     ["9", "Uber acknowledges ID theft occurred but denies compensation responsibility", "IMG_8433"],
+    ["10", "David's identity documents WILL be removed from fraudulent account regardless of outcome", "IMG_8437"],
+    ["11", "Uber refused to answer yes/no whether David bears legal liability — did not deny it", "IMG_8437/8438"],
+    ["12", "Agent April attempted to minimize case as a 'sign-up pause' — directly contradicting all prior admissions", "IMG_8438"],
+    ["13", "April reversed her position under challenge — confirming: investigation active, account suspended, documents being removed, reinstatement guaranteed", "IMG_8440"],
+    ["14", "All key admissions now confirmed by TWO separate Uber agents (Sonali and April)", "IMG_8440"],
+    ["15", "Uber refused to deny David's legal liability if fraudulent account causes harm — passed to investigation team", "IMG_8436"],
+    ["16", "David's closing summary sent to Uber — not disputed or corrected, constituting tacit acknowledgement", "IMG_8441"],
 ]
 
 table = Table(table_data, colWidths=[0.3*inch, 5.2*inch, 1.1*inch])
@@ -287,7 +360,7 @@ story.append(Spacer(1, 0.05*inch))
 
 steps = [
     "[ ] File police report for identity theft — include fraudster email: davidm*******1@hotmail.com",
-    "[ ] Screenshot all chat logs (done — 15 screenshots captured)",
+    "[ ] Screenshot all chat logs (done — 21 screenshots captured)",
     "[ ] Monitor for Uber investigation update by June 24, 2026",
     "[ ] If no contact by June 24 — escalate to Uber Legal Team in writing",
     "[ ] File FTC identity theft report at reportfraud.ftc.gov",
