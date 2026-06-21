@@ -550,6 +550,74 @@ table.setStyle(TableStyle([
 story.append(table)
 
 story.append(Spacer(1, 0.15*inch))
+story.append(Paragraph("WITNESS STATEMENT", heading_style))
+story.append(Spacer(1, 0.05*inch))
+story.append(Paragraph(
+    "The following witness has direct knowledge of the in-person visit to the Uber Greenlight Hub in Boston in 2023 "
+    "and is prepared to provide testimony and sign this statement.",
+    body_style))
+story.append(Spacer(1, 0.1*inch))
+
+witness_data = [
+    ["Field", "Detail"],
+    ["Witness Full Name", "Daniel Machado Vaz"],
+    ["Relationship to Victim", "Brother"],
+    ["Nature of Knowledge", "David called Daniel immediately after the in-person Uber Greenlight Hub visit in 2023 and described the full encounter"],
+    ["What Witness Recalls", "David told him Uber staff showed the fraudster's name and photograph, and stated they could not act without the perpetrator's consent"],
+    ["Willingness to Testify", "Yes — willing to sign statement and testify"],
+]
+witness_table = Table(witness_data, colWidths=[2.2*inch, 4.4*inch])
+witness_table.setStyle(TableStyle([
+    ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#1a1a1a')),
+    ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
+    ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+    ('FONTSIZE', (0, 0), (-1, 0), 9),
+    ('FONTSIZE', (0, 1), (-1, -1), 9),
+    ('ROWBACKGROUNDS', (0, 1), (-1, -1), [colors.white, colors.HexColor('#f5f5f5')]),
+    ('GRID', (0, 0), (-1, -1), 0.5, colors.grey),
+    ('VALIGN', (0, 0), (-1, -1), 'TOP'),
+    ('TOPPADDING', (0, 0), (-1, -1), 5),
+    ('BOTTOMPADDING', (0, 0), (-1, -1), 5),
+    ('LEFTPADDING', (0, 0), (-1, -1), 5),
+]))
+story.append(witness_table)
+story.append(Spacer(1, 0.15*inch))
+
+story.append(Paragraph("WITNESS DECLARATION", subheading_style))
+story.append(Spacer(1, 0.05*inch))
+
+witness_text = (
+    "I, Daniel Machado Vaz, confirm that in 2023, my brother David Vaz called me after visiting the Uber "
+    "Greenlight Hub in the Boston area. He told me that Uber staff showed him the name and photograph of the "
+    "person who had stolen his identity and was operating an Uber account using his documents. He told me Uber "
+    "staff said they could not take action without the perpetrator's consent. I remember this conversation clearly "
+    "and am prepared to provide testimony regarding this matter."
+)
+story.append(Paragraph(witness_text, body_style))
+story.append(Spacer(1, 0.3*inch))
+
+sig_data = [
+    ["Signature", "Date", "Phone Number"],
+    [" " * 40, " " * 20, " " * 20],
+]
+sig_table = Table(sig_data, colWidths=[3.0*inch, 1.8*inch, 1.8*inch])
+sig_table.setStyle(TableStyle([
+    ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+    ('FONTSIZE', (0, 0), (-1, -1), 9),
+    ('BOX', (0, 1), (0, 1), 0.5, colors.black),
+    ('BOX', (1, 1), (1, 1), 0.5, colors.black),
+    ('BOX', (2, 1), (2, 1), 0.5, colors.black),
+    ('TOPPADDING', (0, 0), (-1, -1), 5),
+    ('BOTTOMPADDING', (0, 0), (-1, -1), 20),
+    ('LEFTPADDING', (0, 0), (-1, -1), 5),
+]))
+story.append(sig_table)
+story.append(Spacer(1, 0.05*inch))
+story.append(Paragraph(
+    "Note: This statement carries greater legal weight when notarized. Most banks offer free notarization services.",
+    meta_style))
+
+story.append(Spacer(1, 0.15*inch))
 story.append(Paragraph("LEGAL ANALYSIS — GROUNDS FOR CLAIM", heading_style))
 story.append(Spacer(1, 0.05*inch))
 
