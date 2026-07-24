@@ -43,6 +43,13 @@
   .trust span{font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--lime3);white-space:nowrap}
   .trust b{color:var(--lime);font-weight:400}.trust .dot{color:var(--bronze2)}
 
+  .svc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:12px;margin-top:22px}
+  .svc{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:15px 17px;font-size:15px;color:var(--lime);display:flex;align-items:center;gap:11px}
+  .svc::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--lime3);flex:0 0 auto}
+  .svc.flag{border-color:rgba(193,154,91,0.38);background:linear-gradient(180deg,rgba(193,154,91,0.06),transparent)}
+  .svc.flag::before{background:var(--bronze)}
+  .svc .tag{margin-left:auto;font-family:var(--mono);font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--bronze);border:1px solid var(--bronze2);border-radius:4px;padding:2px 5px}
+
   section{padding:58px 0}
   .shead{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:24px}
   .shead h2{font-family:var(--serif);font-weight:400;font-size:clamp(26px,4vw,38px);margin:0;letter-spacing:-0.01em}
@@ -76,9 +83,9 @@
 </header>
 
 <div class="wrap hero">
-  <div class="eyebrow">PHAÖRA · Masonry &amp; Home Improvement · Massachusetts</div>
+  <div class="eyebrow">PHAÖRA · Full-Service Home Improvement · Massachusetts</div>
   <h1>Stone, set to <em>last.</em></h1>
-  <p class="lead">Fieldstone walls, natural stone veneer, patios, walkways, and hardscape — built across Massachusetts by our own crews. A registered Home Improvement Contractor, fully insured, doing the kind of stonework that becomes part of the home.</p>
+  <p class="lead">Masonry and stonework are our craft — and we're a full-service Massachusetts home-improvement contractor. Kitchens, baths, roofing, siding, decks, flooring, and everything in between. Registered, fully insured, and built by our own crews.</p>
   <figure class="herofig"><img src="images/fireplace-patio.jpg" alt="Outdoor stone fireplace and bluestone patio built by PHAÖRA"></figure>
   <div class="herocap">Outdoor stone fireplace &amp; bluestone patio · Massachusetts</div>
 </div>
@@ -94,6 +101,27 @@
 
 <section class="wrap">
   <div class="shead">
+    <h2>What we handle</h2>
+    <p>One crew for the whole home — masonry is our flagship, and we take on the rest, inside and out.</p>
+  </div>
+  <div class="svc-grid">
+    <div class="svc flag">Masonry &amp; Stonework <span class="tag">Flagship</span></div>
+    <div class="svc flag">Patios, Walkways &amp; Hardscape</div>
+    <div class="svc flag">Stone Veneer &amp; Fireplaces</div>
+    <div class="svc flag">Retaining &amp; Seat Walls</div>
+    <div class="svc">Kitchens &amp; Bathrooms</div>
+    <div class="svc">Roofing &amp; Siding</div>
+    <div class="svc">Windows &amp; Doors</div>
+    <div class="svc">Decks, Porches &amp; Outdoor Living</div>
+    <div class="svc">Flooring &amp; Tile</div>
+    <div class="svc">Interior Remodeling &amp; Trim</div>
+    <div class="svc">Drainage &amp; Site Work</div>
+    <div class="svc">Painting &amp; Finishes</div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="shead">
     <h2>Our work</h2>
     <p>Real projects across Massachusetts. Stonework we set by hand — engineered, drained, and built to outlast the seasons.</p>
   </div>
@@ -106,8 +134,8 @@
     <figure><img src="images/wall-granite-steps.jpg" alt="Stone wall with granite steps"><figcaption>Stone wall &amp; granite steps</figcaption></figure>
     <figure><img src="images/fieldstone-wall-garden.jpg" alt="Landscaped fieldstone garden wall"><figcaption>Fieldstone garden wall</figcaption></figure>
     <figure><img src="images/entrance-pillar.jpg" alt="Stone entrance pillar with lantern"><figcaption>Stone entrance pillar</figcaption></figure>
-    <figure><img src="images/cobblestone-walk.jpg" alt="Granite cobblestone walkway"><figcaption>Granite cobblestone walkway</figcaption></figure>
-    <figure><img src="images/cobblestone-fan.jpg" alt="Granite cobblestone fan detail"><figcaption>Cobblestone detail</figcaption></figure>
+    <figure><img src="images/cobblestone-walk.jpg" alt="Granite cobblestone drainage channel"><figcaption>Granite cobblestone drainage channel</figcaption></figure>
+    <figure><img src="images/cobblestone-fan.jpg" alt="Granite cobblestone drainage apron"><figcaption>Cobblestone drainage apron</figcaption></figure>
     <figure><img src="images/wall-driveway.jpg" alt="Fieldstone wall along a driveway"><figcaption>Stone wall &amp; approach</figcaption></figure>
     <figure><img src="images/interior-fireplace.jpg" alt="Interior stone veneer fireplace"><figcaption>Interior stone fireplace</figcaption></figure>
     <figure><img src="images/seat-wall-patio.jpg" alt="Fieldstone seat wall and paver patio"><figcaption>Seat wall &amp; patio</figcaption></figure>
