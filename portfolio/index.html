@@ -56,6 +56,15 @@
   .shead p{color:var(--lime3);font-size:14px;margin:0;max-width:42ch}
   .subhead{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--bronze);margin:44px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--line)}
 
+  .case{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0;background:var(--panel);border:1px solid rgba(193,154,91,0.38);border-radius:12px;overflow:hidden;margin-bottom:22px;transition:border-color .25s}
+  .case:hover{border-color:var(--bronze)}
+  .case img{width:100%;height:100%;min-height:240px;object-fit:cover}
+  .case .body{padding:26px 28px;display:flex;flex-direction:column;justify-content:center}
+  .case .kicker{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--bronze)}
+  .case h3{font-family:var(--serif);font-weight:400;font-size:clamp(24px,3.4vw,32px);margin:10px 0 0;letter-spacing:-0.01em}
+  .case p{color:var(--lime2);font-size:15px;line-height:1.6;margin:11px 0 0;max-width:44ch}
+  .case .more{font-family:var(--mono);font-size:10.5px;letter-spacing:.17em;text-transform:uppercase;color:var(--bronze);margin-top:18px}
+
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
   figure{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;transition:transform .25s ease,border-color .25s}
   figure:hover{transform:translateY(-4px);border-color:rgba(193,154,91,0.4)}
@@ -125,6 +134,16 @@
     <h2>Our work</h2>
     <p>Real projects across Massachusetts. Stonework we set by hand — engineered, drained, and built to outlast the seasons.</p>
   </div>
+
+  <a class="case" href="48-valley-street/">
+    <img src="48-valley-street/images/cmp1-after.jpg" alt="Finished paver driveway at 48 Valley Street, Marlborough MA">
+    <div class="body">
+      <div class="kicker">Finished job · Marlborough, MA</div>
+      <h3>48 Valley Street</h3>
+      <p>Rutted gravel to a full paver driveway — with every layer of the base on show.</p>
+      <div class="more">See the whole job &rarr;</div>
+    </div>
+  </a>
 
   <div class="grid">
     <figure><img src="images/entrance-wall.jpg" alt="Fieldstone entrance wall with lantern"><figcaption>Fieldstone entrance wall</figcaption></figure>
