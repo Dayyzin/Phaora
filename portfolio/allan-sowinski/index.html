@@ -3,41 +3,47 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mortar-Set Flagstone Terrace — The Sowinski Job | PHAÖRA</title>
-<meta name="description" content="Irregular flagstone set in a full mortar bed, cut by hand to fit, run to a stringline. A Massachusetts stone terrace, shown at the stage where the work is actually decided.">
+<title>Flagstone Walk, Granite Steps &amp; Fieldstone Walls — The Sowinski Job | PHAÖRA</title>
+<meta name="description" content="A bare concrete slab turned into a mortar-set flagstone walk, edged in granite cobble, running from the driveway up granite steps to the deck — with dry-laid fieldstone walls either side. See every stage.">
 <link rel="canonical" href="https://phaora.com/portfolio/allan-sowinski/">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://phaora.com/portfolio/allan-sowinski/">
-<meta property="og:title" content="Mortar-Set Flagstone Terrace — The Sowinski Job | PHAÖRA">
-<meta property="og:description" content="Irregular flagstone set in a full mortar bed, cut by hand to fit, run to a stringline.">
-<meta property="og:image" content="https://phaora.com/portfolio/allan-sowinski/images/hero.jpg">
+<meta property="og:title" content="Flagstone Walk, Granite Steps &amp; Fieldstone Walls — The Sowinski Job | PHAÖRA">
+<meta property="og:description" content="A bare concrete slab turned into a mortar-set flagstone walk, edged in granite cobble, running from the driveway up granite steps to the deck.">
+<meta property="og:image" content="https://phaora.com/portfolio/allan-sowinski/images/cmp1-after.jpg">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 
 <!-- ───────────────────────────────────────────────────────────────────────────
-     Built from the 48-valley-street template. Two deliberate differences:
+     Built from the 48-valley-street template. Departures worth knowing about:
 
-     1. NO before/after comparator. There are no before frames for this job and
-        a wipe built from two unrelated pictures is worse than no wipe at all.
-     2. Every photo here is PORTRAIT (the phone's EXIF rotation is baked in on
-        export), so the shots run 3/4 instead of the template's 4/3.
+     * Every still is PORTRAIT (phone photos, EXIF rotation baked in on export),
+       so the chapter shots run 3/4 where the template runs 4/3.
+     * There is one comparator, not three. cmp1 is a real pair — the poured slab
+       and the finished walk, same spot, same framing. No other before frame
+       exists for this job, and a wipe made of two unrelated pictures reads
+       worse than no wipe at all.
+     * The wall clip is H.264 (the iPhone original is HEVC, which desktop
+       Chrome won't decode), tonemapped off HLG so it isn't washed out on SDR
+       screens, audio stripped, preload="none" so it costs nothing until it's
+       actually played.
 
      STILL MISSING — fill these in and the page starts ranking locally, which
      is the entire reason it exists:
-       • town + state  → the .where line, the Location fact, the JSON-LD
-                         areaServed City block, the <title> and description
-       • month + year  → the Completed fact
-       • square footage → a fifth fact, if you want it
-     Nothing above is guessed at in the meantime. An invented town on a page
-     with our name on it is worse than a page with no town.
+       • town + state → the .where line, the Location fact, the JSON-LD
+                        areaServed City block, the <title> and description
+       • month + year → the Completed fact
+       • linear feet of walk / wall → a fifth fact, if you want it
+     None of it is guessed at in the meantime. An invented town on a page with
+     our name on it is worse than a page with no town.
      ─────────────────────────────────────────────────────────────────────── -->
 
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Service",
-  "serviceType": "Flagstone Terrace",
-  "name": "Mortar-Set Flagstone Terrace — The Sowinski Job | PHAÖRA",
-  "description": "Irregular flagstone set in a full mortar bed, cut by hand to fit, run to a stringline.",
+  "serviceType": "Flagstone Walkway, Granite Steps and Fieldstone Retaining Wall",
+  "name": "Flagstone Walk, Granite Steps & Fieldstone Walls — The Sowinski Job | PHAÖRA",
+  "description": "A bare concrete slab turned into a mortar-set flagstone walk, edged in granite cobble, running from the driveway up granite steps to the deck, with dry-laid fieldstone walls either side.",
   "provider": {
     "@type": "HomeAndConstructionBusiness",
     "name": "PHAÖRA",
@@ -45,10 +51,10 @@
     "areaServed": { "@type": "State", "name": "Massachusetts" }
   },
   "image": [
-    "https://phaora.com/portfolio/allan-sowinski/images/hero.jpg",
-    "https://phaora.com/portfolio/allan-sowinski/images/ch1.jpg",
-    "https://phaora.com/portfolio/allan-sowinski/images/ch2.jpg",
-    "https://phaora.com/portfolio/allan-sowinski/images/ch3.jpg"
+    "https://phaora.com/portfolio/allan-sowinski/images/cmp1-after.jpg",
+    "https://phaora.com/portfolio/allan-sowinski/images/fin1.jpg",
+    "https://phaora.com/portfolio/allan-sowinski/images/fin2.jpg",
+    "https://phaora.com/portfolio/allan-sowinski/images/wall1.jpg"
   ]
 }
 </script>
@@ -63,6 +69,7 @@
     --mono:ui-monospace,'SF Mono',Menlo,monospace;
     --line2:rgba(236,231,220,0.07);
     --line-strong:rgba(193,154,91,0.40);
+    --scrim:rgba(20,18,14,0.72);
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--basalt);color:var(--lime);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
@@ -90,12 +97,8 @@
   .rule em{font-family:var(--mono);font-style:normal;font-size:10.5px;letter-spacing:.14em;color:var(--lime3)}
 
   /* Portrait hero — held narrower than the template's landscape frame so a
-     tall photo doesn't push the rest of the page off the first screen. */
-  .hero{max-width:660px;margin:0 auto}
-  .hero .frame{background:var(--panel);border:1px solid var(--line);overflow:hidden}
-  .hero img{width:100%;aspect-ratio:3/4;object-fit:cover}
-  .hero figcaption{margin-top:11px;font-size:14.5px;color:var(--lime2);line-height:1.6}
-  .hero figcaption b{color:var(--lime);font-weight:400}
+     tall photo doesn't push the whole page off the first screen. */
+  .hero{max-width:620px;margin:0 auto}
   figure{margin:0}
 
   .chapter{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(18px,3vw,30px);align-items:center;padding:clamp(20px,3vw,30px) 0;border-top:1px solid var(--line2)}
@@ -106,9 +109,36 @@
   .chapter h2{font-family:var(--serif);font-weight:400;font-size:clamp(21px,3vw,29px);margin:9px 0 0;line-height:1.2}
   .chapter p{margin:10px 0 0;color:var(--lime2);font-size:15px;line-height:1.62;max-width:44ch}
 
-  .note{margin:clamp(30px,5vw,52px) 0 0;padding:22px 24px;background:var(--panel);border:1px solid var(--line);max-width:64ch}
-  .note h3{font-family:var(--serif);font-weight:400;font-size:clamp(19px,2.6vw,24px);margin:0}
-  .note p{margin:11px 0 0;color:var(--lime2);font-size:15px;line-height:1.65}
+  .duo{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(18px,3vw,28px)}
+  .duo .frame{background:var(--panel);border:1px solid var(--line);overflow:hidden}
+  .duo img{width:100%;aspect-ratio:3/4;object-fit:cover}
+  .cap{margin-top:11px;font-size:14.5px;color:var(--lime2);line-height:1.6}
+  .cap b{color:var(--lime);font-weight:400}
+
+  .clip{max-width:420px;margin:0 auto clamp(24px,4vw,36px)}
+  .clip video{width:100%;display:block;background:#000;border:1px solid var(--line)}
+
+  /* 210px, not the template's 180px: eight portrait stills land 4+4 at desktop
+     width instead of 5+3 with a ragged second row. */
+  .stills{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}
+  .stills div{background:var(--panel);border:1px solid var(--line);overflow:hidden}
+  .stills img{width:100%;aspect-ratio:3/4;object-fit:cover}
+
+  /* ── the before/after wipe ────────────────────────────────────────────── */
+  .cmp{margin:0}
+  .cmp-box{position:relative;overflow:hidden;background:var(--panel);border:1px solid var(--line);touch-action:pan-y;cursor:ew-resize;user-select:none;-webkit-user-select:none}
+  .cmp-box img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+  /* The BEFORE plate sits on top and is clipped back to the wipe position. */
+  .cmp-before{clip-path:inset(0 calc(100% - var(--pos,50%)) 0 0)}
+  .cmp-tag{position:absolute;top:12px;left:12px;font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;padding:5px 9px;background:var(--scrim);border:1px solid var(--line);color:var(--lime);pointer-events:none}
+  .cmp-tag.after{left:auto;right:12px;border-color:var(--line-strong);color:var(--bronze)}
+  .cmp-line{position:absolute;top:0;bottom:0;left:var(--pos,50%);width:2px;margin-left:-1px;background:var(--bronze);pointer-events:none}
+  .cmp-knob{position:absolute;top:50%;left:var(--pos,50%);width:48px;height:48px;margin:-24px 0 0 -24px;border-radius:50%;background:var(--scrim);border:1.5px solid var(--bronze);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);display:grid;place-items:center;pointer-events:none;color:var(--bronze);font-size:15px;line-height:1}
+  .cmp-hint{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);pointer-events:none;font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;color:var(--lime);background:var(--scrim);border:1px solid var(--line);padding:6px 12px;transition:opacity .45s ease}
+  .cmp-box.touched .cmp-hint{opacity:0}
+  .cmp-box:focus-visible{outline:2px solid var(--bronze);outline-offset:2px}
+  .cmp figcaption{margin-top:11px;font-size:14.5px;color:var(--lime2);line-height:1.6;max-width:62ch}
+  .cmp figcaption b{color:var(--lime);font-weight:400}
 
   .closing{margin-top:clamp(50px,7vw,92px);padding-top:26px;border-top:1px solid var(--line)}
   .closing p{font-family:var(--serif);font-size:clamp(21px,3.2vw,32px);line-height:1.3;margin:0;max-width:23ch;text-wrap:balance}
@@ -124,70 +154,126 @@
 
   <div class="top">
     <a class="mark" href="/portfolio/">P H A Ö R A</a>
-    <!-- Add the town here once confirmed: "Flagstone Terrace · Town, MA" -->
-    <span class="where">Flagstone Terrace · Massachusetts</span>
+    <!-- Add the town once confirmed: "Flagstone Walk &amp; Stonework · Town, MA" -->
+    <span class="where">Flagstone Walk &amp; Stonework · Massachusetts</span>
   </div>
 
-  <h1>The <span>Sowinski</span> Terrace</h1>
-  <p class="lede">Irregular flagstone, set in a full mortar bed and cut by hand so every stone meets the next one on its own line. These are the photos most contractors don't take — the middle of the job, where it's either being done right or it isn't.</p>
+  <h1>The <span>Sowinski</span> Walk</h1>
+  <p class="lede">A bare concrete slab at the foot of the steps, and a pile of flag sitting in the driveway. Drag the frame below to pull the slab back over the finished walk.</p>
 
   <dl class="facts">
     <!-- Fill in once confirmed:
          <div><dt>Location</dt><dd>Town, MA</dd></div>
          <div><dt>Completed</dt><dd>Month Year</dd></div>
     -->
-    <div><dt>Scope</dt><dd>Flagstone terrace</dd></div>
-    <div><dt>Stone</dt><dd>Irregular flag</dd></div>
+    <div><dt>Scope</dt><dd>Walk, steps &amp; walls</dd></div>
+    <div><dt>Surface</dt><dd>Irregular flagstone</dd></div>
+    <div><dt>Edge</dt><dd>Granite cobble</dd></div>
     <div><dt>Set</dt><dd>Full mortar bed</dd></div>
-    <div><dt>Joints</dt><dd>Hand-cut, packed</dd></div>
   </dl>
 
-  <div class="rule"><b>The Work Itself</b><i></i></div>
+  <div class="rule"><b>The Whole Job, One Frame</b><i></i></div>
   <div class="hero">
-    <figure>
-      <div class="frame">
-        <img src="images/hero.jpg" alt="Irregular flagstone being set into a full mortar bed, the joints packed tight, with a stringline stretched across the field">
+    <figure class="cmp">
+      <div class="cmp-box" style="aspect-ratio:0.75" role="slider" tabindex="0"
+           aria-label="Drag to compare before and after" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+        <img src="images/cmp1-after.jpg" alt="After — a finished flagstone walk edged in granite cobble, running from the driveway to the granite steps">
+        <img class="cmp-before" src="images/cmp1-before.jpg" alt="Before — a bare concrete slab between the driveway and the steps, with flagstone staged around it">
+        <span class="cmp-tag">BEFORE</span>
+        <span class="cmp-tag after">AFTER</span>
+        <div class="cmp-line"></div>
+        <div class="cmp-knob">⇄</div>
+        <div class="cmp-hint">← DRAG →</div>
       </div>
-      <figcaption><b>A stone at a time.</b> No two pieces of this material are the same shape, so there is no pattern to fall back on. Each stone is picked, shaped, and bedded against the ones already down.</figcaption>
+      <figcaption><b>Driveway to the steps.</b> Same spot, same lens. The slab is the part that holds it up; the flag is the part you see. Both had to be right.</figcaption>
     </figure>
   </div>
 
-  <div class="rule"><b>How It Gets There</b><i></i><em>3 steps</em></div>
+  <div class="rule"><b>How It Got There</b><i></i><em>6 steps</em></div>
   <div>
     <div class="chapter">
-      <div class="shot"><img src="images/ch1.jpg" loading="lazy" alt="A mason working to a stringline stretched across the flagstone terrace, with a dry-laid granite wall behind"></div>
+      <div class="shot"><img src="images/ch1.jpg" loading="lazy" alt="A loader tractor moving material up the driveway to the work area"></div>
       <div>
-        <div class="step">Step 01 · Line and level</div>
-        <h2>The string goes down first</h2>
-        <p>Before a single stone is set, the line is pulled and the grade is fixed to it. Everything after this point is measured against that string — height, pitch, and the run of the field. Get it wrong here and no amount of good stonework hides it.</p>
+        <div class="step">Step 01 · Material in</div>
+        <h2>It all lands in the driveway</h2>
+        <p>Flag, cobble, loam and mortar arrive in one place and get moved from there. Staging it once, where it's actually needed, is the difference between a job that runs and a job that drags.</p>
       </div>
     </div>
     <div class="chapter flip">
-      <div class="shot"><img src="images/ch2.jpg" loading="lazy" alt="A stone being hand-fitted at the edge of the terrace where it meets the planting bed"></div>
+      <div class="shot"><img src="images/ch2.jpg" loading="lazy" alt="Mortar being buttered onto a concrete base before a flagstone is bedded"></div>
       <div>
-        <div class="step">Step 02 · Fit to fit</div>
-        <h2>Cut to the neighbor, not to the gap</h2>
-        <p>Irregular flag is chosen and shaped for the space it's going into, not dropped in and grouted around. The edge against the bed is where that shows — the stone follows the line of the garden instead of being trimmed off square at it.</p>
+        <div class="step">Step 02 · The bed</div>
+        <h2>Full mortar, on concrete</h2>
+        <p>Every stone goes down in a full bed on a poured base. Nothing is floated on sand and hoped over — a walk that gets used every day of the year has to be set like one.</p>
       </div>
     </div>
     <div class="chapter">
-      <div class="shot"><img src="images/ch3.jpg" loading="lazy" alt="The flagstone field seen from above, joints packed with mortar and stringlines running across the work"></div>
+      <div class="shot"><img src="images/ch3.jpg" loading="lazy" alt="A mason setting a flagstone to a stringline pulled across the walk"></div>
       <div>
-        <div class="step">Step 03 · Bed and joint</div>
-        <h2>Set solid, not floated</h2>
-        <p>Full mortar under every stone, and the joints packed rather than dusted over. That's what keeps a stone from rocking underfoot the first spring after the ground moves — and it's why this costs what it costs.</p>
+        <div class="step">Step 03 · Line and level</div>
+        <h2>The string goes down first</h2>
+        <p>Pulled before the first piece lands, and every stone after it checked against it. Height, pitch and run all come off that string. Get it wrong here and no amount of good stonework hides it.</p>
+      </div>
+    </div>
+    <div class="chapter flip">
+      <div class="shot"><img src="images/ch4.jpg" loading="lazy" alt="Irregular flagstone seen from above, hand-cut so the joints stay tight"></div>
+      <div>
+        <div class="step">Step 04 · Cut to fit</div>
+        <h2>No pattern to fall back on</h2>
+        <p>Irregular flag has no repeat. Each stone is picked and shaped to meet the ones already down, so the joints stay tight instead of turning into a field of mortar with rocks in it.</p>
+      </div>
+    </div>
+    <div class="chapter">
+      <div class="shot"><img src="images/ch5.jpg" loading="lazy" alt="The planting bed being cut back by hand to the granite cobble edge"></div>
+      <div>
+        <div class="step">Step 05 · The edge</div>
+        <h2>Cobble both sides, cut by hand</h2>
+        <p>Granite cobble set down each side, then the bed cut back to it. That edge is what keeps the loam out of the walk and the walk out of the lawn — for good, not for a season.</p>
+      </div>
+    </div>
+    <div class="chapter flip">
+      <div class="shot"><img src="images/ch6.jpg" loading="lazy" alt="Solid granite block steps rising from the walk to the deck"></div>
+      <div>
+        <div class="step">Step 06 · Steps</div>
+        <h2>Solid granite, four risers</h2>
+        <p>Full blocks up to the deck, carried on the wall either side of them. Every riser the same height, so nobody arriving at this house ever has to think about their feet.</p>
       </div>
     </div>
   </div>
 
-  <div class="note">
-    <h3>Working around what's already there</h3>
-    <p>The beds, the plantings, and the irrigation heads were all in the ground before we were. Stone came right up to them and left them working. A terrace that arrives by wrecking the yard around it isn't finished — it's half a job with a second bill attached.</p>
+  <div class="rule"><b>The Walls</b><i></i><em>dry-laid</em></div>
+  <div class="clip">
+    <video controls preload="none" playsinline poster="images/wall-poster.jpg">
+      <source src="images/wall.mp4" type="video/mp4">
+      Your browser can't play this clip — the stills below show the same wall.
+    </video>
+  </div>
+  <div class="duo">
+    <figure>
+      <div class="frame"><img src="images/wall1.jpg" loading="lazy" alt="A dry-laid fieldstone retaining wall running the length of the driveway, capped flat"></div>
+      <p class="cap"><b>Along the drive.</b> No mortar anywhere in it. It stands because each stone was chosen to lock the ones underneath, and it will still be standing when the mortared ones have let go.</p>
+    </figure>
+    <figure>
+      <div class="frame"><img src="images/wall2.jpg" loading="lazy" alt="The fieldstone wall wrapping the deck terrace, with the lawn regraded to meet it"></div>
+      <p class="cap"><b>Around the terrace.</b> Capped to shed water rather than hold it, then the ground brought back up to meet it so the wall reads as part of the yard instead of an object in it.</p>
+    </figure>
+  </div>
+
+  <div class="rule"><b>Finished</b><i></i></div>
+  <div class="stills">
+    <div><img src="images/fin1.jpg" loading="lazy" alt="The finished flagstone walk seen from the driveway, running to the steps and the deck"></div>
+    <div><img src="images/fin2.jpg" loading="lazy" alt="The walk and granite steps with the lamp post and fieldstone wall alongside"></div>
+    <div><img src="images/fin3.jpg" loading="lazy" alt="Granite cobble edging where the walk meets the driveway"></div>
+    <div><img src="images/fin4.jpg" loading="lazy" alt="Granite steps rising to the deck, the fieldstone wall carrying them either side"></div>
+    <div><img src="images/fin5.jpg" loading="lazy" alt="The stone terrace and wall seen across the driveway"></div>
+    <div><img src="images/fin6.jpg" loading="lazy" alt="The regraded lawn meeting the cobble edge and the wall"></div>
+    <div><img src="images/fin7.jpg" loading="lazy" alt="The whole work area — walls, walk and beds — from the lawn"></div>
+    <div><img src="images/fin8.jpg" loading="lazy" alt="Close on the flagstone joints, packed and cut tight"></div>
   </div>
 
   <div class="closing">
-    <p>Anyone can set the middle. The <span>joint</span> is the part that tells you who built it.</p>
-    <a class="quote" href="mailto:david@phaora.com?subject=Free%20estimate%20request%20%E2%80%94%20flagstone%20terrace">Get a free quote</a>
+    <p>A walk is judged by the fifth <span>winter</span>, not the first week.</p>
+    <a class="quote" href="mailto:david@phaora.com?subject=Free%20estimate%20request%20%E2%80%94%20walkway%20%26%20stonework">Get a free quote</a>
     <div class="legal">
       SKYINCH CAPITAL LLC · PHAÖRA<br>
       Licensed &amp; insured Massachusetts crews · our own people, not subcontracted out
@@ -195,6 +281,45 @@
   </div>
 
 </div>
+
+<script>
+// The before/after wipe. Pointer events cover mouse, touch and pen in one path
+// so there's no second touch branch to drift out of sync, and the whole frame
+// is the drag target — a thin handle is unusable on a phone.
+document.querySelectorAll('.cmp-box').forEach(function (box) {
+  var dragging = false;
+
+  function move(clientX) {
+    var r = box.getBoundingClientRect();
+    var pct = Math.min(100, Math.max(0, ((clientX - r.left) / r.width) * 100));
+    box.style.setProperty('--pos', pct + '%');
+    box.setAttribute('aria-valuenow', Math.round(pct));
+    box.classList.add('touched');
+  }
+
+  box.addEventListener('pointerdown', function (e) {
+    dragging = true;
+    box.setPointerCapture(e.pointerId);
+    move(e.clientX);
+  });
+  box.addEventListener('pointermove', function (e) { if (dragging) move(e.clientX); });
+  box.addEventListener('pointerup', function (e) {
+    dragging = false;
+    try { box.releasePointerCapture(e.pointerId); } catch (err) { /* already released */ }
+  });
+  box.addEventListener('pointercancel', function () { dragging = false; });
+
+  box.addEventListener('keydown', function (e) {
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    e.preventDefault();
+    var now = parseFloat(box.getAttribute('aria-valuenow')) || 50;
+    var next = Math.min(100, Math.max(0, now + (e.key === 'ArrowLeft' ? -4 : 4)));
+    box.style.setProperty('--pos', next + '%');
+    box.setAttribute('aria-valuenow', Math.round(next));
+    box.classList.add('touched');
+  });
+});
+</script>
 
 </body>
 </html>
