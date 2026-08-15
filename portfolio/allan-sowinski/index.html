@@ -30,14 +30,20 @@
        screens, audio stripped, preload="none" so it costs nothing until
        someone plays it.
 
-     STILL MISSING — fill these in and the page starts ranking locally, which
-     is the entire reason it exists:
-       • town + state → the .where line, the Location fact, the JSON-LD
-                        areaServed City block, the <title> and description
-       • month + year → the Completed fact
-       • linear feet of walk / wall → a fifth fact, if you want it
-     None of it is guessed at in the meantime. An invented town on a page with
-     our name on it is worse than a page with no town.
+     DATE — August 2026, and it is not a guess. The client's own files carry
+     it: the pan along the finished wall is stamped 2026-08-05 and the site
+     and tractor frames 2026-08-06. If the job actually wrapped later, change
+     the Completed fact and the .where line together.
+
+     LOCATION — STILL MISSING, AND READ THIS BEFORE FILLING IT IN. The page
+     used to say Massachusetts. The wall clip carries an embedded coordinate,
+     +41.4940-071.7831, which is Washington County, RHODE ISLAND — south of
+     the Massachusetts line and east of the Connecticut one. That is one data
+     point from one file, not proof, so the state claim was removed rather
+     than swapped: an unsourced state is better than a wrong one, and Rhode
+     Island has its own contractor registration regime. Confirm the town with
+     the client, then fill in the .where line, a Location fact, a JSON-LD
+     areaServed block, the <title> and the description together.
 
      ONE OPEN QUESTION IN THE COPY: the walls flanking the steps are plainly
      rebuilt (compare before2 with fin5). Whether the long run along the
@@ -53,11 +59,11 @@
   "serviceType": "Flagstone Walkway, Granite Steps and Fieldstone Retaining Wall",
   "name": "Flagstone Walk, Granite Steps & Fieldstone Walls — The Sowinski Job | PHAÖRA",
   "description": "Sunken cobble steps and a flagstone path lost under the hostas, replaced with a mortar-set flagstone walk on a poured base, granite block steps, and rebuilt fieldstone walls.",
+  "datePublished": "2026-08",
   "provider": {
     "@type": "HomeAndConstructionBusiness",
     "name": "PHAÖRA",
-    "legalName": "SKYINCH CAPITAL LLC",
-    "areaServed": { "@type": "State", "name": "Massachusetts" }
+    "legalName": "SKYINCH CAPITAL LLC"
   },
   "image": [
     "https://phaora.com/portfolio/allan-sowinski/images/cmp1-after.jpg",
@@ -170,18 +176,18 @@
 
   <div class="top">
     <a class="mark" href="/portfolio/">P H A Ö R A</a>
-    <!-- Add the town once confirmed: "Flagstone Walk &amp; Stonework · Town, MA" -->
-    <span class="where">Flagstone Walk &amp; Stonework · Massachusetts</span>
+    <!-- Town and STATE still to confirm — see the note at the top of this file.
+         Once settled: "Flagstone Walk &amp; Stonework · Town, ST" -->
+    <span class="where">Flagstone Walk &amp; Stonework · August 2026</span>
   </div>
 
   <h1>The <span>Sowinski</span> Walk</h1>
   <p class="lede">Small cobble steps sunk out of level, weeds through every joint, and a path you had to push the hostas aside to find. Drag the frame below to pull the old approach back over the new one.</p>
 
   <dl class="facts">
-    <!-- Fill in once confirmed:
-         <div><dt>Location</dt><dd>Town, MA</dd></div>
-         <div><dt>Completed</dt><dd>Month Year</dd></div>
-    -->
+    <!-- Location still to fill in: <div><dt>Location</dt><dd>Town, ST</dd></div>
+         See the note at the top of this file about which state. -->
+    <div><dt>Completed</dt><dd>August 2026</dd></div>
     <div><dt>Scope</dt><dd>Walk, steps &amp; walls</dd></div>
     <div><dt>Surface</dt><dd>Irregular flagstone</dd></div>
     <div><dt>Edge</dt><dd>Granite cobble</dd></div>
