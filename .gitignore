@@ -6,3 +6,5 @@ tools/visual-check/node_modules/
 tools/visual-check/screenshots/
 tools/render-pipeline/.env
 tools/render-pipeline/node_modules/
+__pycache__/
+*.pyc
