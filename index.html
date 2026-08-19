@@ -89,6 +89,147 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 .hero-cta:hover{border-color:var(--teal);color:var(--teal)}
 .hero-edge{position:absolute;bottom:0;left:0;right:0;height:2px;z-index:3;background:linear-gradient(90deg,transparent,rgba(79,181,190,.7) 50%,transparent);box-shadow:0 0 18px 3px rgba(20,100,120,.4)}
 
+/* HERO FILM — the montage plays behind everything and melts into the page.
+   Video is graded to the site palette and fades to --ink at both ends, so the
+   loop point is invisible. Never swap in an ungraded file. */
+.hero{background:#020610}
+.hero-film{position:absolute;inset:0;z-index:0;overflow:hidden}
+.hero-film video{width:100%;height:100%;object-fit:cover;display:block;
+  /* the film is already graded; this only seats it in the page */
+  filter:saturate(1.02) contrast(1.02)}
+/* seams: nav at the top, page ground at the bottom, edges at the sides */
+.hero-veil{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    linear-gradient(180deg,rgba(2,6,16,.86) 0%,rgba(2,6,16,.30) 14%,rgba(2,6,16,0) 26%),
+    linear-gradient(0deg,#020610 0%,rgba(2,6,16,.92) 7%,rgba(2,6,16,.45) 17%,rgba(2,6,16,0) 34%),
+    linear-gradient(90deg,rgba(2,6,16,.5) 0%,rgba(2,6,16,0) 12%,rgba(2,6,16,0) 88%,rgba(2,6,16,.5) 100%),
+    radial-gradient(ellipse 90% 70% at 50% 46%,transparent 40%,rgba(2,6,16,.42) 100%)}
+.hero--film .hero-stars,.hero--film .hero-glow{display:none}
+.hero--film{height:92vh;min-height:560px;justify-content:flex-end;padding-bottom:clamp(40px,7vh,86px)}
+.hero--film .hero-inner{z-index:2}
+.hero--film .hero-eyebrow{margin-bottom:26px}
+.hero--film .hero-cta{background:rgba(2,6,16,.42);backdrop-filter:blur(6px)}
+.hero-scroll{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);z-index:3;
+  width:1px;height:38px;background:linear-gradient(180deg,rgba(200,164,94,0),rgba(200,164,94,.55));
+  animation:heroScroll 2.6s ease-in-out infinite}
+@keyframes heroScroll{0%,100%{opacity:.25;transform:translateX(-50%) scaleY(.6)}50%{opacity:1;transform:translateX(-50%) scaleY(1)}}
+
+/* the title strip picks up where the film stops — same ground, no seam */
+.hero-title{background:#020610;text-align:center;padding:clamp(30px,5vh,58px) 24px clamp(26px,4vh,44px);
+  border-bottom:1px solid rgba(79,181,190,.07)}
+.hero-title h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-style:italic;
+  font-size:clamp(46px,7.6vw,104px);line-height:.94;letter-spacing:.01em;color:var(--silver);
+  text-shadow:0 0 80px rgba(79,181,190,.30),0 0 180px rgba(20,100,120,.18)}
+.hero-title .hero-rule{margin:26px auto 22px}
+.hero-title p{font-size:11px;font-weight:500;letter-spacing:.38em;text-indent:.38em;
+  text-transform:uppercase;color:rgba(200,164,94,.7)}
+@media(prefers-reduced-motion:reduce){.hero-film video{display:none}
+  .hero-film{background:url(assets/video/phaora-hero-poster.jpg) center/cover no-repeat}}
+/* Portrait: the film is 16:9 with its type on the left third, so cover() would
+   crop the words away. Letterbox it instead — the page ground is the same
+   #020610 the film fades to, so there is no visible edge. */
+@media(max-aspect-ratio:1/1){
+  .hero-film video{object-fit:contain}
+  .hero-veil{background:
+    linear-gradient(180deg,rgba(2,6,16,.86) 0%,rgba(2,6,16,.28) 11%,rgba(2,6,16,0) 20%),
+    linear-gradient(0deg,#020610 0%,rgba(2,6,16,.85) 6%,rgba(2,6,16,0) 20%)}
+  .hero--film{height:74vh;min-height:440px}
+}
+@media(max-width:640px){.hero--film{height:70vh;min-height:420px}
+  .hero-title{padding-top:clamp(18px,3vh,34px)}}
+
+/* LIVE TYPOGRAPHY OVER THE FILM
+   The mp4 ships clean — no burnt-in words. Every line below is real HTML,
+   cued off the video's own currentTime, so it stays sharp on any screen,
+   reflows on a phone, and Google can read it.
+   Cue timings live in HERO_CUES in the script at the bottom of this file.
+   If you re-cut the film, update BOTH or the words drift. */
+.hero-type{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden}
+.hero-cue{position:absolute;inset:0;opacity:0;transition:opacity .55s ease}
+.hero-cue.on{opacity:1}
+
+/* the bottom wash belongs to this layer, so it always ends ON the bottom edge */
+.hero-type::after{content:'';position:absolute;left:0;right:0;bottom:0;height:34%;
+  background:linear-gradient(0deg,rgba(2,6,16,.62) 0%,rgba(2,6,16,.40) 20%,rgba(2,6,16,.16) 52%,rgba(2,6,16,0) 100%)}
+.hero-cue{z-index:1}
+
+/* left-side statement */
+.hc-side{display:flex;flex-direction:column;justify-content:center;
+  padding:0 clamp(24px,6vw,132px);width:min(50%,760px)}
+/* the film's picture panel starts at 52.6% of the frame — the text column
+   stops short of it at every width so nothing can ever collide */
+.hc-side .hc-h{max-width:12ch}
+.hc-lbl{font-size:clamp(10px,1vw,15px);font-weight:500;letter-spacing:.46em;text-transform:uppercase;
+  color:rgba(79,181,190,.88);margin-bottom:clamp(12px,1.6vw,24px)}
+.hc-rule{width:64px;height:1px;background:linear-gradient(90deg,#C8A45E,rgba(200,164,94,0));
+  margin-bottom:clamp(14px,2vw,30px)}
+.hc-h{font-family:'Cormorant Garamond',serif;font-weight:300;line-height:1.04;color:#EAEFF5;
+  font-size:clamp(30px,4.7vw,88px);letter-spacing:.004em;text-wrap:balance;
+  text-shadow:0 2px 30px rgba(2,6,16,.85)}
+.hc-h em{font-style:italic;color:#D9BC7C}
+.hc-p{margin-top:clamp(10px,1.4vw,26px);font-size:clamp(12px,1.15vw,21px);line-height:1.62;
+  color:rgba(234,239,245,.62);max-width:34ch;text-shadow:0 2px 20px rgba(2,6,16,.9)}
+
+/* centred statement */
+.hc-mid{display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:0 clamp(24px,10vw,200px)}
+.hc-mid .hc-rule{background:linear-gradient(90deg,transparent,#C8A45E,transparent);width:150px}
+.hc-mid .hc-h{font-size:clamp(32px,5.5vw,104px);max-width:20ch}
+.hc-mid .hc-p{max-width:44ch}
+
+/* corner tag */
+.hc-tag{display:flex;align-items:center;gap:16px;position:absolute;
+  left:clamp(20px,5vw,96px);bottom:clamp(28px,7vh,74px)}
+.hc-tag i{width:34px;height:1px;background:#C8A45E;flex:0 0 auto}
+.hc-tag span{font-size:clamp(9px,1.05vw,17px);font-weight:500;letter-spacing:.36em;text-transform:uppercase;
+  color:rgba(234,239,245,.92);text-shadow:0 2px 16px rgba(2,6,16,.95)}
+.hc-tag b{font-weight:500;color:rgba(79,181,190,.95)}
+
+/* BEFORE / AFTER — the loud one */
+.hc-ba{position:absolute;left:clamp(20px,5vw,96px);bottom:clamp(26px,6.6vh,74px)}
+.hc-ba .k{font-size:clamp(38px,8vw,124px);font-weight:500;letter-spacing:.20em;text-transform:uppercase;
+  color:#EAEFF5;line-height:.96;text-shadow:0 6px 44px rgba(2,6,16,.95),0 2px 12px rgba(2,6,16,.9)}
+.hc-ba .s{margin-top:clamp(6px,1vw,16px);display:flex;align-items:center;gap:16px}
+.hc-ba .s i{width:44px;height:1px;background:#C8A45E;flex:0 0 auto}
+.hc-ba .s span{font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:clamp(15px,2.1vw,36px);color:rgba(234,239,245,.92);text-shadow:0 2px 18px rgba(2,6,16,.95)}
+
+/* closing wordmark */
+.hc-wm{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(12px,2vh,30px)}
+.hc-wm .w{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(38px,7vw,132px);
+  letter-spacing:.42em;text-indent:.42em;color:#EAEFF5;line-height:1}
+.hc-wm .w i{font-style:normal;color:rgba(79,181,190,.62)}
+.hc-wm .r{width:180px;height:1px;background:linear-gradient(90deg,transparent,#C8A45E,transparent)}
+.hc-wm .t{font-size:clamp(10px,1.1vw,19px);font-weight:500;letter-spacing:.44em;text-indent:.44em;
+  text-transform:uppercase;color:rgba(234,239,245,.42)}
+
+@media(max-aspect-ratio:1/1){
+  /* the film letterboxes on a phone, so the words track the film's band —
+     not the whole hero, or they land in the black above and below it */
+  .hero-type{top:50%;bottom:auto;transform:translateY(-50%);height:min(56.25vw,100%)}
+  .hc-side{width:auto;padding-right:clamp(24px,6vw,132px);justify-content:flex-start;padding-top:9%}
+  .hc-side .hc-h{max-width:11ch}
+  .hc-side .hc-p{display:none}
+  .hc-ba{bottom:clamp(14px,3vh,30px)}
+  .hc-tag{bottom:clamp(14px,3vh,30px)}
+  .hero-type::after{height:46%}
+}
+@media(prefers-reduced-motion:reduce){.hero-cue{transition:none}}
+
+/* Sound. The film autoplays muted because every browser blocks sound-on
+   autoplay; it unmutes on the visitor's first gesture, and this button lets
+   them take it back. Choice is remembered for the session. */
+.hero-sound{position:absolute;right:clamp(16px,3vw,40px);bottom:clamp(16px,3vh,40px);z-index:4;
+  width:44px;height:44px;border:1px solid rgba(79,181,190,.28);background:rgba(2,6,16,.5);
+  backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;cursor:pointer;
+  transition:border-color .2s,background .2s;padding:0}
+.hero-sound:hover{border-color:var(--teal);background:rgba(2,6,16,.72)}
+.hero-sound svg{width:17px;height:17px;fill:none;stroke:rgba(234,239,245,.82);stroke-width:1.5;
+  stroke-linecap:round;stroke-linejoin:round}
+.hero-sound .off{display:none}
+.hero-sound.is-muted .off{display:block}
+.hero-sound.is-muted .on{display:none}
+
 /* TICKER */
 .ticker-wrap{border-top:1px solid rgba(79,181,190,.08);border-bottom:1px solid rgba(79,181,190,.08);overflow:hidden;background:rgba(3,10,18,.6);padding:13px 0}
 .ticker-inner{display:flex;gap:0;white-space:nowrap;animation:ticker 36s linear infinite}
@@ -422,18 +563,63 @@ footer{padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);border-top:1px solid rg
 </div>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="hero-stars" id="heroStars"></div>
-  <div class="hero-glow"></div>
+<section class="hero hero--film">
+  <div class="hero-film">
+    <video autoplay loop muted playsinline preload="auto"
+           poster="assets/video/phaora-hero-poster.jpg"
+           aria-label="PHAÖRA crews on site — stonework from the walk-through to the finished job">
+      <source src="assets/video/phaora-hero.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero-veil"></div>
+
+  <!-- Live typography. Timed to the film in HERO_CUES — keep the two in sync. -->
+  <div class="hero-type" id="heroType" aria-hidden="true">
+    <div class="hero-cue hc-side" data-cue="c1">
+      <div class="hc-lbl">Cape Cod</div><div class="hc-rule"></div>
+      <div class="hc-h">Every job starts the <em>same</em> way.</div>
+      <p class="hc-p">You walk the ground with the person who has to live on it.</p>
+    </div>
+    <div class="hero-cue hc-side" data-cue="c2">
+      <div class="hc-lbl">The walk</div><div class="hc-rule"></div>
+      <div class="hc-h">You listen first.<br>Then you <em>dig</em>.</div>
+    </div>
+    <div class="hero-cue" data-cue="tnow"><div class="hc-tag"><i></i><span>August 2026 &nbsp;·&nbsp; <b>In progress</b></span></div></div>
+    <div class="hero-cue hc-mid" data-cue="c3">
+      <div class="hc-lbl">How it gets built</div><div class="hc-rule"></div>
+      <div class="hc-h">Nothing sits on <em>dirt</em>.</div>
+      <p class="hc-p">Compacted base under every stone, then a full mortar bed. Dirt moves with frost. Stone set on it moves with it.</p>
+    </div>
+    <div class="hero-cue" data-cue="tbase"><div class="hc-tag"><i></i><span>Compacted base &nbsp;·&nbsp; laid in lifts</span></div></div>
+    <div class="hero-cue" data-cue="b1"><div class="hc-ba"><div class="k">Before</div></div></div>
+    <div class="hero-cue" data-cue="a1"><div class="hc-ba"><div class="k">After</div><div class="s"><i></i><span>The Costa Driveway</span></div></div></div>
+    <div class="hero-cue" data-cue="b2"><div class="hc-ba"><div class="k">Before</div></div></div>
+    <div class="hero-cue" data-cue="a2"><div class="hc-ba"><div class="k">After</div><div class="s"><i></i><span>The Sowinski Walk</span></div></div></div>
+    <div class="hero-cue hc-mid" data-cue="c4">
+      <div class="hc-rule"></div>
+      <div class="hc-h">Anyone can set the middle.<br>The edge tells you <em>who built it</em>.</div>
+    </div>
+    <div class="hero-cue hc-wm" data-cue="wm">
+      <div class="w">PHA<i>Ö</i>RA</div><div class="r"></div><div class="t">Stone, set to last</div>
+    </div>
+  </div>
   <div class="hero-inner">
     <p class="hero-eyebrow">Full-Service Home Improvement &nbsp;·&nbsp; Massachusetts</p>
-    <h1 class="hero-name serif">Stone, set to last.</h1>
-    <div class="hero-rule"></div>
-    <p class="hero-arrival">Masonry flagship &nbsp;·&nbsp; whole-home trades &nbsp;·&nbsp; snow plowing</p>
     <a href="mailto:david@phaora.com?subject=Free%20estimate%20request" class="hero-cta">Free on-site estimate</a>
   </div>
+  <button class="hero-sound is-muted" id="heroSound" type="button" aria-label="Turn sound on">
+    <svg viewBox="0 0 24 24" class="on" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/><path d="M19 6a8.5 8.5 0 0 1 0 12"/></svg>
+    <svg viewBox="0 0 24 24" class="off" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M17 9.5l4 5M21 9.5l-4 5"/></svg>
+  </button>
+  <div class="hero-scroll"></div>
   <div class="hero-edge"></div>
 </section>
+
+<div class="hero-title">
+  <h1 class="hero-name serif">Stone, set to last.</h1>
+  <div class="hero-rule"></div>
+  <p>Masonry flagship &nbsp;·&nbsp; whole-home trades &nbsp;·&nbsp; snow plowing</p>
+</div>
 
 <!-- RECENT WORK -->
 <!-- Newest job goes FIRST. Date is the headline; the name sits under it.
@@ -683,9 +869,72 @@ footer{padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);border-top:1px solid rg
 
 <script>
 (function(){function mulberry32(a){return function(){a|=0;a=(a+0x6D2B79F5)|0;let t=Math.imul(a^(a>>>15),1|a);t=(t+Math.imul(t^(t>>>7),61|t))^t;return((t^(t>>>14))>>>0)/4294967296}}
-const el=document.getElementById('heroStars');const W=window.innerWidth||1440;const H=window.innerHeight||900;const rnd=mulberry32(9182);const count=110;let html='';
+const el=document.getElementById('heroStars');if(!el)return;const W=window.innerWidth||1440;const H=window.innerHeight||900;const rnd=mulberry32(9182);const count=110;let html='';
 for(let i=0;i<count;i++){const x=(rnd()*W).toFixed(0);const y=(rnd()*H).toFixed(0);const r=rnd();const size=r<0.78?1.4:(r<0.95?2.2:3);const op=(rnd()*0.42+0.1).toFixed(2);const cx=W/2,cy=H/2;const dx=x-cx,dy=y-cy;const dist=Math.sqrt(dx*dx+dy*dy);const finalOp=dist<180?(op*0.35).toFixed(2):op;html+='<span style="position:absolute;border-radius:50%;background:#B8D0E4;left:'+x+'px;top:'+y+'px;width:'+size+'px;height:'+size+'px;opacity:'+finalOp+'"></span>'}
 el.innerHTML=html})();
+
+/* HERO FILM CUES — timings match assets/video/phaora-hero.mp4 exactly.
+   Re-cut the film and these must move with it. Times are [in, out] seconds. */
+(function(){
+  var v=document.querySelector('.hero-film video'), layer=document.getElementById('heroType');
+  if(!v||!layer) return;
+  var HERO_CUES=[
+    ['c1',    0.6,  3.9],
+    ['c2',    7.6, 10.5],
+    ['tnow', 10.9, 13.1],
+    ['c3',   16.2, 18.7],
+    ['tbase',19.1, 21.0],
+    ['b1',   21.2, 22.6],
+    ['a1',   23.3, 25.3],
+    ['b2',   25.5, 26.9],
+    ['a2',   27.6, 29.6],
+    ['c4',   30.3, 32.6],
+    ['wm',   46.9, 49.7]
+  ];
+  var els={}; layer.querySelectorAll('.hero-cue').forEach(function(e){els[e.dataset.cue]=e});
+  var last='';
+  function tick(){
+    var t=v.currentTime,on='';
+    for(var i=0;i<HERO_CUES.length;i++){
+      var c=HERO_CUES[i];
+      if(t>=c[1]&&t<c[2]){on=c[0];break}
+    }
+    if(on!==last){
+      if(last&&els[last]) els[last].classList.remove('on');
+      if(on&&els[on]) els[on].classList.add('on');
+      last=on;
+    }
+  }
+  v.addEventListener('timeupdate',tick);
+  v.addEventListener('seeked',tick);
+  // timeupdate fires ~4x/sec; a rAF loop keeps the cuts landing on the frame
+  (function raf(){ if(!v.paused&&!v.ended) tick(); requestAnimationFrame(raf) })();
+  // AUTOPLAY + SOUND
+  // Every browser blocks autoplay with audio, so the film starts muted and the
+  // piano comes in on the visitor's first gesture. The button overrides either
+  // way and the choice sticks for the session.
+  var btn=document.getElementById('heroSound');
+  var KEY='phaoraHeroSound';
+  function paint(){ if(btn) btn.classList.toggle('is-muted',v.muted);
+    if(btn) btn.setAttribute('aria-label',v.muted?'Turn sound on':'Turn sound off') }
+  function unmute(){ if(sessionStorage.getItem(KEY)==='off') return;
+    v.muted=false; v.volume=0.55; v.play().catch(function(){}); paint() }
+  v.muted=true;
+  var pr=v.play(); if(pr&&pr.catch) pr.catch(function(){
+    var go=function(){v.muted=true;v.play()};
+    document.addEventListener('touchstart',go,{once:true});
+    document.addEventListener('click',go,{once:true});
+  });
+  ['pointerdown','keydown','wheel','touchstart'].forEach(function(ev){
+    document.addEventListener(ev,unmute,{once:true,passive:true});
+  });
+  if(btn) btn.addEventListener('click',function(e){
+    e.stopPropagation();
+    v.muted=!v.muted; if(!v.muted){v.volume=0.55;v.play().catch(function(){})}
+    sessionStorage.setItem(KEY,v.muted?'off':'on'); paint();
+  });
+  paint();
+})();
 
 function filterGallery(btn,div){document.querySelectorAll('.gf-btn').forEach(function(b){b.classList.remove('active')});btn.classList.add('active');document.querySelectorAll('.gm-item').forEach(function(item){item.style.display=(div==='all'||item.dataset.div===div)?'':'none'})}
 
