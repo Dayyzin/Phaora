@@ -591,12 +591,16 @@ footer{padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);border-top:1px solid rg
   <div class="hero-glow"></div>
   <div class="hero-film">
     <video autoplay loop muted playsinline preload="auto"
+           data-wide="assets/video/phaora-hero.mp4"
+           data-portrait="assets/video/phaora-hero-portrait.mp4"
            poster="assets/video/phaora-hero-poster.jpg"
            aria-label="PHAÖRA crews on site — stonework from the walk-through to the finished job">
       <!-- Portrait screens get a cut composed for them: the phone-shot footage
            fills the frame natively instead of sitting in a blur panel. Same
-           edit, same durations, so HERO_CUES lands on the same frames. -->
-      <source src="assets/video/phaora-hero-portrait.mp4" type="video/mp4" media="(max-aspect-ratio: 1/1)">
+           edit, same durations, so HERO_CUES lands on the same frames.
+           The file is chosen in script below, NOT by a media attribute here —
+           Safari ignores media on <source> and loaded the wide cut on every
+           phone, then cover() cropped it to its middle. data-* only. -->
       <source src="assets/video/phaora-hero.mp4" type="video/mp4">
     </video>
   </div>
@@ -908,6 +912,28 @@ el.innerHTML=html})();
 (function(){
   var v=document.querySelector('.hero-film video'), layer=document.getElementById('heroType');
   if(!v||!layer) return;
+  // PICK THE CUT BY SHAPE.
+  // A media attribute on <source> is the obvious way to do this and Safari
+  // ignores it — every iPhone loaded the wide 16:9 file and object-fit:cover
+  // cropped it to the middle third, cutting the picture panel off. Set src
+  // directly instead, before the first play, and swap on rotation.
+  var wide=v.dataset.wide, portrait=v.dataset.portrait;
+  function wantSrc(){ return (window.innerHeight>window.innerWidth && portrait) ? portrait : wide }
+  function applySrc(){
+    var want=wantSrc(); if(!want) return;
+    if(v.currentSrc && v.currentSrc.indexOf(want)!==-1) return;
+    var at=v.currentTime||0, wasMuted=v.muted;
+    v.src=want; v.muted=wasMuted; v.load();
+    v.addEventListener('loadedmetadata',function once(){
+      v.removeEventListener('loadedmetadata',once);
+      try{ v.currentTime=at }catch(e){}
+      v.play().catch(function(){ v.muted=true; v.play().catch(function(){}) });
+    });
+  }
+  applySrc();
+  window.addEventListener('resize',applySrc);
+  window.addEventListener('orientationchange',applySrc);
+
   var HERO_CUES=[
     ['c1',    0.6,  3.9],
     ['c2',    7.6, 10.5],
