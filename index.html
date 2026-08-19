@@ -284,8 +284,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;display:grid;grid-template-c
 .rc-note{margin-top:9px;font-size:13px;line-height:1.62;color:rgba(234,239,245,.5)}
 .rc-more{margin-top:16px;font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(200,164,94,.62);transition:color .2s}
 /* the job running right now — same card, marked live, no link until it has a page */
-.rc--live{border-color:rgba(79,181,190,.32);cursor:default}
-.rc--live:hover{transform:none;border-color:rgba(79,181,190,.32)}
+.rc--live{border-color:rgba(79,181,190,.32)}
+.rc--live:hover{border-color:rgba(79,181,190,.6)}
 .rc--live .rc-img img{filter:brightness(.88) saturate(.95)}
 .rc-now{display:inline-flex;align-items:center;gap:9px;font-size:10px;font-weight:500;letter-spacing:.26em;
   text-transform:uppercase;color:rgba(79,181,190,.9);margin-bottom:14px}
@@ -688,15 +688,16 @@ footer{padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);border-top:1px solid rg
          job runs, then becomes a finished case card like the others below.
          Never put a client's name or a street address on it — see CLAUDE.md
          rules 4 and 5. -->
-    <div class="rc rc--live">
+    <a class="rc rc--live" href="portfolio/currently-building/">
       <div class="rc-img"><img src="portfolio/images/current/wall-level.jpg" alt="Levelling a cap stone on a block retaining wall under construction" loading="lazy"></div>
       <div class="rc-body">
         <span class="rc-now"><i></i>Currently building</span>
         <span class="rc-date serif">August <span>2026</span></span>
         <div class="rc-name">Cape Cod &nbsp;·&nbsp; Retaining wall &amp; steps</div>
         <p class="rc-note">Block wall carrying the grade back off the house, granite treads set into the run. Photographed this week.</p>
+        <div class="rc-more">Follow the build &rarr;</div>
       </div>
-    </div>
+    </a>
 
     <a class="rc" href="portfolio/allan-sowinski/">
       <div class="rc-img"><img src="portfolio/allan-sowinski/images/cmp1-after.jpg" alt="Finished flagstone walk edged in granite cobble, running to granite steps" loading="lazy"></div>
