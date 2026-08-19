@@ -15,6 +15,20 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="PHAÖRA — Full-Service Home Improvement · Massachusetts">
 <meta name="twitter:description" content="Full-service home improvement across Massachusetts. Masonry flagship, whole-home trades, snow plowing. Free on-site estimate.">
+<!-- LocalBusiness data. Invisible on the page; it lets Google show the number
+     in results. Only facts already published on this site — no address, hours,
+     rating or review count until those are real. -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"GeneralContractor","name":"PHAÖRA",
+"legalName":"SKYINCH CAPITAL LLC","url":"https://phaora.com/",
+"telephone":"+1-954-871-9991","email":"david@phaora.com",
+"image":"https://phaora.com/assets/video/phaora-hero-poster.jpg",
+"description":"Masonry and stonework flagship with whole-home trades across Massachusetts. Patios, walkways, stone veneer, retaining walls, drainage, kitchens and baths, roofing and siding, decks and additions. Snow plowing in winter. Free on-site estimates.",
+"areaServed":[{"@type":"AdministrativeArea","name":"MetroWest, Massachusetts"},
+{"@type":"AdministrativeArea","name":"Greater Boston, Massachusetts"}],
+"contactPoint":{"@type":"ContactPoint","telephone":"+1-954-871-9991","contactType":"sales",
+"availableLanguage":["English","Portuguese"]}}
+</script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--pearl:#EAEFF5;--silver:#DBE6F0;--teal:#4FB5BE;--teal-d:rgba(79,181,190,.55);--gold:#C8A45E;--gold-lt:#D9BC7C;--ink:#020610;--ink2:#03080F}
@@ -107,6 +121,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 .hero--film .hero-inner{z-index:4}
 .hero--film .hero-eyebrow{margin-bottom:26px}
 .hero--film .hero-cta{background:rgba(2,6,16,.42);backdrop-filter:blur(6px)}
+/* The number sits under the film as a line of text — no box, no button.
+   Reachable without asking for it. */
+.hero-line{display:block;margin-top:clamp(14px,2vh,22px);font-size:11px;font-weight:400;
+  letter-spacing:.26em;text-transform:uppercase;color:rgba(234,239,245,.42);
+  transition:color .25s;text-shadow:0 1px 14px rgba(2,6,16,.9)}
+.hero-line:hover{color:var(--gold-lt)}
+.hero-line b{font-weight:500;color:rgba(234,239,245,.62)}
+.hero-line:hover b{color:var(--gold-lt)}
 .hero-scroll{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);z-index:5;
   width:1px;height:38px;background:linear-gradient(180deg,rgba(200,164,94,0),rgba(200,164,94,.55));
   animation:heroScroll 2.6s ease-in-out infinite}
@@ -606,6 +628,7 @@ footer{padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);border-top:1px solid rg
   <div class="hero-inner">
     <p class="hero-eyebrow">Full-Service Home Improvement &nbsp;·&nbsp; Massachusetts</p>
     <a href="mailto:david@phaora.com?subject=Free%20estimate%20request" class="hero-cta">Free on-site estimate</a>
+    <a class="hero-line" href="tel:+19548719991">or call <b>(954) 871-9991</b></a>
   </div>
   <button class="hero-sound is-muted" id="heroSound" type="button" aria-label="Turn sound on">
     <svg viewBox="0 0 24 24" class="on" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/><path d="M19 6a8.5 8.5 0 0 1 0 12"/></svg>
@@ -858,7 +881,7 @@ footer{padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);border-top:1px solid rg
     </div>
     <div class="footer-col">
       <h5>Connect</h5>
-      <ul><li><a href="mailto:david@phaora.com">Contact</a></li><li><a href="#">Instagram</a></li><li><a href="mailto:david@phaora.com">Email</a></li></ul>
+      <ul><li><a href="tel:+19548719991">(954) 871-9991</a></li><li><a href="mailto:david@phaora.com">Email</a></li><li><a href="#">Instagram</a></li></ul>
     </div>
   </div>
   <div class="footer-bottom">
