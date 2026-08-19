@@ -21,12 +21,12 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"GeneralContractor","name":"PHAÖRA",
 "legalName":"SKYINCH CAPITAL LLC","url":"https://phaora.com/",
-"telephone":"+1-954-871-9991","email":"david@phaora.com",
+"telephone":"+1-561-299-1261","email":"david@phaora.com",
 "image":"https://phaora.com/assets/video/phaora-hero-poster.jpg",
 "description":"Masonry and stonework flagship with whole-home trades across Massachusetts. Patios, walkways, stone veneer, retaining walls, drainage, kitchens and baths, roofing and siding, decks and additions. Snow plowing in winter. Free on-site estimates.",
 "areaServed":[{"@type":"AdministrativeArea","name":"MetroWest, Massachusetts"},
 {"@type":"AdministrativeArea","name":"Greater Boston, Massachusetts"}],
-"contactPoint":{"@type":"ContactPoint","telephone":"+1-954-871-9991","contactType":"sales",
+"contactPoint":{"@type":"ContactPoint","telephone":"+1-561-299-1261","contactType":"sales",
 "availableLanguage":["English","Portuguese"]}}
 </script>
 <style>
@@ -278,6 +278,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 .rc-name{margin-top:12px;font-size:11px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:rgba(79,181,190,.82)}
 .rc-note{margin-top:9px;font-size:13px;line-height:1.62;color:rgba(234,239,245,.5)}
 .rc-more{margin-top:16px;font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(200,164,94,.62);transition:color .2s}
+/* the job running right now — same card, marked live, no link until it has a page */
+.rc--live{border-color:rgba(79,181,190,.32);cursor:default}
+.rc--live:hover{transform:none;border-color:rgba(79,181,190,.32)}
+.rc--live .rc-img img{filter:brightness(.88) saturate(.95)}
+.rc-now{display:inline-flex;align-items:center;gap:9px;font-size:10px;font-weight:500;letter-spacing:.26em;
+  text-transform:uppercase;color:rgba(79,181,190,.9);margin-bottom:14px}
+.rc-now i{width:6px;height:6px;border-radius:50%;background:var(--teal);flex:0 0 auto;
+  box-shadow:0 0 10px 2px rgba(79,181,190,.6);animation:recentPulse 2.4s ease-in-out infinite}
 .rc:hover .rc-more{color:var(--gold-lt)}
 .recent-all{display:inline-block;margin-top:clamp(24px,3vw,36px);border:1px solid rgba(79,181,190,.28);padding:12px 26px;font-size:10px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:rgba(79,181,190,.82);transition:border-color .2s,color .2s}
 .recent-all:hover{border-color:var(--teal);color:var(--teal)}
@@ -639,7 +647,7 @@ footer{padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);border-top:1px solid rg
   <div class="hero-inner">
     <p class="hero-eyebrow">Full-Service Home Improvement &nbsp;·&nbsp; Massachusetts</p>
     <a href="mailto:david@phaora.com?subject=Free%20estimate%20request" class="hero-cta">Free on-site estimate</a>
-    <a class="hero-line" href="tel:+19548719991">or call <b>(954) 871-9991</b></a>
+    <a class="hero-line" href="tel:+15612991261">or call <b>(561) 299-1261</b></a>
   </div>
   <button class="hero-sound is-muted" id="heroSound" type="button" aria-label="Turn sound on">
     <svg viewBox="0 0 24 24" class="on" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/><path d="M19 6a8.5 8.5 0 0 1 0 12"/></svg>
@@ -660,11 +668,28 @@ footer{padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);border-top:1px solid rg
      Never guess a month or a town here — see CLAUDE.md rule 5. -->
 <section class="recent" id="recent">
   <div class="recent-head">
-    <h2 class="recent-title serif">Finished <em>this</em> season</h2>
-    <span class="recent-live">Currently building</span>
+    <!-- The band leads with the job running right now, so the heading covers
+         both states. "Finished this season" stopped being true the moment a
+         live card went above the finished ones. -->
+    <h2 class="recent-title serif">What we're <em>building</em></h2>
+    <span class="recent-live">Newest first</span>
   </div>
 
   <div class="recent-grid">
+
+    <!-- CURRENTLY BUILDING. This card stays at the top of the grid while the
+         job runs, then becomes a finished case card like the others below.
+         Never put a client's name or a street address on it — see CLAUDE.md
+         rules 4 and 5. -->
+    <div class="rc rc--live">
+      <div class="rc-img"><img src="portfolio/images/current/wall-level.jpg" alt="Levelling a cap stone on a block retaining wall under construction" loading="lazy"></div>
+      <div class="rc-body">
+        <span class="rc-now"><i></i>Currently building</span>
+        <span class="rc-date serif">August <span>2026</span></span>
+        <div class="rc-name">Cape Cod &nbsp;·&nbsp; Retaining wall &amp; steps</div>
+        <p class="rc-note">Block wall carrying the grade back off the house, granite treads set into the run. Photographed this week.</p>
+      </div>
+    </div>
 
     <a class="rc" href="portfolio/allan-sowinski/">
       <div class="rc-img"><img src="portfolio/allan-sowinski/images/cmp1-after.jpg" alt="Finished flagstone walk edged in granite cobble, running to granite steps" loading="lazy"></div>
@@ -892,7 +917,7 @@ footer{padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);border-top:1px solid rg
     </div>
     <div class="footer-col">
       <h5>Connect</h5>
-      <ul><li><a href="tel:+19548719991">(954) 871-9991</a></li><li><a href="mailto:david@phaora.com">Email</a></li><li><a href="#">Instagram</a></li></ul>
+      <ul><li><a href="tel:+15612991261">(561) 299-1261</a></li><li><a href="mailto:david@phaora.com">Email</a></li><li><a href="#">Instagram</a></li></ul>
     </div>
   </div>
   <div class="footer-bottom">
