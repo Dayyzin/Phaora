@@ -15,6 +15,39 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="PHAÖRA — Full-Service Home Improvement · Massachusetts">
 <meta name="twitter:description" content="Full-service home improvement across Massachusetts. Masonry flagship, whole-home trades, snow plowing. Free on-site estimate.">
+<!-- LocalBusiness data. Only facts already published on this site — the phone
+     number from contact.html, the trades from the services section, the areas
+     from the territories section. Do not add an address, hours, rating or
+     review count here until they are real. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "GeneralContractor",
+  "name": "PHAÖRA",
+  "legalName": "SKYINCH CAPITAL LLC",
+  "url": "https://phaora.com/",
+  "telephone": "+1-954-871-9991",
+  "email": "david@phaora.com",
+  "image": "https://phaora.com/assets/video/phaora-hero-poster.jpg",
+  "description": "Masonry and stonework flagship with whole-home trades across Massachusetts. Patios, walkways, stone veneer, retaining walls, drainage, kitchens and baths, roofing and siding, decks and additions. Snow plowing in winter. Free on-site estimates.",
+  "areaServed": [
+    { "@type": "AdministrativeArea", "name": "MetroWest, Massachusetts" },
+    { "@type": "AdministrativeArea", "name": "Greater Boston, Massachusetts" }
+  ],
+  "knowsAbout": [
+    "Masonry", "Stonework", "Patios and walkways", "Stone veneer",
+    "Retaining walls", "Drainage", "Decks and outdoor living",
+    "Kitchens and baths", "Roofing and siding", "Snow plowing"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+1-954-871-9991",
+    "contactType": "sales",
+    "areaServed": "US",
+    "availableLanguage": ["English", "Portuguese"]
+  }
+}
+</script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--pearl:#EAEFF5;--silver:#DBE6F0;--teal:#4FB5BE;--teal-d:rgba(79,181,190,.55);--gold:#C8A45E;--gold-lt:#D9BC7C;--ink:#020610;--ink2:#03080F}
@@ -58,6 +91,26 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 .nav-right a:hover{color:rgba(234,239,245,.82)}
 .nav-right .enquire{border:1px solid rgba(79,181,190,.28);padding:7px 16px;color:rgba(79,181,190,.8);transition:border-color .2s,color .2s}
 .nav-right .enquire:hover{border-color:var(--teal);color:var(--teal)}
+/* Call. Homeowners with a wall coming down pick up the phone; every other
+   route off this page was a mailto. Tap targets in the nav, the hero and
+   the footer, all pointing at (954) 871-9991. */
+.nav-phone{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:500;
+  letter-spacing:.16em;color:var(--gold-lt)!important;white-space:nowrap}
+.nav-phone:hover{color:#EFD9A6!important}
+.nav-phone svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.6;
+  stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
+.hero-actions{display:flex;align-items:center;gap:clamp(10px,1.6vw,18px);flex-wrap:wrap;justify-content:center}
+.hero-call{display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(200,164,94,.55);
+  background:rgba(200,164,94,.10);backdrop-filter:blur(6px);padding:13px 26px;
+  font-size:11px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-lt);
+  transition:background .22s,border-color .22s,color .22s;white-space:nowrap}
+.hero-call:hover{background:rgba(200,164,94,.20);border-color:var(--gold-lt);color:#F2E2BC}
+.hero-call svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.7;
+  stroke-linecap:round;stroke-linejoin:round}
+.m-phone{color:var(--gold-lt)!important}
+@media(max-width:1080px){.nav-phone{display:none}}
+@media(max-width:520px){.hero-actions{flex-direction:column-reverse;gap:10px}
+  .hero-call,.hero-cta{width:min(84vw,320px);justify-content:center;text-align:center}}
 
 /* MOBILE NAV */
 .nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;z-index:201}
@@ -496,7 +549,7 @@ footer{padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);border-top:1px solid rg
 
 <nav>
   <div class="nav-links">
-    <a href="portfolio/">Our Work</a>
+  <a href="portfolio/">Our Work</a>
     <a href="hardscape-gallery.html">Hardscape</a>
     <div class="nav-dropdown">
       <a class="nav-dropdown-trigger" href="sculptures.html">Águas Vivas <svg class="nav-dropdown-chevron" width="7" height="5" viewBox="0 0 7 5" fill="none"><path d="M.5 1L3.5 4l3-3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></a>
@@ -521,6 +574,7 @@ footer{padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);border-top:1px solid rg
   <a href="index.html" class="nav-wm">PHA<span class="o">&Ouml;</span>RA</a>
   <div class="nav-right">
   <button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <a class="nav-phone" href="tel:+19548719991"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8.1 9.5a16 16 0 0 0 6 6l1.1-1.1a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2z"/></svg>(954) 871-9991</a>
     <a href="#">Studio</a>
     <a href="mailto:david@phaora.com">Contact</a>
     <a href="mailto:david@phaora.com" class="enquire">Enquire →</a>
@@ -532,6 +586,7 @@ footer{padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);border-top:1px solid rg
   <div class="mobile-menu-scroll">
   <a href="sculptures.html" class="m-viewall-top">View All Sculptures</a>
   <a href="index.html">Home</a>
+  <a class="m-phone" href="tel:+19548719991">Call or text &nbsp;·&nbsp; (954) 871-9991</a>
   <a href="portfolio/">Our Work</a>
   <a href="hardscape-gallery.html">Hardscape</a>
   <button type="button" class="av m-acc" id="mAvToggle">Águas Vivas <span class="m-chev">&#9662;</span></button>
@@ -605,7 +660,10 @@ footer{padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);border-top:1px solid rg
   </div>
   <div class="hero-inner">
     <p class="hero-eyebrow">Full-Service Home Improvement &nbsp;·&nbsp; Massachusetts</p>
-    <a href="mailto:david@phaora.com?subject=Free%20estimate%20request" class="hero-cta">Free on-site estimate</a>
+    <div class="hero-actions">
+      <a href="mailto:david@phaora.com?subject=Free%20estimate%20request" class="hero-cta">Free on-site estimate</a>
+      <a href="tel:+19548719991" class="hero-call"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8.1 9.5a16 16 0 0 0 6 6l1.1-1.1a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2z"/></svg>(954) 871-9991</a>
+    </div>
   </div>
   <button class="hero-sound is-muted" id="heroSound" type="button" aria-label="Turn sound on">
     <svg viewBox="0 0 24 24" class="on" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/><path d="M19 6a8.5 8.5 0 0 1 0 12"/></svg>
@@ -858,7 +916,7 @@ footer{padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);border-top:1px solid rg
     </div>
     <div class="footer-col">
       <h5>Connect</h5>
-      <ul><li><a href="mailto:david@phaora.com">Contact</a></li><li><a href="#">Instagram</a></li><li><a href="mailto:david@phaora.com">Email</a></li></ul>
+      <ul><li><a href="tel:+19548719991">(954) 871-9991</a></li><li><a href="mailto:david@phaora.com">Email</a></li><li><a href="#">Instagram</a></li></ul>
     </div>
   </div>
   <div class="footer-bottom">
