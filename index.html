@@ -101,10 +101,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 /* seams: nav at the top, page ground at the bottom, edges at the sides */
 .hero-veil{position:absolute;inset:0;z-index:2;pointer-events:none;
   background:
-    linear-gradient(180deg,rgba(2,6,16,.86) 0%,rgba(2,6,16,.30) 14%,rgba(2,6,16,0) 26%),
-    linear-gradient(0deg,#020610 0%,rgba(2,6,16,.92) 7%,rgba(2,6,16,.45) 17%,rgba(2,6,16,0) 34%),
-    linear-gradient(90deg,rgba(2,6,16,.5) 0%,rgba(2,6,16,0) 12%,rgba(2,6,16,0) 88%,rgba(2,6,16,.5) 100%),
-    radial-gradient(ellipse 90% 70% at 50% 46%,transparent 40%,rgba(2,6,16,.42) 100%)}
+    linear-gradient(180deg,rgba(2,6,16,.72) 0%,rgba(2,6,16,.18) 9%,rgba(2,6,16,0) 17%),
+    linear-gradient(0deg,#020610 0%,rgba(2,6,16,.70) 4%,rgba(2,6,16,0) 13%)}
 .hero--film{height:92vh;min-height:560px;justify-content:flex-end;padding-bottom:clamp(40px,7vh,86px)}
 .hero--film .hero-inner{z-index:4}
 .hero--film .hero-eyebrow{margin-bottom:26px}
@@ -131,8 +129,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 @media(max-aspect-ratio:1/1){
   .hero-film video{object-fit:contain}
   .hero-veil{background:
-    linear-gradient(180deg,rgba(2,6,16,.86) 0%,rgba(2,6,16,.28) 11%,rgba(2,6,16,0) 20%),
-    linear-gradient(0deg,#020610 0%,rgba(2,6,16,.85) 6%,rgba(2,6,16,0) 20%)}
+    linear-gradient(180deg,rgba(2,6,16,.70) 0%,rgba(2,6,16,.16) 8%,rgba(2,6,16,0) 15%),
+    linear-gradient(0deg,#020610 0%,rgba(2,6,16,.62) 4%,rgba(2,6,16,0) 12%)}
   .hero--film{height:74vh;min-height:440px}
 }
 @media(max-width:640px){.hero--film{height:70vh;min-height:420px}
@@ -149,11 +147,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 .hero-cue.on{opacity:1}
 
 /* the bottom wash belongs to this layer, so it always ends ON the bottom edge */
-.hero-type::after{content:'';position:absolute;inset:0;
-  background:
-    linear-gradient(0deg,rgba(2,6,16,.62) 0%,rgba(2,6,16,.40) 12%,rgba(2,6,16,.16) 30%,rgba(2,6,16,0) 46%),
-    /* the film's wash is bright now, so the text column gets its own soft ground */
-    linear-gradient(90deg,rgba(2,6,16,.72) 0%,rgba(2,6,16,.52) 26%,rgba(2,6,16,.20) 44%,rgba(2,6,16,0) 60%)}
+/* No wash over the picture. Legibility comes from the type's own shadows. */
 .hero-cue{z-index:1}
 
 /* left-side statement */
@@ -168,7 +162,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
   margin-bottom:clamp(14px,2vw,30px)}
 .hc-h{font-family:'Cormorant Garamond',serif;font-weight:300;line-height:1.04;color:#EAEFF5;
   font-size:clamp(30px,4.7vw,88px);letter-spacing:.004em;text-wrap:balance;
-  text-shadow:0 2px 30px rgba(2,6,16,.85)}
+  text-shadow:0 2px 18px rgba(2,6,16,.95),0 1px 44px rgba(2,6,16,.85)}
 .hc-h em{font-style:italic;color:#D9BC7C}
 .hc-p{margin-top:clamp(10px,1.4vw,26px);font-size:clamp(12px,1.15vw,21px);line-height:1.62;
   color:rgba(234,239,245,.62);max-width:34ch;text-shadow:0 2px 20px rgba(2,6,16,.9)}
@@ -215,7 +209,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
   .hc-side .hc-p{display:none}
   .hc-ba{bottom:clamp(14px,3vh,30px)}
   .hc-tag{bottom:clamp(14px,3vh,30px)}
-  .hero-type::after{height:46%}
 }
 @media(prefers-reduced-motion:reduce){.hero-cue{transition:none}}
 
