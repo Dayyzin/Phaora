@@ -143,7 +143,7 @@ textarea{resize:vertical;}
   </div>
   <div class="topbar__actions">
     <button class="save-btn" id="saveBtn" onclick="toggleSave()">♡ SAVE</button>
-    <a href="tel:+19548719991" class="topbar__phone">(954) 871-9991</a>
+    <a href="tel:+15612991261" class="topbar__phone">(561) 299-1261</a>
   </div>
 </nav>
 
@@ -285,8 +285,8 @@ function submitInquiry(){
   const data=new FormData();
   form.querySelectorAll('input,textarea').forEach(f=>{if(f.name)data.append(f.name,f.value);});
   fetch('https://formspree.io/f/xdkopzpw',{method:'POST',body:data,headers:{'Accept':'application/json'}})
-    .then(r=>{if(r.ok){form.style.display='none';confirm.style.display='block';}else{alert('Something went wrong. Please call David directly at (954) 871-9991.');}})
-    .catch(()=>{alert('Something went wrong. Please call David directly at (954) 871-9991.');});
+    .then(r=>{if(r.ok){form.style.display='none';confirm.style.display='block';}else{alert('Something went wrong. Please call David directly at (561) 299-1261.');}})
+    .catch(()=>{alert('Something went wrong. Please call David directly at (561) 299-1261.');});
 }
 const revealObserver=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});
 document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
