@@ -95,6 +95,34 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 .ticker-inner span{display:inline-flex;align-items:center;font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:rgba(234,239,245,.24);padding:0 36px}
 .ticker-inner span.av{color:rgba(79,181,190,.55);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;letter-spacing:.08em;text-transform:none;font-weight:400}
 .ticker-inner span.dot{color:rgba(200,164,94,.4);padding:0 20px}
+
+/* RECENT WORK — dates lead, names follow. Newest job goes FIRST in .recent-grid. */
+.recent{padding:clamp(48px,7vw,86px) clamp(20px,5vw,60px) clamp(40px,6vw,72px);border-bottom:1px solid rgba(234,239,245,.05);background:linear-gradient(180deg,rgba(3,10,18,.85),rgba(2,6,16,1))}
+.recent-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:clamp(26px,4vw,44px)}
+.recent-title{font-weight:300;font-size:clamp(28px,4.4vw,46px);line-height:1.06;letter-spacing:.005em;color:var(--pearl)}
+.recent-title em{font-style:italic;color:var(--gold-lt)}
+.recent-live{display:inline-flex;align-items:center;gap:9px;font-size:10px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:rgba(79,181,190,.72);white-space:nowrap}
+.recent-live::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal);box-shadow:0 0 10px 2px rgba(79,181,190,.6);animation:recentPulse 2.4s ease-in-out infinite}
+@keyframes recentPulse{0%,100%{opacity:1}50%{opacity:.25}}
+.recent-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(18px,2.4vw,30px)}
+.rc{display:block;border:1px solid rgba(79,181,190,.12);background:rgba(2,8,18,.6);transition:border-color .3s,transform .3s}
+.rc:hover{border-color:rgba(79,181,190,.4);transform:translateY(-3px)}
+.rc-img{aspect-ratio:16/10;overflow:hidden}
+.rc-img img{width:100%;height:100%;object-fit:cover;filter:brightness(.82) saturate(.9);transition:filter .5s,transform .7s}
+.rc:hover .rc-img img{filter:brightness(1) saturate(1);transform:scale(1.03)}
+.rc-body{padding:clamp(18px,2.4vw,28px)}
+.rc-date{display:block;font-weight:300;font-size:clamp(34px,5.6vw,58px);line-height:.94;letter-spacing:-.01em;color:var(--pearl)}
+.rc-date span{color:var(--gold-lt)}
+.rc-name{margin-top:12px;font-size:11px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:rgba(79,181,190,.82)}
+.rc-note{margin-top:9px;font-size:13px;line-height:1.62;color:rgba(234,239,245,.5)}
+.rc-more{margin-top:16px;font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(200,164,94,.62);transition:color .2s}
+.rc:hover .rc-more{color:var(--gold-lt)}
+.recent-all{display:inline-block;margin-top:clamp(24px,3vw,36px);border:1px solid rgba(79,181,190,.28);padding:12px 26px;font-size:10px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:rgba(79,181,190,.82);transition:border-color .2s,color .2s}
+.recent-all:hover{border-color:var(--teal);color:var(--teal)}
+@media(max-width:640px){
+  .recent-head{align-items:flex-start;flex-direction:column-reverse;gap:12px}
+  .recent-grid{grid-template-columns:1fr}
+}
 @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 /* FEATURED */
@@ -331,6 +359,7 @@ footer{padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);border-top:1px solid rg
 
 <nav>
   <div class="nav-links">
+    <a href="portfolio/">Our Work</a>
     <a href="hardscape-gallery.html">Hardscape</a>
     <div class="nav-dropdown">
       <a class="nav-dropdown-trigger" href="sculptures.html">Águas Vivas <svg class="nav-dropdown-chevron" width="7" height="5" viewBox="0 0 7 5" fill="none"><path d="M.5 1L3.5 4l3-3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></a>
@@ -366,6 +395,7 @@ footer{padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);border-top:1px solid rg
   <div class="mobile-menu-scroll">
   <a href="sculptures.html" class="m-viewall-top">View All Sculptures</a>
   <a href="index.html">Home</a>
+  <a href="portfolio/">Our Work</a>
   <a href="hardscape-gallery.html">Hardscape</a>
   <button type="button" class="av m-acc" id="mAvToggle">Águas Vivas <span class="m-chev">&#9662;</span></button>
   <div class="m-sub" id="mAvSub">
@@ -403,6 +433,42 @@ footer{padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);border-top:1px solid rg
     <a href="mailto:david@phaora.com?subject=Free%20estimate%20request" class="hero-cta">Free on-site estimate</a>
   </div>
   <div class="hero-edge"></div>
+</section>
+
+<!-- RECENT WORK -->
+<!-- Newest job goes FIRST. Date is the headline; the name sits under it.
+     Never guess a month or a town here — see CLAUDE.md rule 5. -->
+<section class="recent" id="recent">
+  <div class="recent-head">
+    <h2 class="recent-title serif">Finished <em>this</em> season</h2>
+    <span class="recent-live">Currently building</span>
+  </div>
+
+  <div class="recent-grid">
+
+    <a class="rc" href="portfolio/allan-sowinski/">
+      <div class="rc-img"><img src="portfolio/allan-sowinski/images/cmp1-after.jpg" alt="Finished flagstone walk edged in granite cobble, running to granite steps" loading="lazy"></div>
+      <div class="rc-body">
+        <span class="rc-date serif">August <span>2026</span></span>
+        <div class="rc-name">The Sowinski Walk</div>
+        <p class="rc-note">Sunken cobble steps and a path lost in the hostas — rebuilt as a mortar-set flagstone walk with granite steps and a cobble edge.</p>
+        <div class="rc-more">See the whole job &rarr;</div>
+      </div>
+    </a>
+
+    <a class="rc" href="portfolio/48-valley-street/">
+      <div class="rc-img"><img src="portfolio/48-valley-street/images/cmp1-after.jpg" alt="Finished paver driveway in Marlborough, MA" loading="lazy"></div>
+      <div class="rc-body">
+        <span class="rc-date serif">August <span>2026</span></span>
+        <div class="rc-name">The Costa Driveway &nbsp;·&nbsp; Marlborough, MA</div>
+        <p class="rc-note">Rutted gravel to a full paver driveway — with every layer of the base on show.</p>
+        <div class="rc-more">See the whole job &rarr;</div>
+      </div>
+    </a>
+
+  </div>
+
+  <a class="recent-all" href="portfolio/">Every job we've finished &rarr;</a>
 </section>
 
 <!-- TICKER -->
