@@ -149,11 +149,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
    crop the words away. Letterbox it instead — the page ground is the same
    #020610 the film fades to, so there is no visible edge. */
 @media(max-aspect-ratio:1/1){
-  .hero-film video{object-fit:contain}
+  /* was contain, from when the words were burnt into the video and cover()
+     would have cropped them off. They are HTML now, and the portrait cut is
+     composed for this shape, so it fills the hero edge to edge. */
+  .hero-film video{object-fit:cover}
   .hero-veil{background:
     linear-gradient(180deg,rgba(2,6,16,.70) 0%,rgba(2,6,16,.16) 8%,rgba(2,6,16,0) 15%),
     linear-gradient(0deg,#020610 0%,rgba(2,6,16,.62) 4%,rgba(2,6,16,0) 12%)}
-  .hero--film{height:74vh;min-height:440px}
+  .hero--film{height:82vh;min-height:520px}
 }
 @media(max-width:640px){.hero--film{height:70vh;min-height:420px}
   .hero-title{padding-top:clamp(18px,3vh,34px)}}
@@ -225,8 +228,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 @media(max-aspect-ratio:1/1){
   /* the film letterboxes on a phone, so the words track the film's band —
      not the whole hero, or they land in the black above and below it */
-  .hero-type{top:50%;bottom:auto;transform:translateY(-50%);height:min(56.25vw,100%)}
-  .hc-side{width:auto;padding-right:clamp(24px,6vw,132px);justify-content:flex-start;padding-top:9%}
+  .hero-type{inset:0;transform:none;height:auto}
+  .hc-side{width:auto;padding-right:clamp(24px,6vw,132px);justify-content:flex-start;padding-top:16%}
   .hc-side .hc-h{max-width:11ch}
   .hc-side .hc-p{display:none}
   .hc-ba{bottom:clamp(14px,3vh,30px)}
@@ -590,6 +593,10 @@ footer{padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);border-top:1px solid rg
     <video autoplay loop muted playsinline preload="auto"
            poster="assets/video/phaora-hero-poster.jpg"
            aria-label="PHAÖRA crews on site — stonework from the walk-through to the finished job">
+      <!-- Portrait screens get a cut composed for them: the phone-shot footage
+           fills the frame natively instead of sitting in a blur panel. Same
+           edit, same durations, so HERO_CUES lands on the same frames. -->
+      <source src="assets/video/phaora-hero-portrait.mp4" type="video/mp4" media="(max-aspect-ratio: 1/1)">
       <source src="assets/video/phaora-hero.mp4" type="video/mp4">
     </video>
   </div>
@@ -974,6 +981,13 @@ el.innerHTML=html})();
   v.addEventListener('pause',function(){ setTimeout(resume,120) });
   v.addEventListener('stalled',resume);
   v.addEventListener('suspend',resume);
+  // The loop attribute is not reliable once the element has an audio track —
+  // iOS in particular stops it after a few passes when the audio session is
+  // interrupted, and the hero has no controls to press. Restart explicitly.
+  v.addEventListener('ended',function(){ try{v.currentTime=0}catch(e){} resume() });
+  // Last line of defence: if it is somehow stopped while on screen and the tab
+  // is visible, put it back. Cheap, and it survives whatever the OS does.
+  setInterval(function(){ if((v.paused||v.ended)&&inView&&!document.hidden) resume() },2000);
   // off screen it stops (battery), back on screen it picks up
   if(window.IntersectionObserver){
     new IntersectionObserver(function(es){
