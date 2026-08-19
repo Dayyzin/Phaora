@@ -155,7 +155,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 
 /* left-side statement */
 .hc-side{display:flex;flex-direction:column;justify-content:center;
-  padding:0 clamp(24px,6vw,132px);width:min(58%,860px)}
+  padding:0 clamp(24px,6vw,132px);width:min(50%,760px)}
+/* the film's picture panel starts at 52.6% of the frame — the text column
+   stops short of it at every width so nothing can ever collide */
+.hc-side .hc-h{max-width:12ch}
 .hc-lbl{font-size:clamp(10px,1vw,15px);font-weight:500;letter-spacing:.46em;text-transform:uppercase;
   color:rgba(79,181,190,.88);margin-bottom:clamp(12px,1.6vw,24px)}
 .hc-rule{width:64px;height:1px;background:linear-gradient(90deg,#C8A45E,rgba(200,164,94,0));
@@ -184,12 +187,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 
 /* BEFORE / AFTER — the loud one */
 .hc-ba{position:absolute;left:clamp(20px,5vw,96px);bottom:clamp(26px,6.6vh,74px)}
-.hc-ba .k{font-size:clamp(44px,9.5vw,152px);font-weight:500;letter-spacing:.20em;text-transform:uppercase;
+.hc-ba .k{font-size:clamp(38px,8vw,124px);font-weight:500;letter-spacing:.20em;text-transform:uppercase;
   color:#EAEFF5;line-height:.96;text-shadow:0 6px 44px rgba(2,6,16,.95),0 2px 12px rgba(2,6,16,.9)}
 .hc-ba .s{margin-top:clamp(6px,1vw,16px);display:flex;align-items:center;gap:16px}
 .hc-ba .s i{width:44px;height:1px;background:#C8A45E;flex:0 0 auto}
 .hc-ba .s span{font-family:'Cormorant Garamond',serif;font-style:italic;
-  font-size:clamp(16px,2.4vw,42px);color:rgba(234,239,245,.92);text-shadow:0 2px 18px rgba(2,6,16,.95)}
+  font-size:clamp(15px,2.1vw,36px);color:rgba(234,239,245,.92);text-shadow:0 2px 18px rgba(2,6,16,.95)}
 
 /* closing wordmark */
 .hc-wm{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(12px,2vh,30px)}
@@ -212,6 +215,20 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
   .hero-type::after{height:46%}
 }
 @media(prefers-reduced-motion:reduce){.hero-cue{transition:none}}
+
+/* Sound. The film autoplays muted because every browser blocks sound-on
+   autoplay; it unmutes on the visitor's first gesture, and this button lets
+   them take it back. Choice is remembered for the session. */
+.hero-sound{position:absolute;right:clamp(16px,3vw,40px);bottom:clamp(16px,3vh,40px);z-index:4;
+  width:44px;height:44px;border:1px solid rgba(79,181,190,.28);background:rgba(2,6,16,.5);
+  backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;cursor:pointer;
+  transition:border-color .2s,background .2s;padding:0}
+.hero-sound:hover{border-color:var(--teal);background:rgba(2,6,16,.72)}
+.hero-sound svg{width:17px;height:17px;fill:none;stroke:rgba(234,239,245,.82);stroke-width:1.5;
+  stroke-linecap:round;stroke-linejoin:round}
+.hero-sound .off{display:none}
+.hero-sound.is-muted .off{display:block}
+.hero-sound.is-muted .on{display:none}
 
 /* TICKER */
 .ticker-wrap{border-top:1px solid rgba(79,181,190,.08);border-bottom:1px solid rgba(79,181,190,.08);overflow:hidden;background:rgba(3,10,18,.6);padding:13px 0}
@@ -548,7 +565,7 @@ footer{padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);border-top:1px solid rg
 <!-- HERO -->
 <section class="hero hero--film">
   <div class="hero-film">
-    <video autoplay loop muted playsinline preload="metadata"
+    <video autoplay loop muted playsinline preload="auto"
            poster="assets/video/phaora-hero-poster.jpg"
            aria-label="PHAÖRA crews on site — stonework from the walk-through to the finished job">
       <source src="assets/video/phaora-hero.mp4" type="video/mp4">
@@ -590,6 +607,10 @@ footer{padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);border-top:1px solid rg
     <p class="hero-eyebrow">Full-Service Home Improvement &nbsp;·&nbsp; Massachusetts</p>
     <a href="mailto:david@phaora.com?subject=Free%20estimate%20request" class="hero-cta">Free on-site estimate</a>
   </div>
+  <button class="hero-sound is-muted" id="heroSound" type="button" aria-label="Turn sound on">
+    <svg viewBox="0 0 24 24" class="on" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/><path d="M19 6a8.5 8.5 0 0 1 0 12"/></svg>
+    <svg viewBox="0 0 24 24" class="off" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M17 9.5l4 5M21 9.5l-4 5"/></svg>
+  </button>
   <div class="hero-scroll"></div>
   <div class="hero-edge"></div>
 </section>
@@ -888,11 +909,31 @@ el.innerHTML=html})();
   v.addEventListener('seeked',tick);
   // timeupdate fires ~4x/sec; a rAF loop keeps the cuts landing on the frame
   (function raf(){ if(!v.paused&&!v.ended) tick(); requestAnimationFrame(raf) })();
-  // Safari/iOS can refuse the autoplay promise; retry muted on first touch
+  // AUTOPLAY + SOUND
+  // Every browser blocks autoplay with audio, so the film starts muted and the
+  // piano comes in on the visitor's first gesture. The button overrides either
+  // way and the choice sticks for the session.
+  var btn=document.getElementById('heroSound');
+  var KEY='phaoraHeroSound';
+  function paint(){ if(btn) btn.classList.toggle('is-muted',v.muted);
+    if(btn) btn.setAttribute('aria-label',v.muted?'Turn sound on':'Turn sound off') }
+  function unmute(){ if(sessionStorage.getItem(KEY)==='off') return;
+    v.muted=false; v.volume=0.55; v.play().catch(function(){}); paint() }
+  v.muted=true;
   var pr=v.play(); if(pr&&pr.catch) pr.catch(function(){
-    var go=function(){v.muted=true;v.play();document.removeEventListener('touchstart',go)};
+    var go=function(){v.muted=true;v.play()};
     document.addEventListener('touchstart',go,{once:true});
+    document.addEventListener('click',go,{once:true});
   });
+  ['pointerdown','keydown','wheel','touchstart'].forEach(function(ev){
+    document.addEventListener(ev,unmute,{once:true,passive:true});
+  });
+  if(btn) btn.addEventListener('click',function(e){
+    e.stopPropagation();
+    v.muted=!v.muted; if(!v.muted){v.volume=0.55;v.play().catch(function(){})}
+    sessionStorage.setItem(KEY,v.muted?'off':'on'); paint();
+  });
+  paint();
 })();
 
 function filterGallery(btn,div){document.querySelectorAll('.gf-btn').forEach(function(b){b.classList.remove('active')});btn.classList.add('active');document.querySelectorAll('.gm-item').forEach(function(item){item.style.display=(div==='all'||item.dataset.div===div)?'':'none'})}
