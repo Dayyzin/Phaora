@@ -92,24 +92,24 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 /* HERO FILM — the montage plays behind everything and melts into the page.
    Video is graded to the site palette and fades to --ink at both ends, so the
    loop point is invisible. Never swap in an ungraded file. */
-.hero{background:#020610}
-.hero-film{position:absolute;inset:0;z-index:0;overflow:hidden}
+.hero-film{position:absolute;inset:0;z-index:1;overflow:hidden}
 .hero-film video{width:100%;height:100%;object-fit:cover;display:block;
-  /* the film is already graded; this only seats it in the page */
-  filter:saturate(1.02) contrast(1.02)}
+  /* the film is graded already; screen blending drops its blacks out so the
+     hero's own glow and starfield read through them. MP4 cannot carry real
+     alpha — this is how the transparency is achieved. */
+  mix-blend-mode:screen;filter:saturate(1.02) contrast(1.02)}
 /* seams: nav at the top, page ground at the bottom, edges at the sides */
-.hero-veil{position:absolute;inset:0;z-index:1;pointer-events:none;
+.hero-veil{position:absolute;inset:0;z-index:2;pointer-events:none;
   background:
     linear-gradient(180deg,rgba(2,6,16,.86) 0%,rgba(2,6,16,.30) 14%,rgba(2,6,16,0) 26%),
     linear-gradient(0deg,#020610 0%,rgba(2,6,16,.92) 7%,rgba(2,6,16,.45) 17%,rgba(2,6,16,0) 34%),
     linear-gradient(90deg,rgba(2,6,16,.5) 0%,rgba(2,6,16,0) 12%,rgba(2,6,16,0) 88%,rgba(2,6,16,.5) 100%),
     radial-gradient(ellipse 90% 70% at 50% 46%,transparent 40%,rgba(2,6,16,.42) 100%)}
-.hero--film .hero-stars,.hero--film .hero-glow{display:none}
 .hero--film{height:92vh;min-height:560px;justify-content:flex-end;padding-bottom:clamp(40px,7vh,86px)}
-.hero--film .hero-inner{z-index:2}
+.hero--film .hero-inner{z-index:4}
 .hero--film .hero-eyebrow{margin-bottom:26px}
 .hero--film .hero-cta{background:rgba(2,6,16,.42);backdrop-filter:blur(6px)}
-.hero-scroll{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);z-index:3;
+.hero-scroll{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);z-index:5;
   width:1px;height:38px;background:linear-gradient(180deg,rgba(200,164,94,0),rgba(200,164,94,.55));
   animation:heroScroll 2.6s ease-in-out infinite}
 @keyframes heroScroll{0%,100%{opacity:.25;transform:translateX(-50%) scaleY(.6)}50%{opacity:1;transform:translateX(-50%) scaleY(1)}}
@@ -144,13 +144,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
    reflows on a phone, and Google can read it.
    Cue timings live in HERO_CUES in the script at the bottom of this file.
    If you re-cut the film, update BOTH or the words drift. */
-.hero-type{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden}
+.hero-type{position:absolute;inset:0;z-index:3;pointer-events:none;overflow:hidden}
 .hero-cue{position:absolute;inset:0;opacity:0;transition:opacity .55s ease}
 .hero-cue.on{opacity:1}
 
 /* the bottom wash belongs to this layer, so it always ends ON the bottom edge */
-.hero-type::after{content:'';position:absolute;left:0;right:0;bottom:0;height:34%;
-  background:linear-gradient(0deg,rgba(2,6,16,.62) 0%,rgba(2,6,16,.40) 20%,rgba(2,6,16,.16) 52%,rgba(2,6,16,0) 100%)}
+.hero-type::after{content:'';position:absolute;inset:0;
+  background:
+    linear-gradient(0deg,rgba(2,6,16,.62) 0%,rgba(2,6,16,.40) 12%,rgba(2,6,16,.16) 30%,rgba(2,6,16,0) 46%),
+    /* the film's wash is bright now, so the text column gets its own soft ground */
+    linear-gradient(90deg,rgba(2,6,16,.72) 0%,rgba(2,6,16,.52) 26%,rgba(2,6,16,.20) 44%,rgba(2,6,16,0) 60%)}
 .hero-cue{z-index:1}
 
 /* left-side statement */
@@ -564,6 +567,10 @@ footer{padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);border-top:1px solid rg
 
 <!-- HERO -->
 <section class="hero hero--film">
+  <!-- these sit UNDER the film. The video screen-blends over them, so its
+       black areas read as the site itself rather than a black box. -->
+  <div class="hero-stars" id="heroStars"></div>
+  <div class="hero-glow"></div>
   <div class="hero-film">
     <video autoplay loop muted playsinline preload="auto"
            poster="assets/video/phaora-hero-poster.jpg"
@@ -934,6 +941,30 @@ el.innerHTML=html})();
     sessionStorage.setItem(KEY,v.muted?'off':'on'); paint();
   });
   paint();
+
+  // KEEP IT PLAYING.
+  // The hero has no controls, so any pause is the browser's doing — tab
+  // hidden, app backgrounded, bfcache restore, power saver. Without this the
+  // film freezes and there is no play button to press.
+  var wantPlay=true, inView=true;
+  function resume(){
+    if(!wantPlay||!inView||document.hidden||!v.paused) return;
+    var p=v.play();
+    if(p&&p.catch) p.catch(function(){ v.muted=true; paint(); v.play().catch(function(){}) });
+  }
+  document.addEventListener('visibilitychange',function(){ if(!document.hidden) resume() });
+  window.addEventListener('pageshow',resume);
+  window.addEventListener('focus',resume);
+  v.addEventListener('pause',function(){ setTimeout(resume,120) });
+  v.addEventListener('stalled',resume);
+  v.addEventListener('suspend',resume);
+  // off screen it stops (battery), back on screen it picks up
+  if(window.IntersectionObserver){
+    new IntersectionObserver(function(es){
+      inView=es[0].isIntersecting;
+      if(inView) resume(); else if(!v.paused) v.pause();
+    },{threshold:0.05}).observe(v);
+  }
 })();
 
 function filterGallery(btn,div){document.querySelectorAll('.gf-btn').forEach(function(b){b.classList.remove('active')});btn.classList.add('active');document.querySelectorAll('.gm-item').forEach(function(item){item.style.display=(div==='all'||item.dataset.div===div)?'':'none'})}
