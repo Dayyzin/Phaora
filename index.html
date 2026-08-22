@@ -808,16 +808,14 @@ footer{padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);border-top:1px solid rg
   </div>
 </section>
 
-<!-- COUNTDOWN -->
+<!-- COUNTDOWN
+     No fixed date. A ticking clock with nothing behind it is worse than an
+     honest "opening soon" — the previous version auto-declared the
+     collection open the moment it hit zero, whether or not it actually was.
+     Restore the timer (see removed script below, git history) once a real
+     launch date is set. -->
 <div class="av-countdown" style="gap: 1px">
-  <div class="av-cd-label">Águas Vivas &nbsp;·&nbsp; August I MMXXVI</div>
-  <div class="av-cd-units">
-    <div class="av-cd-unit"><span class="av-cd-num" id="cd-days">--</span><span class="av-cd-name">Days</span></div>
-    <div class="av-cd-sep">·</div>
-    <div class="av-cd-unit"><span class="av-cd-num" id="cd-hours">--</span><span class="av-cd-name">Hours</span></div>
-    <div class="av-cd-sep">·</div>
-    <div class="av-cd-unit"><span class="av-cd-num" id="cd-mins">--</span><span class="av-cd-name">Minutes</span></div>
-  </div>
+  <div class="av-cd-label">Águas Vivas &nbsp;·&nbsp; Opening Soon</div>
   <div class="av-cd-sub">Private inquiry opens at launch</div>
 </div>
 
@@ -1111,23 +1109,9 @@ function filterGallery(btn,div){document.querySelectorAll('.gf-btn').forEach(fun
   });
 })();
 
-// COUNTDOWN
-(function(){
-  var target = new Date('2026-08-23T08:00:00');
-  function tick(){
-    var now = new Date();
-    var diff = target - now;
-    if(diff <= 0){ document.querySelector('.av-countdown').innerHTML = '<div class="av-cd-label">Águas Vivas — Collection Open</div>'; return; }
-    var days  = Math.floor(diff / 86400000);
-    var hours = Math.floor((diff % 86400000) / 3600000);
-    var mins  = Math.floor((diff % 3600000)  / 60000);
-    document.getElementById('cd-days').textContent  = String(days).padStart(2,'0');
-    document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
-    document.getElementById('cd-mins').textContent  = String(mins).padStart(2,'0');
-  }
-  tick();
-  setInterval(tick, 10000);
-})();
+// COUNTDOWN — removed along with the fixed date. Re-add once a real launch
+// date is set: target = new Date('YYYY-MM-DDTHH:MM:SS'), restore the
+// av-cd-units markup above, and reinstate the tick()/setInterval pair.
 </script>
 </body>
 </html>
