@@ -715,18 +715,16 @@ footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rg
 <!-- ═══ VAULT ═══ -->
 <div id="collection">
 
-  <!-- Countdown + statement -->
+  <!-- Statement, no fixed date.
+       Was a countdown to 2026-08-23T08:00 that froze at 00:00:00 once it
+       passed, while the sentence above it kept asserting "shown in full on
+       23 August 2026" — a broken promise the moment the date lapsed. Restore
+       the countdown markup and script (see git history) once a real reveal
+       date is set. -->
   <div class="vault-header reveal">
     <div class="vault-statement">
       <p class="vault-eyebrow">Eleven works. Named. Unrevealed.</p>
-      <p class="vault-sub">The collection will be shown in full on <em>23 August 2026</em>.<br>Until then — only the names.</p>
-    </div>
-    <div class="vault-countdown">
-      <div class="cd-block"><span class="cd-num" id="cdDays">--</span><span class="cd-lbl">Days</span></div>
-      <div class="cd-sep">:</div>
-      <div class="cd-block"><span class="cd-num" id="cdHours">--</span><span class="cd-lbl">Hours</span></div>
-      <div class="cd-sep">:</div>
-      <div class="cd-block"><span class="cd-num" id="cdMins">--</span><span class="cd-lbl">Minutes</span></div>
+      <p class="vault-sub">The collection will be shown in full soon.<br>Until then — only the names.</p>
     </div>
   </div>
 
@@ -910,19 +908,8 @@ WORKS.forEach(function(w) {
   grid.appendChild(cell);
 });
 
-/* ── Countdown to Aug 23 2026 ── */
-function tick() {
-  var target = new Date('2026-08-23T08:00:00');
-  var diff = target - new Date();
-  if (diff <= 0) { ['cdDays','cdHours','cdMins'].forEach(function(id){document.getElementById(id).textContent='00'}); return; }
-  var days  = Math.floor(diff / 86400000);
-  var hours = Math.floor((diff % 86400000) / 3600000);
-  var mins  = Math.floor((diff % 3600000) / 60000);
-  document.getElementById('cdDays').textContent  = String(days).padStart(2,'0');
-  document.getElementById('cdHours').textContent = String(hours).padStart(2,'0');
-  document.getElementById('cdMins').textContent  = String(mins).padStart(2,'0');
-}
-tick(); setInterval(tick, 30000);
+/* Countdown removed along with the fixed date — see the vault-header
+   markup above. Re-add once a real reveal date is set. */
 
 /* ── Intersection reveal ── */
 var observer = new IntersectionObserver(function(entries) {
