@@ -489,6 +489,19 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;display:grid;grid-template-c
 .studio-quote{border-left:1px solid rgba(200,164,94,.3);padding-left:24px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:rgba(200,164,94,.7);line-height:1.5;margin-bottom:32px}
 .studio-sig{font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(234,239,245,.3)}
 
+/* WINTER */
+.winter{position:relative;min-height:clamp(380px,46vw,560px);display:flex;align-items:flex-end;overflow:hidden;border-bottom:1px solid rgba(234,239,245,.05)}
+.winter-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%;filter:brightness(.95)}
+.winter-veil{position:absolute;inset:0;background:linear-gradient(90deg,rgba(2,6,16,.94) 0%,rgba(2,6,16,.86) 28%,rgba(2,6,16,.42) 62%,rgba(2,6,16,0) 100%)}
+.winter-body{position:relative;padding:clamp(40px,5vw,72px) clamp(24px,5vw,80px);max-width:620px}
+.winter-tag{font-size:9px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:rgba(200,164,94,.62);margin-bottom:20px}
+.winter-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(30px,3.4vw,50px);line-height:1.08;color:var(--pearl);margin-bottom:20px}
+.winter-title em{font-style:italic;color:var(--silver)}
+.winter-desc{font-size:14px;line-height:1.75;color:rgba(234,239,245,.5);margin-bottom:28px;max-width:460px}
+.winter-link{display:inline-block;font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:rgba(79,181,190,.7);border-bottom:1px solid rgba(79,181,190,.22);padding-bottom:4px;transition:color .2s,border-color .2s}
+.winter-link:hover{color:var(--teal);border-color:var(--teal)}
+@media(max-width:768px){.winter-veil{background:linear-gradient(180deg,rgba(2,6,16,.4) 0%,rgba(2,6,16,.88) 55%,rgba(2,6,16,.96) 100%)}.winter-body{padding:120px 20px 40px}}
+
 /* FIELD NOTES */
 .notes{padding:clamp(60px,8vw,110px) clamp(24px,5vw,80px);border-bottom:1px solid rgba(234,239,245,.05);max-width:1200px;margin:0 auto;width:100%}
 .notes-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(24px,2.6vw,34px);margin-bottom:40px}
@@ -754,6 +767,18 @@ footer{padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);border-top:1px solid rg
       <dt>Coverage</dt><dd>MetroWest &amp; Greater Boston · Registered &amp; insured</dd>
     </dl>
     <a class="feat-link" href="contact.html">Request a free estimate →</a>
+  </div>
+</section>
+
+<!-- WINTER -->
+<section class="winter">
+  <img class="winter-img" src="assets/winter/plowed-edge.jpg" alt="A plowed edge cut clean against wet pavement before dawn" loading="lazy">
+  <div class="winter-veil"></div>
+  <div class="winter-body">
+    <p class="winter-tag">Winter &nbsp;·&nbsp; Now booking seasonal contracts</p>
+    <h2 class="winter-title">The lot is clear before <em>anyone arrives</em></h2>
+    <p class="winter-desc">Plowing, walkways shovelled, and salt down. Residential driveways and multi-family properties across MetroWest and Greater Boston, on seasonal contract or per storm.</p>
+    <a class="winter-link" href="contact.html">Get a winter number →</a>
   </div>
 </section>
 
