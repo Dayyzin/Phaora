@@ -499,6 +499,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;display:grid;grid-template-c
 /* WINTER */
 .winter{position:relative;min-height:clamp(380px,46vw,560px);display:flex;align-items:flex-end;overflow:hidden;border-bottom:1px solid rgba(234,239,245,.05)}
 .winter-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%;filter:brightness(.95)}
+.winter-accent{position:absolute;bottom:0;right:0;width:34%;height:52%;object-fit:cover;object-position:center;opacity:.65;-webkit-mask-image:radial-gradient(ellipse 85% 85% at 100% 100%,#000 35%,transparent 78%);mask-image:radial-gradient(ellipse 85% 85% at 100% 100%,#000 35%,transparent 78%);pointer-events:none}
 .winter-veil{position:absolute;inset:0;background:linear-gradient(90deg,rgba(2,6,16,.94) 0%,rgba(2,6,16,.86) 28%,rgba(2,6,16,.42) 62%,rgba(2,6,16,0) 100%)}
 .winter-body{position:relative;padding:clamp(40px,5vw,72px) clamp(24px,5vw,80px);max-width:620px}
 .winter-tag{font-size:9px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:rgba(200,164,94,.62);margin-bottom:20px}
@@ -545,12 +546,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;display:grid;grid-template-c
 .beyond{padding:clamp(60px,8vw,110px) clamp(24px,5vw,80px);border-bottom:1px solid rgba(234,239,245,.05);max-width:1200px;margin:0 auto;width:100%}
 .beyond-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(24px,2.6vw,34px);margin-bottom:40px}
 .beyond-title em{font-style:italic}
-.beyond-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.beyond-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:20px}
 .beyond-img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;filter:brightness(.85) saturate(.9);transition:filter .5s;margin-bottom:14px}
 .beyond-item:hover .beyond-img{filter:brightness(1) saturate(1)}
 .beyond-name{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(234,239,245,.55);text-align:center}
 @media(max-width:1024px){.beyond-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:768px){.beyond{padding:48px 20px}}
+.intheWork .beyond-grid{grid-template-columns:repeat(4,1fr)}
+@media(max-width:1024px){.intheWork .beyond-grid{grid-template-columns:1fr 1fr}}
 
 /* TERRITORIES */
 .territories{position:relative;padding:clamp(60px,8vw,100px) clamp(24px,5vw,80px);border-bottom:1px solid rgba(234,239,245,.05);background:linear-gradient(rgba(2,6,16,.55),rgba(2,6,16,.8)),url('assets/misc/ne-contour-map.jpg');background-size:cover;background-position:center}
@@ -817,6 +820,7 @@ footer{position:relative;padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);borde
 <!-- WINTER -->
 <section class="winter">
   <img class="winter-img" src="assets/winter/plowed-edge.jpg" alt="A plowed edge cut clean against wet pavement before dawn" loading="lazy">
+  <img class="winter-accent" src="assets/winter/salt-macro.jpg" alt="" aria-hidden="true" loading="lazy">
   <div class="winter-veil"></div>
   <div class="winter-body">
     <p class="winter-tag">Winter &nbsp;·&nbsp; Now booking seasonal contracts</p>
@@ -1001,6 +1005,29 @@ footer{position:relative;padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);borde
   </div>
 </section>
 
+<!-- IN THE WORK -->
+<section class="beyond intheWork">
+  <h2 class="beyond-title">Before it's <em>finished</em></h2>
+  <div class="beyond-grid">
+    <div class="beyond-item">
+      <img class="beyond-img" src="assets/detail/prep-string-line.jpg" alt="A string line marking grade over a compacted gravel base" loading="lazy">
+      <div class="beyond-name">Base &amp; Grade</div>
+    </div>
+    <div class="beyond-item">
+      <img class="beyond-img" src="assets/detail/prep-rebar-pour.jpg" alt="Rebar tied inside a form as concrete is poured" loading="lazy">
+      <div class="beyond-name">Footing &amp; Pour</div>
+    </div>
+    <div class="beyond-item">
+      <img class="beyond-img" src="assets/detail/fireplace-hearth.jpg" alt="A lit stone fireplace hearth" loading="lazy">
+      <div class="beyond-name">Fireplaces</div>
+    </div>
+    <div class="beyond-item">
+      <img class="beyond-img" src="assets/detail/retaining-wall.jpg" alt="A dry-stacked retaining wall's stepped batter face" loading="lazy">
+      <div class="beyond-name">Retaining Walls</div>
+    </div>
+  </div>
+</section>
+
 <!-- BEYOND MASONRY -->
 <section class="beyond">
   <h2 class="beyond-title">The rest of the <em>home</em></h2>
@@ -1020,6 +1047,10 @@ footer{position:relative;padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);borde
     <div class="beyond-item">
       <img class="beyond-img" src="assets/services/deck-board.jpg" alt="Close detail of deck board grain with a structural screw" loading="lazy">
       <div class="beyond-name">Decks &amp; Outdoor Living</div>
+    </div>
+    <div class="beyond-item">
+      <img class="beyond-img" src="assets/services/paint-brush.jpg" alt="Close detail of a paintbrush stroke on dark exterior trim" loading="lazy">
+      <div class="beyond-name">Painting &amp; Finishes</div>
     </div>
   </div>
 </section>
