@@ -263,11 +263,19 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;display:grid;grid-template-c
 .hero-sound.is-muted .on{display:none}
 
 /* TICKER */
-.ticker-wrap{border-top:1px solid rgba(79,181,190,.08);border-bottom:1px solid rgba(79,181,190,.08);overflow:hidden;background:rgba(3,10,18,.6);padding:13px 0}
-.ticker-inner{display:flex;gap:0;white-space:nowrap;animation:ticker 36s linear infinite}
-.ticker-inner span{display:inline-flex;align-items:center;font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:rgba(234,239,245,.24);padding:0 36px}
+.ticker-wrap{position:relative;border-top:1px solid rgba(79,181,190,.08);border-bottom:1px solid rgba(79,181,190,.08);overflow:hidden;background:rgba(3,10,18,.6);padding:13px 0}
+.ticker-wrap::before,.ticker-wrap::after{content:'';position:absolute;top:0;bottom:0;width:60px;z-index:2;pointer-events:none}
+.ticker-wrap::before{left:0;background:linear-gradient(90deg,rgba(3,10,18,1),transparent)}
+.ticker-wrap::after{right:0;background:linear-gradient(270deg,rgba(3,10,18,1),transparent)}
+.ticker-inner{display:flex;gap:0;white-space:nowrap;animation:ticker 46s linear infinite}
+.ticker-wrap:hover .ticker-inner{animation-play-state:paused}
+.ticker-inner span{display:inline-flex;align-items:center;gap:9px;font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:rgba(234,239,245,.24);padding:0 36px}
 .ticker-inner span.av{color:rgba(79,181,190,.55);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;letter-spacing:.08em;text-transform:none;font-weight:400}
 .ticker-inner span.dot{color:rgba(200,164,94,.4);padding:0 20px}
+.ticker-inner span.live{color:rgba(79,181,190,.65)}
+.ticker-inner span.live i{width:5px;height:5px;border-radius:50%;background:var(--teal);flex:0 0 auto;box-shadow:0 0 8px 2px rgba(79,181,190,.55);animation:recentPulse 2.4s ease-in-out infinite}
+.ticker-inner span.gold i{width:4px;height:4px;border-radius:50%;background:var(--gold);flex:0 0 auto;opacity:.7}
+.ticker-inner span.clock{color:rgba(234,239,245,.42);font-variant-numeric:tabular-nums}
 
 /* RECENT WORK — dates lead, names follow. Newest job goes FIRST in .recent-grid. */
 .recent{padding:clamp(48px,7vw,86px) clamp(20px,5vw,60px) clamp(40px,6vw,72px);border-bottom:1px solid rgba(234,239,245,.05);background:linear-gradient(180deg,rgba(3,10,18,.85),rgba(2,6,16,1))}
@@ -609,7 +617,10 @@ footer{position:relative;padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);borde
 .footer-bottom{display:flex;align-items:center;justify-content:space-between}
 .footer-copy{font-size:10px;letter-spacing:.12em;color:rgba(234,239,245,.2)}
 .footer-coords{font-size:10px;letter-spacing:.14em;color:rgba(234,239,245,.18)}
-.mobile-menu-scroll{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:78px 0 48px}.mobile-menu-scroll>*{flex-shrink:0}.mobile-menu a{font-size:clamp(22px,5vw,32px);padding:9px 0}.m-birds{display:flex;flex-direction:column;align-items:center;width:100%;margin:4px 0}.mobile-menu .m-eyebrow{font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:rgba(79,181,190,.4);margin:14px 0 6px;padding:0}.mobile-menu .m-bird{font-size:clamp(18px,4.4vw,24px);padding:6px 0;display:inline-flex;align-items:baseline;gap:11px;color:rgba(234,239,245,.5)}.mobile-menu .m-bird .m-num{font-family:'Helvetica Neue',Arial,sans-serif;font-size:9.5px;letter-spacing:.1em;color:rgba(234,239,245,.26);min-width:30px;text-align:right}.mobile-menu .m-bird:hover{color:var(--pearl)}.mobile-menu .m-bird.m-gold,.mobile-menu .m-bird.m-gold .m-num{color:rgba(201,168,76,.92)}.mobile-menu .m-acc{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(22px,5vw,32px);color:rgba(79,181,190,.65);background:none;border:0;cursor:pointer;padding:9px 0;letter-spacing:.08em;text-align:center;display:inline-flex;align-items:center;gap:9px;transition:color .2s}.mobile-menu .m-acc:hover{color:var(--pearl)}.m-chev{font-size:.5em;opacity:.7;transition:transform .3s}.m-acc.open .m-chev{transform:rotate(180deg)}.m-sub{max-height:0;overflow:hidden;width:100%;display:flex;flex-direction:column;align-items:center;transition:max-height .45s cubic-bezier(.16,1,.3,1)}.m-sub.open{max-height:760px}.mobile-menu .m-viewall-top{font-style:italic;color:rgba(200,164,94,.8)}.mobile-menu .m-viewall-top:hover{color:var(--gold)}</style>
+.mobile-menu-scroll{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:78px 0 48px}.mobile-menu-scroll>*{flex-shrink:0}.mobile-menu a{font-size:clamp(22px,5vw,32px);padding:9px 0}.m-birds{display:flex;flex-direction:column;align-items:center;width:100%;margin:4px 0}.mobile-menu .m-eyebrow{font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:rgba(79,181,190,.4);margin:14px 0 6px;padding:0}.mobile-menu .m-bird{font-size:clamp(18px,4.4vw,24px);padding:6px 0;display:inline-flex;align-items:baseline;gap:11px;color:rgba(234,239,245,.5)}.mobile-menu .m-bird .m-num{font-family:'Helvetica Neue',Arial,sans-serif;font-size:9.5px;letter-spacing:.1em;color:rgba(234,239,245,.26);min-width:30px;text-align:right}.mobile-menu .m-bird:hover{color:var(--pearl)}.mobile-menu .m-bird.m-gold,.mobile-menu .m-bird.m-gold .m-num{color:rgba(201,168,76,.92)}.mobile-menu .m-acc{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(22px,5vw,32px);color:rgba(79,181,190,.65);background:none;border:0;cursor:pointer;padding:9px 0;letter-spacing:.08em;text-align:center;display:inline-flex;align-items:center;gap:9px;transition:color .2s}.mobile-menu .m-acc:hover{color:var(--pearl)}.m-chev{font-size:.5em;opacity:.7;transition:transform .3s}.m-acc.open .m-chev{transform:rotate(180deg)}.m-sub{max-height:0;overflow:hidden;width:100%;display:flex;flex-direction:column;align-items:center;transition:max-height .45s cubic-bezier(.16,1,.3,1)}.m-sub.open{max-height:760px}.mobile-menu .m-viewall-top{font-style:italic;color:rgba(200,164,94,.8)}.mobile-menu .m-viewall-top:hover{color:var(--gold)}
+img.parallax{top:-8%;height:116%;will-change:transform}
+@media(prefers-reduced-motion:reduce){img.parallax{transform:none!important}}
+</style>
 </head>
 <body>
 
@@ -852,7 +863,7 @@ footer{position:relative;padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);borde
 
 <!-- WINTER -->
 <section class="winter">
-  <img class="winter-img" src="assets/winter/plowed-edge.jpg" alt="A plowed edge cut clean against wet pavement before dawn" loading="lazy">
+  <img class="winter-img parallax" src="assets/winter/plowed-edge.jpg" alt="A plowed edge cut clean against wet pavement before dawn" loading="lazy">
   <img class="winter-accent" src="assets/winter/salt-macro.jpg" alt="" aria-hidden="true" loading="lazy">
   <div class="winter-veil"></div>
   <div class="winter-body">
@@ -1094,7 +1105,7 @@ footer{position:relative;padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);borde
 
 <!-- CREW -->
 <section class="crew">
-  <img class="crew-img" src="assets/misc/crew-truck.jpg" alt="A work truck loaded with stone and tools at the end of the day" loading="lazy">
+  <img class="crew-img parallax" src="assets/misc/crew-truck.jpg" alt="A work truck loaded with stone and tools at the end of the day" loading="lazy">
   <div class="crew-veil"></div>
   <div class="crew-body">
     <p class="crew-tag">Our own crews</p>
@@ -1154,7 +1165,7 @@ footer{position:relative;padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);borde
 
 <!-- INVITATION -->
 <section class="invitation" id="invitation">
-  <img class="inv-bg" src="assets/backdrop/wall-corner.jpg" alt="" aria-hidden="true" loading="lazy">
+  <img class="inv-bg parallax" src="assets/backdrop/wall-corner.jpg" alt="" aria-hidden="true" loading="lazy">
   <div class="inv-veil"></div>
   <img class="inv-glyph" src="assets/misc/ruler-pencil.png" alt="" aria-hidden="true" loading="lazy">
   <p class="inv-eyebrow">Every project begins with a single conversation</p>
@@ -1318,24 +1329,60 @@ function filterGallery(btn,div){document.querySelectorAll('.gf-btn').forEach(fun
 
 (function(){
   var items=[
+    {text:'Now Booking — Seasonal Snow Contracts',cls:'live',dot:true},{text:'·',cls:'dot'},
     {text:'Full-Service Home Improvement'},{text:'·',cls:'dot'},
-    {text:'Massachusetts'},{text:'·',cls:'dot'},
+    {text:'Massachusetts',cls:'gold',dot:true},{text:'·',cls:'dot'},
     {text:'Masonry & Stonework — Flagship'},{text:'·',cls:'dot'},
     {text:'Kitchens · Baths · Roofing · Siding'},{text:'·',cls:'dot'},
     {text:'Decks · Additions · Flooring · Painting'},{text:'·',cls:'dot'},
     {text:'Snow Plowing'},{text:'·',cls:'dot'},
-    {text:'Registered & Insured · Own Crews'},{text:'·',cls:'dot'},
+    {text:'Registered & Insured — Own Crews',cls:'live',dot:true},{text:'·',cls:'dot'},
     {text:'Free On-Site Estimates'},{text:'·',cls:'dot'},
-    {text:'MetroWest & Greater Boston'},{text:'·',cls:'dot'}
+    {text:'MetroWest & Greater Boston',cls:'gold',dot:true},{text:'·',cls:'dot'},
+    {text:'',cls:'clock js-clock'},{text:'·',cls:'dot'}
   ];
   var wrap=document.getElementById('ticker');
   var html='';
   for(var pass=0;pass<2;pass++){
     items.forEach(function(item){
-      html+='<span class="'+(item.cls||'')+'">'+(item.text)+'</span>';
+      var inner=item.dot?'<i></i>'+item.text:item.text;
+      html+='<span class="'+(item.cls||'')+'">'+inner+'</span>';
     });
   }
   wrap.innerHTML=html;
+
+  function tick(){
+    var now=new Date();
+    var t=now.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit',timeZone:'America/New_York'});
+    var label='Worcester, MA · '+t+' ET';
+    document.querySelectorAll('.js-clock').forEach(function(el){el.textContent=label});
+  }
+  tick();
+  setInterval(tick,15000);
+})();
+
+// PARALLAX — full-bleed band photos drift slightly on scroll
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var els=Array.prototype.slice.call(document.querySelectorAll('img.parallax'));
+  if(!els.length) return;
+  var ticking=false;
+  function update(){
+    var vh=window.innerHeight;
+    els.forEach(function(el){
+      var r=el.parentElement.getBoundingClientRect();
+      if(r.bottom<0||r.top>vh){return}
+      var progress=(r.top+r.height/2-vh/2)/vh;
+      el.style.transform='translateY('+(progress*36).toFixed(1)+'px)';
+    });
+    ticking=false;
+  }
+  function onScroll(){
+    if(!ticking){requestAnimationFrame(update);ticking=true}
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  update();
 })();
 
 // MOBILE NAV
