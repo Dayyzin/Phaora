@@ -87,6 +87,17 @@
 
   footer{border-top:1px solid var(--line);padding:32px 0 60px;text-align:center}
   footer .fm{font-family:var(--mono);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--lime3)}
+
+  .craft{padding:8px 0 0}
+  .craft-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+  .craft-strip img{width:100%;height:clamp(120px,16vw,190px);object-fit:cover;filter:brightness(.88) saturate(.92);transition:filter .3s}
+  .craft-strip img:hover{filter:brightness(1) saturate(1)}
+  .craft-cap{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--lime3);margin-top:12px;text-align:center}
+
+  .water-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;border-radius:12px;overflow:hidden;border:1px solid var(--line);margin-top:34px}
+  .water-strip img{width:100%;height:clamp(110px,14vw,160px);object-fit:cover;filter:brightness(.88) saturate(.92);transition:filter .3s}
+  .water-strip img:hover{filter:brightness(1) saturate(1)}
+  .water-cap{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--lime3);margin-top:12px;text-align:center}
 </style>
 </head>
 <body>
@@ -114,6 +125,15 @@
   </div>
 </div>
 
+<section class="wrap craft">
+  <div class="craft-strip">
+    <img src="../assets/craft/tool-trowel.jpg" alt="A mason's trowel resting on fresh mortar" loading="lazy">
+    <img src="../assets/craft/tool-chalkline.jpg" alt="A chalk line snapped across concrete" loading="lazy">
+    <img src="../assets/craft/tool-jointer.jpg" alt="A jointer and brick hammer on slate" loading="lazy">
+  </div>
+  <div class="craft-cap">Set by hand, tool by tool</div>
+</section>
+
 <section class="wrap">
   <div class="shead">
     <h2>What we handle</h2>
@@ -133,6 +153,13 @@
     <div class="svc">Drainage &amp; Site Work</div>
     <div class="svc">Painting &amp; Finishes</div>
   </div>
+  <div class="water-strip">
+    <img src="../assets/services/bluestone-water.jpg" alt="Water beading on a cut bluestone edge" loading="lazy">
+    <img src="../assets/services/paver-joint.jpg" alt="Close detail of interlocking paver joints" loading="lazy">
+    <img src="../assets/services/drainage-pipe.jpg" alt="A perforated drain pipe set in crushed stone" loading="lazy">
+    <img src="../assets/services/granite-stack.jpg" alt="Stacked thermal-finished granite" loading="lazy">
+  </div>
+  <div class="water-cap">Built to move water off, not hold it</div>
 </section>
 
 <section class="wrap">
