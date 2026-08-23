@@ -523,11 +523,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;display:grid;grid-template-c
 .materials{padding:clamp(60px,8vw,110px) clamp(24px,5vw,80px);border-bottom:1px solid rgba(234,239,245,.05);max-width:1200px;margin:0 auto;width:100%}
 .mat-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(24px,2.6vw,34px);margin-bottom:40px}
 .mat-title em{font-style:italic}
-.mat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.mat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:20px}
 .mat-img{display:block;width:100%;aspect-ratio:3/4;object-fit:cover;filter:brightness(.9) saturate(.85);transition:filter .5s;margin-bottom:16px}
 .mat-item:hover .mat-img{filter:brightness(1.05) saturate(.95)}
 .mat-name{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(234,239,245,.72);margin-bottom:6px}
 .mat-use{font-size:12px;line-height:1.6;color:rgba(234,239,245,.35)}
+@media(max-width:1024px){.mat-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:768px){.materials{padding:48px 20px}.mat-grid{grid-template-columns:1fr 1fr;gap:16px}}
 
 /* TERRITORIES */
@@ -933,7 +934,12 @@ footer{padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);border-top:1px solid rg
     <div class="mat-item">
       <img class="mat-img" src="assets/materials/fieldstone.jpg" alt="Close detail of a weathered fieldstone face" loading="lazy">
       <div class="mat-name">Fieldstone</div>
-      <div class="mat-use">Walls, veneer, garden edging</div>
+      <div class="mat-use">Walls, garden edging, retaining</div>
+    </div>
+    <div class="mat-item">
+      <img class="mat-img" src="assets/materials/stone-veneer.jpg" alt="Close detail of natural stone veneer fitted tight with thin mortar joints" loading="lazy">
+      <div class="mat-name">Stone Veneer</div>
+      <div class="mat-use">Facades, chimneys, fireplace surrounds</div>
     </div>
     <div class="mat-item">
       <img class="mat-img" src="assets/materials/bluestone.jpg" alt="Close detail of the split edge of bluestone" loading="lazy">
