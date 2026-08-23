@@ -908,6 +908,22 @@ WORKS.forEach(function(w) {
   grid.appendChild(cell);
 });
 
+/* Revealed-cell videos rely on the loop attribute, which stops firing
+   reliably in some browsers after a few passes. Force a restart on
+   ended, and a periodic watchdog in case it stalls silently. */
+(function(){
+  var vids = Array.prototype.slice.call(document.querySelectorAll('.cell-video'));
+  if (!vids.length) return;
+  vids.forEach(function(v){
+    v.addEventListener('ended', function(){ v.currentTime = 0; v.play().catch(function(){}); });
+  });
+  setInterval(function(){
+    vids.forEach(function(v){
+      if (v.paused || v.ended) { v.play().catch(function(){}); }
+    });
+  }, 2000);
+})();
+
 /* Countdown removed along with the fixed date — see the vault-header
    markup above. Re-add once a real reveal date is set. */
 
