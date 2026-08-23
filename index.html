@@ -509,6 +509,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;display:grid;grid-template-c
 .winter-link:hover{color:var(--teal);border-color:var(--teal)}
 @media(max-width:768px){.winter-veil{background:linear-gradient(180deg,rgba(2,6,16,.4) 0%,rgba(2,6,16,.88) 55%,rgba(2,6,16,.96) 100%)}.winter-body{padding:120px 20px 40px}}
 
+/* CREW */
+.crew{position:relative;min-height:clamp(220px,26vw,320px);display:flex;align-items:center;overflow:hidden;border-bottom:1px solid rgba(234,239,245,.05)}
+.crew-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;filter:brightness(.8) saturate(.9)}
+.crew-veil{position:absolute;inset:0;background:linear-gradient(90deg,rgba(2,6,16,.95) 0%,rgba(2,6,16,.8) 40%,rgba(2,6,16,.35) 78%,rgba(2,6,16,.1) 100%)}
+.crew-body{position:relative;padding:clamp(24px,4vw,40px) clamp(24px,5vw,80px);max-width:560px}
+.crew-tag{font-size:9px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:rgba(200,164,94,.62);margin-bottom:12px}
+.crew-desc{font-size:14px;line-height:1.72;color:rgba(234,239,245,.55)}
+@media(max-width:768px){.crew-veil{background:linear-gradient(180deg,rgba(2,6,16,.3) 0%,rgba(2,6,16,.9) 65%,rgba(2,6,16,.97) 100%)}.crew-body{padding:70px 20px 26px}}
+
 /* FIELD NOTES */
 .notes{padding:clamp(60px,8vw,110px) clamp(24px,5vw,80px);border-bottom:1px solid rgba(234,239,245,.05);max-width:1200px;margin:0 auto;width:100%}
 .notes-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(24px,2.6vw,34px);margin-bottom:40px}
@@ -532,8 +541,19 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;display:grid;grid-template-c
 @media(max-width:1024px){.mat-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:768px){.materials{padding:48px 20px}.mat-grid{grid-template-columns:1fr 1fr;gap:16px}}
 
+/* BEYOND MASONRY */
+.beyond{padding:clamp(60px,8vw,110px) clamp(24px,5vw,80px);border-bottom:1px solid rgba(234,239,245,.05);max-width:1200px;margin:0 auto;width:100%}
+.beyond-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(24px,2.6vw,34px);margin-bottom:40px}
+.beyond-title em{font-style:italic}
+.beyond-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.beyond-img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;filter:brightness(.85) saturate(.9);transition:filter .5s;margin-bottom:14px}
+.beyond-item:hover .beyond-img{filter:brightness(1) saturate(1)}
+.beyond-name{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(234,239,245,.55);text-align:center}
+@media(max-width:1024px){.beyond-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:768px){.beyond{padding:48px 20px}}
+
 /* TERRITORIES */
-.territories{padding:clamp(60px,8vw,100px) clamp(24px,5vw,80px);border-bottom:1px solid rgba(234,239,245,.05)}
+.territories{position:relative;padding:clamp(60px,8vw,100px) clamp(24px,5vw,80px);border-bottom:1px solid rgba(234,239,245,.05);background:linear-gradient(rgba(2,6,16,.55),rgba(2,6,16,.8)),url('assets/misc/ne-contour-map.jpg');background-size:cover;background-position:center}
 .terr-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(28px,3vw,44px);margin-bottom:44px}
 .terr-title em{font-style:italic}
 .terr-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0 80px}
@@ -978,6 +998,39 @@ footer{position:relative;padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);borde
       <div class="mat-name">Mortar</div>
       <div class="mat-use">The joint that keeps the water out</div>
     </div>
+  </div>
+</section>
+
+<!-- BEYOND MASONRY -->
+<section class="beyond">
+  <h2 class="beyond-title">The rest of the <em>home</em></h2>
+  <div class="beyond-grid">
+    <div class="beyond-item">
+      <img class="beyond-img" src="assets/services/kitchen-counter.jpg" alt="Close detail of a granite kitchen countertop edge" loading="lazy">
+      <div class="beyond-name">Kitchens &amp; Baths</div>
+    </div>
+    <div class="beyond-item">
+      <img class="beyond-img" src="assets/services/roofing-shingles.jpg" alt="Close detail of overlapping asphalt roof shingles" loading="lazy">
+      <div class="beyond-name">Roofing &amp; Siding</div>
+    </div>
+    <div class="beyond-item">
+      <img class="beyond-img" src="assets/services/window-siding.jpg" alt="Close detail of a window frame against cedar shingle siding" loading="lazy">
+      <div class="beyond-name">Windows &amp; Doors</div>
+    </div>
+    <div class="beyond-item">
+      <img class="beyond-img" src="assets/services/deck-board.jpg" alt="Close detail of deck board grain with a structural screw" loading="lazy">
+      <div class="beyond-name">Decks &amp; Outdoor Living</div>
+    </div>
+  </div>
+</section>
+
+<!-- CREW -->
+<section class="crew">
+  <img class="crew-img" src="assets/misc/crew-truck.jpg" alt="A work truck loaded with stone and tools at the end of the day" loading="lazy">
+  <div class="crew-veil"></div>
+  <div class="crew-body">
+    <p class="crew-tag">Our own crews</p>
+    <p class="crew-desc">The people who quote the job are the people who show up and build it — registered, insured, and built by our own crews.</p>
   </div>
 </section>
 
