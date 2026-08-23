@@ -12,9 +12,15 @@
 <meta property="og:title" content="PHAÖRA — Full-Service Home Improvement · Massachusetts">
 <meta property="og:description" content="Masonry, hardscape, kitchens and baths, roofing and siding, decks, additions, snow plowing — one crew for the whole home. Serving MetroWest and Greater Boston. Free on-site estimate.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://phaora.com/">
+<meta property="og:image" content="https://phaora.com/assets/og/phaora-share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="PHAÖRA — a dry-stacked fieldstone wall corner and granite steps at low sun">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="PHAÖRA — Full-Service Home Improvement · Massachusetts">
 <meta name="twitter:description" content="Full-service home improvement across Massachusetts. Masonry flagship, whole-home trades, snow plowing. Free on-site estimate.">
+<meta name="twitter:image" content="https://phaora.com/assets/og/phaora-share.jpg">
 <!-- LocalBusiness data. Invisible on the page; it lets Google show the number
      in results. Only facts already published on this site — no address, hours,
      rating or review count until those are real. -->
@@ -489,6 +495,41 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;display:grid;grid-template-c
 .studio-quote{border-left:1px solid rgba(200,164,94,.3);padding-left:24px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:rgba(200,164,94,.7);line-height:1.5;margin-bottom:32px}
 .studio-sig{font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(234,239,245,.3)}
 
+/* WINTER */
+.winter{position:relative;min-height:clamp(380px,46vw,560px);display:flex;align-items:flex-end;overflow:hidden;border-bottom:1px solid rgba(234,239,245,.05)}
+.winter-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%;filter:brightness(.95)}
+.winter-veil{position:absolute;inset:0;background:linear-gradient(90deg,rgba(2,6,16,.94) 0%,rgba(2,6,16,.86) 28%,rgba(2,6,16,.42) 62%,rgba(2,6,16,0) 100%)}
+.winter-body{position:relative;padding:clamp(40px,5vw,72px) clamp(24px,5vw,80px);max-width:620px}
+.winter-tag{font-size:9px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:rgba(200,164,94,.62);margin-bottom:20px}
+.winter-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(30px,3.4vw,50px);line-height:1.08;color:var(--pearl);margin-bottom:20px}
+.winter-title em{font-style:italic;color:var(--silver)}
+.winter-desc{font-size:14px;line-height:1.75;color:rgba(234,239,245,.5);margin-bottom:28px;max-width:460px}
+.winter-link{display:inline-block;font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:rgba(79,181,190,.7);border-bottom:1px solid rgba(79,181,190,.22);padding-bottom:4px;transition:color .2s,border-color .2s}
+.winter-link:hover{color:var(--teal);border-color:var(--teal)}
+@media(max-width:768px){.winter-veil{background:linear-gradient(180deg,rgba(2,6,16,.4) 0%,rgba(2,6,16,.88) 55%,rgba(2,6,16,.96) 100%)}.winter-body{padding:120px 20px 40px}}
+
+/* FIELD NOTES */
+.notes{padding:clamp(60px,8vw,110px) clamp(24px,5vw,80px);border-bottom:1px solid rgba(234,239,245,.05);max-width:1200px;margin:0 auto;width:100%}
+.notes-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(24px,2.6vw,34px);margin-bottom:40px}
+.notes-title em{font-style:italic}
+.notes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:44px}
+.note-fig{display:block;width:100%;height:250px;object-fit:contain;object-position:left bottom;margin-bottom:26px;opacity:.9}
+.note-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:rgba(200,164,94,.6);margin-bottom:10px;display:block}
+.note-head{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(234,239,245,.72);margin-bottom:10px}
+.note-body{font-size:13px;line-height:1.7;color:rgba(234,239,245,.42);max-width:320px}
+@media(max-width:768px){.notes{padding:48px 20px}.notes-grid{grid-template-columns:1fr;gap:32px}.note-fig{height:190px}}
+
+/* MATERIALS */
+.materials{padding:clamp(60px,8vw,110px) clamp(24px,5vw,80px);border-bottom:1px solid rgba(234,239,245,.05);max-width:1200px;margin:0 auto;width:100%}
+.mat-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(24px,2.6vw,34px);margin-bottom:40px}
+.mat-title em{font-style:italic}
+.mat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.mat-img{display:block;width:100%;aspect-ratio:3/4;object-fit:cover;filter:brightness(.9) saturate(.85);transition:filter .5s;margin-bottom:16px}
+.mat-item:hover .mat-img{filter:brightness(1.05) saturate(.95)}
+.mat-name{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(234,239,245,.72);margin-bottom:6px}
+.mat-use{font-size:12px;line-height:1.6;color:rgba(234,239,245,.35)}
+@media(max-width:768px){.materials{padding:48px 20px}.mat-grid{grid-template-columns:1fr 1fr;gap:16px}}
+
 /* TERRITORIES */
 .territories{padding:clamp(60px,8vw,100px) clamp(24px,5vw,80px);border-bottom:1px solid rgba(234,239,245,.05)}
 .terr-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(28px,3vw,44px);margin-bottom:44px}
@@ -746,6 +787,18 @@ footer{padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);border-top:1px solid rg
   </div>
 </section>
 
+<!-- WINTER -->
+<section class="winter">
+  <img class="winter-img" src="assets/winter/plowed-edge.jpg" alt="A plowed edge cut clean against wet pavement before dawn" loading="lazy">
+  <div class="winter-veil"></div>
+  <div class="winter-body">
+    <p class="winter-tag">Winter &nbsp;·&nbsp; Now booking seasonal contracts</p>
+    <h2 class="winter-title">The lot is clear before <em>anyone arrives</em></h2>
+    <p class="winter-desc">Plowing, walkways shovelled, and salt down. Residential driveways and multi-family properties across MetroWest and Greater Boston, on seasonal contract or per storm.</p>
+    <a class="winter-link" href="contact.html">Get a winter number →</a>
+  </div>
+</section>
+
 <!-- DIVISIONS -->
 <section class="divisions">
   <div class="div-block div-block--01">
@@ -842,6 +895,58 @@ footer{padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);border-top:1px solid rg
     <div class="gm-item" data-div="hardscape"><img src="portfolio/images/interior-fireplace.jpg" alt="Interior stone veneer fireplace" loading="lazy"><div class="gm-label"><div class="gm-label-div">Hardscape · 01</div><div class="gm-label-name">Interior Stone Fireplace</div></div></div>
     <div class="gm-item" data-div="hardscape"><img src="portfolio/images/retaining-wall.jpg" alt="Fieldstone retaining wall" loading="lazy"><div class="gm-label"><div class="gm-label-div">Hardscape · 01</div><div class="gm-label-name">Fieldstone Retaining Wall</div></div></div>
     <div class="gm-item" data-div="hardscape"><img src="portfolio/images/wall-driveway.jpg" alt="Fieldstone wall along a driveway" loading="lazy"><div class="gm-label"><div class="gm-label-div">Hardscape · 01</div><div class="gm-label-name">Fieldstone Wall · Driveway</div></div></div>
+  </div>
+</section>
+
+<!-- FIELD NOTES -->
+<section class="notes">
+  <h2 class="notes-title">Field <em>notes</em></h2>
+  <div class="notes-grid">
+    <div>
+      <img class="note-fig" src="assets/notes/note-frostline.png" alt="Section diagram of a masonry footing extending below the frost line" loading="lazy">
+      <span class="note-num">I</span>
+      <div class="note-head">Below the frost line</div>
+      <div class="note-body">New England ground moves in winter. A footing poured above the frost line lifts, and the wall on top of it cracks. Ours go below it — every time, no exception for budget.</div>
+    </div>
+    <div>
+      <img class="note-fig" src="assets/notes/note-cure.png" alt="Section diagram of stacked stone courses bearing load through mortar joints" loading="lazy">
+      <span class="note-num">II</span>
+      <div class="note-head">Cure before load</div>
+      <div class="note-body">Mortar hits handling strength in days but keeps gaining for weeks after. We don't load a wall or open a walkway early just to hit a schedule.</div>
+    </div>
+    <div>
+      <img class="note-fig" src="assets/notes/note-joint.png" alt="Comparison diagram of a concave tooled mortar joint beside a flush joint" loading="lazy">
+      <span class="note-num">III</span>
+      <div class="note-head">Tooled, not troweled flat</div>
+      <div class="note-body">A concave joint sheds water off the face of the stone. A flush one holds it there. It costs seconds with a jointer, and it's why the wall stays dry.</div>
+    </div>
+  </div>
+</section>
+
+<!-- MATERIALS -->
+<section class="materials">
+  <h2 class="mat-title">What we build <em>in</em></h2>
+  <div class="mat-grid">
+    <div class="mat-item">
+      <img class="mat-img" src="assets/materials/fieldstone.jpg" alt="Close detail of a weathered fieldstone face" loading="lazy">
+      <div class="mat-name">Fieldstone</div>
+      <div class="mat-use">Walls, veneer, garden edging</div>
+    </div>
+    <div class="mat-item">
+      <img class="mat-img" src="assets/materials/bluestone.jpg" alt="Close detail of the split edge of bluestone" loading="lazy">
+      <div class="mat-name">Bluestone</div>
+      <div class="mat-use">Patios, treads, walkways</div>
+    </div>
+    <div class="mat-item">
+      <img class="mat-img" src="assets/materials/granite.jpg" alt="Close detail of thermal-finished granite" loading="lazy">
+      <div class="mat-name">Granite</div>
+      <div class="mat-use">Steps, posts, cobblestone</div>
+    </div>
+    <div class="mat-item">
+      <img class="mat-img" src="assets/materials/mortar-joint.jpg" alt="Close detail of a tooled mortar joint between two stones" loading="lazy">
+      <div class="mat-name">Mortar</div>
+      <div class="mat-use">The joint that keeps the water out</div>
+    </div>
   </div>
 </section>
 
