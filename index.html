@@ -510,6 +510,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;display:grid;grid-template-c
 @media(max-width:768px){.winter-veil{background:linear-gradient(180deg,rgba(2,6,16,.4) 0%,rgba(2,6,16,.88) 55%,rgba(2,6,16,.96) 100%)}.winter-body{padding:120px 20px 40px}}
 
 /* FIELD NOTES */
+.how{padding:clamp(60px,8vw,100px) clamp(24px,5vw,80px);border-bottom:1px solid rgba(234,239,245,.05);max-width:1100px;margin:0 auto;width:100%;text-align:center}
+.how-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(24px,2.6vw,34px);margin-bottom:48px}
+.how-title em{font-style:italic}
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:36px}
+.how-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:rgba(200,164,94,.55);display:block;margin-bottom:14px}
+.how-img{width:92px;height:92px;object-fit:contain;background:#f4f2ee;border:1px solid rgba(234,239,245,.08);padding:12px;margin:0 auto 20px}
+.how-head{font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:rgba(234,239,245,.78);margin-bottom:10px}
+.how-body{font-size:13px;line-height:1.7;color:rgba(234,239,245,.4);max-width:280px;margin:0 auto}
+@media(max-width:768px){.how-grid{grid-template-columns:1fr;gap:40px}}
+
 .notes{padding:clamp(60px,8vw,110px) clamp(24px,5vw,80px);border-bottom:1px solid rgba(234,239,245,.05);max-width:1200px;margin:0 auto;width:100%}
 .notes-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(24px,2.6vw,34px);margin-bottom:40px}
 .notes-title em{font-style:italic}
@@ -791,6 +801,31 @@ footer{position:relative;padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);borde
       <dt>Coverage</dt><dd>MetroWest &amp; Greater Boston · Registered &amp; insured</dd>
     </dl>
     <a class="feat-link" href="contact.html">Request a free estimate →</a>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how">
+  <h2 class="how-title">How it <em>works</em></h2>
+  <div class="how-grid">
+    <div class="how-item">
+      <span class="how-num">01</span>
+      <img class="how-img" src="assets/process/step-estimate.jpg" alt="A clipboard and pen" loading="lazy">
+      <div class="how-head">Free on-site estimate</div>
+      <div class="how-body">We walk the job with you and give you a real number in writing. No charge for the visit, no obligation after it.</div>
+    </div>
+    <div class="how-item">
+      <span class="how-num">02</span>
+      <img class="how-img" src="assets/process/step-agree.jpg" alt="A pair of worn work gloves" loading="lazy">
+      <div class="how-head">Agree the scope</div>
+      <div class="how-body">A written scope and price before anyone touches the ground. No changes without you signing off first.</div>
+    </div>
+    <div class="how-item">
+      <span class="how-num">03</span>
+      <img class="how-img" src="assets/process/step-build.jpg" alt="A trowel set in fresh mortar" loading="lazy">
+      <div class="how-head">Our own crew builds it</div>
+      <div class="how-body">Built with our own crews, start to finish. The people who quoted the job are the people setting the stone.</div>
+    </div>
   </div>
 </section>
 
