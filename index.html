@@ -489,18 +489,20 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;display:grid;grid-template-c
 .studio-quote{border-left:1px solid rgba(200,164,94,.3);padding-left:24px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:rgba(200,164,94,.7);line-height:1.5;margin-bottom:32px}
 .studio-sig{font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(234,239,245,.3)}
 
+/* FIELD NOTES */
+.notes{padding:clamp(60px,8vw,110px) clamp(24px,5vw,80px);border-bottom:1px solid rgba(234,239,245,.05);max-width:1200px;margin:0 auto;width:100%}
+.notes-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(24px,2.6vw,34px);margin-bottom:40px}
+.notes-title em{font-style:italic}
+.notes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:44px}
+.note-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:rgba(200,164,94,.6);margin-bottom:10px;display:block}
+.note-head{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(234,239,245,.72);margin-bottom:10px}
+.note-body{font-size:13px;line-height:1.7;color:rgba(234,239,245,.42);max-width:320px}
+@media(max-width:768px){.notes{padding:48px 20px}.notes-grid{grid-template-columns:1fr;gap:32px}}
+
 /* TERRITORIES */
 .territories{padding:clamp(60px,8vw,100px) clamp(24px,5vw,80px);border-bottom:1px solid rgba(234,239,245,.05)}
 .terr-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(28px,3vw,44px);margin-bottom:44px}
 .terr-title em{font-style:italic}
-.notes{padding:clamp(60px,8vw,110px) clamp(24px,5vw,80px);border-bottom:1px solid rgba(234,239,245,.05);max-width:1200px;margin:0 auto;width:100%}
-.notes-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(24px,2.6vw,34px);margin-bottom:40px}
-.notes-title em{font-style:italic;color:var(--teal)}
-.notes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:44px}
-.note-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:rgba(200,164,94,.6);margin-bottom:10px;display:block}
-.note-head{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--pearl);margin-bottom:10px}
-.note-body{font-size:13px;line-height:1.7;color:rgba(234,239,245,.42);max-width:320px}
-@media(max-width:768px){.notes-grid{grid-template-columns:1fr;gap:32px}}
 .terr-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0 80px}
 .terr-region-label{font-size:9px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:rgba(79,181,190,.45);margin-bottom:12px}
 .terr-list{display:flex;flex-direction:column;gap:0}
@@ -853,6 +855,28 @@ footer{padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);border-top:1px solid rg
   </div>
 </section>
 
+<!-- FIELD NOTES -->
+<section class="notes">
+  <h2 class="notes-title">Field <em>notes</em></h2>
+  <div class="notes-grid">
+    <div>
+      <span class="note-num">I</span>
+      <div class="note-head">Below the frost line</div>
+      <div class="note-body">New England ground moves in winter. A footing poured above the frost line lifts, and the wall on top of it cracks. Ours go below it — every time, no exception for budget.</div>
+    </div>
+    <div>
+      <span class="note-num">II</span>
+      <div class="note-head">Cure before load</div>
+      <div class="note-body">Mortar hits handling strength in days but keeps gaining for weeks after. We don't load a wall or open a walkway early just to hit a schedule.</div>
+    </div>
+    <div>
+      <span class="note-num">III</span>
+      <div class="note-head">Tooled, not troweled flat</div>
+      <div class="note-body">A concave joint sheds water off the face of the stone. A flush one holds it there. It costs seconds with a jointer, and it's why the wall stays dry.</div>
+    </div>
+  </div>
+</section>
+
 <!-- STUDIO NOTE -->
 <section class="studio">
   <div class="studio-label">
@@ -867,28 +891,6 @@ footer{padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);border-top:1px solid rg
     <p class="studio-text">The studio has been <em>quiet</em> for two years. Not because nothing was happening — because everything was. Águas Vivas is not a new product. It is the result of forty years of devotion, carried across an ocean, shaped again by hands that have never rushed anything.</p>
     <blockquote class="studio-quote">The water does not hurry. Neither did we.</blockquote>
     <p class="studio-sig">— David Machado Vaz &nbsp;·&nbsp; Founder, Phaöra</p>
-  </div>
-</section>
-
-<!-- FIELD NOTES -->
-<section class="notes">
-  <h2 class="notes-title">Field <em>notes</em></h2>
-  <div class="notes-grid">
-    <div>
-      <span class="note-num">I</span>
-      <div class="note-head">Below the frost line</div>
-      <div class="note-body">New England ground moves in winter. Footings poured shallow heave and crack within a season — ours go below the frost line every time, no exceptions for budget.</div>
-    </div>
-    <div>
-      <span class="note-num">II</span>
-      <div class="note-head">Cure before load</div>
-      <div class="note-body">Mortar hits handling strength in days but keeps gaining for weeks after. We don't load a wall or open a walkway early just to hit a schedule.</div>
-    </div>
-    <div>
-      <span class="note-num">III</span>
-      <div class="note-head">Tooled, not troweled flat</div>
-      <div class="note-body">A concave joint sheds water off the face of the stone. A flush joint holds it against the mortar. It's a five-second difference in tooling that decides whether a joint lasts ten years or thirty.</div>
-    </div>
   </div>
 </section>
 
