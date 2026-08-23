@@ -384,14 +384,16 @@ footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rg
 @media(max-width:480px){
   .bg-title{font-size:clamp(48px,32vw,120px)}
 }
-.mobile-menu-scroll{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:78px 0 48px}.mobile-menu a{font-size:clamp(22px,5vw,32px);padding:9px 0}.m-birds{display:flex;flex-direction:column;align-items:center;width:100%;margin:4px 0}.mobile-menu .m-eyebrow{font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:rgba(79,181,190,.4);margin:14px 0 6px;padding:0}.mobile-menu .m-bird{font-size:clamp(18px,4.4vw,24px);padding:6px 0;display:inline-flex;align-items:baseline;gap:11px;color:rgba(234,239,245,.5)}.mobile-menu .m-bird .m-num{font-family:'Helvetica Neue',Arial,sans-serif;font-size:9.5px;letter-spacing:.1em;color:rgba(234,239,245,.26);min-width:30px;text-align:right}.mobile-menu .m-bird:hover{color:var(--pearl)}.mobile-menu .m-bird.m-gold,.mobile-menu .m-bird.m-gold .m-num{color:rgba(201,168,76,.92)}.mobile-menu .m-acc{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(22px,5vw,32px);color:rgba(79,181,190,.65);background:none;border:0;cursor:pointer;padding:9px 0;letter-spacing:.08em;text-align:center;display:inline-flex;align-items:center;gap:9px;transition:color .2s}.mobile-menu .m-acc:hover{color:var(--pearl)}.m-chev{font-size:.5em;opacity:.7;transition:transform .3s}.m-acc.open .m-chev{transform:rotate(180deg)}.m-sub{max-height:0;overflow:hidden;width:100%;display:flex;flex-direction:column;align-items:center;transition:max-height .45s cubic-bezier(.16,1,.3,1)}.m-sub.open{max-height:760px}.mobile-menu .m-viewall-top{font-style:italic;color:rgba(200,164,94,.8)}.mobile-menu .m-viewall-top:hover{color:var(--gold)}</style>
+.mobile-menu-scroll{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:78px 0 48px}.mobile-menu-scroll>*{flex-shrink:0}.mobile-menu a{font-size:clamp(22px,5vw,32px);padding:9px 0}.m-birds{display:flex;flex-direction:column;align-items:center;width:100%;margin:4px 0}.mobile-menu .m-eyebrow{font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:rgba(79,181,190,.4);margin:14px 0 6px;padding:0}.mobile-menu .m-bird{font-size:clamp(18px,4.4vw,24px);padding:6px 0;display:inline-flex;align-items:baseline;gap:11px;color:rgba(234,239,245,.5)}.mobile-menu .m-bird .m-num{font-family:'Helvetica Neue',Arial,sans-serif;font-size:9.5px;letter-spacing:.1em;color:rgba(234,239,245,.26);min-width:30px;text-align:right}.mobile-menu .m-bird:hover{color:var(--pearl)}.mobile-menu .m-bird.m-gold,.mobile-menu .m-bird.m-gold .m-num{color:rgba(201,168,76,.92)}.mobile-menu .m-acc{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(22px,5vw,32px);color:rgba(79,181,190,.65);background:none;border:0;cursor:pointer;padding:9px 0;letter-spacing:.08em;text-align:center;display:inline-flex;align-items:center;gap:9px;transition:color .2s}.mobile-menu .m-acc:hover{color:var(--pearl)}.m-chev{font-size:.5em;opacity:.7;transition:transform .3s}.m-acc.open .m-chev{transform:rotate(180deg)}.m-sub{max-height:0;overflow:hidden;width:100%;display:flex;flex-direction:column;align-items:center;transition:max-height .45s cubic-bezier(.16,1,.3,1)}.m-sub.open{max-height:760px}.mobile-menu .m-viewall-top{font-style:italic;color:rgba(200,164,94,.8)}.mobile-menu .m-viewall-top:hover{color:var(--gold)}</style>
 </head>
 <body>
 <canvas id="pageStars"></canvas>
 
 <nav id="mainNav">
   <div class="nav-links">
-    <a href="hardscape-gallery.html">Hardscape</a>
+    <a href="portfolio/">Our Work</a>
+    <a href="portfolio/">Hardscape</a>
+    <a href="contact.html">Contact Us</a>
     <div class="nav-dropdown active">
       <a class="nav-dropdown-trigger" href="sculptures.html">&#193;guas Vivas <svg class="nav-dropdown-chevron" width="7" height="5" viewBox="0 0 7 5" fill="none"><path d="M.5 1L3.5 4l3-3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></a>
       <div class="nav-dropdown-panel">
@@ -410,7 +412,6 @@ footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rg
         <div class="nav-dp-footer"><a href="sculptures.html#collection">View all works &rarr;</a></div>
       </div>
     </div>
-    <a href="hardscape-gallery.html">Gallery</a>
   </div>
   <a href="index.html" class="nav-wm">PHA<span class="o">&Ouml;</span>RA</a>
   <div class="nav-right">
@@ -425,7 +426,9 @@ footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rg
   <div class="mobile-menu-scroll">
   <a href="sculptures.html" class="m-viewall-top">View All Sculptures</a>
   <a href="index.html">Home</a>
-  <a href="hardscape-gallery.html">Hardscape</a>
+  <a href="portfolio/">Our Work</a>
+  <a href="portfolio/">Hardscape</a>
+  <a href="contact.html">Contact Us</a>
   <button type="button" class="av m-acc" id="mAvToggle">&#193;guas Vivas &middot; Collection <span class="m-chev">&#9662;</span></button>
   <div class="m-sub" id="mAvSub">
   <div class="m-eyebrow">Eleven Works</div>
@@ -443,7 +446,6 @@ footer{padding:clamp(28px,4vw,52px) clamp(24px,5vw,80px);border-top:1px solid rg
     <a href="av-volo-d-amore.html" class="m-bird"><span class="m-num">XI</span>Volo d&#8217;Amore</a>
   </div>
   </div>
-  <a href="hardscape-gallery.html">Gallery</a>
   <div class="m-rule"></div>
   <a href="mailto:david@phaora.com" class="m-small">Contact &amp; Enquire &rarr;</a>
   </div>
@@ -942,10 +944,28 @@ window.addEventListener('scroll',function(){document.getElementById('mainNav').c
 (function(){
   var b=document.getElementById('navBurger'),m=document.getElementById('mobileMenu');
   if(!b||!m)return;
-  b.addEventListener('click',function(){b.classList.toggle('open');m.classList.toggle('open');document.body.style.overflow=m.classList.contains('open')?'hidden':''});
+  function lockBodyScroll(){
+    var y = window.scrollY;
+    document.body.dataset.scrollY = y;
+    document.body.style.position = 'fixed';
+    document.body.style.top = '-' + y + 'px';
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
+  }
+  function unlockBodyScroll(){
+    var y = parseInt(document.body.dataset.scrollY || '0', 10);
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    document.body.style.width = '';
+    window.scrollTo(0, y);
+  }
+  b.addEventListener('click',function(){b.classList.toggle('open');m.classList.toggle('open');if(m.classList.contains('open')){lockBodyScroll()}else{unlockBodyScroll()}});
   var av=document.getElementById('mAvToggle'),sub=document.getElementById('mAvSub');
   if(av&&sub){av.addEventListener('click',function(e){e.stopPropagation();av.classList.toggle('open');sub.classList.toggle('open');});}
-  m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){b.classList.remove('open');m.classList.remove('open');document.body.style.overflow=''})});
+  m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){b.classList.remove('open');m.classList.remove('open');unlockBodyScroll()})});
 })();
 
 
