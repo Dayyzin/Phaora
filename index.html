@@ -494,10 +494,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;display:grid;grid-template-c
 .notes-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(24px,2.6vw,34px);margin-bottom:40px}
 .notes-title em{font-style:italic}
 .notes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:44px}
+.note-fig{display:block;width:100%;height:250px;object-fit:contain;object-position:left bottom;margin-bottom:26px;opacity:.9}
 .note-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:rgba(200,164,94,.6);margin-bottom:10px;display:block}
 .note-head{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(234,239,245,.72);margin-bottom:10px}
 .note-body{font-size:13px;line-height:1.7;color:rgba(234,239,245,.42);max-width:320px}
-@media(max-width:768px){.notes{padding:48px 20px}.notes-grid{grid-template-columns:1fr;gap:32px}}
+@media(max-width:768px){.notes{padding:48px 20px}.notes-grid{grid-template-columns:1fr;gap:32px}.note-fig{height:190px}}
 
 /* TERRITORIES */
 .territories{padding:clamp(60px,8vw,100px) clamp(24px,5vw,80px);border-bottom:1px solid rgba(234,239,245,.05)}
@@ -860,16 +861,19 @@ footer{padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);border-top:1px solid rg
   <h2 class="notes-title">Field <em>notes</em></h2>
   <div class="notes-grid">
     <div>
+      <img class="note-fig" src="assets/notes/note-frostline.png" alt="Section diagram of a masonry footing extending below the frost line" loading="lazy">
       <span class="note-num">I</span>
       <div class="note-head">Below the frost line</div>
       <div class="note-body">New England ground moves in winter. A footing poured above the frost line lifts, and the wall on top of it cracks. Ours go below it — every time, no exception for budget.</div>
     </div>
     <div>
+      <img class="note-fig" src="assets/notes/note-cure.png" alt="Section diagram of stacked stone courses bearing load through mortar joints" loading="lazy">
       <span class="note-num">II</span>
       <div class="note-head">Cure before load</div>
       <div class="note-body">Mortar hits handling strength in days but keeps gaining for weeks after. We don't load a wall or open a walkway early just to hit a schedule.</div>
     </div>
     <div>
+      <img class="note-fig" src="assets/notes/note-joint.png" alt="Comparison diagram of a concave tooled mortar joint beside a flush joint" loading="lazy">
       <span class="note-num">III</span>
       <div class="note-head">Tooled, not troweled flat</div>
       <div class="note-body">A concave joint sheds water off the face of the stone. A flush one holds it there. It costs seconds with a jointer, and it's why the wall stays dry.</div>
