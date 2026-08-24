@@ -91,7 +91,7 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
   <div id="cartContent"></div>
 </div>
 
-<footer class="footer"><div class="footer-inner"><div><span class="footer-logo">PHAÖRA</span><p class="footer-tagline">Hardscape and crystal for the estates that demand permanence.</p></div><div class="footer-col"><h5>The House</h5><a href="/">About</a><a href="/#studio">Studio</a><a href="#">Press</a><a href="#">Journal</a></div><div class="footer-col"><h5>Divisions</h5><a href="/hardscape-gallery.html">Hardscape</a><a href="https://phaora.com/sculptures.html?v=4">Sculpture</a><a href="/gallery.html">Gallery</a><a href="https://phaora.com/sculptures.html?v=4">Pieces</a></div><div class="footer-col"><h5>Connect</h5><a href="/contact.html">Contact</a><a href="/agents.html">Agents</a><a href="#">Instagram</a><a href="mailto:david@phaora.com">Email</a></div></div><div class="footer-bottom"><span>Phaöra &middot; MMXXVI</span><span class="motto">Built on standards. Not inherited. Decided.</span><span>Boca Raton &middot; All rights reserved</span></div></footer>
+<footer class="footer"><div class="footer-inner"><div><span class="footer-logo">PHAÖRA</span><p class="footer-tagline">Hardscape and crystal for the estates that demand permanence.</p></div><div class="footer-col"><h5>The House</h5><a href="/">About</a><a href="/#studio">Studio</a><a href="#">Press</a><a href="#">Journal</a></div><div class="footer-col"><h5>Divisions</h5><a href="/hardscape-gallery.html">Hardscape</a><a href="https://phaora.com/sculptures.html?v=4">Sculpture</a><a href="/gallery.html">Gallery</a><a href="https://phaora.com/sculptures.html?v=4">Pieces</a></div><div class="footer-col"><h5>Connect</h5><a href="/contact.html">Contact</a><a href="/agents.html">Agents</a><a href="#">Instagram</a><a href="mailto:phaoraco@gmail.com">Email</a></div></div><div class="footer-bottom"><span>Phaöra &middot; MMXXVI</span><span class="motto">Built on standards. Not inherited. Decided.</span><span>Boca Raton &middot; All rights reserved</span></div></footer>
 
 <div class="m-overlay" id="m-overlay">
 <button class="m-overlay-close" id="m-overlay-close">&#x2715;</button>
@@ -137,9 +137,9 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
     el.querySelectorAll('.cart-item-remove').forEach(function(b){b.addEventListener('click',function(){window.PhaoraCart.removeFromCart(this.dataset.slug);renderCart()})});
     document.getElementById('checkoutBtn').addEventListener('click',function(){
       var err=document.getElementById('cartError');
-      if(!allStripe){err.style.display='block';err.innerHTML='Checkout unavailable for one or more pieces &mdash; email <a href="mailto:david@phaora.com">david@phaora.com</a>';return}
+      if(!allStripe){err.style.display='block';err.innerHTML='Checkout unavailable for one or more pieces &mdash; email <a href="mailto:phaoraco@gmail.com">phaoraco@gmail.com</a>';return}
       var pk=window.PHAORA_CONFIG&&window.PHAORA_CONFIG.stripePublicKey;
-      if(!pk||pk==='pk_live_REPLACE_ME'){err.style.display='block';err.innerHTML='Checkout is not yet configured. Please contact <a href="mailto:david@phaora.com">david@phaora.com</a>';return}
+      if(!pk||pk==='pk_live_REPLACE_ME'){err.style.display='block';err.innerHTML='Checkout is not yet configured. Please contact <a href="mailto:phaoraco@gmail.com">phaoraco@gmail.com</a>';return}
       var li=cart.map(function(item){return{price:item.stripeId,quantity:1}});
       var stripe=Stripe(pk);
       stripe.redirectToCheckout({lineItems:li,mode:'payment',successUrl:window.location.origin+'/sculpture/order-confirmed.html',cancelUrl:window.location.origin+'/sculpture/cart.html'}).then(function(r){if(r.error){err.style.display='block';err.textContent=r.error.message}});
