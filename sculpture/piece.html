@@ -179,7 +179,7 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
 
 <section class="corr gf reveal" id="corrSection"></section>
 
-<footer class="footer"><div class="footer-inner"><div><span class="footer-logo">PHAÖRA</span><p class="footer-tagline">Hardscape and crystal for the estates that demand permanence.</p></div><div class="footer-col"><h5>The House</h5><a href="/">About</a><a href="/#studio">Studio</a><a href="#">Press</a><a href="#">Journal</a></div><div class="footer-col"><h5>Divisions</h5><a href="/hardscape-gallery.html">Hardscape</a><a href="https://phaora.com/sculptures.html?v=4">Sculpture</a><a href="/gallery.html">Gallery</a><a href="https://phaora.com/sculptures.html?v=4">Pieces</a></div><div class="footer-col"><h5>Connect</h5><a href="/contact.html">Contact</a><a href="/agents.html">Agents</a><a href="#">Instagram</a><a href="mailto:david@phaora.com">Email</a></div></div><div class="footer-bottom"><span>Phaöra &middot; MMXXVI</span><span class="motto">Built on standards. Not inherited. Decided.</span><span>Boca Raton &middot; All rights reserved</span></div></footer>
+<footer class="footer"><div class="footer-inner"><div><span class="footer-logo">PHAÖRA</span><p class="footer-tagline">Hardscape and crystal for the estates that demand permanence.</p></div><div class="footer-col"><h5>The House</h5><a href="/">About</a><a href="/#studio">Studio</a><a href="#">Press</a><a href="#">Journal</a></div><div class="footer-col"><h5>Divisions</h5><a href="/hardscape-gallery.html">Hardscape</a><a href="https://phaora.com/sculptures.html?v=4">Sculpture</a><a href="/gallery.html">Gallery</a><a href="https://phaora.com/sculptures.html?v=4">Pieces</a></div><div class="footer-col"><h5>Connect</h5><a href="/contact.html">Contact</a><a href="/agents.html">Agents</a><a href="#">Instagram</a><a href="mailto:phaoraco@gmail.com">Email</a></div></div><div class="footer-bottom"><span>Phaöra &middot; MMXXVI</span><span class="motto">Built on standards. Not inherited. Decided.</span><span>Boca Raton &middot; All rights reserved</span></div></footer>
 
 <div class="lb" id="lb"><button class="lb-close" id="lb-close">&#x2715;</button><button class="lb-prev" id="lb-prev">&#x2039;</button><img class="lb-img" id="lb-img" src="" alt=""><button class="lb-next" id="lb-next">&#x203A;</button><span class="lb-counter" id="lb-counter"></span></div>
 
@@ -258,11 +258,11 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
 
     var ctaHtml;
     if(piece.is_sold){
-      ctaHtml='<div class="mc-reserved">Reserved</div><a href="mailto:david@phaora.com?subject='+encodeURIComponent('Commission: '+piece.name)+'" class="mc-cta-outline">Commission a similar piece</a>';
+      ctaHtml='<div class="mc-reserved">Reserved</div><a href="mailto:phaoraco@gmail.com?subject='+encodeURIComponent('Commission: '+piece.name)+'" class="mc-cta-outline">Commission a similar piece</a>';
     }else if(piece.price_usd){
       ctaHtml='<button class="mc-cta" id="addCartBtn">Add to cart</button><div class="added-msg" id="addedMsg">Added &mdash; <a href="/sculpture/cart.html">view cart</a></div>';
     }else{
-      ctaHtml='<a href="mailto:david@phaora.com?subject='+encodeURIComponent('Enquiry: '+piece.name)+'" class="mc-cta">Inquire about this piece</a>';
+      ctaHtml='<a href="mailto:phaoraco@gmail.com?subject='+encodeURIComponent('Enquiry: '+piece.name)+'" class="mc-cta">Inquire about this piece</a>';
     }
 
     var descHtml=piece.description?'<p>'+piece.description+'</p>':'<p style="font-family:var(--serif);font-style:italic;font-size:16px;color:rgba(232,220,196,0.6);font-variation-settings:\'opsz\' 18">Full piece narrative forthcoming. By appointment.</p>';
@@ -355,7 +355,7 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
   function buildCorr(){
     var el=document.getElementById('corrSection');
     var name=piece.name;
-    el.innerHTML='<div class="corr-inner"><span class="super-label">&mdash; Correspondence &mdash;</span><h3>Enquire about <em>'+name+'</em></h3><p>David responds personally to every enquiry within twenty-four hours. No intermediary, no obligation.</p><div class="corr-ctas"><a href="mailto:david@phaora.com?subject='+encodeURIComponent('Enquiry: '+name)+'" class="btn btn-amber">Write to the studio <span class="arrow">&rarr;</span></a><a href="https://phaora.com/sculptures.html?v=4" class="btn btn-outline">View the collection <span class="arrow">&rarr;</span></a></div></div>';
+    el.innerHTML='<div class="corr-inner"><span class="super-label">&mdash; Correspondence &mdash;</span><h3>Enquire about <em>'+name+'</em></h3><p>David responds personally to every enquiry within twenty-four hours. No intermediary, no obligation.</p><div class="corr-ctas"><a href="mailto:phaoraco@gmail.com?subject='+encodeURIComponent('Enquiry: '+name)+'" class="btn btn-amber">Write to the studio <span class="arrow">&rarr;</span></a><a href="https://phaora.com/sculptures.html?v=4" class="btn btn-outline">View the collection <span class="arrow">&rarr;</span></a></div></div>';
   }
 })();
 </script>
