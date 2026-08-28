@@ -182,7 +182,7 @@ footer p{font-size:11px;letter-spacing:.16em;color:rgba(234,239,245,.26)}
     if(!d.name){ say('Please add your name.','err'); f.name.focus(); return }
     if(!d.phone && !d.email){ say('Add a phone number or an email so we can reach you.','err'); f.phone.focus(); return }
     go.disabled=true; go.textContent='Sending…'; msg.className='msg';
-    fetch('https://crm.phaora.com/api/public/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)})
+    fetch('https://admin.phaora.com/api/webhooks/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)})
       .then(function(r){ return r.json().catch(function(){ return {ok:r.ok} }) })
       .then(function(j){
         if(j && j.ok){ f.style.display='none'; say("Got it — thanks. We'll be in touch today. If it's urgent, call (561) 299-1261.",'ok'); }
