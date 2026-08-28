@@ -174,7 +174,32 @@ footer p{font-size:11px;letter-spacing:.16em;color:rgba(234,239,245,.26)}
 <script>
 (function(){
   var f=document.getElementById('f'), go=document.getElementById('go'), msg=document.getElementById('msg');
+  // The CRM answers on whichever of these hosts is currently live; try in order
+  // so a domain move can't silently drop leads.
+  var ENDPOINTS=['https://crm.phaora.com/api/webhooks/contact',
+                 'https://admin.phaora.com/api/webhooks/contact'];
   function say(t,k){ msg.textContent=t; msg.className='msg show '+k; }
+  function reset(){ go.disabled=false; go.textContent='Send it over'; }
+  function post(url,d){
+    return fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)})
+      .then(function(r){
+        return r.json().catch(function(){ return null }).then(function(j){
+          if(r.ok && j && (j.ok||j.success)) return {sent:true};
+          // A validation reply is a real answer from a live host, not a dead one.
+          if(r.status===400 && j && j.error) return {sent:false,error:j.error};
+          throw new Error('unusable response');
+        });
+      });
+  }
+  function send(d,i){
+    post(ENDPOINTS[i],d).then(function(res){
+      if(res.sent){ f.style.display='none'; say("Got it — thanks. We'll be in touch today. If it's urgent, call (561) 299-1261.",'ok'); }
+      else { say(res.error,'err'); reset(); }
+    }).catch(function(){
+      if(i+1<ENDPOINTS.length){ send(d,i+1); return }
+      say('Could not send that — please call or text (561) 299-1261.','err'); reset();
+    });
+  }
   f.addEventListener('submit',function(e){
     e.preventDefault();
     var d={name:f.name.value.trim(),phone:f.phone.value.trim(),email:f.email.value.trim(),
@@ -182,13 +207,7 @@ footer p{font-size:11px;letter-spacing:.16em;color:rgba(234,239,245,.26)}
     if(!d.name){ say('Please add your name.','err'); f.name.focus(); return }
     if(!d.phone && !d.email){ say('Add a phone number or an email so we can reach you.','err'); f.phone.focus(); return }
     go.disabled=true; go.textContent='Sending…'; msg.className='msg';
-    fetch('https://crm.phaora.com/api/webhooks/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)})
-      .then(function(r){ return r.json().catch(function(){ return {ok:r.ok} }) })
-      .then(function(j){
-        if(j && j.ok){ f.style.display='none'; say("Got it — thanks. We'll be in touch today. If it's urgent, call (561) 299-1261.",'ok'); }
-        else { say((j&&j.error)||'Something went wrong. Please call (561) 299-1261.','err'); go.disabled=false; go.textContent='Send it over'; }
-      })
-      .catch(function(){ say('Could not send that — please call or text (561) 299-1261.','err'); go.disabled=false; go.textContent='Send it over'; });
+    send(d,0);
   });
 })();
 </script>
