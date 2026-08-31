@@ -174,7 +174,11 @@ footer p{font-size:11px;letter-spacing:.16em;color:rgba(234,239,245,.26)}
 <script>
 (function(){
   var f=document.getElementById('f'), go=document.getElementById('go'), msg=document.getElementById('msg');
-  var ENDPOINT='https://admin.phaora.com/api/webhooks/contact';
+  // crm.phaora.com is the CRM actually worked in day to day — this endpoint
+  // (/api/public/contact) is purpose-built for this form and drops the lead
+  // straight into that pipeline, then emails phaoraco@gmail.com. Do not point
+  // this at admin.phaora.com: it writes to a separate, unused lead table.
+  var ENDPOINT='https://crm.phaora.com/api/public/contact';
   function say(t,k){ msg.textContent=t; msg.className='msg show '+k; }
   function reset(){ go.disabled=false; go.textContent='Send it over'; }
   function send(d){
