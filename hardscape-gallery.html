@@ -74,8 +74,21 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 
 .hero{height:100vh;min-height:600px;position:relative;display:flex;align-items:flex-end;overflow:hidden}
 .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.48) saturate(.78)}
+/* Both of these are for the LOCKUP image only, which is served from 900px up.
+   It can't take the .48 grade — the gold goes to mud — and the standard
+   overlay washes across the wordmark. Below 900px the plain photograph is
+   served with a live headline over it, and that wants the original dark
+   grade: lightening it there would only make white text harder to read. */
+@media(min-width:900px){
+  .hero img.hero-lockup{filter:brightness(.78) saturate(.9)}
+  .hero.hero-has-lockup .hero-overlay{background:linear-gradient(180deg,rgba(2,6,16,.28) 0%,transparent 30%,transparent 58%,rgba(2,6,16,.9) 100%)}
+}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(2,6,16,.2) 0%,transparent 45%,rgba(2,6,16,.88) 100%)}
 .hero-body{position:relative;z-index:2;padding:clamp(40px,6vw,80px);width:100%;display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap}
+@media(min-width:900px){
+  .hero-title-sm{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .hero-eyebrow{font-size:10px;font-weight:500;letter-spacing:.38em;text-transform:uppercase;color:rgba(79,181,190,.6);margin-bottom:18px}
 .hero-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(48px,7vw,100px);line-height:.92;color:var(--pearl)}
 .hero-title em{font-style:italic;color:var(--silver)}
@@ -195,13 +208,25 @@ footer{padding:clamp(32px,5vw,60px) clamp(24px,5vw,80px);border-top:1px solid rg
   </div>
 </div>
 
-<section class="hero">
-  <img src="uploads/86F159C2-CC5D-4858-8FE3-2143ED9CEC1B_1_105_c.jpeg" alt="PHAÖRA hardscape — Massachusetts" loading="eager">
+<section class="hero hero-has-lockup">
+  <!-- Two sources, because the lockup is set INTO the wide image and a
+       portrait phone viewport crops its sides off — object-fit:cover on a
+       390px screen turned "PHAÖRA STONE & MASONRY" into "HAÖR / NE & MASO".
+       Below 900px the plain photograph is served instead and the headline
+       is live text, which is what a narrow screen wants anyway. -->
+  <picture>
+    <source media="(min-width:900px)" srcset="assets/backdrop/hardscape-hero-lockup.jpg">
+    <img class="hero-lockup" src="assets/backdrop/hardscape-hero-plain.jpg" alt="PHAÖRA hardscape — dry-laid retaining walls, Massachusetts" loading="eager">
+  </picture>
   <div class="hero-overlay"></div>
   <div class="hero-body">
     <div>
       <p class="hero-eyebrow">Division 01 &nbsp;·&nbsp; Hardscape</p>
-      <h1 class="hero-title">The ground<br>beneath <em>the house</em></h1>
+      <!-- Visible on phones, where the photograph carries no type; clipped
+           to screen-reader-only from 900px up, where the lockup in the image
+           says it instead. Either way the page keeps exactly one h1 — a
+           JPEG is not a heading to a search engine or a screen reader. -->
+      <h1 class="hero-title hero-title-sm">The ground<br>beneath <em>the house</em></h1>
     </div>
     <div class="hero-stats">
       <div class="hero-stat">
