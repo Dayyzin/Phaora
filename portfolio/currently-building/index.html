@@ -57,6 +57,14 @@ h1 em{font-style:italic;color:var(--gold-lt)}
 .grid figure{overflow:hidden;border:1px solid rgba(79,181,190,.1);background:#04080f}
 .grid img{transition:transform .7s,filter .5s;filter:brightness(.94)}
 .grid figure:hover img{transform:scale(1.03);filter:brightness(1)}
+  /* A before and an after shot from the same job, labelled in the corner.
+     Not a drag-slider: these two are not framed alike — one looks down the
+     run mid-work, the other along the nose once it was finished — and a
+     slider over mismatched frames reads as a fault rather than a comparison. */
+  .grid figure.ba{position:relative}
+  .ba::after{content:attr(data-tag);position:absolute;top:10px;left:10px;
+    font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9.5px;letter-spacing:.2em;padding:5px 9px;
+    background:rgba(2,6,16,.78);border:1px solid rgba(79,181,190,.22);color:var(--gold-lt)}
 
 .next{padding:clamp(34px,6vh,64px) 0;border-top:1px solid rgba(234,239,245,.055)}
 .next .stage-date{color:rgba(234,239,245,.34)}
@@ -165,6 +173,26 @@ footer p{font-size:11px;letter-spacing:.16em;color:rgba(234,239,245,.24)}
       <figure><img src="images/entry1.jpg" alt="Curved bluestone entry steps freshly finished, level and pencil left on the surface" loading="lazy"></figure>
       <figure><img src="images/entry2.jpg" alt="The same curved steps seen from the driveway, cut-off saw staged nearby" loading="lazy"></figure>
       <figure><img src="images/entry3.jpg" alt="Checking the tuck-pointed joint on the stone skirt below the steps" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <!-- A second set of front steps, granite this time. Photographed mid-work
+       and again once the run was finished, so the pair below is the same
+       flight before and after rather than two different jobs. -->
+  <section class="stage">
+    <div class="stage-head">
+      <div class="stage-date serif">Front <span>steps</span></div>
+      <div class="stage-tag">Granite treads on a stacked stone riser</div>
+    </div>
+    <p>Thermal-finish granite, set two risers deep and run out to a landing at the door. The stone skirt under each tread is laid course by course and pointed as it goes; the joints between the slabs are sponged off while the mortar is still green, because once it cures on the face it comes off with acid or not at all.</p>
+    <div class="grid g2">
+      <figure class="ba" data-tag="BEFORE"><img src="images/fstep-before.jpg" alt="The granite steps mid-build, the far half still open with mortar and stone chips, joints being sponged off by hand" loading="lazy"></figure>
+      <figure class="ba" data-tag="AFTER"><img src="images/fstep-after.jpg" alt="The finished flight along the nose of the treads, stacked stone riser beneath and the house behind" loading="lazy"></figure>
+    </div>
+    <div class="grid g3" style="margin-top:clamp(10px,1.6vw,18px)">
+      <figure><img src="images/fstep-det1.jpg" alt="The finished treads seen down the flight, the riser stone reading through beneath each nose" loading="lazy"></figure>
+      <figure><img src="images/fstep-det2.jpg" alt="Two treads and the landing above, wet, with the stone skirt in shadow beneath" loading="lazy"></figure>
+      <figure><img src="images/fstep-det3.jpg" alt="Close on the landing joints, the slabs wet and the seams tight" loading="lazy"></figure>
     </div>
   </section>
 
