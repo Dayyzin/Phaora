@@ -52,6 +52,19 @@ nav.solid{background:rgba(10,11,12,.94);backdrop-filter:blur(14px);border-bottom
 .btn.ghost:hover{border-color:var(--gold);background:var(--gold);color:var(--ink)}
 .nav-cta{justify-self:end}
 .nav-burger{display:none;justify-self:end;background:none;border:0;color:var(--pearl);padding:8px;cursor:pointer}
+.nav-burger .icon-close{display:none}
+nav.menu-open .nav-burger .icon-burger{display:none}
+nav.menu-open .nav-burger .icon-close{display:block}
+
+/* Fixed under the nav bar rather than the top of the viewport, so the logo
+   and the now-closed-icon burger stay reachable while it's open. */
+.mobile-menu{position:fixed;inset:0;z-index:290;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:44px;background:rgba(10,11,12,.98);backdrop-filter:blur(14px);
+  opacity:0;visibility:hidden;transform:translateY(-10px);transition:opacity .25s,transform .25s,visibility 0s .25s}
+.mobile-menu.open{opacity:1;visibility:visible;transform:translateY(0);transition:opacity .25s,transform .25s}
+.mobile-menu-links{display:flex;flex-direction:column;align-items:center;gap:28px}
+.mobile-menu-links a{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--pearl)}
+.mobile-menu-links a.on{color:var(--gold)}
 
 /* ── HERO ──────────────────────────────────────────────────────────────── */
 .hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden}
@@ -147,12 +160,13 @@ footer{border-top:1px solid var(--line);background:var(--ink-2);
 
 /* ── RESPONSIVE ────────────────────────────────────────────────────────── */
 @media(max-width:1000px){
-  /* Two columns, not three. With the links hidden the grid handed its middle
-     column to the Get a Quote button and parked it in the centre of the bar.
-     The burger went with it: it navigated to the same page the button does,
-     so it was a second control for one action. */
-  nav{grid-template-columns:1fr auto}
-  .nav-links,.nav-burger{display:none}
+  /* Two columns, not three: with .nav-links hidden the grid handed its
+     middle column to Get a Quote and parked it centre-bar. The burger takes
+     the outer column instead and opens .mobile-menu — the only way to reach
+     About, Services or Projects once the links themselves are gone. */
+  nav{grid-template-columns:1fr auto auto;gap:16px}
+  .nav-links{display:none}
+  .nav-burger{display:flex}
   .pillars-in{grid-template-columns:repeat(2,1fr)}
   .pillar:nth-child(2){border-right:0}
   .pillar:nth-child(-n+2){border-bottom:1px solid var(--line)}
@@ -195,10 +209,25 @@ footer{border-top:1px solid var(--line);background:var(--ink-2);
     <a href="contact.html">Contact</a>
   </div>
   <a class="btn nav-cta" href="contact.html">Get a Quote</a>
-  <button class="nav-burger" aria-label="Menu" onclick="location.href='contact.html'">
-    <svg width="22" height="14" viewBox="0 0 22 14" stroke="currentColor" stroke-width="1.2"><path d="M0 1h22M0 7h22M0 13h22"/></svg>
+  <button id="nav-burger" class="nav-burger" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu" onclick="toggleMenu()">
+    <svg class="icon-burger" width="22" height="14" viewBox="0 0 22 14" stroke="currentColor" stroke-width="1.2"><path d="M0 1h22M0 7h22M0 13h22"/></svg>
+    <svg class="icon-close" width="16" height="16" viewBox="0 0 16 16" stroke="currentColor" stroke-width="1.2"><path d="M1 1l14 14M15 1L1 15"/></svg>
   </button>
 </nav>
+
+<!-- The burger's own job: About, Services and Projects live nowhere else on
+     a phone once .nav-links is hidden at 1000px, so this is the only path to
+     them, not a second control for what Get a Quote already does. -->
+<div class="mobile-menu" id="mobile-menu">
+  <div class="mobile-menu-links">
+    <a href="index.html" class="on">Home</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#services">Services</a>
+    <a href="hardscape-gallery.html">Projects</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <a class="btn mobile-menu-cta" href="contact.html">Get a Quote</a>
+</div>
 
 <!-- HERO ------------------------------------------------------------------
      The film is the one already shot for this site — a crew mixing mortar on
@@ -336,6 +365,31 @@ footer{border-top:1px solid var(--line);background:var(--ink-2);
     if(want!==on){on=want;nav.classList.toggle('solid',on);}
   },{passive:true});
 })();
+
+// The burger opens the same links list a desktop visitor gets for free —
+// closing it is just that in reverse, from a tap on any of them, the icon,
+// Escape, or the page unloading out from under it.
+function closeMenu(){
+  document.getElementById('nav').classList.remove('menu-open');
+  document.getElementById('mobile-menu').classList.remove('open');
+  document.getElementById('nav-burger').setAttribute('aria-expanded','false');
+  document.body.style.overflow='';
+}
+function toggleMenu(){
+  var open=!document.getElementById('nav').classList.contains('menu-open');
+  if(open){
+    document.getElementById('nav').classList.add('menu-open');
+    document.getElementById('mobile-menu').classList.add('open');
+    document.getElementById('nav-burger').setAttribute('aria-expanded','true');
+    document.body.style.overflow='hidden';
+  }else{
+    closeMenu();
+  }
+}
+document.getElementById('mobile-menu').addEventListener('click',function(e){
+  if(e.target.tagName==='A')closeMenu();
+});
+addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu();});
 </script>
 </body>
 </html>
