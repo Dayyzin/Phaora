@@ -1,8 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
 
-  "//": "Inert until phaora.com's DNS points at Vercel — the site is served by GitHub Pages today, which cannot proxy, so the homepage links to crm.phaora.com directly. On the day the domain moves, these rewrites put every public surface on one hostname and those absolute links become relative paths in one commit.",
-
   "redirects": [
     { "source": "/affiliate",  "destination": "/partners", "permanent": true },
     { "source": "/affiliates", "destination": "/partners", "permanent": true },
