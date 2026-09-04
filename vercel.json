@@ -7,14 +7,12 @@
     { "source": "/referral",   "destination": "/partners", "permanent": true },
     { "source": "/referrals",  "destination": "/partners", "permanent": true },
     { "source": "/journal",    "destination": "/blog",     "permanent": true },
-    { "source": "/quote",      "destination": "/estimate", "permanent": true }
+    { "source": "/quote",      "destination": "/estimate/", "permanent": true }
   ],
 
   "rewrites": [
     { "source": "/blog",              "destination": "https://crm.phaora.com/blog" },
     { "source": "/blog/:path*",       "destination": "https://crm.phaora.com/blog/:path*" },
-    { "source": "/estimate",          "destination": "https://crm.phaora.com/estimate" },
-    { "source": "/estimate/:path*",   "destination": "https://crm.phaora.com/estimate/:path*" },
     { "source": "/api/estimate/:path*", "destination": "https://crm.phaora.com/api/estimate/:path*" },
     { "source": "/partners",          "destination": "https://crm.phaora.com/partners" },
     { "source": "/partners/:path*",   "destination": "https://crm.phaora.com/partners/:path*" },

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<title>PHAÖRA — Instant Estimate | Price Your Patio, Driveway or Wall</title>
+<meta name="description" content="Type the size or trace it from a satellite view of your own property, and see a real price range in about thirty seconds. PHAÖRA masonry across Massachusetts and Rhode Island. Free on-site visit for the exact number.">
+<link rel="canonical" href="https://phaora.com/estimate/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PHAÖRA — Instant Estimate">
+<meta property="og:description" content="A real number before anyone visits. Measure your patio, driveway, walkway or wall from above and see the range in thirty seconds.">
+<meta property="og:url" content="https://phaora.com/estimate/">
+<meta property="og:image" content="https://phaora.com/assets/og/phaora-share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://phaora.com/assets/og/phaora-share.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* The page is served from phaora.com. Only its data comes from the CRM: the
+   satellite tiles, the address lookup, the rate card and the lead. Those are
+   the three things a static site cannot hold — a billable key, a price list
+   nobody should be able to view-source, and a database. */
+*{box-sizing:border-box}
+:root{--navy:#0C1626;--navy2:#16273D;--paper:#F4F7FB;--card:#FFF;
+  --ink:#0F1E33;--muted:#5C7089;--line:#DCE5EF;
+  --teal:#17828F;--teal-lt:#63CBD6;--gold:#E3B761}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:'Inter',system-ui,-apple-system,sans-serif;font-weight:400;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.serif{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400}
+.wrap{max-width:780px;margin:0 auto;padding:0 22px}
+[hidden]{display:none!important}
+
+nav{position:sticky;top:0;z-index:40;background:rgba(12,22,38,.95);backdrop-filter:blur(14px)}
+nav .wrap{height:62px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+nav .wm{font-size:17px;letter-spacing:.3em;color:#fff}
+nav .wm .o{color:var(--teal-lt)}
+nav .lnk{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.66);white-space:nowrap}
+nav .lnk:hover{color:var(--gold)}
+
+header.hero{position:relative;overflow:hidden;background:var(--navy);
+  min-height:clamp(430px,72vh,620px);display:flex;align-items:flex-start}
+header.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 62%}
+header.hero .veil{position:absolute;inset:0;background:linear-gradient(180deg,
+  rgba(12,22,38,.9) 0%,rgba(12,22,38,.74) 28%,rgba(12,22,38,.36) 56%,
+  rgba(12,22,38,.34) 70%,rgba(12,22,38,.9) 93%,var(--paper) 100%)}
+header.hero .wrap{position:relative;padding-top:clamp(38px,10vw,74px);padding-bottom:clamp(120px,30vw,200px);color:#fff}
+header.hero .eyebrow{color:var(--teal-lt)}
+header.hero h1,header.hero .lede{text-shadow:0 2px 28px rgba(6,12,22,.9)}
+.eyebrow{font-size:10px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--teal);margin:0}
+h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
+  font-size:clamp(38px,9.2vw,64px);line-height:1.05;letter-spacing:-.012em;margin:16px 0 0}
+h1 em{font-style:italic;color:var(--gold)}
+.lede{color:rgba(255,255,255,.86);font-size:clamp(16px,4vw,18px);line-height:1.6;margin:18px 0 0;max-width:50ch}
+.aside{color:var(--muted);font-size:14.5px;line-height:1.65;margin:0;max-width:54ch;padding:26px 0 0}
+.aside a{color:var(--teal);font-weight:500;border-bottom:1px solid rgba(23,130,143,.34)}
+
+.step{padding:clamp(30px,7vw,46px) 0;border-bottom:1px solid var(--line)}
+.step-n{display:flex;align-items:center;gap:13px;margin-bottom:20px}
+.step-n span{font-size:10.5px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--muted)}
+.step-n b{font-family:'Cormorant Garamond',Georgia,serif;font-size:26px;font-weight:400;color:var(--teal);line-height:1}
+.step-n .bar{flex:1;height:1px;background:var(--line)}
+
+.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}
+@media(min-width:640px){.tiles{grid-template-columns:repeat(4,1fr)}}
+.tile{position:relative;aspect-ratio:4/5;border:0;overflow:hidden;cursor:pointer;padding:0;
+  border-radius:6px;background:#dfe7f0;box-shadow:0 0 0 1px var(--line);transition:box-shadow .22s,transform .22s}
+.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.72);transition:filter .3s,transform .5s}
+.tile .cap{position:absolute;left:0;right:0;bottom:0;padding:11px 12px;text-align:left;
+  background:linear-gradient(180deg,transparent,rgba(9,17,29,.88));
+  font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#fff}
+.tile:hover{transform:translateY(-2px)}
+.tile:hover img{transform:scale(1.05)}
+.tile[aria-pressed="true"]{box-shadow:0 0 0 2px var(--teal),0 8px 22px rgba(15,30,51,.14)}
+.tile[aria-pressed="true"] img{filter:none}
+
+.mats{display:flex;flex-wrap:wrap;gap:8px 24px;margin-top:22px}
+.mat{background:none;border:0;padding:5px 0 7px;cursor:pointer;font-family:inherit;
+  font-size:13.5px;color:var(--muted);border-bottom:2px solid transparent;transition:all .2s}
+.mat:hover{color:var(--ink)}
+.mat[aria-pressed="true"]{color:var(--ink);font-weight:600;border-bottom-color:var(--teal)}
+
+.modes{display:flex;gap:22px;margin-bottom:24px}
+.mode{background:none;border:0;padding:0 0 7px;cursor:pointer;font-family:inherit;
+  font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);border-bottom:2px solid transparent;transition:all .2s}
+.mode[aria-pressed="true"]{color:var(--teal);border-bottom-color:var(--teal)}
+.dims{display:flex;gap:clamp(18px,6vw,40px);flex-wrap:wrap;align-items:flex-end}
+.dim{flex:1 1 130px;min-width:120px}
+.dim label{display:block;font-size:10.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.dim .row{display:flex;align-items:baseline;gap:8px;border-bottom:2px solid var(--line);transition:border-color .2s}
+.dim .row:focus-within{border-bottom-color:var(--teal)}
+.dim input{flex:1;min-width:0;width:100%;background:none;border:0;outline:none;color:var(--ink);
+  font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:46px;line-height:1.25;padding:0}
+.dim input::placeholder{color:#B9C7D8}
+.dim .unit{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.hint{color:var(--muted);font-size:14.5px;line-height:1.6;margin:0 0 18px;max-width:52ch}
+
+.readout{display:flex;gap:clamp(22px,7vw,44px);flex-wrap:wrap;align-items:baseline;
+  margin-top:26px;padding:18px 20px;background:var(--card);border:1px solid var(--line);border-radius:8px}
+.readout .n{font-family:'Cormorant Garamond',Georgia,serif;line-height:1;font-variant-numeric:tabular-nums;color:var(--ink)}
+.readout .big .n{font-size:clamp(38px,10vw,54px)}
+.readout .sm .n{font-size:26px;color:var(--muted)}
+.readout .l{font-size:10.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:7px}
+
+.cond{display:flex;gap:13px;align-items:flex-start;cursor:pointer;padding:14px 16px;margin-bottom:8px;
+  background:var(--card);border:1px solid var(--line);border-radius:8px;font-size:15px;line-height:1.45;transition:all .2s}
+.cond:hover{border-color:#BFD0E2}
+.cond:has(input:checked){border-color:var(--teal);box-shadow:0 0 0 1px var(--teal)}
+.cond input{appearance:none;-webkit-appearance:none;width:20px;height:20px;flex:0 0 20px;margin:0;
+  border:2px solid #C3D1E0;border-radius:4px;background:#fff;cursor:pointer;position:relative;transition:all .2s}
+.cond input:checked{border-color:var(--teal);background:var(--teal)}
+.cond input:checked::after{content:"";position:absolute;left:6px;top:2px;width:4px;height:9px;
+  border:solid #fff;border-width:0 2px 2px 0;transform:rotate(42deg)}
+
+.range{margin-top:26px;background:var(--navy);border-radius:10px;padding:clamp(24px,6vw,32px);color:#fff}
+.range .fig{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(38px,10.5vw,58px);
+  line-height:1.02;color:var(--gold);margin:0;letter-spacing:-.01em}
+.range .fig i{color:rgba(255,255,255,.34);font-style:normal;padding:0 6px}
+.range .note{color:rgba(255,255,255,.66);font-size:13.5px;line-height:1.6;margin:12px 0 0}
+.adds{margin-top:20px;border-top:1px solid rgba(255,255,255,.14)}
+.adds div{display:flex;justify-content:space-between;gap:16px;padding:11px 0;
+  border-bottom:1px solid rgba(255,255,255,.08);font-size:14px;color:rgba(255,255,255,.72)}
+.adds div:last-child{border-bottom:0}
+.adds b{font-weight:500;color:var(--gold);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+.drivers{margin:0;padding:0;list-style:none}
+.drivers li{padding:12px 0 12px 24px;border-bottom:1px solid var(--line);
+  font-size:14.5px;line-height:1.55;color:var(--muted);position:relative}
+.drivers li:last-child{border-bottom:0}
+.drivers li::before{content:"";position:absolute;left:0;top:20px;width:11px;height:2px;background:var(--teal);border-radius:2px}
+
+.f{display:grid;gap:12px;margin-top:4px;max-width:460px}
+.f input{background:var(--card);border:1px solid var(--line);border-radius:8px;outline:none;
+  color:var(--ink);font-family:inherit;font-size:16px;padding:15px 16px;transition:all .2s}
+.f input::placeholder{color:#93A6BB}
+.f input:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(23,130,143,.13)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px}
+.btn{margin-top:10px;justify-self:start;cursor:pointer;font-family:inherit;border:0;border-radius:8px;
+  background:var(--teal);color:#fff;padding:16px 32px;
+  font-size:11.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;transition:all .2s}
+.btn:hover{background:#12707B}
+.btn:disabled{opacity:.55;cursor:default}
+.btn-q{background:var(--navy)}
+.btn-q:hover{background:var(--navy2)}
+.ghost{background:none;border:0;cursor:pointer;font-family:inherit;color:var(--muted);
+  font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding:16px 0}
+.ghost:hover{color:var(--ink)}
+.ghost:disabled{opacity:.4;cursor:default}
+.err{color:#B4432F;font-size:14px;margin:14px 0 0;font-weight:500}
+
+.map{position:relative;width:100%;aspect-ratio:1/1;overflow:hidden;border-radius:10px;
+  border:1px solid var(--line);background:#c9d4e0;touch-action:none;user-select:none;cursor:grab}
+.map>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.map .shape{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.map .shape polygon{fill:rgba(99,203,214,.26);stroke:#63CBD6;stroke-width:2.5;vector-effect:non-scaling-stroke}
+.map .shape polyline{fill:none;stroke:#63CBD6;stroke-width:4;vector-effect:non-scaling-stroke;stroke-linecap:round}
+.shape-grab{position:absolute;inset:0;cursor:move}
+.handle{position:absolute;width:34px;height:34px;margin-left:-17px;margin-top:-17px;padding:0;
+  border:0;background:none;cursor:grab;touch-action:none;z-index:3}
+.handle::after{content:"";position:absolute;left:50%;top:50%;width:15px;height:15px;
+  margin:-7.5px 0 0 -7.5px;border-radius:50%;background:#fff;
+  border:3px solid var(--teal);box-shadow:0 2px 7px rgba(6,14,26,.55)}
+.handle:active::after{background:var(--teal);border-color:#fff}
+.edge-ft{position:absolute;transform:translate(-50%,-50%);pointer-events:none;z-index:2;
+  background:rgba(12,22,38,.86);color:#fff;font-size:11px;font-weight:600;
+  padding:3px 7px;border-radius:4px;white-space:nowrap}
+.area-ft{position:absolute;transform:translate(-50%,-50%);pointer-events:none;z-index:2;
+  background:var(--gold);color:#1B1405;font-size:15px;font-weight:700;
+  padding:6px 12px;border-radius:6px;white-space:nowrap;box-shadow:0 3px 12px rgba(6,14,26,.4)}
+.area-ft em{font-style:normal;font-weight:600;font-size:11px;opacity:.75;margin-left:3px}
+.zoom{position:absolute;right:10px;top:10px;display:grid;gap:6px;z-index:4}
+.zoom button{width:38px;height:38px;border:0;border-radius:7px;background:rgba(12,22,38,.86);
+  color:#fff;font-size:18px;line-height:1;cursor:pointer;box-shadow:0 2px 8px rgba(6,14,26,.3)}
+.tools{display:flex;gap:18px;align-items:center;margin-top:14px;flex-wrap:wrap}
+
+footer{border-top:1px solid var(--line);margin-top:14px;background:var(--card)}
+footer .wrap{padding:28px 22px 64px;color:var(--muted);font-size:13px;line-height:2}
+footer a.t{color:var(--teal);font-weight:500}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="lnk" href="/">&larr; Home</a>
+    <a class="wm serif" href="/">PHA<span class="o">Ö</span>RA</a>
+    <a class="lnk" href="tel:+15612991261">(561) 299-1261</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <img src="../assets/backdrop/hardscape-hero-plain.jpg" alt="" aria-hidden="true">
+  <div class="veil"></div>
+  <div class="wrap">
+    <p class="eyebrow">Instant estimate &nbsp;·&nbsp; Massachusetts &amp; Rhode Island</p>
+    <h1>A real number, before <em>anyone</em> visits.</h1>
+    <p class="lede">Every contractor answers &ldquo;how much does a patio cost?&rdquo; with &ldquo;it depends.&rdquo; It does — so here is what it depends on, and what yours comes to, in about thirty seconds.</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <p class="aside">Kitchens, roofing, siding and snow plowing are ours too —
+    <a href="../contact.html">tell us what you need</a> and you get an answer from the person who does the work.</p>
+
+  <section class="step">
+    <div class="step-n"><b class="serif">I</b><span>What are you building</span><div class="bar"></div></div>
+    <div class="tiles" id="tiles"></div>
+    <div class="mats" id="mats"></div>
+  </section>
+
+  <section class="step">
+    <div class="step-n"><b class="serif">II</b><span>How big</span><div class="bar"></div></div>
+    <div class="modes">
+      <button class="mode" id="m-type" aria-pressed="true">Type the size</button>
+      <button class="mode" id="m-trace" aria-pressed="false">Trace it from above</button>
+    </div>
+
+    <div id="pane-type">
+      <p class="hint" id="type-hint"></p>
+      <div class="dims">
+        <div class="dim"><label for="len">Length</label>
+          <div class="row"><input id="len" class="serif" inputmode="decimal" placeholder="30"><span class="unit">ft</span></div></div>
+        <div class="dim" id="wid-wrap"><label for="wid">Width</label>
+          <div class="row"><input id="wid" class="serif" inputmode="decimal" placeholder="20"><span class="unit">ft</span></div></div>
+      </div>
+    </div>
+
+    <div id="pane-trace" hidden>
+      <div id="find">
+        <p class="hint">We pull your property up from above and put a shape on it. You drag it to fit — nothing is sent until you send it.</p>
+        <div class="f">
+          <input id="addr" placeholder="12 Main St, Worcester MA" autocomplete="street-address">
+          <button class="btn btn-q" id="find-btn">Show my property</button>
+        </div>
+        <p class="err" id="find-err" hidden></p>
+      </div>
+      <div id="canvas" hidden>
+        <p class="hint" id="trace-hint"></p>
+        <div class="map" id="map">
+          <img id="tile" alt="Satellite view of the property" draggable="false">
+          <svg class="shape" id="shape" viewBox="0 0 100 100" preserveAspectRatio="none"></svg>
+          <div class="shape-grab" id="grab"></div>
+          <div class="zoom">
+            <button id="zin" type="button">+</button>
+            <button id="zout" type="button">−</button>
+          </div>
+        </div>
+        <div class="tools">
+          <button class="btn btn-q" id="add-corner" style="margin:0">Add a corner</button>
+          <button class="ghost" id="rm-corner">Remove one</button>
+          <button class="ghost" id="reset-shape">Start over</button>
+          <button class="ghost" id="new-addr">Different address</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="readout" id="readout" hidden></div>
+  </section>
+
+  <section class="step">
+    <div class="step-n"><b class="serif">III</b><span>Anything true about the site</span><div class="bar"></div></div>
+    <div id="conds"></div>
+    <div class="range" id="range" hidden></div>
+  </section>
+
+  <section class="step">
+    <div class="step-n"><b class="serif">IV</b><span>What moves the number</span><div class="bar"></div></div>
+    <ul class="drivers" id="drivers"></ul>
+  </section>
+
+  <section class="step" id="book">
+    <div class="step-n"><b class="serif">V</b><span>Book the free visit</span><div class="bar"></div></div>
+    <div id="book-form">
+      <p class="hint">We read the grade and the drainage — the two things a satellite cannot show you — and give you the exact number. No obligation.</p>
+      <div class="f">
+        <input class="hp" id="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input id="b-name" placeholder="Your name" autocomplete="name">
+        <input id="b-phone" placeholder="Phone" inputmode="tel" autocomplete="tel">
+        <input id="b-email" placeholder="Email (optional)" inputmode="email" autocomplete="email">
+        <input id="b-addr" placeholder="Property address" autocomplete="street-address">
+        <button class="btn" id="send">Book the free visit</button>
+      </div>
+      <p class="err" id="send-err" hidden></p>
+    </div>
+    <p class="hint" id="book-done" hidden>Your measurement came through with it, so the size is known before the call. Expect to hear back shortly.</p>
+  </section>
+</div>
+
+<footer>
+  <div class="wrap">
+    <a href="/">PHAÖRA</a> · Masonry and full-service home improvement ·
+    <a class="t" href="../hardscape-gallery.html">See the work</a>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
