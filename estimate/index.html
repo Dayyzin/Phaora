@@ -25,8 +25,8 @@
    the three things a static site cannot hold — a billable key, a price list
    nobody should be able to view-source, and a database. */
 *{box-sizing:border-box}
-:root{--navy:#0C1626;--navy2:#16273D;--paper:#F4F7FB;--card:#FFF;
-  --ink:#0F1E33;--muted:#5C7089;--line:#DCE5EF;
+:root{--navy:#0C1626;--navy2:#16273D;--paper:#E7EDF6;--card:#FFF;
+  --ink:#0F1E33;--muted:#56697F;--line:#CBD8E6;
   --teal:#17828F;--teal-lt:#63CBD6;--gold:#E3B761}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--paper);color:var(--ink);
@@ -72,10 +72,14 @@ h1 em{font-style:italic;color:var(--gold)}
 .aside a{color:var(--teal);font-weight:500;border-bottom:1px solid rgba(23,130,143,.34)}
 
 .step{padding:clamp(30px,7vw,46px) 0;border-bottom:1px solid var(--line)}
-.step-n{display:flex;align-items:center;gap:13px;margin-bottom:20px}
-.step-n span{font-size:10.5px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--muted)}
-.step-n b{font-family:'Cormorant Garamond',Georgia,serif;font-size:26px;font-weight:400;color:var(--teal);line-height:1}
-.step-n .bar{flex:1;height:1px;background:var(--line)}
+.step-n{display:flex;align-items:baseline;gap:15px;margin-bottom:22px}
+.step-n span{font-size:11.5px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--ink)}
+.step-n b{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(38px,9vw,46px);font-weight:400;color:var(--teal);line-height:.8;min-width:1.1em}
+.step-n .bar{flex:1;height:1px;background:var(--line);transform:translateY(-4px)}
+/* On a narrow screen the longer labels wrap to two lines and the rule ends up
+   floating beside the first of them. There is nothing for it to separate at
+   that width anyway. */
+@media(max-width:520px){.step-n .bar{display:none}}
 
 .tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}
 @media(min-width:640px){.tiles{grid-template-columns:repeat(4,1fr)}}
