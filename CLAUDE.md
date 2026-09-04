@@ -59,6 +59,11 @@ about accuracy, not disclosure, and it does not conflict with rule 1.
 
 ## 6. Format
 
-David reads on a phone, usually with low battery. Short answers. Never tables
-— prose, or a short list where the shape genuinely needs one. No preamble, no
-summary of what was just said, no closing pleasantries.
+David reads on a phone, usually with low battery. Short answers. Tables over
+paragraphs. No preamble, no summary of what was just said, no closing
+pleasantries.
+
+Anything meant to be **copied** — a URL, an env var value, a command, a key
+name, a block of text for a client — never goes inside a table. Table cells
+can't be selected on a phone. Put it in a fenced code block instead, on its
+own line.
