@@ -172,6 +172,29 @@ h1 em{font-style:italic;color:var(--gold)}
 .ghost:disabled{opacity:.4;cursor:default}
 .err{color:#B4432F;font-size:14px;margin:14px 0 0;font-weight:500}
 
+/* THE DEMO — the mechanism, standing still.
+   The same marks as the live tracer below: teal shape, white corner handles, a
+   length on every edge, the running area in the middle. Marked as an example,
+   because the numbers on it are illustrative and the photograph is a real job. */
+.demo{margin:34px 0 0}
+.demo-lbl{font-size:10px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--teal)}
+.demo-h{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(23px,5.6vw,30px);
+  line-height:1.2;margin:8px 0 14px;color:var(--ink)}
+.demo-frame{position:relative;border-radius:10px;overflow:hidden;border:1px solid var(--line);
+  background:#c9d4e0;line-height:0}
+.demo-frame>img{width:100%;height:auto;display:block}
+.demo-frame svg{position:absolute;inset:0;width:100%;height:100%}
+.demo-frame svg polygon{fill:rgba(99,203,214,.24);stroke:#63CBD6;stroke-width:2.5;vector-effect:non-scaling-stroke}
+.demo-dot{position:absolute;width:15px;height:15px;margin:-7.5px 0 0 -7.5px;border-radius:50%;
+  background:#fff;border:3px solid var(--teal);box-shadow:0 2px 7px rgba(6,14,26,.55)}
+.demo-e{position:absolute;transform:translate(-50%,-50%);background:rgba(12,22,38,.86);color:#fff;
+  font-size:11px;font-weight:600;padding:3px 7px;border-radius:4px;white-space:nowrap;line-height:1.3}
+.demo-a{position:absolute;transform:translate(-50%,-50%);background:var(--gold);color:#1B1405;
+  font-size:16px;font-weight:700;padding:7px 13px;border-radius:6px;white-space:nowrap;line-height:1.2;
+  box-shadow:0 3px 12px rgba(6,14,26,.4)}
+.demo-a em{font-style:normal;font-weight:600;font-size:11px;opacity:.75;margin-left:4px}
+.demo-cap{color:var(--muted);font-size:13.5px;line-height:1.6;margin:12px 0 0}
+
 .map{position:relative;width:100%;aspect-ratio:1/1;overflow:hidden;border-radius:10px;
   border:1px solid var(--line);background:#c9d4e0;touch-action:none;user-select:none;cursor:grab}
 .map>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
@@ -225,6 +248,30 @@ footer a.t{color:var(--teal);font-weight:500}
 <div class="wrap">
   <p class="aside">Kitchens, roofing, siding and snow plowing are ours too —
     <a href="../contact.html">tell us what you need</a> and you get an answer from the person who does the work.</p>
+
+  <section class="demo">
+    <p class="demo-lbl">How it works</p>
+    <h2 class="demo-h">Drag a shape onto your yard. It counts the feet.</h2>
+    <div class="demo-frame">
+      <img src="../assets/estimate/trace-demo.jpg" alt="A paver patio with a shape traced over it and its area measured">
+      <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <polygon points="11,41 82,39 98,93 2,88"></polygon>
+      </svg>
+      <span class="demo-dot" style="left:11%;top:41%"></span>
+      <span class="demo-dot" style="left:82%;top:39%"></span>
+      <span class="demo-dot" style="left:98%;top:93%"></span>
+      <span class="demo-dot" style="left:2%;top:88%"></span>
+      <span class="demo-e" style="left:46.5%;top:40%">24 ft</span>
+      <span class="demo-e" style="left:90%;top:66%">18 ft</span>
+      <span class="demo-e" style="left:50%;top:90.5%">24 ft</span>
+      <span class="demo-e" style="left:6.5%;top:64.5%">18 ft</span>
+      <span class="demo-a" style="left:48%;top:65%">432<em>sq ft</em></span>
+    </div>
+    <p class="demo-cap">
+      An example, on a patio we built. You get the same four corners on a satellite view of
+      your own property — drag them to the edges and the number follows.
+    </p>
+  </section>
 
   <section class="step">
     <div class="step-n"><b class="serif">I</b><span>What are you building</span><div class="bar"></div></div>
