@@ -223,8 +223,8 @@ function renderStatic() {
     ? "How far does the wall run? Pace it if you have to — a stride is about three feet."
     : "Rough outside dimensions. Pacing it off is close enough; the visit is what makes it exact.";
   $("trace-hint").textContent = isWall()
-    ? "Drag each end to where the wall starts and finishes. Drag the map to look around."
-    : `Drag the corners to the edges of your ${S.surface.noun}. Drag the middle to move the whole shape, or the map to look around.`;
+    ? "Drag each end to where the wall starts and finishes. Drag or pinch the map to look around."
+    : `Drag the corners to the edges of your ${S.surface.noun}. Drag the middle to move the whole shape. Pinch to zoom in — it will not disturb the corners.`;
 }
 
 function pickSurface(id) {
@@ -326,6 +326,12 @@ function unproject(clientX, clientY) {
 
 let grab = null;
 
+/** Take the pointer, but never at the cost of an exception: a second finger
+ *  can land on an id the browser has already let go of. */
+function hold(el, e) {
+  try { el.setPointerCapture(e.pointerId); } catch { /* already gone */ }
+}
+
 function drawShape() {
   if (!S.centre || !S.pts.length) return;
   const closed = !isWall();
@@ -375,7 +381,8 @@ function drawShape() {
     b.style.left = q.left + "%"; b.style.top = q.top + "%";
     b.addEventListener("pointerdown", (e) => {
       e.stopPropagation(); e.preventDefault();
-      b.setPointerCapture(e.pointerId);
+      if (pinch) return;
+      hold(b, e);
       grab = { kind: "corner", i };
     });
     b.addEventListener("pointermove", onMove);
@@ -388,7 +395,7 @@ function drawShape() {
 }
 
 function onMove(e) {
-  if (!grab) return;
+  if (pinch || !grab) return;
   const here = unproject(e.clientX, e.clientY);
   if (!here) return;
   e.preventDefault();
@@ -408,8 +415,27 @@ function onMove(e) {
 function endDrag() { grab = null; }
 
 const paintTile = () => {
-  if (S.centre) $("tile").src = `${API}/map?lat=${S.centre.lat}&lng=${S.centre.lng}&z=${S.zoom}`;
+  if (!S.centre) return;
+  // Google serves whole zoom levels only, so the tile on screen is always at
+  // some integer zoom centred somewhere. Remember which, so a pinch can
+  // stretch the picture it already has instead of waiting on the network.
+  S.tileZoom = Math.round(S.zoom);
+  S.tileCentre = S.centre;
+  $("tile").style.transform = "";
+  $("tile").src = `${API}/map?lat=${S.centre.lat}&lng=${S.centre.lng}&z=${S.tileZoom}`;
 };
+
+/** Stretch and slide the tile we have to stand in for the one we would fetch. */
+function fitTile() {
+  const el = $("tile");
+  if (!S.centre || !S.tileCentre) { el.style.transform = ""; return; }
+  const r = $("map").getBoundingClientRect();
+  const mpp = metresPerPixel(S.centre.lat, S.zoom);
+  const d = toM(S.tileCentre, S.centre);        // where the tile's middle sits now
+  const px = r.width / BOX;                     // image px → display px
+  el.style.transform = `translate(${(d.x / mpp) * px}px, ${(d.y / mpp) * px}px) `
+    + `scale(${2 ** (S.zoom - S.tileZoom)})`;
+}
 
 async function findProperty() {
   const q = $("addr").value.trim();
@@ -508,8 +534,16 @@ async function addPhoto(file) {
     });
     if (!put.ok) throw new Error("upload " + put.status);
     rec.path = j.path;
+    rec.url = URL.createObjectURL(small);
     tile.classList.remove("busy");
     tile.querySelector(".spin")?.remove();
+    // Tapping the picture is how you measure it. The pins are the same gesture
+    // as the demo above, on something the satellite could never show.
+    tile.addEventListener("click", (ev) => {
+      if (ev.target.classList.contains("x")) return;
+      if (window.__openMeasure) window.__openMeasure(rec, rec.url);
+    });
+    tile.title = "Tap to measure this";
     const x = document.createElement("button");
     x.type = "button"; x.className = "x"; x.setAttribute("aria-label", "Remove photo");
     x.textContent = "×";
@@ -566,6 +600,8 @@ async function send() {
         surfaceId: S.surface.id, material: S.material, conditions: S.conds,
         sqft: m.sqft, linearFt: m.linearFt, method: S.mode, src: S.src,
         photos: shots.map((p) => p.path).filter(Boolean),
+        photo_measures: shots.filter((p) => p.path && p.measure)
+          .map((p) => ({ path: p.path, ...p.measure })),
       }),
     });
     const j = await r.json();
@@ -607,7 +643,8 @@ $("send").addEventListener("click", send);
 $("map").addEventListener("pointerdown", (e) => {
   const from = unproject(e.clientX, e.clientY);
   if (!from || !S.centre) return;
-  $("map").setPointerCapture(e.pointerId);
+  if (pinch) return;
+  hold($("map"), e);
   grab = { kind: "map", from, original: S.centre };
 });
 $("map").addEventListener("pointermove", onMove);
@@ -618,7 +655,8 @@ $("grab").addEventListener("pointerdown", (e) => {
   const from = unproject(e.clientX, e.clientY);
   if (!from) return;
   e.stopPropagation();
-  $("grab").setPointerCapture(e.pointerId);
+  if (pinch) return;
+  hold($("grab"), e);
   grab = { kind: "shape", from, original: S.pts.slice() };
 });
 $("grab").addEventListener("pointermove", onMove);
@@ -629,6 +667,79 @@ const zoomBy = (d) => {
   S.zoom = Math.min(ZMAX, Math.max(ZMIN, S.zoom + d));
   paintTile(); drawShape();
 };
+
+/* ── Two fingers ──────────────────────────────────────────────────────────
+ * A pinch is a look, not an edit. Whichever finger landed first may already
+ * have started dragging a corner or the whole shape; the moment a second one
+ * arrives that drag is undone and the shape is put back exactly where it was,
+ * so people can zoom in to see what they are doing without paying for it by
+ * having to redo the tracing.
+ *
+ * The gesture is watched on the window in the capture phase because the
+ * handles capture their own pointer and stop the event going further. */
+const live = new Map();                       // pointerId → {x,y}
+let pinch = null;                             // {dist, zoom, ground}
+let before = null;                            // the shape as it was before this touch
+
+const centreOf = () => {
+  const [a, b] = [...live.values()];
+  return { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2, d: Math.hypot(b.x - a.x, b.y - a.y) };
+};
+
+function startPinch() {
+  // Put the shape back. A second finger means they meant to look, not to edit.
+  // Only the shape: where they had panned to is what they wanted to look at.
+  if (before) S.pts = before;
+  grab = null;
+  const c = centreOf();
+  const ground = unproject(c.x, c.y);
+  if (!ground || c.d < 1) return;
+  pinch = { dist: c.d, zoom: S.zoom, ground };
+  fitTile(); drawShape(); refresh();
+}
+
+function movePinch() {
+  const c = centreOf();
+  if (!pinch || c.d < 1) return;
+  S.zoom = Math.min(ZMAX, Math.max(ZMIN, pinch.zoom + Math.log2(c.d / pinch.dist)));
+  // Hold the ground under their fingers still, so the pinch also pans.
+  const r = $("map").getBoundingClientRect();
+  const k = BOX / r.width, mpp = metresPerPixel(S.centre.lat, S.zoom);
+  S.centre = fromM({
+    x: -(c.x - (r.left + r.width / 2)) * k * mpp,
+    y: -(c.y - (r.top + r.height / 2)) * k * mpp,
+  }, pinch.ground);
+  fitTile(); drawShape(); refresh();
+}
+
+function endPinch() {
+  pinch = null;
+  S.zoom = Math.min(ZMAX, Math.max(ZMIN, Math.round(S.zoom)));
+  paintTile(); drawShape(); refresh();
+}
+
+const inMap = (t) => t instanceof Node && $("map").contains(t);
+
+addEventListener("pointerdown", (e) => {
+  if (!inMap(e.target) || !S.centre) return;
+  if (live.size === 0) before = S.pts.slice();
+  live.set(e.pointerId, { x: e.clientX, y: e.clientY });
+  if (live.size === 2) startPinch();
+}, true);
+
+addEventListener("pointermove", (e) => {
+  if (!live.has(e.pointerId)) return;
+  live.set(e.pointerId, { x: e.clientX, y: e.clientY });
+  if (pinch && live.size >= 2) { e.preventDefault(); movePinch(); }
+}, true);
+
+const liftFinger = (e) => {
+  if (!live.delete(e.pointerId)) return;
+  if (pinch && live.size < 2) endPinch();
+  if (live.size === 0) before = null;
+};
+addEventListener("pointerup", liftFinger, true);
+addEventListener("pointercancel", liftFinger, true);
 $("zin").addEventListener("click", (e) => { e.stopPropagation(); zoomBy(1); });
 $("zout").addEventListener("click", (e) => { e.stopPropagation(); zoomBy(-1); });
 ["zin", "zout"].forEach((id) => $(id).addEventListener("pointerdown", (e) => e.stopPropagation()));
@@ -785,4 +896,213 @@ renderTiles(); renderMats(); renderConds(); renderStatic(); refresh();
   if (reset) reset.addEventListener("click", () => { pts = START.map((p) => [...p]); draw(); });
 
   draw();
+})();
+
+/* ── Measuring on a photograph they took ───────────────────────────────────
+ *
+ * A satellite tile has a known ground resolution, so pins on it convert
+ * straight to feet. A photograph from a phone has nothing of the kind: the
+ * same patio fills the frame from six feet away or from the far side of the
+ * garden, and no pixel count distinguishes them. So the pins alone cannot
+ * produce a number, and any tool that pretends otherwise is guessing.
+ *
+ * What the pins DO carry is the shape. Four corners of something rectangular,
+ * seen in perspective, determine that rectangle's proportions exactly — the
+ * two vanishing points fix the camera's focal length, and the focal length
+ * turns the traced quadrilateral back into the rectangle it was. That gives
+ * the ratio of the sides but not their size.
+ *
+ * One real length supplies the size. Pace one edge, or use a door, and every
+ * other dimension follows from the geometry rather than from a guess.
+ *
+ * Straight-on photographs make the vanishing points run to infinity and the
+ * focal length undefined — which is exactly the case where the picture is
+ * already flat and the proportions can be read off the pixels. That is the
+ * fallback, and it is right precisely where it is used.
+ */
+(function photoMeasure() {
+  const panel = $("pmeasure"), frame = $("pm-frame"), img = $("pm-img");
+  if (!panel || !frame || !img) return;
+  const poly = frame.querySelector("svg polygon");
+  const dots = [...frame.querySelectorAll("[data-p]")];
+  const elabels = [...frame.querySelectorAll("[data-pe]")];
+  const EDGE_NAMES = ["top", "right", "bottom", "left"];
+
+  let open = null;                       // the shot being measured
+  let pts = [];
+  let edge = 0;                          // which edge they are giving us
+
+  const DEFAULT = () => [[18, 30], [82, 30], [92, 82], [8, 82]];
+
+  /** Homography from the unit square to four image points, in pixels. */
+  function unitTo(quad) {
+    const src = [[0, 0], [1, 0], [1, 1], [0, 1]];
+    const A = [], b = [];
+    for (let i = 0; i < 4; i++) {
+      const [u, v] = src[i], [x, y] = quad[i];
+      A.push([u, v, 1, 0, 0, 0, -u * x, -v * x]); b.push(x);
+      A.push([0, 0, 0, u, v, 1, -u * y, -v * y]); b.push(y);
+    }
+    for (let c = 0; c < 8; c++) {
+      let piv = c;
+      for (let r = c + 1; r < 8; r++) if (Math.abs(A[r][c]) > Math.abs(A[piv][c])) piv = r;
+      [A[c], A[piv]] = [A[piv], A[c]]; [b[c], b[piv]] = [b[piv], b[c]];
+      const d = A[c][c];
+      if (Math.abs(d) < 1e-12) return null;
+      for (let k = c; k < 8; k++) A[c][k] /= d;
+      b[c] /= d;
+      for (let r = 0; r < 8; r++) {
+        if (r === c) continue;
+        const f = A[r][c];
+        if (!f) continue;
+        for (let k = c; k < 8; k++) A[r][k] -= f * A[c][k];
+        b[r] -= f * b[c];
+      }
+    }
+    return b;                            // [a,b,c,d,e,f,g,h]
+  }
+
+  const cross = (a, b) => [a[1]*b[2]-a[2]*b[1], a[2]*b[0]-a[0]*b[2], a[0]*b[1]-a[1]*b[0]];
+
+  /** Is the quad wound cleanly, without a crossed pair of pins? */
+  function convex(q) {
+    let sign = 0;
+    for (let i = 0; i < 4; i++) {
+      const a = q[i], b = q[(i + 1) % 4], c = q[(i + 2) % 4];
+      const z = (b[0] - a[0]) * (c[1] - b[1]) - (b[1] - a[1]) * (c[0] - b[0]);
+      if (Math.abs(z) < 1e-9) continue;
+      const s = z > 0 ? 1 : -1;
+      if (sign && s !== sign) return false;
+      sign = s;
+    }
+    return sign !== 0;
+  }
+
+  /** Side ratio of the rectangle the four pins are standing on. */
+  function sideRatio(quad) {
+    if (!convex(quad)) return null;
+    const W = img.naturalWidth || frame.clientWidth;
+    const Hh = img.naturalHeight || frame.clientHeight;
+    if (!(W > 0) || !(Hh > 0)) return null;
+    const px = quad.map(([x, y]) => [x / 100 * W, y / 100 * Hh, 1]);
+    const u0 = W / 2, v0 = Hh / 2;
+    const long = Math.max(W, Hh);
+
+    // Where the two edge directions run off to. If both land somewhere finite
+    // the lens itself falls out of them: the sides are at right angles on the
+    // ground, so (v1-c)·(v2-c) = -f².
+    const v1 = cross(cross(px[0], px[1]), cross(px[3], px[2]));
+    const v2 = cross(cross(px[1], px[2]), cross(px[0], px[3]));
+    const flat = (v) => Math.abs(v[2]) < 1e-9
+      ? null : [v[0] / v[2] - u0, v[1] / v[2] - v0];
+    const a1 = flat(v1), a2 = flat(v2);
+
+    let f = 0, exact = false;
+    if (a1 && a2) {
+      const f2 = -(a1[0] * a2[0] + a1[1] * a2[1]);
+      const cand = Math.sqrt(f2);
+      if (isFinite(cand) && cand > 0.3 * long && cand < 3 * long) { f = cand; exact = true; }
+    }
+    // One direction square to the camera sends its vanishing point to
+    // infinity and the lens no longer falls out. Stand in an ordinary phone
+    // camera: still far closer than reading the flat pixels, which ignores
+    // the foreshortening altogether.
+    if (!f) f = 0.9 * long;
+
+    const H = unitTo(px.map((p) => [p[0], p[1]]));
+    if (!H) return null;
+    // K⁻¹ applied to the first two columns of H. Their lengths are the
+    // rectangle's own sides, in one shared unknown unit.
+    const col = (a, b2, z) => Math.hypot((a - u0 * z) / f, (b2 - v0 * z) / f, z);
+    const A = col(H[0], H[3], H[6]);
+    const B = col(H[1], H[4], H[7]);
+    if (!(A > 0) || !(B > 0) || !isFinite(A) || !isFinite(B)) return null;
+    return { ratio: A / B, exact };
+  }
+
+  function drawP() {
+    poly.setAttribute("points", pts.map((p) => `${p[0]},${p[1]}`).join(" "));
+    dots.forEach((d, i) => { d.style.left = pts[i][0] + "%"; d.style.top = pts[i][1] + "%"; });
+    for (let i = 0; i < 4; i++) {
+      const m = [(pts[i][0] + pts[(i + 1) % 4][0]) / 2, (pts[i][1] + pts[(i + 1) % 4][1]) / 2];
+      elabels[i].style.left = m[0] + "%";
+      elabels[i].style.top = m[1] + "%";
+      elabels[i].classList.toggle("is-known", i === edge);
+    }
+    // The readout sits in the middle of the shape, the way the demo does it.
+    const read = $("pm-read");
+    read.style.left = (pts.reduce((t, p) => t + p[0], 0) / 4) + "%";
+    read.style.top = (pts.reduce((t, p) => t + p[1], 0) / 4) + "%";
+    compute();
+  }
+
+  function compute() {
+    const known = parseFloat($("pm-known").value) || 0;
+    const r = sideRatio(pts);
+    const out = $("pm-read");
+    const blank = () => { out.hidden = true; elabels.forEach((e) => { e.textContent = ""; e.hidden = true; }); };
+    if (!r || known <= 0) { blank(); if (open) open.measure = null; return; }
+    // edges 0 and 2 run along the rectangle's first side, 1 and 3 the second.
+    const along = edge % 2 === 0;
+    const a = along ? known : known * r.ratio;
+    const b = along ? known / r.ratio : known;
+    if (!isFinite(a) || !isFinite(b) || a <= 0 || b <= 0) { blank(); return; }
+    const area = a * b, perim = 2 * (a + b);
+    // Every edge carries its feet, not just the one they answered.
+    const ft = (n) => (n < 10 ? n.toFixed(1).replace(/\.0$/, "") : String(Math.round(n))) + " ft";
+    elabels.forEach((e, i) => { e.textContent = ft(i % 2 === 0 ? a : b); e.hidden = false; });
+    $("pm-area").textContent = Math.round(area).toLocaleString();
+    $("pm-perim").textContent = Math.round(perim).toLocaleString();
+    out.hidden = false;
+    $("pm-hint").textContent = r.exact
+      ? "Corrected for the angle the photo was taken at."
+      : "Pace it, or use something you know — a door is about three feet.";
+    if (open) open.measure = { sqft: Math.round(area), perimeter: Math.round(perim) };
+    const tile = open && open.el;
+    if (tile) {
+      let tag = tile.querySelector(".tag");
+      if (!tag) { tag = document.createElement("span"); tag.className = "tag"; tile.appendChild(tag); }
+      tag.textContent = Math.round(area).toLocaleString() + " sq ft";
+    }
+  }
+
+  let grip = -1;
+  const clampP = (n) => Math.max(1, Math.min(99, n));
+  function moveP(e) {
+    if (grip < 0) return;
+    e.preventDefault();
+    const r = frame.getBoundingClientRect();
+    pts[grip] = [clampP(((e.clientX - r.left) / r.width) * 100),
+                 clampP(((e.clientY - r.top) / r.height) * 100)];
+    drawP();
+  }
+  dots.forEach((d, i) => {
+    d.addEventListener("pointerdown", (e) => { e.preventDefault(); d.setPointerCapture(e.pointerId); grip = i; });
+    d.addEventListener("pointermove", moveP);
+    const up = () => { grip = -1; };
+    d.addEventListener("pointerup", up);
+    d.addEventListener("pointercancel", up);
+  });
+
+  $("pm-known").addEventListener("input", compute);
+  $("pm-flip").addEventListener("click", () => {
+    edge = (edge + 1) % 4;
+    $("pm-edge").textContent = EDGE_NAMES[edge];
+    drawP();
+  });
+  $("pm-close").addEventListener("click", () => { panel.hidden = true; open = null; });
+
+  /** Opened from a thumbnail. */
+  window.__openMeasure = (rec, srcUrl) => {
+    open = rec;
+    img.onload = () => { pts = rec.pts ? rec.pts.map((p) => [...p]) : DEFAULT(); edge = 0;
+      $("pm-edge").textContent = EDGE_NAMES[0];
+      $("pm-known").value = rec.known || ""; drawP(); };
+    img.src = srcUrl;
+    panel.hidden = false;
+    panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  };
+  // Remember what was pinned, so reopening a photo does not start again.
+  panel.addEventListener("pointerup", () => { if (open) { open.pts = pts.map((p) => [...p]); open.known = $("pm-known").value; } });
+  $("pm-known").addEventListener("change", () => { if (open) open.known = $("pm-known").value; });
 })();
