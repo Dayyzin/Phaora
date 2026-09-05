@@ -223,8 +223,8 @@ function renderStatic() {
     ? "How far does the wall run? Pace it if you have to — a stride is about three feet."
     : "Rough outside dimensions. Pacing it off is close enough; the visit is what makes it exact.";
   $("trace-hint").textContent = isWall()
-    ? "Drag each end to where the wall starts and finishes. Drag the map to look around."
-    : `Drag the corners to the edges of your ${S.surface.noun}. Drag the middle to move the whole shape, or the map to look around.`;
+    ? "Drag each end to where the wall starts and finishes. Drag or pinch the map to look around."
+    : `Drag the corners to the edges of your ${S.surface.noun}. Drag the middle to move the whole shape. Pinch to zoom in — it will not disturb the corners.`;
 }
 
 function pickSurface(id) {
@@ -316,6 +316,12 @@ function unproject(clientX, clientY) {
 
 let grab = null;
 
+/** Take the pointer, but never at the cost of an exception: a second finger
+ *  can land on an id the browser has already let go of. */
+function hold(el, e) {
+  try { el.setPointerCapture(e.pointerId); } catch { /* already gone */ }
+}
+
 function drawShape() {
   if (!S.centre || !S.pts.length) return;
   const closed = !isWall();
@@ -365,7 +371,8 @@ function drawShape() {
     b.style.left = q.left + "%"; b.style.top = q.top + "%";
     b.addEventListener("pointerdown", (e) => {
       e.stopPropagation(); e.preventDefault();
-      b.setPointerCapture(e.pointerId);
+      if (pinch) return;
+      hold(b, e);
       grab = { kind: "corner", i };
     });
     b.addEventListener("pointermove", onMove);
@@ -378,7 +385,7 @@ function drawShape() {
 }
 
 function onMove(e) {
-  if (!grab) return;
+  if (pinch || !grab) return;
   const here = unproject(e.clientX, e.clientY);
   if (!here) return;
   e.preventDefault();
@@ -398,8 +405,27 @@ function onMove(e) {
 function endDrag() { grab = null; }
 
 const paintTile = () => {
-  if (S.centre) $("tile").src = `${API}/map?lat=${S.centre.lat}&lng=${S.centre.lng}&z=${S.zoom}`;
+  if (!S.centre) return;
+  // Google serves whole zoom levels only, so the tile on screen is always at
+  // some integer zoom centred somewhere. Remember which, so a pinch can
+  // stretch the picture it already has instead of waiting on the network.
+  S.tileZoom = Math.round(S.zoom);
+  S.tileCentre = S.centre;
+  $("tile").style.transform = "";
+  $("tile").src = `${API}/map?lat=${S.centre.lat}&lng=${S.centre.lng}&z=${S.tileZoom}`;
 };
+
+/** Stretch and slide the tile we have to stand in for the one we would fetch. */
+function fitTile() {
+  const el = $("tile");
+  if (!S.centre || !S.tileCentre) { el.style.transform = ""; return; }
+  const r = $("map").getBoundingClientRect();
+  const mpp = metresPerPixel(S.centre.lat, S.zoom);
+  const d = toM(S.tileCentre, S.centre);        // where the tile's middle sits now
+  const px = r.width / BOX;                     // image px → display px
+  el.style.transform = `translate(${(d.x / mpp) * px}px, ${(d.y / mpp) * px}px) `
+    + `scale(${2 ** (S.zoom - S.tileZoom)})`;
+}
 
 async function findProperty() {
   const q = $("addr").value.trim();
@@ -607,7 +633,8 @@ $("send").addEventListener("click", send);
 $("map").addEventListener("pointerdown", (e) => {
   const from = unproject(e.clientX, e.clientY);
   if (!from || !S.centre) return;
-  $("map").setPointerCapture(e.pointerId);
+  if (pinch) return;
+  hold($("map"), e);
   grab = { kind: "map", from, original: S.centre };
 });
 $("map").addEventListener("pointermove", onMove);
@@ -618,7 +645,8 @@ $("grab").addEventListener("pointerdown", (e) => {
   const from = unproject(e.clientX, e.clientY);
   if (!from) return;
   e.stopPropagation();
-  $("grab").setPointerCapture(e.pointerId);
+  if (pinch) return;
+  hold($("grab"), e);
   grab = { kind: "shape", from, original: S.pts.slice() };
 });
 $("grab").addEventListener("pointermove", onMove);
@@ -629,6 +657,79 @@ const zoomBy = (d) => {
   S.zoom = Math.min(ZMAX, Math.max(ZMIN, S.zoom + d));
   paintTile(); drawShape();
 };
+
+/* ── Two fingers ──────────────────────────────────────────────────────────
+ * A pinch is a look, not an edit. Whichever finger landed first may already
+ * have started dragging a corner or the whole shape; the moment a second one
+ * arrives that drag is undone and the shape is put back exactly where it was,
+ * so people can zoom in to see what they are doing without paying for it by
+ * having to redo the tracing.
+ *
+ * The gesture is watched on the window in the capture phase because the
+ * handles capture their own pointer and stop the event going further. */
+const live = new Map();                       // pointerId → {x,y}
+let pinch = null;                             // {dist, zoom, ground}
+let before = null;                            // the shape as it was before this touch
+
+const centreOf = () => {
+  const [a, b] = [...live.values()];
+  return { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2, d: Math.hypot(b.x - a.x, b.y - a.y) };
+};
+
+function startPinch() {
+  // Put the shape back. A second finger means they meant to look, not to edit.
+  // Only the shape: where they had panned to is what they wanted to look at.
+  if (before) S.pts = before;
+  grab = null;
+  const c = centreOf();
+  const ground = unproject(c.x, c.y);
+  if (!ground || c.d < 1) return;
+  pinch = { dist: c.d, zoom: S.zoom, ground };
+  fitTile(); drawShape(); refresh();
+}
+
+function movePinch() {
+  const c = centreOf();
+  if (!pinch || c.d < 1) return;
+  S.zoom = Math.min(ZMAX, Math.max(ZMIN, pinch.zoom + Math.log2(c.d / pinch.dist)));
+  // Hold the ground under their fingers still, so the pinch also pans.
+  const r = $("map").getBoundingClientRect();
+  const k = BOX / r.width, mpp = metresPerPixel(S.centre.lat, S.zoom);
+  S.centre = fromM({
+    x: -(c.x - (r.left + r.width / 2)) * k * mpp,
+    y: -(c.y - (r.top + r.height / 2)) * k * mpp,
+  }, pinch.ground);
+  fitTile(); drawShape(); refresh();
+}
+
+function endPinch() {
+  pinch = null;
+  S.zoom = Math.min(ZMAX, Math.max(ZMIN, Math.round(S.zoom)));
+  paintTile(); drawShape(); refresh();
+}
+
+const inMap = (t) => t instanceof Node && $("map").contains(t);
+
+addEventListener("pointerdown", (e) => {
+  if (!inMap(e.target) || !S.centre) return;
+  if (live.size === 0) before = S.pts.slice();
+  live.set(e.pointerId, { x: e.clientX, y: e.clientY });
+  if (live.size === 2) startPinch();
+}, true);
+
+addEventListener("pointermove", (e) => {
+  if (!live.has(e.pointerId)) return;
+  live.set(e.pointerId, { x: e.clientX, y: e.clientY });
+  if (pinch && live.size >= 2) { e.preventDefault(); movePinch(); }
+}, true);
+
+const liftFinger = (e) => {
+  if (!live.delete(e.pointerId)) return;
+  if (pinch && live.size < 2) endPinch();
+  if (live.size === 0) before = null;
+};
+addEventListener("pointerup", liftFinger, true);
+addEventListener("pointercancel", liftFinger, true);
 $("zin").addEventListener("click", (e) => { e.stopPropagation(); zoomBy(1); });
 $("zout").addEventListener("click", (e) => { e.stopPropagation(); zoomBy(-1); });
 ["zin", "zout"].forEach((id) => $(id).addEventListener("pointerdown", (e) => e.stopPropagation()));
