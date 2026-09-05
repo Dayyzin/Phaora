@@ -177,9 +177,15 @@ h1 em{font-style:italic;color:var(--gold)}
    length on every edge, the running area in the middle. Marked as an example,
    because the numbers on it are illustrative and the photograph is a real job. */
 .demo{margin:34px 0 0}
-.demo-lbl{font-size:10px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--teal)}
-.demo-h{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(23px,5.6vw,30px);
-  line-height:1.2;margin:8px 0 14px;color:var(--ink)}
+/* The words sit on the picture. The top of this frame is night trees and a
+   pergola, dark enough to carry white type once a scrim steadies it, and the
+   panel reads as one thing instead of a caption stacked on a photograph. */
+.demo-cap-top{position:absolute;left:0;right:0;top:0;z-index:2;padding:18px 20px 40px;
+  background:linear-gradient(180deg,rgba(6,12,22,.82) 0%,rgba(6,12,22,.55) 45%,transparent 100%)}
+.demo-lbl{font-size:10px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--teal-lt);margin:0}
+.demo-h{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(22px,5.4vw,29px);
+  line-height:1.18;margin:8px 0 0;color:#fff;text-shadow:0 2px 18px rgba(6,12,22,.7);max-width:16ch}
 .demo-frame{position:relative;border-radius:10px;overflow:hidden;border:1px solid var(--line);
   background:#c9d4e0;line-height:0}
 .demo-frame>img{width:100%;height:auto;display:block}
@@ -193,6 +199,12 @@ h1 em{font-style:italic;color:var(--gold)}
   font-size:16px;font-weight:700;padding:7px 13px;border-radius:6px;white-space:nowrap;line-height:1.2;
   box-shadow:0 3px 12px rgba(6,14,26,.4)}
 .demo-a em{font-style:normal;font-weight:600;font-size:11px;opacity:.75;margin-left:4px}
+/* The distance around, under the area. The tool reports both — coping, edge
+   restraint and wall run all price by the foot, not the square foot — so the
+   picture of the tool should report both too. */
+.demo-p{position:absolute;transform:translate(-50%,-50%);background:rgba(12,22,38,.86);color:#fff;
+  font-size:12px;font-weight:600;padding:5px 10px;border-radius:5px;white-space:nowrap;line-height:1.2}
+.demo-p em{font-style:normal;font-weight:500;opacity:.7;margin-left:4px}
 .demo-cap{color:var(--muted);font-size:13.5px;line-height:1.6;margin:12px 0 0}
 
 .map{position:relative;width:100%;aspect-ratio:1/1;overflow:hidden;border-radius:10px;
@@ -250,10 +262,12 @@ footer a.t{color:var(--teal);font-weight:500}
     <a href="../contact.html">tell us what you need</a> and you get an answer from the person who does the work.</p>
 
   <section class="demo">
-    <p class="demo-lbl">How it works</p>
-    <h2 class="demo-h">Drag a shape onto your yard. It counts the feet.</h2>
     <div class="demo-frame">
       <img src="../assets/estimate/trace-demo.jpg" alt="A paver patio with a shape traced over it and its area measured">
+      <div class="demo-cap-top">
+        <p class="demo-lbl">How it works</p>
+        <h2 class="demo-h">Drag a shape onto your yard. It counts the feet.</h2>
+      </div>
       <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
         <polygon points="11,41 82,39 98,93 2,88"></polygon>
       </svg>
@@ -265,7 +279,8 @@ footer a.t{color:var(--teal);font-weight:500}
       <span class="demo-e" style="left:90%;top:66%">18 ft</span>
       <span class="demo-e" style="left:50%;top:90.5%">24 ft</span>
       <span class="demo-e" style="left:6.5%;top:64.5%">18 ft</span>
-      <span class="demo-a" style="left:48%;top:65%">432<em>sq ft</em></span>
+      <span class="demo-a" style="left:48%;top:62%">432<em>sq ft</em></span>
+      <span class="demo-p" style="left:48%;top:71%">84<em>ft around</em></span>
     </div>
     <p class="demo-cap">
       An example, on a patio we built. You get the same four corners on a satellite view of
