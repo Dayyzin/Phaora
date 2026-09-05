@@ -159,6 +159,27 @@ h1 em{font-style:italic;color:var(--gold)}
 .f input::placeholder{color:#93A6BB}
 .f input:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(23,130,143,.13)}
 .hp{position:absolute;left:-9999px;width:1px;height:1px}
+/* PHOTOS — the way in for everything the satellite cannot see */
+.shots{margin:0 0 20px}
+.shots-add{display:flex;gap:14px;align-items:flex-start;cursor:pointer;background:var(--card);
+  border:1px dashed #B9C9DB;border-radius:10px;padding:16px 18px;transition:all .2s}
+.shots-add:hover{border-color:var(--teal);background:#fbfdff}
+.shots-add .ico{flex:0 0 34px;height:34px;border-radius:50%;background:rgba(23,130,143,.1);
+  color:var(--teal);font-size:21px;line-height:34px;text-align:center;font-weight:400}
+.shots-add b{display:block;font-size:15.5px;font-weight:600;color:var(--ink)}
+.shots-add em{display:block;font-style:normal;color:var(--muted);font-size:13.5px;line-height:1.55;margin-top:4px}
+.shots-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:9px;margin-top:11px}
+.shot{position:relative;aspect-ratio:1/1;border-radius:8px;overflow:hidden;background:#dbe4ef;
+  border:1px solid var(--line)}
+.shot img{width:100%;height:100%;object-fit:cover;display:block}
+.shot.busy img{opacity:.4}
+.shot .spin{position:absolute;inset:0;display:grid;place-items:center;font-size:10px;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--teal)}
+.shot .x{position:absolute;top:4px;right:4px;width:24px;height:24px;border:0;border-radius:50%;
+  background:rgba(12,22,38,.78);color:#fff;font-size:15px;line-height:24px;padding:0;cursor:pointer}
+.shot.bad{border-color:#C2695A}
+.shots-note{font-size:12.5px;color:var(--muted);margin:9px 0 0}
+.shots-note.err{color:#B4432F;font-weight:500}
 .btn{margin-top:10px;justify-self:start;cursor:pointer;font-family:inherit;border:0;border-radius:8px;
   background:var(--teal);color:#fff;padding:16px 32px;
   font-size:11.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;transition:all .2s}
@@ -369,6 +390,21 @@ footer a.t{color:var(--teal);font-weight:500}
     <div class="step-n"><b class="serif">V</b><span>Book the free visit</span><div class="bar"></div></div>
     <div id="book-form">
       <p class="hint">We read the grade and the drainage — the two things a satellite cannot show you — and give you the exact number. No obligation.</p>
+
+      <div class="shots">
+        <label class="shots-add" for="b-photos">
+          <span class="ico" aria-hidden="true">+</span>
+          <span>
+            <b>Add photos</b>
+            <em>A fireplace, steps, a repair, a wall that moved — anything the satellite
+            cannot show. Send pictures and skip the measuring entirely.</em>
+          </span>
+        </label>
+        <input id="b-photos" type="file" accept="image/*" multiple hidden>
+        <div class="shots-grid" id="shots-grid"></div>
+        <p class="shots-note" id="shots-note" hidden></p>
+      </div>
+
       <div class="f">
         <input class="hp" id="website" tabindex="-1" autocomplete="off" aria-hidden="true">
         <input id="b-name" placeholder="Your name" autocomplete="name">
@@ -379,7 +415,7 @@ footer a.t{color:var(--teal);font-weight:500}
       </div>
       <p class="err" id="send-err" hidden></p>
     </div>
-    <p class="hint" id="book-done" hidden>Your measurement came through with it, so the size is known before the call. Expect to hear back shortly.</p>
+    <p class="hint" id="book-done" hidden>Got it. Expect to hear back shortly.</p>
   </section>
 </div>
 

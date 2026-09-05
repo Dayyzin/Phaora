@@ -427,14 +427,121 @@ async function findProperty() {
   }
 }
 
+/* ── Photos ────────────────────────────────────────────────────────────────
+ *
+ * The measuring flow only covers flat ground — a patio, a drive, a walk, a
+ * wall's run. Everything else the company does has no shape to trace: a
+ * fireplace, a set of steps, a veneer, a wall that has started to lean. A
+ * photograph is how those get priced, and without one this page quietly told
+ * anyone whose job was not a rectangle that it was not for them.
+ *
+ * Shrunk here before it leaves. A photograph off a phone is four megabytes and
+ * eight times more pixels than anyone needs to see a wall; at 1600px it is a
+ * couple of hundred kilobytes, which matters on a phone standing in a yard.
+ * Then it goes straight to storage on a signed URL — never through the API,
+ * whose request body is capped well below one untouched photo.
+ */
+const MAX_PHOTOS = 8;
+const shots = [];                       // { id, path, el }
+
+function shrink(file) {
+  return new Promise((resolve, reject) => {
+    const url = URL.createObjectURL(file);
+    const img = new Image();
+    img.onload = () => {
+      URL.revokeObjectURL(url);
+      const max = 1600;
+      const k = Math.min(1, max / Math.max(img.width, img.height));
+      const w = Math.round(img.width * k), h = Math.round(img.height * k);
+      const c = document.createElement("canvas");
+      c.width = w; c.height = h;
+      c.getContext("2d").drawImage(img, 0, 0, w, h);
+      c.toBlob((blob) => blob ? resolve(blob) : reject(new Error("encode")), "image/jpeg", 0.82);
+    };
+    // HEIC off an iPhone can refuse to decode. Send the original rather than
+    // nothing — the bucket takes it and it is still a photograph of the job.
+    img.onerror = () => { URL.revokeObjectURL(url); resolve(file); };
+    img.src = url;
+  });
+}
+
+function note(msg, bad) {
+  const el = $("shots-note");
+  el.textContent = msg || "";
+  el.hidden = !msg;
+  el.classList.toggle("err", !!bad);
+}
+
+async function addPhoto(file) {
+  if (shots.length >= MAX_PHOTOS) { note(`That is ${MAX_PHOTOS} — plenty to go on.`); return; }
+  const id = Math.random().toString(36).slice(2);
+  const tile = document.createElement("div");
+  tile.className = "shot busy";
+  tile.innerHTML = `<img alt=""><span class="spin">…</span>`;
+  tile.querySelector("img").src = URL.createObjectURL(file);
+  $("shots-grid").appendChild(tile);
+  const rec = { id, path: null, el: tile };
+  shots.push(rec);
+
+  try {
+    const small = await shrink(file);
+    const r = await fetch(`${API}/photo-url`, {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: file.name || "photo.jpg" }),
+    });
+    const j = await r.json();
+    if (!j.ok) throw new Error(j.error || "no url");
+    const put = await fetch(j.uploadUrl, {
+      method: "PUT",
+      headers: { "Content-Type": small.type || "image/jpeg" },
+      body: small,
+    });
+    if (!put.ok) throw new Error("upload " + put.status);
+    rec.path = j.path;
+    tile.classList.remove("busy");
+    tile.querySelector(".spin")?.remove();
+    const x = document.createElement("button");
+    x.type = "button"; x.className = "x"; x.setAttribute("aria-label", "Remove photo");
+    x.textContent = "×";
+    x.addEventListener("click", () => {
+      const i = shots.indexOf(rec);
+      if (i >= 0) shots.splice(i, 1);
+      tile.remove();
+      note(shots.length ? "" : null);
+    });
+    tile.appendChild(x);
+    note("");
+  } catch (err) {
+    tile.classList.remove("busy");
+    tile.classList.add("bad");
+    const sp = tile.querySelector(".spin");
+    if (sp) sp.textContent = "failed";
+    const i = shots.indexOf(rec);
+    if (i >= 0) shots.splice(i, 1);
+    note("A photo did not go through. The rest of the form still works — send it and we will ask.", true);
+  }
+}
+
+$("b-photos").addEventListener("change", (e) => {
+  const files = [...(e.target.files || [])];
+  e.target.value = "";                  // so the same file can be picked again
+  files.forEach(addPhoto);
+});
+
 /* ── Booking ──────────────────────────────────────────────────────────── */
 async function send() {
   const m = measured();
   const err = $("send-err");
   err.hidden = true;
-  if (!sized(m)) { err.textContent = "Give us a size first, up in step two."; err.hidden = false; return; }
   if (!$("b-phone").value.trim() && !$("b-email").value.trim()) {
     err.textContent = "Leave a phone or an email so we can reach you."; err.hidden = false; return;
+  }
+  // A size is no longer the price of entry. Someone whose job is a fireplace
+  // has nothing to trace, and turning them away at the last field was the
+  // whole reason this page only ever heard about driveways.
+  if (!sized(m) && shots.length === 0) {
+    err.textContent = "Give us a size up in step two, or add a photo of the job.";
+    err.hidden = false; return;
   }
   const btn = $("send");
   btn.disabled = true; btn.textContent = "Sending…";
@@ -448,10 +555,17 @@ async function send() {
         website: $("website").value,
         surfaceId: S.surface.id, material: S.material, conditions: S.conds,
         sqft: m.sqft, linearFt: m.linearFt, method: S.mode, src: S.src,
+        photos: shots.map((p) => p.path).filter(Boolean),
       }),
     });
     const j = await r.json();
     if (!j.ok) { err.textContent = j.error || "Something went wrong."; err.hidden = false; return; }
+    const sentPhotos = shots.length;
+    $("book-done").textContent = sized(m)
+      ? "Got it. Your measurement came with it, so the size is known before the call."
+      : sentPhotos
+        ? `Got it — ${sentPhotos} photo${sentPhotos === 1 ? "" : "s"} came with it. We will look and come back to you.`
+        : "Got it. Expect to hear back shortly.";
     $("book-form").hidden = true;
     $("book-done").hidden = false;
   } catch {
