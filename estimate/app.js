@@ -916,23 +916,30 @@ renderTiles(); renderMats(); renderConds(); renderStatic(); refresh();
       const m = [(pts[i][0] + pts[(i + 1) % 4][0]) / 2, (pts[i][1] + pts[(i + 1) % 4][1]) / 2];
       elabels[i].style.left = m[0] + "%";
       elabels[i].style.top = m[1] + "%";
-      elabels[i].textContent = i === edge ? "this one" : "";
-      elabels[i].hidden = i !== edge;
+      elabels[i].classList.toggle("is-known", i === edge);
     }
+    // The readout sits in the middle of the shape, the way the demo does it.
+    const read = $("pm-read");
+    read.style.left = (pts.reduce((t, p) => t + p[0], 0) / 4) + "%";
+    read.style.top = (pts.reduce((t, p) => t + p[1], 0) / 4) + "%";
     compute();
   }
 
   function compute() {
     const known = parseFloat($("pm-known").value) || 0;
     const r = sideRatio(pts);
-    const out = $("pm-out");
-    if (!r || known <= 0) { out.hidden = true; if (open) open.measure = null; return; }
+    const out = $("pm-read");
+    const blank = () => { out.hidden = true; elabels.forEach((e) => { e.textContent = ""; e.hidden = true; }); };
+    if (!r || known <= 0) { blank(); if (open) open.measure = null; return; }
     // edges 0 and 2 run along the rectangle's first side, 1 and 3 the second.
     const along = edge % 2 === 0;
     const a = along ? known : known * r.ratio;
     const b = along ? known / r.ratio : known;
-    if (!isFinite(a) || !isFinite(b) || a <= 0 || b <= 0) { out.hidden = true; return; }
+    if (!isFinite(a) || !isFinite(b) || a <= 0 || b <= 0) { blank(); return; }
     const area = a * b, perim = 2 * (a + b);
+    // Every edge carries its feet, not just the one they answered.
+    const ft = (n) => (n < 10 ? n.toFixed(1).replace(/\.0$/, "") : String(Math.round(n))) + " ft";
+    elabels.forEach((e, i) => { e.textContent = ft(i % 2 === 0 ? a : b); e.hidden = false; });
     $("pm-area").textContent = Math.round(area).toLocaleString();
     $("pm-perim").textContent = Math.round(perim).toLocaleString();
     out.hidden = false;
