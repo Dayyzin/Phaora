@@ -536,3 +536,125 @@ $("new-addr").addEventListener("click", () => {
 });
 
 renderTiles(); renderMats(); renderConds(); renderStatic(); refresh();
+
+/* ── The demo, made playable ───────────────────────────────────────────────
+ *
+ * The same four corners as the real tracer, on a photograph of a patio we
+ * built, so somebody can feel what the tool does before typing an address.
+ *
+ * The hard part is that a photograph is in perspective and a satellite view is
+ * not. A flat pixels-to-feet scale would make the far edge cost fewer feet
+ * than the near one, and the demo would quietly teach that dragging away from
+ * the camera is cheap. So the four starting corners are declared to be a real
+ * 24 x 18 rectangle on the ground, a homography is solved from that, and every
+ * dragged corner is mapped back onto the ground plane before anything is
+ * measured. Drag a corner into the distance and it adds the feet it should.
+ */
+(function demo() {
+  const frame = document.getElementById("demo");
+  if (!frame) return;
+  const svg = frame.querySelector("svg polygon");
+  const dots = [...frame.querySelectorAll(".demo-dot")];
+  const edges = [...frame.querySelectorAll(".demo-e")];
+  const areaEl = frame.querySelector(".demo-a b");
+  const perimEl = frame.querySelector(".demo-p b");
+  if (!svg || dots.length !== 4 || !areaEl || !perimEl) return;
+
+  const START = [[11, 41], [82, 39], [98, 93], [2, 88]];   // percent of the frame
+  const PLANE = [[0, 0], [24, 0], [24, 18], [0, 18]];      // the feet they stand for
+
+  /** Solve the 8x8 system for the image→ground homography, once. */
+  function homography(src, dst) {
+    const A = [], b = [];
+    for (let i = 0; i < 4; i++) {
+      const [u, v] = src[i], [x, y] = dst[i];
+      A.push([u, v, 1, 0, 0, 0, -u * x, -v * x]); b.push(x);
+      A.push([0, 0, 0, u, v, 1, -u * y, -v * y]); b.push(y);
+    }
+    // Gaussian elimination with partial pivoting. Eight unknowns, so the cost
+    // is nothing and the clarity is worth more than a clever method.
+    for (let c = 0; c < 8; c++) {
+      let piv = c;
+      for (let r = c + 1; r < 8; r++) if (Math.abs(A[r][c]) > Math.abs(A[piv][c])) piv = r;
+      [A[c], A[piv]] = [A[piv], A[c]]; [b[c], b[piv]] = [b[piv], b[c]];
+      const d = A[c][c];
+      if (Math.abs(d) < 1e-12) return null;
+      for (let k = c; k < 8; k++) A[c][k] /= d;
+      b[c] /= d;
+      for (let r = 0; r < 8; r++) {
+        if (r === c) continue;
+        const f = A[r][c];
+        if (!f) continue;
+        for (let k = c; k < 8; k++) A[r][k] -= f * A[c][k];
+        b[r] -= f * b[c];
+      }
+    }
+    return b;
+  }
+
+  const H = homography(START, PLANE);
+  if (!H) return;                                   // leave the static picture alone
+
+  /** A point on the frame, in feet on the ground. */
+  const toGround = ([u, v]) => {
+    const w = H[6] * u + H[7] * v + 1;
+    return [(H[0] * u + H[1] * v + H[2]) / w, (H[3] * u + H[4] * v + H[5]) / w];
+  };
+
+  let pts = START.map((p) => [...p]);
+
+  function draw() {
+    const g = pts.map(toGround);
+    svg.setAttribute("points", pts.map((p) => `${p[0]},${p[1]}`).join(" "));
+    dots.forEach((d, i) => { d.style.left = pts[i][0] + "%"; d.style.top = pts[i][1] + "%"; });
+
+    let area = 0, perim = 0;
+    for (let i = 0; i < 4; i++) {
+      const a = g[i], b2 = g[(i + 1) % 4];
+      area += a[0] * b2[1] - b2[0] * a[1];
+      const len = Math.hypot(b2[0] - a[0], b2[1] - a[1]);
+      perim += len;
+      const m = [(pts[i][0] + pts[(i + 1) % 4][0]) / 2, (pts[i][1] + pts[(i + 1) % 4][1]) / 2];
+      edges[i].style.left = m[0] + "%";
+      edges[i].style.top = m[1] + "%";
+      edges[i].textContent = Math.round(len) + " ft";
+    }
+    areaEl.textContent = Math.round(Math.abs(area) / 2).toLocaleString();
+    perimEl.textContent = Math.round(perim).toLocaleString();
+
+    const c = pts.reduce((s2, p) => [s2[0] + p[0] / 4, s2[1] + p[1] / 4], [0, 0]);
+    frame.querySelector(".demo-a").style.left = c[0] + "%";
+    frame.querySelector(".demo-a").style.top = (c[1] - 4) + "%";
+    frame.querySelector(".demo-p").style.left = c[0] + "%";
+    frame.querySelector(".demo-p").style.top = (c[1] + 5) + "%";
+  }
+
+  let held = -1;
+  const clamp = (n) => Math.max(1, Math.min(99, n));
+
+  function move(e) {
+    if (held < 0) return;
+    e.preventDefault();
+    const r = frame.getBoundingClientRect();
+    pts[held] = [clamp(((e.clientX - r.left) / r.width) * 100),
+                 clamp(((e.clientY - r.top) / r.height) * 100)];
+    draw();
+  }
+
+  dots.forEach((d, i) => {
+    d.addEventListener("pointerdown", (e) => {
+      e.preventDefault();
+      d.setPointerCapture(e.pointerId);
+      held = i;
+    });
+    d.addEventListener("pointermove", move);
+    const up = () => { held = -1; };
+    d.addEventListener("pointerup", up);
+    d.addEventListener("pointercancel", up);
+  });
+
+  const reset = document.getElementById("demo-reset");
+  if (reset) reset.addEventListener("click", () => { pts = START.map((p) => [...p]); draw(); });
+
+  draw();
+})();
