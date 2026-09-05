@@ -498,8 +498,16 @@ async function addPhoto(file) {
     });
     if (!put.ok) throw new Error("upload " + put.status);
     rec.path = j.path;
+    rec.url = URL.createObjectURL(small);
     tile.classList.remove("busy");
     tile.querySelector(".spin")?.remove();
+    // Tapping the picture is how you measure it. The pins are the same gesture
+    // as the demo above, on something the satellite could never show.
+    tile.addEventListener("click", (ev) => {
+      if (ev.target.classList.contains("x")) return;
+      if (window.__openMeasure) window.__openMeasure(rec, rec.url);
+    });
+    tile.title = "Tap to measure this";
     const x = document.createElement("button");
     x.type = "button"; x.className = "x"; x.setAttribute("aria-label", "Remove photo");
     x.textContent = "×";
@@ -556,6 +564,8 @@ async function send() {
         surfaceId: S.surface.id, material: S.material, conditions: S.conds,
         sqft: m.sqft, linearFt: m.linearFt, method: S.mode, src: S.src,
         photos: shots.map((p) => p.path).filter(Boolean),
+        photo_measures: shots.filter((p) => p.path && p.measure)
+          .map((p) => ({ path: p.path, ...p.measure })),
       }),
     });
     const j = await r.json();
@@ -775,4 +785,206 @@ renderTiles(); renderMats(); renderConds(); renderStatic(); refresh();
   if (reset) reset.addEventListener("click", () => { pts = START.map((p) => [...p]); draw(); });
 
   draw();
+})();
+
+/* ── Measuring on a photograph they took ───────────────────────────────────
+ *
+ * A satellite tile has a known ground resolution, so pins on it convert
+ * straight to feet. A photograph from a phone has nothing of the kind: the
+ * same patio fills the frame from six feet away or from the far side of the
+ * garden, and no pixel count distinguishes them. So the pins alone cannot
+ * produce a number, and any tool that pretends otherwise is guessing.
+ *
+ * What the pins DO carry is the shape. Four corners of something rectangular,
+ * seen in perspective, determine that rectangle's proportions exactly — the
+ * two vanishing points fix the camera's focal length, and the focal length
+ * turns the traced quadrilateral back into the rectangle it was. That gives
+ * the ratio of the sides but not their size.
+ *
+ * One real length supplies the size. Pace one edge, or use a door, and every
+ * other dimension follows from the geometry rather than from a guess.
+ *
+ * Straight-on photographs make the vanishing points run to infinity and the
+ * focal length undefined — which is exactly the case where the picture is
+ * already flat and the proportions can be read off the pixels. That is the
+ * fallback, and it is right precisely where it is used.
+ */
+(function photoMeasure() {
+  const panel = $("pmeasure"), frame = $("pm-frame"), img = $("pm-img");
+  if (!panel || !frame || !img) return;
+  const poly = frame.querySelector("svg polygon");
+  const dots = [...frame.querySelectorAll("[data-p]")];
+  const elabels = [...frame.querySelectorAll("[data-pe]")];
+  const EDGE_NAMES = ["top", "right", "bottom", "left"];
+
+  let open = null;                       // the shot being measured
+  let pts = [];
+  let edge = 0;                          // which edge they are giving us
+
+  const DEFAULT = () => [[18, 30], [82, 30], [92, 82], [8, 82]];
+
+  /** Homography from the unit square to four image points, in pixels. */
+  function unitTo(quad) {
+    const src = [[0, 0], [1, 0], [1, 1], [0, 1]];
+    const A = [], b = [];
+    for (let i = 0; i < 4; i++) {
+      const [u, v] = src[i], [x, y] = quad[i];
+      A.push([u, v, 1, 0, 0, 0, -u * x, -v * x]); b.push(x);
+      A.push([0, 0, 0, u, v, 1, -u * y, -v * y]); b.push(y);
+    }
+    for (let c = 0; c < 8; c++) {
+      let piv = c;
+      for (let r = c + 1; r < 8; r++) if (Math.abs(A[r][c]) > Math.abs(A[piv][c])) piv = r;
+      [A[c], A[piv]] = [A[piv], A[c]]; [b[c], b[piv]] = [b[piv], b[c]];
+      const d = A[c][c];
+      if (Math.abs(d) < 1e-12) return null;
+      for (let k = c; k < 8; k++) A[c][k] /= d;
+      b[c] /= d;
+      for (let r = 0; r < 8; r++) {
+        if (r === c) continue;
+        const f = A[r][c];
+        if (!f) continue;
+        for (let k = c; k < 8; k++) A[r][k] -= f * A[c][k];
+        b[r] -= f * b[c];
+      }
+    }
+    return b;                            // [a,b,c,d,e,f,g,h]
+  }
+
+  const cross = (a, b) => [a[1]*b[2]-a[2]*b[1], a[2]*b[0]-a[0]*b[2], a[0]*b[1]-a[1]*b[0]];
+
+  /** Is the quad wound cleanly, without a crossed pair of pins? */
+  function convex(q) {
+    let sign = 0;
+    for (let i = 0; i < 4; i++) {
+      const a = q[i], b = q[(i + 1) % 4], c = q[(i + 2) % 4];
+      const z = (b[0] - a[0]) * (c[1] - b[1]) - (b[1] - a[1]) * (c[0] - b[0]);
+      if (Math.abs(z) < 1e-9) continue;
+      const s = z > 0 ? 1 : -1;
+      if (sign && s !== sign) return false;
+      sign = s;
+    }
+    return sign !== 0;
+  }
+
+  /** Side ratio of the rectangle the four pins are standing on. */
+  function sideRatio(quad) {
+    if (!convex(quad)) return null;
+    const W = img.naturalWidth || frame.clientWidth;
+    const Hh = img.naturalHeight || frame.clientHeight;
+    if (!(W > 0) || !(Hh > 0)) return null;
+    const px = quad.map(([x, y]) => [x / 100 * W, y / 100 * Hh, 1]);
+    const u0 = W / 2, v0 = Hh / 2;
+    const long = Math.max(W, Hh);
+
+    // Where the two edge directions run off to. If both land somewhere finite
+    // the lens itself falls out of them: the sides are at right angles on the
+    // ground, so (v1-c)·(v2-c) = -f².
+    const v1 = cross(cross(px[0], px[1]), cross(px[3], px[2]));
+    const v2 = cross(cross(px[1], px[2]), cross(px[0], px[3]));
+    const flat = (v) => Math.abs(v[2]) < 1e-9
+      ? null : [v[0] / v[2] - u0, v[1] / v[2] - v0];
+    const a1 = flat(v1), a2 = flat(v2);
+
+    let f = 0, exact = false;
+    if (a1 && a2) {
+      const f2 = -(a1[0] * a2[0] + a1[1] * a2[1]);
+      const cand = Math.sqrt(f2);
+      if (isFinite(cand) && cand > 0.3 * long && cand < 3 * long) { f = cand; exact = true; }
+    }
+    // One direction square to the camera sends its vanishing point to
+    // infinity and the lens no longer falls out. Stand in an ordinary phone
+    // camera: still far closer than reading the flat pixels, which ignores
+    // the foreshortening altogether.
+    if (!f) f = 0.9 * long;
+
+    const H = unitTo(px.map((p) => [p[0], p[1]]));
+    if (!H) return null;
+    // K⁻¹ applied to the first two columns of H. Their lengths are the
+    // rectangle's own sides, in one shared unknown unit.
+    const col = (a, b2, z) => Math.hypot((a - u0 * z) / f, (b2 - v0 * z) / f, z);
+    const A = col(H[0], H[3], H[6]);
+    const B = col(H[1], H[4], H[7]);
+    if (!(A > 0) || !(B > 0) || !isFinite(A) || !isFinite(B)) return null;
+    return { ratio: A / B, exact };
+  }
+
+  function drawP() {
+    poly.setAttribute("points", pts.map((p) => `${p[0]},${p[1]}`).join(" "));
+    dots.forEach((d, i) => { d.style.left = pts[i][0] + "%"; d.style.top = pts[i][1] + "%"; });
+    for (let i = 0; i < 4; i++) {
+      const m = [(pts[i][0] + pts[(i + 1) % 4][0]) / 2, (pts[i][1] + pts[(i + 1) % 4][1]) / 2];
+      elabels[i].style.left = m[0] + "%";
+      elabels[i].style.top = m[1] + "%";
+      elabels[i].textContent = i === edge ? "this one" : "";
+      elabels[i].hidden = i !== edge;
+    }
+    compute();
+  }
+
+  function compute() {
+    const known = parseFloat($("pm-known").value) || 0;
+    const r = sideRatio(pts);
+    const out = $("pm-out");
+    if (!r || known <= 0) { out.hidden = true; if (open) open.measure = null; return; }
+    // edges 0 and 2 run along the rectangle's first side, 1 and 3 the second.
+    const along = edge % 2 === 0;
+    const a = along ? known : known * r.ratio;
+    const b = along ? known / r.ratio : known;
+    if (!isFinite(a) || !isFinite(b) || a <= 0 || b <= 0) { out.hidden = true; return; }
+    const area = a * b, perim = 2 * (a + b);
+    $("pm-area").textContent = Math.round(area).toLocaleString();
+    $("pm-perim").textContent = Math.round(perim).toLocaleString();
+    out.hidden = false;
+    $("pm-hint").textContent = r.exact
+      ? "Corrected for the angle the photo was taken at."
+      : "Pace it, or use something you know — a door is about three feet.";
+    if (open) open.measure = { sqft: Math.round(area), perimeter: Math.round(perim) };
+    const tile = open && open.el;
+    if (tile) {
+      let tag = tile.querySelector(".tag");
+      if (!tag) { tag = document.createElement("span"); tag.className = "tag"; tile.appendChild(tag); }
+      tag.textContent = Math.round(area).toLocaleString() + " sq ft";
+    }
+  }
+
+  let grip = -1;
+  const clampP = (n) => Math.max(1, Math.min(99, n));
+  function moveP(e) {
+    if (grip < 0) return;
+    e.preventDefault();
+    const r = frame.getBoundingClientRect();
+    pts[grip] = [clampP(((e.clientX - r.left) / r.width) * 100),
+                 clampP(((e.clientY - r.top) / r.height) * 100)];
+    drawP();
+  }
+  dots.forEach((d, i) => {
+    d.addEventListener("pointerdown", (e) => { e.preventDefault(); d.setPointerCapture(e.pointerId); grip = i; });
+    d.addEventListener("pointermove", moveP);
+    const up = () => { grip = -1; };
+    d.addEventListener("pointerup", up);
+    d.addEventListener("pointercancel", up);
+  });
+
+  $("pm-known").addEventListener("input", compute);
+  $("pm-flip").addEventListener("click", () => {
+    edge = (edge + 1) % 4;
+    $("pm-edge").textContent = EDGE_NAMES[edge];
+    drawP();
+  });
+  $("pm-close").addEventListener("click", () => { panel.hidden = true; open = null; });
+
+  /** Opened from a thumbnail. */
+  window.__openMeasure = (rec, srcUrl) => {
+    open = rec;
+    img.onload = () => { pts = rec.pts ? rec.pts.map((p) => [...p]) : DEFAULT(); edge = 0;
+      $("pm-edge").textContent = EDGE_NAMES[0];
+      $("pm-known").value = rec.known || ""; drawP(); };
+    img.src = srcUrl;
+    panel.hidden = false;
+    panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  };
+  // Remember what was pinned, so reopening a photo does not start again.
+  panel.addEventListener("pointerup", () => { if (open) { open.pts = pts.map((p) => [...p]); open.known = $("pm-known").value; } });
+  $("pm-known").addEventListener("change", () => { if (open) open.known = $("pm-known").value; });
 })();
