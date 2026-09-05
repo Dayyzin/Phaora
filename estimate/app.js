@@ -674,7 +674,11 @@ renderTiles(); renderMats(); renderConds(); renderStatic(); refresh();
   const perimEl = frame.querySelector(".demo-p b");
   if (!svg || dots.length !== 4 || !areaEl || !perimEl) return;
 
-  const START = [[11, 41], [82, 39], [98, 93], [2, 88]];   // percent of the frame
+  // Set inside the paver field, clear of the fire pit, roughly symmetric so it
+  // reads as a shape somebody placed rather than one that fell there. It does
+  // not sit on the patio's own edges because this photograph only contains one
+  // of them — the other three run out of frame.
+  const START = [[12, 44], [74, 42], [96, 95], [4, 90]];   // percent of the frame
   const PLANE = [[0, 0], [24, 0], [24, 18], [0, 18]];      // the feet they stand for
 
   /** Solve the 8x8 system for the image→ground homography, once. */
