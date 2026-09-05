@@ -250,8 +250,18 @@ function renderRange() {
   if (!q) { el.hidden = true; return; }
   el.hidden = false;
   const mat = S.surface.materials.find((m) => m.id === S.material);
+  /* Three shapes of adder. A flat dollar figure, a percentage of the job, and
+     a band with a note — which is drainage: quoted as a typical run because the
+     length of the real one is not knowable from a rectangle, and said so on the
+     line rather than left for the visit to reveal. */
+  const addFigure = (a) =>
+    a.usdRange ? "+ " + money(a.usdRange[0]) + "&ndash;" + money(a.usdRange[1])
+    : a.usd != null ? "+ " + money(a.usd)
+    : "+ " + Math.round(a.pct * 100) + "%";
   const adds = (q.adds || []).map((a) => `
-    <div><span>${a.label}</span><b>${a.usd != null ? "+ " + money(a.usd) : "+ " + Math.round(a.pct * 100) + "%"}</b></div>`).join("");
+    <div${a.note ? ' class="add-noted"' : ""}><span>${a.label}</span><b>${addFigure(a)}</b>${
+      a.note ? `<small>${a.note}</small>` : ""
+    }</div>`).join("");
   el.innerHTML = `
     <p class="fig serif">${money(q.low)}<i>–</i>${money(q.high)}</p>
     <p class="note">${mat ? mat.label : ""} at ${q.quantity.toLocaleString()} ${q.unit === "lf" ? "ft" : "sq ft"} — our own pricing, not an internet average.</p>

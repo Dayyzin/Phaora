@@ -146,6 +146,12 @@ h1 em{font-style:italic;color:var(--gold)}
   border-bottom:1px solid rgba(255,255,255,.08);font-size:14px;color:rgba(255,255,255,.72)}
 .adds div:last-child{border-bottom:0}
 .adds b{font-weight:500;color:var(--gold);font-variant-numeric:tabular-nums;white-space:nowrap}
+/* A row carrying a note wraps: label and figure keep the line they always had,
+   the note takes the full width underneath. Without the wrap the flex row puts
+   a sentence in the gap between the two and squeezes both. */
+.adds div.add-noted{flex-wrap:wrap}
+.adds div.add-noted small{flex:0 0 100%;margin-top:6px;font-size:12.5px;line-height:1.5;
+  color:rgba(255,255,255,.5)}
 
 .drivers{margin:0;padding:0;list-style:none}
 .drivers li{padding:12px 0 12px 24px;border-bottom:1px solid var(--line);
