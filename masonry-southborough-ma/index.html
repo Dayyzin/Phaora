@@ -133,6 +133,11 @@ footer{position:relative;padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);borde
 .tp-num h3{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(19px,4vw,23px);color:var(--pearl);margin:0}
 .tp-num p{color:rgba(234,239,245,.58);font-size:14.5px;line-height:1.7;margin:8px 0 0;max-width:60ch}
 @media(min-width:700px){.tp-num h3,.tp-num p{grid-column:2}}
+.tp-assure{display:grid;gap:1px;margin:26px 0 0;background:rgba(234,239,245,.08);border:1px solid rgba(234,239,245,.08)}
+@media(min-width:700px){.tp-assure:has(>*+*){grid-template-columns:1fr 1fr}}
+.tp-assure>div{background:var(--ink);padding:22px 24px;border-left:2px solid var(--teal)}
+.tp-assure h3{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(19px,4vw,23px);color:var(--pearl);margin:0}
+.tp-assure p{color:rgba(234,239,245,.6);font-size:14.5px;line-height:1.68;margin:9px 0 0;max-width:56ch}
 .tp-ask{margin:clamp(38px,6vw,64px) 0 0;border:1px solid rgba(200,164,94,.32);padding:clamp(22px,4vw,34px)}
 .tp-ask h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(22px,4.6vw,30px);color:var(--pearl);margin:0}
 .tp-near{margin:clamp(34px,5vw,52px) 0 0;padding:22px 0 clamp(48px,8vw,84px);border-top:1px solid rgba(234,239,245,.08)}
@@ -254,6 +259,12 @@ footer{position:relative;padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);borde
     <h2 class="tp-h2">Working in Southborough</h2>
     <p class="tp-p">Southborough is Worcester County, next to Marlborough where our yard is — about as close to home as our work gets.</p>
   </section>
+
+  <section class="tp-sec">
+    <div class="tp-assure">
+      <div><h3>One-year workmanship warranty</h3><p>If something we built moves, cracks or fails in the first year because of how it was built, we come back and fix it. No argument, no invoice.</p></div>
+    </div>
+  </section>
   <section class="tp-ask">
     <h2>A number before anyone visits.</h2>
     <p class="tp-p">Trace your patio on a satellite view of your own property, or send a photograph
@@ -273,7 +284,7 @@ footer{position:relative;padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);borde
   <div class="footer-top">
     <div>
       <div class="footer-wm">PHA<span class="o">&Ouml;</span>RA</div>
-      <p class="footer-tagline">Full-service home improvement across Massachusetts — masonry, the whole home, and snow plowing.<br><strong>Registered &amp; insured · MetroWest &amp; Greater Boston</strong></p>
+      <p class="footer-tagline">Full-service home improvement across Massachusetts — masonry, the whole home, and snow plowing.<br><strong>Registered &amp; insured · One-year workmanship warranty · MetroWest &amp; Greater Boston</strong></p>
     </div>
     <div class="footer-col">
       <h5>The House</h5>

@@ -1,0 +1,19 @@
+{
+  "_note": [
+    "What the site is allowed to promise, in one place.",
+    "",
+    "warranty  — stated by David on 6 Sep. Publishes as written.",
+    "financing — EMPTY until there is a lender account behind it. A site that",
+    "            offers financing it cannot actually arrange is a claim we",
+    "            cannot keep, so empty renders nothing at all. Fill `line` and",
+    "            `detail` the day the account exists and every page picks it up."
+  ],
+  "warranty": {
+    "line": "One-year workmanship warranty",
+    "detail": "If something we built moves, cracks or fails in the first year because of how it was built, we come back and fix it. No argument, no invoice."
+  },
+  "financing": {
+    "line": "",
+    "detail": ""
+  }
+}

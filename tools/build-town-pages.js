@@ -23,6 +23,7 @@ const { chrome } = require("./lib-chrome");
 
 const ROOT = path.join(__dirname, "..");
 const DATA = JSON.parse(fs.readFileSync(path.join(__dirname, "towns.json"), "utf8"));
+const OFFERS = JSON.parse(fs.readFileSync(path.join(__dirname, "offers.json"), "utf8"));
 const C = chrome();
 
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -78,6 +79,11 @@ const CSS = `
 .tp-num h3{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(19px,4vw,23px);color:var(--pearl);margin:0}
 .tp-num p{color:rgba(234,239,245,.58);font-size:14.5px;line-height:1.7;margin:8px 0 0;max-width:60ch}
 @media(min-width:700px){.tp-num h3,.tp-num p{grid-column:2}}
+.tp-assure{display:grid;gap:1px;margin:26px 0 0;background:rgba(234,239,245,.08);border:1px solid rgba(234,239,245,.08)}
+@media(min-width:700px){.tp-assure:has(>*+*){grid-template-columns:1fr 1fr}}
+.tp-assure>div{background:var(--ink);padding:22px 24px;border-left:2px solid var(--teal)}
+.tp-assure h3{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(19px,4vw,23px);color:var(--pearl);margin:0}
+.tp-assure p{color:rgba(234,239,245,.6);font-size:14.5px;line-height:1.68;margin:9px 0 0;max-width:56ch}
 .tp-ask{margin:clamp(38px,6vw,64px) 0 0;border:1px solid rgba(200,164,94,.32);padding:clamp(22px,4vw,34px)}
 .tp-ask h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(22px,4.6vw,30px);color:var(--pearl);margin:0}
 .tp-near{margin:clamp(34px,5vw,52px) 0 0;padding:22px 0 clamp(48px,8vw,84px);border-top:1px solid rgba(234,239,245,.08)}
@@ -86,6 +92,20 @@ const CSS = `
 .tp-near a{font-size:14px;color:rgba(234,239,245,.6);border-bottom:1px solid rgba(234,239,245,.14);padding-bottom:2px}
 .tp-near a:hover{color:var(--teal);border-color:var(--teal)}
 `;
+
+/* What we are allowed to promise. An offer with an empty line renders
+   nothing — financing has no lender behind it yet, and a page that offers
+   it anyway is a claim we cannot keep. */
+function assurances() {
+  const live = [OFFERS.warranty, OFFERS.financing].filter((o) => o && o.line);
+  if (!live.length) return "";
+  return `
+  <section class="tp-sec">
+    <div class="tp-assure">
+${live.map((o) => `      <div><h3>${esc(o.line)}</h3><p>${esc(o.detail)}</p></div>`).join("\n")}
+    </div>
+  </section>`;
+}
 
 function page(t, all) {
   const bySlug = new Map(all.map((x) => [x.town, x]));
@@ -168,6 +188,7 @@ ${t.local ? `
     <h2 class="tp-h2">Working in ${esc(t.town)}</h2>
     <p class="tp-p">${esc(t.local)}</p>
   </section>` : ""}
+${assurances()}
   <section class="tp-ask">
     <h2>A number before anyone visits.</h2>
     <p class="tp-p">Trace your patio on a satellite view of your own property, or send a photograph
