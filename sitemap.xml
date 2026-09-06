@@ -10,4 +10,24 @@
   <url><loc>https://phaora.com/portfolio/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://phaora.com/contact.html</loc><changefreq>yearly</changefreq><priority>0.8</priority></url>
   <url><loc>https://phaora.com/sculptures.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+
+
+
+
+  <!-- towns -->
+  <url><loc>https://phaora.com/service-area/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://phaora.com/masonry-weston-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://phaora.com/masonry-wellesley-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://phaora.com/masonry-sudbury-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://phaora.com/masonry-wayland-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://phaora.com/masonry-concord-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://phaora.com/masonry-lincoln-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://phaora.com/masonry-lexington-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://phaora.com/masonry-newton-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://phaora.com/masonry-dover-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://phaora.com/masonry-sherborn-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://phaora.com/masonry-carlisle-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://phaora.com/masonry-southborough-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://phaora.com/masonry-hopkinton-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <!-- /towns -->
 </urlset>
