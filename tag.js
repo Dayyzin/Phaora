@@ -28,9 +28,12 @@
     // when there is a reason to bid on them differently.
     estimate_lead: "zAPQCL3-zZ4cEJzApqpD",  // booked the free visit
     contact_lead:  "zAPQCL3-zZ4cEJzApqpD",  // sent the contact form
-    // These need their own conversion actions in Ads. Blank is silent, not
-    // broken: the event still fires, Google just isn't told to count it.
-    phone_click:   "",   // tapped the number
+    // The "Phone tap" action — Contact, counted once per click, flat $1. On
+    // mobile trade traffic this is usually the biggest of the four: there is
+    // no form to submit, the number IS the call to action.
+    phone_click:   "hU7bCN3W_-8cEJzApqpD",  // tapped the number
+    // Still needs its own action in Ads. Blank is silent, not broken: the
+    // event still fires, Google is just not told to count it.
     email_click:   "",   // tapped the email address
   };
 
@@ -62,11 +65,14 @@
       if (!live) return;
       if (GA) gtag("event", name, params);
       if (ADS && LABEL[name]) {
-        gtag("event", "conversion", {
-          send_to: ADS + "/" + LABEL[name],
-          value: params.value || 0,
-          currency: "USD",
-        });
+        var conv = { send_to: ADS + "/" + LABEL[name] };
+        /* Only send a value when there is one. Passing value:0 does not mean
+           "no value" to Google — it overrides the conversion action's own
+           default with zero, so a phone tap set to $1 in Ads would report as
+           $0 and never appear in value-based bidding. Omit the field and the
+           action's default stands. */
+        if (params.value > 0) { conv.value = params.value; conv.currency = "USD"; }
+        gtag("event", "conversion", conv);
       }
     } catch (e) { /* nothing here is worth a broken page */ }
   };
