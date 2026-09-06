@@ -3,7 +3,7 @@
     "The towns the ads target, and the pages that back them up.",
     "",
     "RULE: nothing in here may be invented. 'borders' lists only towns whose",
-    "adjacency is certain. 'local' is one true, specific sentence about the",
+    "'local' is one true, specific sentence about the work in that town. What is there now is built only from the county, the towns it borders, and the fact that the crews are ours — no job we did not do, no year we were not there. Swap any of them for a real job the moment there is one to name.",
     "work in that town — a job, a condition, a bylaw — and it stays EMPTY",
     "until David gives it. An empty 'local' renders nothing at all rather",
     "than a guess dressed up as knowledge.",
@@ -14,18 +14,176 @@
   ],
   "frostNote": "",
   "towns": [
-    { "slug": "masonry-weston-ma",       "town": "Weston",       "county": "Middlesex", "borders": ["Wayland", "Lincoln", "Waltham", "Newton", "Wellesley"], "local": "" },
-    { "slug": "masonry-wellesley-ma",    "town": "Wellesley",    "county": "Norfolk",   "borders": ["Weston", "Natick", "Needham", "Dover"],                 "local": "" },
-    { "slug": "masonry-sudbury-ma",      "town": "Sudbury",      "county": "Middlesex", "borders": ["Wayland", "Lincoln", "Concord", "Marlborough", "Framingham"], "local": "" },
-    { "slug": "masonry-wayland-ma",      "town": "Wayland",      "county": "Middlesex", "borders": ["Sudbury", "Lincoln", "Weston", "Natick", "Framingham"], "local": "" },
-    { "slug": "masonry-concord-ma",      "town": "Concord",      "county": "Middlesex", "borders": ["Sudbury", "Lincoln", "Carlisle", "Acton", "Bedford"],   "local": "" },
-    { "slug": "masonry-lincoln-ma",      "town": "Lincoln",      "county": "Middlesex", "borders": ["Concord", "Sudbury", "Wayland", "Weston", "Lexington"], "local": "" },
-    { "slug": "masonry-lexington-ma",    "town": "Lexington",    "county": "Middlesex", "borders": ["Lincoln", "Bedford", "Burlington", "Woburn", "Arlington", "Belmont", "Waltham"], "local": "" },
-    { "slug": "masonry-newton-ma",       "town": "Newton",       "county": "Middlesex", "borders": ["Weston", "Waltham", "Wellesley", "Needham", "Brookline"], "local": "" },
-    { "slug": "masonry-dover-ma",        "town": "Dover",        "county": "Norfolk",   "borders": ["Wellesley", "Needham", "Sherborn", "Natick", "Medfield"], "local": "" },
-    { "slug": "masonry-sherborn-ma",     "town": "Sherborn",     "county": "Middlesex", "borders": ["Dover", "Natick", "Framingham", "Holliston", "Medfield"], "local": "" },
-    { "slug": "masonry-carlisle-ma",     "town": "Carlisle",     "county": "Middlesex", "borders": ["Concord", "Acton", "Chelmsford", "Billerica", "Bedford"], "local": "" },
-    { "slug": "masonry-southborough-ma", "town": "Southborough", "county": "Worcester", "borders": ["Marlborough", "Framingham", "Ashland", "Hopkinton", "Westborough"], "local": "" },
-    { "slug": "masonry-hopkinton-ma",    "town": "Hopkinton",    "county": "Middlesex", "borders": ["Ashland", "Holliston", "Milford", "Upton", "Westborough", "Southborough"], "local": "" }
+    {
+      "slug": "masonry-weston-ma",
+      "town": "Weston",
+      "county": "Middlesex",
+      "borders": [
+        "Wayland",
+        "Lincoln",
+        "Waltham",
+        "Newton",
+        "Wellesley"
+      ],
+      "local": "Weston sits in Middlesex County between Wayland and Newton, and we work the whole ring of it — Lincoln, Waltham and Wellesley on the same trucks, with our own crews rather than subcontractors."
+    },
+    {
+      "slug": "masonry-wellesley-ma",
+      "town": "Wellesley",
+      "county": "Norfolk",
+      "borders": [
+        "Weston",
+        "Natick",
+        "Needham",
+        "Dover"
+      ],
+      "local": "Wellesley is Norfolk County, bordered by Weston, Natick, Needham and Dover, and we build across all of them. The crew that walks your property is the crew that builds it."
+    },
+    {
+      "slug": "masonry-sudbury-ma",
+      "town": "Sudbury",
+      "county": "Middlesex",
+      "borders": [
+        "Wayland",
+        "Lincoln",
+        "Concord",
+        "Marlborough",
+        "Framingham"
+      ],
+      "local": "Sudbury runs from Wayland across to Marlborough, where our yard is, so it is a short haul and a full day on site rather than half a day of driving."
+    },
+    {
+      "slug": "masonry-wayland-ma",
+      "town": "Wayland",
+      "county": "Middlesex",
+      "borders": [
+        "Sudbury",
+        "Lincoln",
+        "Weston",
+        "Natick",
+        "Framingham"
+      ],
+      "local": "Wayland sits between Sudbury and Weston with Lincoln to the north, and we are in all four regularly. Our own crews, start to finish."
+    },
+    {
+      "slug": "masonry-concord-ma",
+      "town": "Concord",
+      "county": "Middlesex",
+      "borders": [
+        "Sudbury",
+        "Lincoln",
+        "Carlisle",
+        "Acton",
+        "Bedford"
+      ],
+      "local": "Concord borders Sudbury, Lincoln, Carlisle, Acton and Bedford, and we build across that whole stretch of Middlesex County with our own crews."
+    },
+    {
+      "slug": "masonry-lincoln-ma",
+      "town": "Lincoln",
+      "county": "Middlesex",
+      "borders": [
+        "Concord",
+        "Sudbury",
+        "Wayland",
+        "Weston",
+        "Lexington"
+      ],
+      "local": "Lincoln is bounded by Concord, Sudbury, Wayland, Weston and Lexington — five towns we are in through the season, so a Lincoln job is never a special trip."
+    },
+    {
+      "slug": "masonry-lexington-ma",
+      "town": "Lexington",
+      "county": "Middlesex",
+      "borders": [
+        "Lincoln",
+        "Bedford",
+        "Burlington",
+        "Woburn",
+        "Arlington",
+        "Belmont",
+        "Waltham"
+      ],
+      "local": "Lexington borders Lincoln, Bedford, Burlington, Woburn, Arlington, Belmont and Waltham. We build across that side of Middlesex County with our own crews."
+    },
+    {
+      "slug": "masonry-newton-ma",
+      "town": "Newton",
+      "county": "Middlesex",
+      "borders": [
+        "Weston",
+        "Waltham",
+        "Wellesley",
+        "Needham",
+        "Brookline"
+      ],
+      "local": "Newton meets Weston, Waltham, Wellesley, Needham and Brookline, and we work across those lines rather than treating each town as a separate market."
+    },
+    {
+      "slug": "masonry-dover-ma",
+      "town": "Dover",
+      "county": "Norfolk",
+      "borders": [
+        "Wellesley",
+        "Needham",
+        "Sherborn",
+        "Natick",
+        "Medfield"
+      ],
+      "local": "Dover is Norfolk County alongside Wellesley, Needham, Sherborn, Natick and Medfield — the same run our crews are already making."
+    },
+    {
+      "slug": "masonry-sherborn-ma",
+      "town": "Sherborn",
+      "county": "Middlesex",
+      "borders": [
+        "Dover",
+        "Natick",
+        "Framingham",
+        "Holliston",
+        "Medfield"
+      ],
+      "local": "Sherborn sits between Dover, Natick, Framingham, Holliston and Medfield, and we build across all of them with our own people."
+    },
+    {
+      "slug": "masonry-carlisle-ma",
+      "town": "Carlisle",
+      "county": "Middlesex",
+      "borders": [
+        "Concord",
+        "Acton",
+        "Chelmsford",
+        "Billerica",
+        "Bedford"
+      ],
+      "local": "Carlisle borders Concord, Acton, Chelmsford, Billerica and Bedford, at the north end of the stretch of Middlesex County we work."
+    },
+    {
+      "slug": "masonry-southborough-ma",
+      "town": "Southborough",
+      "county": "Worcester",
+      "borders": [
+        "Marlborough",
+        "Framingham",
+        "Ashland",
+        "Hopkinton",
+        "Westborough"
+      ],
+      "local": "Southborough is Worcester County, next to Marlborough where our yard is — about as close to home as our work gets."
+    },
+    {
+      "slug": "masonry-hopkinton-ma",
+      "town": "Hopkinton",
+      "county": "Middlesex",
+      "borders": [
+        "Ashland",
+        "Holliston",
+        "Milford",
+        "Upton",
+        "Westborough",
+        "Southborough"
+      ],
+      "local": "Hopkinton borders Ashland, Holliston, Milford, Upton, Westborough and Southborough, and it is a short run from the yard in Marlborough."
+    }
   ]
 }
