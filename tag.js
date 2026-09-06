@@ -22,8 +22,14 @@
   var ADS = "AW-18073886748";
   var GA  = "";
   var LABEL = {
-    estimate_lead: "",   // booked the free visit off the estimate page
-    contact_lead:  "",   // sent the contact form
+    // Both of these are the "Submit lead form" action. They are the same act
+    // — a stranger handing over their number — reached by two doors, and one
+    // action counting both beats a second door reporting nothing. Split them
+    // when there is a reason to bid on them differently.
+    estimate_lead: "zAPQCL3-zZ4cEJzApqpD",  // booked the free visit
+    contact_lead:  "zAPQCL3-zZ4cEJzApqpD",  // sent the contact form
+    // These need their own conversion actions in Ads. Blank is silent, not
+    // broken: the event still fires, Google just isn't told to count it.
     phone_click:   "",   // tapped the number
     email_click:   "",   // tapped the email address
   };
