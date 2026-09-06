@@ -207,13 +207,97 @@ for (const t of towns) {
   console.log(`${t.slug.padEnd(24)} ${gaps.length ? "blank: " + gaps.join(", ") : "complete"}`);
 }
 
+/* The hub. Thirteen pages nothing links to are thirteen pages Google treats
+   as orphans, so they hang off one service-area page, which hangs off the
+   footer, which is on every page of the site. */
+function hub(all) {
+  const title = "Service Area | Masonry & Hardscape Across MetroWest and Greater Boston | PHAÖRA";
+  const desc = "The towns we build in — patios, walkways, retaining walls, steps and drainage "
+             + "across MetroWest and Greater Boston, by our own crews.";
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${esc(title)}</title>
+<meta name="description" content="${esc(desc)}">
+<link rel="canonical" href="https://phaora.com/service-area/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="${C.fonts}" rel="stylesheet">
+<script src="/tag.js"></script>
+<style>
+${C.css}
+${CSS}
+.tp-towns{display:grid;gap:1px;margin:26px 0 0;background:rgba(234,239,245,.08);border:1px solid rgba(234,239,245,.08)}
+@media(min-width:560px){.tp-towns{grid-template-columns:1fr 1fr}}
+@media(min-width:900px){.tp-towns{grid-template-columns:repeat(3,1fr)}}
+.tp-towns a{background:var(--ink);padding:17px 20px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;transition:background .2s}
+.tp-towns a:hover{background:var(--ink2,#03080F)}
+.tp-towns b{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:19px;color:var(--pearl)}
+.tp-towns span{font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(234,239,245,.3)}
+.tp-towns a:hover b{color:var(--gold-lt)}
+</style>
+</head>
+<body>
+
+${C.nav}
+
+${C.mobile}
+
+<header class="tp-hero">
+  <img src="/portfolio/images/retaining-wall-lit.jpg" alt="" aria-hidden="true">
+  <div class="veil"></div>
+  <div class="tp-wrap">
+    <p class="eyebrow">Service area &nbsp;·&nbsp; Massachusetts</p>
+    <h1>Where we <em>build</em>.</h1>
+    <p class="tp-lede">MetroWest and Greater Boston, with our own crews. If your town is not on this
+      list it does not mean no — it means ask.</p>
+    <a class="tp-cta" href="/estimate/">Price your project &rarr;</a>
+  </div>
+</header>
+
+<div class="tp-wrap">
+  <section class="tp-sec">
+    <h2 class="tp-h2">The towns</h2>
+    <div class="tp-towns">
+${all.map((t) => `      <a href="/${t.slug}/"><b>${esc(t.town)}</b><span>${esc(t.county)}</span></a>`).join("\n")}
+    </div>
+  </section>
+
+  <section class="tp-ask">
+    <h2>Not sure it is worth a visit?</h2>
+    <p class="tp-p">Trace the job on a satellite view of your own property, or send a photograph, and
+      the page prices it before anyone drives out. The visit is free and it is what makes it exact.</p>
+    <p style="margin:20px 0 0"><a class="tp-cta" href="/estimate/">Price it now &rarr;</a></p>
+  </section>
+
+  <div class="tp-near"></div>
+</div>
+
+${C.foot}
+
+<script>
+${C.nav_js}
+</script>
+</body>
+</html>
+`;
+}
+
 /* The sitemap lists the towns that actually exist on disk, so building one
    page does not advertise twelve that would 404. */
+fs.mkdirSync(path.join(ROOT, "service-area"), { recursive: true });
+fs.writeFileSync(path.join(ROOT, "service-area", "index.html"), hub(DATA.towns));
+
 const SITEMAP = path.join(ROOT, "sitemap.xml");
 const live = DATA.towns.filter((t) => fs.existsSync(path.join(ROOT, t.slug, "index.html")));
 let xml = fs.readFileSync(SITEMAP, "utf8");
 xml = xml.replace(/\n  <!-- towns -->[\s\S]*?<!-- \/towns -->/, "");
-const block = "\n  <!-- towns -->\n" + live.map((t) =>
+const block = "\n  <!-- towns -->\n" +
+  `  <url><loc>https://phaora.com/service-area/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>\n` +
+  live.map((t) =>
   `  <url><loc>https://phaora.com/${t.slug}/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>`
 ).join("\n") + "\n  <!-- /towns -->";
 fs.writeFileSync(SITEMAP, xml.replace("</urlset>", block.trimEnd() + "\n</urlset>"));
