@@ -1,0 +1,31 @@
+{
+  "_note": [
+    "The towns the ads target, and the pages that back them up.",
+    "",
+    "RULE: nothing in here may be invented. 'borders' lists only towns whose",
+    "adjacency is certain. 'local' is one true, specific sentence about the",
+    "work in that town — a job, a condition, a bylaw — and it stays EMPTY",
+    "until David gives it. An empty 'local' renders nothing at all rather",
+    "than a guess dressed up as knowledge.",
+    "",
+    "Frost depth is deliberately absent. It belongs on these pages and it is",
+    "not written here because it has not been checked against the state code.",
+    "Add it once, in 'frostNote', and every page picks it up."
+  ],
+  "frostNote": "",
+  "towns": [
+    { "slug": "masonry-weston-ma",       "town": "Weston",       "county": "Middlesex", "borders": ["Wayland", "Lincoln", "Waltham", "Newton", "Wellesley"], "local": "" },
+    { "slug": "masonry-wellesley-ma",    "town": "Wellesley",    "county": "Norfolk",   "borders": ["Weston", "Natick", "Needham", "Dover"],                 "local": "" },
+    { "slug": "masonry-sudbury-ma",      "town": "Sudbury",      "county": "Middlesex", "borders": ["Wayland", "Lincoln", "Concord", "Marlborough", "Framingham"], "local": "" },
+    { "slug": "masonry-wayland-ma",      "town": "Wayland",      "county": "Middlesex", "borders": ["Sudbury", "Lincoln", "Weston", "Natick", "Framingham"], "local": "" },
+    { "slug": "masonry-concord-ma",      "town": "Concord",      "county": "Middlesex", "borders": ["Sudbury", "Lincoln", "Carlisle", "Acton", "Bedford"],   "local": "" },
+    { "slug": "masonry-lincoln-ma",      "town": "Lincoln",      "county": "Middlesex", "borders": ["Concord", "Sudbury", "Wayland", "Weston", "Lexington"], "local": "" },
+    { "slug": "masonry-lexington-ma",    "town": "Lexington",    "county": "Middlesex", "borders": ["Lincoln", "Bedford", "Burlington", "Woburn", "Arlington", "Belmont", "Waltham"], "local": "" },
+    { "slug": "masonry-newton-ma",       "town": "Newton",       "county": "Middlesex", "borders": ["Weston", "Waltham", "Wellesley", "Needham", "Brookline"], "local": "" },
+    { "slug": "masonry-dover-ma",        "town": "Dover",        "county": "Norfolk",   "borders": ["Wellesley", "Needham", "Sherborn", "Natick", "Medfield"], "local": "" },
+    { "slug": "masonry-sherborn-ma",     "town": "Sherborn",     "county": "Middlesex", "borders": ["Dover", "Natick", "Framingham", "Holliston", "Medfield"], "local": "" },
+    { "slug": "masonry-carlisle-ma",     "town": "Carlisle",     "county": "Middlesex", "borders": ["Concord", "Acton", "Chelmsford", "Billerica", "Bedford"], "local": "" },
+    { "slug": "masonry-southborough-ma", "town": "Southborough", "county": "Worcester", "borders": ["Marlborough", "Framingham", "Ashland", "Hopkinton", "Westborough"], "local": "" },
+    { "slug": "masonry-hopkinton-ma",    "town": "Hopkinton",    "county": "Middlesex", "borders": ["Ashland", "Holliston", "Milford", "Upton", "Westborough", "Southborough"], "local": "" }
+  ]
+}

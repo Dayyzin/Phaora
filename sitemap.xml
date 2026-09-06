@@ -10,4 +10,9 @@
   <url><loc>https://phaora.com/portfolio/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://phaora.com/contact.html</loc><changefreq>yearly</changefreq><priority>0.8</priority></url>
   <url><loc>https://phaora.com/sculptures.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+
+
+  <!-- towns -->
+  <url><loc>https://phaora.com/masonry-weston-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <!-- /towns -->
 </urlset>
