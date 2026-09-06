@@ -614,6 +614,11 @@ async function send() {
         : "Got it. Expect to hear back shortly.";
     $("book-form").hidden = true;
     $("book-done").hidden = false;
+    // The conversion is the lead landing, not the button being pressed — a
+    // failed send above returns before here, so Ads never learns from one.
+    if (window.phaoraTrack) {
+      window.phaoraTrack("estimate_lead", { value: (S.quote && S.quote.low) || 0 });
+    }
   } catch {
     err.textContent = "We couldn't send that through. Please call (561) 299-1261 — we don't want to lose your project.";
     err.hidden = false;
