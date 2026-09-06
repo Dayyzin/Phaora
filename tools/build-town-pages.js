@@ -24,6 +24,7 @@ const { chrome } = require("./lib-chrome");
 const ROOT = path.join(__dirname, "..");
 const DATA = JSON.parse(fs.readFileSync(path.join(__dirname, "towns.json"), "utf8"));
 const OFFERS = JSON.parse(fs.readFileSync(path.join(__dirname, "offers.json"), "utf8"));
+const VOICES = JSON.parse(fs.readFileSync(path.join(__dirname, "testimonials.json"), "utf8"));
 const C = chrome();
 
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -79,6 +80,15 @@ const CSS = `
 .tp-num h3{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(19px,4vw,23px);color:var(--pearl);margin:0}
 .tp-num p{color:rgba(234,239,245,.58);font-size:14.5px;line-height:1.7;margin:8px 0 0;max-width:60ch}
 @media(min-width:700px){.tp-num h3,.tp-num p{grid-column:2}}
+.tp-voices{display:grid;gap:1px;margin:26px 0 0;background:rgba(234,239,245,.08);border:1px solid rgba(234,239,245,.08)}
+@media(min-width:820px){.tp-voices:has(>*+*){grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}}
+.tp-voices figure{background:var(--ink);padding:24px 26px;margin:0}
+.tp-voices blockquote{font-family:'Cormorant Garamond',serif;font-size:clamp(17px,3.6vw,20px);line-height:1.5;
+  color:var(--pearl);margin:0;quotes:'\\201C' '\\201D'}
+.tp-voices blockquote::before{content:open-quote;color:var(--gold);margin-right:2px}
+.tp-voices blockquote::after{content:close-quote;color:var(--gold)}
+.tp-voices figcaption{margin:14px 0 0;font-size:9.5px;font-weight:600;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(234,239,245,.36)}
 .tp-assure{display:grid;gap:1px;margin:26px 0 0;background:rgba(234,239,245,.08);border:1px solid rgba(234,239,245,.08)}
 @media(min-width:700px){.tp-assure:has(>*+*){grid-template-columns:1fr 1fr}}
 .tp-assure>div{background:var(--ink);padding:22px 24px;border-left:2px solid var(--teal)}
@@ -103,6 +113,26 @@ function assurances() {
   <section class="tp-sec">
     <div class="tp-assure">
 ${live.map((o) => `      <div><h3>${esc(o.line)}</h3><p>${esc(o.detail)}</p></div>`).join("\n")}
+    </div>
+  </section>`;
+}
+
+/* What clients said. A quote from this town leads; the rest follow. Empty
+   renders nothing — no placeholder, no sample. An invented testimonial is
+   the one thing a homeowner can catch you on. */
+function voices(town, limit) {
+  const all = VOICES.quotes || [];
+  if (!all.length) return "";
+  const here = all.filter((q) => q.town === town);
+  const rest = all.filter((q) => q.town !== town);
+  const show = here.concat(rest).slice(0, limit || 3);
+  return `
+  <section class="tp-sec">
+    <h2 class="tp-h2">${here.length ? esc(town) + ", in their words" : "In their words"}</h2>
+    <div class="tp-voices">
+${show.map((q) => `      <figure><blockquote>${esc(q.quote)}</blockquote>` +
+  `<figcaption>${esc(q.name)}${q.town ? " &middot; " + esc(q.town) : ""}` +
+  `${q.job ? " &middot; " + esc(q.job) : ""}</figcaption></figure>`).join("\n")}
     </div>
   </section>`;
 }
@@ -188,6 +218,7 @@ ${t.local ? `
     <h2 class="tp-h2">Working in ${esc(t.town)}</h2>
     <p class="tp-p">${esc(t.local)}</p>
   </section>` : ""}
+${voices(t.town)}
 ${assurances()}
   <section class="tp-ask">
     <h2>A number before anyone visits.</h2>

@@ -1,0 +1,21 @@
+{
+  "_note": [
+    "What clients said, in their words.",
+    "",
+    "EMPTY until there are real ones. Every renderer here shows nothing at",
+    "all when this list is empty — no placeholder, no sample, no 'coming",
+    "soon'. A fabricated testimonial is the one thing a homeowner can catch",
+    "you on, and it is the fastest way to lose a job you had already won.",
+    "",
+    "Each entry:",
+    "  quote  what they actually wrote or said. Their words, not tidied up.",
+    "  name   how they want to be credited. 'Sarah M.' is fine; ask.",
+    "  town   the town the job was in. A Weston quote leads on the Weston",
+    "         page — that is most of the value of collecting the town.",
+    "  job    'retaining wall', 'paver patio', 'granite steps'.",
+    "",
+    "Add them as the reviews come in from the door-knocks, then run:",
+    "  node tools/build-town-pages.js"
+  ],
+  "quotes": []
+}
