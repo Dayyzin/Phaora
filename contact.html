@@ -88,6 +88,7 @@ aside{border-left:1px solid rgba(79,181,190,.1);padding-left:clamp(20px,3vw,40px
 footer{border-top:1px solid rgba(234,239,245,.05);padding:36px 0;text-align:center}
 footer p{font-size:11px;letter-spacing:.16em;color:rgba(234,239,245,.26)}
 </style>
+<script src="/tag.js"></script>
 </head>
 <body>
 
@@ -186,7 +187,9 @@ footer p{font-size:11px;letter-spacing:.16em;color:rgba(234,239,245,.26)}
       .then(function(r){ return r.json().catch(function(){ return null }).then(function(j){ return {r:r,j:j} }) })
       .then(function(res){
         var r=res.r, j=res.j;
-        if(r.ok && j && (j.ok||j.success)){ f.style.display='none'; say("Got it — thanks. We'll be in touch today. If it's urgent, call (561) 299-1261.",'ok'); return }
+        if(r.ok && j && (j.ok||j.success)){ f.style.display='none'; say("Got it — thanks. We'll be in touch today. If it's urgent, call (561) 299-1261.",'ok');
+          if(window.phaoraTrack) window.phaoraTrack('contact_lead');
+          return }
         say((j&&j.error)||'Something went wrong. Please call (561) 299-1261.','err'); reset();
       })
       .catch(function(){ say('Could not send that — please call or text (561) 299-1261.','err'); reset(); });
