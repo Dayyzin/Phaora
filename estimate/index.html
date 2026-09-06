@@ -56,6 +56,12 @@ nav .lnk:hover{color:rgba(234,239,245,.82)}
 
 header.hero{position:relative;overflow:hidden;background:var(--navy);
   min-height:clamp(430px,72vh,620px);display:flex;align-items:flex-start}
+/* On a phone the min-height and the bottom padding together held about 200px
+   of empty navy under the lede, pushing the tool past a screen and a half. */
+@media(max-width:700px){
+  header.hero{min-height:clamp(380px,58vh,560px)}
+  header.hero .wrap{padding-bottom:clamp(72px,17vw,140px)}
+}
 header.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 62%}
 header.hero .veil{position:absolute;inset:0;background:linear-gradient(180deg,
   rgba(12,22,38,.9) 0%,rgba(12,22,38,.74) 28%,rgba(12,22,38,.36) 56%,
@@ -68,7 +74,15 @@ h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
   font-size:clamp(38px,9.2vw,64px);line-height:1.05;letter-spacing:-.012em;margin:16px 0 0}
 h1 em{font-style:italic;color:var(--gold)}
 .lede{color:rgba(255,255,255,.86);font-size:clamp(16px,4vw,18px);line-height:1.6;margin:18px 0 0;max-width:50ch}
-.aside{color:var(--muted);font-size:14.5px;line-height:1.65;margin:0;max-width:54ch;padding:26px 0 0}
+/* The one thing to do on arrival. A visitor off a paid click has already
+   decided they want a price; without this the first tappable thing on the
+   page was a link to the contact form, a screen and a half above the tool. */
+.hero-cta{display:inline-block;margin:26px 0 0;padding:14px 26px;border:1px solid rgba(255,255,255,.34);
+  background:rgba(255,255,255,.06);color:#fff;font-size:11px;font-weight:600;letter-spacing:.2em;
+  text-transform:uppercase;text-decoration:none;backdrop-filter:blur(6px);transition:background .2s,border-color .2s}
+.hero-cta:hover{background:var(--teal);border-color:var(--teal)}
+.hero-cta span{margin-left:8px}
+.aside{color:var(--muted);font-size:14.5px;line-height:1.65;margin:0;max-width:54ch;padding:26px 0 34px}
 .aside a{color:var(--teal);font-weight:500;border-bottom:1px solid rgba(23,130,143,.34)}
 
 .step{padding:clamp(30px,7vw,46px) 0;border-bottom:1px solid var(--line)}
@@ -328,13 +342,11 @@ footer a.t{color:var(--teal);font-weight:500}
     <p class="eyebrow">Instant estimate &nbsp;·&nbsp; Massachusetts &amp; Rhode Island</p>
     <h1>A real number, before <em>anyone</em> visits.</h1>
     <p class="lede">Every contractor answers &ldquo;how much does a patio cost?&rdquo; with &ldquo;it depends.&rdquo; It does — so here is what it depends on, and what yours comes to, in about thirty seconds.</p>
+    <a class="hero-cta" href="#start">Price mine <span aria-hidden="true">&darr;</span></a>
   </div>
 </header>
 
 <div class="wrap">
-  <p class="aside">Kitchens, roofing, siding and snow plowing are ours too —
-    <a href="../contact.html">tell us what you need</a> and you get an answer from the person who does the work.</p>
-
   <section class="demo">
     <div class="demo-frame" id="demo">
       <img src="../assets/estimate/trace-demo.jpg" alt="A paver patio with a shape traced over it and its area measured">
@@ -363,7 +375,7 @@ footer a.t{color:var(--teal);font-weight:500}
     </p>
   </section>
 
-  <section class="step">
+  <section class="step" id="start">
     <div class="step-n"><b class="serif">I</b><span>What are you building</span><div class="bar"></div></div>
     <div class="tiles" id="tiles"></div>
     <div class="mats" id="mats"></div>
@@ -494,6 +506,9 @@ footer a.t{color:var(--teal);font-weight:500}
     </div>
     <p class="hint" id="book-done" hidden>Got it. Expect to hear back shortly.</p>
   </section>
+
+  <p class="aside">Kitchens, roofing, siding and snow plowing are ours too —
+    <a href="../contact.html">tell us what you need</a> and you get an answer from the person who does the work.</p>
 </div>
 
 <footer>
