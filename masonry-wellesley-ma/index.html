@@ -133,6 +133,15 @@ footer{position:relative;padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);borde
 .tp-num h3{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(19px,4vw,23px);color:var(--pearl);margin:0}
 .tp-num p{color:rgba(234,239,245,.58);font-size:14.5px;line-height:1.7;margin:8px 0 0;max-width:60ch}
 @media(min-width:700px){.tp-num h3,.tp-num p{grid-column:2}}
+.tp-voices{display:grid;gap:1px;margin:26px 0 0;background:rgba(234,239,245,.08);border:1px solid rgba(234,239,245,.08)}
+@media(min-width:820px){.tp-voices:has(>*+*){grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}}
+.tp-voices figure{background:var(--ink);padding:24px 26px;margin:0}
+.tp-voices blockquote{font-family:'Cormorant Garamond',serif;font-size:clamp(17px,3.6vw,20px);line-height:1.5;
+  color:var(--pearl);margin:0;quotes:'\201C' '\201D'}
+.tp-voices blockquote::before{content:open-quote;color:var(--gold);margin-right:2px}
+.tp-voices blockquote::after{content:close-quote;color:var(--gold)}
+.tp-voices figcaption{margin:14px 0 0;font-size:9.5px;font-weight:600;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(234,239,245,.36)}
 .tp-assure{display:grid;gap:1px;margin:26px 0 0;background:rgba(234,239,245,.08);border:1px solid rgba(234,239,245,.08)}
 @media(min-width:700px){.tp-assure:has(>*+*){grid-template-columns:1fr 1fr}}
 .tp-assure>div{background:var(--ink);padding:22px 24px;border-left:2px solid var(--teal)}
@@ -259,6 +268,7 @@ footer{position:relative;padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);borde
     <h2 class="tp-h2">Working in Wellesley</h2>
     <p class="tp-p">Wellesley is Norfolk County, bordered by Weston, Natick, Needham and Dover, and we build across all of them. The crew that walks your property is the crew that builds it.</p>
   </section>
+
 
   <section class="tp-sec">
     <div class="tp-assure">
