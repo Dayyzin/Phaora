@@ -7,3 +7,6 @@ tools/visual-check/node_modules/
 tools/visual-check/screenshots/
 tools/render-pipeline/.env
 tools/render-pipeline/node_modules/
+
+# Filled forms and anything carrying personal identifiers. Never committed.
+.private/
