@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Flagstone Walk, Granite Steps &amp; Fieldstone Walls — The Sowinski Job | PHAÖRA</title>
 <meta name="description" content="Sunken cobble steps and a flagstone path lost under the hostas, replaced with a mortar-set flagstone walk, granite block steps, and rebuilt fieldstone walls. See the before, and every stage after it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="canonical" href="https://phaora.com/portfolio/allan-sowinski/">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://phaora.com/portfolio/allan-sowinski/">
@@ -76,42 +79,59 @@
 
 <style>
   :root{
-    --basalt:#14120e; --panel:#1b1813; --panel2:#211d17;
-    --lime:#ece7dc; --lime2:#b7ae9c; --lime3:#8b8271;
-    --bronze:#c19a5b; --bronze2:#9a7b45; --line:rgba(193,154,91,0.18);
-    --serif:Georgia,'Times New Roman',serif;
-    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+    /* Site palette. These two job pages used to run bronze-on-basalt with
+       Georgia, which read as a different website next to the home page, the
+       portfolio index and the Bard job. Same tokens as those now — ink,
+       pearl, teal, with gold held back for the client's name. */
+    --ink:#020610; --panel:#0A121C; --panel2:#0F1826;
+    --pearl:#EAEFF5; --pearl2:#9FB2C6; --pearl3:#6C7F93;
+    --teal:#4FB5BE; --teal-d:rgba(79,181,190,0.55); --teal2:#2F8892; --line:rgba(79,181,190,0.18);
+    --gold:#C8A45E; --gold-lt:#D9BC7C;
+    --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+    --sans:'Inter','Helvetica Neue',-apple-system,BlinkMacSystemFont,Arial,sans-serif;
     --mono:ui-monospace,'SF Mono',Menlo,monospace;
-    --line2:rgba(236,231,220,0.07);
-    --line-strong:rgba(193,154,91,0.40);
-    --scrim:rgba(20,18,14,0.72);
+    /* Derived from the palette above, for this page's rules and overlays. */
+    --line2:rgba(234,239,245,0.07);
+    --line-strong:rgba(79,181,190,0.40);
+    --scrim:rgba(2,6,16,0.72);
   }
   *{box-sizing:border-box}
-  body{margin:0;background:var(--basalt);color:var(--lime);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+  body{margin:0;background:var(--ink);color:var(--pearl);font-family:var(--sans);font-weight:300;line-height:1.6;-webkit-font-smoothing:antialiased}
   img{display:block;max-width:100%}
   a{color:inherit;text-decoration:none}
-  .wrap{max-width:1120px;margin:0 auto;padding:clamp(24px,5vw,60px) clamp(18px,4vw,38px) 110px}
+
+  /* The site nav, same component as the Bard job page and the portfolio
+     index. These two pages had only a wordmark in a top rule, which left a
+     visitor no way back except the browser button. */
+  nav{position:fixed;top:0;left:0;right:0;z-index:300;display:flex;align-items:center;justify-content:space-between;
+    padding:0 clamp(20px,5vw,56px);height:60px;background:rgba(2,6,16,.9);backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(79,181,190,.08)}
+  nav a.back{font-family:var(--sans);font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(234,239,245,.42)}
+  nav a.back:hover{color:var(--pearl)}
+  .wm{font-family:var(--serif);font-size:17px;letter-spacing:.4em;text-indent:.4em;text-transform:uppercase;color:var(--pearl)}
+  .wm .o{color:var(--teal-d)}
+
+  .wrap{max-width:1120px;margin:0 auto;padding:clamp(84px,10vw,120px) clamp(18px,4vw,38px) 110px}
 
   .top{display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap;padding-bottom:13px;border-bottom:1px solid var(--line)}
-  .mark{font-family:var(--mono);font-size:11px;letter-spacing:.44em;color:var(--bronze);font-weight:700}
-  .where{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;color:var(--lime3);text-transform:uppercase}
+  .where{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;color:var(--pearl3);text-transform:uppercase}
 
-  h1{font-family:var(--serif);font-weight:400;letter-spacing:-.022em;line-height:1.02;font-size:clamp(42px,9.5vw,88px);margin:clamp(26px,5vw,52px) 0 0;text-wrap:balance}
-  h1 span{color:var(--bronze)}
-  .lede{margin:18px 0 0;max-width:50ch;font-size:clamp(16.5px,2.1vw,20px);line-height:1.58;color:var(--lime2)}
+  h1{font-family:var(--serif);font-weight:300;letter-spacing:-.022em;line-height:1.02;font-size:clamp(42px,9.5vw,88px);margin:clamp(26px,5vw,52px) 0 0;text-wrap:balance}
+  h1 span{color:var(--gold-lt)}
+  .lede{margin:18px 0 0;max-width:50ch;font-size:clamp(16.5px,2.1vw,20px);line-height:1.58;color:var(--pearl2)}
 
   dl.facts{display:flex;flex-wrap:wrap;margin:clamp(24px,4vw,38px) 0 0;border-top:1px solid var(--line2);border-bottom:1px solid var(--line2)}
   dl.facts>div{flex:1 1 140px;padding:15px 18px 15px 0}
   dl.facts>div+div{padding-left:18px;border-left:1px solid var(--line2)}
-  dl.facts dt{font-family:var(--mono);font-size:9px;letter-spacing:.19em;text-transform:uppercase;color:var(--lime3);margin:0}
-  dl.facts dd{margin:7px 0 0;font-family:var(--serif);font-size:clamp(17px,2.2vw,21px);color:var(--lime)}
+  dl.facts dt{font-family:var(--mono);font-size:9px;letter-spacing:.19em;text-transform:uppercase;color:var(--pearl3);margin:0}
+  dl.facts dd{margin:7px 0 0;font-family:var(--serif);font-size:clamp(17px,2.2vw,21px);color:var(--pearl)}
 
   .rule{display:flex;align-items:center;gap:14px;margin:clamp(46px,7vw,86px) 0 clamp(14px,2.2vw,22px)}
-  .rule b{font-family:var(--mono);font-weight:400;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--bronze);white-space:nowrap}
+  .rule b{font-family:var(--mono);font-weight:400;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--teal);white-space:nowrap}
   .rule i{flex:1;height:1px;background:var(--line);display:block}
-  .rule em{font-family:var(--mono);font-style:normal;font-size:10.5px;letter-spacing:.14em;color:var(--lime3)}
+  .rule em{font-family:var(--mono);font-style:normal;font-size:10.5px;letter-spacing:.14em;color:var(--pearl3)}
 
-  .say{margin:0 0 clamp(16px,2.5vw,24px);color:var(--lime2);font-size:15.5px;line-height:1.62;max-width:60ch}
+  .say{margin:0 0 clamp(16px,2.5vw,24px);color:var(--pearl2);font-size:15.5px;line-height:1.62;max-width:60ch}
 
   /* Portrait hero — held narrower than the template's landscape frame so a
      tall photo doesn't push the whole page off the first screen. */
@@ -127,15 +147,15 @@
   .chapter .shot{overflow:hidden;background:var(--panel);border:1px solid var(--line)}
   .chapter .shot img{width:100%;aspect-ratio:3/4;object-fit:cover}
   .chapter.flip .shot{order:2}
-  .step{font-family:var(--mono);font-size:9.5px;letter-spacing:.22em;color:var(--bronze);text-transform:uppercase}
+  .step{font-family:var(--mono);font-size:9.5px;letter-spacing:.22em;color:var(--teal);text-transform:uppercase}
   .chapter h2{font-family:var(--serif);font-weight:400;font-size:clamp(21px,3vw,29px);margin:9px 0 0;line-height:1.2}
-  .chapter p{margin:10px 0 0;color:var(--lime2);font-size:15px;line-height:1.62;max-width:44ch}
+  .chapter p{margin:10px 0 0;color:var(--pearl2);font-size:15px;line-height:1.62;max-width:44ch}
 
   .duo{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(18px,3vw,28px)}
   .duo .frame{background:var(--panel);border:1px solid var(--line);overflow:hidden}
   .duo img{width:100%;aspect-ratio:3/4;object-fit:cover}
-  .cap{margin-top:11px;font-size:14.5px;color:var(--lime2);line-height:1.6}
-  .cap b{color:var(--lime);font-weight:400}
+  .cap{margin-top:11px;font-size:14.5px;color:var(--pearl2);line-height:1.6}
+  .cap b{color:var(--pearl);font-weight:400}
 
   .clip{max-width:420px;margin:0 auto clamp(24px,4vw,36px)}
   .clip video{width:100%;display:block;background:#000;border:1px solid var(--line)}
@@ -152,30 +172,35 @@
   .cmp-box img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
   /* The BEFORE plate sits on top and is clipped back to the wipe position. */
   .cmp-before{clip-path:inset(0 calc(100% - var(--pos,50%)) 0 0)}
-  .cmp-tag{position:absolute;top:12px;left:12px;font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;padding:5px 9px;background:var(--scrim);border:1px solid var(--line);color:var(--lime);pointer-events:none}
-  .cmp-tag.after{left:auto;right:12px;border-color:var(--line-strong);color:var(--bronze)}
-  .cmp-line{position:absolute;top:0;bottom:0;left:var(--pos,50%);width:2px;margin-left:-1px;background:var(--bronze);pointer-events:none}
-  .cmp-knob{position:absolute;top:50%;left:var(--pos,50%);width:48px;height:48px;margin:-24px 0 0 -24px;border-radius:50%;background:var(--scrim);border:1.5px solid var(--bronze);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);display:grid;place-items:center;pointer-events:none;color:var(--bronze);font-size:15px;line-height:1}
-  .cmp-hint{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);pointer-events:none;font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;color:var(--lime);background:var(--scrim);border:1px solid var(--line);padding:6px 12px;transition:opacity .45s ease}
+  .cmp-tag{position:absolute;top:12px;left:12px;font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;padding:5px 9px;background:var(--scrim);border:1px solid var(--line);color:var(--pearl);pointer-events:none}
+  .cmp-tag.after{left:auto;right:12px;border-color:var(--line-strong);color:var(--teal)}
+  .cmp-line{position:absolute;top:0;bottom:0;left:var(--pos,50%);width:2px;margin-left:-1px;background:var(--teal);pointer-events:none}
+  .cmp-knob{position:absolute;top:50%;left:var(--pos,50%);width:48px;height:48px;margin:-24px 0 0 -24px;border-radius:50%;background:var(--scrim);border:1.5px solid var(--teal);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);display:grid;place-items:center;pointer-events:none;color:var(--teal);font-size:15px;line-height:1}
+  .cmp-hint{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);pointer-events:none;font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;color:var(--pearl);background:var(--scrim);border:1px solid var(--line);padding:6px 12px;transition:opacity .45s ease}
   .cmp-box.touched .cmp-hint{opacity:0}
-  .cmp-box:focus-visible{outline:2px solid var(--bronze);outline-offset:2px}
-  .cmp figcaption{margin-top:11px;font-size:14.5px;color:var(--lime2);line-height:1.6;max-width:62ch}
-  .cmp figcaption b{color:var(--lime);font-weight:400}
+  .cmp-box:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+  .cmp figcaption{margin-top:11px;font-size:14.5px;color:var(--pearl2);line-height:1.6;max-width:62ch}
+  .cmp figcaption b{color:var(--pearl);font-weight:400}
 
   .closing{margin-top:clamp(50px,7vw,92px);padding-top:26px;border-top:1px solid var(--line)}
   .closing p{font-family:var(--serif);font-size:clamp(21px,3.2vw,32px);line-height:1.3;margin:0;max-width:23ch;text-wrap:balance}
-  .closing p span{color:var(--bronze)}
-  .quote{display:inline-block;margin-top:26px;font-family:var(--mono);font-size:11.5px;letter-spacing:.17em;text-transform:uppercase;color:var(--bronze);border:1px solid var(--line-strong);padding:14px 26px;transition:background .2s,color .2s}
-  .quote:hover{background:var(--bronze);color:var(--basalt)}
-  .legal{margin-top:42px;font-family:var(--mono);font-size:10px;letter-spacing:.13em;color:var(--lime3);line-height:1.9}
+  .closing p span{color:var(--gold-lt)}
+  .quote{display:inline-block;margin-top:26px;font-family:var(--mono);font-size:11.5px;letter-spacing:.17em;text-transform:uppercase;color:var(--teal);border:1px solid var(--line-strong);padding:14px 26px;transition:background .2s,color .2s}
+  .quote:hover{background:var(--teal);color:var(--ink)}
+  .legal{margin-top:42px;font-family:var(--mono);font-size:10px;letter-spacing:.13em;color:var(--pearl3);line-height:1.9}
 </style>
 </head>
 <body>
 
+<nav>
+  <a class="back" href="/portfolio/">&larr; Our work</a>
+  <a class="wm" href="/">PHA<span class="o">Ö</span>RA</a>
+  <a class="back" href="/estimate/">Estimate</a>
+</nav>
+
 <div class="wrap">
 
   <div class="top">
-    <a class="mark" href="/portfolio/">P H A Ö R A</a>
     <!-- Town and STATE still to confirm — see the note at the top of this file.
          Once settled: "Flagstone Walk &amp; Stonework · Town, ST" -->
     <span class="where">Flagstone Walk &amp; Stonework · August 2026</span>
