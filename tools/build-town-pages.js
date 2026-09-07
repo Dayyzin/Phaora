@@ -168,7 +168,14 @@ function page(t, all) {
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(desc)}">
 <meta property="og:url" content="${url}">
-<meta property="og:image" content="https://phaora.com/assets/og/phaora-share.jpg">
+<meta property="og:image" content="https://phaora.com/assets/og/town-${t.slug}.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="${esc(`Masonry and hardscape in ${t.town}, Massachusetts by PHAÖRA`)}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${esc(title)}">
+<meta name="twitter:description" content="${esc(desc)}">
+<meta name="twitter:image" content="https://phaora.com/assets/og/town-${t.slug}.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="${C.fonts}" rel="stylesheet">
@@ -185,7 +192,7 @@ ${C.nav}
 ${C.mobile}
 
 <header class="tp-hero">
-  <img src="/portfolio/images/retaining-wall-lit.jpg" alt="" aria-hidden="true">
+  <img src="/${t.photo}" alt="" aria-hidden="true">
   <div class="veil"></div>
   <div class="tp-wrap">
     <p class="eyebrow">${esc(t.town)}, Massachusetts &nbsp;·&nbsp; ${esc(t.county)} County</p>
@@ -276,6 +283,15 @@ function hub(all) {
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
 <link rel="canonical" href="https://phaora.com/service-area/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="${esc(title)}">
+<meta property="og:description" content="${esc(desc)}">
+<meta property="og:url" content="https://phaora.com/service-area/">
+<meta property="og:image" content="https://phaora.com/assets/og/town-service-area.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://phaora.com/assets/og/town-service-area.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="${C.fonts}" rel="stylesheet">
@@ -300,7 +316,7 @@ ${C.nav}
 ${C.mobile}
 
 <header class="tp-hero">
-  <img src="/portfolio/images/retaining-wall-lit.jpg" alt="" aria-hidden="true">
+  <img src="/${DATA.heroFallback}" alt="" aria-hidden="true">
   <div class="veil"></div>
   <div class="tp-wrap">
     <p class="eyebrow">Service area &nbsp;·&nbsp; Massachusetts</p>

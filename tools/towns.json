@@ -10,7 +10,8 @@
     "Frost depth is now in 'frostNote' and it is deliberately not a single number: there isn't one. 780 CMR leaves Table R301.2(1) to each municipality. Saying '48 inches in Massachusetts' on a public page would be wrong in half the towns we serve.",
     "Frost depth is deliberately absent. It belongs on these pages and it is",
     "not written here because it has not been checked against the state code.",
-    "Add it once, in 'frostNote', and every page picks it up."
+    "Add it once, in 'frostNote', and every page picks it up.",
+    "'photo' is the source image for that town's hero and its link preview. One per town so thirteen links shared in a text do not look like the same link thirteen times. Landscape sources only — tools/build-og-cards.js crops them to 1200x630 and lays the town name over the bottom."
   ],
   "frostNote": "Frost depth here is set by the town, not the state — Table R301.2(1) of the Massachusetts Residential Code is filled in by each building department. Inland it is commonly 42 to 48 inches; nearer the coast it is often less. We build to the depth your building department gives, and we ask before we dig.",
   "towns": [
@@ -25,7 +26,8 @@
         "Newton",
         "Wellesley"
       ],
-      "local": "Weston sits in Middlesex County between Wayland and Newton, and we work the whole ring of it — Lincoln, Waltham and Wellesley on the same trucks, with our own crews rather than subcontractors."
+      "local": "Weston sits in Middlesex County between Wayland and Newton, and we work the whole ring of it — Lincoln, Waltham and Wellesley on the same trucks, with our own crews rather than subcontractors.",
+      "photo": "portfolio/images/retaining-wall-lit.jpg"
     },
     {
       "slug": "masonry-wellesley-ma",
@@ -37,7 +39,8 @@
         "Needham",
         "Dover"
       ],
-      "local": "Wellesley is Norfolk County, bordered by Weston, Natick, Needham and Dover, and we build across all of them. The crew that walks your property is the crew that builds it."
+      "local": "Wellesley is Norfolk County, bordered by Weston, Natick, Needham and Dover, and we build across all of them. The crew that walks your property is the crew that builds it.",
+      "photo": "portfolio/images/wall-granite-steps.jpg"
     },
     {
       "slug": "masonry-sudbury-ma",
@@ -50,7 +53,8 @@
         "Marlborough",
         "Framingham"
       ],
-      "local": "Sudbury runs from Wayland across to Marlborough, where our yard is, so it is a short haul and a full day on site rather than half a day of driving."
+      "local": "Sudbury runs from Wayland across to Marlborough, where our yard is, so it is a short haul and a full day on site rather than half a day of driving.",
+      "photo": "portfolio/images/fieldstone-wall-garden.jpg"
     },
     {
       "slug": "masonry-wayland-ma",
@@ -63,7 +67,8 @@
         "Natick",
         "Framingham"
       ],
-      "local": "Wayland sits between Sudbury and Weston with Lincoln to the north, and we are in all four regularly. Our own crews, start to finish."
+      "local": "Wayland sits between Sudbury and Weston with Lincoln to the north, and we are in all four regularly. Our own crews, start to finish.",
+      "photo": "portfolio/images/seat-wall-patio.jpg"
     },
     {
       "slug": "masonry-concord-ma",
@@ -76,7 +81,8 @@
         "Acton",
         "Bedford"
       ],
-      "local": "Concord borders Sudbury, Lincoln, Carlisle, Acton and Bedford, and we build across that whole stretch of Middlesex County with our own crews."
+      "local": "Concord borders Sudbury, Lincoln, Carlisle, Acton and Bedford, and we build across that whole stretch of Middlesex County with our own crews.",
+      "photo": "portfolio/images/ledgestone-wall.jpg"
     },
     {
       "slug": "masonry-lincoln-ma",
@@ -89,7 +95,8 @@
         "Weston",
         "Lexington"
       ],
-      "local": "Lincoln is bounded by Concord, Sudbury, Wayland, Weston and Lexington — five towns we are in through the season, so a Lincoln job is never a special trip."
+      "local": "Lincoln is bounded by Concord, Sudbury, Wayland, Weston and Lexington — five towns we are in through the season, so a Lincoln job is never a special trip.",
+      "photo": "portfolio/images/entrance-wall.jpg"
     },
     {
       "slug": "masonry-lexington-ma",
@@ -104,7 +111,8 @@
         "Belmont",
         "Waltham"
       ],
-      "local": "Lexington borders Lincoln, Bedford, Burlington, Woburn, Arlington, Belmont and Waltham. We build across that side of Middlesex County with our own crews."
+      "local": "Lexington borders Lincoln, Bedford, Burlington, Woburn, Arlington, Belmont and Waltham. We build across that side of Middlesex County with our own crews.",
+      "photo": "portfolio/images/entrance-pillar.jpg"
     },
     {
       "slug": "masonry-newton-ma",
@@ -117,7 +125,8 @@
         "Needham",
         "Brookline"
       ],
-      "local": "Newton meets Weston, Waltham, Wellesley, Needham and Brookline, and we work across those lines rather than treating each town as a separate market."
+      "local": "Newton meets Weston, Waltham, Wellesley, Needham and Brookline, and we work across those lines rather than treating each town as a separate market.",
+      "photo": "portfolio/images/outdoor-kitchen.jpg"
     },
     {
       "slug": "masonry-dover-ma",
@@ -130,7 +139,8 @@
         "Natick",
         "Medfield"
       ],
-      "local": "Dover is Norfolk County alongside Wellesley, Needham, Sherborn, Natick and Medfield — the same run our crews are already making."
+      "local": "Dover is Norfolk County alongside Wellesley, Needham, Sherborn, Natick and Medfield — the same run our crews are already making.",
+      "photo": "portfolio/images/retaining-wall.jpg"
     },
     {
       "slug": "masonry-sherborn-ma",
@@ -143,7 +153,8 @@
         "Holliston",
         "Medfield"
       ],
-      "local": "Sherborn sits between Dover, Natick, Framingham, Holliston and Medfield, and we build across all of them with our own people."
+      "local": "Sherborn sits between Dover, Natick, Framingham, Holliston and Medfield, and we build across all of them with our own people.",
+      "photo": "portfolio/images/wall-driveway.jpg"
     },
     {
       "slug": "masonry-carlisle-ma",
@@ -156,7 +167,8 @@
         "Billerica",
         "Bedford"
       ],
-      "local": "Carlisle borders Concord, Acton, Chelmsford, Billerica and Bedford, at the north end of the stretch of Middlesex County we work."
+      "local": "Carlisle borders Concord, Acton, Chelmsford, Billerica and Bedford, at the north end of the stretch of Middlesex County we work.",
+      "photo": "assets/journal/cap-set.jpg"
     },
     {
       "slug": "masonry-southborough-ma",
@@ -169,7 +181,8 @@
         "Hopkinton",
         "Westborough"
       ],
-      "local": "Southborough is Worcester County, next to Marlborough where our yard is — about as close to home as our work gets."
+      "local": "Southborough is Worcester County, next to Marlborough where our yard is — about as close to home as our work gets.",
+      "photo": "assets/journal/edge-restraint.jpg"
     },
     {
       "slug": "masonry-hopkinton-ma",
@@ -183,7 +196,9 @@
         "Westborough",
         "Southborough"
       ],
-      "local": "Hopkinton borders Ashland, Holliston, Milford, Upton, Westborough and Southborough, and it is a short run from the yard in Marlborough."
+      "local": "Hopkinton borders Ashland, Holliston, Milford, Upton, Westborough and Southborough, and it is a short run from the yard in Marlborough.",
+      "photo": "assets/journal/screed-rails.jpg"
     }
-  ]
+  ],
+  "heroFallback": "portfolio/images/retaining-wall-lit.jpg"
 }
