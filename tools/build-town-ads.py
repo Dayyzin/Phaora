@@ -1,6 +1,6 @@
 import json, csv, os
 
-CAMPAIGN = "PHAORA - Masonry - MetroWest"   # rename to match the live campaign name
+CAMPAIGN = "Search-1"   # the live campaign name, off David's account screenshot
 towns = json.load(open('tools/towns.json'))['towns']
 H_MAX, D_MAX, P_MAX = 30, 90, 15
 

@@ -22,7 +22,7 @@ Google Ads Editor → Account → Import → Paste text. One file at a time.
 Keywords and ads can go in any order; do negatives first if you want the
 list live before anything can spend.
 
-`Campaign` in all three files is `PHAORA - Masonry - MetroWest`. If the live
+`Campaign` in all three files is `Search-1`. If the live
 campaign is named something else, find-and-replace that column before
 pasting or Editor will offer to create a second campaign.
 
