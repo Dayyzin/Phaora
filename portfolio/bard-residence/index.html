@@ -237,10 +237,30 @@ footer p{font-size:11px;letter-spacing:.16em;color:rgba(234,239,245,.24)}
       <div class="stage-tag">Curved bluestone out, granite in</div>
     </div>
     <p>What was at the door was a curved bluestone flight on a thin stone skirt. What is there now is thermal-finish granite: full slabs, two risers deep, run out to a landing that reaches the sill. The skirt under each tread is laid course by course and pointed as it goes, and the joints between the slabs are sponged off while the mortar is still green — once it cures on the face it comes off with acid or not at all.</p>
-    <div class="grid g2">
-      <figure class="ba" data-tag="BEFORE"><img src="images/entry-after.jpg" alt="The curved bluestone flight that was at the door, three radiused treads stepping down to the drive" loading="lazy"></figure>
-      <figure class="ba" data-tag="AFTER"><img src="images/fstep-after.jpg" alt="The granite flight that replaced it, landing and both risers square to the house" loading="lazy"></figure>
-    </div>
+    <!-- Was a side-by-side pair. It carries a wipe because the two frames hold
+         the same doorway at the same height — the siding and the window line
+         run straight across the seam, so the curve becomes square without the
+         house moving. Checked by compositing three crops at 50% before
+         committing to it, the same way the wall pair was.
+
+         The source files are misnamed: entry-after.jpg is the BEFORE. The
+         page has always labelled it correctly and the alt text says what it
+         is, but the comparator copies are named for what they actually are so
+         the next person to edit this does not trust the old names. -->
+    <figure class="cmp">
+      <div class="cmp-box" style="aspect-ratio:0.75" role="slider" tabindex="0"
+           aria-label="Drag to compare the old curved bluestone flight with the granite one that replaced it"
+           aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+        <img src="images/cmp-steps-after.jpg" alt="After — thermal-finish granite, full slabs two risers deep, run out to a landing that reaches the sill">
+        <img class="cmp-before" src="images/cmp-steps-before.jpg" alt="Before — the curved bluestone flight on a thin stone skirt, radiused treads stepping down to the drive" loading="lazy">
+        <span class="cmp-tag">BEFORE</span>
+        <span class="cmp-tag after">AFTER</span>
+        <div class="cmp-line"></div>
+        <div class="cmp-knob">⇄</div>
+        <div class="cmp-hint">← DRAG →</div>
+      </div>
+      <figcaption><b>Same doorway, curve out and square in.</b> The bluestone flight was radiused on a thin skirt. What replaced it is full granite slabs, two risers deep, landing out to the sill.</figcaption>
+    </figure>
     <div class="grid g3" style="margin-top:clamp(10px,1.6vw,18px)">
       <figure><img src="images/fstep-before.jpg" alt="Mid-build, the far half of the run still open with mortar and stone chips, joints being sponged off by hand" loading="lazy"></figure>
       <figure><img src="images/fstep-sun.jpg" alt="The finished flight from the drive in full sun, the riser stone reading warm under the grey treads" loading="lazy"></figure>
