@@ -63,6 +63,39 @@ h1 span{color:var(--gold-lt)}
 .grid figure{overflow:hidden;border:1px solid rgba(79,181,190,.1);background:#04080f}
 .grid img{transition:transform .7s,filter .5s;filter:brightness(.94)}
 .grid figure:hover img{transform:scale(1.03);filter:brightness(1)}
+  /* Drag-to-compare. Ported from the Sowinski job page and restyled to this
+     page's tokens — teal and gold on ink, not bronze on basalt.
+
+     The whole frame is the drag target rather than a thin handle: a handle
+     you have to hit is unusable with a thumb. touch-action:pan-y so a
+     vertical swipe still scrolls the page instead of being eaten by the
+     wipe. */
+  .cmp{margin:0}
+  .cmp-box{position:relative;overflow:hidden;background:rgba(255,255,255,.03);
+    border:1px solid rgba(79,181,190,.2);touch-action:pan-y;cursor:ew-resize;
+    user-select:none;-webkit-user-select:none;border-radius:2px}
+  .cmp-box img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+  .cmp-before{clip-path:inset(0 calc(100% - var(--pos,50%)) 0 0)}
+  .cmp-tag{position:absolute;top:12px;left:12px;font-size:9.5px;font-weight:500;
+    letter-spacing:.2em;padding:5px 9px;background:rgba(2,6,16,.72);
+    border:1px solid rgba(234,239,245,.14);color:var(--pearl);pointer-events:none}
+  .cmp-tag.after{left:auto;right:12px;border-color:rgba(79,181,190,.45);color:var(--teal)}
+  .cmp-line{position:absolute;top:0;bottom:0;left:var(--pos,50%);width:2px;
+    margin-left:-1px;background:var(--teal);pointer-events:none}
+  .cmp-knob{position:absolute;top:50%;left:var(--pos,50%);width:48px;height:48px;
+    margin:-24px 0 0 -24px;border-radius:50%;background:rgba(2,6,16,.72);
+    border:1.5px solid var(--teal);backdrop-filter:blur(3px);
+    -webkit-backdrop-filter:blur(3px);display:grid;place-items:center;
+    pointer-events:none;color:var(--teal);font-size:15px;line-height:1}
+  .cmp-hint{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);
+    pointer-events:none;font-size:9.5px;font-weight:500;letter-spacing:.18em;
+    color:var(--pearl);background:rgba(2,6,16,.72);
+    border:1px solid rgba(234,239,245,.14);padding:6px 12px;transition:opacity .45s ease}
+  .cmp-box.touched .cmp-hint{opacity:0}
+  .cmp-box:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+  .cmp figcaption{margin-top:11px;font-size:14px;color:rgba(234,239,245,.62);line-height:1.6}
+  .cmp figcaption b{color:var(--pearl);font-weight:400}
+
   /* A before and an after shot from the same job, labelled in the corner.
      Not a drag-slider: these two are not framed alike — one looks down the
      run mid-work, the other along the nose once it was finished — and a
@@ -127,6 +160,8 @@ footer p{font-size:11px;letter-spacing:.16em;color:rgba(234,239,245,.24)}
     <p>Before anything is priced, you walk the ground with the person who has to live on it. Where the water goes, what has to stay, what the grade is really doing behind the house.</p>
     <div class="grid g3">
       <figure><img src="images/walk1.jpg" alt="Walking the property at the start of the job" loading="lazy"></figure>
+      <figure><img src="images/walk5.jpg" alt="Standing at the staked line with the owner, working out where the bed edge lands" loading="lazy"></figure>
+      <figure><img src="images/walk4.jpg" alt="Orange-flagged stakes set through the bed, marking the line before anything is moved" loading="lazy"></figure>
       <figure><img src="images/walk3.jpg" alt="Looking over the slope behind the house" loading="lazy"></figure>
       <figure><img src="images/walk2.jpg" alt="Standing at the line the wall will follow" loading="lazy"></figure>
     </div>
@@ -150,6 +185,22 @@ footer p{font-size:11px;letter-spacing:.16em;color:rgba(234,239,245,.24)}
       <div class="stage-tag">Wall up, treads in</div>
     </div>
     <p>Wall carried along the house line with the granite treads set into it as it goes, rather than cut in afterwards. Cap stones levelled one at a time. Backfill and the top of the grade come next.</p>
+
+    <figure class="cmp">
+      <div class="cmp-box" style="aspect-ratio:0.75" role="slider" tabindex="0"
+           aria-label="Drag to compare the old timber wall with the new block wall"
+           aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+        <img src="images/cmp-wall-after.jpg" alt="After — segmental block wall on a compacted base, cap course going on, carried along the same line">
+        <img class="cmp-before" src="images/cmp-wall-before.jpg" alt="Before — stacked timber sleepers leaning out of line, split along the grain and rotted at the ends" loading="lazy">
+        <span class="cmp-tag">BEFORE</span>
+        <span class="cmp-tag after">AFTER</span>
+        <div class="cmp-line"></div>
+        <div class="cmp-knob">⇄</div>
+        <div class="cmp-hint">← DRAG →</div>
+      </div>
+      <figcaption><b>The same line, from the same place.</b> Stacked timbers leaning out under the grade, split along the grain and gone at the ends. Wood holds ground for as long as the wood lasts, which is the whole problem with it.</figcaption>
+    </figure>
+
     <div class="grid g3">
       <figure><img src="images/wall1.jpg" alt="Block retaining wall with granite steps, seen down the run" loading="lazy"></figure>
       <figure><img src="images/wall2.jpg" alt="The wall and steps from the driveway side" loading="lazy"></figure>
@@ -267,5 +318,44 @@ footer p{font-size:11px;letter-spacing:.16em;color:rgba(234,239,245,.24)}
 </div>
 
 <footer><p>SKYINCH CAPITAL LLC &nbsp;·&nbsp; PHAÖRA &nbsp;·&nbsp; Fully insured</p></footer>
+<script>
+// The wipe. Pointer events cover mouse, touch and pen in one path, so there
+// is no second touch branch to drift out of sync, and the whole frame is the
+// drag target — a thin handle is unusable with a thumb.
+document.querySelectorAll('.cmp-box').forEach(function (box) {
+  var dragging = false;
+
+  function move(clientX) {
+    var r = box.getBoundingClientRect();
+    var pct = Math.min(100, Math.max(0, ((clientX - r.left) / r.width) * 100));
+    box.style.setProperty('--pos', pct + '%');
+    box.setAttribute('aria-valuenow', Math.round(pct));
+    box.classList.add('touched');
+  }
+
+  box.addEventListener('pointerdown', function (e) {
+    dragging = true;
+    box.setPointerCapture(e.pointerId);
+    move(e.clientX);
+  });
+  box.addEventListener('pointermove', function (e) { if (dragging) move(e.clientX); });
+  box.addEventListener('pointerup', function (e) {
+    dragging = false;
+    try { box.releasePointerCapture(e.pointerId); } catch (err) { /* already released */ }
+  });
+  box.addEventListener('pointercancel', function () { dragging = false; });
+
+  box.addEventListener('keydown', function (e) {
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    e.preventDefault();
+    var now = parseFloat(box.getAttribute('aria-valuenow')) || 50;
+    var next = Math.min(100, Math.max(0, now + (e.key === 'ArrowLeft' ? -4 : 4)));
+    box.style.setProperty('--pos', next + '%');
+    box.setAttribute('aria-valuenow', Math.round(next));
+    box.classList.add('touched');
+  });
+});
+</script>
+
 </body>
 </html>
