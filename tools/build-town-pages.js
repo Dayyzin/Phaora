@@ -213,10 +213,11 @@ ${TRADES.map(([h, p]) => `      <div class="tp-cell"><h3>${esc(h)}</h3><p>${esc(
 ${LASTS.map(([h, p]) => `      <li><h3>${esc(h)}</h3><p>${esc(p)}</p></li>`).join("\n")}
     </ol>
   </section>
-${t.local ? `
+${t.local || DATA.frostNote ? `
   <section class="tp-sec">
     <h2 class="tp-h2">Working in ${esc(t.town)}</h2>
-    <p class="tp-p">${esc(t.local)}</p>
+${t.local ? `    <p class="tp-p">${esc(t.local)}</p>` : ""}
+${DATA.frostNote ? `    <p class="tp-p">${esc(DATA.frostNote)}</p>` : ""}
   </section>` : ""}
 ${voices(t.town)}
 ${assurances()}
