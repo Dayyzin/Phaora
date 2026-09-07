@@ -7,7 +7,9 @@
     { "source": "/referral",   "destination": "/partners", "permanent": true },
     { "source": "/referrals",  "destination": "/partners", "permanent": true },
     { "source": "/journal",    "destination": "/blog",     "permanent": true },
-    { "source": "/quote",      "destination": "/estimate/", "permanent": true }
+    { "source": "/quote",      "destination": "/estimate/", "permanent": true },
+    { "source": "/portfolio/currently-building",       "destination": "/portfolio/bard-residence/", "permanent": true },
+    { "source": "/portfolio/currently-building/:path*", "destination": "/portfolio/bard-residence/:path*", "permanent": true }
   ],
 
   "rewrites": [
