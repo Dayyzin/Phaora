@@ -9,17 +9,20 @@ This is the whole play.
 
 ---
 
-## 1. Get the link — do this first
+## 1. The link
 
-Everything below needs one link, the one that opens the review box directly.
+    https://g.page/r/CZB3tcq239sNECE/review
 
-1. Open the Google Business Profile for PHAÖRA (search "phaora" while
-   signed in as the owner, or open the Google Business Profile app)
-2. Find **Ask for reviews** or **Get more reviews**
-3. Copy the short link. It looks like `https://g.page/r/…/review`
+That is the one that opens straight to the review box. It is baked into the
+QR on the card and it is what goes in every text below.
 
-Paste it into `card.html` where the file says to, and into the text
-scripts below. One link, used everywhere.
+If it ever changes, put the new one in `build-card.py` and run:
+
+    python3 tools/reviews/build-card.py
+
+The build decodes its own QR and refuses to write the card unless the code
+reads back as the link. A card whose QR does not resolve is not discovered
+until it is in someone's hand.
 
 ## 2. The rule that keeps the reviews from being deleted
 
@@ -80,7 +83,7 @@ makes it a favor instead of a transaction.
 > the [walkway] came out.
 >
 > If you've got a minute, a quick review on Google is the single biggest
-> help you could give us: [link]
+> help you could give us: https://g.page/r/CZB3tcq239sNECE/review
 
 Send it the day after the job closes, not the day of. They have had one
 evening to look at it.
@@ -88,7 +91,7 @@ evening to look at it.
 ### To someone who already said something nice
 
 > That means a lot. Any chance you'd put that in a Google review? It's
-> about thirty seconds and it's the thing that gets us found: [link]
+> about thirty seconds and it's the thing that gets us found: https://g.page/r/CZB3tcq239sNECE/review
 
 Quote their own words back to them and they will usually reuse them.
 
