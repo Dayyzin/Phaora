@@ -140,7 +140,10 @@ ${show.map((q) => `      <figure><blockquote>${esc(q.quote)}</blockquote>` +
 function page(t, all) {
   const bySlug = new Map(all.map((x) => [x.town, x]));
   /* Only link the neighbours we actually have a page for. */
-  const near = t.borders.filter((b) => bySlug.has(b)).map((b) => bySlug.get(b));
+  /* Optional: a town added in bulk has no verified neighbour list, and an
+     invented one is an invented fact. Empty simply links nothing. */
+  const borders = Array.isArray(t.borders) ? t.borders : [];
+  const near = borders.filter((b) => bySlug.has(b)).map((b) => bySlug.get(b));
   const title = `Masonry & Hardscape Contractor in ${t.town}, MA | PHAÖRA`;
   const desc = `Patios, walkways, retaining walls, steps and drainage in ${t.town}, Massachusetts. `
              + `Built to New England frost depth by our own crews. Free on-site estimate, and a price online in about thirty seconds.`;
@@ -152,7 +155,7 @@ function page(t, all) {
     telephone: "+1-561-299-1261", email: "phaoraco@gmail.com",
     description: desc,
     areaServed: [{ "@type": "City", name: `${t.town}, Massachusetts` }]
-      .concat(t.borders.map((b) => ({ "@type": "City", name: `${b}, Massachusetts` }))),
+      .concat(borders.map((b) => ({ "@type": "City", name: `${b}, Massachusetts` }))),
   };
 
   return `<!DOCTYPE html>
@@ -195,7 +198,7 @@ ${C.mobile}
   <img src="/${t.photo}" alt="" aria-hidden="true">
   <div class="veil"></div>
   <div class="tp-wrap">
-    <p class="eyebrow">${esc(t.town)}, Massachusetts &nbsp;·&nbsp; ${esc(t.county)} County</p>
+    <p class="eyebrow">${esc(t.town)}, Massachusetts${t.county ? ` &nbsp;·&nbsp; ${esc(t.county)} County` : ""}</p>
     <h1>Masonry and hardscape<br>in <em>${esc(t.town)}</em>.</h1>
     <p class="tp-lede">Patios, walkways, retaining walls, steps and drainage — built by our own crews, for ground that freezes.</p>
     <a class="tp-cta" href="/estimate/">Price your project &rarr;</a>
@@ -263,7 +266,11 @@ for (const t of towns) {
   const dir = path.join(ROOT, t.slug);
   fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(path.join(dir, "index.html"), page(t, DATA.towns));
-  const gaps = [!t.local && "local"].filter(Boolean);
+  const gaps = [
+    !t.local && "local",
+    !t.county && "county",
+    !(Array.isArray(t.borders) && t.borders.length) && "borders",
+  ].filter(Boolean);
   console.log(`${t.slug.padEnd(24)} ${gaps.length ? "blank: " + gaps.join(", ") : "complete"}`);
 }
 
@@ -331,7 +338,7 @@ ${C.mobile}
   <section class="tp-sec">
     <h2 class="tp-h2">The towns</h2>
     <div class="tp-towns">
-${all.map((t) => `      <a href="/${t.slug}/"><b>${esc(t.town)}</b><span>${esc(t.county)}</span></a>`).join("\n")}
+${all.map((t) => `      <a href="/${t.slug}/"><b>${esc(t.town)}</b><span>${esc(t.county || "")}</span></a>`).join("\n")}
     </div>
   </section>
 
