@@ -77,6 +77,36 @@
     } catch (e) { /* nothing here is worth a broken page */ }
   };
 
+  /* ── Referral attribution ────────────────────────────────────────────────
+     A partner's link is crm.phaora.com/r/{code}: it records the click and
+     forwards here with ?ref=. The visitor usually lands on the home page and
+     browses before filling anything in, so the code has to outlive the page
+     it arrived on — hence localStorage rather than a variable, and rather
+     than a cookie, which the CRM's origin cannot set for this one.
+
+     Ninety days matches the window the CRM stamps on the claim. Every access
+     is wrapped: Safari private mode throws on setItem, and a lost referral
+     must never cost the lead. */
+  var REF_KEY = "phaora_ref", REF_TTL = 90 * 24 * 60 * 60 * 1000;
+
+  try {
+    var incoming = new URLSearchParams(window.location.search).get("ref");
+    if (incoming) {
+      localStorage.setItem(REF_KEY, JSON.stringify({ c: incoming, t: Date.now() }));
+    }
+  } catch (e) { /* storage unavailable — the visit still counts */ }
+
+  /* Returns the live referral code, or "" when there is none. Forms send it
+     as `ref`; the CRM resolves it and opens the claim. */
+  window.phaoraRef = function () {
+    try {
+      var v = JSON.parse(localStorage.getItem(REF_KEY) || "null");
+      if (!v || !v.c) return "";
+      if (Date.now() - v.t > REF_TTL) { localStorage.removeItem(REF_KEY); return ""; }
+      return v.c;
+    } catch (e) { return ""; }
+  };
+
   /* On a phone, tapping the number IS the lead — there is no form to submit
      and no thank-you page to land on, so it has to be caught here. */
   document.addEventListener("click", function (e) {
