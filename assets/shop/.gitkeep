@@ -1,1 +1,18 @@
-Generated shop art drops here. See docs/shop-image-prompts.md for the filenames and prompts.
+Generated shop art drops here, 1536x1024 PNG, under the exact filenames
+shop.html looks for:
+
+  hero.png
+  card-the-cluster.png
+  card-the-dynasty.png
+  card-the-canopy.png
+  card-the-scarlets.png
+  card-the-portal.png
+  card-the-raptor.png
+  difference.png
+
+Each slot falls back to the catalogue photograph in pieces-data.js while a
+file is missing, so the page is whole with this folder empty.
+
+Check every generated image against the catalogue before publishing: it
+carries the true stone for each work, and a card showing the wrong material
+is a product photo that misrepresents what ships.
