@@ -157,7 +157,7 @@ function nav(here, depth = 0) {
   <div class="nav-mid">
     <a href="${up}collection.html"${on('shop')}>Shop</a>
     <a href="${up}about.html"${on('about')}>About</a>
-    <a href="/blog"${on('journal')}>Journal</a>
+    <a href="${up}journal/"${on('journal')}>Journal</a>
   </div>
   <div class="nav-end">
     <button class="icon-btn" data-search-open aria-label="Search the collection" aria-controls="searchbar" aria-expanded="false">${ICON.search}</button>
@@ -178,7 +178,7 @@ function nav(here, depth = 0) {
   <a href="${up}index.html" data-drawer-close>Shop front</a>
   <a href="${up}collection.html" data-drawer-close>The collection</a>
   <a href="${up}about.html" data-drawer-close>About</a>
-  <a href="/blog">Journal</a>
+  <a href="${up}journal/" data-drawer-close>Journal</a>
   <a href="${up}bag.html" data-drawer-close>Bag</a>
 </div>`;
 }
@@ -192,7 +192,7 @@ function foot(depth = 0) {
     <div class="foot-mid">
       <a href="${up}collection.html">Shop</a>
       <a href="${up}about.html">About</a>
-      <a href="/blog">Journal</a>
+      <a href="${up}journal/">Journal</a>
     </div>
     <div class="foot-end">
       <a href="https://www.instagram.com/phaoraco" aria-label="Instagram" rel="noopener">${ICON.ig}</a>
@@ -675,6 +675,142 @@ function buildAbout() {
   write('about.html', html);
 }
 
+/* ================================================================ journal */
+/* Copy lives in journal-posts.js so a change to what the shop tells a customer
+   arrives as a reviewable diff rather than as a string buried in a builder. */
+function buildJournal() {
+  const posts = require('./journal-posts.js').filter(post => {
+    if (bySlug[post.pictured]) return true;
+    console.warn(`  ! journal/${post.slug} — pictured piece "${post.pictured}" has no photographs, not shipped`);
+    return false;
+  });
+  if (!posts.length) return [];
+
+  const longDate = iso => {
+    const [y, m, d] = iso.split('-').map(Number);
+    const month = ['January','February','March','April','May','June','July',
+                   'August','September','October','November','December'][m - 1];
+    return `${d} ${month} ${y}`;
+  };
+
+  const items = posts.map(post => {
+    const pic = bySlug[post.pictured];
+    return `    <a class="jitem" href="${post.slug}.html">
+      <div class="jitem-img"><img src="../../${cardSrc(pic.slug)}" alt="${esc(pic.name)}" width="640" height="640" loading="lazy" decoding="async"></div>
+      <div>
+        <p class="jitem-date">${esc(longDate(post.date))}</p>
+        <h2 class="display">${esc(post.title)}</h2>
+        <p>${esc(post.standfirst)}</p>
+        <span class="viewall">Read ${ICON.arw}</span>
+      </div>
+    </a>`;
+  }).join('\n');
+
+  write(path.join('journal', 'index.html'),
+    head('PHAÖRA — The sculpture journal',
+      'Writing on the stone, the carving and where the material comes from.',
+      { depth: 1, canonical: 'journal/' }) +
+    nav('journal', 1) + `
+
+<header class="phead">
+  <p class="eyebrow">The journal</p>
+  <h1 class="display">On the stone<br>and the cut</h1>
+  <p>What the material is, why it behaves the way it does, and what that means for an object carved out of it.</p>
+</header>
+
+<div class="jlist">
+${items}
+</div>
+` + foot(1));
+
+  posts.forEach((post, i) => {
+    const pic  = bySlug[post.pictured];
+    const next = posts[(i + 1) % posts.length];
+
+    const body = post.body.map(b =>
+      typeof b === 'string'
+        ? `  <p>${esc(b)}</p>`
+        : `  <h2>${esc(b.h)}</h2>`
+    ).join('\n');
+
+    const jsonld = {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: post.title,
+      description: post.standfirst,
+      datePublished: post.date,
+      image: `${SITE}/assets/sculptures/${pic.slug}/${pic.hero}`,
+      publisher: { '@type': 'Organization', name: 'PHAÖRA' },
+      mainEntityOfPage: `${SITE}/shop/journal/${post.slug}.html`
+    };
+
+    write(path.join('journal', `${post.slug}.html`),
+      head(`${post.title} — PHAÖRA`, post.standfirst, {
+        depth: 1,
+        canonical: `journal/${post.slug}.html`,
+        ogType: 'article',
+        image: `${SITE}/assets/sculptures/${pic.slug}/${pic.hero}`,
+        jsonld
+      }) +
+      nav('journal', 1) + `
+
+<div class="jhero">
+  <div class="jhero-img"><img src="../../assets/sculptures/${pic.slug}/${pic.hero}" alt="${esc(pic.name)}" fetchpriority="high" decoding="async"></div>
+</div>
+
+<header class="jhead">
+  <p class="jitem-date">${esc(longDate(post.date))}</p>
+  <h1 class="display">${esc(post.title)}</h1>
+  <p>${esc(post.standfirst)}</p>
+</header>
+
+<article class="jbody">
+${body}
+</article>
+
+<div class="jfoot">
+  <span class="jcap">Pictured: <a href="../p/${pic.slug}.html" style="color:var(--gold)">${esc(pic.name)}</a></span>
+  <a class="viewall" href="${next.slug === post.slug ? './' : next.slug + '.html'}">${next.slug === post.slug ? 'Back to the journal' : esc(next.title)} ${ICON.arw}</a>
+</div>
+` + foot(1));
+  });
+
+  return posts.map(p => p.slug);
+}
+
+/* ================================================================ sitemap */
+/* The builder owns the block between the shop markers and nothing else, so
+   adding a piece or a post updates the sitemap in the same command that built
+   the page, and the town entries below it are never touched. */
+function syncSitemap(posts) {
+  const file = path.join(ROOT, 'sitemap.xml');
+  if (!fs.existsSync(file)) { console.warn('  ! no sitemap.xml, skipped'); return 0; }
+
+  const url = (loc, freq, pri) =>
+    `  <url><loc>${SITE}${loc}</loc><changefreq>${freq}</changefreq><priority>${pri}</priority></url>`;
+
+  const lines = [
+    '  <!-- shop — generated by build-shop.js, edits here are overwritten -->',
+    url('/shop/', 'weekly', '0.9'),
+    url('/shop/collection.html', 'weekly', '0.9'),
+    url('/shop/about.html', 'monthly', '0.6'),
+    ...pieces.map(p => url(`/shop/p/${p.slug}.html`, 'monthly', '0.7')),
+    url('/shop/journal/', 'weekly', '0.7'),
+    ...posts.map(s => url(`/shop/journal/${s}.html`, 'yearly', '0.6')),
+    '  <!-- /shop -->'
+  ].join('\n');
+
+  let xml = fs.readFileSync(file, 'utf8');
+  const block = /[ \t]*<!-- shop[^>]*-->[\s\S]*?<!-- \/shop -->/;
+
+  if (block.test(xml)) xml = xml.replace(block, lines);
+  else if (xml.includes('  <!-- towns -->')) xml = xml.replace('  <!-- towns -->', lines + '\n\n  <!-- towns -->');
+  else xml = xml.replace('</urlset>', lines + '\n</urlset>');
+
+  fs.writeFileSync(file, xml, 'utf8');
+  return pieces.length + posts.length + 4;
+}
+
 /* ------------------------------------------------------------------ write */
 function write(rel, html) {
   const dest = path.join(OUT, rel);
@@ -689,8 +825,12 @@ buildCollection();
 buildPieces();
 buildBag();
 buildAbout();
+const postSlugs = buildJournal();
+const sitemapUrls = syncSitemap(postSlugs);
 
 console.log(`shop front       shop/index.html`);
 console.log(`collection       shop/collection.html   (${pieces.length} works, ${species.length} categories)`);
 console.log(`piece pages      shop/p/*.html          (${pieces.length})`);
+console.log(`journal          shop/journal/*.html    (${postSlugs.length} posts)`);
 console.log(`bag + about      shop/bag.html, shop/about.html`);
+console.log(`sitemap          sitemap.xml            (${sitemapUrls} shop urls)`);
