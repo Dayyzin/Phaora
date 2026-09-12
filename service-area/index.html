@@ -52,6 +52,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;display:grid;grid-template-c
 .nav-dp-item:hover .nav-dp-name{color:rgba(79,181,190,1)}
 .nav-dp-gold .nav-dp-name{color:rgba(201,168,76,.8)!important}
 .nav-dp-item.nav-dp-gold:hover .nav-dp-name{color:rgba(201,168,76,1)!important}
+/* Masonry dropdown — neutral, so the teal stays reserved for Águas Vivas */
+.nav-dropdown-trigger.ms-t{color:rgba(234,239,245,.38)}
+.nav-dropdown:hover .nav-dropdown-trigger.ms-t,.nav-dropdown-trigger.ms-t.active{color:rgba(234,239,245,.82)}
+.nav-dp-ms .nav-dp-name{color:rgba(234,239,245,.5)}
+.nav-dp-ms:hover .nav-dp-name{color:var(--pearl)}
+.nav-dp-ms .nav-dp-num{color:rgba(234,239,245,.2)}
+.nav-dp-ms:hover .nav-dp-num{color:rgba(234,239,245,.45)}
+.nav-dp-sub{display:block;font-size:8.5px;letter-spacing:.12em;text-transform:none;color:rgba(234,239,245,.3);margin-top:2px;font-weight:300}
 .nav-dp-footer{margin-top:8px;padding:10px 18px 0;border-top:1px solid rgba(79,181,190,.08)}
 .nav-dp-footer a{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:rgba(200,164,94,.52);transition:color .2s}
 .nav-dp-footer a:hover{color:rgba(200,164,94,.9)}
@@ -173,7 +181,14 @@ footer{position:relative;padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);borde
 <nav>
   <div class="nav-links">
     <a href="/portfolio/">Our Work</a>
-    <a href="/hardscape-gallery.html">Hardscape</a>
+    <div class="nav-dropdown">
+      <a class="nav-dropdown-trigger ms-t" href="/hardscape-gallery.html">Masonry <svg class="nav-dropdown-chevron" width="7" height="5" viewBox="0 0 7 5" fill="none"><path d="M.5 1L3.5 4l3-3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></a>
+      <div class="nav-dropdown-panel">
+        <p class="nav-dp-header">Two ends of one material</p>
+        <a href="/hardscape-gallery.html" class="nav-dp-item nav-dp-ms"><span class="nav-dp-num">I</span><span class="nav-dp-name">Hardscape<span class="nav-dp-sub">Patios, walls, walkways</span></span></a>
+        <a href="/crystals/" class="nav-dp-item nav-dp-ms"><span class="nav-dp-num">II</span><span class="nav-dp-name">Crystal<span class="nav-dp-sub">Thirty-four carvings</span></span></a>
+      </div>
+    </div>
     <a href="/blog">Journal</a>
     <a href="/contact.html">Contact Us</a>
     <div class="nav-dropdown">
@@ -210,6 +225,7 @@ footer{position:relative;padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);borde
   <a href="/">Home</a>
   <a href="/portfolio/">Our Work</a>
   <a href="/hardscape-gallery.html">Hardscape</a>
+  <a href="/crystals/">Crystal</a>
   <a href="/blog">Journal</a>
   <a href="/contact.html">Contact Us</a>
   <button type="button" class="av m-acc" id="mAvToggle">Águas Vivas <span class="m-chev">&#9662;</span></button>

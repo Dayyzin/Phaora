@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://phaora.com/crystals/">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Carattere&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<title>PHA&Ouml;RA &mdash; Before It Was Stone</title>
+<meta name="description" content="A room sealed inside rock, and what filled it. Crystal work from Minas Gerais, read the way a mason reads stone.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Before It Was Stone &mdash; PHA&Ouml;RA">
+<meta property="og:description" content="A room sealed inside rock, and what filled it.">
+<meta property="og:image" content="https://phaora.com/assets/sculptures/oracle/00-hero.jpg">
+<meta property="og:url" content="https://phaora.com/crystals/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Before It Was Stone &mdash; PHA&Ouml;RA">
+<meta name="twitter:image" content="https://phaora.com/assets/sculptures/oracle/00-hero.jpg">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --deep:#050E1B;--blue:#0A1B30;--lift:#122B49;
+  --pearl:#EAEFF5;--teal:#4FB5BE;--teal-d:rgba(79,181,190,.55);--gold:#C8A45E;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --cur:'Carattere','Snell Roundhand','Apple Chancery',cursive;
+  --sans:'Inter','Helvetica Neue',sans-serif;
+}
+html{scroll-behavior:smooth;background:var(--deep);overflow-x:clip}
+/* One ground for the whole page. The photographs are screened onto it, so their
+   black lets the blue through instead of sitting on top of it as a dark box. */
+body{color:var(--pearl);font-family:var(--sans);font-weight:300;line-height:1.8;
+  -webkit-font-smoothing:antialiased;overflow-x:clip;
+  background:
+    radial-gradient(ellipse 90% 30% at 82% 14%,rgba(18,43,73,.55) 0%,transparent 62%),
+    radial-gradient(ellipse 80% 26% at 12% 46%,rgba(18,43,73,.5) 0%,transparent 60%),
+    radial-gradient(ellipse 100% 30% at 60% 78%,rgba(18,43,73,.45) 0%,transparent 62%),
+    linear-gradient(180deg,#0B1D34 0%,#071526 30%,#0A1B30 58%,#050E1B 100%);
+  background-attachment:fixed}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+::selection{background:rgba(79,181,190,.28)}
+
+/* ---------- chrome ---------- */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 clamp(20px,4vw,60px);height:64px;background:rgba(5,14,27,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(79,181,190,.08)}
+.nav-links{display:flex;gap:24px;align-items:center}
+.nav-links a{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(234,239,245,.38);transition:color .2s;white-space:nowrap}
+.nav-links a:hover{color:rgba(234,239,245,.82)}
+.nav-wm{font-family:var(--serif);font-weight:400;font-size:19px;letter-spacing:.42em;text-indent:.42em;text-transform:uppercase;color:var(--pearl);text-align:center;white-space:nowrap}
+.nav-wm .o{color:var(--teal-d)}
+.nav-right{display:flex;gap:20px;align-items:center;justify-content:flex-end}
+.nav-right a{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(234,239,245,.38);transition:color .2s}
+.nav-right a:hover{color:rgba(234,239,245,.82)}
+.nav-right .enquire{border:1px solid rgba(79,181,190,.28);padding:7px 16px;color:rgba(79,181,190,.8);transition:border-color .2s,color .2s}
+.nav-right .enquire:hover{border-color:var(--teal);color:var(--teal)}
+.nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;z-index:201}
+.nav-burger span{display:block;width:22px;height:1.5px;background:rgba(234,239,245,.65);transition:transform .3s,opacity .3s}
+.nav-burger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.nav-burger.open span:nth-child(2){opacity:0}
+.nav-burger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mobile-menu{position:fixed;inset:0;z-index:200;background:rgba(5,14,27,.97);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);opacity:0;pointer-events:none;transition:opacity .35s;display:flex;align-items:center;justify-content:center;overflow-y:auto}
+.mobile-menu.open{opacity:1;pointer-events:auto}
+.mobile-menu-scroll{display:flex;flex-direction:column;align-items:center;padding:88px 24px 56px}
+.mobile-menu a{font-family:var(--serif);font-weight:300;font-size:clamp(26px,5.6vw,40px);color:rgba(234,239,245,.55);padding:10px 0;letter-spacing:.08em;text-align:center;transition:color .2s}
+.mobile-menu a:hover{color:var(--pearl)}
+.mobile-menu a.av{color:rgba(79,181,190,.65)}
+.mobile-menu .m-rule{width:32px;height:1px;background:linear-gradient(90deg,transparent,rgba(200,164,94,.3),transparent);margin:20px 0}
+.mobile-menu .m-enquire{font-family:var(--sans);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:rgba(79,181,190,.72);padding:8px 0}
+@media(max-width:768px){.nav-links{display:none}.nav-right a{display:none}.nav-burger{display:flex}}
+.nav-dropdown{position:relative;display:flex;align-items:center}
+.nav-dropdown-trigger{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;white-space:nowrap;cursor:pointer;display:flex;align-items:center;gap:5px;color:rgba(234,239,245,.38);transition:color .2s}
+.nav-dropdown-trigger.av-t{color:rgba(79,181,190,.62)}
+.nav-dropdown:hover .nav-dropdown-trigger{color:rgba(234,239,245,.82)}
+.nav-dropdown:hover .nav-dropdown-trigger.av-t{color:rgba(79,181,190,.95)}
+.nav-dropdown-chevron{opacity:.42;transition:transform .28s;flex-shrink:0}
+.nav-dropdown:hover .nav-dropdown-chevron{transform:rotate(180deg)}
+.nav-dropdown-panel{position:absolute;top:calc(100% + 18px);left:50%;transform:translateX(-50%) translateY(-6px);background:rgba(6,16,30,.97);border:1px solid rgba(79,181,190,.16);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);min-width:200px;padding:16px 0;opacity:0;pointer-events:none;transition:opacity .22s,transform .22s;z-index:300}
+.nav-dropdown:hover .nav-dropdown-panel{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+.nav-dropdown-panel::before{content:'';position:absolute;top:-18px;left:0;right:0;height:18px}
+.nav-dp-header{font-size:8px;letter-spacing:.28em;text-transform:uppercase;color:rgba(200,164,94,.38);padding:0 18px 12px;border-bottom:1px solid rgba(79,181,190,.08);margin-bottom:6px}
+.nav-dp-item{display:flex;align-items:baseline;gap:9px;padding:6px 18px;transition:background .15s}
+.nav-dp-item:hover{background:rgba(79,181,190,.05)}
+.nav-dp-num{font-family:var(--serif);font-size:11px;font-style:italic;color:rgba(234,239,245,.2);width:26px;flex-shrink:0}
+.nav-dp-name{font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(234,239,245,.5);transition:color .15s}
+.nav-dp-item:hover .nav-dp-name{color:var(--pearl)}
+.nav-dp-sub{display:block;font-size:8.5px;letter-spacing:.12em;text-transform:none;color:rgba(234,239,245,.3);margin-top:2px;font-weight:300}
+
+/* ---------- the stream ----------
+   One column, one scroll. Nothing is a section; the page is a single read and
+   the photographs sit inside the reading rather than interrupting it. */
+.stream{max-width:1080px;margin:0 auto;padding:clamp(92px,13vw,150px) clamp(20px,5vw,56px) 0;
+  position:relative;z-index:2}
+.stream>*{margin-bottom:clamp(22px,3.2vw,42px)}
+.stream>.gap{margin-bottom:clamp(44px,7vw,96px)}
+
+/* voices */
+.lead{font-family:var(--cur);font-weight:400;line-height:.88;letter-spacing:.004em;
+  color:var(--teal);font-size:clamp(54px,12.5vw,142px)}
+.line{font-family:var(--cur);font-weight:400;line-height:.92;
+  color:rgba(234,239,245,.92);font-size:clamp(38px,7.2vw,86px)}
+.line.teal{color:var(--teal)}
+.line.gold{color:rgba(200,164,94,.86)}
+.say{font-family:var(--cur);font-weight:400;line-height:1;
+  color:rgba(200,164,94,.8);font-size:clamp(26px,4.4vw,46px)}
+.wht{font-family:var(--serif);font-style:italic;font-weight:300;line-height:1.28;
+  color:rgba(234,239,245,.72);font-size:clamp(21px,3.4vw,38px);max-width:22ch}
+p.txt{font-size:clamp(15.5px,1.55vw,17px);line-height:1.9;color:rgba(234,239,245,.7);
+  max-width:60ch}
+p.txt em{font-style:italic;color:rgba(234,239,245,.94)}
+p.txt+p.txt{margin-top:-.6em}
+.tick{font-family:var(--sans);font-size:9px;font-weight:500;letter-spacing:.4em;
+  text-transform:uppercase;color:rgba(200,164,94,.5)}
+.tick.t{color:rgba(79,181,190,.5)}
+.indent{margin-left:clamp(0px,7vw,120px)}
+.right{text-align:right}
+.mid{text-align:center}
+
+/* photographs in the stream */
+figure{position:relative}
+figure img{width:100%;height:auto;mix-blend-mode:screen;opacity:.72;
+  -webkit-mask-image:
+    radial-gradient(ellipse 66% 66% at 50% 48%,#000 26%,rgba(0,0,0,.8) 50%,rgba(0,0,0,.32) 72%,transparent 92%),
+    linear-gradient(to right,transparent 0,#000 15%,#000 85%,transparent 100%),
+    linear-gradient(to bottom,transparent 0,#000 13%,#000 87%,transparent 100%);
+  -webkit-mask-composite:source-in;
+  mask-image:
+    radial-gradient(ellipse 66% 66% at 50% 48%,#000 26%,rgba(0,0,0,.8) 50%,rgba(0,0,0,.32) 72%,transparent 92%),
+    linear-gradient(to right,transparent 0,#000 15%,#000 85%,transparent 100%),
+    linear-gradient(to bottom,transparent 0,#000 13%,#000 87%,transparent 100%);
+  mask-composite:intersect}
+figure.raw img{mix-blend-mode:normal;opacity:1}
+figure.f40 img{opacity:.4}
+figure.f55 img{opacity:.55}
+figure.f88 img{opacity:.88}
+
+/* a photograph set beside the text, never inside its measure */
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,64px);align-items:center}
+.pair.flip>figure{order:2}
+.pair .col{min-width:0}
+.pair .col p.txt{max-width:none}
+.pair .col p.txt+p.txt{margin-top:1.1em}
+.fig-wide{width:min(100%,900px);margin-left:auto;margin-right:auto}
+.fig-off{width:min(74%,700px);margin-left:auto}
+.fig-off-l{width:min(74%,700px);margin-right:auto}
+
+/* the run of work */
+.run{display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(4px,1.2vw,16px);
+  max-width:1180px;margin-left:auto;margin-right:auto}
+.run img{width:100%;height:auto;mix-blend-mode:screen;opacity:.6;
+  -webkit-mask-image:radial-gradient(ellipse 64% 64% at 50% 50%,#000 24%,rgba(0,0,0,.62) 50%,transparent 86%);
+  mask-image:radial-gradient(ellipse 64% 64% at 50% 50%,#000 24%,rgba(0,0,0,.62) 50%,transparent 86%)}
+.run img:nth-child(3n){opacity:.42}
+.run img:nth-child(4n){opacity:.76}
+@media(max-width:760px){.run{grid-template-columns:repeat(3,1fr)}}
+
+/* the hardness figures */
+.scale{display:flex;gap:clamp(24px,5vw,58px);align-items:flex-end}
+.scale>div{line-height:.76}
+.scale .n{font-family:var(--serif);font-weight:300;font-size:clamp(56px,10vw,120px);display:block}
+.scale .n.f{color:rgba(79,181,190,.62)}
+.scale .tick{display:block;margin-top:clamp(8px,1.2vw,14px)}
+.scale .vs{font-family:var(--cur);font-size:clamp(24px,3.6vw,42px);
+  color:rgba(234,239,245,.3);padding-bottom:clamp(12px,1.8vw,24px)}
+
+.hair{height:1px;background:linear-gradient(90deg,transparent,rgba(200,164,94,.3),transparent)}
+
+footer{position:relative;z-index:2;text-align:center;
+  padding:clamp(48px,8vw,84px) clamp(20px,5vw,56px) clamp(48px,7vw,80px)}
+footer .f-wm{font-family:var(--serif);font-size:15px;letter-spacing:.42em;text-indent:.42em;
+  text-transform:uppercase;color:rgba(234,239,245,.4);display:block}
+footer .f-wm .o{color:var(--teal-d)}
+footer .f-links{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+footer .f-links a{font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(234,239,245,.34);transition:color .2s;min-height:44px;display:flex;align-items:center}
+footer .f-links a:hover{color:rgba(234,239,245,.75)}
+
+@media(max-width:760px){
+  body{background-attachment:scroll}
+  .pair{grid-template-columns:1fr;gap:clamp(16px,5vw,28px)}
+  .pair.flip>figure{order:0}
+  .fig-off,.fig-off-l{width:100%}
+  .indent{margin-left:0}
+  .right{text-align:left}
+  p.txt{max-width:none}
+  .wht{max-width:none}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="/portfolio/">Our Work</a>
+    <div class="nav-dropdown">
+      <a class="nav-dropdown-trigger" href="/hardscape-gallery.html">Masonry <svg class="nav-dropdown-chevron" width="7" height="5" viewBox="0 0 7 5" fill="none"><path d="M.5 1L3.5 4l3-3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></a>
+      <div class="nav-dropdown-panel">
+        <p class="nav-dp-header">Two ends of one material</p>
+        <a href="/hardscape-gallery.html" class="nav-dp-item"><span class="nav-dp-num">I</span><span class="nav-dp-name">Hardscape<span class="nav-dp-sub">Patios, walls, walkways</span></span></a>
+        <a href="/crystals/" class="nav-dp-item"><span class="nav-dp-num">II</span><span class="nav-dp-name">Crystal<span class="nav-dp-sub">Selected work</span></span></a>
+      </div>
+    </div>
+    <a href="/blog">Journal</a>
+    <a href="/contact.html">Contact Us</a>
+    <div class="nav-dropdown">
+      <a class="nav-dropdown-trigger av-t" href="/sculptures.html">&Aacute;guas Vivas <svg class="nav-dropdown-chevron" width="7" height="5" viewBox="0 0 7 5" fill="none"><path d="M.5 1L3.5 4l3-3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></a>
+      <div class="nav-dropdown-panel">
+        <p class="nav-dp-header">Collection 003 &nbsp;&middot;&nbsp; Eleven Works</p>
+        <a href="/sculptures.html" class="nav-dp-item"><span class="nav-dp-num">&mdash;</span><span class="nav-dp-name">Enter the collection</span></a>
+      </div>
+    </div>
+  </div>
+  <a href="/index.html" class="nav-wm">PHA<span class="o">&Ouml;</span>RA</a>
+  <div class="nav-right">
+    <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <a href="/portfolio/">Studio</a>
+    <a href="mailto:phaoraco@gmail.com">Email us</a>
+    <a href="/estimate/" class="enquire">Price it now &rarr;</a>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-scroll">
+    <a href="/index.html">Home</a>
+    <a href="/portfolio/">Our Work</a>
+    <a href="/hardscape-gallery.html">Hardscape</a>
+    <a href="/crystals/">Crystal</a>
+    <div class="m-rule"></div>
+    <a href="/blog">Journal</a>
+    <a href="/sculptures.html" class="av">&Aacute;guas Vivas</a>
+    <a href="/contact.html">Contact Us</a>
+    <div class="m-rule"></div>
+    <a href="/estimate/" class="m-enquire">Price your project &rarr;</a>
+  </div>
+</div>
+<main class="stream">
+
+  <p class="tick">Pha&ouml;ra &nbsp;&middot;&nbsp; Minas Gerais &nbsp;&middot;&nbsp; Selected work</p>
+  <h1 class="lead">Before it<br>was stone</h1>
+  <p class="wht indent">it was water, and a room<br>with nothing in it.</p>
+
+  <figure class="fig-wide raw gap"><img src="/assets/crystals/oracle.webp" width="1100" height="1100" alt="" decoding="async"></figure>
+
+  <p class="txt">Lava cools from the outside in. Gas trapped inside has nowhere to go, and what it leaves behind is a cavity &mdash; a void in solid rock, closed, empty, and in no hurry at all.</p>
+  <p class="txt">Then water finds it. Water carrying dissolved silica, moving so slowly that <em>moving</em> is a generous word for it, working through basalt across a span of time not worth trying to picture.</p>
+
+  <p class="line right indent">a room, sealed</p>
+
+  <div class="pair flip">
+    <figure class="fig-wide"><img src="/assets/crystals/ezio-e-presa.webp" width="1100" height="1100" alt="" loading="lazy" decoding="async"></figure>
+    <div class="col">
+      <p class="txt">The silica comes out of solution at the wall and starts building inward. Crystal by crystal, the room fills toward its own centre.</p>
+      <p class="txt">It has no plan and no hurry. It only has a wall to start from, and a middle to work toward.</p>
+    </div>
+  </div>
+
+  <p class="lead mid gap">and it begins,<br>at the wall, to build inward</p>
+
+  <figure class="fig-wide f55 gap"><img src="/assets/crystals/lapis.webp" width="1100" height="1100" alt="" loading="lazy" decoding="async"></figure>
+
+  <p class="tick">The purple</p>
+  <div class="pair">
+    <figure class="fig-wide"><img src="/assets/crystals/diviner.webp" width="1100" height="1100" alt="" loading="lazy" decoding="async"></figure>
+    <div class="col">
+      <p class="txt">Iron came in with the water, and the ground around it was radioactive enough to do the rest. That is all amethyst is &mdash; quartz with iron in it, that sat in the dark long enough for the dark to colour it.</p>
+      <p class="txt">The deepest purple sits at the tip, where the crystal grew last and slowest. Split one open and you can read its own calendar off the wall: pale where it started, saturated where it stopped.</p>
+    </div>
+  </div>
+
+  <p class="line teal right">colour is damage</p>
+
+  <p class="wht gap">And then it stops. Not because it was finished.</p>
+  <p class="lead">it ran out of room</p>
+
+  <figure class="fig-off f55 gap"><img src="/assets/crystals/seraph.webp" width="1100" height="1100" alt="" loading="lazy" decoding="async"></figure>
+
+  <p class="tick t">The turn</p>
+  <p class="txt">A mason spends his working life arguing with rock about where it wants to break. The bed. The grain. The face that will take a chisel, and the face that will shatter if you ask it to.</p>
+  <p class="txt">After enough years you can look at a stone on a pallet and know, before you touch it, which way it opens.</p>
+  <div class="pair flip">
+    <figure class="f55"><img src="/assets/crystals/meridian.webp" width="1100" height="1100" alt="" loading="lazy" decoding="async"></figure>
+    <div class="col">
+      <p class="txt">That skill has no idea what scale it is working at. Point it at a two-ton step and it sets a step. Point it at a geode and it does exactly the same thing &mdash; reads the grain, finds the face, takes only what the stone is offering, and stops.</p>
+    </div>
+  </div>
+
+  <p class="line">same eye,<br><span class="teal" style="color:var(--teal)">different magnification</span></p>
+
+  <p class="wht gap">Most stone stops light.</p>
+  <p class="txt">That is the whole point of it. A wall is a thing light does not get through, which is why a mason thinks in shadow, in reveal, in what a chamfer does with a low sun in October.</p>
+  <p class="txt">These do the opposite. Light goes <em>into</em> them and comes back out somewhere else, and the carving has to be planned around it. Cut a wing too thin and it glows. Cut it too thick and it goes dead.</p>
+
+  <figure class="fig-off-l f40"><img src="/assets/crystals/emissary.webp" width="1100" height="1100" alt="" loading="lazy" decoding="async"></figure>
+
+  <p class="line gold mid gap">the one problem<br>a wall never gives you</p>
+
+  <div class="pair flip">
+    <figure class="raw"><img src="/assets/crystals/maresia.webp" width="1100" height="1100" alt="" loading="lazy" decoding="async"></figure>
+    <div class="col">
+      <div class="scale" style="margin-bottom:clamp(18px,2.6vw,30px)">
+        <div><span class="n">7</span><span class="tick">Quartz</span></div>
+        <span class="vs">against</span>
+        <div><span class="n f">4</span><span class="tick t">Fluorite</span></div>
+      </div>
+      <p class="txt">Fluorite cleaves perfectly in four directions at once, so there is no forgiving pass &mdash; one stroke with too much weight behind it takes a corner off, and there is no putting it back. It is why so little of it is ever carved into anything.</p>
+      <p class="txt">This one was not carved. It was lit, set on a stand, and left exactly as it came out of the ground.</p>
+    </div>
+  </div>
+
+  <p class="line">already finished</p>
+  <p class="txt">Someone looked at it and decided that. It is the harder decision.</p>
+
+  <p class="say gap">and then, once,</p>
+  <p class="wht">not a bird at all.</p>
+  <div class="pair">
+    <figure class="fig-wide"><img src="/assets/crystals/vigil.webp" width="1100" height="1100" alt="" loading="lazy" decoding="async"></figure>
+    <div class="col">
+      <p class="txt">A vessel in pale blue-green stone, gold-brown veining running through it, and nothing else asked of it. No wings, no geode, no argument. Just the shape a bowl wants to be when the stone is allowed a say in it.</p>
+    </div>
+  </div>
+
+  <div class="gap" style="text-align:center;padding-top:clamp(28px,5vw,56px)">
+    <p class="tick">Selected work &nbsp;&middot;&nbsp; Minas Gerais</p>
+    <div class="hair" style="width:clamp(80px,16vw,150px);margin:clamp(18px,2.6vw,26px) auto 0"></div>
+  </div>
+  <div class="run gap">
+    <img src="/assets/crystals/rose-oracle.webp" width="1100" height="1100" alt="" loading="lazy" decoding="async"><img src="/assets/crystals/harvest.webp" width="1100" height="1100" alt="" loading="lazy" decoding="async"><img src="/assets/crystals/quartz-twin.webp" width="1100" height="1100" alt="" loading="lazy" decoding="async"><img src="/assets/crystals/sanctum.webp" width="1100" height="1100" alt="" loading="lazy" decoding="async"><img src="/assets/crystals/luminary.webp" width="1100" height="1100" alt="" loading="lazy" decoding="async"><img src="/assets/crystals/onyx-pair.webp" width="1100" height="1100" alt="" loading="lazy" decoding="async"><img src="/assets/crystals/opal.webp" width="1100" height="1100" alt="" loading="lazy" decoding="async"><img src="/assets/crystals/garnet.webp" width="1100" height="1100" alt="" loading="lazy" decoding="async"><img src="/assets/crystals/rose-duet.webp" width="1100" height="1100" alt="" loading="lazy" decoding="async"><img src="/assets/crystals/violet.webp" width="1100" height="1100" alt="" loading="lazy" decoding="async"><img src="/assets/crystals/sky-pair.webp" width="1100" height="1100" alt="" loading="lazy" decoding="async"><img src="/assets/crystals/covenant.webp" width="1100" height="1100" alt="" loading="lazy" decoding="async"><img src="/assets/crystals/ember.webp" width="1100" height="1100" alt="" loading="lazy" decoding="async"><img src="/assets/crystals/solara.webp" width="1100" height="1100" alt="" loading="lazy" decoding="async"><img src="/assets/crystals/orchid.webp" width="1100" height="1100" alt="" loading="lazy" decoding="async"><img src="/assets/crystals/pilgrim.webp" width="1100" height="1100" alt="" loading="lazy" decoding="async"><img src="/assets/crystals/amethyst-crown.webp" width="1100" height="1100" alt="" loading="lazy" decoding="async"><img src="/assets/crystals/gilded-pair.webp" width="1100" height="1100" alt="" loading="lazy" decoding="async"><img src="/assets/crystals/consort.webp" width="1100" height="1100" alt="" loading="lazy" decoding="async"><img src="/assets/crystals/mariner.webp" width="1100" height="1100" alt="" loading="lazy" decoding="async"><img src="/assets/crystals/aurora.webp" width="1100" height="1100" alt="" loading="lazy" decoding="async"><img src="/assets/crystals/reverie.webp" width="1100" height="1100" alt="" loading="lazy" decoding="async"><img src="/assets/crystals/obsidian.webp" width="1100" height="1100" alt="" loading="lazy" decoding="async"><img src="/assets/crystals/rose-solo.webp" width="1100" height="1100" alt="" loading="lazy" decoding="async">
+  </div>
+
+  <p class="wht">Nothing here goes in a driveway.</p>
+  <p class="txt">But it is the same hands and the same question asked twice: <em>where do you stop removing material.</em> A terrace gets walked on for forty years. A carving gets looked at. Only one of the two forgives you.</p>
+
+  <figure class="fig-wide raw gap"><img src="/assets/crystals/beacon.webp" width="1100" height="1100" alt="" loading="lazy" decoding="async"></figure>
+
+  <p class="lead mid gap">where you stop</p>
+
+</main>
+
+<footer>
+  <a href="/index.html" class="f-wm">PHA<span class="o">&Ouml;</span>RA</a>
+  <div class="f-links">
+    <a href="/hardscape-gallery.html">Hardscape</a>
+    <a href="/portfolio/">Our Work</a>
+    <a href="/blog">Journal</a>
+    <a href="/contact.html">Contact</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var b=document.getElementById('navBurger'),m=document.getElementById('mobileMenu');
+  if(!b||!m)return;
+  b.addEventListener('click',function(){
+    var o=m.classList.toggle('open');b.classList.toggle('open',o);
+    b.setAttribute('aria-expanded',o?'true':'false');
+    document.body.style.overflow=o?'hidden':'';
+  });
+  m.addEventListener('click',function(e){
+    if(e.target.tagName==='A'){m.classList.remove('open');b.classList.remove('open');
+      b.setAttribute('aria-expanded','false');document.body.style.overflow='';}
+  });
+})();
+</script>
+</body>
+</html>
