@@ -12,7 +12,7 @@
         4,
         8
       ],
-      "price_usd": 5900,
+      "price_usd": 0,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -40,7 +40,7 @@
         4,
         8
       ],
-      "price_usd": 5600,
+      "price_usd": 0,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -68,7 +68,7 @@
         4,
         8
       ],
-      "price_usd": 9200,
+      "price_usd": 0,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -96,7 +96,7 @@
         4,
         8
       ],
-      "price_usd": 5400,
+      "price_usd": 0,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -124,7 +124,7 @@
         4,
         8
       ],
-      "price_usd": 14500,
+      "price_usd": 0,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -152,7 +152,7 @@
         4,
         8
       ],
-      "price_usd": 4200,
+      "price_usd": 0,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -180,7 +180,7 @@
         4,
         8
       ],
-      "price_usd": 13500,
+      "price_usd": 0,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -208,7 +208,7 @@
         4,
         8
       ],
-      "price_usd": 8500,
+      "price_usd": 0,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -236,7 +236,7 @@
         4,
         8
       ],
-      "price_usd": 12500,
+      "price_usd": 0,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -264,7 +264,7 @@
         4,
         8
       ],
-      "price_usd": 8800,
+      "price_usd": 0,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -292,7 +292,7 @@
         4,
         8
       ],
-      "price_usd": 6200,
+      "price_usd": 0,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -320,7 +320,7 @@
         4,
         8
       ],
-      "price_usd": 7900,
+      "price_usd": 0,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -348,7 +348,7 @@
         4,
         8
       ],
-      "price_usd": 19500,
+      "price_usd": 0,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -376,7 +376,7 @@
         4,
         8
       ],
-      "price_usd": 9800,
+      "price_usd": 0,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -395,7 +395,7 @@
     {
       "slug": "maresia",
       "name": "The Maresia",
-      "species": "Macaw",
+      "species": "Specimen",
       "base_material": "",
       "base_size_lbs": 0,
       "wingspan_inches": 0,
@@ -404,7 +404,7 @@
         4,
         8
       ],
-      "price_usd": 32000,
+      "price_usd": 0,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -432,7 +432,7 @@
         4,
         8
       ],
-      "price_usd": 11500,
+      "price_usd": 0,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -460,7 +460,7 @@
         4,
         8
       ],
-      "price_usd": 5100,
+      "price_usd": 0,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -488,7 +488,7 @@
         4,
         8
       ],
-      "price_usd": 6700,
+      "price_usd": 0,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -516,7 +516,7 @@
         4,
         8
       ],
-      "price_usd": 7400,
+      "price_usd": 0,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -544,7 +544,7 @@
         4,
         8
       ],
-      "price_usd": 9500,
+      "price_usd": 0,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -572,7 +572,7 @@
         4,
         8
       ],
-      "price_usd": 7600,
+      "price_usd": 0,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -600,7 +600,7 @@
         4,
         8
       ],
-      "price_usd": 4600,
+      "price_usd": 0,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -628,7 +628,7 @@
         4,
         8
       ],
-      "price_usd": 8200,
+      "price_usd": 0,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -656,7 +656,7 @@
         4,
         8
       ],
-      "price_usd": 15500,
+      "price_usd": 0,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -684,7 +684,7 @@
         4,
         8
       ],
-      "price_usd": 10500,
+      "price_usd": 0,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -712,7 +712,7 @@
         4,
         8
       ],
-      "price_usd": 6500,
+      "price_usd": 0,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -740,7 +740,7 @@
         4,
         8
       ],
-      "price_usd": 3800,
+      "price_usd": 0,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -768,7 +768,7 @@
         4,
         8
       ],
-      "price_usd": 11000,
+      "price_usd": 0,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -796,7 +796,7 @@
         4,
         8
       ],
-      "price_usd": 7200,
+      "price_usd": 0,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -824,7 +824,7 @@
         4,
         8
       ],
-      "price_usd": 24000,
+      "price_usd": 0,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -856,7 +856,7 @@
         4,
         8
       ],
-      "price_usd": 6900,
+      "price_usd": 0,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -884,7 +884,7 @@
         4,
         8
       ],
-      "price_usd": 16500,
+      "price_usd": 0,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -903,7 +903,7 @@
     {
       "slug": "vigil",
       "name": "The Vigil",
-      "species": "Macaw",
+      "species": "Chair",
       "base_material": "",
       "base_size_lbs": 0,
       "wingspan_inches": 0,
@@ -912,7 +912,7 @@
         4,
         8
       ],
-      "price_usd": 2900,
+      "price_usd": 0,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,
@@ -940,7 +940,7 @@
         4,
         8
       ],
-      "price_usd": 4900,
+      "price_usd": 0,
       "stripe_price_id": "",
       "is_sold": false,
       "is_featured": false,

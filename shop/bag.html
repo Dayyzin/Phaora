@@ -86,13 +86,14 @@ document.addEventListener('DOMContentLoaded', function(){
         '<div><div class="cart-name">'+it.name+'</div>'+
         '<div class="cart-sub">'+(it.sub||'')+'</div>'+
         '<button class="cart-drop" data-drop="'+it.slug+'">Remove</button></div>'+
-        '<div class="cart-price">'+(it.price?money(it.price):'By appointment')+'</div>'+
+        '<div class="cart-price">'+(it.price?money(it.price):'On request')+'</div>'+
       '</div>';
     });
 
-    var totalLabel = unpriced
-      ? money(total)+' <span style="font-size:11px;letter-spacing:.14em">+ '+unpriced+' by appointment</span>'
-      : money(total);
+    var totalLabel;
+    if(!total) totalLabel = '<span style="font-size:13px;letter-spacing:.18em;text-transform:uppercase">On request</span>';
+    else if(unpriced) totalLabel = money(total)+' <span style="font-size:11px;letter-spacing:.14em">+ '+unpriced+' on request</span>';
+    else totalLabel = money(total);
 
     // Every piece is one of one and crating is quoted per work, so the bag is
     // an enquiry list the studio prices — not a checkout that takes a card.

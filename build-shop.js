@@ -141,8 +141,11 @@ const pieces = catalog.pieces.map(p => {
 });
 
 const bySlug  = Object.fromEntries(pieces.map(p => [p.slug, p]));
-const species = [...new Set(pieces.map(p => p.species).filter(Boolean))]
+const speciesAll = [...new Set(pieces.map(p => p.species).filter(Boolean))]
   .sort((a, b) => pieces.filter(p => p.species === b).length - pieces.filter(p => p.species === a).length);
+/* A one-off form gets no tile and no filter button — it lives under Everything.
+   A row reading "Chair · 1 work" is a filter nobody needs. */
+const species = speciesAll.filter(s => pieces.filter(p => p.species === s).length > 1);
 const priced  = pieces.filter(p => p.price > 0).map(p => p.price);
 const lowest  = priced.length ? Math.min(...priced) : 0;
 
@@ -273,7 +276,7 @@ function card(p, depth = 0) {
   const up = '../'.repeat(depth);
   const priceHtml = p.price > 0
     ? `<div class="card-price">${money(p.price)}</div>`
-    : `<div class="card-price poa">By appointment</div>`;
+    : `<div class="card-price poa">On request</div>`;
   const sub = [p.species, p.material].filter(Boolean).join(' &middot; ');
   const bag = p.sold
     ? ''
@@ -376,8 +379,8 @@ ${filters}
     <span class="filter-spacer"></span>
     <select class="sortsel" id="sort" aria-label="Order the works">
       <option value="as-hung">As hung</option>
-      <option value="price-desc">Price, high to low</option>
-      <option value="price-asc">Price, low to high</option>
+      ${priced.length > 1 ? `<option value="price-desc">Price, high to low</option>
+      <option value="price-asc">Price, low to high</option>` : ''}
       <option value="name">Name</option>
     </select>
   </div>
@@ -544,7 +547,7 @@ function buildPieces() {
 
     const priceBlock = p.price > 0
       ? `<div class="pdp-price">${money(p.price)}</div>`
-      : `<div class="pdp-price poa">By appointment</div>`;
+      : `<div class="pdp-price poa">Price on request</div>`;
 
     const action = p.sold
       ? `<button class="solid-btn" disabled>Acquired</button>`
@@ -661,13 +664,14 @@ document.addEventListener('DOMContentLoaded', function(){
         '<div><div class="cart-name">'+it.name+'</div>'+
         '<div class="cart-sub">'+(it.sub||'')+'</div>'+
         '<button class="cart-drop" data-drop="'+it.slug+'">Remove</button></div>'+
-        '<div class="cart-price">'+(it.price?money(it.price):'By appointment')+'</div>'+
+        '<div class="cart-price">'+(it.price?money(it.price):'On request')+'</div>'+
       '</div>';
     });
 
-    var totalLabel = unpriced
-      ? money(total)+' <span style="font-size:11px;letter-spacing:.14em">+ '+unpriced+' by appointment</span>'
-      : money(total);
+    var totalLabel;
+    if(!total) totalLabel = '<span style="font-size:13px;letter-spacing:.18em;text-transform:uppercase">On request</span>';
+    else if(unpriced) totalLabel = money(total)+' <span style="font-size:11px;letter-spacing:.14em">+ '+unpriced+' on request</span>';
+    else totalLabel = money(total);
 
     // Every piece is one of one and crating is quoted per work, so the bag is
     // an enquiry list the studio prices — not a checkout that takes a card.
