@@ -838,7 +838,11 @@
         "weight_lbs_total": 0,
         "finish": ""
       },
-      "added_at": "2026-04-26"
+      "added_at": "2026-04-26",
+      "tone": {
+        "saturate": 0.82,
+        "brightness": 0.94
+      }
     },
     {
       "slug": "sky-pair",
