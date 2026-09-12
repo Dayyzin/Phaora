@@ -131,7 +131,7 @@ function page(w, idx) {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">${w.revealed ? '' : '\n<meta name="robots" content="noindex,follow">'}
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="${w.name} — ${w.tr}. Work ${w.num} of eleven. Águas Vivas · Collection 003 by Phaöra. Hand-carved crystal from the mountains of Minas Gerais.">
 <meta property="og:title" content="${w.name} — PHAÖRA · Águas Vivas">
 <meta property="og:description" content="${w.tr}. Work ${w.num} of eleven. One of one. Private inquiry only.">

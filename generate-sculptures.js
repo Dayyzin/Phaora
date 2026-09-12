@@ -3,7 +3,6 @@
 // Uses .angle-map.json to reorder photos when available; falls back to filename order.
 const fs   = require('fs');
 const path = require('path');
-const { narrativeFor, coverage } = require('./piece-narratives');
 
 const ROOT          = __dirname;
 const SCULPTURES    = path.join(ROOT, 'assets/sculptures');
@@ -32,19 +31,6 @@ const GRID_SPECS = [
   [4, 3],   // 10
   [12, 4],  // 11 editorial wide
 ];
-
-function escAttr(str) {
-  return str.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
-}
-
-// Trim to whole sentences under `max`, falling back to a word-boundary cut so a
-// description never ends mid-word.
-function clampSentence(text, max) {
-  if (text.length <= max) return text;
-  const firstStop = text.indexOf('. ');
-  if (firstStop > 0 && firstStop + 1 <= max) return text.slice(0, firstStop + 1);
-  return text.slice(0, text.lastIndexOf(' ', max - 1)).replace(/[,;:]$/, '') + '…';
-}
 
 function titleCase(slug) {
   return slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
@@ -111,20 +97,6 @@ pieces.forEach((piece, idx) => {
     return `    <div class="g-tile" style="grid-column:span ${col};grid-row:span ${row}" data-cap="${cap}"><img src="${src}" alt="${displayName} — view ${i + 1}" loading="${i === 0 ? 'eager' : 'lazy'}"><div class="g-caption">${cap}</div></div>`;
   }).join('\n');
 
-  // ── narrative ───────────────────────────────────────────────────────────────
-  // Written from the piece's own photographs (see piece-narratives.js). Absent a
-  // narrative the page keeps the placeholder rather than borrowing another piece's.
-  const narrative = narrativeFor(slug);
-  const editorialHtml = narrative
-    ? `<h2>${narrative.heading}</h2>\n` +
-      narrative.body.map(p => `      <p>${p}</p>`).join('\n')
-    : `<p style="font-family:var(--serif);font-style:italic;font-size:16px;color:rgba(232,220,196,0.6);font-variation-settings:'opsz' 18">Full piece narrative forthcoming. By appointment.</p>`;
-
-  // The description is the piece's own opening sentence, so no two pages share one.
-  const metaDescription = narrative
-    ? clampSentence(narrative.body[0], 155)
-    : `${displayName} — one of one crystal sculpture. Hand-carved in Minas Gerais, Brazil. By appointment.`;
-
   // ── HTML ─────────────────────────────────────────────────────────────────────
   const html = `<!DOCTYPE html>
 <html lang="en">
@@ -133,10 +105,10 @@ pieces.forEach((piece, idx) => {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PHAÖRA — ${displayName} · ${priceDisplay}</title>
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
-<meta name="description" content="${escAttr(metaDescription)}">
+<meta name="description" content="${displayName} — one of one crystal sculpture. Hand-carved in Minas Gerais, Brazil. By appointment.">
 <meta property="og:type" content="product">
 <meta property="og:title" content="${displayName} — PHAÖRA">
-<meta property="og:description" content="${escAttr(metaDescription)}">
+<meta property="og:description" content="One of one. Hand-mined in Minas Gerais. By appointment.">
 <meta property="og:image" content="https://phaora.com/assets/sculptures/${slug}/${heroPhoto}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -292,7 +264,7 @@ body{font-family:var(--sans);color:var(--bone);background:var(--ink);overflow-x:
       <a href="mailto:david@phaora.com?subject=${subjectEnc}" class="mc-cta">Inquire about this piece</a>
     </div>
     <div class="editorial">
-      ${editorialHtml}
+      <p style="font-family:var(--serif);font-style:italic;font-size:16px;color:rgba(232,220,196,0.6);font-variation-settings:'opsz' 18">Full piece narrative forthcoming. By appointment.</p>
     </div>
   </div>
 </section>
@@ -354,7 +326,4 @@ ${gridTiles}
   console.log(`  ${String(idx + 1).padStart(2)} ${slug}.html  (${photoCount} photos, ${mapNote})`);
 });
 
-const cov = coverage(slugs);
 console.log(`\nDone — ${pieces.length} pages written to pieces/`);
-console.log(`Narratives: ${cov.covered}/${cov.total}` + (cov.missing.length ? `  missing: ${cov.missing.join(', ')}` : ''));
-if (cov.missing.length) process.exitCode = 1;

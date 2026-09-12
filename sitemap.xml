@@ -12,48 +12,6 @@
   <url><loc>https://phaora.com/contact.html</loc><changefreq>yearly</changefreq><priority>0.8</priority></url>
   <url><loc>https://phaora.com/sculptures.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
 
-
-  <!-- pieces — the thirty-four one-of-one works, each with its own written page.
-       The two revealed Águas Vivas works are listed too; the nine still sealed
-       carry noindex and are deliberately absent. -->
-  <url><loc>https://phaora.com/av-alba-bianca.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://phaora.com/av-la-corte.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://phaora.com/pieces/amethyst-crown.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://phaora.com/pieces/aurora.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://phaora.com/pieces/beacon.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://phaora.com/pieces/consort.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://phaora.com/pieces/covenant.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://phaora.com/pieces/diviner.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://phaora.com/pieces/ember.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://phaora.com/pieces/emissary.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://phaora.com/pieces/ezio-e-presa.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://phaora.com/pieces/garnet.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://phaora.com/pieces/gilded-pair.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://phaora.com/pieces/harvest.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://phaora.com/pieces/lapis.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://phaora.com/pieces/luminary.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://phaora.com/pieces/maresia.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://phaora.com/pieces/mariner.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://phaora.com/pieces/meridian.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://phaora.com/pieces/obsidian.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://phaora.com/pieces/onyx-pair.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://phaora.com/pieces/opal.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://phaora.com/pieces/oracle.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://phaora.com/pieces/orchid.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://phaora.com/pieces/pilgrim.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://phaora.com/pieces/quartz-twin.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://phaora.com/pieces/rose-duet.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://phaora.com/pieces/rose-oracle.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://phaora.com/pieces/rose-solo.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://phaora.com/pieces/sanctum.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://phaora.com/pieces/reverie.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://phaora.com/pieces/seraph.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://phaora.com/pieces/sky-pair.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://phaora.com/pieces/solara.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://phaora.com/pieces/vigil.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://phaora.com/pieces/violet.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
-  <!-- /pieces -->
-
   <!-- towns -->
   <url><loc>https://phaora.com/service-area/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://phaora.com/masonry-weston-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
