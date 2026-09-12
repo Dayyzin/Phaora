@@ -37,7 +37,7 @@ const PHONE = '+15612991261';
    Pick one photographed against black — the hero plate screen-blends the shot
    into the page so the sculpture floats, and a shot with its own backdrop
    (a nebula, a studio sweep) will show as a rectangle instead. */
-const HERO_SLUG = 'seraph';
+const HERO_SLUG = 'ezio-e-presa';
 
 /* The six on the shop front, in order. Anything not found is skipped. */
 const FEATURED = ['seraph', 'solara', 'pilgrim', 'mariner', 'emissary', 'amethyst-crown'];
@@ -130,7 +130,6 @@ function head(title, desc, opts = {}) {
 ${opts.jsonld ? `<script type="application/ld+json">${JSON.stringify(opts.jsonld)}</script>` : ''}
 </head>
 <body>
-<canvas id="fleck" aria-hidden="true"></canvas>
 <div class="page">`;
 }
 

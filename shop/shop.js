@@ -1,82 +1,12 @@
 /* ==========================================================================
    PHAÖRA — Shop behaviour
-   Three things: the gold fleck field, the bag, and the mobile drawer.
+   Two things: the bag and the chrome (search panel, mobile drawer).
+   The gold flake field is CSS — a seamless tile on body, built by
+   build-flake-tile.js from the studio plate.
    No framework, no build step. The shop is static files on a CDN.
    ========================================================================== */
 (function () {
   'use strict';
-
-  /* ---------------------------------------------------------------- flecks */
-  /* The photography sits on a black field with gold flake suspended in it.
-     The page repeats that so the product images sit *in* the page rather than
-     on top of it. Drawn once to a fixed canvas — no animation loop, because a
-     60fps particle field on a product page is a battery bill, not a feature. */
-  function drawFlecks() {
-    var c = document.getElementById('fleck');
-    if (!c) return;
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    /* innerWidth/innerHeight rather than clientWidth: the canvas is fixed to
-       the viewport, and reading its own box before the first paint has settled
-       gives a collapsed size and a field crammed into one corner. */
-    var w = window.innerWidth || c.clientWidth;
-    var h = window.innerHeight || c.clientHeight;
-    if (!w || !h) return;
-    c.style.width = w + 'px'; c.style.height = h + 'px';
-    c.width = w * dpr; c.height = h * dpr;
-    var x = c.getContext('2d');
-    x.scale(dpr, dpr);
-    x.clearRect(0, 0, w, h);
-
-    /* the soft light from above */
-    var glow = x.createRadialGradient(w * 0.5, -h * 0.08, 0, w * 0.5, -h * 0.08, h * 0.55);
-    glow.addColorStop(0, 'rgba(201,167,106,0.13)');
-    glow.addColorStop(0.5, 'rgba(201,167,106,0.035)');
-    glow.addColorStop(1, 'rgba(201,167,106,0)');
-    x.fillStyle = glow;
-    x.fillRect(0, 0, w, h);
-
-    /* density scales with area so a phone is not carpeted */
-    var n = Math.round((w * h) / 5200);
-    n = Math.max(90, Math.min(n, 520));
-
-    for (var i = 0; i < n; i++) {
-      var px = Math.random() * w;
-      var py = Math.random() * h;
-      var r = Math.random();
-
-      if (r > 0.955) {
-        /* a flake — an irregular blob with a bloom, the ones you actually see */
-        var s = 3 + Math.random() * 5;
-        var b = x.createRadialGradient(px, py, 0, px, py, s * 2.6);
-        b.addColorStop(0, 'rgba(232,205,143,0.55)');
-        b.addColorStop(1, 'rgba(232,205,143,0)');
-        x.fillStyle = b;
-        x.beginPath(); x.arc(px, py, s * 2.6, 0, 6.283); x.fill();
-
-        x.fillStyle = 'rgba(227,201,139,' + (0.55 + Math.random() * 0.35).toFixed(2) + ')';
-        x.beginPath();
-        var pts = 5 + Math.floor(Math.random() * 3);
-        for (var p = 0; p < pts; p++) {
-          var a = (p / pts) * 6.283 + Math.random() * 0.6;
-          var rr = s * (0.55 + Math.random() * 0.75);
-          var vx = px + Math.cos(a) * rr, vy = py + Math.sin(a) * rr;
-          if (p === 0) x.moveTo(vx, vy); else x.lineTo(vx, vy);
-        }
-        x.closePath(); x.fill();
-      } else {
-        /* dust */
-        var d = 0.4 + Math.random() * 1.1;
-        x.fillStyle = 'rgba(201,167,106,' + (0.16 + Math.random() * 0.5).toFixed(2) + ')';
-        x.beginPath(); x.arc(px, py, d, 0, 6.283); x.fill();
-      }
-    }
-  }
-
-  var rt;
-  window.addEventListener('resize', function () {
-    clearTimeout(rt);
-    rt = setTimeout(drawFlecks, 220);
-  });
 
   /* ------------------------------------------------------------------- bag */
   var KEY = 'phaora_bag';
@@ -180,10 +110,7 @@
   });
 
   /* ------------------------------------------------------------------ boot */
-  function boot() { drawFlecks(); paint(); }
+  function boot() { paint(); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();
-  /* redraw once more after webfonts and images settle, in case the first pass
-     measured a viewport that was still being laid out */
-  window.addEventListener('load', drawFlecks);
 })();
