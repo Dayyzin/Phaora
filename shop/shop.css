@@ -386,8 +386,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 }
 
 /* --- responsive --------------------------------------------------------- */
+/* .grid.wide carries two classes, so every narrow override below has to name it
+   too or it keeps the auto-fill track and collapses to a single column. */
 @media(max-width:1080px){
-  .grid{grid-template-columns:repeat(2,1fr)}
+  .grid,.grid.wide{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:900px){
   .nav{grid-template-columns:auto 1fr auto;height:64px}
@@ -417,7 +419,11 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   .foot-bottom{justify-content:center;text-align:center}
 }
 @media(max-width:560px){
-  .grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .grid,.grid.wide{grid-template-columns:repeat(2,1fr);gap:12px}
+  .filters{gap:2px}
+  .fbtn{padding:11px 12px;letter-spacing:0.16em}
+  .filter-spacer{display:none}
+  .sortsel{width:100%;margin-top:8px}
   .card-body{padding:13px 13px 15px}
   .card-name{font-size:15px;padding-right:0}
   .card-sub{font-size:9.5px;padding-right:0;margin-bottom:9px}
