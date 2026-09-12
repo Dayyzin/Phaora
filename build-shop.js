@@ -290,6 +290,8 @@ function buildIndex() {
   </div>
 </section>
 
+<div class="spine" aria-hidden="true"></div>
+
 <!-- CATEGORIES -->
 <section class="cats-wrap">
   <div class="section-head"><h2>Shop by category</h2></div>
@@ -297,6 +299,8 @@ function buildIndex() {
 ${cats}
   </div>
 </section>
+
+<div class="spine" aria-hidden="true"></div>
 
 <!-- FEATURED -->
 <section>
@@ -310,6 +314,8 @@ ${featured.slice(0, 6).map(p => card(p)).join('\n')}
     </div>
   </div>
 </section>
+
+<div class="spine" aria-hidden="true"></div>
 
 <!-- THE DIFFERENCE -->
 <section class="band">
@@ -348,6 +354,8 @@ function buildCollection() {
   <h1 class="display">${pieces.length} works,<br>one of each</h1>
   <p>Carved from crystal drawn out of Minas Gerais. Nothing here is made twice${lowest ? `, and the collection opens at ${money(lowest)}` : ''}.</p>
 </header>
+
+<div class="spine" aria-hidden="true"></div>
 
 <div class="filters" id="filters">
 ${filters}
@@ -716,6 +724,8 @@ function buildJournal() {
   <h1 class="display">On the stone<br>and the cut</h1>
   <p>What the material is, why it behaves the way it does, and what that means for an object carved out of it.</p>
 </header>
+
+<div class="spine" aria-hidden="true"></div>
 
 <div class="jlist">
 ${items}
