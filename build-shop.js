@@ -160,11 +160,18 @@ function nav(here, depth = 0) {
     <a href="/blog"${on('journal')}>Journal</a>
   </div>
   <div class="nav-end">
-    <a href="${up}collection.html" class="icon-btn" aria-label="Search the collection">${ICON.search}</a>
+    <button class="icon-btn" data-search-open aria-label="Search the collection" aria-controls="searchbar" aria-expanded="false">${ICON.search}</button>
     <a href="mailto:${EMAIL}" class="icon-btn" aria-label="Contact the studio">${ICON.user}</a>
     <a href="${up}bag.html" class="icon-btn" aria-label="Bag">${ICON.bag}<span class="bag-count">0</span></a>
   </div>
 </nav>
+
+<div class="searchbar" id="searchbar">
+  <form action="${up}collection.html" method="get" role="search">
+    <input type="search" name="q" id="searchInput" placeholder="Search the collection&hellip;" autocomplete="off" aria-label="Search the collection">
+    <button type="submit">Search</button>
+  </form>
+</div>
 
 <div class="drawer" id="drawer">
   <button class="icon-btn drawer-close" data-drawer-close aria-label="Close">${ICON.close}</button>
@@ -345,6 +352,7 @@ function buildCollection() {
 
 <div class="filters" id="filters">
 ${filters}
+  <span class="qchip" id="qchip" hidden>Search <b id="qterm"></b><button type="button" id="qclear" aria-label="Clear the search">&times;</button></span>
   <span class="filter-spacer"></span>
   <select class="sortsel" id="sort" aria-label="Order the collection">
     <option value="as-hung">As hung</option>
@@ -357,20 +365,39 @@ ${filters}
 <div class="grid-wrap">
   <div class="grid wide" id="grid">
 ${pieces.map(p => card(p).replace('<article class="card', `<article data-species="${esc(p.species)}" data-price="${p.price}" data-name="${esc(p.name)}" class="card`)).join('\n')}
+    <p class="empty" id="empty" hidden>No work matches that.</p>
   </div>
 </div>
 
 <script>
 (function(){
   var grid=document.getElementById('grid');
-  var cards=[].slice.call(grid.children);
+  var empty=document.getElementById('empty');
+  var cards=[].slice.call(grid.querySelectorAll('.card'));
   var order=cards.slice();
-  var current='all';
+  var chip=document.getElementById('qchip'), term=document.getElementById('qterm');
+  var current='all', query='';
 
   function apply(){
+    var shown=0;
     cards.forEach(function(c){
-      c.hidden = current!=='all' && c.getAttribute('data-species')!==current;
+      var okSpecies = current==='all' || c.getAttribute('data-species')===current;
+      var hay=(c.getAttribute('data-name')+' '+c.getAttribute('data-species')).toLowerCase();
+      var okQuery = !query || hay.indexOf(query)!==-1;
+      var ok = okSpecies && okQuery;
+      c.hidden=!ok;
+      if(ok) shown++;
     });
+    empty.hidden = shown>0;
+    chip.hidden = !query;
+    term.textContent = query;
+  }
+
+  function sync(){
+    var u=new URL(location);
+    current==='all' ? u.searchParams.delete('only') : u.searchParams.set('only',current);
+    query ? u.searchParams.set('q',query) : u.searchParams.delete('q');
+    history.replaceState(null,'',u);
   }
 
   document.getElementById('filters').addEventListener('click',function(e){
@@ -378,9 +405,12 @@ ${pieces.map(p => card(p).replace('<article class="card', `<article data-species
     this.querySelectorAll('.fbtn').forEach(function(x){x.classList.remove('on')});
     b.classList.add('on');
     current=b.getAttribute('data-filter');
-    apply();
-    var u=new URL(location); current==='all'?u.searchParams.delete('only'):u.searchParams.set('only',current);
-    history.replaceState(null,'',u);
+    apply(); sync();
+  });
+
+  document.getElementById('qclear').addEventListener('click',function(){
+    query=''; apply(); sync();
+    var i=document.getElementById('searchInput'); if(i) i.value='';
   });
 
   document.getElementById('sort').addEventListener('change',function(){
@@ -391,15 +421,23 @@ ${pieces.map(p => card(p).replace('<article class="card', `<article data-species
     if(m==='price-desc') next.sort(function(a,b){return p(b)-p(a)});
     else if(m==='price-asc') next.sort(function(a,b){return (p(a)||Infinity)-(p(b)||Infinity)});
     else if(m==='name') next.sort(function(a,b){return a.getAttribute('data-name').localeCompare(b.getAttribute('data-name'))});
-    next.forEach(function(c){grid.appendChild(c)});
+    next.forEach(function(c){grid.insertBefore(c,empty)});
   });
 
-  // deep link from the category row on the shop front
-  var only=new URLSearchParams(location.search).get('only');
+  // deep links: the category row on the shop front, and the nav search
+  var params=new URLSearchParams(location.search);
+  var only=params.get('only');
   if(only){
     var btn=document.querySelector('.fbtn[data-filter="'+CSS.escape(only)+'"]');
-    if(btn) btn.click();
+    if(btn){ btn.classList.add('on'); document.querySelector('.fbtn[data-filter="all"]').classList.remove('on'); current=only; }
   }
+  var q=(params.get('q')||'').trim().toLowerCase();
+  if(q){
+    query=q;
+    var input=document.getElementById('searchInput');
+    if(input) input.value=params.get('q');
+  }
+  apply();
 })();
 </script>
 ` + foot();

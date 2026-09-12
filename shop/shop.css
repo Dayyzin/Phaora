@@ -115,6 +115,40 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .bag-count.on{display:flex}
 .burger{display:none}
 
+/* search — a panel that drops under the nav rather than a separate page */
+.searchbar{
+  position:sticky;top:72px;z-index:490;
+  background:rgba(5,5,6,0.94);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--hair-soft);
+  max-height:0;overflow:hidden;transition:max-height .32s var(--ease);
+}
+.searchbar.open{max-height:96px}
+.searchbar form{
+  max-width:var(--rail);margin:0 auto;padding:18px var(--gutter);
+  display:flex;gap:12px;align-items:center;
+}
+.searchbar input{
+  flex:1;min-width:0;background:none;border:0;border-bottom:1px solid var(--hair);
+  color:var(--warm);font-family:var(--display);font-size:clamp(20px,2.6vw,28px);font-weight:300;
+  padding:8px 0;min-height:44px;
+}
+.searchbar input::placeholder{color:var(--warm-3);font-style:italic}
+.searchbar input:focus{outline:none;border-bottom-color:var(--gold)}
+.searchbar button{
+  font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:var(--gold);
+  padding:12px 4px;min-height:44px;white-space:nowrap;
+}
+
+/* the active search term, shown on the collection */
+.qchip{
+  display:inline-flex;align-items:center;gap:10px;
+  border:1px solid var(--hair);padding:10px 14px;min-height:44px;
+  font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--warm-2);
+}
+.qchip b{font-weight:400;color:var(--gold)}
+.qchip button{color:var(--warm-3);font-size:14px;line-height:1;padding:0 2px}
+.qchip button:hover{color:var(--gold)}
+
 /* mobile drawer */
 .drawer{
   position:fixed;inset:0;z-index:600;background:rgba(5,5,6,0.97);
@@ -260,6 +294,11 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .card-bag.in{background:var(--gold);border-color:var(--gold);color:#0b0a08}
 .card-bag:disabled{opacity:0.3;cursor:not-allowed}
 
+.empty{
+  grid-column:1/-1;text-align:center;padding:clamp(40px,7vw,90px) 0;
+  font-family:var(--display);font-style:italic;font-size:20px;color:var(--warm-3);
+}
+
 /* --- the difference band ------------------------------------------------ */
 .band{
   display:grid;grid-template-columns:minmax(0,0.86fr) minmax(0,1.14fr);
@@ -393,6 +432,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 }
 @media(max-width:900px){
   .nav{grid-template-columns:auto 1fr auto;height:64px}
+  .searchbar{top:64px}
+  .controls{top:64px}
   .nav-mid{display:none}
   .burger{display:inline-flex}
   .wordmark{font-size:18px;letter-spacing:0.34em;text-indent:0.34em;justify-self:start}

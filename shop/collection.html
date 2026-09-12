@@ -30,11 +30,18 @@
     <a href="/blog">Journal</a>
   </div>
   <div class="nav-end">
-    <a href="collection.html" class="icon-btn" aria-label="Search the collection"><svg width="17" height="17" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="7.2" cy="7.2" r="5.2"/><path d="m11 11 4 4"/></svg></a>
+    <button class="icon-btn" data-search-open aria-label="Search the collection" aria-controls="searchbar" aria-expanded="false"><svg width="17" height="17" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="7.2" cy="7.2" r="5.2"/><path d="m11 11 4 4"/></svg></button>
     <a href="mailto:phaoraco@gmail.com" class="icon-btn" aria-label="Contact the studio"><svg width="17" height="17" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="8.5" cy="5.4" r="3.1"/><path d="M2.6 15c0-3.2 2.6-5 5.9-5s5.9 1.8 5.9 5"/></svg></a>
     <a href="bag.html" class="icon-btn" aria-label="Bag"><svg width="17" height="17" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg><span class="bag-count">0</span></a>
   </div>
 </nav>
+
+<div class="searchbar" id="searchbar">
+  <form action="collection.html" method="get" role="search">
+    <input type="search" name="q" id="searchInput" placeholder="Search the collection&hellip;" autocomplete="off" aria-label="Search the collection">
+    <button type="submit">Search</button>
+  </form>
+</div>
 
 <div class="drawer" id="drawer">
   <button class="icon-btn drawer-close" data-drawer-close aria-label="Close"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.2"><path d="m1 1 16 16M17 1 1 17"/></svg></button>
@@ -57,6 +64,7 @@
     <button class="fbtn" data-filter="Cockatoo">Cockatoos<i>4</i></button>
     <button class="fbtn" data-filter="Eagle">Eagles<i>3</i></button>
     <button class="fbtn" data-filter="Parrot">Parrots<i>2</i></button>
+  <span class="qchip" id="qchip" hidden>Search <b id="qterm"></b><button type="button" id="qclear" aria-label="Clear the search">&times;</button></span>
   <span class="filter-spacer"></span>
   <select class="sortsel" id="sort" aria-label="Order the collection">
     <option value="as-hung">As hung</option>
@@ -544,20 +552,39 @@
         </a>
         <button class="card-bag" data-add="violet" data-name="The Violet" data-price="16000" data-sub="Macaw · One of one" data-img="../assets/sculptures/_derived/violet/card.jpg" aria-label="Put The Violet in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
       </article>
+    <p class="empty" id="empty" hidden>No work matches that.</p>
   </div>
 </div>
 
 <script>
 (function(){
   var grid=document.getElementById('grid');
-  var cards=[].slice.call(grid.children);
+  var empty=document.getElementById('empty');
+  var cards=[].slice.call(grid.querySelectorAll('.card'));
   var order=cards.slice();
-  var current='all';
+  var chip=document.getElementById('qchip'), term=document.getElementById('qterm');
+  var current='all', query='';
 
   function apply(){
+    var shown=0;
     cards.forEach(function(c){
-      c.hidden = current!=='all' && c.getAttribute('data-species')!==current;
+      var okSpecies = current==='all' || c.getAttribute('data-species')===current;
+      var hay=(c.getAttribute('data-name')+' '+c.getAttribute('data-species')).toLowerCase();
+      var okQuery = !query || hay.indexOf(query)!==-1;
+      var ok = okSpecies && okQuery;
+      c.hidden=!ok;
+      if(ok) shown++;
     });
+    empty.hidden = shown>0;
+    chip.hidden = !query;
+    term.textContent = query;
+  }
+
+  function sync(){
+    var u=new URL(location);
+    current==='all' ? u.searchParams.delete('only') : u.searchParams.set('only',current);
+    query ? u.searchParams.set('q',query) : u.searchParams.delete('q');
+    history.replaceState(null,'',u);
   }
 
   document.getElementById('filters').addEventListener('click',function(e){
@@ -565,9 +592,12 @@
     this.querySelectorAll('.fbtn').forEach(function(x){x.classList.remove('on')});
     b.classList.add('on');
     current=b.getAttribute('data-filter');
-    apply();
-    var u=new URL(location); current==='all'?u.searchParams.delete('only'):u.searchParams.set('only',current);
-    history.replaceState(null,'',u);
+    apply(); sync();
+  });
+
+  document.getElementById('qclear').addEventListener('click',function(){
+    query=''; apply(); sync();
+    var i=document.getElementById('searchInput'); if(i) i.value='';
   });
 
   document.getElementById('sort').addEventListener('change',function(){
@@ -578,15 +608,23 @@
     if(m==='price-desc') next.sort(function(a,b){return p(b)-p(a)});
     else if(m==='price-asc') next.sort(function(a,b){return (p(a)||Infinity)-(p(b)||Infinity)});
     else if(m==='name') next.sort(function(a,b){return a.getAttribute('data-name').localeCompare(b.getAttribute('data-name'))});
-    next.forEach(function(c){grid.appendChild(c)});
+    next.forEach(function(c){grid.insertBefore(c,empty)});
   });
 
-  // deep link from the category row on the shop front
-  var only=new URLSearchParams(location.search).get('only');
+  // deep links: the category row on the shop front, and the nav search
+  var params=new URLSearchParams(location.search);
+  var only=params.get('only');
   if(only){
     var btn=document.querySelector('.fbtn[data-filter="'+CSS.escape(only)+'"]');
-    if(btn) btn.click();
+    if(btn){ btn.classList.add('on'); document.querySelector('.fbtn[data-filter="all"]').classList.remove('on'); current=only; }
   }
+  var q=(params.get('q')||'').trim().toLowerCase();
+  if(q){
+    query=q;
+    var input=document.getElementById('searchInput');
+    if(input) input.value=params.get('q');
+  }
+  apply();
 })();
 </script>
 

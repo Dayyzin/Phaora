@@ -139,6 +139,28 @@
     });
   });
 
+  /* ---------------------------------------------------------------- search */
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-search-open]');
+    if (!btn) return;
+    var bar = document.getElementById('searchbar');
+    if (!bar) return;
+    var open = bar.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(open));
+    if (open) {
+      var input = document.getElementById('searchInput');
+      if (input) input.focus();
+    }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    var bar = document.getElementById('searchbar');
+    if (!bar || !bar.classList.contains('open')) return;
+    bar.classList.remove('open');
+    var btn = document.querySelector('[data-search-open]');
+    if (btn) { btn.setAttribute('aria-expanded', 'false'); btn.focus(); }
+  });
+
   /* ---------------------------------------------------------------- drawer */
   document.addEventListener('click', function (e) {
     var open = e.target.closest('[data-drawer-open]');
