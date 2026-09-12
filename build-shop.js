@@ -8,7 +8,6 @@
  * and writes the whole shop as static files under /shop:
  *
  *   shop/index.html        the shop front
- *   shop/collection.html   every piece, filterable
  *   shop/p/<slug>.html     one page per piece
  *   shop/bag.html          the bag
  *   shop/about.html
@@ -86,6 +85,17 @@ const esc = s => String(s == null ? '' : s)
 
 const money = n => '$ ' + Number(n).toLocaleString('en-US');
 
+/* A piece whose plate runs hot gets trimmed here rather than in the file, so
+   the original stays the original and the change is one line of catalog. */
+function toneAttr(p) {
+  if (!p || !p.tone) return '';
+  const f = [];
+  if (p.tone.brightness != null) f.push(`brightness(${p.tone.brightness})`);
+  if (p.tone.saturate   != null) f.push(`saturate(${p.tone.saturate})`);
+  if (p.tone.contrast   != null) f.push(`contrast(${p.tone.contrast})`);
+  return f.length ? ` style="filter:${f.join(' ')}"` : '';
+}
+
 const mark = sp => `<svg width="54" height="64" viewBox="0 0 44 54" fill="none" stroke="currentColor" stroke-width="1" stroke-linejoin="round" aria-hidden="true">${MARKS[sp] || MARK_FALLBACK}</svg>`;
 
 /* ------------------------------------------------------------------- data */
@@ -118,6 +128,10 @@ const pieces = catalog.pieces.map(p => {
     weightLb: Number(sp.weight_lbs_total) || 0,
     baseLb:   Number(p.base_size_lbs) || 0,
     finish:   sp.finish || '',
+    /* optional per-piece colour trim, e.g. {"saturate":0.86,"brightness":0.95}.
+       Some plates were lit hotter than others; this settles one without
+       touching the photograph on disk or the other thirty-three. */
+    tone: p.tone && typeof p.tone === 'object' ? p.tone : null,
     photos,
     hero: photos[0] || null
   };
@@ -191,20 +205,20 @@ function nav(here, depth = 0) {
   <button class="icon-btn burger" data-drawer-open aria-label="Menu">${ICON.burger}</button>
   <a href="${up}index.html" class="wordmark">Pha&ouml;ra</a>
   <div class="nav-mid">
-    <a href="${up}collection.html"${on('shop')}>Shop</a>
+    <a href="${up}index.html"${on('shop')}>Shop</a>
     <a href="${up}about.html"${on('about')}>About</a>
     <a href="${up}journal/"${on('journal')}>Journal</a>
   </div>
   <div class="nav-end">
-    <button class="icon-btn" data-search-open aria-label="Search the collection" aria-controls="searchbar" aria-expanded="false">${ICON.search}</button>
+    <button class="icon-btn" data-search-open aria-label="Search the work" aria-controls="searchbar" aria-expanded="false">${ICON.search}</button>
     <a href="mailto:${EMAIL}" class="icon-btn" aria-label="Contact the studio">${ICON.user}</a>
     <a href="${up}bag.html" class="icon-btn" aria-label="Bag">${ICON.bag}<span class="bag-count">0</span></a>
   </div>
 </nav>
 
 <div class="searchbar" id="searchbar">
-  <form action="${up}collection.html" method="get" role="search">
-    <input type="search" name="q" id="searchInput" placeholder="Search the collection&hellip;" autocomplete="off" aria-label="Search the collection">
+  <form action="${up}index.html" method="get" role="search">
+    <input type="search" name="q" id="searchInput" placeholder="Search the work&hellip;" autocomplete="off" aria-label="Search the work">
     <button type="submit">Search</button>
   </form>
 </div>
@@ -212,7 +226,7 @@ function nav(here, depth = 0) {
 <div class="drawer" id="drawer">
   <button class="icon-btn drawer-close" data-drawer-close aria-label="Close">${ICON.close}</button>
   <a href="${up}index.html" data-drawer-close>Shop front</a>
-  <a href="${up}collection.html" data-drawer-close>The collection</a>
+  <a href="${up}index.html#pieces" data-drawer-close>Every piece</a>
   <a href="${up}about.html" data-drawer-close>About</a>
   <a href="${up}journal/" data-drawer-close>Journal</a>
   <a href="${up}bag.html" data-drawer-close>Bag</a>
@@ -226,7 +240,7 @@ function foot(depth = 0) {
   <div class="foot-in">
     <a href="${up}index.html" class="wordmark">Pha&ouml;ra</a>
     <div class="foot-mid">
-      <a href="${up}collection.html">Shop</a>
+      <a href="${up}index.html">Shop</a>
       <a href="${up}about.html">About</a>
       <a href="${up}journal/">Journal</a>
     </div>
@@ -267,7 +281,7 @@ function card(p, depth = 0) {
   return `      <article class="card${p.sold ? ' sold' : ''}">
         <a href="${up}p/${p.slug}.html" aria-label="${esc(p.name)}">
           <div class="card-img">
-            <img src="${up}../${cardSrc(p.slug)}" alt="${esc(p.name)} — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
+            <img src="${up}../${cardSrc(p.slug)}" alt="${esc(p.name)} — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async"${toneAttr(p)}>
             ${p.sold ? '<span class="card-flag">Acquired</span>' : ''}
           </div>
           <div class="card-body">
@@ -280,36 +294,46 @@ function card(p, depth = 0) {
       </article>`;
 }
 
-/* ========================================================== the shop front */
-function buildIndex() {
+/* ============================================================== the shop */
+/* One page. There is no collection here in the sense the word is usually used
+   — no theme, no run, no edition tying thirty-four objects together. They are
+   thirty-four separate things that happen to share a maker. So the shop does
+   not open with a curated front and hide the goods behind a second page; the
+   hero introduces the work and everything is underneath it, filterable in
+   place. /shop/collection.html redirects here. */
+function buildShop() {
   const cats = species.map(sp => {
     const n = pieces.filter(p => p.species === sp).length;
-    return `    <a class="cat" href="collection.html?only=${encodeURIComponent(sp)}">
+    return `    <a class="cat" href="#pieces" data-cat="${esc(sp)}">
       ${mark(sp)}
       <span class="cat-name">${esc(PLURAL[sp] || sp + 's')}</span>
       <span class="cat-n">${n} work${n === 1 ? '' : 's'}</span>
-      <span class="cat-go">Explore ${ICON.arw}</span>
+      <span class="cat-go">See ${ICON.arw}</span>
     </a>`;
+  }).join('\n');
+
+  const filters = ['All', ...species].map((s, i) => {
+    const val = s === 'All' ? 'all' : s;
+    const label = s === 'All' ? 'Everything' : (PLURAL[s] || s + 's');
+    const n = s === 'All' ? pieces.length : pieces.filter(p => p.species === s).length;
+    return `    <button class="fbtn${i === 0 ? ' on' : ''}" data-filter="${esc(val)}">${esc(label)}<i>${n}</i></button>`;
   }).join('\n');
 
   const jsonld = {
     '@context': 'https://schema.org',
-    '@type': 'CollectionPage',
-    name: 'PHAÖRA — Crystal Sculpture',
+    '@type': 'ItemList',
+    name: 'PHAÖRA — crystal sculpture',
     url: `${SITE}/shop/`,
-    mainEntity: {
-      '@type': 'ItemList',
-      numberOfItems: pieces.length,
-      itemListElement: pieces.map((p, i) => ({
-        '@type': 'ListItem', position: i + 1,
-        url: `${SITE}/shop/p/${p.slug}.html`, name: p.name
-      }))
-    }
+    numberOfItems: pieces.length,
+    itemListElement: pieces.map((p, i) => ({
+      '@type': 'ListItem', position: i + 1,
+      url: `${SITE}/shop/p/${p.slug}.html`, name: p.name
+    }))
   };
 
   const html = head(
     'PHAÖRA — Timeless art, born of earth',
-    `Hand-carved crystal sculpture from Minas Gerais, Brazil. ${pieces.length} works, each one of one.`,
+    `${pieces.length} hand-carved crystal sculptures from Minas Gerais, Brazil. Each one of one${lowest ? `, from ${money(lowest)}` : ''}.`,
     { jsonld, canonical: '' }
   ) + nav('shop') + `
 
@@ -319,45 +343,57 @@ function buildIndex() {
     <p class="eyebrow">Crystal Sculpture</p>
     <h1 class="display">Timeless art,<br>born of earth</h1>
     <p>Rare crystal, carved by hand in Minas Gerais. Every piece is one of one — the stone decides how far the cut can go.</p>
-    <a href="collection.html" class="ghost-btn">Explore collection ${ICON.arw}</a>
+    <a href="#pieces" class="ghost-btn">See every piece ${ICON.arw}</a>
   </div>
   <div class="hero-plate">
     <span class="hero-ring" aria-hidden="true"></span>
-    <img src="../assets/sculptures/${hero.slug}/${hero.hero}" alt="${esc(hero.name)} — ${esc(hero.species)} carved in crystal on amethyst" width="2048" height="2048" fetchpriority="high" decoding="async">
+    <img src="../assets/sculptures/${hero.slug}/${hero.hero}" alt="${esc(hero.name)} — ${esc(hero.species)} carved in crystal" width="2048" height="2048" fetchpriority="high" decoding="async"${toneAttr(hero)}>
   </div>
 </section>
 
 <div class="spine" aria-hidden="true"></div>
 
-<!-- CATEGORIES -->
+<!-- WHAT IS CARVED -->
 <section class="cats-wrap">
-  <div class="section-head"><h2>Shop by category</h2></div>
-  <div class="cats">
+  <div class="section-head"><h2>What is carved</h2></div>
+  <div class="cats" id="cats">
 ${cats}
   </div>
 </section>
 
 <div class="spine" aria-hidden="true"></div>
 
-<!-- FEATURED -->
-<section>
+<!-- EVERY PIECE -->
+<section id="pieces">
   <div class="section-head">
-    <h2>Featured collection</h2>
-    <a href="collection.html" class="viewall">View all ${ICON.arw}</a>
+    <h2>Every piece</h2>
+    <span class="viewall" style="color:var(--warm-3)">${pieces.length} works${lowest ? ` &middot; from ${money(lowest)}` : ''}</span>
   </div>
+
+  <div class="filters" id="filters">
+${filters}
+    <span class="qchip" id="qchip" hidden>Search <b id="qterm"></b><button type="button" id="qclear" aria-label="Clear the search">&times;</button></span>
+    <span class="filter-spacer"></span>
+    <select class="sortsel" id="sort" aria-label="Order the works">
+      <option value="as-hung">As hung</option>
+      <option value="price-desc">Price, high to low</option>
+      <option value="price-asc">Price, low to high</option>
+      <option value="name">Name</option>
+    </select>
+  </div>
+
   <div class="grid-wrap">
-    <div class="grid">
-${featured.slice(0, 6).map(p => card(p)).join('\n')}
+    <div class="grid wide" id="grid">
+${pieces.map(p => card(p).replace('<article class="card', `<article data-species="${esc(p.species)}" data-price="${p.price}" data-name="${esc(p.name)}" class="card`)).join('\n')}
+      <p class="empty" id="empty" hidden>No work matches that.</p>
     </div>
   </div>
 </section>
 
-<div class="spine" aria-hidden="true"></div>
-
 <!-- THE DIFFERENCE -->
 <section class="band">
   <div class="band-img">
-    <img src="../assets/sculptures/${bandPiece.slug}/${bandPhoto}" alt="Crystal detail from ${esc(bandPiece.name)}" loading="lazy" decoding="async">
+    <img src="../assets/sculptures/${bandPiece.slug}/${bandPhoto}" alt="Crystal detail from ${esc(bandPiece.name)}" loading="lazy" decoding="async"${toneAttr(bandPiece)}>
   </div>
   <div class="band-copy">
     <p class="eyebrow">The Pha&ouml;ra difference</p>
@@ -366,52 +402,6 @@ ${featured.slice(0, 6).map(p => card(p)).join('\n')}
     <a href="about.html" class="ghost-btn">Discover more ${ICON.arw}</a>
   </div>
 </section>
-` + foot();
-
-  write('index.html', html);
-}
-
-/* ========================================================== the collection */
-function buildCollection() {
-  const filters = ['All', ...species].map((s, i) => {
-    const val = s === 'All' ? 'all' : s;
-    const label = s === 'All' ? 'All works' : (PLURAL[s] || s + 's');
-    const n = s === 'All' ? pieces.length : pieces.filter(p => p.species === s).length;
-    return `    <button class="fbtn${i === 0 ? ' on' : ''}" data-filter="${esc(val)}">${esc(label)}<i>${n}</i></button>`;
-  }).join('\n');
-
-  const html = head(
-    `PHAÖRA — The collection · ${pieces.length} works`,
-    `Every PHAÖRA crystal sculpture. ${pieces.length} works, each one of one, hand-carved in Minas Gerais, Brazil.`,
-    { canonical: 'collection.html' }
-  ) + nav('shop') + `
-
-<header class="phead">
-  <p class="eyebrow">The collection</p>
-  <h1 class="display">${pieces.length} works,<br>one of each</h1>
-  <p>Carved from crystal drawn out of Minas Gerais. Nothing here is made twice${lowest ? `, and the collection opens at ${money(lowest)}` : ''}.</p>
-</header>
-
-<div class="spine" aria-hidden="true"></div>
-
-<div class="filters" id="filters">
-${filters}
-  <span class="qchip" id="qchip" hidden>Search <b id="qterm"></b><button type="button" id="qclear" aria-label="Clear the search">&times;</button></span>
-  <span class="filter-spacer"></span>
-  <select class="sortsel" id="sort" aria-label="Order the collection">
-    <option value="as-hung">As hung</option>
-    <option value="price-desc">Price, high to low</option>
-    <option value="price-asc">Price, low to high</option>
-    <option value="name">Name</option>
-  </select>
-</div>
-
-<div class="grid-wrap">
-  <div class="grid wide" id="grid">
-${pieces.map(p => card(p).replace('<article class="card', `<article data-species="${esc(p.species)}" data-price="${p.price}" data-name="${esc(p.name)}" class="card`)).join('\n')}
-    <p class="empty" id="empty" hidden>No work matches that.</p>
-  </div>
-</div>
 
 <script>
 (function(){
@@ -444,12 +434,23 @@ ${pieces.map(p => card(p).replace('<article class="card', `<article data-species
     history.replaceState(null,'',u);
   }
 
+  function setFilter(v){
+    current=v;
+    document.querySelectorAll('.fbtn').forEach(function(b){
+      b.classList.toggle('on', b.getAttribute('data-filter')===v);
+    });
+    apply(); sync();
+  }
+
   document.getElementById('filters').addEventListener('click',function(e){
     var b=e.target.closest('.fbtn'); if(!b) return;
-    this.querySelectorAll('.fbtn').forEach(function(x){x.classList.remove('on')});
-    b.classList.add('on');
-    current=b.getAttribute('data-filter');
-    apply(); sync();
+    setFilter(b.getAttribute('data-filter'));
+  });
+
+  /* the category row is the same filter, further up the page */
+  document.getElementById('cats').addEventListener('click',function(e){
+    var a=e.target.closest('.cat'); if(!a) return;
+    setFilter(a.getAttribute('data-cat'));
   });
 
   document.getElementById('qclear').addEventListener('click',function(){
@@ -468,26 +469,23 @@ ${pieces.map(p => card(p).replace('<article class="card', `<article data-species
     next.forEach(function(c){grid.insertBefore(c,empty)});
   });
 
-  // deep links: the category row on the shop front, and the nav search
   var params=new URLSearchParams(location.search);
   var only=params.get('only');
-  if(only){
-    var btn=document.querySelector('.fbtn[data-filter="'+CSS.escape(only)+'"]');
-    if(btn){ btn.classList.add('on'); document.querySelector('.fbtn[data-filter="all"]').classList.remove('on'); current=only; }
-  }
+  if(only) current=only;
   var q=(params.get('q')||'').trim().toLowerCase();
   if(q){
     query=q;
     var input=document.getElementById('searchInput');
     if(input) input.value=params.get('q');
   }
-  apply();
+  if(only) setFilter(only); else apply();
 })();
 </script>
 ` + foot();
 
-  write('collection.html', html);
+  write('index.html', html);
 }
+
 
 /* =========================================================== piece pages */
 function buildPieces() {
@@ -499,7 +497,7 @@ function buildPieces() {
     const sub  = [p.species, p.material].filter(Boolean).join(' · ');
 
     const thumbs = p.photos.map((f, j) =>
-      `      <button class="pdp-thumb${j === 0 ? ' on' : ''}" data-full="../../assets/sculptures/${p.slug}/${f}" aria-label="View plate ${j + 1}"><img src="../../${thumbSrc(p.slug, f)}" alt="${esc(p.name)} — plate ${j + 1}" width="240" height="240" loading="lazy" decoding="async"></button>`
+      `      <button class="pdp-thumb${j === 0 ? ' on' : ''}" data-full="../../assets/sculptures/${p.slug}/${f}" aria-label="View plate ${j + 1}"><img src="../../${thumbSrc(p.slug, f)}" alt="${esc(p.name)} — plate ${j + 1}" width="240" height="240" loading="lazy" decoding="async"${toneAttr(p)}></button>`
     ).join('\n');
 
     /* Only rows that have a real value. A measurement that has not been taken
@@ -567,7 +565,7 @@ function buildPieces() {
 <div class="pdp">
   <div class="pdp-stage">
     <div class="pdp-main">
-      <img id="pdpMain" src="../../assets/sculptures/${p.slug}/${p.hero}" alt="${esc(p.name)} — hand-carved crystal sculpture" width="2048" height="2048" fetchpriority="high" decoding="async">
+      <img id="pdpMain" src="../../assets/sculptures/${p.slug}/${p.hero}" alt="${esc(p.name)} — hand-carved crystal sculpture" width="2048" height="2048" fetchpriority="high" decoding="async"${toneAttr(p)}>
     </div>
     <div class="pdp-thumbs" id="pdpThumbs">
 ${thumbs}
@@ -594,8 +592,8 @@ ${specs}
 
 <section class="grid-wrap" style="padding-top:12px">
   <div class="section-head" style="padding:0">
-    <h2>More from the collection</h2>
-    <a href="../collection.html" class="viewall">View all ${ICON.arw}</a>
+    <h2>More work</h2>
+    <a href="../index.html#pieces" class="viewall">See everything ${ICON.arw}</a>
   </div>
   <div class="grid">
 ${[prev, next, pieces[(i + 2) % pieces.length]].filter((v, k, a) => a.indexOf(v) === k && v !== p).slice(0, 3).map(q => card(q, 1)).join('\n')}
@@ -650,7 +648,7 @@ document.addEventListener('DOMContentLoaded', function(){
     var items=window.PhaoraBag.all();
     if(!items.length){
       body.innerHTML='<div class="cart-empty"><p>Nothing in the bag yet.</p>'+
-        '<a href="collection.html" class="ghost-btn">See the collection <span class="arw">&rarr;</span></a></div>';
+        '<a href="index.html#pieces" class="ghost-btn">See the work <span class="arw">&rarr;</span></a></div>';
       return;
     }
 
@@ -852,7 +850,6 @@ function syncSitemap(posts) {
   const lines = [
     '  <!-- shop — generated by build-shop.js, edits here are overwritten -->',
     url('/shop/', 'weekly', '0.9'),
-    url('/shop/collection.html', 'weekly', '0.9'),
     url('/shop/about.html', 'monthly', '0.6'),
     ...pieces.map(p => url(`/shop/p/${p.slug}.html`, 'monthly', '0.7')),
     url('/shop/journal/', 'weekly', '0.7'),
@@ -868,7 +865,7 @@ function syncSitemap(posts) {
   else xml = xml.replace('</urlset>', lines + '\n</urlset>');
 
   fs.writeFileSync(file, xml, 'utf8');
-  return pieces.length + posts.length + 4;
+  return lines.split('\n').filter(l => l.includes('<url>')).length;
 }
 
 /* ------------------------------------------------------------------ write */
@@ -880,16 +877,14 @@ function write(rel, html) {
 
 /* -------------------------------------------------------------------- run */
 fs.mkdirSync(OUT, { recursive: true });
-buildIndex();
-buildCollection();
+buildShop();
 buildPieces();
 buildBag();
 buildAbout();
 const postSlugs = buildJournal();
 const sitemapUrls = syncSitemap(postSlugs);
 
-console.log(`shop front       shop/index.html`);
-console.log(`collection       shop/collection.html   (${pieces.length} works, ${species.length} categories)`);
+console.log(`shop             shop/index.html        (${pieces.length} works, ${species.length} categories, one page)`);
 console.log(`piece pages      shop/p/*.html          (${pieces.length})`);
 console.log(`journal          shop/journal/*.html    (${postSlugs.length} posts)`);
 console.log(`bag + about      shop/bag.html, shop/about.html`);
