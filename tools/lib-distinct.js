@@ -45,6 +45,21 @@
  */
 const { projectsIn } = require("./lib-projects");
 
+/**
+ * The share of a page's sentences that must appear on no other town page.
+ *
+ * 55%. It is a chosen number and here is the choosing: below about half, the
+ * page is mostly the shared chrome — the service grid, the assurances, the
+ * closing ask — and a crawler comparing thirteen of those is looking at one
+ * page thirteen times, which is the state that produced this rule. Above about
+ * two-thirds would refuse pages that are genuinely differentiated but share a
+ * site's own furniture, which every site has and none is penalised for.
+ *
+ * It is deliberately measured on the *rendered* page with place names blanked,
+ * so a page cannot pass by swapping a town name through shared paragraphs.
+ */
+const MIN_UNIQUE_SHARE = 55;
+
 /** Words that carry no information about a town, for the overlap read. */
 const STOP = new Set(
   ("a an and are as at be been but by for from had has have he her his in into is it its of on or " +
@@ -84,9 +99,19 @@ function factProblem(f) {
  * as unique on all thirteen pages, and the number reports the opposite of what
  * it is for.
  *
- * A read, not a gate. Nothing is refused on a threshold here — any threshold
- * would be a number I made up. What refuses a page is the two conditions §12
- * states.
+ * **This is now the gate.** It used to be a read, on the reasoning that any
+ * threshold would be a number nobody had justified. That was the wrong call and
+ * David said so: the problem the penalty measures is duplication, so the thing
+ * that decides whether a page publishes has to be whether the page is its own.
+ * A page with a sourced town fact and no other original sentence is still
+ * thirteen copies of one page; a page with three hundred words nobody else has
+ * is not, fact or no fact.
+ *
+ * The threshold is stated below with its reasoning rather than being pretended
+ * away. What did not change: nothing here permits an unsourced claim about a
+ * town. Sourced facts are still required before a page says anything
+ * town-specific — that requirement moved from "may this page exist" to "may
+ * this page make this claim", which is where it always belonged.
  */
 function uniqueShare(slug, rendered, towns) {
   // One blanking list, applied to every page. Symmetric on purpose: blanking
@@ -174,17 +199,36 @@ function assess(town, projects) {
     else facts.push(f);
   }
 
-  const missing = [];
-  if (!mine.length) missing.push(`no project in ${town.town}`);
+  // Reported every run, and no longer a publish condition. A page without
+  // either of these is a page with less to say, not a duplicate — and the
+  // penalty this whole module exists to avoid is for duplication.
+  const debt = [];
+  if (!mine.length) debt.push(`no project in ${town.town}`);
   if (!facts.length) {
-    missing.push(
+    debt.push(
       factIssues.length
         ? `no usable town-specific fact (${factIssues.join("; ")})`
         : "no town-specific fact",
     );
   }
 
-  return { ok: missing.length === 0, projects: mine, facts, missing };
+  return { projects: mine, facts, debt, missing: debt };
 }
 
-module.exports = { assess, factProblem, uniqueShare };
+/**
+ * The publish decision, made after render because it needs the rendered set.
+ *
+ * `{ ok, unique, reason }`. One condition, and it is the one the penalty is
+ * about: is this page substantially its own words.
+ */
+function publishable(slug, rendered, towns) {
+  const unique = uniqueShare(slug, rendered, towns);
+  if (unique >= MIN_UNIQUE_SHARE) return { ok: true, unique, reason: null };
+  return {
+    ok: false,
+    unique,
+    reason: `${unique}% of its sentences are its own, against a floor of ${MIN_UNIQUE_SHARE}% — it is substantially the same page as the others`,
+  };
+}
+
+module.exports = { assess, factProblem, uniqueShare, publishable, MIN_UNIQUE_SHARE };

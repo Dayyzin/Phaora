@@ -43,7 +43,8 @@ const fs = require("fs");
 const path = require("path");
 const { chrome } = require("./lib-chrome");
 const { allProjects } = require("./lib-projects");
-const { assess, uniqueShare } = require("./lib-distinct");
+const { assess, uniqueShare, publishable, MIN_UNIQUE_SHARE } = require("./lib-distinct");
+const { sectionFor, tradesFor, coverage } = require("./town-content");
 
 const ROOT = path.join(__dirname, "..");
 const DATA = JSON.parse(fs.readFileSync(path.join(__dirname, "towns.json"), "utf8"));
@@ -168,9 +169,17 @@ function page(t, all, verdict, enforce) {
   const bySlug = new Map(all.map((x) => [x.town, x]));
   /* Only link the neighbours we actually have a page for. */
   const near = t.borders.filter((b) => bySlug.has(b)).map((b) => bySlug.get(b));
+  // The page's own subject. Different on every town, so the hero line, the meta
+  // description and the largest section on the page all differ too — which is
+  // the point: a page that shares its description with twelve others shares its
+  // SERP snippet with them as well.
+  const sec = sectionFor(t.slug);
+
   const title = `Masonry & Hardscape Contractor in ${t.town}, MA | PHAÖRA`;
-  const desc = `Patios, walkways, retaining walls, steps and drainage in ${t.town}, Massachusetts. `
-             + `Built to New England frost depth by our own crews. Free on-site estimate, and a price online in about thirty seconds.`;
+  const desc = sec
+    ? `${sec.summary} ${t.town}, Massachusetts.`
+    : `Patios, walkways, retaining walls, steps and drainage in ${t.town}, Massachusetts. `
+      + `Built to New England frost depth by our own crews. Free on-site estimate, and a price online in about thirty seconds.`;
   const url = `https://phaora.com/${t.slug}/`;
 
   const ld = {
@@ -190,12 +199,12 @@ function page(t, all, verdict, enforce) {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
-<link rel="canonical" href="${url}">${enforce && !verdict.ok ? `
-<!-- Held back by the Stage 7 gate: ${esc(verdict.missing.join("; "))}.
+<link rel="canonical" href="${url}">${enforce && verdict.holdBack ? `
+<!-- Held back: ${esc(verdict.holdBack)}.
      noindex rather than deleted — the page is honest about what it does carry,
-     it just has nothing yet that the twelve others do not, and asking to be
+     it just has too little that the twelve others do not, and asking to be
      ranked for that is what earns the duplicate-content penalty. It indexes
-     again the moment the gate passes, at the same URL, with its history. -->
+     again the moment it is its own page, at the same URL, with its history. -->
 <meta name="robots" content="noindex,follow">` : ""}
 <meta property="og:type" content="website">
 <meta property="og:title" content="${esc(title)}">
@@ -230,7 +239,7 @@ ${C.mobile}
   <div class="tp-wrap">
     <p class="eyebrow">${esc(t.town)}, Massachusetts &nbsp;·&nbsp; ${esc(t.county)} County</p>
     <h1>Masonry and hardscape<br>in <em>${esc(t.town)}</em>.</h1>
-    <p class="tp-lede">Patios, walkways, retaining walls, steps and drainage — built by our own crews, for ground that freezes.</p>
+    <p class="tp-lede">${esc(sec ? sec.lede : "Patios, walkways, retaining walls, steps and drainage — built by our own crews, for ground that freezes.")}</p>
     <a class="tp-cta" href="/estimate/">Price your project &rarr;</a>
   </div>
 </header>
@@ -240,18 +249,20 @@ ${C.mobile}
   <section class="tp-sec">
     <h2 class="tp-h2">What we build in ${esc(t.town)}</h2>
     <div class="tp-grid">
-${TRADES.map(([h, p]) => `      <div class="tp-cell"><h3>${esc(h)}</h3><p>${esc(p)}</p></div>`).join("\n")}
+${(tradesFor(t.slug) || TRADES).map(([h, p]) => `      <div class="tp-cell"><h3>${esc(h)}</h3><p>${esc(p)}</p></div>`).join("\n")}
     </div>
   </section>
 
   <section class="tp-sec">
-    <h2 class="tp-h2">What decides whether it lasts here</h2>
-    <p class="tp-p">Every wall and patio we have taken apart failed for one of these five reasons.
+    <h2 class="tp-h2">${esc(sec ? sec.heading : "What decides whether it lasts here")}</h2>
+${sec
+  ? sec.body.map((para) => `    <p class="tp-p">${esc(para)}</p>`).join("\n")
+  : `    <p class="tp-p">Every wall and patio we have taken apart failed for one of these five reasons.
       They are the same in ${esc(t.town)} as anywhere else in New England, and they are most of
       what separates a job that looks right at twenty years from one that does not make five.</p>
     <ol class="tp-num">
 ${LASTS.map(([h, p]) => `      <li><h3>${esc(h)}</h3><p>${esc(p)}</p></li>`).join("\n")}
-    </ol>
+    </ol>`}
   </section>
 ${verdict.projects.length ? `
   <section class="tp-sec">
@@ -323,35 +334,47 @@ const rendered = new Map(
   DATA.towns.map((t) => [t.slug, page(t, DATA.towns, verdicts.get(t.slug), ENFORCE)]),
 );
 
+/* The publish decision, measured over the rendered set. It cannot be part of
+   `assess()` because it needs every other page to exist as text first. */
+const distinct = new Map(
+  DATA.towns.map((t) => [t.slug, publishable(t.slug, rendered, DATA.towns)]),
+);
+
 let written = 0;
 const withheld = [];
 const debt = [];
 
 for (const t of towns) {
   const v = verdicts.get(t.slug);
+  const d = distinct.get(t.slug);
 
-  /* A town that fails the gate and has no page does not get one. This is the
-     gate doing the only thing it can do without touching the live site. */
-  if (!v.ok && !exists(t)) {
+  /* A page that is not its own words and does not yet exist does not get
+     created. This is the duplication rule doing the only thing it can do
+     without touching the live site. */
+  if (!d.ok && !exists(t)) {
     withheld.push(t);
-    console.log(`${t.slug.padEnd(24)} withheld — ${v.missing.join("; ")}`);
+    console.log(`${t.slug.padEnd(24)} withheld — ${d.reason}`);
     continue;
   }
 
-  if (!v.ok) debt.push(t);
+  if (!d.ok) debt.push(t);
 
   if (!REPORT) {
+    /* Re-render once the distinctness verdict is known, because that verdict is
+       what decides the noindex tag and it did not exist on the first pass. */
+    const html = ENFORCE && !d.ok
+      ? page(t, DATA.towns, { ...v, holdBack: d.reason }, ENFORCE)
+      : rendered.get(t.slug);
     const dir = path.join(ROOT, t.slug);
     fs.mkdirSync(dir, { recursive: true });
-    fs.writeFileSync(path.join(dir, "index.html"), rendered.get(t.slug));
+    fs.writeFileSync(path.join(dir, "index.html"), html);
     written++;
   }
 
-  const pct = uniqueShare(t.slug, rendered, DATA.towns);
-  const state = v.ok
-    ? `passes — ${v.projects.length} project${v.projects.length === 1 ? "" : "s"}, ${v.facts.length} fact${v.facts.length === 1 ? "" : "s"}`
-    : (ENFORCE ? "NOINDEX — " : "live but thin — ") + v.missing.join("; ");
-  console.log(`${t.slug.padEnd(24)} ${String(pct).padStart(5)}% its own  ${state}`);
+  const state = d.ok
+    ? `publishes — ${v.projects.length} project${v.projects.length === 1 ? "" : "s"}, ${v.facts.length} sourced fact${v.facts.length === 1 ? "" : "s"}`
+    : (ENFORCE ? "NOINDEX — " : "live but not distinct — ") + d.reason;
+  console.log(`${t.slug.padEnd(24)} ${String(d.unique).padStart(5)}% its own  ${state}`);
 }
 
 /* The hub. Thirteen pages nothing links to are thirteen pages Google treats
@@ -461,7 +484,7 @@ const SITEMAP = path.join(ROOT, "sitemap.xml");
    that is what `noindex,follow` is for. */
 const live = DATA.towns.filter((t) =>
   fs.existsSync(path.join(ROOT, t.slug, "index.html")) &&
-  (!ENFORCE || verdicts.get(t.slug).ok));
+  (!ENFORCE || distinct.get(t.slug).ok));
 let xml = fs.readFileSync(SITEMAP, "utf8");
 xml = xml.replace(/\n  <!-- towns -->[\s\S]*?<!-- \/towns -->/, "");
 /* Cutting the block out leaves the newline that followed it, so every run used
@@ -488,13 +511,21 @@ summarise();
  * real down with it, so it is named every run until it is fixed or withdrawn.
  */
 function summarise() {
-  const pass = DATA.towns.filter((t) => verdicts.get(t.slug).ok);
+  const pass = DATA.towns.filter((t) => distinct.get(t.slug).ok);
 
-  console.log(`\n  ${pass.length}/${DATA.towns.length} towns pass the Stage 7 gate.`);
+  console.log(`\n  ${pass.length}/${DATA.towns.length} pages are substantially their own words ` +
+              `(floor ${MIN_UNIQUE_SHARE}%).`);
+  console.log(
+    "\n  " +
+    DATA.towns
+      .map((t) => `${t.slug.padEnd(24)} ${String(distinct.get(t.slug).unique).padStart(5)}%` +
+                  `${verdicts.get(t.slug).facts.length ? "" : "   (no sourced town fact)"}`)
+      .join("\n  "),
+  );
 
   if (debt.length) {
     console.log(
-      `\n  ${debt.length} live page${debt.length === 1 ? " is" : "s are"} indexed and thin:\n` +
+      `\n  ${debt.length} live page${debt.length === 1 ? " is" : "s are"} indexed and not distinct enough:\n` +
       debt.map((t) => `    ${t.slug}`).join("\n") +
       (ENFORCE
         ? "\n  Written with noindex,follow and removed from the sitemap."
@@ -503,7 +534,7 @@ function summarise() {
   }
 
   if (withheld.length) {
-    console.log(`\n  ${withheld.length} not created, gate not met: ` +
+    console.log(`\n  ${withheld.length} not created, too close to the others: ` +
       withheld.map((t) => t.slug).join(", "));
   }
 
