@@ -11,7 +11,7 @@
 <meta name="description" content="Rare crystals, masterfully carved. Macaws, cockatoos and eagles cut from sodalite, rose quartz, amethyst and clear quartz. Forty-four works, each one of a kind.">
 <meta property="og:title" content="PHAÖRA — Crystal Sculptures">
 <meta property="og:description" content="Rare crystals. Masterfully crafted. Pieces that hold light, memory, and a universe within.">
-<meta property="og:image" content="assets/shop/hero.jpg">
+<meta property="og:image" content="assets/PHAORA%20IMAGES/Sculptures/IMG_6969.JPG">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <style>
@@ -424,7 +424,11 @@ footer{border-top:1px solid var(--line);background:var(--ink-2)}
 
   <div class="hero-stage">
     <div class="hero-ring"></div>
-    <img class="hero-img" id="hero-img" src="assets/shop/hero.png" alt="A white quartz cockatoo with wings open above an amethyst geode, lit on a dark plinth.">
+    <!-- A real photograph of a real carving. The hero shows a piece that
+         exists, so it is never generated art. -->
+    <img class="hero-img" id="hero-img"
+         src="assets/PHAORA%20IMAGES/Sculptures/IMG_6969.JPG"
+         alt="A white quartz eagle with wings open above an amethyst geode, lit on a dark plinth.">
     <div class="hero-plinth"></div>
   </div>
 
@@ -566,12 +570,16 @@ footer{border-top:1px solid var(--line);background:var(--ink-2)}
   }
 
   // ========================================================
-  // Images. Generated art drops into assets/shop/; until a
-  // file is there the card falls back to the catalogue photo,
-  // so the page is never missing a picture.
+  // Images.
+  //
+  // A work is photographed, never generated. These are real carvings
+  // that sell once each, so a synthesised picture in a product slot
+  // would be a photograph of something that does not exist. Product
+  // imagery therefore comes from the catalogue and from nowhere else —
+  // there is deliberately no generated path for a piece to fall back
+  // onto. Generated art is confined to ground and texture, which
+  // depict nothing for sale.
   // ========================================================
-  function shopImage(piece) { return 'assets/shop/card-' + slug(piece.name) + '.png'; }
-
   function withFallback(img, url) {
     var tried = false;
     img.addEventListener('error', function () {
@@ -640,8 +648,8 @@ footer{border-top:1px solid var(--line);background:var(--ink-2)}
         '</div>';
 
       var img = card.querySelector('.card-img img');
-      withFallback(img, p.image);
-      img.src = shopImage(p);
+      withFallback(img, null);
+      img.src = p.image;
 
       host.appendChild(card);
     });
@@ -706,8 +714,8 @@ footer{border-top:1px solid var(--line);background:var(--ink-2)}
         '<button class="d-del" data-del="' + s + '" aria-label="Remove ' + p.name + '">×</button>';
 
       var t = row.querySelector('.d-thumb');
-      withFallback(t, p.image);
-      t.src = shopImage(p);
+      withFallback(t, null);
+      t.src = p.image;
 
       listEl.appendChild(row);
     });

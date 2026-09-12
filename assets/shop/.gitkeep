@@ -1,18 +1,12 @@
-Generated shop art drops here, 1536x1024 PNG, under the exact filenames
-shop.html looks for:
+Generated art for shop.html drops here as PNG.
 
-  hero.png
-  card-the-cluster.png
-  card-the-dynasty.png
-  card-the-canopy.png
-  card-the-scarlets.png
-  card-the-portal.png
-  card-the-raptor.png
-  difference.png
+GROUND AND TEXTURE ONLY. Nothing in this folder may depict a carving.
+Product imagery comes from pieces-data.js and from nowhere else — there
+is deliberately no generated path for a piece to fall back onto.
 
-Each slot falls back to the catalogue photograph in pieces-data.js while a
-file is missing, so the page is whole with this folder empty.
+  difference.png   1536x1024, macro of a raw amethyst cluster, read as
+                   texture. No object, no bird, no base. The right third
+                   is covered by a gradient in the page, so keep the
+                   crystal detail left and centre.
 
-Check every generated image against the catalogue before publishing: it
-carries the true stone for each work, and a card showing the wrong material
-is a product photo that misrepresents what ships.
+A missing file hides its own element, leaving the gradient behind it.

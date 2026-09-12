@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<title>The Living Language of Crystal — PHAÖRA Journal</title>
+<meta name="description" content="A journey through formation, energy, craftsmanship and timeless beauty. How a crystal is made underground, why we are drawn to them, and what happens when one is carved by hand.">
+<meta property="og:title" content="The Living Language of Crystal — PHAÖRA">
+<meta property="og:description" content="A journey through formation, energy, craftsmanship, and timeless beauty.">
+<meta property="og:image" content="../assets/journal/crystal/hero.png">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --ink:#020610;
+  --pearl:#EAEFF5;
+  --teal:#4FB5BE;
+  --teal-d:rgba(79,181,190,.55);
+  --gold:#C8A45E;
+  --gold-lt:#D9BC7C;
+  --nav-h:64px;
+
+  /* One measure, one rhythm — every movement uses these, so the page
+     reads as a single column of air rather than a stack of panels. */
+  --gut:clamp(22px,5vw,80px);
+  --step:clamp(58px,7vw,108px);
+}
+
+html{scroll-behavior:smooth}
+body{
+  background:var(--ink);color:var(--pearl);
+  font-family:'Inter',sans-serif;font-weight:300;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;position:relative;
+}
+body.locked{overflow:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+button{font-family:inherit;border:none;background:none;color:inherit;cursor:pointer}
+
+/* =========================================================
+   ATMOSPHERE
+   A single fixed field behind everything. Because it never
+   scrolls, no seam can ever appear between one part and the
+   next — the page has no sections to divide.
+   ========================================================= */
+.atmosphere{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 40% at 78% 8%,  rgba(58,96,148,.24) 0%, transparent 64%),
+    radial-gradient(ellipse 70% 44% at 14% 32%, rgba(74,52,110,.20) 0%, transparent 66%),
+    radial-gradient(ellipse 62% 40% at 86% 58%, rgba(52,92,132,.17) 0%, transparent 64%),
+    radial-gradient(ellipse 74% 46% at 20% 84%, rgba(66,48,98,.19) 0%, transparent 66%),
+    linear-gradient(180deg,#030814 0%,#050A18 40%,#04091A 72%,#020610 100%);
+}
+/* Drifting motes, fixed like the atmosphere so nothing tiles or repeats. */
+.motes{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.5}
+
+/* =========================================================
+   NAV
+   ========================================================= */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+  height:var(--nav-h);padding:0 clamp(18px,4vw,52px);
+  background:linear-gradient(180deg,rgba(2,6,16,.82),rgba(2,6,16,0));
+  transition:background .3s,backdrop-filter .3s;
+}
+nav.solid{background:rgba(2,6,16,.9);backdrop-filter:blur(14px)}
+.nav-wm{
+  font-family:'Cormorant Garamond',serif;font-weight:400;font-size:18px;
+  letter-spacing:.42em;text-indent:.42em;text-transform:uppercase;
+  color:var(--pearl);white-space:nowrap;
+}
+.nav-wm .o{color:var(--teal-d)}
+.nav-links{display:flex;gap:30px;justify-content:center;grid-column:2}
+.nav-links a{
+  font-size:10px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;
+  color:rgba(234,239,245,.4);transition:color .2s;position:relative;padding:4px 0;
+}
+.nav-links a:hover{color:rgba(234,239,245,.85)}
+.nav-links a.active{color:var(--gold-lt)}
+.nav-links a.active::after{content:'';position:absolute;left:0;right:0;bottom:-2px;height:1px;background:var(--gold)}
+.nav-tools{display:flex;gap:6px;align-items:center;justify-content:flex-end}
+.nav-tools a,.nav-tools button{
+  display:grid;place-items:center;width:40px;height:40px;
+  color:rgba(234,239,245,.55);transition:color .2s;
+}
+.nav-tools a:hover,.nav-tools button:hover{color:var(--pearl)}
+.nav-tools .nav-burger{display:none;flex-direction:column;gap:5px;width:41px;height:41px;padding:10px}
+.nav-burger span{display:block;width:21px;height:1.5px;background:rgba(234,239,245,.7);transition:transform .3s,opacity .3s}
+.nav-burger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.nav-burger.open span:nth-child(2){opacity:0}
+.nav-burger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mobile-menu{
+  position:fixed;inset:0;z-index:90;background:rgba(2,6,16,.97);backdrop-filter:blur(16px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .3s;
+}
+.mobile-menu.open{opacity:1;pointer-events:auto}
+.mobile-menu a{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,7vw,40px);color:rgba(234,239,245,.6);padding:10px;letter-spacing:.06em}
+.mobile-menu a:hover{color:var(--pearl)}
+
+/* =========================================================
+   THE FLOW
+   One relative column. Every movement is a grid placed on it.
+   No movement owns a background, a border or a rule — the only
+   thing separating one from the next is distance.
+   ========================================================= */
+.flow{position:relative;z-index:2;padding:0 var(--gut)}
+
+.mv{
+  position:relative;
+  display:grid;grid-template-columns:repeat(12,1fr);
+  gap:0 clamp(18px,3vw,48px);
+  align-items:start;
+  padding-block:var(--step);
+}
+/* Movements overlap by design: art from one reaches into the next,
+   which is what removes the join. */
+.mv + .mv{margin-top:calc(var(--step) * -0.45)}
+/* Where a movement carries two text blocks in one column, the art
+   beside them spans both rows rather than leaving the column empty. */
+.mv .span-rows{grid-row:1 / span 2;align-self:stretch;min-height:100%}
+.mv .span-rows img{height:100%}
+.stack-2{margin-top:clamp(30px,4vw,58px)}
+
+/* ---- type ---- */
+.eyebrow{
+  display:flex;align-items:center;gap:14px;
+  font-size:10px;font-weight:500;letter-spacing:.34em;text-transform:uppercase;
+  color:rgba(79,181,190,.72);margin-bottom:20px;
+}
+.eyebrow .n{color:rgba(200,164,94,.8)}
+.eyebrow .sep{color:rgba(234,239,245,.2)}
+.eyebrow .ln{flex:1;max-width:90px;height:1px;background:linear-gradient(90deg,rgba(79,181,190,.45),transparent)}
+
+h1,h2{font-family:'Cormorant Garamond',serif;font-weight:300;color:var(--pearl)}
+h1{font-size:clamp(42px,6vw,82px);line-height:1.02;letter-spacing:-.01em}
+h2{font-size:clamp(27px,3.4vw,44px);line-height:1.16;margin-bottom:22px}
+
+.lede{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;
+  font-size:clamp(17px,1.9vw,23px);line-height:1.62;
+  color:rgba(234,239,245,.62);margin-top:26px;max-width:24ch;
+}
+p.body{font-size:13.5px;line-height:2.05;color:rgba(234,239,245,.5);max-width:44ch}
+p.body + p.body{margin-top:18px}
+
+.read-on{
+  display:inline-flex;align-items:center;gap:12px;margin-top:38px;min-height:44px;
+  font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--gold-lt);position:relative;
+}
+.read-on::after{
+  content:'';position:absolute;left:0;bottom:8px;width:54px;height:1px;
+  background:var(--gold);transition:width .3s;
+}
+.read-on:hover::after{width:100%}
+.read-on .arw{transition:transform .3s}
+.read-on:hover .arw{transform:translateX(5px)}
+
+/* ---- art ---- */
+/* Every image is masked to nothing at its edges. That mask is the
+   whole trick: no picture ever presents a straight edge, so no
+   picture ever reads as the start or end of a section. */
+.art{position:relative;overflow:visible}
+.art img{
+  width:100%;height:100%;object-fit:cover;
+  -webkit-mask-image:radial-gradient(ellipse 58% 62% at 50% 50%,#000 38%,transparent 82%);
+  mask-image:radial-gradient(ellipse 58% 62% at 50% 50%,#000 38%,transparent 82%);
+}
+.art.bleed{
+  position:absolute;z-index:-1;pointer-events:none;
+}
+.art.soft img{
+  -webkit-mask-image:radial-gradient(ellipse 64% 66% at 50% 50%,#000 30%,transparent 78%);
+  mask-image:radial-gradient(ellipse 64% 66% at 50% 50%,#000 30%,transparent 78%);
+}
+
+/* =========================================================
+   MOVEMENT 0 — the opening
+   ========================================================= */
+.mv-open{padding-top:calc(var(--nav-h) + clamp(48px,7vw,96px))}
+.mv-open .words{grid-column:1 / 6;position:relative;z-index:3}
+.mv-open .words-1{grid-row:1}
+.mv-open .words-2{grid-row:2}
+.mv-open .art{grid-column:6 / 13;aspect-ratio:auto;margin-top:-4%}
+.ring{
+  position:absolute;top:40%;left:52%;transform:translate(-50%,-50%);
+  width:min(62%,420px);aspect-ratio:1;border-radius:50%;
+  border:1px solid rgba(200,164,94,.4);
+  box-shadow:0 0 50px rgba(200,164,94,.12),inset 0 0 70px rgba(200,164,94,.05);
+  pointer-events:none;
+}
+
+/* =========================================================
+   MOVEMENT 2 — formation
+   ========================================================= */
+.mv-2 .art-cave{grid-column:1 / 5;grid-row:1;aspect-ratio:4/5;margin-top:-14%}
+.mv-2 .words{grid-column:5 / 9;padding-top:clamp(20px,4vw,60px)}
+.mv-2 .steps{grid-column:9 / 13;padding-top:clamp(26px,5vw,74px)}
+
+.steps-head{
+  font-size:9px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;
+  color:rgba(234,239,245,.34);margin-bottom:26px;
+}
+.step{display:flex;gap:18px;align-items:flex-start;padding-block:13px}
+.step .num{
+  font-family:'Cormorant Garamond',serif;font-size:19px;
+  color:rgba(200,164,94,.72);min-width:26px;line-height:1.3;
+}
+.step p{font-size:12.5px;line-height:1.85;color:rgba(234,239,245,.46)}
+
+/* =========================================================
+   MOVEMENT 3 — diversity
+   ========================================================= */
+.mv-3 .words{grid-column:1 / 5;padding-top:clamp(30px,5vw,80px)}
+.mv-3 .specimens{grid-column:5 / 13;display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(8px,1.4vw,22px);align-items:end}
+.spec{text-align:center}
+.spec-art{aspect-ratio:3/4;position:relative}
+.spec-art img{
+  -webkit-mask-image:radial-gradient(ellipse 62% 66% at 50% 54%,#000 34%,transparent 80%);
+  mask-image:radial-gradient(ellipse 62% 66% at 50% 54%,#000 34%,transparent 80%);
+}
+.spec-name{
+  font-size:9.5px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(234,239,245,.8);margin-top:6px;
+}
+.spec-note{font-size:10.5px;line-height:1.6;color:rgba(234,239,245,.36);margin-top:5px}
+
+/* =========================================================
+   MOVEMENT 4 — connection
+   ========================================================= */
+.mv-4 .art-neb{grid-column:1 / 5;grid-row:1;aspect-ratio:1/1;margin-top:-10%}
+.mv-4 .words{grid-column:5 / 9;padding-top:clamp(24px,5vw,72px)}
+.mv-4 .tenets{grid-column:9 / 13;padding-top:clamp(30px,5vw,84px);display:flex;flex-direction:column;gap:26px}
+.tenet{display:flex;gap:18px;align-items:flex-start}
+.tenet-icon{
+  flex-shrink:0;width:40px;height:40px;border-radius:50%;
+  display:grid;place-items:center;color:rgba(200,164,94,.8);
+  background:radial-gradient(circle at 50% 50%,rgba(200,164,94,.1),transparent 70%);
+}
+.tenet-name{font-size:9.5px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:rgba(200,164,94,.82);margin-bottom:7px}
+.tenet p{font-size:12px;line-height:1.85;color:rgba(234,239,245,.44)}
+
+/* =========================================================
+   MOVEMENT 5 — craftsmanship
+   ========================================================= */
+.mv-5 .words{grid-column:1 / 6}
+.mv-5 .words-1{grid-row:1}
+.mv-5 .words-2{grid-row:2}
+.mv-5 .art-craft{grid-column:6 / 13;grid-row:1;aspect-ratio:4/3;margin-top:-8%}
+.mv-5 .pieces{
+  grid-column:5 / 13;grid-row:2;align-self:end;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(8px,1.4vw,20px);align-items:end;
+}
+.pc{text-align:center}
+.pc-art{aspect-ratio:3/4;position:relative}
+.pc-art img{
+  -webkit-mask-image:radial-gradient(ellipse 64% 64% at 50% 54%,#000 34%,transparent 80%);
+  mask-image:radial-gradient(ellipse 64% 64% at 50% 54%,#000 34%,transparent 80%);
+}
+.pc-name{font-family:'Cormorant Garamond',serif;font-size:15px;color:rgba(234,239,245,.85);margin-top:4px}
+.pc-mat{font-size:10px;line-height:1.6;color:rgba(234,239,245,.32);margin-top:4px}
+
+/* =========================================================
+   CODA
+   ========================================================= */
+.coda{
+  position:relative;z-index:2;text-align:center;
+  padding:clamp(60px,9vw,130px) var(--gut) clamp(50px,7vw,90px);
+}
+.coda p{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;
+  font-size:clamp(20px,2.7vw,33px);line-height:1.52;color:rgba(234,239,245,.72);
+}
+.coda .read-on{margin-top:34px}
+
+/* =========================================================
+   FOOTER — no top border; it fades in from the flow
+   ========================================================= */
+footer{
+  position:relative;z-index:2;
+  background:linear-gradient(180deg,transparent,rgba(2,6,16,.85) 45%,#020610 100%);
+}
+.foot-row{
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:22px;
+  padding:44px var(--gut) 30px;
+}
+.foot-links{display:flex;gap:30px;justify-content:center}
+.foot-links a{font-size:10px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:rgba(234,239,245,.4);transition:color .2s}
+.foot-links a:hover{color:rgba(234,239,245,.85)}
+.foot-social{display:flex;gap:4px;justify-content:flex-end}
+.foot-social a{display:grid;place-items:center;width:40px;height:40px;color:rgba(234,239,245,.42);transition:color .2s}
+.foot-social a:hover{color:var(--pearl)}
+.foot-tag{text-align:center;padding:0 var(--gut) 30px;font-size:9px;letter-spacing:.42em;text-transform:uppercase;color:rgba(200,164,94,.34)}
+
+/* =========================================================
+   REVEAL
+   ========================================================= */
+.rise{opacity:0;transform:translateY(22px);transition:opacity .9s cubic-bezier(.2,.6,.2,1),transform .9s cubic-bezier(.2,.6,.2,1)}
+.rise.seen{opacity:1;transform:none}
+
+/* =========================================================
+   RESPONSIVE — the column narrows, the seam never appears
+   ========================================================= */
+@media(max-width:1080px){
+  .mv{grid-template-columns:repeat(8,1fr)}
+  .mv-open .words{grid-column:1 / 5}
+  .mv-open .art{grid-column:5 / 9}
+  .mv-2 .art-cave{grid-column:1 / 4}
+  .mv-2 .words{grid-column:4 / 9}
+  .mv-2 .steps{grid-column:4 / 9;padding-top:34px}
+  .mv-3 .words{grid-column:1 / 9}
+  .mv-3 .specimens{grid-column:1 / 9;margin-top:40px}
+  .mv-4 .art-neb{grid-column:1 / 4}
+  .mv-4 .words{grid-column:4 / 9}
+  .mv-4 .tenets{grid-column:4 / 9;padding-top:34px}
+  .mv-5 .words{grid-column:1 / 5}
+  .mv-5 .art-craft{grid-column:5 / 9}
+  .mv-5 .words-2{grid-column:1 / 9}
+  .mv-5 .pieces{grid-column:1 / 9;grid-row:3;margin-top:36px}
+}
+@media(max-width:760px){
+  .nav-links{display:none}
+  .nav-tools .nav-burger{display:flex}
+  .mv{grid-template-columns:1fr;padding-block:clamp(52px,12vw,80px)}
+  .mv + .mv{margin-top:0}
+  .mv > *{grid-column:1 !important;grid-row:auto !important;padding-top:0 !important}
+  .mv .span-rows{min-height:0;align-self:auto}
+  .mv-open{padding-top:calc(var(--nav-h) + 40px)}
+  .mv-open .art,.mv-2 .art-cave,.mv-4 .art-neb,.mv-5 .art-craft{
+    margin-top:26px;margin-inline:calc(var(--gut) * -1);aspect-ratio:1/1;
+  }
+  .mv-open .art{margin-top:18px;margin-bottom:6px}
+  .mv-open .words-2,.mv-5 .words-2{margin-top:clamp(38px,9vw,60px)}
+  /* Keep the art between its two text blocks rather than letting both
+     columns collapse into one unbroken wall of type. */
+  .mv-open .words-1{order:1}.mv-open .art{order:2}.mv-open .words-2{order:3}
+  .mv-5 .words-1{order:1}.mv-5 .art-craft{order:2}.mv-5 .words-2{order:3}.mv-5 .pieces{order:4}
+  .ring{width:min(72%,300px);top:44%}
+  .lede{max-width:none}
+  p.body{max-width:none}
+  .mv-3 .specimens{grid-template-columns:repeat(3,1fr);gap:18px 10px}
+  .mv-6 .pieces{grid-template-columns:repeat(2,1fr);gap:22px 12px}
+  .foot-row{grid-template-columns:1fr;justify-items:center;gap:16px}
+  .foot-social{justify-content:center}
+}
+@media(max-width:420px){
+  .mv-3 .specimens{grid-template-columns:repeat(2,1fr)}
+}
+@media(prefers-reduced-motion:reduce){
+  .rise{opacity:1;transform:none;transition:none}
+  *{animation:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="atmosphere"></div>
+<svg class="motes" aria-hidden="true" preserveAspectRatio="xMidYMid slice" viewBox="0 0 1200 900">
+  <defs><radialGradient id="m"><stop offset="0" stop-color="#D9BC7C" stop-opacity=".85"/><stop offset="1" stop-color="#D9BC7C" stop-opacity="0"/></radialGradient>
+  <radialGradient id="s"><stop offset="0" stop-color="#fff" stop-opacity=".8"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>
+  <g fill="url(#s)">
+    <circle cx="140" cy="110" r="1.3"/><circle cx="380" cy="60" r="1"/><circle cx="640" cy="130" r="1.2"/>
+    <circle cx="900" cy="80" r="1"/><circle cx="1120" cy="180" r="1.3"/><circle cx="60" cy="300" r="1"/>
+    <circle cx="520" cy="340" r="1.1"/><circle cx="980" cy="380" r="1"/><circle cx="240" cy="520" r="1.2"/>
+    <circle cx="760" cy="560" r="1"/><circle cx="1140" cy="620" r="1.1"/><circle cx="420" cy="760" r="1"/>
+    <circle cx="880" cy="820" r="1.2"/><circle cx="120" cy="700" r="1"/>
+  </g>
+  <g fill="url(#m)">
+    <circle cx="700" cy="240" r="2"/><circle cx="820" cy="300" r="1.5"/><circle cx="600" cy="420" r="1.8"/>
+    <circle cx="300" cy="640" r="1.6"/><circle cx="1000" cy="500" r="1.7"/><circle cx="480" cy="180" r="1.4"/>
+  </g>
+</svg>
+
+<!-- ============ NAV ============ -->
+<nav id="nav">
+  <a href="../index.html" class="nav-wm">Pha<span class="o">ö</span>ra</a>
+  <div class="nav-links">
+    <a href="../shop.html">Shop</a>
+    <a href="../index.html">About</a>
+    <a href="/blog" class="active">Journal</a>
+  </div>
+  <div class="nav-tools">
+    <a href="../sculptures.html" aria-label="Browse the collection">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.3-4.3"/></svg>
+    </a>
+    <a href="../contact.html" aria-label="Contact the studio">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="8" r="3.6"/><path d="M4.5 20c.9-3.9 3.9-6 7.5-6s6.6 2.1 7.5 6"/></svg>
+    </a>
+    <a href="../shop.html" aria-label="Shop the collection">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 8h14l-1.1 11.2a1.6 1.6 0 0 1-1.6 1.4H7.7a1.6 1.6 0 0 1-1.6-1.4Z"/><path d="M9 8V6.2A3 3 0 0 1 12 3.2a3 3 0 0 1 3 3V8"/></svg>
+    </a>
+    <button class="nav-burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="../shop.html">Shop</a>
+  <a href="../sculptures.html">The Collection</a>
+  <a href="../index.html">About</a>
+  <a href="/blog">Journal</a>
+  <a href="../contact.html">Contact</a>
+</div>
+
+<main class="flow">
+
+  <!-- ============ OPENING ============ -->
+  <section class="mv mv-open">
+    <div class="words words-1 rise">
+      <div class="eyebrow"><span>The Journal</span><span class="ln"></span></div>
+      <h1>The Living<br>Language<br>of Crystal</h1>
+      <p class="lede">A journey through formation, energy, craftsmanship, and timeless beauty.</p>
+      <a href="#opening" class="read-on">Read on <span class="arw">→</span></a>
+    </div>
+
+    <div class="words words-2 stack-2 rise" id="opening">
+      <div class="eyebrow"><span class="n">01</span><span class="sep">/</span><span>Introduction</span></div>
+      <h2>More Than a Mineral</h2>
+      <p class="body">For thousands of years, crystals have captivated people. They have been worn by kings, carried by travellers, studied by scientists and kept by collectors. Their appeal outlasts trends because a crystal represents something fundamental: extraordinary beauty hidden inside the earth.</p>
+      <p class="body">Every crystal begins deep underground, formed by pressure, heat and time. What emerges is not merely a mineral. It is architecture, built molecule by molecule over millions of years.</p>
+    </div>
+
+    <div class="art span-rows rise">
+      <div class="ring"></div>
+      <img data-art="hero" alt="A raw amethyst formation rising out of dark still water under a cold sky.">
+    </div>
+  </section>
+
+  <!-- ============ 02 ============ -->
+  <section class="mv mv-2">
+    <div class="art art-cave soft rise">
+      <img data-art="cave" alt="A shaft of light falling across pale crystal points inside a cave.">
+    </div>
+    <div class="words rise">
+      <div class="eyebrow"><span class="n">02</span><span class="sep">/</span><span>The birth of a crystal</span></div>
+      <h2>Nature's Masterpiece</h2>
+      <p class="body">Long before a crystal becomes a sculpture, a centrepiece or a collector's treasure, it exists in darkness.</p>
+      <p class="body">Mineral-rich water moves through fractures in stone. Temperatures shift. Pressure changes. Molecules align with astonishing precision. Over centuries — sometimes millions of years — geometric structures begin to emerge.</p>
+    </div>
+    <div class="steps rise">
+      <p class="steps-head">The crystal formation process</p>
+      <div class="step"><span class="num">01</span><p>Mineral-rich water seeps through rock formations.</p></div>
+      <div class="step"><span class="num">02</span><p>Heat and pressure transform the mineral structure.</p></div>
+      <div class="step"><span class="num">03</span><p>Molecules align in precise geometric patterns.</p></div>
+      <div class="step"><span class="num">04</span><p>Crystals grow, layer by layer, over time.</p></div>
+    </div>
+  </section>
+
+  <!-- ============ 03 ============ -->
+  <section class="mv mv-3">
+    <div class="words rise">
+      <div class="eyebrow"><span class="n">03</span><span class="sep">/</span><span>The diversity of crystals</span></div>
+      <h2>Unique by Nature</h2>
+      <p class="body">Each crystal is a product of its environment, its time and its own journey. That is what creates the variety found throughout the crystal world.</p>
+    </div>
+    <div class="specimens rise" id="specimens"></div>
+  </section>
+
+  <!-- ============ 04 ============ -->
+  <section class="mv mv-4">
+    <div class="art art-neb soft rise">
+      <img data-art="nebula" alt="Amethyst points rising out of shadow, violet light held inside the stone.">
+    </div>
+    <div class="words rise">
+      <div class="eyebrow"><span class="n">04</span><span class="sep">/</span><span>Why we're drawn to crystals</span></div>
+      <h2>A Deeper Connection</h2>
+      <p class="body">There is something universal in our attraction to crystals. They remind us of the natural world's power, its patience and its balance.</p>
+      <p class="body">A crystal invites you to slow down and reconnect with something real — something ancient, and something enduring.</p>
+    </div>
+    <div class="tenets rise">
+      <div class="tenet">
+        <div class="tenet-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2.1 2.1M16.9 16.9 19 19M19 5l-2.1 2.1M7.1 16.9 5 19"/></svg>
+        </div>
+        <div>
+          <p class="tenet-name">Energy</p>
+          <p>Many people believe crystals carry vibrations that affect the energy of a room.</p>
+        </div>
+      </div>
+      <div class="tenet">
+        <div class="tenet-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 12c3-4 6-6 9-6s6 2 9 6c-3 4-6 6-9 6s-6-2-9-6Z"/><circle cx="12" cy="12" r="2.4"/></svg>
+        </div>
+        <div>
+          <p class="tenet-name">Focus</p>
+          <p>They are kept as a way of finding clarity in a noisy room.</p>
+        </div>
+      </div>
+      <div class="tenet">
+        <div class="tenet-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 4 20.5 19h-17L12 4Z"/><path d="M12 10.5 16.2 18H7.8L12 10.5Z" opacity=".5"/></svg>
+        </div>
+        <div>
+          <p class="tenet-name">Intention</p>
+          <p>They serve as symbols of growth and transformation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 05 ============ -->
+  <section class="mv mv-5">
+    <div class="words words-1 rise">
+      <div class="eyebrow"><span class="n">05</span><span class="sep">/</span><span>Craftsmanship</span></div>
+      <h2>Nature, Refined by Hand</h2>
+      <p class="body">Our collection is more than raw mineral. Each piece is a fusion of natural perfection and human artistry.</p>
+      <p class="body">Skilled carvers select, shape and refine each crystal, honouring its natural form while drawing out its character. No two pieces are alike — each one is a singular expression of nature and craft.</p>
+    </div>
+
+    <div class="words words-2 stack-2 rise">
+      <div class="eyebrow"><span class="n">06</span><span class="sep">/</span><span>A collection like no other</span></div>
+      <h2>Timeless Beauty</h2>
+      <p class="body">The PHAÖRA collection brings together rare specimens and carved sculpture — pieces that live between the natural and the artistic, blending earth, light and imagination.</p>
+    </div>
+
+    <div class="art art-craft rise">
+      <img data-art="craft" alt="Carving tools and stone dust beside an uncut block of quartz under a low lamp.">
+    </div>
+    <div class="pieces rise" id="pieces"></div>
+  </section>
+
+</main>
+
+<!-- ============ CODA ============ -->
+<section class="coda">
+  <p class="rise">From the depths of the earth<br>to the heart of your home.</p>
+  <a href="../shop.html" class="read-on rise">Explore the collection <span class="arw">→</span></a>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="foot-row">
+    <a href="../index.html" class="nav-wm">Pha<span class="o">ö</span>ra</a>
+    <div class="foot-links">
+      <a href="../shop.html">Shop</a>
+      <a href="../index.html">About</a>
+      <a href="/blog">Journal</a>
+      <a href="../contact.html">Contact</a>
+    </div>
+    <div class="foot-social">
+      <a href="https://www.instagram.com/phaora.co" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="https://www.pinterest.com/phaora" aria-label="Pinterest"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M9.6 20.4c.9-1.5 1.2-2.6 1.5-4 .2-.8 1-4.2 1-4.2M9.3 10.6c0-1.8 1.4-3.3 3.3-3.3 1.9 0 3.2 1.3 3.2 3.1 0 2.4-1.3 4.2-3.1 4.2-.9 0-1.6-.8-1.4-1.7"/></svg></a>
+      <a href="https://www.youtube.com/@phaora" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2.5" y="6" width="19" height="12" rx="3.4"/><path d="M10.4 9.6l4.6 2.4-4.6 2.4z"/></svg></a>
+    </div>
+  </div>
+  <p class="foot-tag">Art · Nature · Eternity</p>
+</footer>
+
+<script src="../pieces-data.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  // Its own folder: assets/journal/ already holds the hardscape journal's
+  // photographs, and these must not mix with them.
+  var ART = '../assets/journal/crystal/';
+
+  // Generated art is ground and texture only: raw mineral, cave light, tools,
+  // stone. It never depicts a carving. The works are real objects that sell
+  // once each, so every picture of one is a photograph of that object and
+  // comes from the catalogue.
+  //
+  // Until a generated file lands the element hides itself, leaving the
+  // atmosphere behind it — the page stays seamless either way.
+  function withFallback(img, url) {
+    var tried = false;
+    img.addEventListener('error', function () {
+      if (!tried && url) { tried = true; img.src = url; return; }
+      img.style.display = 'none';
+    });
+  }
+
+  document.querySelectorAll('img[data-art]').forEach(function (img) {
+    withFallback(img, null);
+    img.src = ART + img.dataset.art + '.png';
+  });
+
+  // ------------------------------------------------------
+  // Five specimens
+  // ------------------------------------------------------
+  var SPECIMENS = [
+    { file: 'specimen-quartz',       name: 'Quartz',       note: 'Clarity & Strength' },
+    { file: 'specimen-amethyst',     name: 'Amethyst',     note: 'Calm & Balance' },
+    { file: 'specimen-citrine',      name: 'Citrine',      note: 'Sunlight & Vitality' },
+    { file: 'specimen-aquamarine',   name: 'Aquamarine',   note: 'Peace & Flow' },
+    { file: 'specimen-smoky-quartz', name: 'Smoky Quartz', note: 'Grounding & Protection' }
+  ];
+
+  var specHost = document.getElementById('specimens');
+  SPECIMENS.forEach(function (s) {
+    var el = document.createElement('div');
+    el.className = 'spec';
+    el.innerHTML =
+      '<div class="spec-art"><img alt="A ' + s.name.toLowerCase() + ' specimen."></div>' +
+      '<p class="spec-name">' + s.name + '</p>' +
+      '<p class="spec-note">' + s.note + '</p>';
+    var img = el.querySelector('img');
+    withFallback(img, null);
+    img.src = ART + s.file + '.png';
+    specHost.appendChild(el);
+  });
+
+  // ------------------------------------------------------
+  // Four works, read from the catalogue rather than written
+  // into the page, so names and materials stay true.
+  // ------------------------------------------------------
+  var WANTED = ['The Cluster', 'The Raptor', 'The Monolith', 'The Vessel'];
+  var pcHost = document.getElementById('pieces');
+
+  WANTED.forEach(function (name) {
+    var p = null;
+    for (var i = 0; i < PIECES.length; i++) {
+      if (PIECES[i].name === name) { p = PIECES[i]; break; }
+    }
+    if (!p) return;
+
+    var s = slug(p.name);
+    var el = document.createElement('a');
+    el.className = 'pc';
+    el.href = '../piece.html?p=' + s;
+    el.innerHTML =
+      '<div class="pc-art"><img alt="' + p.name + ' — ' + p.material + '"></div>' +
+      '<p class="pc-name">' + p.name + '</p>' +
+      '<p class="pc-mat">' + p.material + '</p>';
+
+    // Photographed, never generated — see the note on withFallback.
+    var img = el.querySelector('img');
+    withFallback(img, null);
+    img.src = p.image;
+    pcHost.appendChild(el);
+  });
+
+  // ------------------------------------------------------
+  // Reveal on approach
+  // ------------------------------------------------------
+  var rises = document.querySelectorAll('.rise');
+  if (!('IntersectionObserver' in window)) {
+    rises.forEach(function (el) { el.classList.add('seen'); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('seen'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: .08 });
+    rises.forEach(function (el) { io.observe(el); });
+  }
+
+  // ------------------------------------------------------
+  // Nav
+  // ------------------------------------------------------
+  var nav = document.getElementById('nav');
+  var onScroll = function () { nav.classList.toggle('solid', window.scrollY > 40); };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  var burger = document.getElementById('burger');
+  var menu = document.getElementById('mobile-menu');
+  burger.addEventListener('click', function () {
+    var open = menu.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', String(open));
+    document.body.classList.toggle('locked', open);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    menu.classList.remove('open');
+    burger.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('locked');
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+Generated art for journal/living-language-of-crystal.html drops here as PNG.
+
+GROUND AND TEXTURE ONLY. Nothing in this folder may depict a carving.
+The works are real objects that sell once each, so a synthesised picture
+of one would be a product photograph of something that does not exist.
+Every image of a piece is a photograph of that piece and comes from
+pieces-data.js.
+
+Wide plates, 1536x1024:
+  hero.png      raw amethyst formation rising out of dark still water
+  cave.png      a shaft of light across crystal points inside a cave
+  nebula.png    amethyst points rising out of shadow
+  craft.png     carving tools and stone dust beside an uncut block
+
+Specimens, 1024x1024 each — raw mineral, uncarved:
+  specimen-quartz.png        specimen-amethyst.png    specimen-citrine.png
+  specimen-aquamarine.png    specimen-smoky-quartz.png
+
+Every image is masked to a soft edge by the page, so generate on a plain
+dark ground and do not compose to a border — the corners are thrown away.
+A missing file hides its own element, so the page stays seamless while
+this folder is empty.
