@@ -16,9 +16,11 @@
   /* gold — antique, not brass. The flecks in the photography are this colour. */
   --gold:#C9A76A;
   --gold-lt:#E3C98B;
-  --gold-dim:rgba(201,167,106,0.42);
-  --hair:rgba(201,167,106,0.20);
-  --hair-soft:rgba(201,167,106,0.10);
+  --gold-dim:rgba(201,167,106,0.58);
+  --hair:rgba(201,167,106,0.34);
+  --hair-soft:rgba(201,167,106,0.18);
+  /* the frame around a piece for sale — meant to be seen, not inferred */
+  --frame:rgba(201,167,106,0.72);
 
   /* text */
   --warm:#EDE7DA;
@@ -300,13 +302,13 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
    language running down the site. */
 .card{
   position:relative;display:block;
-  border:1px solid var(--gold-dim);
+  border:1px solid var(--frame);
   background:rgba(7,7,9,0.86);
   box-shadow:0 1px 0 rgba(201,167,106,0.05) inset, 0 18px 40px rgba(0,0,0,0.45);
   transition:border-color .4s,transform .5s var(--ease),box-shadow .4s;
 }
 .card:hover{
-  border-color:var(--gold);
+  border-color:var(--gold-lt);
   transform:translateY(-3px);
   box-shadow:0 1px 0 rgba(201,167,106,0.12) inset, 0 26px 54px rgba(0,0,0,0.6);
 }
