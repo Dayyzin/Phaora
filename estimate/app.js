@@ -597,6 +597,10 @@ async function send() {
         name: $("b-name").value, phone: $("b-phone").value, email: $("b-email").value,
         address: $("b-addr").value || (S.place ? S.place.formatted : ""),
         website: $("website").value,
+        // Referral code the visitor arrived on, kept by tag.js. Sent from
+        // this door as well as the contact form — a partner's lead is worth
+        // the same whichever one it comes through.
+        ref: (window.phaoraRef ? window.phaoraRef() : ""),
         surfaceId: S.surface.id, material: S.material, conditions: S.conds,
         sqft: m.sqft, linearFt: m.linearFt, method: S.mode, src: S.src,
         photos: shots.map((p) => p.path).filter(Boolean),

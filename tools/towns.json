@@ -2,16 +2,45 @@
   "_note": [
     "The towns the ads target, and the pages that back them up.",
     "",
-    "RULE: nothing in here may be invented. 'borders' lists only towns whose",
-    "'local' is one true, specific sentence about the work in that town. What is there now is built only from the county, the towns it borders, and the fact that the crews are ours — no job we did not do, no year we were not there. Swap any of them for a real job the moment there is one to name.",
-    "work in that town — a job, a condition, a bylaw — and it stays EMPTY",
-    "until David gives it. An empty 'local' renders nothing at all rather",
-    "than a guess dressed up as knowledge.",
-    "Frost depth is now in 'frostNote' and it is deliberately not a single number: there isn't one. 780 CMR leaves Table R301.2(1) to each municipality. Saying '48 inches in Massachusetts' on a public page would be wrong in half the towns we serve.",
-    "Frost depth is deliberately absent. It belongs on these pages and it is",
-    "not written here because it has not been checked against the state code.",
-    "Add it once, in 'frostNote', and every page picks it up.",
-    "'photo' is the source image for that town's hero and its link preview. One per town so thirteen links shared in a text do not look like the same link thirteen times. Landscape sources only — tools/build-og-cards.js crops them to 1200x630 and lays the town name over the bottom."
+    "THE GATE. A town page does not publish until it has (1) at least one real",
+    "project in that town and (2) at least one town-specific fact. That is Stage 7",
+    "of the growth-engine spec in canon (docs/strategy/GROWTH_ENGINE_BUILD.md §12),",
+    "and tools/lib-distinct.js enforces it. Run `node tools/build-town-pages.js",
+    "--report` to see where each town stands.",
+    "",
+    "A FACT is one entry in this town's 'facts' array: { claim, source }. Both are",
+    "required — a claim with no source cannot be checked a year from now, and",
+    "CLAUDE.md rule 5 is that nothing published gets invented. The kinds §12 names:",
+    "this town's frost depth off its own Table R301.2(1), the DPW apron standard,",
+    "which counter pulls the permit. Leave the array empty until there is a real",
+    "one; empty renders nothing, which is the correct output for nothing known.",
+    "",
+    "WHAT IS NOT A FACT, each because it was tried: 'frostNote' below, because it",
+    "is one string rendered identically on all thirteen pages and a fact every page",
+    "shares is the opposite of the thing being measured. The 'local' line, because",
+    "no program can tell knowledge from filler in a sentence. And anything",
+    "rebuildable from 'town', 'county' and 'borders' — those are already on the",
+    "page as structured data, and saying them again in prose adds words, not",
+    "information.",
+    "",
+    "'local' is one sentence about the work in that town. What is in it now is built",
+    "only from the county, the towns it borders, and the fact that the crews are",
+    "ours — no job we did not do, no year we were not there. It is true and it is",
+    "not distinctive, which is why it no longer counts toward the gate. Swap any of",
+    "them for a real job the moment there is one to name.",
+    "",
+    "'borders' lists only towns we actually work in.",
+    "",
+    "Frost depth is deliberately not a single number: there isn't one. 780 CMR",
+    "leaves Table R301.2(1) to each municipality, so '48 inches in Massachusetts'",
+    "on a public page would be wrong in half the towns we serve. The shared",
+    "'frostNote' says that honestly; a town's own checked depth belongs in its",
+    "'facts' array, with the building department as the source.",
+    "",
+    "'photo' is the source image for that town's hero and its link preview. One per",
+    "town so thirteen links shared in a text do not look like the same link",
+    "thirteen times. Landscape sources only — tools/build-og-cards.js crops them to",
+    "1200x630 and lays the town name over the bottom."
   ],
   "frostNote": "Frost depth here is set by the town, not the state — Table R301.2(1) of the Massachusetts Residential Code is filled in by each building department. Inland it is commonly 42 to 48 inches; nearer the coast it is often less. We build to the depth your building department gives, and we ask before we dig.",
   "towns": [
@@ -27,6 +56,7 @@
         "Wellesley"
       ],
       "local": "Weston sits in Middlesex County between Wayland and Newton, and we work the whole ring of it — Lincoln, Waltham and Wellesley on the same trucks, with our own crews rather than subcontractors.",
+      "facts": [],
       "photo": "portfolio/images/retaining-wall-lit.jpg"
     },
     {
@@ -40,6 +70,7 @@
         "Dover"
       ],
       "local": "Wellesley is Norfolk County, bordered by Weston, Natick, Needham and Dover, and we build across all of them. The crew that walks your property is the crew that builds it.",
+      "facts": [],
       "photo": "portfolio/images/wall-granite-steps.jpg"
     },
     {
@@ -54,6 +85,7 @@
         "Framingham"
       ],
       "local": "Sudbury runs from Wayland across to Marlborough, where our yard is, so it is a short haul and a full day on site rather than half a day of driving.",
+      "facts": [],
       "photo": "portfolio/images/fieldstone-wall-garden.jpg"
     },
     {
@@ -68,6 +100,7 @@
         "Framingham"
       ],
       "local": "Wayland sits between Sudbury and Weston with Lincoln to the north, and we are in all four regularly. Our own crews, start to finish.",
+      "facts": [],
       "photo": "portfolio/images/seat-wall-patio.jpg"
     },
     {
@@ -82,6 +115,7 @@
         "Bedford"
       ],
       "local": "Concord borders Sudbury, Lincoln, Carlisle, Acton and Bedford, and we build across that whole stretch of Middlesex County with our own crews.",
+      "facts": [],
       "photo": "portfolio/images/ledgestone-wall.jpg"
     },
     {
@@ -96,6 +130,7 @@
         "Lexington"
       ],
       "local": "Lincoln is bounded by Concord, Sudbury, Wayland, Weston and Lexington — five towns we are in through the season, so a Lincoln job is never a special trip.",
+      "facts": [],
       "photo": "portfolio/images/entrance-wall.jpg"
     },
     {
@@ -112,6 +147,7 @@
         "Waltham"
       ],
       "local": "Lexington borders Lincoln, Bedford, Burlington, Woburn, Arlington, Belmont and Waltham. We build across that side of Middlesex County with our own crews.",
+      "facts": [],
       "photo": "portfolio/images/entrance-pillar.jpg"
     },
     {
@@ -126,6 +162,7 @@
         "Brookline"
       ],
       "local": "Newton meets Weston, Waltham, Wellesley, Needham and Brookline, and we work across those lines rather than treating each town as a separate market.",
+      "facts": [],
       "photo": "portfolio/images/outdoor-kitchen.jpg"
     },
     {
@@ -140,6 +177,7 @@
         "Medfield"
       ],
       "local": "Dover is Norfolk County alongside Wellesley, Needham, Sherborn, Natick and Medfield — the same run our crews are already making.",
+      "facts": [],
       "photo": "portfolio/images/retaining-wall.jpg"
     },
     {
@@ -154,6 +192,7 @@
         "Medfield"
       ],
       "local": "Sherborn sits between Dover, Natick, Framingham, Holliston and Medfield, and we build across all of them with our own people.",
+      "facts": [],
       "photo": "portfolio/images/wall-driveway.jpg"
     },
     {
@@ -168,6 +207,7 @@
         "Bedford"
       ],
       "local": "Carlisle borders Concord, Acton, Chelmsford, Billerica and Bedford, at the north end of the stretch of Middlesex County we work.",
+      "facts": [],
       "photo": "assets/journal/cap-set.jpg"
     },
     {
@@ -182,6 +222,7 @@
         "Westborough"
       ],
       "local": "Southborough is Worcester County, next to Marlborough where our yard is — about as close to home as our work gets.",
+      "facts": [],
       "photo": "assets/journal/edge-restraint.jpg"
     },
     {
@@ -197,6 +238,7 @@
         "Southborough"
       ],
       "local": "Hopkinton borders Ashland, Holliston, Milford, Upton, Westborough and Southborough, and it is a short run from the yard in Marlborough.",
+      "facts": [],
       "photo": "assets/journal/screed-rails.jpg"
     }
   ],

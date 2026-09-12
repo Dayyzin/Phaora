@@ -16,10 +16,35 @@
  * it. What it does NOT carry is a single invented fact: no job we did not do,
  * no year we were not there, no frost depth nobody checked. Anything unknown
  * renders as nothing at all.
+ *
+ * THE GATE, ADDED AFTER THE FACT
+ * ---------------------------------------------------------------------------
+ * The paragraph above was the intent and it was not what shipped. The thirteen
+ * pages on disk are 29.3KB each and differ from one another by about forty
+ * lines, nearly all of them the town name swapped in the title, the meta
+ * description, the canonical and the headings. Every `local` line restated the
+ * `county` field and the `borders` array as prose. No page carried a project
+ * in its own town — the only project page on the site that names a town names
+ * Marlborough, which is where the yard is and is not one of the thirteen. All
+ * thirteen were in the sitemap, and the generator reported all thirteen
+ * "complete" because `local` was non-empty.
+ *
+ * `lib-distinct.js` is now the rule from the spec, in code: at least one real
+ * project in that town, and at least one town-specific fact carrying a source.
+ * A town that fails it and has no page yet does not get one. A town that fails
+ * it and already has a live page keeps it and is reported as a debt — pulling
+ * thirteen indexed pages is a decision about the site, not a side effect of a
+ * build. `--enforce` is how that decision gets carried out once it is made.
+ *
+ *   node tools/build-town-pages.js --report    assess only, write nothing
+ *   node tools/build-town-pages.js --enforce   noindex + desitemap the failures
  */
 const fs = require("fs");
 const path = require("path");
 const { chrome } = require("./lib-chrome");
+const { allProjects } = require("./lib-projects");
+const { assess, uniqueShare, publishable, MIN_UNIQUE_SHARE } = require("./lib-distinct");
+const { sectionFor, tradesFor, coverage } = require("./town-content");
 
 const ROOT = path.join(__dirname, "..");
 const DATA = JSON.parse(fs.readFileSync(path.join(__dirname, "towns.json"), "utf8"));
@@ -68,6 +93,9 @@ const CSS = `
 .tp-sec{padding:clamp(38px,7vw,72px) 0 0}
 .tp-h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(24px,5vw,34px);line-height:1.16;color:var(--pearl);margin:0}
 .tp-p{color:rgba(234,239,245,.62);font-size:15px;line-height:1.72;margin:14px 0 0;max-width:64ch}
+.tp-src{display:block;margin:4px 0 0;font-size:12px;color:rgba(234,239,245,.42)}
+.tp-cell h3 a{color:var(--teal);text-decoration:none;border-bottom:1px solid rgba(79,181,190,.3)}
+.tp-cell h3 a:hover{color:var(--gold-lt)}
 .tp-grid{display:grid;gap:1px;margin:26px 0 0;background:rgba(234,239,245,.08);border:1px solid rgba(234,239,245,.08)}
 @media(min-width:700px){.tp-grid{grid-template-columns:1fr 1fr}}
 .tp-cell{background:var(--ink);padding:20px 22px}
@@ -137,18 +165,35 @@ ${show.map((q) => `      <figure><blockquote>${esc(q.quote)}</blockquote>` +
   </section>`;
 }
 
-function page(t, all) {
+function page(t, all, verdict, enforce) {
   const bySlug = new Map(all.map((x) => [x.town, x]));
   /* Only link the neighbours we actually have a page for. */
   const near = t.borders.filter((b) => bySlug.has(b)).map((b) => bySlug.get(b));
+  // The page's own subject. Different on every town, so the hero line, the meta
+  // description and the largest section on the page all differ too — which is
+  // the point: a page that shares its description with twelve others shares its
+  // SERP snippet with them as well.
+  const sec = sectionFor(t.slug);
+
   const title = `Masonry & Hardscape Contractor in ${t.town}, MA | PHAÖRA`;
-  const desc = `Patios, walkways, retaining walls, steps and drainage in ${t.town}, Massachusetts. `
-             + `Built to New England frost depth by our own crews. Free on-site estimate, and a price online in about thirty seconds.`;
+  const desc = sec
+    ? `${sec.summary} ${t.town}, Massachusetts.`
+    : `Patios, walkways, retaining walls, steps and drainage in ${t.town}, Massachusetts. `
+      + `Built to New England frost depth by our own crews. Free on-site estimate, and a price online in about thirty seconds.`;
   const url = `https://phaora.com/${t.slug}/`;
 
+  // `legalName` is deliberately absent. It carried SKYINCH CAPITAL LLC, which is
+  // David's but is not currently in good standing — reinstatement is unpaid as
+  // of 2026-09-12. A registration status published as current when it is not is
+  // the class of claim that cost the Google Business Profile a suspension for
+  // deceptive content in July, and canon's compliance line is explicit: do not
+  // state a licence, insurance or registration status that is not currently
+  // true. The field is optional in schema.org and nothing depends on it, so the
+  // honest output is to omit it. Restore this line the day the LLC is
+  // reinstated — nothing else needs to change.
   const ld = {
     "@context": "https://schema.org", "@type": "GeneralContractor",
-    name: "PHAÖRA", legalName: "SKYINCH CAPITAL LLC", url,
+    name: "PHAÖRA", url,
     telephone: "+1-561-299-1261", email: "phaoraco@gmail.com",
     description: desc,
     areaServed: [{ "@type": "City", name: `${t.town}, Massachusetts` }]
@@ -163,7 +208,13 @@ function page(t, all) {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
-<link rel="canonical" href="${url}">
+<link rel="canonical" href="${url}">${enforce && verdict.holdBack ? `
+<!-- Held back: ${esc(verdict.holdBack)}.
+     noindex rather than deleted — the page is honest about what it does carry,
+     it just has too little that the twelve others do not, and asking to be
+     ranked for that is what earns the duplicate-content penalty. It indexes
+     again the moment it is its own page, at the same URL, with its history. -->
+<meta name="robots" content="noindex,follow">` : ""}
 <meta property="og:type" content="website">
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(desc)}">
@@ -197,7 +248,7 @@ ${C.mobile}
   <div class="tp-wrap">
     <p class="eyebrow">${esc(t.town)}, Massachusetts &nbsp;·&nbsp; ${esc(t.county)} County</p>
     <h1>Masonry and hardscape<br>in <em>${esc(t.town)}</em>.</h1>
-    <p class="tp-lede">Patios, walkways, retaining walls, steps and drainage — built by our own crews, for ground that freezes.</p>
+    <p class="tp-lede">${esc(sec ? sec.lede : "Patios, walkways, retaining walls, steps and drainage — built by our own crews, for ground that freezes.")}</p>
     <a class="tp-cta" href="/estimate/">Price your project &rarr;</a>
   </div>
 </header>
@@ -207,23 +258,35 @@ ${C.mobile}
   <section class="tp-sec">
     <h2 class="tp-h2">What we build in ${esc(t.town)}</h2>
     <div class="tp-grid">
-${TRADES.map(([h, p]) => `      <div class="tp-cell"><h3>${esc(h)}</h3><p>${esc(p)}</p></div>`).join("\n")}
+${(tradesFor(t.slug) || TRADES).map(([h, p]) => `      <div class="tp-cell"><h3>${esc(h)}</h3><p>${esc(p)}</p></div>`).join("\n")}
     </div>
   </section>
 
   <section class="tp-sec">
-    <h2 class="tp-h2">What decides whether it lasts here</h2>
-    <p class="tp-p">Every wall and patio we have taken apart failed for one of these five reasons.
+    <h2 class="tp-h2">${esc(sec ? sec.heading : "What decides whether it lasts here")}</h2>
+${sec
+  ? sec.body.map((para) => `    <p class="tp-p">${esc(para)}</p>`).join("\n")
+  : `    <p class="tp-p">Every wall and patio we have taken apart failed for one of these five reasons.
       They are the same in ${esc(t.town)} as anywhere else in New England, and they are most of
       what separates a job that looks right at twenty years from one that does not make five.</p>
     <ol class="tp-num">
 ${LASTS.map(([h, p]) => `      <li><h3>${esc(h)}</h3><p>${esc(p)}</p></li>`).join("\n")}
-    </ol>
+    </ol>`}
   </section>
-${t.local || DATA.frostNote ? `
+${verdict.projects.length ? `
+  <section class="tp-sec">
+    <h2 class="tp-h2">${verdict.projects.length === 1 ? "A job" : "Jobs"} we built in ${esc(t.town)}</h2>
+    <div class="tp-grid">
+${verdict.projects.map((p) =>
+  `      <div class="tp-cell"><h3><a href="${p.url}">${esc(p.title || p.url)}</a></h3></div>`).join("\n")}
+    </div>
+  </section>` : ""}
+${t.local || verdict.facts.length || DATA.frostNote ? `
   <section class="tp-sec">
     <h2 class="tp-h2">Working in ${esc(t.town)}</h2>
 ${t.local ? `    <p class="tp-p">${esc(t.local)}</p>` : ""}
+${verdict.facts.map((f) =>
+  `    <p class="tp-p">${esc(f.claim)} <span class="tp-src">${esc(f.source)}</span></p>`).join("\n")}
 ${DATA.frostNote ? `    <p class="tp-p">${esc(DATA.frostNote)}</p>` : ""}
   </section>` : ""}
 ${voices(t.town)}
@@ -253,18 +316,74 @@ ${C.nav_js}
 `;
 }
 
-const want = process.argv[2] && process.argv[2].toLowerCase();
+const args = process.argv.slice(2);
+const REPORT = args.includes("--report");
+const ENFORCE = args.includes("--enforce");
+const want = args.find((a) => !a.startsWith("--"))?.toLowerCase();
+
 const towns = DATA.towns.filter((t) =>
   !want || t.slug === want || t.town.toLowerCase() === want || t.slug.includes(want));
 
 if (!towns.length) { console.error(`no town matching "${want}"`); process.exit(1); }
 
+const PROJECTS = allProjects();
+const unattributed = PROJECTS.filter((p) => !p.town);
+
+/* Every town is assessed, not just the ones being written — the report is
+   about the shape of the whole set, and one town's uniqueness is only
+   meaningful measured against the other twelve. */
+const verdicts = new Map(DATA.towns.map((t) => [t.slug, assess(t, PROJECTS)]));
+
+const exists = (t) => fs.existsSync(path.join(ROOT, t.slug, "index.html"));
+
+/* Render the whole set in memory first. Nothing is written yet: the
+   distinctiveness read compares each page against the other twelve, so every
+   page has to exist as text before any number about it means anything. */
+const rendered = new Map(
+  DATA.towns.map((t) => [t.slug, page(t, DATA.towns, verdicts.get(t.slug), ENFORCE)]),
+);
+
+/* The publish decision, measured over the rendered set. It cannot be part of
+   `assess()` because it needs every other page to exist as text first. */
+const distinct = new Map(
+  DATA.towns.map((t) => [t.slug, publishable(t.slug, rendered, DATA.towns)]),
+);
+
+let written = 0;
+const withheld = [];
+const debt = [];
+
 for (const t of towns) {
-  const dir = path.join(ROOT, t.slug);
-  fs.mkdirSync(dir, { recursive: true });
-  fs.writeFileSync(path.join(dir, "index.html"), page(t, DATA.towns));
-  const gaps = [!t.local && "local"].filter(Boolean);
-  console.log(`${t.slug.padEnd(24)} ${gaps.length ? "blank: " + gaps.join(", ") : "complete"}`);
+  const v = verdicts.get(t.slug);
+  const d = distinct.get(t.slug);
+
+  /* A page that is not its own words and does not yet exist does not get
+     created. This is the duplication rule doing the only thing it can do
+     without touching the live site. */
+  if (!d.ok && !exists(t)) {
+    withheld.push(t);
+    console.log(`${t.slug.padEnd(24)} withheld — ${d.reason}`);
+    continue;
+  }
+
+  if (!d.ok) debt.push(t);
+
+  if (!REPORT) {
+    /* Re-render once the distinctness verdict is known, because that verdict is
+       what decides the noindex tag and it did not exist on the first pass. */
+    const html = ENFORCE && !d.ok
+      ? page(t, DATA.towns, { ...v, holdBack: d.reason }, ENFORCE)
+      : rendered.get(t.slug);
+    const dir = path.join(ROOT, t.slug);
+    fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(path.join(dir, "index.html"), html);
+    written++;
+  }
+
+  const state = d.ok
+    ? `publishes — ${v.projects.length} project${v.projects.length === 1 ? "" : "s"}, ${v.facts.length} sourced fact${v.facts.length === 1 ? "" : "s"}`
+    : (ENFORCE ? "NOINDEX — " : "live but not distinct — ") + d.reason;
+  console.log(`${t.slug.padEnd(24)} ${String(d.unique).padStart(5)}% its own  ${state}`);
 }
 
 /* The hub. Thirteen pages nothing links to are thirteen pages Google treats
@@ -355,15 +474,33 @@ ${C.nav_js}
 `;
 }
 
+if (REPORT) {
+  summarise();
+  process.exit(0);
+}
+
 /* The sitemap lists the towns that actually exist on disk, so building one
    page does not advertise twelve that would 404. */
 fs.mkdirSync(path.join(ROOT, "service-area"), { recursive: true });
 fs.writeFileSync(path.join(ROOT, "service-area", "index.html"), hub(DATA.towns));
 
 const SITEMAP = path.join(ROOT, "sitemap.xml");
-const live = DATA.towns.filter((t) => fs.existsSync(path.join(ROOT, t.slug, "index.html")));
+
+/* Under --enforce a page held back by the gate is also out of the sitemap.
+   Leaving a noindex page in the sitemap asks to be crawled and then refuses
+   to be ranked, which is a contradiction a crawler reports as an error. The
+   hub still links to it, so it is reachable and still passes its links on —
+   that is what `noindex,follow` is for. */
+const live = DATA.towns.filter((t) =>
+  fs.existsSync(path.join(ROOT, t.slug, "index.html")) &&
+  (!ENFORCE || distinct.get(t.slug).ok));
 let xml = fs.readFileSync(SITEMAP, "utf8");
 xml = xml.replace(/\n  <!-- towns -->[\s\S]*?<!-- \/towns -->/, "");
+/* Cutting the block out leaves the newline that followed it, so every run used
+   to add one blank line before </urlset> — invisible in the file and a
+   three-line diff after three builds. Collapsed here so a rebuild that changes
+   nothing produces no diff. */
+xml = xml.replace(/\n\s*\n(\s*<\/urlset>)/, "\n$1");
 const block = "\n  <!-- towns -->\n" +
   `  <url><loc>https://phaora.com/service-area/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>\n` +
   live.map((t) =>
@@ -371,4 +508,62 @@ const block = "\n  <!-- towns -->\n" +
 ).join("\n") + "\n  <!-- /towns -->";
 fs.writeFileSync(SITEMAP, xml.replace("</urlset>", block.trimEnd() + "\n</urlset>"));
 
-console.log(`\n${towns.length} page${towns.length === 1 ? "" : "s"} written, ${live.length} in the sitemap.`);
+console.log(`\n${written} page${written === 1 ? "" : "s"} written, ${live.length} in the sitemap.`);
+summarise();
+
+/**
+ * What the run found, in the order it matters.
+ *
+ * The debt line is the point of the whole gate: a page that is live, indexed
+ * and interchangeable with twelve others is not a neutral placeholder. It is
+ * the thing §12 says is actively penalised, and it drags the pages that are
+ * real down with it, so it is named every run until it is fixed or withdrawn.
+ */
+function summarise() {
+  const pass = DATA.towns.filter((t) => distinct.get(t.slug).ok);
+
+  console.log(`\n  ${pass.length}/${DATA.towns.length} pages are substantially their own words ` +
+              `(floor ${MIN_UNIQUE_SHARE}%).`);
+  console.log(
+    "\n  " +
+    DATA.towns
+      .map((t) => `${t.slug.padEnd(24)} ${String(distinct.get(t.slug).unique).padStart(5)}%` +
+                  `${verdicts.get(t.slug).facts.length ? "" : "   (no sourced town fact)"}`)
+      .join("\n  "),
+  );
+
+  if (debt.length) {
+    console.log(
+      `\n  ${debt.length} live page${debt.length === 1 ? " is" : "s are"} indexed and not distinct enough:\n` +
+      debt.map((t) => `    ${t.slug}`).join("\n") +
+      (ENFORCE
+        ? "\n  Written with noindex,follow and removed from the sitemap."
+        : "\n  Left as they are. `--enforce` noindexes them and drops them from the sitemap."),
+    );
+  }
+
+  if (withheld.length) {
+    console.log(`\n  ${withheld.length} not created, too close to the others: ` +
+      withheld.map((t) => t.slug).join(", "));
+  }
+
+  if (unattributed.length) {
+    console.log(
+      `\n  ${unattributed.length} project page${unattributed.length === 1 ? "" : "s"} claim no town, so ` +
+      `${unattributed.length === 1 ? "it counts" : "they count"} for nobody:\n` +
+      unattributed.map((p) => `    ${p.url}`).join("\n") +
+      "\n  Add areaServed.address.addressLocality to the page's JSON-LD.",
+    );
+  }
+
+  const needFacts = DATA.towns.filter((t) => !verdicts.get(t.slug).facts.length);
+  if (needFacts.length) {
+    console.log(
+      `\n  A fact is one entry in a town's "facts" array: { claim, source }.\n` +
+      `  §12 names the kinds that work — the town's frost depth off its own\n` +
+      `  Table R301.2(1), the DPW apron standard, which counter pulls the permit.\n` +
+      `  Not the shared frostNote, and not the county and borders as a sentence.\n` +
+      `  Waiting on one: ${needFacts.length}.`,
+    );
+  }
+}
