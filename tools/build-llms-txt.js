@@ -43,7 +43,12 @@ const SITE = "https://phaora.com";
    "Consistent name/address/phone everywhere" is the requirement, and two files
    that disagree about the phone number are the failure it is guarding. */
 const NAME = "PHAÖRA";
-const LEGAL = "SKYINCH CAPITAL LLC";
+/* No LEGAL constant. It held SKYINCH CAPITAL LLC, which is David's but is not
+   in good standing — reinstatement is unpaid as of 2026-09-12. Stating a
+   registration as current when it is not is what a Google Business Profile was
+   suspended for in July, and canon's compliance line forbids it outright. The
+   trading-name sentence is omitted rather than reworded: there is no true
+   version of it to write until the LLC is reinstated. */
 const PHONE = "+1-561-299-1261";
 const EMAIL = "phaoraco@gmail.com";
 
@@ -91,7 +96,7 @@ const body = `# ${NAME}
 > company's own crews. ${NAME} also produces original sculpture, which ships
 > beyond Massachusetts.
 
-${NAME} is the trading name of ${LEGAL}. Phone ${PHONE}. Email ${EMAIL}.
+Phone ${PHONE}. Email ${EMAIL}.
 
 The hardscape work is local: it is installed by crews working out of
 Massachusetts and is not available outside the region they can reach. The

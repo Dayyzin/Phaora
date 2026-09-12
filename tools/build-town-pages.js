@@ -182,9 +182,18 @@ function page(t, all, verdict, enforce) {
       + `Built to New England frost depth by our own crews. Free on-site estimate, and a price online in about thirty seconds.`;
   const url = `https://phaora.com/${t.slug}/`;
 
+  // `legalName` is deliberately absent. It carried SKYINCH CAPITAL LLC, which is
+  // David's but is not currently in good standing — reinstatement is unpaid as
+  // of 2026-09-12. A registration status published as current when it is not is
+  // the class of claim that cost the Google Business Profile a suspension for
+  // deceptive content in July, and canon's compliance line is explicit: do not
+  // state a licence, insurance or registration status that is not currently
+  // true. The field is optional in schema.org and nothing depends on it, so the
+  // honest output is to omit it. Restore this line the day the LLC is
+  // reinstated — nothing else needs to change.
   const ld = {
     "@context": "https://schema.org", "@type": "GeneralContractor",
-    name: "PHAÖRA", legalName: "SKYINCH CAPITAL LLC", url,
+    name: "PHAÖRA", url,
     telephone: "+1-561-299-1261", email: "phaoraco@gmail.com",
     description: desc,
     areaServed: [{ "@type": "City", name: `${t.town}, Massachusetts` }]
