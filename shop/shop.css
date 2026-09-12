@@ -71,6 +71,52 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 .page{position:relative;z-index:1}
 
+/* --- quiet ground under copy -------------------------------------------- */
+/* Leaf behind a paragraph is leaf in front of it: every flake lands on a
+   letter and the line stops being readable at a glance. Anything carrying
+   writing or a mark gets a soft pool of the page colour under it — no edge, no
+   panel, the field just thins out where the eye has work to do. */
+.quiet{position:relative;z-index:0}
+.quiet > *{position:relative;z-index:1}
+.quiet::before{
+  content:'';position:absolute;z-index:0;pointer-events:none;
+  inset:-28px -40px;
+  background:radial-gradient(ellipse at center,
+    rgba(5,5,6,0.92) 0%,
+    rgba(5,5,6,0.86) 38%,
+    rgba(5,5,6,0.58) 66%,
+    rgba(5,5,6,0) 84%);
+}
+/* a tighter pool for short single lines and icon blocks */
+.quiet-tight::before{inset:-14px -22px}
+
+/* Everything on the site that carries writing or a mark. Listed here rather
+   than as a class in the markup so a new page cannot forget it. */
+.hero-copy, .section-head, .phead, .prose, .jhead, .jbody, .band-copy,
+.note-inner, .pdp-info, .filters, .cat, .foot-in, .cart-wrap, .jitem-text{
+  position:relative;z-index:0;
+}
+.hero-copy > *, .section-head > *, .phead > *, .prose > *, .jhead > *,
+.jbody > *, .band-copy > *, .note-inner > *, .pdp-info > *, .filters > *,
+.cat > *, .foot-in > *, .cart-wrap > *, .jitem-text > *{
+  position:relative;z-index:1;
+}
+.hero-copy::before, .section-head::before, .phead::before, .prose::before,
+.jhead::before, .jbody::before, .band-copy::before, .note-inner::before,
+.pdp-info::before, .filters::before, .cat::before, .foot-in::before,
+.cart-wrap::before, .jitem-text::before{
+  content:'';position:absolute;z-index:0;pointer-events:none;
+  inset:-28px -40px;
+  background:radial-gradient(ellipse at center,
+    rgba(5,5,6,0.92) 0%,
+    rgba(5,5,6,0.86) 38%,
+    rgba(5,5,6,0.58) 66%,
+    rgba(5,5,6,0) 84%);
+}
+/* bounded blocks pool inside their own box so they do not bleed into a neighbour */
+.cat::before{inset:0}
+.section-head::before,.filters::before{inset:-18px -28px}
+
 /* --- shared type ------------------------------------------------------- */
 .eyebrow{
   font-family:var(--ui);font-size:10px;font-weight:400;

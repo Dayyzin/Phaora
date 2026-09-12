@@ -55,3 +55,59 @@ The piece page will automatically show a SOLD badge and disable the buy button.
 ## How to feature a piece
 
 Set `"is_featured": true` in the catalog entry. Featured pieces appear first in the index grid and in the "related pieces" section of other piece pages.
+
+---
+
+## Measurements
+
+Everything below is optional and everything below is printed only if it is
+filled in. A blank stays off the page rather than turning into a guess — so a
+half-measured piece is safe to ship, it just says less.
+
+Open `/assets/sculptures/catalog.json`, find the piece by slug, and fill in:
+
+```json
+{
+  "slug": "beacon",
+  "base_material": "Rose quartz on serpentine",
+  "wingspan_inches": 18,
+  "specs": {
+    "total_height_inches": 14,
+    "total_width_inches": 18,
+    "total_depth_inches": 7,
+    "weight_lbs_total": 22,
+    "finish": "Hand-polished, unwaxed"
+  }
+}
+```
+
+Then rebuild:
+
+```
+node build-shop.js
+```
+
+### What to take, in the order it is quickest to take it
+
+| Field | What it means |
+|---|---|
+| `total_height_inches` | Floor of the base to the highest point of the piece as it stands |
+| `total_width_inches` | Widest point across, wingtip to wingtip if the wings are out |
+| `total_depth_inches` | Front to back at the deepest point, usually the base |
+| `weight_lbs_total` | The whole object, base included — what a courier will bill on |
+| `wingspan_inches` | Only if it differs from the overall width |
+| `base_material` | The stone, in plain words: "Amethyst geode", "Rose quartz on serpentine" |
+| `finish` | How the surface was left: polished, matte, hand-polished, waxed |
+
+Inches and pounds. The page prints centimetres and kilograms next to them
+automatically — that is arithmetic, not a second measurement, so do not record
+both.
+
+Round to the nearest inch and the nearest pound. A buyer is deciding whether it
+fits on a console table, not machining a part.
+
+### Where each one shows up
+
+The spec table on `/shop/p/<slug>.html`. `base_material` also joins the line
+under the name on every card in the shop, so it is the one worth doing first —
+it is the only one that changes what the grid says.

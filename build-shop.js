@@ -37,7 +37,7 @@ const PHONE = '+15612991261';
    Pick one photographed against black — the hero plate screen-blends the shot
    into the page so the sculpture floats, and a shot with its own backdrop
    (a nebula, a studio sweep) will show as a rectangle instead. */
-const HERO_SLUG = 'ezio-e-presa';
+const HERO_SLUG = 'beacon';
 
 /* The six on the shop front, in order. Anything not found is skipped. */
 const FEATURED = ['seraph', 'solara', 'pilgrim', 'mariner', 'emissary', 'amethyst-crown'];
@@ -45,12 +45,37 @@ const FEATURED = ['seraph', 'solara', 'pilgrim', 'mariner', 'emissary', 'amethys
 /* Plural display names for the species that come out of the catalog. */
 const PLURAL = { Macaw: 'Macaws', Cockatoo: 'Cockatoos', Eagle: 'Eagles', Parrot: 'Parrots' };
 
-/* One line-art mark per species, in the order the categories are shown. */
+/* One line-art mark per species. Faceted rather than drawn, so they sit with
+   the crystal, and each one is the bird's actual silhouette — four generic gems
+   told a buyer nothing about which row to click. 44x54 box. */
 const MARKS = {
-  Macaw: '<path d="M22 4 32 17v27H12V17L22 4Z"/><path d="M12 17h20M22 4v40M16 25h12M16 34h12"/>',
-  Cockatoo: '<path d="M15 12 19 6l4 6v32h-8V12Z"/><path d="M25 16l4-6 4 6v28h-8V16Z"/><path d="M15 20h8M25 24h8"/>',
-  Eagle: '<path d="M22 4 36 22 22 48 8 22 22 4Z"/><path d="M8 22h28M22 4v44M15 13l14 18M29 13 15 31"/>',
-  Parrot: '<path d="M22 6c6 7 12 10 12 17 0 8-5 13-12 19-7-6-12-11-12-19 0-7 6-10 12-17Z"/><path d="M22 6v36M10 23h24M14 14l16 18M30 14 14 32"/>'
+  /* perched, hooked beak, the long sweeping tail that is the whole point */
+  Macaw: '<path d="M18 8 22 12 19 17 15 13Z"/><path d="M15 11 10 12 14 15"/>'
+       + '<path d="M19 17 25 22 26 30 22 34 17 29Z"/>'
+       + '<path d="M25 24 36 30 40 45 33 40 26 31"/>'
+       + '<path d="M21 21 28 19 25 26"/>'
+       + '<path d="M20 34 20 39M24 34 24 39"/><path d="M12 39 32 39"/>',
+
+  /* the crest is the tell, and the tail is short */
+  Cockatoo: '<path d="M18 14 21 8 19 3"/><path d="M21 13 26 8 27 2"/>'
+          + '<path d="M19 14 24 18 21 24 16 19Z"/><path d="M16 17 11 19 15 22"/>'
+          + '<path d="M21 24 27 29 26 38 21 42 17 34Z"/>'
+          + '<path d="M26 33 31 43 27 40"/>'
+          + '<path d="M20 42 19 47M24 42 25 47"/><path d="M13 47 31 47"/>',
+
+  /* wings out, seen head on */
+  Eagle: '<path d="M22 5 25 10 22 15 19 10Z"/><path d="M19 8 14 9"/>'
+       + '<path d="M22 15 26 21 24 39 22 46 20 39 18 21Z"/>'
+       + '<path d="M19 19 4 12 8 23 17 28"/>'
+       + '<path d="M25 19 40 12 36 23 27 28"/>'
+       + '<path d="M20 46 18 51M24 46 26 51"/>',
+
+  /* compact body, medium tail, upright */
+  Parrot: '<path d="M20 9 25 13 22 19 17 14Z"/><path d="M17 12 12 13 16 16"/>'
+        + '<path d="M22 19 28 25 27 35 22 39 17 31Z"/>'
+        + '<path d="M27 31 33 42 28 39"/>'
+        + '<path d="M23 22 29 21 26 28"/>'
+        + '<path d="M20 39 19 45M25 39 26 45"/><path d="M13 45 31 45"/>'
 };
 const MARK_FALLBACK = '<path d="M22 5 34 20 22 47 10 20 22 5Z"/><path d="M10 20h24M22 5v42"/>';
 
@@ -74,6 +99,7 @@ const pieces = catalog.pieces.map(p => {
       .filter(f => /\.(jpe?g|png|webp)$/i.test(f) && !f.startsWith('.'))
       .sort();
   }
+  const sp = p.specs || {};
   return {
     slug: p.slug,
     name: p.name,
@@ -81,6 +107,17 @@ const pieces = catalog.pieces.map(p => {
     price: Number(p.price_usd) || 0,
     sold: !!p.is_sold,
     stripe: p.stripe_price_id || '',
+    /* Measured values. Every one is optional and every one is printed only if
+       it is actually there — a blank stays off the page rather than becoming a
+       guess. Fill them in assets/sculptures/catalog.json and they appear. */
+    material: p.base_material || '',
+    heightIn: Number(sp.total_height_inches) || 0,
+    widthIn:  Number(sp.total_width_inches)  || 0,
+    depthIn:  Number(sp.total_depth_inches)  || 0,
+    wingspanIn: Number(p.wingspan_inches) || 0,
+    weightLb: Number(sp.weight_lbs_total) || 0,
+    baseLb:   Number(p.base_size_lbs) || 0,
+    finish:   sp.finish || '',
     photos,
     hero: photos[0] || null
   };
@@ -223,7 +260,7 @@ function card(p, depth = 0) {
   const priceHtml = p.price > 0
     ? `<div class="card-price">${money(p.price)}</div>`
     : `<div class="card-price poa">By appointment</div>`;
-  const sub = [p.species, 'One of one'].filter(Boolean).join(' &middot; ');
+  const sub = [p.species, p.material].filter(Boolean).join(' &middot; ');
   const bag = p.sold
     ? ''
     : `<button class="card-bag" data-add="${p.slug}" data-name="${esc(p.name)}" data-price="${p.price}" data-sub="${esc(sub.replace(/&middot;/g, '·'))}" data-img="${up}../${cardSrc(p.slug)}" aria-label="Put ${esc(p.name)} in the bag">${ICON.bagSm}</button>`;
@@ -459,16 +496,31 @@ function buildPieces() {
   pieces.forEach((p, i) => {
     const prev = pieces[(i - 1 + pieces.length) % pieces.length];
     const next = pieces[(i + 1) % pieces.length];
-    const sub  = [p.species, 'One of one'].filter(Boolean).join(' · ');
+    const sub  = [p.species, p.material].filter(Boolean).join(' · ');
 
     const thumbs = p.photos.map((f, j) =>
       `      <button class="pdp-thumb${j === 0 ? ' on' : ''}" data-full="../../assets/sculptures/${p.slug}/${f}" aria-label="View plate ${j + 1}"><img src="../../${thumbSrc(p.slug, f)}" alt="${esc(p.name)} — plate ${j + 1}" width="240" height="240" loading="lazy" decoding="async"></button>`
     ).join('\n');
 
-    /* Only rows that have a real value. No invented stone, size or weight. */
+    /* Only rows that have a real value. A measurement that has not been taken
+       stays off the page rather than becoming a guess — fill it in
+       catalog.json and the row appears here on the next build. Both unit
+       systems are shown because the buyer and the stone are not in the same
+       country, and the conversion is arithmetic, not a second claim. */
+    const inCm = n => `${n} in \u00B7 ${Math.round(n * 2.54)} cm`;
+    const lbKg = n => `${n} lb \u00B7 ${Math.round(n * 0.4536)} kg`;
+
     const specs = [
       ['Edition', 'One of one'],
-      p.species ? ['Form', p.species] : null,
+      p.species    ? ['Form', p.species] : null,
+      p.material   ? ['Stone', p.material] : null,
+      p.heightIn   ? ['Height', inCm(p.heightIn)] : null,
+      p.widthIn    ? ['Width', inCm(p.widthIn)] : null,
+      p.depthIn    ? ['Depth', inCm(p.depthIn)] : null,
+      /* only when it says something the width did not */
+      (p.wingspanIn && p.wingspanIn !== p.widthIn) ? ['Wingspan', inCm(p.wingspanIn)] : null,
+      p.weightLb   ? ['Weight', lbKg(p.weightLb)] : null,
+      p.finish     ? ['Finish', p.finish] : null,
       ['Origin', 'Minas Gerais, Brazil'],
       ['Hand', 'Carved, not cast'],
       ['Plates', String(p.photos.length)]
@@ -704,8 +756,7 @@ function buildJournal() {
     const pic = bySlug[post.pictured];
     return `    <a class="jitem" href="${post.slug}.html">
       <div class="jitem-img"><img src="../../${cardSrc(pic.slug)}" alt="${esc(pic.name)}" width="640" height="640" loading="lazy" decoding="async"></div>
-      <div>
-        <p class="jitem-date">${esc(longDate(post.date))}</p>
+      <div class="jitem-text">
         <h2 class="display">${esc(post.title)}</h2>
         <p>${esc(post.standfirst)}</p>
         <span class="viewall">Read ${ICON.arw}</span>
