@@ -172,6 +172,12 @@ const S = {
   pts: [],
   quote: null,
   src: new URLSearchParams(location.search).get("src") || "",
+  // The postcard's own code, when they arrived by scanning one. It is printed
+  // on exactly one card, so it says which household came back — not which
+  // campaign, which household. Opaque: it names a piece of card, not a person.
+  // Capped because it lands in a database column, and this is a query string
+  // anybody can type into.
+  postcard: (new URLSearchParams(location.search).get("pc") || "").slice(0, 64),
 };
 
 const $ = (id) => document.getElementById(id);
@@ -599,6 +605,7 @@ async function send() {
         website: $("website").value,
         surfaceId: S.surface.id, material: S.material, conditions: S.conds,
         sqft: m.sqft, linearFt: m.linearFt, method: S.mode, src: S.src,
+        postcard: S.postcard || undefined,
         photos: shots.map((p) => p.path).filter(Boolean),
         photo_measures: shots.filter((p) => p.path && p.measure)
           .map((p) => ({ path: p.path, ...p.measure })),
