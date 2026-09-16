@@ -16,6 +16,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shop.css">
+<script type="module">
+  import {ModelViewerElement} from 'https://cdn.jsdelivr.net/npm/@google/model-viewer@4.1.0/dist/model-viewer.min.js';
+  /* Self-hosted decoder, so opening the hero never waits on gstatic. */
+  ModelViewerElement.dracoDecoderLocation = '/assets/3d/draco/';
+</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"PHAÖRA — crystal sculpture","url":"https://phaora.com/shop/","numberOfItems":34,"itemListElement":[{"@type":"ListItem","position":1,"url":"https://phaora.com/shop/p/amethyst-crown.html","name":"The Amethyst Crown"},{"@type":"ListItem","position":2,"url":"https://phaora.com/shop/p/aurora.html","name":"The Aurora"},{"@type":"ListItem","position":3,"url":"https://phaora.com/shop/p/beacon.html","name":"The Beacon"},{"@type":"ListItem","position":4,"url":"https://phaora.com/shop/p/consort.html","name":"The Consort"},{"@type":"ListItem","position":5,"url":"https://phaora.com/shop/p/covenant.html","name":"The Covenant"},{"@type":"ListItem","position":6,"url":"https://phaora.com/shop/p/diviner.html","name":"The Diviner"},{"@type":"ListItem","position":7,"url":"https://phaora.com/shop/p/ember.html","name":"The Ember"},{"@type":"ListItem","position":8,"url":"https://phaora.com/shop/p/emissary.html","name":"The Emissary"},{"@type":"ListItem","position":9,"url":"https://phaora.com/shop/p/ezio-e-presa.html","name":"The Ezio e Presa"},{"@type":"ListItem","position":10,"url":"https://phaora.com/shop/p/garnet.html","name":"The Garnet"},{"@type":"ListItem","position":11,"url":"https://phaora.com/shop/p/gilded-pair.html","name":"The Gilded Pair"},{"@type":"ListItem","position":12,"url":"https://phaora.com/shop/p/harvest.html","name":"The Harvest"},{"@type":"ListItem","position":13,"url":"https://phaora.com/shop/p/lapis.html","name":"The Lapis"},{"@type":"ListItem","position":14,"url":"https://phaora.com/shop/p/luminary.html","name":"The Luminary"},{"@type":"ListItem","position":15,"url":"https://phaora.com/shop/p/maresia.html","name":"The Maresia"},{"@type":"ListItem","position":16,"url":"https://phaora.com/shop/p/mariner.html","name":"The Mariner"},{"@type":"ListItem","position":17,"url":"https://phaora.com/shop/p/meridian.html","name":"The Meridian"},{"@type":"ListItem","position":18,"url":"https://phaora.com/shop/p/obsidian.html","name":"The Obsidian"},{"@type":"ListItem","position":19,"url":"https://phaora.com/shop/p/onyx-pair.html","name":"The Onyx Pair"},{"@type":"ListItem","position":20,"url":"https://phaora.com/shop/p/opal.html","name":"The Opal"},{"@type":"ListItem","position":21,"url":"https://phaora.com/shop/p/oracle.html","name":"The Oracle"},{"@type":"ListItem","position":22,"url":"https://phaora.com/shop/p/orchid.html","name":"The Orchid"},{"@type":"ListItem","position":23,"url":"https://phaora.com/shop/p/pilgrim.html","name":"The Pilgrim"},{"@type":"ListItem","position":24,"url":"https://phaora.com/shop/p/quartz-twin.html","name":"The Quartz Twin"},{"@type":"ListItem","position":25,"url":"https://phaora.com/shop/p/rose-duet.html","name":"The Rose Duet"},{"@type":"ListItem","position":26,"url":"https://phaora.com/shop/p/rose-oracle.html","name":"The Rose Oracle"},{"@type":"ListItem","position":27,"url":"https://phaora.com/shop/p/rose-solo.html","name":"The Rose Solo"},{"@type":"ListItem","position":28,"url":"https://phaora.com/shop/p/sanctum.html","name":"The Sanctum"},{"@type":"ListItem","position":29,"url":"https://phaora.com/shop/p/reverie.html","name":"The Reverie"},{"@type":"ListItem","position":30,"url":"https://phaora.com/shop/p/seraph.html","name":"The Seraph"},{"@type":"ListItem","position":31,"url":"https://phaora.com/shop/p/sky-pair.html","name":"The Sky Pair"},{"@type":"ListItem","position":32,"url":"https://phaora.com/shop/p/solara.html","name":"The Solara"},{"@type":"ListItem","position":33,"url":"https://phaora.com/shop/p/vigil.html","name":"The Vigil"},{"@type":"ListItem","position":34,"url":"https://phaora.com/shop/p/violet.html","name":"The Violet"}]}</script>
 </head>
 <body>
@@ -61,7 +66,31 @@
   </div>
   <div class="hero-plate">
     <span class="hero-ring" aria-hidden="true"></span>
-    <img src="../assets/sculptures/beacon/00-hero.jpg" alt="The Beacon — Macaw carved in crystal" width="2048" height="2048" fetchpriority="high" decoding="async">
+    <model-viewer id="heroModel"
+      src="../assets/3d/sculpture-draco.glb"
+      alt="A crystal macaw on an amethyst geode, turning"
+      poster="../assets/3d/poster.webp"
+      auto-rotate rotation-per-second="16deg" auto-rotate-delay="0"
+      camera-controls disable-zoom touch-action="pan-y" interaction-prompt="none"
+      environment-image="neutral" exposure="2.6" shadow-intensity="0"
+      camera-orbit="16deg 80deg 100%" min-camera-orbit="auto 62deg auto"
+      max-camera-orbit="auto 98deg auto"
+      loading="lazy" reveal="auto"></model-viewer>
+    <script>
+    /* The phone build differs from the desktop one only in the baked atlas —
+       4096 rather than 8192, 3.18 MB against 6.92 MB. Same mesh, same material.
+       This runs at parse time, before the deferred component upgrades and
+       starts fetching, so the swap lands ahead of the request. The larger
+       build stays the default: if this never runs, the page gets the full one. */
+    (function(){
+      var m=document.getElementById('heroModel'); if(!m) return;
+      var c=navigator.connection||{};
+      var thin=c.saveData===true||/(^|-)(2g|slow-2g)$/.test(c.effectiveType||'');
+      if(thin||window.matchMedia('(max-width: 900px)').matches){
+        m.setAttribute('src','../assets/3d/sculpture-4k-draco.glb');
+      }
+    })();
+    </script>
   </div>
 </section>
 

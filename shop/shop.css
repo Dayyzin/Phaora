@@ -307,6 +307,22 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
    plate drops that field into the page ground, so the sculpture floats inside
    the ring instead of sitting in a visible square. Only works on a shot with a
    black backdrop — see HERO_SLUG in build-shop.js. */
+/* The scan, turning, in place of the flat plate. It needs none of the
+   treatment below: the canvas is already transparent, so the field shows
+   through it and there is no plate black to screen away. model-viewer
+   ignores aspect-ratio and collapses to a strip, so both dimensions are set,
+   and it caps its own max-width unless that is cleared. It overruns the ring
+   deliberately — the ring is a horizon, not a frame. */
+.hero-plate model-viewer{
+  position:relative;z-index:1;display:block;
+  width:118%;max-width:none;height:118%;
+  background:transparent;--poster-color:transparent;
+  --progress-bar-color:rgba(201,167,106,0.85);--progress-mask:transparent;
+}
+.hero-ring{z-index:0}
+@media (max-width:900px){
+  .hero-plate model-viewer{width:112%;height:112%}
+}
 .hero-plate img{
   position:relative;width:104%;height:auto;
   /* Three things put the sculpture in the page instead of on it:
