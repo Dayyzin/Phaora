@@ -28,4 +28,8 @@
   <url><loc>https://phaora.com/masonry-southborough-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://phaora.com/masonry-hopkinton-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <!-- /towns -->
+
+  <!-- crystal: one page, the thirty-four works written and photographed.
+       The individual /pieces/ pages are still placeholder text and stay out. -->
+  <url><loc>https://phaora.com/crystal.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>
