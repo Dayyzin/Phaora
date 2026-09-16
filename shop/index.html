@@ -294,6 +294,21 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
         camera-orbit="16deg 80deg 100%" min-camera-orbit="auto 62deg auto"
         max-camera-orbit="auto 98deg auto"
         loading="lazy" reveal="auto"></model-viewer>
+      <script>
+      /* Same geometry, same material — only the baked atlas differs (4096 vs
+         8192), which takes the file from 10.7 MB to 7.0 MB. This runs at parse
+         time, before the deferred component upgrades and starts fetching, so
+         the swap always lands first. Full model stays the default: if this
+         script never runs, the page still gets the real thing. */
+      (function(){
+        var m=document.getElementById('heroModel'); if(!m) return;
+        var c=navigator.connection||{};
+        var thin=c.saveData===true||/(^|-)(2g|slow-2g)$/.test(c.effectiveType||'');
+        if(thin||window.matchMedia('(max-width: 900px)').matches){
+          m.setAttribute('src','/assets/3d/sculpture-4k.glb');
+        }
+      })();
+      </script>
       <div class="plinth"></div>
     </div>
   </div>
