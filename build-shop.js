@@ -22,6 +22,19 @@
 
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
+
+/* Cache-busting stamps. The stylesheet and the hero loop are overwritten in
+   place on every build, so without these a visitor — or a CDN — can hold an old
+   copy of one and a new copy of the other. That combination is not a subtle
+   bug: the loop arrived styled by a stylesheet that had never heard of it, so
+   it rendered unmasked and burst out of the ring on the live site while every
+   local check passed. */
+const stamp = rel => {
+  const f = path.join(ROOT, rel);
+  if (!fs.existsSync(f)) return '';
+  return '?v=' + crypto.createHash('sha1').update(fs.readFileSync(f)).digest('hex').slice(0, 8);
+};
 
 const ROOT       = __dirname;
 const SCULPTURES = path.join(ROOT, 'assets/sculptures');
@@ -89,6 +102,11 @@ const MARKS = {
         + '<path d="M20 39 19 45M25 39 26 45"/><path d="M13 45 31 45"/>'
 };
 const MARK_FALLBACK = '<path d="M22 5 34 20 22 47 10 20 22 5Z"/><path d="M10 20h24M22 5v42"/>';
+
+const CSS_V        = stamp('shop/shop.css');
+const LOOP_V_WEBM  = HERO_LOOP ? stamp(`assets/${HERO_LOOP}.webm`) : '';
+const LOOP_V_MP4   = HERO_LOOP ? stamp(`assets/${HERO_LOOP}.mp4`)  : '';
+const POSTER_V     = HERO_LOOP ? stamp(`assets/${HERO_LOOP_POSTER}`) : '';
 
 /* -------------------------------------------------------------- utilities */
 const esc = s => String(s == null ? '' : s)
@@ -192,7 +210,7 @@ function head(title, desc, opts = {}) {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="${up}shop.css">
+<link rel="stylesheet" href="${up}shop.css${CSS_V}">
 ${opts.jsonld ? `<script type="application/ld+json">${JSON.stringify(opts.jsonld)}</script>` : ''}
 </head>
 <body>
@@ -362,7 +380,7 @@ function buildShop() {
   </div>
   <div class="hero-plate${HERO_LOOP ? ' has-loop' : ''}">
     <span class="hero-ring" aria-hidden="true"></span>
-    ${HERO_LOOP ? `<video class="hero-loop" poster="../assets/${HERO_LOOP_POSTER}" width="1080" height="1080" autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="../assets/${HERO_LOOP}.webm" type="video/webm"><source src="../assets/${HERO_LOOP}.mp4" type="video/mp4"></video>` : ''}
+    ${HERO_LOOP ? `<video class="hero-loop" poster="../assets/${HERO_LOOP_POSTER}${POSTER_V}" width="1080" height="1080" autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="../assets/${HERO_LOOP}.webm${LOOP_V_WEBM}" type="video/webm"><source src="../assets/${HERO_LOOP}.mp4${LOOP_V_MP4}" type="video/mp4"></video>` : ''}
     <img src="../assets/sculptures/${hero.slug}/${hero.hero}" alt="${esc(hero.name)} — ${esc(hero.species)} carved in crystal" width="2048" height="2048" fetchpriority="high" decoding="async"${toneAttr(hero)}>
   </div>
 </section>
