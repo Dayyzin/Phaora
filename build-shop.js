@@ -22,6 +22,19 @@
 
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
+
+/* Cache-busting stamps. The stylesheet and the hero loop are overwritten in
+   place on every build, so without these a visitor — or a CDN — can hold an old
+   copy of one and a new copy of the other. That combination is not a subtle
+   bug: the loop arrived styled by a stylesheet that had never heard of it, so
+   it rendered unmasked and burst out of the ring on the live site while every
+   local check passed. */
+const stamp = rel => {
+  const f = path.join(ROOT, rel);
+  if (!fs.existsSync(f)) return '';
+  return '?v=' + crypto.createHash('sha1').update(fs.readFileSync(f)).digest('hex').slice(0, 8);
+};
 
 const ROOT       = __dirname;
 const SCULPTURES = path.join(ROOT, 'assets/sculptures');
@@ -37,6 +50,21 @@ const PHONE = '+15612991261';
    into the page so the sculpture floats, and a shot with its own backdrop
    (a nebula, a studio sweep) will show as a rectangle instead. */
 const HERO_SLUG = 'beacon';
+
+/* The scan itself carries the shop front, turning, with model-viewer.
+
+   This lives here rather than in shop/index.html because that file is written
+   from scratch on every build — hand-edited into the output, the hero survived
+   exactly until the next `node build-shop.js` and then vanished without a
+   trace in the diff of anything a person had written.
+
+   Two builds of the same mesh: the phone gets a 4096 atlas, the desktop 8192.
+   The large one is the default, so a failure to detect anything still serves a
+   correct page. Set HERO_MODEL to '' to fall back to the still photograph. */
+const HERO_MODEL      = '3d/sculpture-draco.glb';
+const HERO_MODEL_SM   = '3d/sculpture-4k-draco.glb';
+const HERO_MODEL_POSTER = '3d/poster.webp';
+const MODEL_VIEWER    = 'https://cdn.jsdelivr.net/npm/@google/model-viewer@4.1.0/dist/model-viewer.min.js';
 
 /* The six on the shop front, in order. Anything not found is skipped. */
 const FEATURED = ['seraph', 'solara', 'pilgrim', 'mariner', 'emissary', 'amethyst-crown'];
@@ -77,6 +105,10 @@ const MARKS = {
         + '<path d="M20 39 19 45M25 39 26 45"/><path d="M13 45 31 45"/>'
 };
 const MARK_FALLBACK = '<path d="M22 5 34 20 22 47 10 20 22 5Z"/><path d="M10 20h24M22 5v42"/>';
+
+const CSS_V        = stamp('shop/shop.css');
+const MODEL_V      = HERO_MODEL ? stamp(`assets/${HERO_MODEL}`)    : '';
+const MODEL_SM_V   = HERO_MODEL ? stamp(`assets/${HERO_MODEL_SM}`) : '';
 
 /* -------------------------------------------------------------- utilities */
 const esc = s => String(s == null ? '' : s)
@@ -180,7 +212,12 @@ function head(title, desc, opts = {}) {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="${up}shop.css">
+<link rel="stylesheet" href="${up}shop.css${CSS_V}">${opts.model ? `
+<script type="module">
+  import {ModelViewerElement} from '${MODEL_VIEWER}';
+  /* Self-hosted decoder, so opening the hero never waits on gstatic. */
+  ModelViewerElement.dracoDecoderLocation = '/assets/3d/draco/';
+</script>` : ''}
 ${opts.jsonld ? `<script type="application/ld+json">${JSON.stringify(opts.jsonld)}</script>` : ''}
 </head>
 <body>
@@ -337,7 +374,7 @@ function buildShop() {
   const html = head(
     'PHAÖRA — Timeless art, born of earth',
     `${pieces.length} hand-carved crystal sculptures from Minas Gerais, Brazil. Each one of one${lowest ? `, from ${money(lowest)}` : ''}.`,
-    { jsonld, canonical: '' }
+    { jsonld, canonical: '', model: !!HERO_MODEL }
   ) + nav('shop') + `
 
 <!-- HERO -->
@@ -350,7 +387,57 @@ function buildShop() {
   </div>
   <div class="hero-plate">
     <span class="hero-ring" aria-hidden="true"></span>
-    <img src="../assets/sculptures/${hero.slug}/${hero.hero}" alt="${esc(hero.name)} — ${esc(hero.species)} carved in crystal" width="2048" height="2048" fetchpriority="high" decoding="async"${toneAttr(hero)}>
+${HERO_MODEL ? `    <model-viewer id="heroModel"
+      src="../assets/${HERO_MODEL}${MODEL_V}"
+      alt="${esc(hero.species) || 'A crystal sculpture'} carved in crystal, turning"
+      poster="../assets/${HERO_MODEL_POSTER}"
+      auto-rotate rotation-per-second="16deg" auto-rotate-delay="0"
+      camera-controls disable-zoom touch-action="pan-y" interaction-prompt="none"
+      tone-mapping="commerce" environment-image="legacy" exposure="1.35" shadow-intensity="0"
+      camera-orbit="16deg 80deg 100%" min-camera-orbit="auto 62deg auto"
+      max-camera-orbit="auto 98deg auto"
+      loading="lazy" reveal="auto"></model-viewer>
+    <script>
+    /* The phone build differs only in the baked atlas — 4096 against 8192.
+       Same mesh, same material. This runs at parse time, before the deferred
+       component upgrades and starts fetching, so the swap lands ahead of the
+       request. The larger build stays the default: if this never runs, the page
+       gets the full one. */
+    (function(){
+      var m=document.getElementById('heroModel'); if(!m) return;
+
+      /* three.js defaults texture anisotropy to 1, which blurs the atlas badly
+         wherever a surface turns away from the camera — on a scan of carved
+         stone that is most of it, and it costs the feather grooves and the
+         grain. model-viewer has no attribute for this, so it is set on the
+         scene after load. Everything here is guarded: if the internals move in
+         a later version the block does nothing and the model still renders. */
+      m.addEventListener('load', function(){
+        try{
+          var sym = Object.getOwnPropertySymbols(m).filter(function(x){
+            return (x.description || '') === 'scene'; })[0];
+          if(!sym) return;
+          var scene = m[sym];
+          if(!scene || typeof scene.traverse !== 'function') return;
+          var maps = ['map','normalMap','roughnessMap','metalnessMap','emissiveMap','aoMap'];
+          scene.traverse(function(o){
+            var mat = o.material; if(!mat) return;
+            maps.forEach(function(k){
+              var t = mat[k];
+              /* three clamps to whatever the GPU actually supports */
+              if(t && t.anisotropy !== 16){ t.anisotropy = 16; t.needsUpdate = true; }
+            });
+          });
+        }catch(e){}
+      });
+
+      var c=navigator.connection||{};
+      var thin=c.saveData===true||/(^|-)(2g|slow-2g)$/.test(c.effectiveType||'');
+      if(thin||window.matchMedia('(max-width: 900px)').matches){
+        m.setAttribute('src','../assets/${HERO_MODEL_SM}${MODEL_SM_V}');
+      }
+    })();
+    </script>` : `    <img src="../assets/sculptures/${hero.slug}/${hero.hero}" alt="${esc(hero.name)} — ${esc(hero.species)} carved in crystal" width="2048" height="2048" fetchpriority="high" decoding="async"${toneAttr(hero)}>`}
   </div>
 </section>
 

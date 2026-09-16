@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shop.css">
+<link rel="stylesheet" href="shop.css?v=6d6c44c4">
 <script type="module">
   import {ModelViewerElement} from 'https://cdn.jsdelivr.net/npm/@google/model-viewer@4.1.0/dist/model-viewer.min.js';
   /* Self-hosted decoder, so opening the hero never waits on gstatic. */
@@ -67,8 +67,8 @@
   <div class="hero-plate">
     <span class="hero-ring" aria-hidden="true"></span>
     <model-viewer id="heroModel"
-      src="../assets/3d/sculpture-draco.glb"
-      alt="A crystal macaw on an amethyst geode, turning"
+      src="../assets/3d/sculpture-draco.glb?v=fd5f6f33"
+      alt="Macaw carved in crystal, turning"
       poster="../assets/3d/poster.webp"
       auto-rotate rotation-per-second="16deg" auto-rotate-delay="0"
       camera-controls disable-zoom touch-action="pan-y" interaction-prompt="none"
@@ -77,11 +77,11 @@
       max-camera-orbit="auto 98deg auto"
       loading="lazy" reveal="auto"></model-viewer>
     <script>
-    /* The phone build differs from the desktop one only in the baked atlas —
-       4096 rather than 8192, 3.18 MB against 6.92 MB. Same mesh, same material.
-       This runs at parse time, before the deferred component upgrades and
-       starts fetching, so the swap lands ahead of the request. The larger
-       build stays the default: if this never runs, the page gets the full one. */
+    /* The phone build differs only in the baked atlas — 4096 against 8192.
+       Same mesh, same material. This runs at parse time, before the deferred
+       component upgrades and starts fetching, so the swap lands ahead of the
+       request. The larger build stays the default: if this never runs, the page
+       gets the full one. */
     (function(){
       var m=document.getElementById('heroModel'); if(!m) return;
 
@@ -113,7 +113,7 @@
       var c=navigator.connection||{};
       var thin=c.saveData===true||/(^|-)(2g|slow-2g)$/.test(c.effectiveType||'');
       if(thin||window.matchMedia('(max-width: 900px)').matches){
-        m.setAttribute('src','../assets/3d/sculpture-4k-draco.glb');
+        m.setAttribute('src','../assets/3d/sculpture-4k-draco.glb?v=c3f12217');
       }
     })();
     </script>
