@@ -84,6 +84,32 @@
        build stays the default: if this never runs, the page gets the full one. */
     (function(){
       var m=document.getElementById('heroModel'); if(!m) return;
+
+      /* three.js defaults texture anisotropy to 1, which blurs the atlas badly
+         wherever a surface turns away from the camera — on a scan of carved
+         stone that is most of it, and it costs the feather grooves and the
+         grain. model-viewer has no attribute for this, so it is set on the
+         scene after load. Everything here is guarded: if the internals move in
+         a later version the block does nothing and the model still renders. */
+      m.addEventListener('load', function(){
+        try{
+          var sym = Object.getOwnPropertySymbols(m).filter(function(x){
+            return (x.description || '') === 'scene'; })[0];
+          if(!sym) return;
+          var scene = m[sym];
+          if(!scene || typeof scene.traverse !== 'function') return;
+          var maps = ['map','normalMap','roughnessMap','metalnessMap','emissiveMap','aoMap'];
+          scene.traverse(function(o){
+            var mat = o.material; if(!mat) return;
+            maps.forEach(function(k){
+              var t = mat[k];
+              /* three clamps to whatever the GPU actually supports */
+              if(t && t.anisotropy !== 16){ t.anisotropy = 16; t.needsUpdate = true; }
+            });
+          });
+        }catch(e){}
+      });
+
       var c=navigator.connection||{};
       var thin=c.saveData===true||/(^|-)(2g|slow-2g)$/.test(c.effectiveType||'');
       if(thin||window.matchMedia('(max-width: 900px)').matches){
