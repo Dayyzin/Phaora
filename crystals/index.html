@@ -219,8 +219,25 @@ footer .fl a:hover{color:var(--bone)}
   .bleed{left:50%!important;right:auto!important;top:-4%!important;bottom:auto!important;
     transform:translateX(-50%)!important;width:min(126vw,760px)!important}
   .bleed.two{display:none}
-  .band::before{background:radial-gradient(ellipse 90% 60% at 50% 40%,rgba(2,3,5,.86),rgba(2,3,5,.5) 62%,rgba(2,3,5,.2) 88%)!important}
+  /* On a phone the columns stack, so the writing lands on the photograph
+     instead of beside it. The frames drop back to atmosphere — including the
+     untouched ones, which are the worst offenders once text is over them. */
+  .bleed img{opacity:.46}
+  .bleed.f55 img{opacity:.38}
+  .bleed.f40 img{opacity:.3}
+  .bleed.f28 img{opacity:.22}
+  .bleed.raw img{mix-blend-mode:screen;opacity:.56}
+  .band::before{background:linear-gradient(180deg,rgba(2,3,5,.5),rgba(2,3,5,.68) 38%,rgba(2,3,5,.68) 72%,rgba(2,3,5,.5))!important}
   .band{padding:clamp(58px,14vw,96px) 0;margin-bottom:clamp(-50px,-8vw,-24px)}
+  /* The coda photograph is the one frame that should still carry, but the
+     shared .bleed override above re-anchors it to the top of the band, which
+     ran it straight through the footer. Pin it back to the bottom and give the
+     band room to finish above the wordmark. */
+  .b-coda{padding-top:clamp(26px,7vw,46px);padding-bottom:clamp(230px,62vw,380px)}
+  .b-coda .bleed{top:auto!important;bottom:0!important;width:min(116vw,560px)!important}
+  .b-coda .bleed img{opacity:.6;mix-blend-mode:screen}
+  .b-coda::before{background:radial-gradient(ellipse 84% 26% at 50% 10%,rgba(2,3,5,.9),rgba(2,3,5,.5) 58%,transparent 86%)!important}
+  footer{margin-top:clamp(-80px,-14vw,-40px)}
 }
 </style>
 </head>
