@@ -10,3 +10,7 @@ tools/render-pipeline/node_modules/
 
 # Filled forms and anything carrying personal identifiers. Never committed.
 .private/
+
+# Photographs replaced by tools/import-photos.js. Kept on disk so a reshoot
+# is recoverable, never committed. Delete once the new set is signed off.
+assets/sculptures/_retired/
