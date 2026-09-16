@@ -51,17 +51,20 @@ const PHONE = '+15612991261';
    (a nebula, a studio sweep) will show as a rectangle instead. */
 const HERO_SLUG = 'beacon';
 
-/* A turntable of the same kind of piece, rendered from a scan rather than
-   filmed, looping silently behind the ring. Set HERO_LOOP to '' to go back to
-   the still.
+/* The scan itself carries the shop front, turning, with model-viewer.
 
-   It has to obey the same rule as HERO_SLUG and for the same reason — the plate
-   screen-blends what it holds into the page, so the loop is composited on a
-   near-black field with nothing at its corners. Square, because the plate is.
-   The still stays in the markup underneath: it is what a reader gets when the
-   video is blocked, and what they get when they have asked for less motion. */
-const HERO_LOOP        = 'shop/hero-loop';     // .mp4 and .webm, both required
-const HERO_LOOP_POSTER = 'shop/hero-poster.jpg';
+   This lives here rather than in shop/index.html because that file is written
+   from scratch on every build — hand-edited into the output, the hero survived
+   exactly until the next `node build-shop.js` and then vanished without a
+   trace in the diff of anything a person had written.
+
+   Two builds of the same mesh: the phone gets a 4096 atlas, the desktop 8192.
+   The large one is the default, so a failure to detect anything still serves a
+   correct page. Set HERO_MODEL to '' to fall back to the still photograph. */
+const HERO_MODEL      = '3d/sculpture-draco.glb';
+const HERO_MODEL_SM   = '3d/sculpture-4k-draco.glb';
+const HERO_MODEL_POSTER = '3d/poster.webp';
+const MODEL_VIEWER    = 'https://cdn.jsdelivr.net/npm/@google/model-viewer@4.1.0/dist/model-viewer.min.js';
 
 /* The six on the shop front, in order. Anything not found is skipped. */
 const FEATURED = ['seraph', 'solara', 'pilgrim', 'mariner', 'emissary', 'amethyst-crown'];
@@ -104,9 +107,8 @@ const MARKS = {
 const MARK_FALLBACK = '<path d="M22 5 34 20 22 47 10 20 22 5Z"/><path d="M10 20h24M22 5v42"/>';
 
 const CSS_V        = stamp('shop/shop.css');
-const LOOP_V_WEBM  = HERO_LOOP ? stamp(`assets/${HERO_LOOP}.webm`) : '';
-const LOOP_V_MP4   = HERO_LOOP ? stamp(`assets/${HERO_LOOP}.mp4`)  : '';
-const POSTER_V     = HERO_LOOP ? stamp(`assets/${HERO_LOOP_POSTER}`) : '';
+const MODEL_V      = HERO_MODEL ? stamp(`assets/${HERO_MODEL}`)    : '';
+const MODEL_SM_V   = HERO_MODEL ? stamp(`assets/${HERO_MODEL_SM}`) : '';
 
 /* -------------------------------------------------------------- utilities */
 const esc = s => String(s == null ? '' : s)
@@ -210,7 +212,12 @@ function head(title, desc, opts = {}) {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="${up}shop.css${CSS_V}">
+<link rel="stylesheet" href="${up}shop.css${CSS_V}">${opts.model ? `
+<script type="module">
+  import {ModelViewerElement} from '${MODEL_VIEWER}';
+  /* Self-hosted decoder, so opening the hero never waits on gstatic. */
+  ModelViewerElement.dracoDecoderLocation = '/assets/3d/draco/';
+</script>` : ''}
 ${opts.jsonld ? `<script type="application/ld+json">${JSON.stringify(opts.jsonld)}</script>` : ''}
 </head>
 <body>
@@ -367,7 +374,7 @@ function buildShop() {
   const html = head(
     'PHAÖRA — Timeless art, born of earth',
     `${pieces.length} hand-carved crystal sculptures from Minas Gerais, Brazil. Each one of one${lowest ? `, from ${money(lowest)}` : ''}.`,
-    { jsonld, canonical: '' }
+    { jsonld, canonical: '', model: !!HERO_MODEL }
   ) + nav('shop') + `
 
 <!-- HERO -->
@@ -378,10 +385,59 @@ function buildShop() {
     <p>Rare crystal, carved by hand in Minas Gerais. Every piece is one of one — the stone decides how far the cut can go.</p>
     <a href="#pieces" class="ghost-btn">See every piece ${ICON.arw}</a>
   </div>
-  <div class="hero-plate${HERO_LOOP ? ' has-loop' : ''}">
+  <div class="hero-plate">
     <span class="hero-ring" aria-hidden="true"></span>
-    ${HERO_LOOP ? `<video class="hero-loop" poster="../assets/${HERO_LOOP_POSTER}${POSTER_V}" width="1080" height="1080" autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="../assets/${HERO_LOOP}.webm${LOOP_V_WEBM}" type="video/webm"><source src="../assets/${HERO_LOOP}.mp4${LOOP_V_MP4}" type="video/mp4"></video>` : ''}
-    <img src="../assets/sculptures/${hero.slug}/${hero.hero}" alt="${esc(hero.name)} — ${esc(hero.species)} carved in crystal" width="2048" height="2048" fetchpriority="high" decoding="async"${toneAttr(hero)}>
+${HERO_MODEL ? `    <model-viewer id="heroModel"
+      src="../assets/${HERO_MODEL}${MODEL_V}"
+      alt="${esc(hero.species) || 'A crystal sculpture'} carved in crystal, turning"
+      poster="../assets/${HERO_MODEL_POSTER}"
+      auto-rotate rotation-per-second="16deg" auto-rotate-delay="0"
+      camera-controls disable-zoom touch-action="pan-y" interaction-prompt="none"
+      tone-mapping="commerce" environment-image="legacy" exposure="1.35" shadow-intensity="0"
+      camera-orbit="16deg 80deg 100%" min-camera-orbit="auto 62deg auto"
+      max-camera-orbit="auto 98deg auto"
+      loading="lazy" reveal="auto"></model-viewer>
+    <script>
+    /* The phone build differs only in the baked atlas — 4096 against 8192.
+       Same mesh, same material. This runs at parse time, before the deferred
+       component upgrades and starts fetching, so the swap lands ahead of the
+       request. The larger build stays the default: if this never runs, the page
+       gets the full one. */
+    (function(){
+      var m=document.getElementById('heroModel'); if(!m) return;
+
+      /* three.js defaults texture anisotropy to 1, which blurs the atlas badly
+         wherever a surface turns away from the camera — on a scan of carved
+         stone that is most of it, and it costs the feather grooves and the
+         grain. model-viewer has no attribute for this, so it is set on the
+         scene after load. Everything here is guarded: if the internals move in
+         a later version the block does nothing and the model still renders. */
+      m.addEventListener('load', function(){
+        try{
+          var sym = Object.getOwnPropertySymbols(m).filter(function(x){
+            return (x.description || '') === 'scene'; })[0];
+          if(!sym) return;
+          var scene = m[sym];
+          if(!scene || typeof scene.traverse !== 'function') return;
+          var maps = ['map','normalMap','roughnessMap','metalnessMap','emissiveMap','aoMap'];
+          scene.traverse(function(o){
+            var mat = o.material; if(!mat) return;
+            maps.forEach(function(k){
+              var t = mat[k];
+              /* three clamps to whatever the GPU actually supports */
+              if(t && t.anisotropy !== 16){ t.anisotropy = 16; t.needsUpdate = true; }
+            });
+          });
+        }catch(e){}
+      });
+
+      var c=navigator.connection||{};
+      var thin=c.saveData===true||/(^|-)(2g|slow-2g)$/.test(c.effectiveType||'');
+      if(thin||window.matchMedia('(max-width: 900px)').matches){
+        m.setAttribute('src','../assets/${HERO_MODEL_SM}${MODEL_SM_V}');
+      }
+    })();
+    </script>` : `    <img src="../assets/sculptures/${hero.slug}/${hero.hero}" alt="${esc(hero.name)} — ${esc(hero.species)} carved in crystal" width="2048" height="2048" fetchpriority="high" decoding="async"${toneAttr(hero)}>`}
   </div>
 </section>
 

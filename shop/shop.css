@@ -263,7 +263,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 /* --- hero --------------------------------------------------------------- */
 .hero{
   max-width:var(--rail);margin:0 auto;padding:clamp(48px,7vw,96px) var(--gutter) clamp(56px,8vw,110px);
-  display:grid;grid-template-columns:minmax(0,0.80fr) minmax(0,1.20fr);
+  display:grid;grid-template-columns:minmax(0,0.88fr) minmax(0,1.12fr);
   gap:clamp(28px,5vw,72px);align-items:center;
 }
 .hero-copy .eyebrow{margin-bottom:clamp(20px,2.6vw,30px)}
@@ -307,7 +307,23 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
    plate drops that field into the page ground, so the sculpture floats inside
    the ring instead of sitting in a visible square. Only works on a shot with a
    black backdrop — see HERO_SLUG in build-shop.js. */
-.hero-plate img, .hero-plate video{
+/* The scan, turning, in place of the flat plate. It needs none of the
+   treatment below: the canvas is already transparent, so the field shows
+   through it and there is no plate black to screen away. model-viewer
+   ignores aspect-ratio and collapses to a strip, so both dimensions are set,
+   and it caps its own max-width unless that is cleared. It overruns the ring
+   deliberately — the ring is a horizon, not a frame. */
+.hero-plate model-viewer{
+  position:relative;z-index:1;display:block;
+  width:118%;max-width:none;height:118%;
+  background:transparent;--poster-color:transparent;
+  --progress-bar-color:rgba(201,167,106,0.85);--progress-mask:transparent;
+}
+.hero-ring{z-index:0}
+@media (max-width:900px){
+  .hero-plate model-viewer{width:112%;height:112%}
+}
+.hero-plate img{
   position:relative;width:104%;height:auto;
   /* Three things put the sculpture in the page instead of on it:
      screen drops the plate's black into the ground, so the studio flakes join
@@ -318,30 +334,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   filter:contrast(1.22) brightness(0.94);
   -webkit-mask-image:radial-gradient(ellipse 64% 66% at 50% 52%,#000 38%,transparent 76%);
           mask-image:radial-gradient(ellipse 64% 66% at 50% 52%,#000 38%,transparent 76%);
-}
-
-/* The loop and the still occupy the same cell, so the still is what shows when
-   the video is blocked, still loading, or unwanted. It is hidden rather than
-   removed: a poster frame cannot be the fallback for a video that never loads,
-   and while it is laid out it is what gives the plate its size.
-
-   The loop keeps the photographs' mask rather than a wider one. A wider mask
-   looked like more of the piece and was really a rectangle — mask-image
-   isolates an element for blending, so whatever it still covers at the plate's
-   edge paints over the page's flakes instead of screening into them. The size
-   comes from a bigger plate.
-
-   And it is taken out of flow, because in the grid its intrinsic 1080px drove
-   the row height and pushed the headline past the fold. */
-.hero-plate.has-loop{display:grid}
-.hero-plate.has-loop > img{grid-area:1/1;visibility:hidden}
-.hero-plate.has-loop > video{
-  position:absolute;inset:0;width:100%;height:100%;object-fit:contain;
-}
-
-@media (prefers-reduced-motion:reduce){
-  .hero-plate.has-loop > video{display:none}
-  .hero-plate.has-loop > img{visibility:visible}
 }
 
 /* --- categories --------------------------------------------------------- */
@@ -632,7 +624,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
   .hero{grid-template-columns:1fr;padding-top:20px;gap:20px}
   .hero-copy{order:2}
-  .hero-plate{order:1;max-width:540px;margin:0 auto;width:100%}
+  .hero-plate{order:1;max-width:400px;margin:0 auto;width:100%}
   .hero-copy p{max-width:none}
 
   .cats{grid-template-columns:repeat(2,1fr)}
@@ -655,7 +647,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
      shrinks, the gaps close and the type steps down so the piece, the line and
      the way in all arrive together without a scroll. */
   .hero{padding:6px var(--gutter) 22px;gap:10px}
-  .hero-plate{max-width:min(420px,86vw)}
+  .hero-plate{max-width:min(300px,70vw)}
   .hero-copy{text-align:center}
   .hero-copy .eyebrow{margin-bottom:10px;font-size:9.5px;letter-spacing:0.3em}
   .hero-copy h1{font-size:clamp(29px,8.6vw,40px);margin-bottom:10px}
