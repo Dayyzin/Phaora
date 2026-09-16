@@ -69,11 +69,19 @@ nav.on{background:linear-gradient(180deg,rgba(2,3,5,.72),rgba(2,3,5,0))}
 
 /* ── the page: one continuous field, never a bare gap ── */
 .page{position:relative;z-index:1}
-/* gold leaf, cut from the studio backdrop, over everything */
+/* The same ground the shop sits on — assets/shop/flakes.png, scattered by
+   build-flake-tile.js — so the two pages share one field rather than each
+   carrying its own. The wash over it keeps the leaf from competing with the
+   photographs, the same way shop.css does. */
 .page::after{content:'';position:absolute;inset:0;z-index:6;pointer-events:none;
-  background-image:url('/assets/backdrop/gold-flakes.png'),url('/assets/backdrop/gold-flakes-fine.png');
-  background-repeat:repeat,repeat;background-size:1000px 1000px,700px 700px;
-  background-position:0 0,140px 90px}
+  background-image:
+    linear-gradient(rgba(5,5,6,.34),rgba(5,5,6,.34)),
+    url('/assets/shop/flakes.png');
+  background-repeat:repeat,repeat;background-size:auto,760px 760px;
+  background-position:0 0,0 0}
+.page::before{content:'';position:absolute;top:0;left:0;right:0;height:520px;z-index:5;
+  pointer-events:none;background:radial-gradient(ellipse 60% 420px at 50% -60px,
+    rgba(232,205,143,.16) 0%,rgba(201,167,106,.055) 45%,rgba(201,167,106,0) 72%)}
 
 /* a band is a full-bleed photograph with the writing set into its dark side.
    Bands overlap, so there is no seam between them and no empty ground. */

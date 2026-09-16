@@ -2,490 +2,721 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PHAÖRA — Timeless art, born of earth</title>
+<meta name="description" content="34 hand-carved crystal sculptures from Minas Gerais, Brazil. Each one of one.">
 <link rel="canonical" href="https://phaora.com/shop/">
-<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PHAÖRA — Timeless art, born of earth">
+<meta property="og:description" content="34 hand-carved crystal sculptures from Minas Gerais, Brazil. Each one of one.">
+<meta property="og:image" content="https://phaora.com/assets/sculptures/beacon/00-hero.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Prata&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-<title>PHAÖRA — Shop | Crystal Sculpture</title>
-<meta name="description" content="One-of-one crystal sculpture from Minas Gerais, Brazil. Amethyst, rose quartz, clear quartz and fluorite, carved by hand.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="PHAÖRA — Shop">
-<meta property="og:description" content="One-of-one crystal sculpture from Minas Gerais, Brazil.">
-<meta property="og:image" content="https://phaora.com/assets/sculptures/orchid/00-hero.jpg">
-<meta property="og:url" content="https://phaora.com/shop/">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="PHAÖRA — Shop">
-<meta name="twitter:image" content="https://phaora.com/assets/sculptures/orchid/00-hero.jpg">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --ink:#020812;--ink2:#061428;--panel:#08182C;--edge:rgba(201,169,97,.18);
-  --pearl:#EAEFF5;--mute:rgba(234,239,245,.55);--faint:rgba(234,239,245,.34);
-  --gold:#C9A961;--gold-lt:#E4C888;--gold-d:rgba(201,169,97,.55);--bone:#FFFBF2;
-  --serif:'Prata','Didot','Bodoni MT',Georgia,serif;--sans:'Inter','Helvetica Neue',sans-serif}
-html{scroll-behavior:smooth;background:var(--ink);overflow-x:clip}
-body{color:var(--pearl);font-family:var(--sans);font-weight:300;
-  line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:clip;background-color:#020305;
-  /* Gold flakes cut out of the studio backdrop, tiled the length of the page. */
-  background-image:
-    url('/assets/backdrop/gold-flakes.png'),
-    url('/assets/backdrop/gold-flakes-fine.png'),
-    radial-gradient(ellipse 44% 24% at 50% 0%,rgba(214,182,124,.11) 0%,transparent 68%);
-  background-repeat:repeat,repeat,no-repeat;
-  background-position:0 0,140px 90px,top center;
-  background-size:1000px 1000px,700px 700px,100% 860px;
-  background-attachment:scroll,scroll,scroll}
-a{color:inherit;text-decoration:none}
-img{display:block;max-width:100%;height:auto}
-button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
-::selection{background:rgba(201,169,97,.3)}
-.wrap,.diff,.foot,.coda{position:relative;z-index:2}
-
-/* ───────── nav ───────── */
-.nav{position:fixed;top:0;left:0;right:0;z-index:120;display:grid;
-  grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;
-  padding:0 clamp(18px,4vw,54px);height:72px;background:transparent;transition:background .4s}
-.nav.on{background:linear-gradient(180deg,rgba(2,3,5,.72),rgba(2,3,5,0))}
-.nav-wm{font-family:var(--serif);font-weight:400;font-size:17px;letter-spacing:.42em;
-  text-indent:.4em;text-transform:uppercase;white-space:nowrap}
-.nav-wm .o{color:var(--gold-d)}
-.nav-mid{display:flex;gap:clamp(18px,3vw,42px);justify-content:center}
-.nav-mid a{font-size:10px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;
-  color:rgba(201,169,97,.62);padding:25px 0;position:relative;transition:color .25s;white-space:nowrap}
-.nav-mid a:hover{color:var(--gold-lt)}
-.nav-mid a.on{color:var(--gold-lt)}
-.nav-mid a.on::after{content:'';position:absolute;left:0;right:0;bottom:18px;height:1px;background:var(--gold)}
-.nav-end{display:flex;gap:clamp(12px,2vw,22px);align-items:center;justify-content:flex-end}
-.icn{width:40px;height:40px;min-width:40px;display:flex;align-items:center;justify-content:center;
-  color:rgba(201,169,97,.66);transition:color .25s;position:relative}
-.icn:hover{color:var(--gold-lt)}
-.cart-badge{position:absolute;top:3px;right:1px;min-width:15px;height:15px;padding:0 4px;
-  border-radius:9px;background:var(--gold);color:#0A0A0A;font-size:9px;font-weight:400;
-  display:none;align-items:center;justify-content:center;line-height:1}
-.burger{display:none;flex-direction:column;gap:5px;width:40px;height:40px;align-items:center;justify-content:center}
-.burger span{display:block;width:20px;height:1.5px;background:var(--mute);transition:transform .3s,opacity .3s}
-.burger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
-.burger.open span:nth-child(2){opacity:0}
-.burger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
-@media(max-width:820px){.nav-mid{display:none}.burger{display:flex}}
-.msheet{position:fixed;inset:72px 0 0;z-index:110;background:rgba(2,3,5,.97);
-  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
-  opacity:0;pointer-events:none;transition:opacity .3s}
-.msheet.open{opacity:1;pointer-events:auto}
-.msheet a{font-family:var(--serif);font-size:clamp(26px,6vw,38px);color:var(--mute);
-  padding:12px 0;letter-spacing:.08em}
-.msheet a:hover{color:var(--pearl)}
-
-/* ───────── hero ───────── */
-.hero{position:relative;overflow:hidden;min-height:clamp(620px,92vh,940px);display:flex;align-items:center;padding-top:72px;
-  background:radial-gradient(ellipse 40% 34% at 74% 34%,rgba(236,214,166,.07) 0%,transparent 66%)}
-.hero-in{position:relative;z-index:3;width:100%;max-width:1320px;margin:0 auto;
-  padding:clamp(46px,7vw,80px) clamp(20px,5vw,60px);
-  display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.25fr);gap:clamp(20px,3vw,40px);align-items:center}
-.eyebrow{display:flex;align-items:center;gap:16px;font-size:10px;font-weight:500;
-  letter-spacing:.34em;text-transform:uppercase;color:var(--gold);margin-bottom:clamp(18px,2.6vw,28px)}
-.eyebrow::after{content:'';flex:1;max-width:110px;height:1px;background:linear-gradient(90deg,rgba(201,169,97,.5),transparent)}
-.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(36px,5.2vw,62px);
-  line-height:1.14;letter-spacing:-.012em;color:var(--bone);
-  text-shadow:0 0 30px rgba(232,206,150,.34),0 0 84px rgba(201,169,97,.15)}
-.hero p.lede{margin-top:clamp(18px,2.6vw,26px);max-width:34ch;font-size:clamp(14.5px,1.5vw,16px);
-  line-height:1.8;color:var(--mute)}
-.btn{display:inline-flex;align-items:center;gap:12px;margin-top:clamp(26px,3.6vw,38px);
-  padding:16px 30px;min-height:48px;border:1px solid var(--gold);color:var(--gold-lt);
-  font-size:10.5px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;
-  transition:background .3s,color .3s,border-color .3s}
-.btn:hover{background:rgba(201,169,97,.12);color:#F2E2BD;border-color:var(--gold-lt)}
-.btn .ar{transition:transform .3s}
-.btn:hover .ar{transform:translateX(4px)}
-.hero-art{position:relative;display:flex;align-items:center;justify-content:center;
-  min-height:clamp(360px,54vw,760px);overflow:visible;margin-right:clamp(-60px,-4vw,0px)}
-.hero-art .ring{position:absolute;top:46%;left:50%;transform:translate(-50%,-50%);
-  width:min(92%,660px);aspect-ratio:1;border-radius:50%;z-index:1;pointer-events:none;
-  border:1px solid rgba(201,169,97,.42);
-  box-shadow:0 0 90px rgba(201,169,97,.1),inset 0 0 120px rgba(201,169,97,.05)}
-/* The scan is shown on its own material, untouched — no transmission added,
-   no clarity changed. A neutral environment lights it and nothing else. */
-/* model-viewer ignores aspect-ratio and collapses to a strip, so both
-   dimensions are set here. max-width is cleared or the component caps it. */
-.hero-art .mv{position:relative;z-index:2;display:block;
-  width:min(152%,1060px);max-width:none;height:min(76vh,740px);
-  --poster-color:transparent;background:transparent;
-  --progress-bar-color:rgba(201,169,97,.8);--progress-mask:transparent}
-.hero-art .mv::part(default-progress-bar){height:1px}
-.hero-art img{position:relative;z-index:2;width:min(124%,900px);max-width:none;
-  /* Screened, so the photograph's black lets the ground through and the piece
-     floats inside the ring instead of sitting in a black box. */
-  mix-blend-mode:screen;
-  -webkit-mask-image:
-    radial-gradient(ellipse 66% 66% at 50% 48%,#000 30%,rgba(0,0,0,.84) 54%,rgba(0,0,0,.34) 74%,transparent 93%),
-    linear-gradient(to right,transparent 0,#000 13%,#000 87%,transparent 100%),
-    linear-gradient(to bottom,transparent 0,#000 11%,#000 89%,transparent 100%);
-  -webkit-mask-composite:source-in;
-  mask-image:
-    radial-gradient(ellipse 66% 66% at 50% 48%,#000 30%,rgba(0,0,0,.84) 54%,rgba(0,0,0,.34) 74%,transparent 93%),
-    linear-gradient(to right,transparent 0,#000 13%,#000 87%,transparent 100%),
-    linear-gradient(to bottom,transparent 0,#000 11%,#000 89%,transparent 100%);
-  mask-composite:intersect}
-.hero-art .plinth{position:absolute;bottom:7%;left:50%;transform:translateX(-50%);
-  width:min(66%,540px);height:22px;border-radius:50%;
-  background:radial-gradient(ellipse at 50% 50%,rgba(201,169,97,.4),rgba(201,169,97,.06) 52%,transparent 72%);
-  filter:blur(3px)}
-@media(max-width:900px){
-  .hero-in{grid-template-columns:1fr;text-align:center}
-  .eyebrow{justify-content:center}
-  .eyebrow::after{display:none}
-  .hero p.lede{margin-left:auto;margin-right:auto}
-  .hero-art{order:-1;min-height:clamp(260px,72vw,420px);margin-right:0}
-  .hero-art img{width:min(112%,560px)}
-  .hero-art .mv{width:min(150%,600px);height:min(52vh,420px)}
-}
-
-/* ───────── section furniture ───────── */
-.wrap{max-width:1320px;margin:0 auto;padding:0 clamp(20px,5vw,60px)}
-.rule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,.2),transparent)}
-.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;flex-wrap:wrap;
-  padding:clamp(40px,6vw,64px) 0 clamp(22px,3vw,32px)}
-.sec-head .k{font-size:10px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
-.sec-head .all{font-size:10px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;
-  color:var(--gold);transition:color .25s;min-height:44px;display:inline-flex;align-items:center;gap:8px}
-.sec-head .all:hover{color:var(--gold-lt)}
-
-/* ───────── categories ───────── */
-.cats{display:grid;grid-template-columns:repeat(4,1fr);
-  padding:clamp(34px,5vw,58px) 0 clamp(34px,5vw,58px)}
-.cat{text-align:center;padding:0 clamp(8px,2vw,20px);position:relative}
-.cat+.cat::before{content:'';position:absolute;left:0;top:8%;bottom:8%;width:1px;
-  background:linear-gradient(180deg,transparent,rgba(201,169,97,.22),transparent)}
-.cat svg{margin:0 auto clamp(16px,2.4vw,24px);display:block;color:var(--gold);
-  transition:transform .4s cubic-bezier(.22,1,.36,1),color .3s}
-.cat:hover svg{transform:translateY(-4px);color:var(--gold-lt)}
-.cat .nm{display:block;font-size:10.5px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:var(--pearl)}
-.cat .go{display:inline-flex;align-items:center;gap:7px;margin-top:10px;min-height:44px;
-  font-size:9.5px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(201,169,97,.72);
-  transition:color .25s}
-.cat:hover .go{color:var(--gold-lt)}
-@media(max-width:820px){
-  .cats{grid-template-columns:repeat(2,1fr);gap:clamp(26px,6vw,44px) 0}
-  .cat:nth-child(odd)::before{display:none}
-  .cat:nth-child(3)::before,.cat:nth-child(4)::before{top:-14%}
-}
-
-/* ───────── product grid ───────── */
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2.2vw,28px);
-  padding-bottom:clamp(40px,6vw,72px)}
-@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:560px){.grid{grid-template-columns:1fr}}
-.card{position:relative;background:linear-gradient(180deg,rgba(14,13,10,.5),rgba(2,3,5,.72));backdrop-filter:blur(2px);
-  border:1px solid rgba(201,169,97,.14);transition:border-color .35s,transform .35s;display:block}
-.card:hover{border-color:rgba(201,169,97,.4);transform:translateY(-3px)}
-.card-img{display:block;position:relative;aspect-ratio:1;overflow:hidden;background:#020305}
-.card-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.22,1,.36,1)}
-.card:hover .card-img img{transform:scale(1.035)}
-.card-img::after{content:'';position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(180deg,transparent 58%,rgba(2,3,5,.5) 100%)}
-.card-body{padding:clamp(14px,1.8vw,20px) clamp(14px,1.8vw,20px) clamp(16px,2vw,22px);
-  display:grid;grid-template-columns:1fr auto;gap:10px;align-items:end}
-.card-nm{font-family:var(--serif);font-weight:400;font-size:clamp(16px,1.6vw,19px);
-  line-height:1.25;color:var(--pearl)}
-.card-mat{margin-top:5px;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--faint)}
-.card-pr{margin-top:9px;font-size:12.5px;letter-spacing:.09em;color:var(--gold-lt)}
-.card-pr.ask{color:var(--faint);letter-spacing:.16em;text-transform:uppercase;font-size:9.5px}
-.bag{width:38px;height:38px;min-width:38px;border-radius:50%;border:1px solid rgba(201,169,97,.4);
-  display:flex;align-items:center;justify-content:center;color:var(--gold);
-  transition:background .3s,color .3s,border-color .3s}
-.bag:hover{background:rgba(201,169,97,.16);color:var(--gold-lt);border-color:var(--gold-lt)}
-.bag.in{background:rgba(201,169,97,.9);color:#0A0A0A;border-color:transparent}
-.sold{position:absolute;top:12px;left:12px;z-index:3;font-size:8.5px;font-weight:500;
-  letter-spacing:.24em;text-transform:uppercase;color:var(--pearl);
-  background:rgba(2,3,5,.84);border:1px solid rgba(234,239,245,.2);padding:5px 10px}
-.empty{grid-column:1/-1;text-align:center;padding:clamp(50px,9vw,90px) 0;color:var(--faint);
-  font-family:var(--serif);font-style:italic;font-size:clamp(17px,2.2vw,22px)}
-
-/* ───────── the difference band ───────── */
-.diff{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;
-  border-top:1px solid rgba(201,169,97,.14);border-bottom:1px solid rgba(201,169,97,.14)}
-.diff-img{position:relative;min-height:clamp(260px,34vw,440px);overflow:hidden}
-.diff-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.diff-img::after{content:'';position:absolute;inset:0;
-  background:linear-gradient(90deg,transparent 22%,rgba(2,3,5,.5) 58%,rgba(2,3,5,1) 100%)}
-.diff-txt{padding:clamp(38px,6vw,76px) clamp(24px,5vw,70px);display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
-.diff-txt h2{font-family:var(--serif);font-weight:400;color:var(--bone);text-shadow:0 0 26px rgba(232,206,150,.26);font-size:clamp(26px,3.6vw,42px);line-height:1.16;
-  margin-top:clamp(14px,2vw,18px)}
-.diff-txt .u{width:56px;height:1px;background:var(--gold);margin:clamp(18px,2.4vw,24px) 0}
-.diff-txt .eyebrow{margin-bottom:0}
-.diff-txt p{max-width:44ch;font-size:clamp(14.5px,1.5vw,16px);line-height:1.85;color:var(--mute)}
-@media(max-width:820px){.diff{grid-template-columns:1fr}.diff-img{min-height:clamp(220px,52vw,300px)}
-  .diff-img::after{background:linear-gradient(180deg,transparent 34%,rgba(2,3,5,.6) 70%,rgba(2,3,5,1) 100%)}}
-
-/* ───────── footer ───────── */
-.foot{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px;
-  padding:clamp(30px,4vw,44px) clamp(20px,5vw,60px)}
-.foot .nav-wm{font-size:17px}
-.foot-mid{display:flex;gap:clamp(16px,3vw,38px);justify-content:center;flex-wrap:wrap}
-.foot-mid a{font-size:10px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;
-  color:var(--faint);transition:color .25s;min-height:44px;display:inline-flex;align-items:center}
-.foot-mid a:hover{color:var(--pearl)}
-.foot-end{display:flex;gap:14px;justify-content:flex-end}
-.foot-end a{color:var(--faint);transition:color .25s;width:40px;height:40px;
-  display:flex;align-items:center;justify-content:center}
-.foot-end a:hover{color:var(--pearl)}
-.coda{text-align:center;padding:0 20px clamp(30px,4vw,44px);font-size:9px;font-weight:500;
-  letter-spacing:.5em;text-transform:uppercase;color:rgba(234,239,245,.22)}
-@media(max-width:760px){
-  .foot{grid-template-columns:1fr;justify-items:center;text-align:center;gap:8px}
-  .foot-end{justify-content:center}
-}
-@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shop.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"PHAÖRA — crystal sculpture","url":"https://phaora.com/shop/","numberOfItems":34,"itemListElement":[{"@type":"ListItem","position":1,"url":"https://phaora.com/shop/p/amethyst-crown.html","name":"The Amethyst Crown"},{"@type":"ListItem","position":2,"url":"https://phaora.com/shop/p/aurora.html","name":"The Aurora"},{"@type":"ListItem","position":3,"url":"https://phaora.com/shop/p/beacon.html","name":"The Beacon"},{"@type":"ListItem","position":4,"url":"https://phaora.com/shop/p/consort.html","name":"The Consort"},{"@type":"ListItem","position":5,"url":"https://phaora.com/shop/p/covenant.html","name":"The Covenant"},{"@type":"ListItem","position":6,"url":"https://phaora.com/shop/p/diviner.html","name":"The Diviner"},{"@type":"ListItem","position":7,"url":"https://phaora.com/shop/p/ember.html","name":"The Ember"},{"@type":"ListItem","position":8,"url":"https://phaora.com/shop/p/emissary.html","name":"The Emissary"},{"@type":"ListItem","position":9,"url":"https://phaora.com/shop/p/ezio-e-presa.html","name":"The Ezio e Presa"},{"@type":"ListItem","position":10,"url":"https://phaora.com/shop/p/garnet.html","name":"The Garnet"},{"@type":"ListItem","position":11,"url":"https://phaora.com/shop/p/gilded-pair.html","name":"The Gilded Pair"},{"@type":"ListItem","position":12,"url":"https://phaora.com/shop/p/harvest.html","name":"The Harvest"},{"@type":"ListItem","position":13,"url":"https://phaora.com/shop/p/lapis.html","name":"The Lapis"},{"@type":"ListItem","position":14,"url":"https://phaora.com/shop/p/luminary.html","name":"The Luminary"},{"@type":"ListItem","position":15,"url":"https://phaora.com/shop/p/maresia.html","name":"The Maresia"},{"@type":"ListItem","position":16,"url":"https://phaora.com/shop/p/mariner.html","name":"The Mariner"},{"@type":"ListItem","position":17,"url":"https://phaora.com/shop/p/meridian.html","name":"The Meridian"},{"@type":"ListItem","position":18,"url":"https://phaora.com/shop/p/obsidian.html","name":"The Obsidian"},{"@type":"ListItem","position":19,"url":"https://phaora.com/shop/p/onyx-pair.html","name":"The Onyx Pair"},{"@type":"ListItem","position":20,"url":"https://phaora.com/shop/p/opal.html","name":"The Opal"},{"@type":"ListItem","position":21,"url":"https://phaora.com/shop/p/oracle.html","name":"The Oracle"},{"@type":"ListItem","position":22,"url":"https://phaora.com/shop/p/orchid.html","name":"The Orchid"},{"@type":"ListItem","position":23,"url":"https://phaora.com/shop/p/pilgrim.html","name":"The Pilgrim"},{"@type":"ListItem","position":24,"url":"https://phaora.com/shop/p/quartz-twin.html","name":"The Quartz Twin"},{"@type":"ListItem","position":25,"url":"https://phaora.com/shop/p/rose-duet.html","name":"The Rose Duet"},{"@type":"ListItem","position":26,"url":"https://phaora.com/shop/p/rose-oracle.html","name":"The Rose Oracle"},{"@type":"ListItem","position":27,"url":"https://phaora.com/shop/p/rose-solo.html","name":"The Rose Solo"},{"@type":"ListItem","position":28,"url":"https://phaora.com/shop/p/sanctum.html","name":"The Sanctum"},{"@type":"ListItem","position":29,"url":"https://phaora.com/shop/p/reverie.html","name":"The Reverie"},{"@type":"ListItem","position":30,"url":"https://phaora.com/shop/p/seraph.html","name":"The Seraph"},{"@type":"ListItem","position":31,"url":"https://phaora.com/shop/p/sky-pair.html","name":"The Sky Pair"},{"@type":"ListItem","position":32,"url":"https://phaora.com/shop/p/solara.html","name":"The Solara"},{"@type":"ListItem","position":33,"url":"https://phaora.com/shop/p/vigil.html","name":"The Vigil"},{"@type":"ListItem","position":34,"url":"https://phaora.com/shop/p/violet.html","name":"The Violet"}]}</script>
 </head>
 <body>
-
-<header class="nav" id="nav">
-  <a href="/index.html" class="nav-wm">PHA<span class="o">Ö</span>RA</a>
-  <nav class="nav-mid">
-    <a href="/shop/" class="on">Shop</a>
-    <a href="/crystals/">About</a>
-    <a href="/blog">Journal</a>
-  </nav>
+<div class="page">
+<nav class="nav">
+  <button class="icon-btn burger" data-drawer-open aria-label="Menu"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 1h20M0 7h20M0 13h20"/></svg></button>
+  <a href="index.html" class="wordmark">Pha&ouml;ra</a>
+  <div class="nav-mid">
+    <a href="index.html" class="on">Shop</a>
+    <a href="about.html">About</a>
+    <a href="journal/">Journal</a>
+  </div>
   <div class="nav-end">
-    <a class="icn" href="#collection" aria-label="Search the collection">
-      <svg width="17" height="17" viewBox="0 0 18 18" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M12.5 12.5L16 16" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-    </a>
-    <a class="icn" href="/contact.html" aria-label="Contact the studio">
-      <svg width="17" height="17" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="6" r="3.2" stroke="currentColor" stroke-width="1.2"/><path d="M2.8 16c0-3.4 2.8-5.4 6.2-5.4s6.2 2 6.2 5.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-    </a>
-    <a class="icn" href="/sculpture/cart.html" aria-label="Bag">
-      <svg width="17" height="17" viewBox="0 0 18 18" fill="none"><path d="M3.2 5.5h11.6l-1 10.2H4.2L3.2 5.5Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><path d="M6.4 7.6V4.8a2.6 2.6 0 0 1 5.2 0v2.8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-      <span class="cart-badge">0</span>
-    </a>
-    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <button class="icon-btn" data-search-open aria-label="Search the work" aria-controls="searchbar" aria-expanded="false"><svg width="17" height="17" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="7.2" cy="7.2" r="5.2"/><path d="m11 11 4 4"/></svg></button>
+    <a href="mailto:phaoraco@gmail.com" class="icon-btn" aria-label="Contact the studio"><svg width="17" height="17" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="8.5" cy="5.4" r="3.1"/><path d="M2.6 15c0-3.2 2.6-5 5.9-5s5.9 1.8 5.9 5"/></svg></a>
+    <a href="bag.html" class="icon-btn" aria-label="Bag"><svg width="17" height="17" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg><span class="bag-count">0</span></a>
   </div>
-</header>
+</nav>
 
-<div class="msheet" id="msheet">
-  <a href="/shop/">Shop</a>
-  <a href="/crystals/">About</a>
-  <a href="/blog">Journal</a>
-  <a href="/hardscape-gallery.html">Hardscape</a>
-  <a href="/contact.html">Contact</a>
+<div class="searchbar" id="searchbar">
+  <form action="index.html" method="get" role="search">
+    <input type="search" name="q" id="searchInput" placeholder="Search the work&hellip;" autocomplete="off" aria-label="Search the work">
+    <button type="submit">Search</button>
+  </form>
 </div>
 
+<div class="drawer" id="drawer">
+  <button class="icon-btn drawer-close" data-drawer-close aria-label="Close"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.2"><path d="m1 1 16 16M17 1 1 17"/></svg></button>
+  <a href="index.html" data-drawer-close>Shop front</a>
+  <a href="index.html#pieces" data-drawer-close>Every piece</a>
+  <a href="about.html" data-drawer-close>About</a>
+  <a href="journal/" data-drawer-close>Journal</a>
+  <a href="bag.html" data-drawer-close>Bag</a>
+</div>
+
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-in">
-    <div>
-      <p class="eyebrow">Crystal Sculpture</p>
-      <h1>Timeless Art,<br>Born of Earth</h1>
-      <p class="lede">Rare crystal, carved by hand in Minas Gerais. Every piece is one of one — the stone decides how far the cut can go.</p>
-      <a class="btn" href="#collection">Explore Collection <span class="ar">→</span></a>
-    </div>
-    <div class="hero-art">
-      <div class="ring"></div>
-      <model-viewer id="heroModel" class="mv"
-        src="/assets/3d/sculpture-draco.glb"
-        alt="A carved crystal sculpture, turning"
-        poster="/assets/3d/poster.webp"
-        auto-rotate rotation-per-second="16deg" auto-rotate-delay="0"
-        camera-controls disable-zoom touch-action="pan-y"
-        interaction-prompt="none"
-        environment-image="neutral" exposure="2.6" shadow-intensity="0"
-        camera-orbit="16deg 80deg 100%" min-camera-orbit="auto 62deg auto"
-        max-camera-orbit="auto 98deg auto"
-        loading="lazy" reveal="auto"></model-viewer>
-      <script>
-      /* Same mesh, same material — the phone build differs only in the baked
-         atlas (4096 rather than 8192): 6.92 MB against 3.18 MB. This runs at
-         parse time, before the deferred component upgrades and starts
-         fetching, so the swap always lands first. The larger build stays the
-         default: if this script never runs, the page still gets the full one. */
-      (function(){
-        var m=document.getElementById('heroModel'); if(!m) return;
-        var c=navigator.connection||{};
-        var thin=c.saveData===true||/(^|-)(2g|slow-2g)$/.test(c.effectiveType||'');
-        if(thin||window.matchMedia('(max-width: 900px)').matches){
-          m.setAttribute('src','/assets/3d/sculpture-4k-draco.glb');
-        }
-      })();
-      </script>
-      <div class="plinth"></div>
+  <div class="hero-copy">
+    <p class="eyebrow">Crystal Sculpture</p>
+    <h1 class="display">Timeless art,<br>born of earth</h1>
+    <p>Rare crystal, carved by hand in Minas Gerais. Every piece is one of one — the stone decides how far the cut can go.</p>
+    <a href="#pieces" class="ghost-btn">See every piece <span class="arw">&rarr;</span></a>
+  </div>
+  <div class="hero-plate">
+    <span class="hero-ring" aria-hidden="true"></span>
+    <img src="../assets/sculptures/beacon/00-hero.jpg" alt="The Beacon — Macaw carved in crystal" width="2048" height="2048" fetchpriority="high" decoding="async">
+  </div>
+</section>
+
+<div class="spine" aria-hidden="true"></div>
+
+<!-- WHAT IS CARVED -->
+<section class="cats-wrap">
+  <div class="section-head"><h2>What is carved</h2></div>
+  <div class="cats" id="cats">
+    <a class="cat" href="#pieces" data-cat="Macaw">
+      <svg width="54" height="64" viewBox="0 0 44 54" fill="none" stroke="currentColor" stroke-width="1" stroke-linejoin="round" aria-hidden="true"><path d="M18 8 22 12 19 17 15 13Z"/><path d="M15 11 10 12 14 15"/><path d="M19 17 25 22 26 30 22 34 17 29Z"/><path d="M25 24 36 30 40 45 33 40 26 31"/><path d="M21 21 28 19 25 26"/><path d="M20 34 20 39M24 34 24 39"/><path d="M12 39 32 39"/></svg>
+      <span class="cat-name">Macaws</span>
+      <span class="cat-n">23 works</span>
+      <span class="cat-go">See <span class="arw">&rarr;</span></span>
+    </a>
+    <a class="cat" href="#pieces" data-cat="Cockatoo">
+      <svg width="54" height="64" viewBox="0 0 44 54" fill="none" stroke="currentColor" stroke-width="1" stroke-linejoin="round" aria-hidden="true"><path d="M18 14 21 8 19 3"/><path d="M21 13 26 8 27 2"/><path d="M19 14 24 18 21 24 16 19Z"/><path d="M16 17 11 19 15 22"/><path d="M21 24 27 29 26 38 21 42 17 34Z"/><path d="M26 33 31 43 27 40"/><path d="M20 42 19 47M24 42 25 47"/><path d="M13 47 31 47"/></svg>
+      <span class="cat-name">Cockatoos</span>
+      <span class="cat-n">4 works</span>
+      <span class="cat-go">See <span class="arw">&rarr;</span></span>
+    </a>
+    <a class="cat" href="#pieces" data-cat="Eagle">
+      <svg width="54" height="64" viewBox="0 0 44 54" fill="none" stroke="currentColor" stroke-width="1" stroke-linejoin="round" aria-hidden="true"><path d="M22 5 25 10 22 15 19 10Z"/><path d="M19 8 14 9"/><path d="M22 15 26 21 24 39 22 46 20 39 18 21Z"/><path d="M19 19 4 12 8 23 17 28"/><path d="M25 19 40 12 36 23 27 28"/><path d="M20 46 18 51M24 46 26 51"/></svg>
+      <span class="cat-name">Eagles</span>
+      <span class="cat-n">3 works</span>
+      <span class="cat-go">See <span class="arw">&rarr;</span></span>
+    </a>
+    <a class="cat" href="#pieces" data-cat="Parrot">
+      <svg width="54" height="64" viewBox="0 0 44 54" fill="none" stroke="currentColor" stroke-width="1" stroke-linejoin="round" aria-hidden="true"><path d="M20 9 25 13 22 19 17 14Z"/><path d="M17 12 12 13 16 16"/><path d="M22 19 28 25 27 35 22 39 17 31Z"/><path d="M27 31 33 42 28 39"/><path d="M23 22 29 21 26 28"/><path d="M20 39 19 45M25 39 26 45"/><path d="M13 45 31 45"/></svg>
+      <span class="cat-name">Parrots</span>
+      <span class="cat-n">2 works</span>
+      <span class="cat-go">See <span class="arw">&rarr;</span></span>
+    </a>
+  </div>
+</section>
+
+<div class="spine" aria-hidden="true"></div>
+
+<!-- EVERY PIECE -->
+<section id="pieces">
+  <div class="section-head">
+    <h2>Every piece</h2>
+    <span class="viewall" style="color:var(--warm-3)">34 works</span>
+  </div>
+
+  <div class="filters" id="filters">
+    <button class="fbtn on" data-filter="all">Everything<i>34</i></button>
+    <button class="fbtn" data-filter="Macaw">Macaws<i>23</i></button>
+    <button class="fbtn" data-filter="Cockatoo">Cockatoos<i>4</i></button>
+    <button class="fbtn" data-filter="Eagle">Eagles<i>3</i></button>
+    <button class="fbtn" data-filter="Parrot">Parrots<i>2</i></button>
+    <span class="qchip" id="qchip" hidden>Search <b id="qterm"></b><button type="button" id="qclear" aria-label="Clear the search">&times;</button></span>
+    <span class="filter-spacer"></span>
+    <select class="sortsel" id="sort" aria-label="Order the works">
+      <option value="as-hung">As hung</option>
+      
+      <option value="name">Name</option>
+    </select>
+  </div>
+
+  <div class="grid-wrap">
+    <div class="grid wide" id="grid">
+      <article data-species="Macaw" data-price="0" data-name="The Amethyst Crown" class="card">
+        <a href="p/amethyst-crown.html" aria-label="The Amethyst Crown">
+          <div class="card-img">
+            <img src="../assets/sculptures/_derived/amethyst-crown/card.jpg" alt="The Amethyst Crown — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="card-body">
+            <h3 class="card-name">The Amethyst Crown</h3>
+            <p class="card-sub">Macaw</p>
+            <div class="card-price poa">On request</div>
+          </div>
+        </a>
+        <button class="card-bag" data-add="amethyst-crown" data-name="The Amethyst Crown" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/amethyst-crown/card.jpg" aria-label="Put The Amethyst Crown in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+      </article>
+      <article data-species="Macaw" data-price="0" data-name="The Aurora" class="card">
+        <a href="p/aurora.html" aria-label="The Aurora">
+          <div class="card-img">
+            <img src="../assets/sculptures/_derived/aurora/card.jpg" alt="The Aurora — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="card-body">
+            <h3 class="card-name">The Aurora</h3>
+            <p class="card-sub">Macaw</p>
+            <div class="card-price poa">On request</div>
+          </div>
+        </a>
+        <button class="card-bag" data-add="aurora" data-name="The Aurora" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/aurora/card.jpg" aria-label="Put The Aurora in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+      </article>
+      <article data-species="Macaw" data-price="0" data-name="The Beacon" class="card">
+        <a href="p/beacon.html" aria-label="The Beacon">
+          <div class="card-img">
+            <img src="../assets/sculptures/_derived/beacon/card.jpg" alt="The Beacon — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="card-body">
+            <h3 class="card-name">The Beacon</h3>
+            <p class="card-sub">Macaw</p>
+            <div class="card-price poa">On request</div>
+          </div>
+        </a>
+        <button class="card-bag" data-add="beacon" data-name="The Beacon" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/beacon/card.jpg" aria-label="Put The Beacon in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+      </article>
+      <article data-species="Macaw" data-price="0" data-name="The Consort" class="card">
+        <a href="p/consort.html" aria-label="The Consort">
+          <div class="card-img">
+            <img src="../assets/sculptures/_derived/consort/card.jpg" alt="The Consort — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="card-body">
+            <h3 class="card-name">The Consort</h3>
+            <p class="card-sub">Macaw</p>
+            <div class="card-price poa">On request</div>
+          </div>
+        </a>
+        <button class="card-bag" data-add="consort" data-name="The Consort" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/consort/card.jpg" aria-label="Put The Consort in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+      </article>
+      <article data-species="Macaw" data-price="0" data-name="The Covenant" class="card">
+        <a href="p/covenant.html" aria-label="The Covenant">
+          <div class="card-img">
+            <img src="../assets/sculptures/_derived/covenant/card.jpg" alt="The Covenant — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="card-body">
+            <h3 class="card-name">The Covenant</h3>
+            <p class="card-sub">Macaw</p>
+            <div class="card-price poa">On request</div>
+          </div>
+        </a>
+        <button class="card-bag" data-add="covenant" data-name="The Covenant" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/covenant/card.jpg" aria-label="Put The Covenant in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+      </article>
+      <article data-species="Macaw" data-price="0" data-name="The Diviner" class="card">
+        <a href="p/diviner.html" aria-label="The Diviner">
+          <div class="card-img">
+            <img src="../assets/sculptures/_derived/diviner/card.jpg" alt="The Diviner — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="card-body">
+            <h3 class="card-name">The Diviner</h3>
+            <p class="card-sub">Macaw</p>
+            <div class="card-price poa">On request</div>
+          </div>
+        </a>
+        <button class="card-bag" data-add="diviner" data-name="The Diviner" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/diviner/card.jpg" aria-label="Put The Diviner in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+      </article>
+      <article data-species="Macaw" data-price="0" data-name="The Ember" class="card">
+        <a href="p/ember.html" aria-label="The Ember">
+          <div class="card-img">
+            <img src="../assets/sculptures/_derived/ember/card.jpg" alt="The Ember — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="card-body">
+            <h3 class="card-name">The Ember</h3>
+            <p class="card-sub">Macaw</p>
+            <div class="card-price poa">On request</div>
+          </div>
+        </a>
+        <button class="card-bag" data-add="ember" data-name="The Ember" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/ember/card.jpg" aria-label="Put The Ember in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+      </article>
+      <article data-species="Parrot" data-price="0" data-name="The Emissary" class="card">
+        <a href="p/emissary.html" aria-label="The Emissary">
+          <div class="card-img">
+            <img src="../assets/sculptures/_derived/emissary/card.jpg" alt="The Emissary — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="card-body">
+            <h3 class="card-name">The Emissary</h3>
+            <p class="card-sub">Parrot</p>
+            <div class="card-price poa">On request</div>
+          </div>
+        </a>
+        <button class="card-bag" data-add="emissary" data-name="The Emissary" data-price="0" data-sub="Parrot" data-img="../assets/sculptures/_derived/emissary/card.jpg" aria-label="Put The Emissary in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+      </article>
+      <article data-species="Macaw" data-price="0" data-name="The Ezio e Presa" class="card">
+        <a href="p/ezio-e-presa.html" aria-label="The Ezio e Presa">
+          <div class="card-img">
+            <img src="../assets/sculptures/_derived/ezio-e-presa/card.jpg" alt="The Ezio e Presa — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="card-body">
+            <h3 class="card-name">The Ezio e Presa</h3>
+            <p class="card-sub">Macaw</p>
+            <div class="card-price poa">On request</div>
+          </div>
+        </a>
+        <button class="card-bag" data-add="ezio-e-presa" data-name="The Ezio e Presa" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/ezio-e-presa/card.jpg" aria-label="Put The Ezio e Presa in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+      </article>
+      <article data-species="Macaw" data-price="0" data-name="The Garnet" class="card">
+        <a href="p/garnet.html" aria-label="The Garnet">
+          <div class="card-img">
+            <img src="../assets/sculptures/_derived/garnet/card.jpg" alt="The Garnet — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="card-body">
+            <h3 class="card-name">The Garnet</h3>
+            <p class="card-sub">Macaw</p>
+            <div class="card-price poa">On request</div>
+          </div>
+        </a>
+        <button class="card-bag" data-add="garnet" data-name="The Garnet" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/garnet/card.jpg" aria-label="Put The Garnet in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+      </article>
+      <article data-species="Macaw" data-price="0" data-name="The Gilded Pair" class="card">
+        <a href="p/gilded-pair.html" aria-label="The Gilded Pair">
+          <div class="card-img">
+            <img src="../assets/sculptures/_derived/gilded-pair/card.jpg" alt="The Gilded Pair — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="card-body">
+            <h3 class="card-name">The Gilded Pair</h3>
+            <p class="card-sub">Macaw</p>
+            <div class="card-price poa">On request</div>
+          </div>
+        </a>
+        <button class="card-bag" data-add="gilded-pair" data-name="The Gilded Pair" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/gilded-pair/card.jpg" aria-label="Put The Gilded Pair in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+      </article>
+      <article data-species="Macaw" data-price="0" data-name="The Harvest" class="card">
+        <a href="p/harvest.html" aria-label="The Harvest">
+          <div class="card-img">
+            <img src="../assets/sculptures/_derived/harvest/card.jpg" alt="The Harvest — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="card-body">
+            <h3 class="card-name">The Harvest</h3>
+            <p class="card-sub">Macaw</p>
+            <div class="card-price poa">On request</div>
+          </div>
+        </a>
+        <button class="card-bag" data-add="harvest" data-name="The Harvest" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/harvest/card.jpg" aria-label="Put The Harvest in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+      </article>
+      <article data-species="Macaw" data-price="0" data-name="The Lapis" class="card">
+        <a href="p/lapis.html" aria-label="The Lapis">
+          <div class="card-img">
+            <img src="../assets/sculptures/_derived/lapis/card.jpg" alt="The Lapis — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="card-body">
+            <h3 class="card-name">The Lapis</h3>
+            <p class="card-sub">Macaw</p>
+            <div class="card-price poa">On request</div>
+          </div>
+        </a>
+        <button class="card-bag" data-add="lapis" data-name="The Lapis" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/lapis/card.jpg" aria-label="Put The Lapis in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+      </article>
+      <article data-species="Macaw" data-price="0" data-name="The Luminary" class="card">
+        <a href="p/luminary.html" aria-label="The Luminary">
+          <div class="card-img">
+            <img src="../assets/sculptures/_derived/luminary/card.jpg" alt="The Luminary — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="card-body">
+            <h3 class="card-name">The Luminary</h3>
+            <p class="card-sub">Macaw</p>
+            <div class="card-price poa">On request</div>
+          </div>
+        </a>
+        <button class="card-bag" data-add="luminary" data-name="The Luminary" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/luminary/card.jpg" aria-label="Put The Luminary in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+      </article>
+      <article data-species="Specimen" data-price="0" data-name="The Maresia" class="card">
+        <a href="p/maresia.html" aria-label="The Maresia">
+          <div class="card-img">
+            <img src="../assets/sculptures/_derived/maresia/card.jpg" alt="The Maresia — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="card-body">
+            <h3 class="card-name">The Maresia</h3>
+            <p class="card-sub">Specimen</p>
+            <div class="card-price poa">On request</div>
+          </div>
+        </a>
+        <button class="card-bag" data-add="maresia" data-name="The Maresia" data-price="0" data-sub="Specimen" data-img="../assets/sculptures/_derived/maresia/card.jpg" aria-label="Put The Maresia in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+      </article>
+      <article data-species="Eagle" data-price="0" data-name="The Mariner" class="card">
+        <a href="p/mariner.html" aria-label="The Mariner">
+          <div class="card-img">
+            <img src="../assets/sculptures/_derived/mariner/card.jpg" alt="The Mariner — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="card-body">
+            <h3 class="card-name">The Mariner</h3>
+            <p class="card-sub">Eagle</p>
+            <div class="card-price poa">On request</div>
+          </div>
+        </a>
+        <button class="card-bag" data-add="mariner" data-name="The Mariner" data-price="0" data-sub="Eagle" data-img="../assets/sculptures/_derived/mariner/card.jpg" aria-label="Put The Mariner in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+      </article>
+      <article data-species="Macaw" data-price="0" data-name="The Meridian" class="card">
+        <a href="p/meridian.html" aria-label="The Meridian">
+          <div class="card-img">
+            <img src="../assets/sculptures/_derived/meridian/card.jpg" alt="The Meridian — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="card-body">
+            <h3 class="card-name">The Meridian</h3>
+            <p class="card-sub">Macaw</p>
+            <div class="card-price poa">On request</div>
+          </div>
+        </a>
+        <button class="card-bag" data-add="meridian" data-name="The Meridian" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/meridian/card.jpg" aria-label="Put The Meridian in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+      </article>
+      <article data-species="Macaw" data-price="0" data-name="The Obsidian" class="card">
+        <a href="p/obsidian.html" aria-label="The Obsidian">
+          <div class="card-img">
+            <img src="../assets/sculptures/_derived/obsidian/card.jpg" alt="The Obsidian — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="card-body">
+            <h3 class="card-name">The Obsidian</h3>
+            <p class="card-sub">Macaw</p>
+            <div class="card-price poa">On request</div>
+          </div>
+        </a>
+        <button class="card-bag" data-add="obsidian" data-name="The Obsidian" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/obsidian/card.jpg" aria-label="Put The Obsidian in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+      </article>
+      <article data-species="Macaw" data-price="0" data-name="The Onyx Pair" class="card">
+        <a href="p/onyx-pair.html" aria-label="The Onyx Pair">
+          <div class="card-img">
+            <img src="../assets/sculptures/_derived/onyx-pair/card.jpg" alt="The Onyx Pair — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="card-body">
+            <h3 class="card-name">The Onyx Pair</h3>
+            <p class="card-sub">Macaw</p>
+            <div class="card-price poa">On request</div>
+          </div>
+        </a>
+        <button class="card-bag" data-add="onyx-pair" data-name="The Onyx Pair" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/onyx-pair/card.jpg" aria-label="Put The Onyx Pair in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+      </article>
+      <article data-species="Eagle" data-price="0" data-name="The Opal" class="card">
+        <a href="p/opal.html" aria-label="The Opal">
+          <div class="card-img">
+            <img src="../assets/sculptures/_derived/opal/card.jpg" alt="The Opal — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="card-body">
+            <h3 class="card-name">The Opal</h3>
+            <p class="card-sub">Eagle</p>
+            <div class="card-price poa">On request</div>
+          </div>
+        </a>
+        <button class="card-bag" data-add="opal" data-name="The Opal" data-price="0" data-sub="Eagle" data-img="../assets/sculptures/_derived/opal/card.jpg" aria-label="Put The Opal in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+      </article>
+      <article data-species="Macaw" data-price="0" data-name="The Oracle" class="card">
+        <a href="p/oracle.html" aria-label="The Oracle">
+          <div class="card-img">
+            <img src="../assets/sculptures/_derived/oracle/card.jpg" alt="The Oracle — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="card-body">
+            <h3 class="card-name">The Oracle</h3>
+            <p class="card-sub">Macaw</p>
+            <div class="card-price poa">On request</div>
+          </div>
+        </a>
+        <button class="card-bag" data-add="oracle" data-name="The Oracle" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/oracle/card.jpg" aria-label="Put The Oracle in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+      </article>
+      <article data-species="Eagle" data-price="0" data-name="The Orchid" class="card">
+        <a href="p/orchid.html" aria-label="The Orchid">
+          <div class="card-img">
+            <img src="../assets/sculptures/_derived/orchid/card.jpg" alt="The Orchid — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="card-body">
+            <h3 class="card-name">The Orchid</h3>
+            <p class="card-sub">Eagle</p>
+            <div class="card-price poa">On request</div>
+          </div>
+        </a>
+        <button class="card-bag" data-add="orchid" data-name="The Orchid" data-price="0" data-sub="Eagle" data-img="../assets/sculptures/_derived/orchid/card.jpg" aria-label="Put The Orchid in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+      </article>
+      <article data-species="Cockatoo" data-price="0" data-name="The Pilgrim" class="card">
+        <a href="p/pilgrim.html" aria-label="The Pilgrim">
+          <div class="card-img">
+            <img src="../assets/sculptures/_derived/pilgrim/card.jpg" alt="The Pilgrim — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="card-body">
+            <h3 class="card-name">The Pilgrim</h3>
+            <p class="card-sub">Cockatoo</p>
+            <div class="card-price poa">On request</div>
+          </div>
+        </a>
+        <button class="card-bag" data-add="pilgrim" data-name="The Pilgrim" data-price="0" data-sub="Cockatoo" data-img="../assets/sculptures/_derived/pilgrim/card.jpg" aria-label="Put The Pilgrim in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+      </article>
+      <article data-species="Macaw" data-price="0" data-name="The Quartz Twin" class="card">
+        <a href="p/quartz-twin.html" aria-label="The Quartz Twin">
+          <div class="card-img">
+            <img src="../assets/sculptures/_derived/quartz-twin/card.jpg" alt="The Quartz Twin — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="card-body">
+            <h3 class="card-name">The Quartz Twin</h3>
+            <p class="card-sub">Macaw</p>
+            <div class="card-price poa">On request</div>
+          </div>
+        </a>
+        <button class="card-bag" data-add="quartz-twin" data-name="The Quartz Twin" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/quartz-twin/card.jpg" aria-label="Put The Quartz Twin in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+      </article>
+      <article data-species="Parrot" data-price="0" data-name="The Rose Duet" class="card">
+        <a href="p/rose-duet.html" aria-label="The Rose Duet">
+          <div class="card-img">
+            <img src="../assets/sculptures/_derived/rose-duet/card.jpg" alt="The Rose Duet — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="card-body">
+            <h3 class="card-name">The Rose Duet</h3>
+            <p class="card-sub">Parrot</p>
+            <div class="card-price poa">On request</div>
+          </div>
+        </a>
+        <button class="card-bag" data-add="rose-duet" data-name="The Rose Duet" data-price="0" data-sub="Parrot" data-img="../assets/sculptures/_derived/rose-duet/card.jpg" aria-label="Put The Rose Duet in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+      </article>
+      <article data-species="Macaw" data-price="0" data-name="The Rose Oracle" class="card">
+        <a href="p/rose-oracle.html" aria-label="The Rose Oracle">
+          <div class="card-img">
+            <img src="../assets/sculptures/_derived/rose-oracle/card.jpg" alt="The Rose Oracle — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="card-body">
+            <h3 class="card-name">The Rose Oracle</h3>
+            <p class="card-sub">Macaw</p>
+            <div class="card-price poa">On request</div>
+          </div>
+        </a>
+        <button class="card-bag" data-add="rose-oracle" data-name="The Rose Oracle" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/rose-oracle/card.jpg" aria-label="Put The Rose Oracle in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+      </article>
+      <article data-species="Cockatoo" data-price="0" data-name="The Rose Solo" class="card">
+        <a href="p/rose-solo.html" aria-label="The Rose Solo">
+          <div class="card-img">
+            <img src="../assets/sculptures/_derived/rose-solo/card.jpg" alt="The Rose Solo — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="card-body">
+            <h3 class="card-name">The Rose Solo</h3>
+            <p class="card-sub">Cockatoo</p>
+            <div class="card-price poa">On request</div>
+          </div>
+        </a>
+        <button class="card-bag" data-add="rose-solo" data-name="The Rose Solo" data-price="0" data-sub="Cockatoo" data-img="../assets/sculptures/_derived/rose-solo/card.jpg" aria-label="Put The Rose Solo in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+      </article>
+      <article data-species="Cockatoo" data-price="0" data-name="The Sanctum" class="card">
+        <a href="p/sanctum.html" aria-label="The Sanctum">
+          <div class="card-img">
+            <img src="../assets/sculptures/_derived/sanctum/card.jpg" alt="The Sanctum — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="card-body">
+            <h3 class="card-name">The Sanctum</h3>
+            <p class="card-sub">Cockatoo</p>
+            <div class="card-price poa">On request</div>
+          </div>
+        </a>
+        <button class="card-bag" data-add="sanctum" data-name="The Sanctum" data-price="0" data-sub="Cockatoo" data-img="../assets/sculptures/_derived/sanctum/card.jpg" aria-label="Put The Sanctum in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+      </article>
+      <article data-species="Macaw" data-price="0" data-name="The Reverie" class="card">
+        <a href="p/reverie.html" aria-label="The Reverie">
+          <div class="card-img">
+            <img src="../assets/sculptures/_derived/reverie/card.jpg" alt="The Reverie — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="card-body">
+            <h3 class="card-name">The Reverie</h3>
+            <p class="card-sub">Macaw</p>
+            <div class="card-price poa">On request</div>
+          </div>
+        </a>
+        <button class="card-bag" data-add="reverie" data-name="The Reverie" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/reverie/card.jpg" aria-label="Put The Reverie in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+      </article>
+      <article data-species="Macaw" data-price="0" data-name="The Seraph" class="card">
+        <a href="p/seraph.html" aria-label="The Seraph">
+          <div class="card-img">
+            <img src="../assets/sculptures/_derived/seraph/card.jpg" alt="The Seraph — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async" style="filter:brightness(0.94) saturate(0.82)">
+            
+          </div>
+          <div class="card-body">
+            <h3 class="card-name">The Seraph</h3>
+            <p class="card-sub">Macaw</p>
+            <div class="card-price poa">On request</div>
+          </div>
+        </a>
+        <button class="card-bag" data-add="seraph" data-name="The Seraph" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/seraph/card.jpg" aria-label="Put The Seraph in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+      </article>
+      <article data-species="Cockatoo" data-price="0" data-name="The Sky Pair" class="card">
+        <a href="p/sky-pair.html" aria-label="The Sky Pair">
+          <div class="card-img">
+            <img src="../assets/sculptures/_derived/sky-pair/card.jpg" alt="The Sky Pair — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="card-body">
+            <h3 class="card-name">The Sky Pair</h3>
+            <p class="card-sub">Cockatoo</p>
+            <div class="card-price poa">On request</div>
+          </div>
+        </a>
+        <button class="card-bag" data-add="sky-pair" data-name="The Sky Pair" data-price="0" data-sub="Cockatoo" data-img="../assets/sculptures/_derived/sky-pair/card.jpg" aria-label="Put The Sky Pair in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+      </article>
+      <article data-species="Macaw" data-price="0" data-name="The Solara" class="card">
+        <a href="p/solara.html" aria-label="The Solara">
+          <div class="card-img">
+            <img src="../assets/sculptures/_derived/solara/card.jpg" alt="The Solara — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="card-body">
+            <h3 class="card-name">The Solara</h3>
+            <p class="card-sub">Macaw</p>
+            <div class="card-price poa">On request</div>
+          </div>
+        </a>
+        <button class="card-bag" data-add="solara" data-name="The Solara" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/solara/card.jpg" aria-label="Put The Solara in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+      </article>
+      <article data-species="Chair" data-price="0" data-name="The Vigil" class="card">
+        <a href="p/vigil.html" aria-label="The Vigil">
+          <div class="card-img">
+            <img src="../assets/sculptures/_derived/vigil/card.jpg" alt="The Vigil — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="card-body">
+            <h3 class="card-name">The Vigil</h3>
+            <p class="card-sub">Chair</p>
+            <div class="card-price poa">On request</div>
+          </div>
+        </a>
+        <button class="card-bag" data-add="vigil" data-name="The Vigil" data-price="0" data-sub="Chair" data-img="../assets/sculptures/_derived/vigil/card.jpg" aria-label="Put The Vigil in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+      </article>
+      <article data-species="Macaw" data-price="0" data-name="The Violet" class="card">
+        <a href="p/violet.html" aria-label="The Violet">
+          <div class="card-img">
+            <img src="../assets/sculptures/_derived/violet/card.jpg" alt="The Violet — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
+            
+          </div>
+          <div class="card-body">
+            <h3 class="card-name">The Violet</h3>
+            <p class="card-sub">Macaw</p>
+            <div class="card-price poa">On request</div>
+          </div>
+        </a>
+        <button class="card-bag" data-add="violet" data-name="The Violet" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/violet/card.jpg" aria-label="Put The Violet in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+      </article>
+      <p class="empty" id="empty" hidden>No work matches that.</p>
     </div>
   </div>
 </section>
 
-<div class="wrap">
-  <div class="cats">
-    <a class="cat" href="#collection" data-cat="Macaws">
-      <svg width="52" height="56" viewBox="0 0 52 56" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round">
-        <path d="M26 6 34 18 30 40 22 40 18 18Z"/><path d="M18 18 26 24 34 18"/><path d="M26 24V40"/>
-        <path d="M13 26 18 20 16 36Z"/><path d="M39 26 34 20 36 36Z"/><path d="M18 44h16l-8 6Z"/>
-      </svg>
-      <span class="nm">Macaws</span><span class="go">Explore →</span>
-    </a>
-    <a class="cat" href="#collection" data-cat="Eagles">
-      <svg width="52" height="56" viewBox="0 0 52 56" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round">
-        <path d="M20 12h12v32H20z"/><path d="M20 12 26 5l6 7"/><path d="M20 44l6 7 6-7"/><path d="M26 5v46"/>
-        <path d="M12 20h6v16h-6z"/><path d="M34 20h6v16h-6z"/>
-      </svg>
-      <span class="nm">Eagles</span><span class="go">Explore →</span>
-    </a>
-    <a class="cat" href="#collection" data-cat="Cockatoos">
-      <svg width="52" height="56" viewBox="0 0 52 56" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round">
-        <path d="M26 8v12"/><path d="M26 20 14 30l12 18 12-18Z"/><path d="M14 30h24"/>
-        <path d="M26 20 20 30l6 18 6-18Z"/><path d="M20 8l6 12 6-12"/>
-      </svg>
-      <span class="nm">Cockatoos</span><span class="go">Explore →</span>
-    </a>
-    <a class="cat" href="#collection" data-cat="Natural Forms">
-      <svg width="52" height="56" viewBox="0 0 52 56" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round">
-        <path d="M26 4 40 20 26 52 12 20Z"/><path d="M12 20h28"/><path d="M26 4v48"/>
-        <path d="M19 12 26 20l7-8"/>
-      </svg>
-      <span class="nm">Natural Forms</span><span class="go">Explore →</span>
-    </a>
+<!-- THE DIFFERENCE -->
+<section class="band">
+  <div class="band-img">
+    <img src="../assets/sculptures/sanctum/00-hero.jpg" alt="Crystal detail from The Sanctum" loading="lazy" decoding="async">
   </div>
-  <div class="rule"></div>
-
-  <div class="sec-head" id="collection">
-    <p class="k" id="collLabel">The Collection</p>
-    <a class="all" href="/crystals/">Read the piece <span class="ar">→</span></a>
-  </div>
-
-  <div class="grid" id="grid">
-    <p class="empty">Loading the collection…</p>
-  </div>
-</div>
-
-<section class="diff">
-  <div class="diff-img">
-    <img src="/assets/shop/_macro.webp" width="1000" height="867" alt="Amethyst crystal, close" loading="lazy" decoding="async">
-  </div>
-  <div class="diff-txt">
-    <p class="eyebrow" style="margin-bottom:0">The Phaöra Difference</p>
-    <h2>Authenticity in<br>Every Piece</h2>
-    <div class="u"></div>
-    <p>Out of the ground in Minas Gerais, carved by hand, signed. No edition, no second casting — each one is a single stone that was read once and cut once, and the grain in it decided most of the argument.</p>
-    <a class="btn" href="/crystals/">Discover More <span class="ar">→</span></a>
+  <div class="band-copy">
+    <p class="eyebrow">The Pha&ouml;ra difference</p>
+    <h3 class="display">Authenticity in every piece</h3>
+    <p>Drawn from the earth. Cut by hand. There is no edition and no second casting — each sculpture is a single work, and the formations in the stone are the reason no two can be the same.</p>
+    <a href="about.html" class="ghost-btn">Discover more <span class="arw">&rarr;</span></a>
   </div>
 </section>
 
-<footer class="foot">
-  <a href="/index.html" class="nav-wm">PHA<span class="o">Ö</span>RA</a>
-  <nav class="foot-mid">
-    <a href="/shop/">Shop</a>
-    <a href="/crystals/">About</a>
-    <a href="/blog">Journal</a>
-  </nav>
-  <div class="foot-end">
-    <a href="https://www.instagram.com/phaora.co/" aria-label="Instagram" target="_blank" rel="noopener">
-      <svg width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="2.2" y="2.2" width="13.6" height="13.6" rx="4"/><circle cx="9" cy="9" r="3.4"/><circle cx="13.2" cy="4.8" r=".9" fill="currentColor" stroke="none"/></svg>
-    </a>
-    <a href="/contact.html" aria-label="Write to the studio">
-      <svg width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="2" y="4" width="14" height="10" rx="1.4"/><path d="m2.6 5 6.4 5 6.4-5"/></svg>
-    </a>
-  </div>
-</footer>
-<p class="coda">Art · Nature · Eternity</p>
-
-<script type="module">
-  import {ModelViewerElement} from 'https://cdn.jsdelivr.net/npm/@google/model-viewer@4.1.0/dist/model-viewer.min.js';
-  /* Self-hosted, so the page never depends on gstatic to open a model. */
-  ModelViewerElement.dracoDecoderLocation = '/assets/3d/draco/';
-</script>
-<script src="/sculpture/cart.js"></script>
 <script>
 (function(){
-  var nv=document.getElementById('nav');
-  addEventListener('scroll',function(){nv.classList.toggle('on',scrollY>40)},{passive:true});
-  /* ── menu ───────────────────────────────────────────── */
-  var b=document.getElementById('burger'), s=document.getElementById('msheet');
-  b.addEventListener('click',function(){
-    var o=s.classList.toggle('open'); b.classList.toggle('open',o);
-    b.setAttribute('aria-expanded',o?'true':'false');
-    document.body.style.overflow=o?'hidden':''});
-  s.addEventListener('click',function(e){
-    if(e.target.tagName==='A'){s.classList.remove('open');b.classList.remove('open');
-      b.setAttribute('aria-expanded','false');document.body.style.overflow=''}
+  var grid=document.getElementById('grid');
+  var empty=document.getElementById('empty');
+  var cards=[].slice.call(grid.querySelectorAll('.card'));
+  var order=cards.slice();
+  var chip=document.getElementById('qchip'), term=document.getElementById('qterm');
+  var current='all', query='';
+
+  function apply(){
+    var shown=0;
+    cards.forEach(function(c){
+      var okSpecies = current==='all' || c.getAttribute('data-species')===current;
+      var hay=(c.getAttribute('data-name')+' '+c.getAttribute('data-species')).toLowerCase();
+      var okQuery = !query || hay.indexOf(query)!==-1;
+      var ok = okSpecies && okQuery;
+      c.hidden=!ok;
+      if(ok) shown++;
+    });
+    empty.hidden = shown>0;
+    chip.hidden = !query;
+    term.textContent = query;
+  }
+
+  function sync(){
+    var u=new URL(location);
+    current==='all' ? u.searchParams.delete('only') : u.searchParams.set('only',current);
+    query ? u.searchParams.set('q',query) : u.searchParams.delete('q');
+    history.replaceState(null,'',u);
+  }
+
+  function setFilter(v){
+    current=v;
+    document.querySelectorAll('.fbtn').forEach(function(b){
+      b.classList.toggle('on', b.getAttribute('data-filter')===v);
+    });
+    apply(); sync();
+  }
+
+  document.getElementById('filters').addEventListener('click',function(e){
+    var b=e.target.closest('.fbtn'); if(!b) return;
+    setFilter(b.getAttribute('data-filter'));
   });
 
-  /* ── the collection ──────────────────────────────────────
-     Everything on this page is rendered from assets/sculptures/catalog.json.
-     To add a piece: drop 00-hero.jpg into assets/sculptures/<slug>/, add a
-     640px copy at assets/shop/<slug>.webp, and add the row to the catalog.
-     Nothing here needs editing.                                            */
-  var GRID=document.getElementById('grid'), LABEL=document.getElementById('collLabel');
-  var ALL=[], CAT=null;
+  /* the category row is the same filter, further up the page */
+  document.getElementById('cats').addEventListener('click',function(e){
+    var a=e.target.closest('.cat'); if(!a) return;
+    setFilter(a.getAttribute('data-cat'));
+  });
 
-  /* The catalog carries `species`. Two rows in it are not birds at all —
-     a fluorite specimen and a carved vessel — so they are grouped by form. */
-  var BY_FORM={maresia:'Natural Forms', vigil:'Natural Forms'};
-  function catOf(p){
-    if(BY_FORM[p.slug]) return BY_FORM[p.slug];
-    if(p.species==='Macaw') return 'Macaws';
-    if(p.species==='Eagle') return 'Eagles';
-    return 'Cockatoos';               /* Cockatoo and Parrot */
+  document.getElementById('qclear').addEventListener('click',function(){
+    query=''; apply(); sync();
+    var i=document.getElementById('searchInput'); if(i) i.value='';
+  });
+
+  document.getElementById('sort').addEventListener('change',function(){
+    var m=this.value,next=order.slice();
+    function p(c){return parseInt(c.getAttribute('data-price'),10)||0}
+    // An unpriced piece is not a cheap piece. It sorts last either way rather
+    // than pretending to be zero.
+    if(m==='price-desc') next.sort(function(a,b){return p(b)-p(a)});
+    else if(m==='price-asc') next.sort(function(a,b){return (p(a)||Infinity)-(p(b)||Infinity)});
+    else if(m==='name') next.sort(function(a,b){return a.getAttribute('data-name').localeCompare(b.getAttribute('data-name'))});
+    next.forEach(function(c){grid.insertBefore(c,empty)});
+  });
+
+  var params=new URLSearchParams(location.search);
+  var only=params.get('only');
+  if(only) current=only;
+  var q=(params.get('q')||'').trim().toLowerCase();
+  if(q){
+    query=q;
+    var input=document.getElementById('searchInput');
+    if(input) input.value=params.get('q');
   }
-  function money(n){ return '$ '+Number(n).toLocaleString('en-US')}
-  function esc(t){ return String(t).replace(/[&<>"]/g,function(c){
-    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
-
-  function card(p){
-    var priced = p.price_usd > 0;
-    var inCart = window.PhaoraCart &&
-      PhaoraCart.getCart().some(function(i){ return i.slug===p.slug});
-    var el=document.createElement('div');
-    el.className='card';
-    el.innerHTML=
-      (p.is_sold?'<span class="sold">Sold</span>':'')+
-      '<a class="card-img" href="/pieces/'+p.slug+'.html">'+
-        '<img src="/assets/shop/'+p.slug+'.webp" width="640" height="640" loading="lazy" '+
-        'decoding="async" alt="'+esc(p.name)+'"></a>'+
-      '<div class="card-body">'+
-        '<div>'+
-          '<a href="/pieces/'+p.slug+'.html"><span class="card-nm">'+esc(p.name)+'</span></a>'+
-          '<p class="card-mat">'+esc(BY_FORM[p.slug]?'Natural Form':p.species)+' · Minas Gerais</p>'+
-          (priced
-            ? '<p class="card-pr">'+money(p.price_usd)+'</p>'
-            : '<p class="card-pr ask">Price on request</p>')+
-        '</div>'+
-        (p.is_sold ? '' :
-          '<button class="bag'+(inCart?' in':'')+'" aria-label="'+
-          (priced?'Add '+esc(p.name)+' to bag':'Enquire about '+esc(p.name))+'">'+
-          '<svg width="15" height="15" viewBox="0 0 18 18" fill="none" stroke="currentColor" '+
-          'stroke-width="1.3" stroke-linejoin="round"><path d="M3.4 5.6h11.2l-1 9.8H4.4L3.4 5.6Z"/>'+
-          '<path d="M6.5 7.4V5a2.5 2.5 0 0 1 5 0v2.4" stroke-linecap="round"/></svg></button>')+
-      '</div>';
-    var bag=el.querySelector('.bag');
-    if(bag) bag.addEventListener('click',function(){
-      if(!priced){ location.href='/contact.html'; return}
-      PhaoraCart.addToCart(p.slug,p.name,p.price_usd,p.stripe_price_id||null);
-      bag.classList.add('in')});
-    return el}
-
-  function render(){
-    var rows = CAT ? ALL.filter(function(p){return catOf(p)===CAT}) : ALL;
-    LABEL.textContent = CAT ? CAT : 'The Collection';
-    GRID.textContent='';
-    if(!rows.length){
-      GRID.innerHTML='<p class="empty">Nothing in this part of the collection yet.</p>';
-      return}
-    rows.forEach(function(p){ GRID.appendChild(card(p))})}
-
-  Array.prototype.forEach.call(document.querySelectorAll('.cat'),function(a){
-    a.addEventListener('click',function(){
-      var c=a.getAttribute('data-cat');
-      CAT = (CAT===c) ? null : c;
-      render()})});
-
-  fetch('/assets/sculptures/catalog.json',{cache:'no-cache'})
-    .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json()})
-    .then(function(d){
-      ALL=(d.pieces||[]).filter(function(p){return p && p.slug});
-      render()})
-    .catch(function(){
-      GRID.innerHTML='<p class="empty">The collection is being updated. '+
-        '<a href="/contact.html" style="color:var(--gold)">Write to the studio</a>.</p>'})})();
+  if(only) setFilter(only); else apply();
+})();
 </script>
+
+<footer class="foot">
+  <div class="foot-in">
+    <a href="index.html" class="wordmark">Pha&ouml;ra</a>
+    <div class="foot-mid">
+      <a href="index.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="journal/">Journal</a>
+    </div>
+    <div class="foot-end">
+      <a href="https://www.instagram.com/phaoraco" aria-label="Instagram" rel="noopener"><svg width="17" height="17" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="1.6" y="1.6" width="13.8" height="13.8" rx="4"/><circle cx="8.5" cy="8.5" r="3.4"/><circle cx="12.6" cy="4.4" r=".9" fill="currentColor" stroke="none"/></svg></a>
+      <a href="https://www.pinterest.com/phaoraco" aria-label="Pinterest" rel="noopener"><svg width="17" height="17" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="8.5" cy="8.5" r="7"/><path d="M7 15c-.5-1.7.3-4.3.8-6.2M6.2 7.4c0-1.6 1.2-2.8 2.8-2.8 1.5 0 2.6 1 2.6 2.5 0 1.9-1.1 3.4-2.6 3.4-.8 0-1.4-.6-1.2-1.4"/></svg></a>
+      <a href="https://www.youtube.com/@phaoraco" aria-label="YouTube" rel="noopener"><svg width="17" height="17" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="1" y="3.6" width="15" height="9.8" rx="3"/><path d="m7.1 6.6 3.8 1.9-3.8 1.9V6.6Z"/></svg></a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>Pha&ouml;ra &middot; MMXXVI</span>
+    <span>Art / Nature / Eternity</span>
+  </div>
+</footer>
+</div>
+<script src="shop.js"></script>
 </body>
 </html>
