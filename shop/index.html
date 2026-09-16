@@ -284,7 +284,7 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
     <div class="hero-art">
       <div class="ring"></div>
       <model-viewer id="heroModel" class="mv"
-        src="/assets/3d/sculpture.glb"
+        src="/assets/3d/sculpture-draco.glb"
         alt="A carved crystal sculpture, turning"
         poster="/assets/3d/poster.webp"
         auto-rotate rotation-per-second="16deg" auto-rotate-delay="0"
@@ -295,17 +295,17 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
         max-camera-orbit="auto 98deg auto"
         loading="lazy" reveal="auto"></model-viewer>
       <script>
-      /* Same geometry, same material — only the baked atlas differs (4096 vs
-         8192), which takes the file from 10.7 MB to 7.0 MB. This runs at parse
-         time, before the deferred component upgrades and starts fetching, so
-         the swap always lands first. Full model stays the default: if this
-         script never runs, the page still gets the real thing. */
+      /* Same mesh, same material — the phone build differs only in the baked
+         atlas (4096 rather than 8192): 6.92 MB against 3.18 MB. This runs at
+         parse time, before the deferred component upgrades and starts
+         fetching, so the swap always lands first. The larger build stays the
+         default: if this script never runs, the page still gets the full one. */
       (function(){
         var m=document.getElementById('heroModel'); if(!m) return;
         var c=navigator.connection||{};
         var thin=c.saveData===true||/(^|-)(2g|slow-2g)$/.test(c.effectiveType||'');
         if(thin||window.matchMedia('(max-width: 900px)').matches){
-          m.setAttribute('src','/assets/3d/sculpture-4k.glb');
+          m.setAttribute('src','/assets/3d/sculpture-4k-draco.glb');
         }
       })();
       </script>
@@ -388,7 +388,11 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 </footer>
 <p class="coda">Art · Nature · Eternity</p>
 
-<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@4.1.0/dist/model-viewer.min.js"></script>
+<script type="module">
+  import {ModelViewerElement} from 'https://cdn.jsdelivr.net/npm/@google/model-viewer@4.1.0/dist/model-viewer.min.js';
+  /* Self-hosted, so the page never depends on gstatic to open a model. */
+  ModelViewerElement.dracoDecoderLocation = '/assets/3d/draco/';
+</script>
 <script src="/sculpture/cart.js"></script>
 <script>
 (function(){
