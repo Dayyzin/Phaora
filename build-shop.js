@@ -58,11 +58,16 @@ const HERO_SLUG = 'beacon';
    exactly until the next `node build-shop.js` and then vanished without a
    trace in the diff of anything a person had written.
 
-   Two builds of the same mesh: the phone gets a 4096 atlas, the desktop 8192.
-   The large one is the default, so a failure to detect anything still serves a
-   correct page. Set HERO_MODEL to '' to fall back to the still photograph. */
-const HERO_MODEL      = '3d/sculpture-draco.glb';
-const HERO_MODEL_SM   = '3d/sculpture-4k-draco.glb';
+   Two builds of the same mesh, differing only in the baked atlas. The large
+   one is the default, so a failure to detect anything still serves a correct
+   page. Set HERO_MODEL to '' to fall back to the still photograph.
+
+   The sizes are measured, not chosen: the plate renders at 704px with zoom
+   disabled, so nothing on any display can resolve past about a thousand
+   texels. The 8192 atlas that shipped first was eight times finer than
+   anything that reached a screen, and cost 7.45 MB for it. */
+const HERO_MODEL      = '3d/sculpture-4096.glb';
+const HERO_MODEL_SM   = '3d/sculpture-2048.glb';
 const HERO_MODEL_POSTER = '3d/poster.webp';
 const MODEL_VIEWER    = 'https://cdn.jsdelivr.net/npm/@google/model-viewer@4.1.0/dist/model-viewer.min.js';
 

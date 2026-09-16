@@ -9,7 +9,17 @@ hero, a render, anything later — gets the corrected piece.
 Only the texture buffer view and the material are touched. The Draco-compressed
 mesh is copied through byte for byte, so the geometry never round-trips.
 
-Usage: retexture_glb.py <in.glb> <clean-texture.jpg> <out.glb> [atlas-px]
+Usage: retexture-glb.py <in.glb> <texture.jpg> <out.glb> [atlas-px] [webp|jpeg]
+
+On atlas size, measured rather than assumed: the hero renders at 704px with
+zoom disabled, so nothing on any screen can resolve more than about a thousand
+texels. Against the 8192 original, a 4096 WebP differs by 0.19 on a 0-255 scale
+and is six and a half times smaller. 8192 was eight times finer than anything
+that reaches a display.
+
+WebP goes in through EXT_texture_webp, declared required — a browser is fine,
+but a marketplace viewer that does not implement it will refuse the file. Pass
+'jpeg' for anything leaving the site.
 """
 import json, struct, sys, io
 from PIL import Image
@@ -62,7 +72,7 @@ def write_glb(path, js, binv):
     return total
 
 
-def main(src, tex_path, out, atlas=None, quality=88):
+def main(src, tex_path, out, atlas=None, fmt='jpeg', quality=None):
     js, binv = read_glb(src)
     img_bv = js['bufferViews'][js['images'][0]['bufferView']]
     mesh_bv = next(bv for i, bv in enumerate(js['bufferViews'])
@@ -72,7 +82,12 @@ def main(src, tex_path, out, atlas=None, quality=88):
     if atlas and tex.width != atlas:
         tex = tex.resize((atlas, atlas), Image.LANCZOS)
     buf = io.BytesIO()
-    tex.save(buf, 'JPEG', quality=quality, subsampling=0, optimize=True)
+    if fmt == 'webp':
+        tex.save(buf, 'WEBP', quality=quality or 82, method=6)
+        mime = 'image/webp'
+    else:
+        tex.save(buf, 'JPEG', quality=quality or 88, subsampling=0, optimize=True)
+        mime = 'image/jpeg'
     new_img = buf.getvalue()
 
     mesh_bytes = binv[mesh_bv.get('byteOffset', 0):
@@ -85,17 +100,25 @@ def main(src, tex_path, out, atlas=None, quality=88):
     img_bv['byteOffset'], img_bv['byteLength'] = img_off, len(new_img)
     js['buffers'][0]['byteLength'] = len(new_bin)
 
+    js['images'][0]['mimeType'] = mime
+    if fmt == 'webp':
+        tx = js['textures'][0]
+        tx.setdefault('extensions', {})['EXT_texture_webp'] = {'source': tx.pop('source')}
+        js['extensionsRequired'] = sorted(set(js.get('extensionsRequired', [])) | {'EXT_texture_webp'})
+
     m = js['materials'][0]
     m.setdefault('pbrMetallicRoughness', {})['roughnessFactor'] = 0.16
     m['pbrMetallicRoughness']['metallicFactor'] = 0.0
     m['extensions'] = CRYSTAL
-    used = set(js.get('extensionsUsed', [])) | set(CRYSTAL)
+    used = set(js.get('extensionsUsed', [])) | set(CRYSTAL) | set(js.get('extensionsRequired', []))
     js['extensionsUsed'] = sorted(used)
 
     total = write_glb(out, js, new_bin)
-    print(f'{out}: atlas {tex.width}px / {len(new_img)/1e6:.2f} MB, file {total/1e6:.2f} MB')
+    print(f'{out}: {tex.width}px {fmt} / texture {len(new_img)/1e6:.2f} MB, file {total/1e6:.2f} MB')
 
 
 if __name__ == '__main__':
     a = sys.argv
-    main(a[1], a[2], a[3], int(a[4]) if len(a) > 4 else None)
+    main(a[1], a[2], a[3],
+         int(a[4]) if len(a) > 4 else None,
+         a[5] if len(a) > 5 else 'jpeg')
