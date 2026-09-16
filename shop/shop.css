@@ -307,7 +307,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
    plate drops that field into the page ground, so the sculpture floats inside
    the ring instead of sitting in a visible square. Only works on a shot with a
    black backdrop — see HERO_SLUG in build-shop.js. */
-.hero-plate img{
+.hero-plate img, .hero-plate video{
   position:relative;width:104%;height:auto;
   /* Three things put the sculpture in the page instead of on it:
      screen drops the plate's black into the ground, so the studio flakes join
@@ -318,6 +318,25 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   filter:contrast(1.22) brightness(0.94);
   -webkit-mask-image:radial-gradient(ellipse 64% 66% at 50% 52%,#000 38%,transparent 76%);
           mask-image:radial-gradient(ellipse 64% 66% at 50% 52%,#000 38%,transparent 76%);
+}
+
+/* The loop and the still occupy the same cell, so the still is what shows
+   when the video is blocked, still loading, or unwanted. It is hidden rather
+   than removed: a poster frame cannot be the fallback for a video that never
+   loads. */
+.hero-plate.has-loop{display:grid}
+.hero-plate.has-loop > img,
+.hero-plate.has-loop > video{grid-area:1/1}
+.hero-plate.has-loop > img{visibility:hidden}
+/* The still is scaled past the plate because the photograph carries its own
+   margin of empty sweep. The loop is framed to the piece already, so it fits
+   the plate instead of overflowing it — at 104% the bird loses its head on a
+   narrow screen. */
+.hero-plate.has-loop > video{width:100%;height:100%;object-fit:contain}
+
+@media (prefers-reduced-motion:reduce){
+  .hero-plate.has-loop > video{display:none}
+  .hero-plate.has-loop > img{visibility:visible}
 }
 
 /* --- categories --------------------------------------------------------- */

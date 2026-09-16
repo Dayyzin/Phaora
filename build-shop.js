@@ -38,6 +38,18 @@ const PHONE = '+15612991261';
    (a nebula, a studio sweep) will show as a rectangle instead. */
 const HERO_SLUG = 'beacon';
 
+/* A turntable of the same kind of piece, rendered from a scan rather than
+   filmed, looping silently behind the ring. Set HERO_LOOP to '' to go back to
+   the still.
+
+   It has to obey the same rule as HERO_SLUG and for the same reason — the plate
+   screen-blends what it holds into the page, so the loop is composited on a
+   near-black field with nothing at its corners. Square, because the plate is.
+   The still stays in the markup underneath: it is what a reader gets when the
+   video is blocked, and what they get when they have asked for less motion. */
+const HERO_LOOP        = 'shop/hero-loop';     // .mp4 and .webm, both required
+const HERO_LOOP_POSTER = 'shop/hero-poster.jpg';
+
 /* The six on the shop front, in order. Anything not found is skipped. */
 const FEATURED = ['seraph', 'solara', 'pilgrim', 'mariner', 'emissary', 'amethyst-crown'];
 
@@ -348,8 +360,9 @@ function buildShop() {
     <p>Rare crystal, carved by hand in Minas Gerais. Every piece is one of one — the stone decides how far the cut can go.</p>
     <a href="#pieces" class="ghost-btn">See every piece ${ICON.arw}</a>
   </div>
-  <div class="hero-plate">
+  <div class="hero-plate${HERO_LOOP ? ' has-loop' : ''}">
     <span class="hero-ring" aria-hidden="true"></span>
+    ${HERO_LOOP ? `<video class="hero-loop" poster="../assets/${HERO_LOOP_POSTER}" width="1080" height="1080" autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="../assets/${HERO_LOOP}.webm" type="video/webm"><source src="../assets/${HERO_LOOP}.mp4" type="video/mp4"></video>` : ''}
     <img src="../assets/sculptures/${hero.slug}/${hero.hero}" alt="${esc(hero.name)} — ${esc(hero.species)} carved in crystal" width="2048" height="2048" fetchpriority="high" decoding="async"${toneAttr(hero)}>
   </div>
 </section>
