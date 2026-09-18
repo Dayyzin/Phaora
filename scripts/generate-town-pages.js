@@ -38,13 +38,93 @@ const HERO_IMAGES = [
 const FALLBACK_OG_IMAGE = 'https://phaora.com/assets/og/phaora-share.jpg';
 
 /**
- * cape: true marks the four Cape Cod towns, whose "Working in X" paragraph
+ * coastal: true marks the four Cape Cod towns, whose "Working in X" paragraph
  * says SEASONAL coverage — matching what the homepage's own Territory grid
  * already says ("Cape Cod · Seasonal... We take Cape work through the
  * season"). Claiming identical year-round coverage to the MetroWest primary
  * towns would contradict copy already live on the site.
  */
 const TOWNS = [
+  {
+    slug: 'salisbury', name: 'Salisbury', county: 'Essex', coastal: true,
+    workingIn: 'Salisbury is Essex County at the New Hampshire line, north of the Merrimack from Newburyport, and the same run covers Newbury on the way down.',
+    nearby: ['newburyport', 'newbury', 'rockport'],
+  },
+  {
+    slug: 'newburyport', name: 'Newburyport', county: 'Essex', coastal: true,
+    workingIn: 'Newburyport is Essex County at the mouth of the Merrimack, between Salisbury and Newbury, on the same run as Rockport and Gloucester.',
+    nearby: ['salisbury', 'newbury', 'gloucester'],
+  },
+  {
+    slug: 'newbury', name: 'Newbury', county: 'Essex', coastal: true,
+    workingIn: 'Newbury is Essex County along the Plum Island shore, next to Newburyport and Rowley, on the same run as Salisbury.',
+    nearby: ['newburyport', 'salisbury', 'rockport'],
+  },
+  {
+    slug: 'rockport', name: 'Rockport', county: 'Essex', coastal: true,
+    workingIn: 'Rockport is Essex County at the tip of Cape Ann, bordered on land only by Gloucester, and our crews reach it on the same run as Manchester-by-the-Sea.',
+    nearby: ['gloucester', 'manchester-by-the-sea', 'newburyport'],
+  },
+  {
+    slug: 'gloucester', name: 'Gloucester', county: 'Essex', coastal: true,
+    workingIn: 'Gloucester is Essex County on Cape Ann, between Rockport and Manchester-by-the-Sea, and the same trucks carry on to Marblehead.',
+    nearby: ['rockport', 'manchester-by-the-sea', 'marblehead'],
+  },
+  {
+    slug: 'manchester-by-the-sea', name: 'Manchester-by-the-Sea', county: 'Essex', coastal: true,
+    workingIn: 'Manchester-by-the-Sea is Essex County between Gloucester and Beverly, on the same coastal run as Rockport and Marblehead.',
+    nearby: ['gloucester', 'rockport', 'marblehead'],
+  },
+  {
+    slug: 'marblehead', name: 'Marblehead', county: 'Essex', coastal: true,
+    workingIn: 'Marblehead is Essex County on its own neck between Salem and Swampscott, on the same run as Nahant and Gloucester.',
+    nearby: ['nahant', 'gloucester', 'manchester-by-the-sea'],
+  },
+  {
+    slug: 'nahant', name: 'Nahant', county: 'Essex', coastal: true,
+    workingIn: 'Nahant is Essex County, a peninsula reached by the causeway out of Lynn, and our crews cover it on the same run as Marblehead and Winthrop.',
+    nearby: ['marblehead', 'winthrop', 'gloucester'],
+  },
+  {
+    slug: 'winthrop', name: 'Winthrop', county: 'Suffolk', coastal: true,
+    workingIn: 'Winthrop is Suffolk County, a peninsula with Boston Harbor on one side and the open Atlantic on the other, next to Revere — the same trucks reach Nahant and Hull.',
+    nearby: ['nahant', 'hull', 'marblehead'],
+  },
+  {
+    slug: 'hull', name: 'Hull', county: 'Plymouth', coastal: true,
+    workingIn: 'Hull is Plymouth County, the long peninsula off Hingham that ends at Pemberton Point, on the same run as Cohasset and Scituate.',
+    nearby: ['hingham', 'cohasset', 'scituate'],
+  },
+  {
+    slug: 'hingham', name: 'Hingham', county: 'Plymouth', coastal: true,
+    workingIn: 'Hingham is Plymouth County at the head of its own harbor, between Hull and Cohasset, and the same crews carry on to Scituate.',
+    nearby: ['hull', 'cohasset', 'scituate'],
+  },
+  {
+    slug: 'cohasset', name: 'Cohasset', county: 'Norfolk', coastal: true,
+    workingIn: 'Cohasset is Norfolk County on the open shore between Hingham and Scituate, and the same crews run Hull and Marshfield.',
+    nearby: ['scituate', 'hingham', 'hull'],
+  },
+  {
+    slug: 'scituate', name: 'Scituate', county: 'Plymouth', coastal: true,
+    workingIn: 'Scituate is Plymouth County between Cohasset and Marshfield, and the harbor, the Glades and Peggotty Beach are all on the same run.',
+    nearby: ['cohasset', 'marshfield', 'duxbury'],
+  },
+  {
+    slug: 'marshfield', name: 'Marshfield', county: 'Plymouth', coastal: true,
+    workingIn: 'Marshfield is Plymouth County between Scituate and Duxbury, and the same crews cover Green Harbor and Brant Rock on the way through.',
+    nearby: ['scituate', 'duxbury', 'cohasset'],
+  },
+  {
+    slug: 'duxbury', name: 'Duxbury', county: 'Plymouth', coastal: true,
+    workingIn: 'Duxbury is Plymouth County behind its own barrier beach, between Marshfield and Kingston, on the same run as Plymouth.',
+    nearby: ['marshfield', 'plymouth', 'scituate'],
+  },
+  {
+    slug: 'plymouth', name: 'Plymouth', county: 'Plymouth', coastal: true,
+    workingIn: 'Plymouth is Plymouth County and the largest town in Massachusetts by land area, running from Kingston Bay down the shore to the canal at Bourne.',
+    nearby: ['duxbury', 'marshfield', 'bourne'],
+  },
   {
     slug: 'medfield', name: 'Medfield', county: 'Norfolk',
     workingIn: 'Medfield is Norfolk County between Dover and Walpole, and we run the same crews through Sherborn and Millis on the way.',
@@ -61,22 +141,22 @@ const TOWNS = [
     nearby: ['medfield', 'milton', 'dover'],
   },
   {
-    slug: 'chatham', name: 'Chatham', county: 'Barnstable', cape: true,
+    slug: 'chatham', name: 'Chatham', county: 'Barnstable', coastal: true,
     workingIn: 'Chatham is Barnstable County, out on the elbow of the Cape near Harwich and Orleans — Cape work runs on its own seasonal schedule, alongside Falmouth, Dennis and Bourne.',
     nearby: ['dennis', 'falmouth', 'bourne'],
   },
   {
-    slug: 'falmouth', name: 'Falmouth', county: 'Barnstable', cape: true,
+    slug: 'falmouth', name: 'Falmouth', county: 'Barnstable', coastal: true,
     workingIn: 'Falmouth is Barnstable County next to Bourne and Mashpee — Cape work runs on its own seasonal schedule, alongside Dennis, Chatham and Bourne.',
     nearby: ['bourne', 'dennis', 'chatham'],
   },
   {
-    slug: 'dennis', name: 'Dennis', county: 'Barnstable', cape: true,
+    slug: 'dennis', name: 'Dennis', county: 'Barnstable', coastal: true,
     workingIn: 'Dennis is Barnstable County on Route 6A, between Yarmouth and Harwich — Cape work runs on its own seasonal schedule, alongside Falmouth, Chatham and Bourne.',
     nearby: ['chatham', 'falmouth', 'bourne'],
   },
   {
-    slug: 'bourne', name: 'Bourne', county: 'Barnstable', cape: true,
+    slug: 'bourne', name: 'Bourne', county: 'Barnstable', coastal: true,
     workingIn: 'Bourne sits at the canal, Barnstable County, the first stop over the bridge — Cape work runs on its own seasonal schedule, alongside Falmouth, Dennis and Chatham.',
     nearby: ['falmouth', 'dennis', 'chatham'],
   },
@@ -91,7 +171,7 @@ function render(town, heroImage) {
   const title = `Masonry &amp; Hardscape Contractor in ${town.name}, MA | PHAÖRA`;
   const url = `https://phaora.com/masonry-${town.slug}-ma/`;
 
-  const frostParagraph = town.cape
+  const frostParagraph = town.coastal
     ? 'Frost depth here is set by the town, not the state — Table R301.2(1) of the Massachusetts Residential Code is filled in by each building department, and coastal towns commonly run shallower than inland ones. We build to the depth your building department gives, and we ask before we dig.'
     : 'Frost depth here is set by the town, not the state — Table R301.2(1) of the Massachusetts Residential Code is filled in by each building department. Inland it is commonly 42 to 48 inches; nearer the coast it is often less. We build to the depth your building department gives, and we ask before we dig.';
 
@@ -236,6 +316,56 @@ ${SCRIPT_BLOCK}
 `;
 }
 
+
+/**
+ * The sitemap, rewritten from TOWNS rather than edited by hand.
+ *
+ * It had drifted badly: thirteen town URLs listed against thirty-six pages on
+ * disk, so twenty-three pages existed and no search engine was told. Hand
+ * editing is what caused that — every page generated since the last time
+ * somebody remembered has been invisible. Now the generator owns its own
+ * entries and the drift cannot come back.
+ *
+ * Only the masonry-*-ma block is touched. Every other URL in the file is left
+ * exactly as it is.
+ */
+function rewriteSitemap() {
+  const file = path.join(ROOT, 'sitemap.xml');
+  if (!fs.existsSync(file)) {
+    console.log('no sitemap.xml — skipped');
+    return;
+  }
+  const xml = fs.readFileSync(file, 'utf8');
+  const lines = xml.split('\n');
+  const isTown = (line) => /<loc>https:\/\/phaora\.com\/masonry-[a-z-]+-ma\//.test(line);
+
+  const firstTown = lines.findIndex(isTown);
+  if (firstTown === -1) {
+    console.log('sitemap has no town block — left alone');
+    return;
+  }
+  const kept = lines.filter((line) => !isTown(line));
+  // Every town page ON DISK, not just the generated ones. Thirteen of these
+  // pages are hand-built and are not in TOWNS — driving the sitemap from TOWNS
+  // alone dropped all thirteen the first time this ran.
+  const slugs = fs
+    .readdirSync(ROOT)
+    .filter((name) => /^masonry-[a-z-]+-ma$/.test(name))
+    .filter((name) => fs.existsSync(path.join(ROOT, name, 'index.html')))
+    .sort();
+
+  const entries = slugs.map(
+    (dir) =>
+      `  <url><loc>https://phaora.com/${dir}/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>`
+  );
+
+  // Re-insert where the town block used to start, counting only kept lines.
+  const before = lines.slice(0, firstTown).filter((line) => !isTown(line)).length;
+  const out = [...kept.slice(0, before), ...entries, ...kept.slice(before)];
+  fs.writeFileSync(file, out.join('\n'));
+  console.log(`sitemap.xml: ${entries.length} town URLs (was ${lines.filter(isTown).length})`);
+}
+
 let written = 0;
 TOWNS.forEach((town, i) => {
   const dir = path.join(ROOT, `masonry-${town.slug}-ma`);
@@ -246,3 +376,4 @@ TOWNS.forEach((town, i) => {
   written++;
 });
 console.log(`\n${written} town page(s) generated.`);
+rewriteSitemap();
