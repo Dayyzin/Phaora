@@ -25,6 +25,28 @@ const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
 
+/**
+ * States this generator writes pages for.
+ *
+ * Shore work crosses state lines because ticket size does. A seawall or a
+ * veneer wall is worth the truck in a way a walkway never is, so the coastal
+ * list is drawn on value rather than on the two-hour radius that governs
+ * ordinary work out of Worcester.
+ *
+ * `county` is what Census returns for that coordinate, not what memory says.
+ * Connecticut is the reason that matters: the state abolished county
+ * government and Census now returns PLANNING REGIONS — "Southeastern
+ * Connecticut", "Lower Connecticut River Valley" — so a page claiming "New
+ * London County" would name a thing that no longer exists.
+ */
+const STATE_NAMES = {
+  ma: 'Massachusetts',
+  ri: 'Rhode Island',
+  nh: 'New Hampshire',
+  me: 'Maine',
+  ct: 'Connecticut',
+};
+
 const HERO_IMAGES = [
   '/portfolio/images/retaining-wall-lit.jpg',
   '/portfolio/images/retaining-wall.jpg',
@@ -45,6 +67,106 @@ const FALLBACK_OG_IMAGE = 'https://phaora.com/assets/og/phaora-share.jpg';
  * towns would contradict copy already live on the site.
  */
 const TOWNS = [
+  {
+    slug: 'newport', name: 'Newport', state: 'ri', county: 'Newport', coastal: true,
+    workingIn: 'Newport is Newport County, Rhode Island, out on Aquidneck Island — the Cliff Walk side of town is nothing but stone against salt water, and we run it on the same trip as Jamestown and Little Compton.',
+    nearby: ['jamestown', 'little-compton', 'narragansett'],
+  },
+  {
+    slug: 'jamestown', name: 'Jamestown', state: 'ri', county: 'Newport', coastal: true,
+    workingIn: 'Jamestown is Newport County, Rhode Island, all of Conanicut Island between the two bridges, and the same crews cover Newport and Narragansett on the way.',
+    nearby: ['newport', 'narragansett', 'little-compton'],
+  },
+  {
+    slug: 'little-compton', name: 'Little Compton', state: 'ri', county: 'Newport', coastal: true,
+    workingIn: 'Little Compton is Newport County, Rhode Island, the far corner past Tiverton on Sakonnet Point, and we reach it on the same run as Newport.',
+    nearby: ['newport', 'jamestown', 'barrington'],
+  },
+  {
+    slug: 'narragansett', name: 'Narragansett', state: 'ri', county: 'Washington', coastal: true,
+    workingIn: 'Narragansett is Washington County, Rhode Island, the open shore from the Towers down to Point Judith, on the same run as Jamestown and Westerly.',
+    nearby: ['jamestown', 'westerly', 'newport'],
+  },
+  {
+    slug: 'westerly', name: 'Westerly', state: 'ri', county: 'Washington', coastal: true,
+    workingIn: 'Westerly is Washington County, Rhode Island, at the Connecticut line, and Watch Hill sits on its own point at the end of it — the same trip covers Narragansett and Stonington.',
+    nearby: ['narragansett', 'stonington', 'newport'],
+  },
+  {
+    slug: 'barrington', name: 'Barrington', state: 'ri', county: 'Bristol', coastal: true,
+    workingIn: 'Barrington is Bristol County, Rhode Island, on the bay between Providence and Bristol, and the same crews carry on to Newport.',
+    nearby: ['newport', 'little-compton', 'jamestown'],
+  },
+  {
+    slug: 'new-castle', name: 'New Castle', state: 'nh', county: 'Rockingham', coastal: true,
+    workingIn: 'New Castle is Rockingham County, New Hampshire, an island town reached by the bridges out of Portsmouth, and we run it on the same trip as Rye.',
+    nearby: ['portsmouth', 'rye', 'kittery'],
+  },
+  {
+    slug: 'rye', name: 'Rye', state: 'nh', county: 'Rockingham', coastal: true,
+    workingIn: 'Rye is Rockingham County, New Hampshire, the open Atlantic shore below Portsmouth, and the same crews cover New Castle and Hampton.',
+    nearby: ['new-castle', 'portsmouth', 'hampton'],
+  },
+  {
+    slug: 'portsmouth', name: 'Portsmouth', state: 'nh', county: 'Rockingham', coastal: true,
+    workingIn: 'Portsmouth is Rockingham County, New Hampshire, on the Piscataqua across from Kittery, and the same run takes in New Castle and Rye.',
+    nearby: ['new-castle', 'rye', 'kittery'],
+  },
+  {
+    slug: 'hampton', name: 'Hampton', state: 'nh', county: 'Rockingham', coastal: true,
+    workingIn: 'Hampton is Rockingham County, New Hampshire, on the open shore above Salisbury, and our crews reach it on the same run as Rye.',
+    nearby: ['rye', 'new-castle', 'salisbury'],
+  },
+  {
+    slug: 'kittery', name: 'Kittery', state: 'me', county: 'York', coastal: true,
+    workingIn: 'Kittery is York County, Maine, the first town over the Piscataqua from Portsmouth, and Kittery Point runs out along the water from there.',
+    nearby: ['york', 'portsmouth', 'ogunquit'],
+  },
+  {
+    slug: 'york', name: 'York', state: 'me', county: 'York', coastal: true,
+    workingIn: 'York is York County, Maine — York Harbor and the Nubble on the open shore above Kittery, on the same run as Ogunquit.',
+    nearby: ['kittery', 'ogunquit', 'kennebunkport'],
+  },
+  {
+    slug: 'ogunquit', name: 'Ogunquit', state: 'me', county: 'York', coastal: true,
+    workingIn: 'Ogunquit is York County, Maine, between York and Wells with the Marginal Way along the water, and we run it alongside Kennebunkport.',
+    nearby: ['york', 'kennebunkport', 'kittery'],
+  },
+  {
+    slug: 'kennebunkport', name: 'Kennebunkport', state: 'me', county: 'York', coastal: true,
+    workingIn: 'Kennebunkport is York County, Maine, out along Ocean Avenue to Cape Arundel, and the same trip covers Ogunquit and York.',
+    nearby: ['ogunquit', 'york', 'cape-elizabeth'],
+  },
+  {
+    slug: 'cape-elizabeth', name: 'Cape Elizabeth', state: 'me', county: 'Cumberland', coastal: true,
+    workingIn: 'Cape Elizabeth is Cumberland County, Maine, the open shore below Portland from Two Lights out to Kettle Cove.',
+    nearby: ['kennebunkport', 'ogunquit', 'york'],
+  },
+  {
+    slug: 'stonington', name: 'Stonington', state: 'ct', county: 'Southeastern Connecticut', coastal: true,
+    workingIn: 'Stonington sits in the Southeastern Connecticut planning region at the Rhode Island line — Connecticut replaced its county governments with planning regions, so that is the unit that now means anything here. Stonington Borough runs out on its own point, and we reach it on the same trip as Westerly.',
+    nearby: ['westerly', 'old-lyme', 'narragansett'],
+  },
+  {
+    slug: 'old-lyme', name: 'Old Lyme', state: 'ct', county: 'Lower Connecticut River Valley', coastal: true,
+    workingIn: 'Old Lyme is in the Lower Connecticut River Valley planning region at the mouth of the river, and the same run takes in Old Saybrook across the water and Stonington to the east.',
+    nearby: ['old-saybrook', 'stonington', 'madison'],
+  },
+  {
+    slug: 'old-saybrook', name: 'Old Saybrook', state: 'ct', county: 'Lower Connecticut River Valley', coastal: true,
+    workingIn: 'Old Saybrook is in the Lower Connecticut River Valley planning region where the river meets the Sound, with Fenwick out on its own point, on the same run as Old Lyme.',
+    nearby: ['old-lyme', 'madison', 'guilford'],
+  },
+  {
+    slug: 'madison', name: 'Madison', state: 'ct', county: 'South Central Connecticut', coastal: true,
+    workingIn: 'Madison is in the South Central Connecticut planning region on the Sound between Guilford and Clinton, and we run it alongside Guilford and Old Saybrook.',
+    nearby: ['guilford', 'old-saybrook', 'old-lyme'],
+  },
+  {
+    slug: 'guilford', name: 'Guilford', state: 'ct', county: 'South Central Connecticut', coastal: true,
+    workingIn: 'Guilford is in the South Central Connecticut planning region on the Sound next to Madison and Branford, on the same trip as Madison and Old Saybrook.',
+    nearby: ['madison', 'old-saybrook', 'old-lyme'],
+  },
   {
     slug: 'salisbury', name: 'Salisbury', county: 'Essex', coastal: true,
     workingIn: 'Salisbury is Essex County at the New Hampshire line, north of the Merrimack from Newburyport, and the same run covers Newbury on the way down.',
@@ -167,18 +289,33 @@ const STYLE_BLOCK = fs.readFileSync(path.join(__dirname, '_town-template-style.c
 const SCRIPT_BLOCK = fs.readFileSync(path.join(__dirname, '_town-template-script.js'), 'utf8');
 
 function render(town, heroImage) {
-  const desc = `Patios, walkways, retaining walls, steps and drainage in ${town.name}, Massachusetts. Built to New England frost depth by our own crews. Free on-site estimate, and a price online in about thirty seconds.`;
-  const title = `Masonry &amp; Hardscape Contractor in ${town.name}, MA | PHAÖRA`;
-  const url = `https://phaora.com/masonry-${town.slug}-ma/`;
+  const st = (town.state || 'ma').toLowerCase();
+  const stateName = STATE_NAMES[st];
+  const desc = `Patios, walkways, retaining walls, steps and drainage in ${town.name}, ${stateName}. Built to New England frost depth by our own crews. Free on-site estimate, and a price online in about thirty seconds.`;
+  const title = `Masonry &amp; Hardscape Contractor in ${town.name}, ${st.toUpperCase()} | PHAÖRA`;
+  const url = `https://phaora.com/masonry-${town.slug}-${st}/`;
 
+  // Every one of these states adopts the IRC, so Table R301.2(1) is accurate
+  // everywhere — the STATE's name on the code is not. Naming the Massachusetts
+  // Residential Code on a Maine page would be a straightforwardly false claim
+  // about which rulebook applies.
+  const codeName = st === 'ma' ? 'the Massachusetts Residential Code' : 'the residential code';
+
+  // Connecticut abolished county government; Census returns PLANNING REGIONS
+  // in their place. Appending " County" to "Southeastern Connecticut" names a
+  // unit of government that does not exist, on a published page.
+  const regionLabel = st === 'ct' ? `${town.county} Planning Region` : `${town.county} County`;
   const frostParagraph = town.coastal
-    ? 'Frost depth here is set by the town, not the state — Table R301.2(1) of the Massachusetts Residential Code is filled in by each building department, and coastal towns commonly run shallower than inland ones. We build to the depth your building department gives, and we ask before we dig.'
-    : 'Frost depth here is set by the town, not the state — Table R301.2(1) of the Massachusetts Residential Code is filled in by each building department. Inland it is commonly 42 to 48 inches; nearer the coast it is often less. We build to the depth your building department gives, and we ask before we dig.';
+    ? `Frost depth here is set by the town, not the state — Table R301.2(1) of ${codeName} is filled in by each building department, and coastal towns commonly run shallower than inland ones. We build to the depth your building department gives, and we ask before we dig.`
+    : `Frost depth here is set by the town, not the state — Table R301.2(1) of ${codeName} is filled in by each building department. Inland it is commonly 42 to 48 inches; nearer the coast it is often less. We build to the depth your building department gives, and we ask before we dig.`;
 
+  // The neighbour's own state, not this page's — Salisbury MA links to
+  // Newburyport MA, but Kittery ME links to Portsmouth NH across the river.
   const nearbyLinks = town.nearby
     .map((slug) => {
-      const t = TOWNS.find((x) => x.slug === slug);
-      return `      <a href="/masonry-${slug}-ma/">${t ? t.name : slug}</a>`;
+      const n = TOWNS.find((x) => x.slug === slug);
+      const nst = (n && n.state ? n.state : 'ma').toLowerCase();
+      return `      <a href="/masonry-${slug}-${nst}/">${n ? n.name : slug}</a>`;
     })
     .join('\n');
 
@@ -198,7 +335,7 @@ function render(town, heroImage) {
 <meta property="og:image" content="${FALLBACK_OG_IMAGE}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Masonry and hardscape in ${town.name}, Massachusetts by PHAÖRA">
+<meta property="og:image:alt" content="Masonry and hardscape in ${town.name}, ${stateName} by PHAÖRA">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${title}">
 <meta name="twitter:description" content="${desc}">
@@ -206,7 +343,7 @@ function render(town, heroImage) {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"GeneralContractor","name":"PHAÖRA","legalName":"SKYINCH CAPITAL LLC","url":"${url}","telephone":"+1-561-299-1261","email":"phaoraco@gmail.com","description":"${desc}","areaServed":[{"@type":"City","name":"${town.name}, Massachusetts"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"GeneralContractor","name":"PHAÖRA","legalName":"SKYINCH CAPITAL LLC","url":"${url}","telephone":"+1-561-299-1261","email":"phaoraco@gmail.com","description":"${desc}","areaServed":[{"@type":"City","name":"${town.name}, ${stateName}"}]}</script>
 <script src="/tag.js"></script>
 <style>
 ${STYLE_BLOCK}
@@ -220,7 +357,7 @@ ${NAV_BODY}
   <img src="${heroImage}" alt="" aria-hidden="true">
   <div class="veil"></div>
   <div class="tp-wrap">
-    <p class="eyebrow">${town.name}, Massachusetts &nbsp;·&nbsp; ${town.county} County</p>
+    <p class="eyebrow">${town.name}, ${stateName} &nbsp;·&nbsp; ${regionLabel}</p>
     <h1>Masonry and hardscape<br>in <em>${town.name}</em>.</h1>
     <p class="tp-lede">Patios, walkways, retaining walls, steps and drainage — built by our own crews, for ground that freezes.</p>
     <a class="tp-cta" href="/estimate/">Price your project &rarr;</a>
@@ -337,7 +474,7 @@ function rewriteSitemap() {
   }
   const xml = fs.readFileSync(file, 'utf8');
   const lines = xml.split('\n');
-  const isTown = (line) => /<loc>https:\/\/phaora\.com\/masonry-[a-z-]+-ma\//.test(line);
+  const isTown = (line) => /<loc>https:\/\/phaora\.com\/masonry-[a-z-]+-(ma|ri|nh|me|ct)\//.test(line);
 
   const firstTown = lines.findIndex(isTown);
   if (firstTown === -1) {
@@ -350,7 +487,7 @@ function rewriteSitemap() {
   // alone dropped all thirteen the first time this ran.
   const slugs = fs
     .readdirSync(ROOT)
-    .filter((name) => /^masonry-[a-z-]+-ma$/.test(name))
+    .filter((name) => /^masonry-[a-z-]+-(ma|ri|nh|me|ct)$/.test(name))
     .filter((name) => fs.existsSync(path.join(ROOT, name, 'index.html')))
     .sort();
 
@@ -368,11 +505,11 @@ function rewriteSitemap() {
 
 let written = 0;
 TOWNS.forEach((town, i) => {
-  const dir = path.join(ROOT, `masonry-${town.slug}-ma`);
+  const dir = path.join(ROOT, `masonry-${town.slug}-${(town.state || 'ma').toLowerCase()}`);
   fs.mkdirSync(dir, { recursive: true });
   const html = render(town, HERO_IMAGES[i % HERO_IMAGES.length]);
   fs.writeFileSync(path.join(dir, 'index.html'), html);
-  console.log(`wrote masonry-${town.slug}-ma/index.html`);
+  console.log(`wrote masonry-${town.slug}-${(town.state || 'ma').toLowerCase()}/index.html`);
   written++;
 });
 console.log(`\n${written} town page(s) generated.`);

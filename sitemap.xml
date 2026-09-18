@@ -68,7 +68,9 @@
   <!-- /shop -->
   <!-- towns -->
   <url><loc>https://phaora.com/service-area/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://phaora.com/masonry-barrington-ri/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://phaora.com/masonry-bourne-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://phaora.com/masonry-cape-elizabeth-me/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://phaora.com/masonry-carlisle-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://phaora.com/masonry-chatham-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://phaora.com/masonry-cohasset-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
@@ -78,31 +80,49 @@
   <url><loc>https://phaora.com/masonry-duxbury-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://phaora.com/masonry-falmouth-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://phaora.com/masonry-gloucester-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://phaora.com/masonry-guilford-ct/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://phaora.com/masonry-hampton-nh/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://phaora.com/masonry-hingham-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://phaora.com/masonry-hopkinton-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://phaora.com/masonry-hull-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://phaora.com/masonry-jamestown-ri/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://phaora.com/masonry-kennebunkport-me/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://phaora.com/masonry-kittery-me/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://phaora.com/masonry-lexington-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://phaora.com/masonry-lincoln-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://phaora.com/masonry-little-compton-ri/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://phaora.com/masonry-madison-ct/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://phaora.com/masonry-manchester-by-the-sea-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://phaora.com/masonry-marblehead-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://phaora.com/masonry-marshfield-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://phaora.com/masonry-medfield-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://phaora.com/masonry-milton-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://phaora.com/masonry-nahant-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://phaora.com/masonry-narragansett-ri/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://phaora.com/masonry-new-castle-nh/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://phaora.com/masonry-newbury-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://phaora.com/masonry-newburyport-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://phaora.com/masonry-newport-ri/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://phaora.com/masonry-newton-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://phaora.com/masonry-ogunquit-me/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://phaora.com/masonry-old-lyme-ct/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://phaora.com/masonry-old-saybrook-ct/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://phaora.com/masonry-plymouth-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://phaora.com/masonry-portsmouth-nh/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://phaora.com/masonry-rockport-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://phaora.com/masonry-rye-nh/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://phaora.com/masonry-salisbury-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://phaora.com/masonry-scituate-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://phaora.com/masonry-sherborn-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://phaora.com/masonry-southborough-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://phaora.com/masonry-stonington-ct/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://phaora.com/masonry-sudbury-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://phaora.com/masonry-walpole-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://phaora.com/masonry-wayland-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://phaora.com/masonry-wellesley-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://phaora.com/masonry-westerly-ri/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://phaora.com/masonry-weston-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://phaora.com/masonry-winthrop-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://phaora.com/masonry-york-me/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <!-- /towns -->
 </urlset>
