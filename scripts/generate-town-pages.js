@@ -284,6 +284,29 @@ const TOWNS = [
   },
 ];
 
+/**
+ * The towns the bench holds that this list did not cover.
+ *
+ * Appended rather than merged in: the entries above are hand-written and stay
+ * that way, and the generated file is rebuilt from the bench by
+ * build-town-gap-data.js. An entry worth writing by hand gets moved up into the
+ * list above and deleted from the data file, which is why the append is one-way.
+ *
+ * Optional. Without the file this script does exactly what it did before.
+ */
+try {
+  const gap = require('./town-gap-data.js');
+  const have = new Set(TOWNS.map((t) => `${t.slug}-${(t.state || 'ma').toLowerCase()}`));
+  for (const t of gap) {
+    // A hand-written entry always wins. Two entries for one directory would
+    // mean the second silently overwrites the first at write time.
+    if (have.has(`${t.slug}-${(t.state || 'ma').toLowerCase()}`)) continue;
+    TOWNS.push(t);
+  }
+} catch (e) {
+  if (e.code !== 'MODULE_NOT_FOUND') throw e;
+}
+
 const NAV_BODY = fs.readFileSync(path.join(__dirname, '_town-template-nav.html'), 'utf8');
 const STYLE_BLOCK = fs.readFileSync(path.join(__dirname, '_town-template-style.css'), 'utf8');
 const SCRIPT_BLOCK = fs.readFileSync(path.join(__dirname, '_town-template-script.js'), 'utf8');
@@ -311,11 +334,24 @@ function render(town, heroImage) {
 
   // The neighbour's own state, not this page's — Salisbury MA links to
   // Newburyport MA, but Kittery ME links to Portsmouth NH across the river.
+  // A neighbour may be written 'slug' or 'slug|state'. The second form exists
+  // because slugs are not unique across states — there is a Portsmouth in New
+  // Hampshire and a Portsmouth in Rhode Island, and matching on slug alone sends
+  // every link to whichever one was declared first.
   const nearbyLinks = town.nearby
-    .map((slug) => {
-      const n = TOWNS.find((x) => x.slug === slug);
-      const nst = (n && n.state ? n.state : 'ma').toLowerCase();
-      return `      <a href="/masonry-${slug}-${nst}/">${n ? n.name : slug}</a>`;
+    .map((entry) => {
+      const [slug, want] = String(entry).split('|');
+      const n =
+        TOWNS.find((x) => x.slug === slug && (!want || (x.state || 'ma') === want)) ||
+        TOWNS.find((x) => x.slug === slug);
+      const nst = (want || (n && n.state) || 'ma').toLowerCase();
+      // Thirteen town directories predate this generator and have no TOWNS
+      // entry, so the name has to come back out of the slug. Printing the slug
+      // raw puts a lowercase 'newton' in the middle of a sentence.
+      const label = n
+        ? n.name
+        : slug.split('-').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+      return `      <a href="/masonry-${slug}-${nst}/">${label}</a>`;
     })
     .join('\n');
 
