@@ -68,6 +68,13 @@
   <!-- /shop -->
   <!-- towns -->
   <url><loc>https://phaora.com/service-area/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://phaora.com/drainage/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://phaora.com/patios/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://phaora.com/paver-driveways/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://phaora.com/retaining-walls/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://phaora.com/seawalls-and-shore-protection/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://phaora.com/stone-veneer/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://phaora.com/walkways-and-steps/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://phaora.com/masonry-barrington-ri/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://phaora.com/masonry-bourne-ma/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://phaora.com/masonry-cape-elizabeth-me/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
