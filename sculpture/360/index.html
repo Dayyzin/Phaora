@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>PHAÖRA — Orbits</title>
+<style>
+  :root {
+    --bg: #0b0f14;
+    --panel: #121922;
+    --line: #1e2b38;
+    --ink: #e8edf2;
+    --muted: #8397a8;
+    --gold: #c6a25a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font: 14px/1.5 ui-sans-serif, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    padding: 28px 24px 60px;
+  }
+  header { max-width: 1400px; margin: 0 auto 26px; }
+  h1 {
+    font-size: 13px; font-weight: 500; letter-spacing: .26em;
+    text-transform: uppercase; color: var(--gold);
+  }
+  .sub { margin-top: 8px; color: var(--muted); font-size: 13px; max-width: 70ch; }
+  .grid {
+    max-width: 1400px; margin: 0 auto;
+    display: grid; gap: 18px;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .stage { height: 320px; background: #1F3552; }   /* the blue off the av-la-corte ramp */
+  .meta {
+    padding: 9px 11px;
+    border-top: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  }
+  .id { font-family: ui-monospace, Menlo, monospace; font-size: 12px; color: var(--ink); }
+  .note { font-size: 11px; color: var(--muted); }
+  .flag { color: #d98a6a; }
+  footer {
+    max-width: 1400px; margin: 34px auto 0; padding-top: 16px;
+    border-top: 1px solid var(--line); color: var(--muted); font-size: 12px;
+  }
+  code { color: var(--gold); font-family: ui-monospace, Menlo, monospace; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Orbits</h1>
+  <p class="sub">
+    Thirty-four turntable sequences, twelve frames each, matted off the cloth (v2: tone-mapped HLG, 1500px, turntable removed; the bottle is kept in every frame as the scale reference).
+    Drag any of them to turn the piece. This page is a working index for naming
+    them — it is not part of the site.
+  </p>
+</header>
+
+<div class="grid" id="grid"></div>
+
+<footer id="foot"></footer>
+
+<script src="../../orbit360.js"></script>
+<script>
+  // Every folder published by the pipeline.
+  var IDS = [
+    'IMG_0976','IMG_0977','IMG_0978','IMG_0979','IMG_0980','IMG_0981','IMG_0983','IMG_0985','IMG_0987','IMG_0989','IMG_0991','IMG_0992','IMG_0993',
+    'IMG_0994','IMG_0998','IMG_1003','IMG_1005','IMG_1008','IMG_1012','IMG_1015',
+    'IMG_1023','IMG_1024','IMG_1025','IMG_1027','IMG_1038','IMG_1040','IMG_1041',
+    'IMG_1042','IMG_1043','IMG_1046','IMG_1047','IMG_1048','IMG_1051','IMG_1052'
+  ];
+
+  // Known-bad mattes, called out rather than quietly shipped.
+  var FLAGGED = {
+    'IMG_1005': 'faint contact shadow under the block in a few frames',
+    'IMG_1012': 'turntable slivers in some frames; bottle size approximate (template match)',
+    'IMG_1024': 'turntable slivers in some frames; bottle size approximate (template match)',
+    'IMG_1025': 'bottle size approximate (template match)',
+    'IMG_1027': 'bottle size approximate (template match)',
+    'IMG_1038': 'bottle size approximate (template match)',
+    'IMG_1040': 'bottle size approximate (template match)',
+    'IMG_1041': 'turntable top not fully removed; bottle size approximate (template match)',
+    'IMG_1042': 'bottle size approximate (template match)',
+    'IMG_1043': 'bottle size approximate (template match)',
+    'IMG_1046': 'bottle size approximate (template match)',
+    'IMG_1047': 'bottle size approximate (template match)',
+    'IMG_1048': 'bottle size approximate (template match)',
+    'IMG_1051': 'bottle size approximate (template match)',
+    'IMG_1052': 'bottle size approximate (template match)'
+  };
+
+  var grid = document.getElementById('grid');
+
+  IDS.forEach(function (id) {
+    var card = document.createElement('div');
+    card.className = 'card';
+
+    var stage = document.createElement('div');
+    stage.className = 'stage';
+
+    var meta = document.createElement('div');
+    meta.className = 'meta';
+    meta.innerHTML =
+      '<span class="id">' + id.replace('IMG_', '') + '</span>' +
+      '<span class="note' + (FLAGGED[id] ? ' flag' : '') + '">' +
+      (FLAGGED[id] || 'clean') + '</span>';
+
+    card.appendChild(stage);
+    card.appendChild(meta);
+    grid.appendChild(card);
+
+    // Autospin off: thirty-five of them turning at once is a slot machine.
+    Orbit360.mount(stage, { dir: id, frames: 12, label: id, autospin: false });
+  });
+
+  document.getElementById('foot').innerHTML =
+    IDS.length + ' orbits &middot; 12 frames each &middot; drag to turn &middot; ' +
+    'to attach one to a piece, add <code>orbit: \'sculpture/360/IMG_xxxx\'</code> ' +
+    'to its entry in <code>pieces-data.js</code>';
+</script>
+
+</body>
+</html>

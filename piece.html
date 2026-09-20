@@ -209,6 +209,31 @@
     border-color: var(--ink);
   }
 
+  /* The orbit thumbnail is the first frame with its label over it, so the
+     control reads as "this one turns" before it is pressed. */
+  .piece-thumb.is-orbit {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 5px;
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
+  }
+  .piece-thumb.is-orbit::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.55), transparent 58%);
+  }
+  .piece-thumb.is-orbit > * { position: relative; }
+
+  /* The matted frames carry their own alpha, so the slide shows the page
+     behind the stone rather than a photograph of a backdrop. */
+  .piece-media-slide.is-orbit { background: #1F3552; }   /* the blue off the av-la-corte ramp; cutouts keep their alpha */
+
   .piece-body { max-width: 520px; }
   .piece-eyebrow {
     font-size: var(--fs-sm);
@@ -558,6 +583,7 @@
 
   <!-- Shared data + helpers -->
   <script src="pieces-data.js"></script>
+  <script src="orbit360.js"></script>
   <script src="narratives.js"></script>
 
   <script>
@@ -651,6 +677,14 @@
         ? piece.images
         : (piece.image ? [piece.image] : []);
 
+      // A turntable orbit, when the piece has been shot for one, leads the
+      // gallery — it is the closest thing to having the piece in front of you,
+      // and the stills are the same object from the same light.
+      const orbitDir = piece.orbit || null;
+      const orbitFrames = piece.orbitFrames || 12;
+      const media = (orbitDir ? [{ kind: 'orbit' }] : [])
+        .concat(imageList.map(src => ({ kind: 'image', src })));
+
       const priceFmt   = piece.price.toLocaleString('en-US');
       const isAcquired = piece.status === 'acquired';
       const isLast     = piece.status === 'last';
@@ -666,24 +700,30 @@
         <section class="piece-hero">
           <div class="piece-media">
             <div class="piece-media-main" id="pieceMain">
-              ${imageList.length
-                ? imageList.map((src, i) => `
-                    <div class="piece-media-slide${i === 0 ? ' active' : ''}"
-                         data-idx="${i}"
-                         data-piece-image="${src}"
-                         data-piece-name="${escapeAttr(piece.name)}"
-                         style="background-image: url('${src}');"></div>
-                  `).join('')
+              ${media.length
+                ? media.map((m, i) => m.kind === 'orbit'
+                    ? `<div class="piece-media-slide is-orbit${i === 0 ? ' active' : ''}"
+                            data-idx="${i}" id="pieceOrbit"></div>`
+                    : `<div class="piece-media-slide${i === 0 ? ' active' : ''}"
+                            data-idx="${i}"
+                            data-piece-image="${m.src}"
+                            data-piece-name="${escapeAttr(piece.name)}"
+                            style="background-image: url('${m.src}');"></div>`
+                  ).join('')
                 : `<div class="piece-media-slide active" style="background: ${pieceGradient(piece)};"></div>`
               }
             </div>
-            <div class="piece-thumbs${imageList.length < 2 ? ' is-single' : ''}" id="pieceThumbs">
-              ${imageList.map((src, i) => `
-                <button class="piece-thumb${i === 0 ? ' active' : ''}"
-                        data-idx="${i}"
-                        style="background-image: url('${src}');"
-                        aria-label="Image ${i + 1} of ${imageList.length}"></button>
-              `).join('')}
+            <div class="piece-thumbs${media.length < 2 ? ' is-single' : ''}" id="pieceThumbs">
+              ${media.map((m, i) => m.kind === 'orbit'
+                ? `<button class="piece-thumb is-orbit${i === 0 ? ' active' : ''}"
+                           data-idx="${i}"
+                           style="background-image: url('${orbitDir}/f_01.webp');"
+                           aria-label="Turn the piece">360</button>`
+                : `<button class="piece-thumb${i === 0 ? ' active' : ''}"
+                           data-idx="${i}"
+                           style="background-image: url('${m.src}');"
+                           aria-label="Image ${i + 1} of ${media.length}"></button>`
+              ).join('')}
             </div>
           </div>
 
@@ -781,6 +821,15 @@
     function escapeAttr(s) { return escapeHTML(s); }
 
     function wireSwitcher() {
+      const orbitEl = document.getElementById('pieceOrbit');
+      if (orbitEl && window.Orbit360 && piece.orbit) {
+        Orbit360.mount(orbitEl, {
+          dir: piece.orbit,
+          frames: piece.orbitFrames || 12,
+          label: piece.name
+        });
+      }
+
       const thumbs = document.querySelectorAll('#pieceThumbs .piece-thumb');
       const slides = document.querySelectorAll('#pieceMain .piece-media-slide');
       if (!thumbs.length || slides.length < 2) return;

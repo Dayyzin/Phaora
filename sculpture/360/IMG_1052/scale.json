@@ -1,0 +1,99 @@
+{
+ "piece_px": 1128,
+ "frame_h": 2400,
+ "crop": [
+  154,
+  552,
+  1288,
+  1736
+ ],
+ "out": [
+  1437,
+  1500
+ ],
+ "bottle_px": 407,
+ "bottle_source": "approximate: template match in 7 frame(s)",
+ "ratio_piece_over_bottle": 2.771,
+ "bottle_kept": true,
+ "notes": {
+  "frames": 12,
+  "contaminated": [
+   4,
+   7,
+   10
+  ],
+  "disc_fail": "b/a 1.50",
+  "turntable_px": [
+   [
+    1,
+    19982
+   ],
+   [
+    2,
+    2928
+   ],
+   [
+    3,
+    3168
+   ],
+   [
+    4,
+    56472
+   ],
+   [
+    5,
+    1090
+   ],
+   [
+    6,
+    18157
+   ],
+   [
+    7,
+    129367
+   ],
+   [
+    8,
+    36884
+   ],
+   [
+    9,
+    6749
+   ],
+   [
+    10,
+    129534
+   ],
+   [
+    11,
+    1410
+   ],
+   [
+    12,
+    4551
+   ]
+  ],
+  "bottle_skip": [
+   [
+    2,
+    "score 0.51 cap=False"
+   ],
+   [
+    5,
+    "score 0.54 cap=False"
+   ],
+   [
+    10,
+    "score 0.52 cap=False"
+   ],
+   [
+    11,
+    "score 0.51 cap=False"
+   ],
+   [
+    3,
+    "in core"
+   ]
+  ]
+ }
+}

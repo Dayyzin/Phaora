@@ -1,0 +1,33 @@
+{
+ "piece_px": 1674,
+ "frame_h": 2400,
+ "crop": [
+  15,
+  327,
+  1172,
+  2055
+ ],
+ "out": [
+  1004,
+  1500
+ ],
+ "notes": {
+  "frames": 12,
+  "contaminated": [],
+  "disc_fail": "no wide static component",
+  "turntable_px": [
+   [
+    1,
+    16857
+   ],
+   [
+    7,
+    10195
+   ],
+   [
+    8,
+    20244
+   ]
+  ]
+ }
+}
