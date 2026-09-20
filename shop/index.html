@@ -4,26 +4,305 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PHAÖRA — Timeless art, born of earth</title>
-<meta name="description" content="34 hand-carved crystal sculptures from Minas Gerais, Brazil. Each one of one.">
+<meta name="description" content="Thirty-five hand-carved sculptures, each one of one. Turn any piece.">
 <link rel="canonical" href="https://phaora.com/shop/">
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<meta name="theme-color" content="#020610">
+<meta name="color-scheme" content="dark">
 <meta property="og:type" content="website">
 <meta property="og:title" content="PHAÖRA — Timeless art, born of earth">
-<meta property="og:description" content="34 hand-carved crystal sculptures from Minas Gerais, Brazil. Each one of one.">
-<meta property="og:image" content="https://phaora.com/assets/sculptures/beacon/00-hero.jpg">
+<meta property="og:description" content="Thirty-five hand-carved sculptures, each one of one. Turn any piece.">
+<meta property="og:image" content="https://phaora.com/assets/shop/og-shop.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shop.css?v=6d6c44c4">
-<script type="module">
-  import {ModelViewerElement} from 'https://cdn.jsdelivr.net/npm/@google/model-viewer@4.1.0/dist/model-viewer.min.js';
-  /* Self-hosted decoder, so opening the hero never waits on gstatic. */
-  ModelViewerElement.dracoDecoderLocation = '/assets/3d/draco/';
-</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"PHAÖRA — crystal sculpture","url":"https://phaora.com/shop/","numberOfItems":34,"itemListElement":[{"@type":"ListItem","position":1,"url":"https://phaora.com/shop/p/amethyst-crown.html","name":"The Amethyst Crown"},{"@type":"ListItem","position":2,"url":"https://phaora.com/shop/p/aurora.html","name":"The Aurora"},{"@type":"ListItem","position":3,"url":"https://phaora.com/shop/p/beacon.html","name":"The Beacon"},{"@type":"ListItem","position":4,"url":"https://phaora.com/shop/p/consort.html","name":"The Consort"},{"@type":"ListItem","position":5,"url":"https://phaora.com/shop/p/covenant.html","name":"The Covenant"},{"@type":"ListItem","position":6,"url":"https://phaora.com/shop/p/diviner.html","name":"The Diviner"},{"@type":"ListItem","position":7,"url":"https://phaora.com/shop/p/ember.html","name":"The Ember"},{"@type":"ListItem","position":8,"url":"https://phaora.com/shop/p/emissary.html","name":"The Emissary"},{"@type":"ListItem","position":9,"url":"https://phaora.com/shop/p/ezio-e-presa.html","name":"The Ezio e Presa"},{"@type":"ListItem","position":10,"url":"https://phaora.com/shop/p/garnet.html","name":"The Garnet"},{"@type":"ListItem","position":11,"url":"https://phaora.com/shop/p/gilded-pair.html","name":"The Gilded Pair"},{"@type":"ListItem","position":12,"url":"https://phaora.com/shop/p/harvest.html","name":"The Harvest"},{"@type":"ListItem","position":13,"url":"https://phaora.com/shop/p/lapis.html","name":"The Lapis"},{"@type":"ListItem","position":14,"url":"https://phaora.com/shop/p/luminary.html","name":"The Luminary"},{"@type":"ListItem","position":15,"url":"https://phaora.com/shop/p/maresia.html","name":"The Maresia"},{"@type":"ListItem","position":16,"url":"https://phaora.com/shop/p/mariner.html","name":"The Mariner"},{"@type":"ListItem","position":17,"url":"https://phaora.com/shop/p/meridian.html","name":"The Meridian"},{"@type":"ListItem","position":18,"url":"https://phaora.com/shop/p/obsidian.html","name":"The Obsidian"},{"@type":"ListItem","position":19,"url":"https://phaora.com/shop/p/onyx-pair.html","name":"The Onyx Pair"},{"@type":"ListItem","position":20,"url":"https://phaora.com/shop/p/opal.html","name":"The Opal"},{"@type":"ListItem","position":21,"url":"https://phaora.com/shop/p/oracle.html","name":"The Oracle"},{"@type":"ListItem","position":22,"url":"https://phaora.com/shop/p/orchid.html","name":"The Orchid"},{"@type":"ListItem","position":23,"url":"https://phaora.com/shop/p/pilgrim.html","name":"The Pilgrim"},{"@type":"ListItem","position":24,"url":"https://phaora.com/shop/p/quartz-twin.html","name":"The Quartz Twin"},{"@type":"ListItem","position":25,"url":"https://phaora.com/shop/p/rose-duet.html","name":"The Rose Duet"},{"@type":"ListItem","position":26,"url":"https://phaora.com/shop/p/rose-oracle.html","name":"The Rose Oracle"},{"@type":"ListItem","position":27,"url":"https://phaora.com/shop/p/rose-solo.html","name":"The Rose Solo"},{"@type":"ListItem","position":28,"url":"https://phaora.com/shop/p/sanctum.html","name":"The Sanctum"},{"@type":"ListItem","position":29,"url":"https://phaora.com/shop/p/reverie.html","name":"The Reverie"},{"@type":"ListItem","position":30,"url":"https://phaora.com/shop/p/seraph.html","name":"The Seraph"},{"@type":"ListItem","position":31,"url":"https://phaora.com/shop/p/sky-pair.html","name":"The Sky Pair"},{"@type":"ListItem","position":32,"url":"https://phaora.com/shop/p/solara.html","name":"The Solara"},{"@type":"ListItem","position":33,"url":"https://phaora.com/shop/p/vigil.html","name":"The Vigil"},{"@type":"ListItem","position":34,"url":"https://phaora.com/shop/p/violet.html","name":"The Violet"}]}</script>
+<style>
+/* ==========================================================================
+   PHAÖRA — the shop front, at night.
+   Page-scoped on purpose. shop.css is shared with the bag, the journal and
+   thirty-four older piece pages; nothing here is written back into it, so
+   this is the only document that changes register. Most of what follows just
+   re-points a token shop.css already uses — the cards, the nav, the rules and
+   the footer recolour themselves.
+   ========================================================================== */
+:root{
+  /* ground — the near-black the site already uses, and the blue ramp */
+  --void:#020610;
+  --void-2:#070D18;
+
+  --gold:#C8A45E;
+  --gold-lt:#D9BC7C;
+  --gold-dim:rgba(200,164,94,0.44);
+  --hair:rgba(175,196,216,0.17);
+  --hair-soft:rgba(175,196,216,0.085);
+  --frame:rgba(200,164,94,0.16);
+
+  --warm:#EAEFF5;
+  --warm-2:rgba(219,230,240,0.66);
+  --warm-3:rgba(175,196,216,0.46);
+  --muted:#64788F;
+}
+html{background:#020610}
+/* the flake tile is the daylight shop's ground; this one is sky */
+body{background:#020610;background-image:none}
+
+/* --- the two fixed layers behind .page ----------------------------------- */
+/* Neither scrolls. The wash is CSS because a gradient that never changes has
+   no business being repainted 24 times a second; only the stars are canvas. */
+.sky,.starfield{position:fixed;inset:0;z-index:0;pointer-events:none}
+.sky{
+  background:
+    radial-gradient(118% 66% at 12% 106%, rgba(31,53,82,0.52) 0%, rgba(22,32,46,0.20) 44%, transparent 74%),
+    radial-gradient(92% 56% at 88% -10%, rgba(44,74,107,0.40) 0%, rgba(31,53,82,0.14) 46%, transparent 76%),
+    radial-gradient(64% 38% at 50% -8%, rgba(200,164,94,0.085) 0%, transparent 62%),
+    linear-gradient(180deg,#050B17 0%,#020610 46%,#01040B 100%);
+}
+.sky::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(128% 96% at 50% 38%, transparent 40%, rgba(1,3,8,0.58) 100%);
+}
+.starfield{display:block;width:100%;height:100%;opacity:0;transition:opacity 1.4s ease}
+.starfield.lit{opacity:1}
+.page{position:relative;z-index:1}
+:focus-visible{outline:1px solid var(--gold);outline-offset:3px}
+
+/* --- the pools under copy ------------------------------------------------ */
+/* shop.css lays a near-opaque pool under anything carrying type, because gold
+   leaf behind a paragraph is gold leaf in front of it. Stars are a tenth as
+   loud, so the pool only has to deepen the sky, not blank it. */
+.hero-copy::before,.section-head::before,.phead::before,.prose::before,
+.band-copy::before,.filters::before,.cat::before,.foot-in::before,
+.jitem-text::before,.quiet::before{
+  background:radial-gradient(ellipse at center,
+    rgba(2,6,16,0.58) 0%, rgba(2,6,16,0.40) 42%, rgba(2,6,16,0.15) 70%, rgba(2,6,16,0) 86%);
+}
+
+/* --- chrome -------------------------------------------------------------- */
+.nav{background:rgba(2,6,16,0.74);border-bottom-color:rgba(175,196,216,0.07)}
+.searchbar{background:rgba(2,6,16,0.95)}
+.drawer{background:rgba(2,6,16,0.97)}
+.spine::after{background:#020610}
+
+/* --- hero ---------------------------------------------------------------- */
+.hero-side{display:flex;flex-direction:column;align-items:center;min-width:0}
+/* shop.css orders the plate above the copy on a narrow screen. Inside this
+   column that same order:1 pushed it below its own caption, so it is reset
+   here and the column itself takes the ordering instead. */
+.hero-side .hero-plate{order:0;width:100%;max-width:none}
+.hero-orbit > img{width:100%;height:100%;object-fit:contain;object-position:50% 100%}
+.hero-plate::before{
+  background:radial-gradient(circle,rgba(44,74,107,0.40) 0%,rgba(31,53,82,0.14) 44%,transparent 70%);
+}
+.hero-ring{border-color:rgba(175,196,216,0.20)}
+.hero-ring::after{background:var(--gold-lt);box-shadow:0 0 14px 4px rgba(217,188,124,0.6)}
+/* the piece, turning, inside the ring — the ring is a horizon, not a frame */
+.hero-orbit{
+  position:relative;z-index:1;width:104%;height:104%;
+  filter:drop-shadow(0 18px 34px rgba(0,3,10,0.72));
+}
+.hero-orbit .orbit360-hint{
+  background:rgba(2,6,16,0.55);color:rgba(234,239,245,0.8);
+  border:1px solid rgba(175,196,216,0.14);
+}
+/* the ground the piece stands on */
+.hero-plate::after{
+  content:'';position:absolute;z-index:0;left:50%;bottom:9%;width:56%;height:9%;
+  transform:translateX(-50%);border-radius:50%;
+  background:radial-gradient(ellipse at center,rgba(175,196,216,0.22),rgba(120,160,205,0.07) 46%,transparent 72%);
+  filter:blur(9px);
+}
+.hero-cap{
+  margin-top:clamp(12px,1.4vw,18px);max-width:100%;text-align:center;
+  font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--warm-3);
+  display:flex;flex-wrap:wrap;gap:4px 12px;justify-content:center;align-items:baseline;
+}
+.hero-cap > *{max-width:100%;overflow-wrap:anywhere}
+.hero-cap b{font-weight:400;color:var(--warm);letter-spacing:0.22em}
+.hero-cap .amt{color:var(--gold);letter-spacing:0.14em}
+.hero-cap:hover b{color:var(--gold-lt)}
+
+/* --- collections --------------------------------------------------------- */
+.cat{border-left-color:var(--hair)}
+.cat:hover{background:rgba(44,74,107,0.10)}
+.cats{grid-template-columns:repeat(3,1fr)}
+
+/* --- the grid ------------------------------------------------------------ */
+/* A card is an opaque panel. The sky is behind it and stays behind it: the
+   stones are cut-outs, so anything translucent here would put stars through
+   the middle of a sculpture. */
+.card{
+  background:linear-gradient(180deg,#0A1220 0%,#060B14 58%,#04080F 100%);
+  border-color:var(--frame);
+  box-shadow:
+    0 0 44px -14px rgba(76,116,163,0.40),
+    0 0 22px -12px rgba(200,164,94,0.22),
+    0 18px 42px rgba(0,2,6,0.60);
+}
+.card:hover{
+  border-color:rgba(200,164,94,0.46);
+  box-shadow:
+    0 0 62px -12px rgba(96,142,196,0.52),
+    0 0 26px -10px rgba(200,164,94,0.30),
+    0 26px 58px rgba(0,2,6,0.70);
+}
+/* The stills are matted to the stone, so the tile holds a standing object,
+   not a photograph. Every piece is drawn to the same height and stood on the
+   same floor line — a shelf of sculpture rather than a sheet of thumbnails. */
+.card-img{
+  aspect-ratio:4/5;overflow:visible;background:none;border-bottom:0;
+  padding:11% 9% 13%;
+}
+.card-img img{
+  position:relative;z-index:1;width:100%;height:100%;
+  object-fit:contain;object-position:50% 100%;
+  filter:drop-shadow(0 10px 18px rgba(0,3,10,0.6));
+}
+.card-img::before{
+  content:'';position:absolute;z-index:0;left:50%;bottom:8%;width:68%;height:11%;
+  transform:translateX(-50%);border-radius:50%;
+  background:radial-gradient(ellipse at center,rgba(175,196,216,0.19),rgba(120,160,205,0.06) 46%,transparent 72%);
+  filter:blur(7px);
+}
+.card:hover .card-img img{transform:scale(1.04)}
+.card-body{border-top:1px solid var(--hair-soft);padding-top:15px}
+/* an unpriced piece carries no material line yet; the row still holds its
+   height so the grid keeps its rhythm */
+.card-sub{min-height:1.05em;margin-bottom:12px}
+.card-price{font-size:17px;color:var(--warm)}
+
+/* --- filters ------------------------------------------------------------- */
+/* One rail that scrolls sideways instead of two rows that wrap. */
+.filters{flex-wrap:wrap}
+.frail{
+  display:flex;align-items:center;gap:6px;flex:1 1 auto;min-width:0;
+  overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none;-ms-overflow-style:none;
+}
+.frail::-webkit-scrollbar{display:none}
+.frail > *{flex:0 0 auto}
+.filter-spacer{display:none}
+.fbtn.on{background:rgba(31,53,82,0.34);border-color:var(--hair)}
+.sortsel{background:rgba(7,13,24,0.9);border-color:var(--hair-soft);color:var(--warm-2)}
+
+/* --- the band ------------------------------------------------------------ */
+/* The old band bled a photograph to the edge and faded it into the ground.
+   A cut-out has no edge to fade, so it stands in the sky instead. */
+.band{border-color:var(--hair)}
+.band-img{min-height:clamp(240px,30vw,400px);display:grid;place-items:center;padding:clamp(24px,3vw,44px)}
+.band-img img{position:relative;inset:auto;width:auto;height:100%;max-height:clamp(200px,26vw,340px);
+  object-fit:contain;filter:drop-shadow(0 20px 36px rgba(0,3,10,0.7))}
+.band-img::after{
+  /* shop.css puts a full-bleed fade here; this is a floor pool, so the two
+     sides it does not use are released explicitly. */
+  content:'';position:absolute;top:auto;right:auto;left:50%;bottom:16%;width:44%;height:8%;
+  transform:translateX(-50%);border-radius:50%;background:radial-gradient(ellipse at center,
+    rgba(175,196,216,0.20),rgba(120,160,205,0.06) 46%,transparent 72%);
+  filter:blur(9px);
+}
+
+/* --- the piece sheet ----------------------------------------------------- */
+/* Every card opens here rather than at a URL of its own: these thirty-five
+   pieces have no piece pages, and a card that opens a 404 is worse than a
+   card that opens in place. The hash is real, so a piece is still linkable
+   and the back button still works. */
+.sheet{position:fixed;inset:0;z-index:700;display:flex;align-items:flex-end;justify-content:center}
+.sheet-scrim{position:absolute;inset:0;background:rgba(1,3,8,0.82);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  opacity:0;transition:opacity .34s var(--ease)}
+.sheet.on .sheet-scrim{opacity:1}
+.sheet-panel{
+  position:relative;width:min(1080px,100%);max-height:94vh;overflow-y:auto;
+  background:linear-gradient(180deg,#0A1220 0%,#050A14 60%,#02060F 100%);
+  border:1px solid var(--hair);border-bottom:0;
+  box-shadow:0 -10px 70px rgba(0,2,6,0.8), 0 0 70px -20px rgba(76,116,163,0.35);
+  padding:clamp(20px,3vw,34px) clamp(18px,3vw,40px) clamp(26px,4vw,44px);
+  display:grid;gap:clamp(16px,2.4vw,34px);
+  transform:translateY(22px);opacity:0;transition:transform .4s var(--ease),opacity .3s ease;
+}
+.sheet.on .sheet-panel{transform:none;opacity:1}
+.sheet-x{position:absolute;top:8px;right:8px;z-index:3;color:var(--warm-2)}
+.sheet-stage{
+  position:relative;width:100%;aspect-ratio:4/5;max-height:54vh;margin-inline:auto;
+}
+.sheet-stage::after{
+  content:'';position:absolute;left:50%;bottom:5%;width:56%;height:9%;transform:translateX(-50%);
+  border-radius:50%;background:radial-gradient(ellipse at center,rgba(175,196,216,0.20),
+    rgba(120,160,205,0.06) 46%,transparent 72%);filter:blur(9px);pointer-events:none;
+}
+.sheet-stage .orbit360 img{filter:drop-shadow(0 16px 30px rgba(0,3,10,0.7))}
+.sheet-stage .orbit360-hint{background:rgba(2,6,16,0.55);border:1px solid rgba(175,196,216,0.14)}
+.sheet-info .eyebrow{margin-bottom:14px}
+.sheet-name{font-family:var(--display);font-weight:300;font-size:clamp(32px,5vw,50px);line-height:1.05;margin-bottom:10px}
+.sheet-mat{font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:var(--warm-3);margin-bottom:22px}
+.sheet-price{font-family:var(--display);font-size:clamp(24px,3vw,32px);color:var(--warm);margin-bottom:24px}
+.sheet-price.poa{font-family:var(--ui);font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold)}
+.sheet-add{width:100%}
+.sheet-add .lb-in{display:none}
+.sheet-add.in{background:transparent;color:var(--gold);box-shadow:inset 0 0 0 1px var(--gold-dim)}
+.sheet-add.in .lb-out{display:none}
+.sheet-add.in .lb-in{display:inline}
+.sheet-note{font-size:12px;line-height:1.8;color:var(--warm-3);margin-top:16px}
+.sheet-note a{color:var(--gold);border-bottom:1px solid var(--gold-dim)}
+@media(min-width:861px){
+  .sheet{align-items:center}
+  .sheet-panel{border:1px solid var(--hair);grid-template-columns:minmax(0,1fr) minmax(0,0.86fr);
+    align-items:center;max-height:88vh}
+  .sheet-stage{aspect-ratio:1/1;max-height:68vh}
+  .sheet-x{top:14px;right:14px}
+  .sheet-info{padding-top:10px}
+}
+
+/* --- narrow -------------------------------------------------------------- */
+@media(max-width:900px){
+  .hero-side{order:1;width:100%;max-width:400px;margin:0 auto}
+  .hero-copy{order:2}
+  .cats{grid-template-columns:repeat(3,1fr)}
+  .cat:nth-child(3){border-left:1px solid var(--hair)}
+  .cat:nth-child(n+3){border-top:0}
+  .band-img{min-height:220px}
+}
+@media(max-width:560px){
+  .hero{gap:20px}
+  .hero-side{max-width:min(320px,76vw)}
+  .cats{grid-template-columns:repeat(3,1fr)}
+  .cat{padding:22px 6px;gap:10px}
+  .cat svg{width:40px;height:48px}
+  .cat-name{font-size:9.5px;letter-spacing:0.14em}
+  .cat-go{display:none}
+
+  /* the rail runs to both screen edges so it reads as more-to-the-right */
+  .frail{
+    margin-inline:calc(var(--gutter) * -1);padding-inline:var(--gutter);
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14px,#000 calc(100% - 30px),transparent 100%);
+            mask-image:linear-gradient(90deg,transparent 0,#000 14px,#000 calc(100% - 30px),transparent 100%);
+  }
+  .sortsel{width:auto;margin-left:auto;margin-top:10px}
+
+  /* A shop you cannot put anything in on a phone is not a shop. The bag
+     button comes back; the name gives it the room. */
+  .card-bag{display:inline-flex;width:30px;height:30px;right:11px;bottom:12px}
+  .card-name{font-size:15px;padding-right:34px}
+  .card-sub{font-size:9px;letter-spacing:0.1em;padding-right:34px;min-height:1.1em}
+  .card-price{font-size:13px}
+  .card-img{padding:9% 7% 12%}
+  .hero-cap{font-size:9px;letter-spacing:0.14em;gap:3px 9px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .starfield{transition:none}
+  .sheet-panel,.sheet-scrim{transition:none}
+}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"PHAÖRA — crystal sculpture","url":"https://phaora.com/shop/","numberOfItems":35,"itemListElement":[{"@type":"ListItem","position":1,"url":"https://phaora.com/shop/#piece/assembly","name":"Assembly"},{"@type":"ListItem","position":2,"url":"https://phaora.com/shop/#piece/choir","name":"Choir"},{"@type":"ListItem","position":3,"url":"https://phaora.com/shop/#piece/council","name":"Council"},{"@type":"ListItem","position":4,"url":"https://phaora.com/shop/#piece/hollow","name":"Hollow"},{"@type":"ListItem","position":5,"url":"https://phaora.com/shop/#piece/consorts","name":"Consorts"},{"@type":"ListItem","position":6,"url":"https://phaora.com/shop/#piece/dawn","name":"Dawn"},{"@type":"ListItem","position":7,"url":"https://phaora.com/shop/#piece/veil","name":"Veil"},{"@type":"ListItem","position":8,"url":"https://phaora.com/shop/#piece/confidants","name":"Confidants"},{"@type":"ListItem","position":9,"url":"https://phaora.com/shop/#piece/murmur","name":"Murmur"},{"@type":"ListItem","position":10,"url":"https://phaora.com/shop/#piece/rosewater","name":"Rosewater"},{"@type":"ListItem","position":11,"url":"https://phaora.com/shop/#piece/verdance","name":"Verdance"},{"@type":"ListItem","position":12,"url":"https://phaora.com/shop/#piece/twilight","name":"Twilight"},{"@type":"ListItem","position":13,"url":"https://phaora.com/shop/#piece/moss","name":"Moss"},{"@type":"ListItem","position":14,"url":"https://phaora.com/shop/#piece/falcon","name":"Falcon"},{"@type":"ListItem","position":15,"url":"https://phaora.com/shop/#piece/petal","name":"Petal"},{"@type":"ListItem","position":16,"url":"https://phaora.com/shop/#piece/updraft","name":"Updraft"},{"@type":"ListItem","position":17,"url":"https://phaora.com/shop/#piece/emperor","name":"Emperor"},{"@type":"ListItem","position":18,"url":"https://phaora.com/shop/#piece/blush","name":"Blush"},{"@type":"ListItem","position":19,"url":"https://phaora.com/shop/#piece/stem","name":"Stem"},{"@type":"ListItem","position":20,"url":"https://phaora.com/shop/#piece/fern","name":"Fern"},{"@type":"ListItem","position":21,"url":"https://phaora.com/shop/#piece/orchard","name":"Orchard"},{"@type":"ListItem","position":22,"url":"https://phaora.com/shop/#piece/azurite","name":"Azurite"},{"@type":"ListItem","position":23,"url":"https://phaora.com/shop/#piece/frost","name":"Frost"},{"@type":"ListItem","position":24,"url":"https://phaora.com/shop/#piece/meadow","name":"Meadow"},{"@type":"ListItem","position":25,"url":"https://phaora.com/shop/#piece/plume","name":"Plume"},{"@type":"ListItem","position":26,"url":"https://phaora.com/shop/#piece/flare","name":"Flare"},{"@type":"ListItem","position":27,"url":"https://phaora.com/shop/#piece/alliance","name":"Alliance"},{"@type":"ListItem","position":28,"url":"https://phaora.com/shop/#piece/orb","name":"Orb"},{"@type":"ListItem","position":29,"url":"https://phaora.com/shop/#piece/obelisk","name":"Obelisk"},{"@type":"ListItem","position":30,"url":"https://phaora.com/shop/#piece/gull","name":"Gull"},{"@type":"ListItem","position":31,"url":"https://phaora.com/shop/#piece/pillar","name":"Pillar"},{"@type":"ListItem","position":32,"url":"https://phaora.com/shop/#piece/jade","name":"Jade"},{"@type":"ListItem","position":33,"url":"https://phaora.com/shop/#piece/snowcap","name":"Snowcap"},{"@type":"ListItem","position":34,"url":"https://phaora.com/shop/#piece/cliff","name":"Cliff"},{"@type":"ListItem","position":35,"url":"https://phaora.com/shop/#piece/harlequin","name":"Harlequin"}]}</script>
 </head>
 <body>
+<!-- The ground: a fixed wash, and the stars on a canvas over it. Both sit
+     behind .page and neither ever paints over a card. -->
+<div class="sky" aria-hidden="true"></div>
+<canvas class="starfield" id="skyCanvas" aria-hidden="true"></canvas>
+
 <div class="page">
 <nav class="nav">
   <button class="icon-btn burger" data-drawer-open aria-label="Menu"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 1h20M0 7h20M0 13h20"/></svg></button>
@@ -64,90 +343,42 @@
     <p>Rare crystal, carved by hand in Minas Gerais. Every piece is one of one — the stone decides how far the cut can go.</p>
     <a href="#pieces" class="ghost-btn">See every piece <span class="arw">&rarr;</span></a>
   </div>
-  <div class="hero-plate">
-    <span class="hero-ring" aria-hidden="true"></span>
-    <model-viewer id="heroModel"
-      src="../assets/3d/sculpture-4096.glb?v=6401f5be"
-      alt="Macaw carved in crystal, turning"
-      poster="../assets/3d/poster.webp"
-      auto-rotate rotation-per-second="16deg" auto-rotate-delay="0"
-      camera-controls disable-zoom touch-action="pan-y" interaction-prompt="none"
-      tone-mapping="commerce" environment-image="legacy" exposure="1.35" shadow-intensity="0"
-      camera-orbit="16deg 80deg 100%" min-camera-orbit="auto 62deg auto"
-      max-camera-orbit="auto 98deg auto"
-      loading="lazy" reveal="auto"></model-viewer>
-    <script>
-    /* The phone build differs only in the baked atlas — 4096 against 8192.
-       Same mesh, same material. This runs at parse time, before the deferred
-       component upgrades and starts fetching, so the swap lands ahead of the
-       request. The larger build stays the default: if this never runs, the page
-       gets the full one. */
-    (function(){
-      var m=document.getElementById('heroModel'); if(!m) return;
-
-      /* three.js defaults texture anisotropy to 1, which blurs the atlas badly
-         wherever a surface turns away from the camera — on a scan of carved
-         stone that is most of it, and it costs the feather grooves and the
-         grain. model-viewer has no attribute for this, so it is set on the
-         scene after load. Everything here is guarded: if the internals move in
-         a later version the block does nothing and the model still renders. */
-      m.addEventListener('load', function(){
-        try{
-          var sym = Object.getOwnPropertySymbols(m).filter(function(x){
-            return (x.description || '') === 'scene'; })[0];
-          if(!sym) return;
-          var scene = m[sym];
-          if(!scene || typeof scene.traverse !== 'function') return;
-          var maps = ['map','normalMap','roughnessMap','metalnessMap','emissiveMap','aoMap'];
-          scene.traverse(function(o){
-            var mat = o.material; if(!mat) return;
-            maps.forEach(function(k){
-              var t = mat[k];
-              /* three clamps to whatever the GPU actually supports */
-              if(t && t.anisotropy !== 16){ t.anisotropy = 16; t.needsUpdate = true; }
-            });
-          });
-        }catch(e){}
-      });
-
-      var c=navigator.connection||{};
-      var thin=c.saveData===true||/(^|-)(2g|slow-2g)$/.test(c.effectiveType||'');
-      if(thin||window.matchMedia('(max-width: 900px)').matches){
-        m.setAttribute('src','../assets/3d/sculpture-2048.glb?v=cea7782a');
-      }
-    })();
-    </script>
+  <div class="hero-side">
+    <div class="hero-plate">
+      <span class="hero-ring" aria-hidden="true"></span>
+      <div class="hero-orbit" id="heroOrbit"
+           data-orbit="../assets/shop/orbit/IMG_0983" data-label="Alliance">
+        <img src="../assets/shop/cards/IMG_0983.webp" alt="Alliance — hand-carved sculpture by Phaöra" width="594" height="720" fetchpriority="high" decoding="async">
+      </div>
+    </div>
+    <a class="hero-cap" href="#piece/alliance">
+      <b>Alliance</b><span class="amt">On request</span>
+    </a>
   </div>
 </section>
 
 <div class="spine" aria-hidden="true"></div>
 
-<!-- WHAT IS CARVED -->
+<!-- COLLECTIONS -->
 <section class="cats-wrap">
-  <div class="section-head"><h2>What is carved</h2></div>
+  <div class="section-head"><h2>The collections</h2></div>
   <div class="cats" id="cats">
-    <a class="cat" href="#pieces" data-cat="Macaw">
+    <a class="cat" href="#pieces" data-cat="blue-macaws">
       <svg width="54" height="64" viewBox="0 0 44 54" fill="none" stroke="currentColor" stroke-width="1" stroke-linejoin="round" aria-hidden="true"><path d="M18 8 22 12 19 17 15 13Z"/><path d="M15 11 10 12 14 15"/><path d="M19 17 25 22 26 30 22 34 17 29Z"/><path d="M25 24 36 30 40 45 33 40 26 31"/><path d="M21 21 28 19 25 26"/><path d="M20 34 20 39M24 34 24 39"/><path d="M12 39 32 39"/></svg>
-      <span class="cat-name">Macaws</span>
-      <span class="cat-n">23 works</span>
-      <span class="cat-go">See <span class="arw">&rarr;</span></span>
-    </a>
-    <a class="cat" href="#pieces" data-cat="Cockatoo">
-      <svg width="54" height="64" viewBox="0 0 44 54" fill="none" stroke="currentColor" stroke-width="1" stroke-linejoin="round" aria-hidden="true"><path d="M18 14 21 8 19 3"/><path d="M21 13 26 8 27 2"/><path d="M19 14 24 18 21 24 16 19Z"/><path d="M16 17 11 19 15 22"/><path d="M21 24 27 29 26 38 21 42 17 34Z"/><path d="M26 33 31 43 27 40"/><path d="M20 42 19 47M24 42 25 47"/><path d="M13 47 31 47"/></svg>
-      <span class="cat-name">Cockatoos</span>
+      <span class="cat-name">Blue Macaws</span>
       <span class="cat-n">4 works</span>
       <span class="cat-go">See <span class="arw">&rarr;</span></span>
     </a>
-    <a class="cat" href="#pieces" data-cat="Eagle">
-      <svg width="54" height="64" viewBox="0 0 44 54" fill="none" stroke="currentColor" stroke-width="1" stroke-linejoin="round" aria-hidden="true"><path d="M22 5 25 10 22 15 19 10Z"/><path d="M19 8 14 9"/><path d="M22 15 26 21 24 39 22 46 20 39 18 21Z"/><path d="M19 19 4 12 8 23 17 28"/><path d="M25 19 40 12 36 23 27 28"/><path d="M20 46 18 51M24 46 26 51"/></svg>
-      <span class="cat-name">Eagles</span>
-      <span class="cat-n">3 works</span>
+    <a class="cat" href="#pieces" data-cat="white-cockatoos">
+      <svg width="54" height="64" viewBox="0 0 44 54" fill="none" stroke="currentColor" stroke-width="1" stroke-linejoin="round" aria-hidden="true"><path d="M18 14 21 8 19 3"/><path d="M21 13 26 8 27 2"/><path d="M19 14 24 18 21 24 16 19Z"/><path d="M16 17 11 19 15 22"/><path d="M21 24 27 29 26 38 21 42 17 34Z"/><path d="M26 33 31 43 27 40"/><path d="M20 42 19 47M24 42 25 47"/><path d="M13 47 31 47"/></svg>
+      <span class="cat-name">White Cockatoos</span>
+      <span class="cat-n">5 works</span>
       <span class="cat-go">See <span class="arw">&rarr;</span></span>
     </a>
-    <a class="cat" href="#pieces" data-cat="Parrot">
+    <a class="cat" href="#pieces" data-cat="canopy">
       <svg width="54" height="64" viewBox="0 0 44 54" fill="none" stroke="currentColor" stroke-width="1" stroke-linejoin="round" aria-hidden="true"><path d="M20 9 25 13 22 19 17 14Z"/><path d="M17 12 12 13 16 16"/><path d="M22 19 28 25 27 35 22 39 17 31Z"/><path d="M27 31 33 42 28 39"/><path d="M23 22 29 21 26 28"/><path d="M20 39 19 45M25 39 26 45"/><path d="M13 45 31 45"/></svg>
-      <span class="cat-name">Parrots</span>
-      <span class="cat-n">2 works</span>
+      <span class="cat-name">The Canopy</span>
+      <span class="cat-n">10 works</span>
       <span class="cat-go">See <span class="arw">&rarr;</span></span>
     </a>
   </div>
@@ -159,501 +390,482 @@
 <section id="pieces">
   <div class="section-head">
     <h2>Every piece</h2>
-    <span class="viewall" style="color:var(--warm-3)">34 works</span>
+    <span class="viewall" style="color:var(--warm-3)">35 works</span>
   </div>
 
   <div class="filters" id="filters">
-    <button class="fbtn on" data-filter="all">Everything<i>34</i></button>
-    <button class="fbtn" data-filter="Macaw">Macaws<i>23</i></button>
-    <button class="fbtn" data-filter="Cockatoo">Cockatoos<i>4</i></button>
-    <button class="fbtn" data-filter="Eagle">Eagles<i>3</i></button>
-    <button class="fbtn" data-filter="Parrot">Parrots<i>2</i></button>
-    <span class="qchip" id="qchip" hidden>Search <b id="qterm"></b><button type="button" id="qclear" aria-label="Clear the search">&times;</button></span>
+    <div class="frail">
+      <button class="fbtn on" data-filter="all">Everything<i>35</i></button>
+      <button class="fbtn" data-filter="blue-macaws">Blue Macaws<i>4</i></button>
+      <button class="fbtn" data-filter="white-cockatoos">White Cockatoos<i>5</i></button>
+      <button class="fbtn" data-filter="canopy">The Canopy<i>10</i></button>
+      <span class="qchip" id="qchip" hidden>Search <b id="qterm"></b><button type="button" id="qclear" aria-label="Clear the search">&times;</button></span>
+    </div>
     <span class="filter-spacer"></span>
     <select class="sortsel" id="sort" aria-label="Order the works">
       <option value="as-hung">As hung</option>
-      
+      <option value="price-desc">Price, high to low</option>
+      <option value="price-asc">Price, low to high</option>
       <option value="name">Name</option>
     </select>
   </div>
 
   <div class="grid-wrap">
     <div class="grid wide" id="grid">
-      <article data-species="Macaw" data-price="0" data-name="The Amethyst Crown" class="card">
-        <a href="p/amethyst-crown.html" aria-label="The Amethyst Crown">
+      <article class="card" data-species="blue-macaws" data-price="2975" data-name="Assembly" data-slug="assembly" data-mat="Sodalite Flock on Amethyst" data-col="Blue Macaws" data-orbit="../sculpture/360/IMG_1025">
+        <a href="#piece/assembly" aria-label="Assembly — turn the piece">
           <div class="card-img">
-            <img src="../assets/sculptures/_derived/amethyst-crown/card.jpg" alt="The Amethyst Crown — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
-            
+            <img src="../assets/shop/cards/IMG_1025.webp" alt="Assembly — hand-carved sculpture by Phaöra" width="720" height="719" loading="lazy" decoding="async">
           </div>
           <div class="card-body">
-            <h3 class="card-name">The Amethyst Crown</h3>
-            <p class="card-sub">Macaw</p>
-            <div class="card-price poa">On request</div>
+            <h3 class="card-name">Assembly</h3>
+            <p class="card-sub">Sodalite Flock on Amethyst</p>
+            <div class="card-price">$ 2,975</div>
           </div>
         </a>
-        <button class="card-bag" data-add="amethyst-crown" data-name="The Amethyst Crown" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/amethyst-crown/card.jpg" aria-label="Put The Amethyst Crown in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+        <button class="card-bag" data-add="assembly" data-name="Assembly" data-price="2975" data-sub="Sodalite Flock on Amethyst" data-img="../assets/shop/cards/IMG_1025.webp" aria-label="Put Assembly in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
       </article>
-      <article data-species="Macaw" data-price="0" data-name="The Aurora" class="card">
-        <a href="p/aurora.html" aria-label="The Aurora">
+      <article class="card" data-species="white-cockatoos" data-price="2900" data-name="Choir" data-slug="choir" data-mat="White Quartz Trio on Amethyst Cluster" data-col="White Cockatoos" data-orbit="../sculpture/360/IMG_1047">
+        <a href="#piece/choir" aria-label="Choir — turn the piece">
           <div class="card-img">
-            <img src="../assets/sculptures/_derived/aurora/card.jpg" alt="The Aurora — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
-            
+            <img src="../assets/shop/cards/IMG_1047.webp" alt="Choir — hand-carved sculpture by Phaöra" width="426" height="720" loading="lazy" decoding="async">
           </div>
           <div class="card-body">
-            <h3 class="card-name">The Aurora</h3>
-            <p class="card-sub">Macaw</p>
-            <div class="card-price poa">On request</div>
+            <h3 class="card-name">Choir</h3>
+            <p class="card-sub">White Quartz Trio on Amethyst Cluster</p>
+            <div class="card-price">$ 2,900</div>
           </div>
         </a>
-        <button class="card-bag" data-add="aurora" data-name="The Aurora" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/aurora/card.jpg" aria-label="Put The Aurora in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+        <button class="card-bag" data-add="choir" data-name="Choir" data-price="2900" data-sub="White Quartz Trio on Amethyst Cluster" data-img="../assets/shop/cards/IMG_1047.webp" aria-label="Put Choir in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
       </article>
-      <article data-species="Macaw" data-price="0" data-name="The Beacon" class="card">
-        <a href="p/beacon.html" aria-label="The Beacon">
+      <article class="card" data-species="blue-macaws" data-price="2850" data-name="Council" data-slug="council" data-mat="Sodalite Trio on Amethyst" data-col="Blue Macaws" data-orbit="../sculpture/360/IMG_1024">
+        <a href="#piece/council" aria-label="Council — turn the piece">
           <div class="card-img">
-            <img src="../assets/sculptures/_derived/beacon/card.jpg" alt="The Beacon — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
-            
+            <img src="../assets/shop/cards/IMG_1024.webp" alt="Council — hand-carved sculpture by Phaöra" width="682" height="720" loading="lazy" decoding="async">
           </div>
           <div class="card-body">
-            <h3 class="card-name">The Beacon</h3>
-            <p class="card-sub">Macaw</p>
-            <div class="card-price poa">On request</div>
+            <h3 class="card-name">Council</h3>
+            <p class="card-sub">Sodalite Trio on Amethyst</p>
+            <div class="card-price">$ 2,850</div>
           </div>
         </a>
-        <button class="card-bag" data-add="beacon" data-name="The Beacon" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/beacon/card.jpg" aria-label="Put The Beacon in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+        <button class="card-bag" data-add="council" data-name="Council" data-price="2850" data-sub="Sodalite Trio on Amethyst" data-img="../assets/shop/cards/IMG_1024.webp" aria-label="Put Council in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
       </article>
-      <article data-species="Macaw" data-price="0" data-name="The Consort" class="card">
-        <a href="p/consort.html" aria-label="The Consort">
+      <article class="card" data-species="blue-macaws" data-price="2775" data-name="Hollow" data-slug="hollow" data-mat="Sodalite Macaws on Amethyst Cave" data-col="Blue Macaws" data-orbit="../sculpture/360/IMG_1027">
+        <a href="#piece/hollow" aria-label="Hollow — turn the piece">
           <div class="card-img">
-            <img src="../assets/sculptures/_derived/consort/card.jpg" alt="The Consort — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
-            
+            <img src="../assets/shop/cards/IMG_1027.webp" alt="Hollow — hand-carved sculpture by Phaöra" width="479" height="720" loading="lazy" decoding="async">
           </div>
           <div class="card-body">
-            <h3 class="card-name">The Consort</h3>
-            <p class="card-sub">Macaw</p>
-            <div class="card-price poa">On request</div>
+            <h3 class="card-name">Hollow</h3>
+            <p class="card-sub">Sodalite Macaws on Amethyst Cave</p>
+            <div class="card-price">$ 2,775</div>
           </div>
         </a>
-        <button class="card-bag" data-add="consort" data-name="The Consort" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/consort/card.jpg" aria-label="Put The Consort in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+        <button class="card-bag" data-add="hollow" data-name="Hollow" data-price="2775" data-sub="Sodalite Macaws on Amethyst Cave" data-img="../assets/shop/cards/IMG_1027.webp" aria-label="Put Hollow in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
       </article>
-      <article data-species="Macaw" data-price="0" data-name="The Covenant" class="card">
-        <a href="p/covenant.html" aria-label="The Covenant">
+      <article class="card" data-species="white-cockatoos" data-price="2725" data-name="Consorts" data-slug="consorts" data-mat="Golden Quartz Duo on Amethyst" data-col="White Cockatoos" data-orbit="../sculpture/360/IMG_1023">
+        <a href="#piece/consorts" aria-label="Consorts — turn the piece">
           <div class="card-img">
-            <img src="../assets/sculptures/_derived/covenant/card.jpg" alt="The Covenant — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
-            
+            <img src="../assets/shop/cards/IMG_1023.webp" alt="Consorts — hand-carved sculpture by Phaöra" width="519" height="720" loading="lazy" decoding="async">
           </div>
           <div class="card-body">
-            <h3 class="card-name">The Covenant</h3>
-            <p class="card-sub">Macaw</p>
-            <div class="card-price poa">On request</div>
+            <h3 class="card-name">Consorts</h3>
+            <p class="card-sub">Golden Quartz Duo on Amethyst</p>
+            <div class="card-price">$ 2,725</div>
           </div>
         </a>
-        <button class="card-bag" data-add="covenant" data-name="The Covenant" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/covenant/card.jpg" aria-label="Put The Covenant in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+        <button class="card-bag" data-add="consorts" data-name="Consorts" data-price="2725" data-sub="Golden Quartz Duo on Amethyst" data-img="../assets/shop/cards/IMG_1023.webp" aria-label="Put Consorts in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
       </article>
-      <article data-species="Macaw" data-price="0" data-name="The Diviner" class="card">
-        <a href="p/diviner.html" aria-label="The Diviner">
+      <article class="card" data-species="canopy" data-price="2675" data-name="Dawn" data-slug="dawn" data-mat="Rose &amp; White Quartz on Amethyst" data-col="The Canopy" data-orbit="../sculpture/360/IMG_1040">
+        <a href="#piece/dawn" aria-label="Dawn — turn the piece">
           <div class="card-img">
-            <img src="../assets/sculptures/_derived/diviner/card.jpg" alt="The Diviner — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
-            
+            <img src="../assets/shop/cards/IMG_1040.webp" alt="Dawn — hand-carved sculpture by Phaöra" width="439" height="720" loading="lazy" decoding="async">
           </div>
           <div class="card-body">
-            <h3 class="card-name">The Diviner</h3>
-            <p class="card-sub">Macaw</p>
-            <div class="card-price poa">On request</div>
+            <h3 class="card-name">Dawn</h3>
+            <p class="card-sub">Rose &amp; White Quartz on Amethyst</p>
+            <div class="card-price">$ 2,675</div>
           </div>
         </a>
-        <button class="card-bag" data-add="diviner" data-name="The Diviner" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/diviner/card.jpg" aria-label="Put The Diviner in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+        <button class="card-bag" data-add="dawn" data-name="Dawn" data-price="2675" data-sub="Rose &amp; White Quartz on Amethyst" data-img="../assets/shop/cards/IMG_1040.webp" aria-label="Put Dawn in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
       </article>
-      <article data-species="Macaw" data-price="0" data-name="The Ember" class="card">
-        <a href="p/ember.html" aria-label="The Ember">
+      <article class="card" data-species="white-cockatoos" data-price="2625" data-name="Veil" data-slug="veil" data-mat="White Quartz Duo on Amethyst" data-col="White Cockatoos" data-orbit="../sculpture/360/IMG_1042">
+        <a href="#piece/veil" aria-label="Veil — turn the piece">
           <div class="card-img">
-            <img src="../assets/sculptures/_derived/ember/card.jpg" alt="The Ember — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
-            
+            <img src="../assets/shop/cards/IMG_1042.webp" alt="Veil — hand-carved sculpture by Phaöra" width="672" height="720" loading="lazy" decoding="async">
           </div>
           <div class="card-body">
-            <h3 class="card-name">The Ember</h3>
-            <p class="card-sub">Macaw</p>
-            <div class="card-price poa">On request</div>
+            <h3 class="card-name">Veil</h3>
+            <p class="card-sub">White Quartz Duo on Amethyst</p>
+            <div class="card-price">$ 2,625</div>
           </div>
         </a>
-        <button class="card-bag" data-add="ember" data-name="The Ember" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/ember/card.jpg" aria-label="Put The Ember in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+        <button class="card-bag" data-add="veil" data-name="Veil" data-price="2625" data-sub="White Quartz Duo on Amethyst" data-img="../assets/shop/cards/IMG_1042.webp" aria-label="Put Veil in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
       </article>
-      <article data-species="Parrot" data-price="0" data-name="The Emissary" class="card">
-        <a href="p/emissary.html" aria-label="The Emissary">
+      <article class="card" data-species="white-cockatoos" data-price="2575" data-name="Confidants" data-slug="confidants" data-mat="White Quartz Duo on Amethyst" data-col="White Cockatoos" data-orbit="../sculpture/360/IMG_1048">
+        <a href="#piece/confidants" aria-label="Confidants — turn the piece">
           <div class="card-img">
-            <img src="../assets/sculptures/_derived/emissary/card.jpg" alt="The Emissary — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
-            
+            <img src="../assets/shop/cards/IMG_1048.webp" alt="Confidants — hand-carved sculpture by Phaöra" width="459" height="720" loading="lazy" decoding="async">
           </div>
           <div class="card-body">
-            <h3 class="card-name">The Emissary</h3>
-            <p class="card-sub">Parrot</p>
-            <div class="card-price poa">On request</div>
+            <h3 class="card-name">Confidants</h3>
+            <p class="card-sub">White Quartz Duo on Amethyst</p>
+            <div class="card-price">$ 2,575</div>
           </div>
         </a>
-        <button class="card-bag" data-add="emissary" data-name="The Emissary" data-price="0" data-sub="Parrot" data-img="../assets/sculptures/_derived/emissary/card.jpg" aria-label="Put The Emissary in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+        <button class="card-bag" data-add="confidants" data-name="Confidants" data-price="2575" data-sub="White Quartz Duo on Amethyst" data-img="../assets/shop/cards/IMG_1048.webp" aria-label="Put Confidants in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
       </article>
-      <article data-species="Macaw" data-price="0" data-name="The Ezio e Presa" class="card">
-        <a href="p/ezio-e-presa.html" aria-label="The Ezio e Presa">
+      <article class="card" data-species="canopy" data-price="2525" data-name="Murmur" data-slug="murmur" data-mat="Rose Quartz Duo on Amethyst" data-col="The Canopy" data-orbit="../sculpture/360/IMG_1051">
+        <a href="#piece/murmur" aria-label="Murmur — turn the piece">
           <div class="card-img">
-            <img src="../assets/sculptures/_derived/ezio-e-presa/card.jpg" alt="The Ezio e Presa — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
-            
+            <img src="../assets/shop/cards/IMG_1051.webp" alt="Murmur — hand-carved sculpture by Phaöra" width="524" height="720" loading="lazy" decoding="async">
           </div>
           <div class="card-body">
-            <h3 class="card-name">The Ezio e Presa</h3>
-            <p class="card-sub">Macaw</p>
-            <div class="card-price poa">On request</div>
+            <h3 class="card-name">Murmur</h3>
+            <p class="card-sub">Rose Quartz Duo on Amethyst</p>
+            <div class="card-price">$ 2,525</div>
           </div>
         </a>
-        <button class="card-bag" data-add="ezio-e-presa" data-name="The Ezio e Presa" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/ezio-e-presa/card.jpg" aria-label="Put The Ezio e Presa in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+        <button class="card-bag" data-add="murmur" data-name="Murmur" data-price="2525" data-sub="Rose Quartz Duo on Amethyst" data-img="../assets/shop/cards/IMG_1051.webp" aria-label="Put Murmur in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
       </article>
-      <article data-species="Macaw" data-price="0" data-name="The Garnet" class="card">
-        <a href="p/garnet.html" aria-label="The Garnet">
+      <article class="card" data-species="canopy" data-price="2475" data-name="Rosewater" data-slug="rosewater" data-mat="Rose &amp; White Quartz Pair" data-col="The Canopy" data-orbit="../sculpture/360/IMG_1046">
+        <a href="#piece/rosewater" aria-label="Rosewater — turn the piece">
           <div class="card-img">
-            <img src="../assets/sculptures/_derived/garnet/card.jpg" alt="The Garnet — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
-            
+            <img src="../assets/shop/cards/IMG_1046.webp" alt="Rosewater — hand-carved sculpture by Phaöra" width="452" height="720" loading="lazy" decoding="async">
           </div>
           <div class="card-body">
-            <h3 class="card-name">The Garnet</h3>
-            <p class="card-sub">Macaw</p>
-            <div class="card-price poa">On request</div>
+            <h3 class="card-name">Rosewater</h3>
+            <p class="card-sub">Rose &amp; White Quartz Pair</p>
+            <div class="card-price">$ 2,475</div>
           </div>
         </a>
-        <button class="card-bag" data-add="garnet" data-name="The Garnet" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/garnet/card.jpg" aria-label="Put The Garnet in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+        <button class="card-bag" data-add="rosewater" data-name="Rosewater" data-price="2475" data-sub="Rose &amp; White Quartz Pair" data-img="../assets/shop/cards/IMG_1046.webp" aria-label="Put Rosewater in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
       </article>
-      <article data-species="Macaw" data-price="0" data-name="The Gilded Pair" class="card">
-        <a href="p/gilded-pair.html" aria-label="The Gilded Pair">
+      <article class="card" data-species="canopy" data-price="2425" data-name="Verdance" data-slug="verdance" data-mat="Rose Quartz Pair on Serpentine" data-col="The Canopy" data-orbit="../sculpture/360/IMG_1041">
+        <a href="#piece/verdance" aria-label="Verdance — turn the piece">
           <div class="card-img">
-            <img src="../assets/sculptures/_derived/gilded-pair/card.jpg" alt="The Gilded Pair — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
-            
+            <img src="../assets/shop/cards/IMG_1041.webp" alt="Verdance — hand-carved sculpture by Phaöra" width="530" height="720" loading="lazy" decoding="async">
           </div>
           <div class="card-body">
-            <h3 class="card-name">The Gilded Pair</h3>
-            <p class="card-sub">Macaw</p>
-            <div class="card-price poa">On request</div>
+            <h3 class="card-name">Verdance</h3>
+            <p class="card-sub">Rose Quartz Pair on Serpentine</p>
+            <div class="card-price">$ 2,425</div>
           </div>
         </a>
-        <button class="card-bag" data-add="gilded-pair" data-name="The Gilded Pair" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/gilded-pair/card.jpg" aria-label="Put The Gilded Pair in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+        <button class="card-bag" data-add="verdance" data-name="Verdance" data-price="2425" data-sub="Rose Quartz Pair on Serpentine" data-img="../assets/shop/cards/IMG_1041.webp" aria-label="Put Verdance in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
       </article>
-      <article data-species="Macaw" data-price="0" data-name="The Harvest" class="card">
-        <a href="p/harvest.html" aria-label="The Harvest">
+      <article class="card" data-species="blue-macaws" data-price="2375" data-name="Twilight" data-slug="twilight" data-mat="Sodalite Duo on Raw Stone" data-col="Blue Macaws" data-orbit="../sculpture/360/IMG_1038">
+        <a href="#piece/twilight" aria-label="Twilight — turn the piece">
           <div class="card-img">
-            <img src="../assets/sculptures/_derived/harvest/card.jpg" alt="The Harvest — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
-            
+            <img src="../assets/shop/cards/IMG_1038.webp" alt="Twilight — hand-carved sculpture by Phaöra" width="611" height="720" loading="lazy" decoding="async">
           </div>
           <div class="card-body">
-            <h3 class="card-name">The Harvest</h3>
-            <p class="card-sub">Macaw</p>
-            <div class="card-price poa">On request</div>
+            <h3 class="card-name">Twilight</h3>
+            <p class="card-sub">Sodalite Duo on Raw Stone</p>
+            <div class="card-price">$ 2,375</div>
           </div>
         </a>
-        <button class="card-bag" data-add="harvest" data-name="The Harvest" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/harvest/card.jpg" aria-label="Put The Harvest in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+        <button class="card-bag" data-add="twilight" data-name="Twilight" data-price="2375" data-sub="Sodalite Duo on Raw Stone" data-img="../assets/shop/cards/IMG_1038.webp" aria-label="Put Twilight in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
       </article>
-      <article data-species="Macaw" data-price="0" data-name="The Lapis" class="card">
-        <a href="p/lapis.html" aria-label="The Lapis">
+      <article class="card" data-species="canopy" data-price="2300" data-name="Moss" data-slug="moss" data-mat="White &amp; Rose Quartz on Serpentine" data-col="The Canopy" data-orbit="../sculpture/360/IMG_1043">
+        <a href="#piece/moss" aria-label="Moss — turn the piece">
           <div class="card-img">
-            <img src="../assets/sculptures/_derived/lapis/card.jpg" alt="The Lapis — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
-            
+            <img src="../assets/shop/cards/IMG_1043.webp" alt="Moss — hand-carved sculpture by Phaöra" width="393" height="720" loading="lazy" decoding="async">
           </div>
           <div class="card-body">
-            <h3 class="card-name">The Lapis</h3>
-            <p class="card-sub">Macaw</p>
-            <div class="card-price poa">On request</div>
+            <h3 class="card-name">Moss</h3>
+            <p class="card-sub">White &amp; Rose Quartz on Serpentine</p>
+            <div class="card-price">$ 2,300</div>
           </div>
         </a>
-        <button class="card-bag" data-add="lapis" data-name="The Lapis" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/lapis/card.jpg" aria-label="Put The Lapis in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+        <button class="card-bag" data-add="moss" data-name="Moss" data-price="2300" data-sub="White &amp; Rose Quartz on Serpentine" data-img="../assets/shop/cards/IMG_1043.webp" aria-label="Put Moss in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
       </article>
-      <article data-species="Macaw" data-price="0" data-name="The Luminary" class="card">
-        <a href="p/luminary.html" aria-label="The Luminary">
+      <article class="card" data-species="canopy" data-price="2250" data-name="Falcon" data-slug="falcon" data-mat="Rose Quartz Eagle" data-col="The Canopy" data-orbit="../sculpture/360/IMG_1012">
+        <a href="#piece/falcon" aria-label="Falcon — turn the piece">
           <div class="card-img">
-            <img src="../assets/sculptures/_derived/luminary/card.jpg" alt="The Luminary — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
-            
+            <img src="../assets/shop/cards/IMG_1012.webp" alt="Falcon — hand-carved sculpture by Phaöra" width="426" height="720" loading="lazy" decoding="async">
           </div>
           <div class="card-body">
-            <h3 class="card-name">The Luminary</h3>
-            <p class="card-sub">Macaw</p>
-            <div class="card-price poa">On request</div>
+            <h3 class="card-name">Falcon</h3>
+            <p class="card-sub">Rose Quartz Eagle</p>
+            <div class="card-price">$ 2,250</div>
           </div>
         </a>
-        <button class="card-bag" data-add="luminary" data-name="The Luminary" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/luminary/card.jpg" aria-label="Put The Luminary in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+        <button class="card-bag" data-add="falcon" data-name="Falcon" data-price="2250" data-sub="Rose Quartz Eagle" data-img="../assets/shop/cards/IMG_1012.webp" aria-label="Put Falcon in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
       </article>
-      <article data-species="Specimen" data-price="0" data-name="The Maresia" class="card">
-        <a href="p/maresia.html" aria-label="The Maresia">
+      <article class="card" data-species="canopy" data-price="2150" data-name="Petal" data-slug="petal" data-mat="Rose Quartz Duo on Pale Stone" data-col="The Canopy" data-orbit="../sculpture/360/IMG_1052">
+        <a href="#piece/petal" aria-label="Petal — turn the piece">
           <div class="card-img">
-            <img src="../assets/sculptures/_derived/maresia/card.jpg" alt="The Maresia — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
-            
+            <img src="../assets/shop/cards/IMG_1052.webp" alt="Petal — hand-carved sculpture by Phaöra" width="369" height="720" loading="lazy" decoding="async">
           </div>
           <div class="card-body">
-            <h3 class="card-name">The Maresia</h3>
-            <p class="card-sub">Specimen</p>
-            <div class="card-price poa">On request</div>
+            <h3 class="card-name">Petal</h3>
+            <p class="card-sub">Rose Quartz Duo on Pale Stone</p>
+            <div class="card-price">$ 2,150</div>
           </div>
         </a>
-        <button class="card-bag" data-add="maresia" data-name="The Maresia" data-price="0" data-sub="Specimen" data-img="../assets/sculptures/_derived/maresia/card.jpg" aria-label="Put The Maresia in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+        <button class="card-bag" data-add="petal" data-name="Petal" data-price="2150" data-sub="Rose Quartz Duo on Pale Stone" data-img="../assets/shop/cards/IMG_1052.webp" aria-label="Put Petal in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
       </article>
-      <article data-species="Eagle" data-price="0" data-name="The Mariner" class="card">
-        <a href="p/mariner.html" aria-label="The Mariner">
+      <article class="card" data-species="white-cockatoos" data-price="2050" data-name="Updraft" data-slug="updraft" data-mat="White Quartz Bird on Clear Quartz" data-col="White Cockatoos" data-orbit="../sculpture/360/IMG_1015">
+        <a href="#piece/updraft" aria-label="Updraft — turn the piece">
           <div class="card-img">
-            <img src="../assets/sculptures/_derived/mariner/card.jpg" alt="The Mariner — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
-            
+            <img src="../assets/shop/cards/IMG_1015.webp" alt="Updraft — hand-carved sculpture by Phaöra" width="620" height="720" loading="lazy" decoding="async">
           </div>
           <div class="card-body">
-            <h3 class="card-name">The Mariner</h3>
-            <p class="card-sub">Eagle</p>
-            <div class="card-price poa">On request</div>
+            <h3 class="card-name">Updraft</h3>
+            <p class="card-sub">White Quartz Bird on Clear Quartz</p>
+            <div class="card-price">$ 2,050</div>
           </div>
         </a>
-        <button class="card-bag" data-add="mariner" data-name="The Mariner" data-price="0" data-sub="Eagle" data-img="../assets/sculptures/_derived/mariner/card.jpg" aria-label="Put The Mariner in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+        <button class="card-bag" data-add="updraft" data-name="Updraft" data-price="2050" data-sub="White Quartz Bird on Clear Quartz" data-img="../assets/shop/cards/IMG_1015.webp" aria-label="Put Updraft in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
       </article>
-      <article data-species="Macaw" data-price="0" data-name="The Meridian" class="card">
-        <a href="p/meridian.html" aria-label="The Meridian">
+      <article class="card" data-species="canopy" data-price="1950" data-name="Emperor" data-slug="emperor" data-mat="Carved Stone Penguin" data-col="The Canopy" data-orbit="../sculpture/360/IMG_1003">
+        <a href="#piece/emperor" aria-label="Emperor — turn the piece">
           <div class="card-img">
-            <img src="../assets/sculptures/_derived/meridian/card.jpg" alt="The Meridian — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
-            
+            <img src="../assets/shop/cards/IMG_1003.webp" alt="Emperor — hand-carved sculpture by Phaöra" width="345" height="720" loading="lazy" decoding="async">
           </div>
           <div class="card-body">
-            <h3 class="card-name">The Meridian</h3>
-            <p class="card-sub">Macaw</p>
-            <div class="card-price poa">On request</div>
+            <h3 class="card-name">Emperor</h3>
+            <p class="card-sub">Carved Stone Penguin</p>
+            <div class="card-price">$ 1,950</div>
           </div>
         </a>
-        <button class="card-bag" data-add="meridian" data-name="The Meridian" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/meridian/card.jpg" aria-label="Put The Meridian in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+        <button class="card-bag" data-add="emperor" data-name="Emperor" data-price="1950" data-sub="Carved Stone Penguin" data-img="../assets/shop/cards/IMG_1003.webp" aria-label="Put Emperor in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
       </article>
-      <article data-species="Macaw" data-price="0" data-name="The Obsidian" class="card">
-        <a href="p/obsidian.html" aria-label="The Obsidian">
+      <article class="card" data-species="canopy" data-price="1450" data-name="Blush" data-slug="blush" data-mat="Rose Quartz Macaw on Geode" data-col="The Canopy" data-orbit="../sculpture/360/IMG_1008">
+        <a href="#piece/blush" aria-label="Blush — turn the piece">
           <div class="card-img">
-            <img src="../assets/sculptures/_derived/obsidian/card.jpg" alt="The Obsidian — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
-            
+            <img src="../assets/shop/cards/IMG_1008.webp" alt="Blush — hand-carved sculpture by Phaöra" width="278" height="720" loading="lazy" decoding="async">
           </div>
           <div class="card-body">
-            <h3 class="card-name">The Obsidian</h3>
-            <p class="card-sub">Macaw</p>
-            <div class="card-price poa">On request</div>
+            <h3 class="card-name">Blush</h3>
+            <p class="card-sub">Rose Quartz Macaw on Geode</p>
+            <div class="card-price">$ 1,450</div>
           </div>
         </a>
-        <button class="card-bag" data-add="obsidian" data-name="The Obsidian" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/obsidian/card.jpg" aria-label="Put The Obsidian in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+        <button class="card-bag" data-add="blush" data-name="Blush" data-price="1450" data-sub="Rose Quartz Macaw on Geode" data-img="../assets/shop/cards/IMG_1008.webp" aria-label="Put Blush in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
       </article>
-      <article data-species="Macaw" data-price="0" data-name="The Onyx Pair" class="card">
-        <a href="p/onyx-pair.html" aria-label="The Onyx Pair">
+      <article class="card" data-species="canopy" data-price="850" data-name="Stem" data-slug="stem" data-mat="Rose Quartz Bloom on Gold Stem" data-col="The Canopy" data-orbit="../sculpture/360/IMG_1005">
+        <a href="#piece/stem" aria-label="Stem — turn the piece">
           <div class="card-img">
-            <img src="../assets/sculptures/_derived/onyx-pair/card.jpg" alt="The Onyx Pair — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
-            
+            <img src="../assets/shop/cards/IMG_1005.webp" alt="Stem — hand-carved sculpture by Phaöra" width="190" height="720" loading="lazy" decoding="async">
           </div>
           <div class="card-body">
-            <h3 class="card-name">The Onyx Pair</h3>
-            <p class="card-sub">Macaw</p>
-            <div class="card-price poa">On request</div>
+            <h3 class="card-name">Stem</h3>
+            <p class="card-sub">Rose Quartz Bloom on Gold Stem</p>
+            <div class="card-price">$ 850</div>
           </div>
         </a>
-        <button class="card-bag" data-add="onyx-pair" data-name="The Onyx Pair" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/onyx-pair/card.jpg" aria-label="Put The Onyx Pair in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+        <button class="card-bag" data-add="stem" data-name="Stem" data-price="850" data-sub="Rose Quartz Bloom on Gold Stem" data-img="../assets/shop/cards/IMG_1005.webp" aria-label="Put Stem in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
       </article>
-      <article data-species="Eagle" data-price="0" data-name="The Opal" class="card">
-        <a href="p/opal.html" aria-label="The Opal">
+      <article class="card" data-species="" data-price="0" data-name="Fern" data-slug="fern" data-mat="" data-col="" data-orbit="../sculpture/360/IMG_0976">
+        <a href="#piece/fern" aria-label="Fern — turn the piece">
           <div class="card-img">
-            <img src="../assets/sculptures/_derived/opal/card.jpg" alt="The Opal — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
-            
+            <img src="../assets/shop/cards/IMG_0976.webp" alt="Fern — hand-carved sculpture by Phaöra" width="422" height="720" loading="lazy" decoding="async">
           </div>
           <div class="card-body">
-            <h3 class="card-name">The Opal</h3>
-            <p class="card-sub">Eagle</p>
+            <h3 class="card-name">Fern</h3>
+            <p class="card-sub"></p>
             <div class="card-price poa">On request</div>
           </div>
         </a>
-        <button class="card-bag" data-add="opal" data-name="The Opal" data-price="0" data-sub="Eagle" data-img="../assets/sculptures/_derived/opal/card.jpg" aria-label="Put The Opal in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+        <button class="card-bag" data-add="fern" data-name="Fern" data-price="0" data-sub="" data-img="../assets/shop/cards/IMG_0976.webp" aria-label="Put Fern in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
       </article>
-      <article data-species="Macaw" data-price="0" data-name="The Oracle" class="card">
-        <a href="p/oracle.html" aria-label="The Oracle">
+      <article class="card" data-species="" data-price="0" data-name="Orchard" data-slug="orchard" data-mat="" data-col="" data-orbit="../sculpture/360/IMG_0977">
+        <a href="#piece/orchard" aria-label="Orchard — turn the piece">
           <div class="card-img">
-            <img src="../assets/sculptures/_derived/oracle/card.jpg" alt="The Oracle — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
-            
+            <img src="../assets/shop/cards/IMG_0977.webp" alt="Orchard — hand-carved sculpture by Phaöra" width="265" height="720" loading="lazy" decoding="async">
           </div>
           <div class="card-body">
-            <h3 class="card-name">The Oracle</h3>
-            <p class="card-sub">Macaw</p>
+            <h3 class="card-name">Orchard</h3>
+            <p class="card-sub"></p>
             <div class="card-price poa">On request</div>
           </div>
         </a>
-        <button class="card-bag" data-add="oracle" data-name="The Oracle" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/oracle/card.jpg" aria-label="Put The Oracle in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+        <button class="card-bag" data-add="orchard" data-name="Orchard" data-price="0" data-sub="" data-img="../assets/shop/cards/IMG_0977.webp" aria-label="Put Orchard in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
       </article>
-      <article data-species="Eagle" data-price="0" data-name="The Orchid" class="card">
-        <a href="p/orchid.html" aria-label="The Orchid">
+      <article class="card" data-species="" data-price="0" data-name="Azurite" data-slug="azurite" data-mat="" data-col="" data-orbit="../sculpture/360/IMG_0978">
+        <a href="#piece/azurite" aria-label="Azurite — turn the piece">
           <div class="card-img">
-            <img src="../assets/sculptures/_derived/orchid/card.jpg" alt="The Orchid — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
-            
+            <img src="../assets/shop/cards/IMG_0978.webp" alt="Azurite — hand-carved sculpture by Phaöra" width="357" height="720" loading="lazy" decoding="async">
           </div>
           <div class="card-body">
-            <h3 class="card-name">The Orchid</h3>
-            <p class="card-sub">Eagle</p>
+            <h3 class="card-name">Azurite</h3>
+            <p class="card-sub"></p>
             <div class="card-price poa">On request</div>
           </div>
         </a>
-        <button class="card-bag" data-add="orchid" data-name="The Orchid" data-price="0" data-sub="Eagle" data-img="../assets/sculptures/_derived/orchid/card.jpg" aria-label="Put The Orchid in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+        <button class="card-bag" data-add="azurite" data-name="Azurite" data-price="0" data-sub="" data-img="../assets/shop/cards/IMG_0978.webp" aria-label="Put Azurite in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
       </article>
-      <article data-species="Cockatoo" data-price="0" data-name="The Pilgrim" class="card">
-        <a href="p/pilgrim.html" aria-label="The Pilgrim">
+      <article class="card" data-species="" data-price="0" data-name="Frost" data-slug="frost" data-mat="" data-col="" data-orbit="../sculpture/360/IMG_0979">
+        <a href="#piece/frost" aria-label="Frost — turn the piece">
           <div class="card-img">
-            <img src="../assets/sculptures/_derived/pilgrim/card.jpg" alt="The Pilgrim — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
-            
+            <img src="../assets/shop/cards/IMG_0979.webp" alt="Frost — hand-carved sculpture by Phaöra" width="275" height="720" loading="lazy" decoding="async">
           </div>
           <div class="card-body">
-            <h3 class="card-name">The Pilgrim</h3>
-            <p class="card-sub">Cockatoo</p>
+            <h3 class="card-name">Frost</h3>
+            <p class="card-sub"></p>
             <div class="card-price poa">On request</div>
           </div>
         </a>
-        <button class="card-bag" data-add="pilgrim" data-name="The Pilgrim" data-price="0" data-sub="Cockatoo" data-img="../assets/sculptures/_derived/pilgrim/card.jpg" aria-label="Put The Pilgrim in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+        <button class="card-bag" data-add="frost" data-name="Frost" data-price="0" data-sub="" data-img="../assets/shop/cards/IMG_0979.webp" aria-label="Put Frost in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
       </article>
-      <article data-species="Macaw" data-price="0" data-name="The Quartz Twin" class="card">
-        <a href="p/quartz-twin.html" aria-label="The Quartz Twin">
+      <article class="card" data-species="" data-price="0" data-name="Meadow" data-slug="meadow" data-mat="" data-col="" data-orbit="../sculpture/360/IMG_0980">
+        <a href="#piece/meadow" aria-label="Meadow — turn the piece">
           <div class="card-img">
-            <img src="../assets/sculptures/_derived/quartz-twin/card.jpg" alt="The Quartz Twin — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
-            
+            <img src="../assets/shop/cards/IMG_0980.webp" alt="Meadow — hand-carved sculpture by Phaöra" width="334" height="720" loading="lazy" decoding="async">
           </div>
           <div class="card-body">
-            <h3 class="card-name">The Quartz Twin</h3>
-            <p class="card-sub">Macaw</p>
+            <h3 class="card-name">Meadow</h3>
+            <p class="card-sub"></p>
             <div class="card-price poa">On request</div>
           </div>
         </a>
-        <button class="card-bag" data-add="quartz-twin" data-name="The Quartz Twin" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/quartz-twin/card.jpg" aria-label="Put The Quartz Twin in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+        <button class="card-bag" data-add="meadow" data-name="Meadow" data-price="0" data-sub="" data-img="../assets/shop/cards/IMG_0980.webp" aria-label="Put Meadow in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
       </article>
-      <article data-species="Parrot" data-price="0" data-name="The Rose Duet" class="card">
-        <a href="p/rose-duet.html" aria-label="The Rose Duet">
+      <article class="card" data-species="" data-price="0" data-name="Plume" data-slug="plume" data-mat="" data-col="" data-orbit="../sculpture/360/IMG_0981">
+        <a href="#piece/plume" aria-label="Plume — turn the piece">
           <div class="card-img">
-            <img src="../assets/sculptures/_derived/rose-duet/card.jpg" alt="The Rose Duet — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
-            
+            <img src="../assets/shop/cards/IMG_0981.webp" alt="Plume — hand-carved sculpture by Phaöra" width="298" height="720" loading="lazy" decoding="async">
           </div>
           <div class="card-body">
-            <h3 class="card-name">The Rose Duet</h3>
-            <p class="card-sub">Parrot</p>
+            <h3 class="card-name">Plume</h3>
+            <p class="card-sub"></p>
             <div class="card-price poa">On request</div>
           </div>
         </a>
-        <button class="card-bag" data-add="rose-duet" data-name="The Rose Duet" data-price="0" data-sub="Parrot" data-img="../assets/sculptures/_derived/rose-duet/card.jpg" aria-label="Put The Rose Duet in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+        <button class="card-bag" data-add="plume" data-name="Plume" data-price="0" data-sub="" data-img="../assets/shop/cards/IMG_0981.webp" aria-label="Put Plume in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
       </article>
-      <article data-species="Macaw" data-price="0" data-name="The Rose Oracle" class="card">
-        <a href="p/rose-oracle.html" aria-label="The Rose Oracle">
+      <article class="card" data-species="" data-price="0" data-name="Flare" data-slug="flare" data-mat="" data-col="" data-orbit="../sculpture/360/IMG_0982">
+        <a href="#piece/flare" aria-label="Flare — turn the piece">
           <div class="card-img">
-            <img src="../assets/sculptures/_derived/rose-oracle/card.jpg" alt="The Rose Oracle — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
-            
+            <img src="../assets/shop/cards/IMG_0982.webp" alt="Flare — hand-carved sculpture by Phaöra" width="483" height="720" loading="lazy" decoding="async">
           </div>
           <div class="card-body">
-            <h3 class="card-name">The Rose Oracle</h3>
-            <p class="card-sub">Macaw</p>
+            <h3 class="card-name">Flare</h3>
+            <p class="card-sub"></p>
             <div class="card-price poa">On request</div>
           </div>
         </a>
-        <button class="card-bag" data-add="rose-oracle" data-name="The Rose Oracle" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/rose-oracle/card.jpg" aria-label="Put The Rose Oracle in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+        <button class="card-bag" data-add="flare" data-name="Flare" data-price="0" data-sub="" data-img="../assets/shop/cards/IMG_0982.webp" aria-label="Put Flare in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
       </article>
-      <article data-species="Cockatoo" data-price="0" data-name="The Rose Solo" class="card">
-        <a href="p/rose-solo.html" aria-label="The Rose Solo">
+      <article class="card" data-species="" data-price="0" data-name="Alliance" data-slug="alliance" data-mat="" data-col="" data-orbit="../sculpture/360/IMG_0983">
+        <a href="#piece/alliance" aria-label="Alliance — turn the piece">
           <div class="card-img">
-            <img src="../assets/sculptures/_derived/rose-solo/card.jpg" alt="The Rose Solo — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
-            
+            <img src="../assets/shop/cards/IMG_0983.webp" alt="Alliance — hand-carved sculpture by Phaöra" width="594" height="720" loading="lazy" decoding="async">
           </div>
           <div class="card-body">
-            <h3 class="card-name">The Rose Solo</h3>
-            <p class="card-sub">Cockatoo</p>
+            <h3 class="card-name">Alliance</h3>
+            <p class="card-sub"></p>
             <div class="card-price poa">On request</div>
           </div>
         </a>
-        <button class="card-bag" data-add="rose-solo" data-name="The Rose Solo" data-price="0" data-sub="Cockatoo" data-img="../assets/sculptures/_derived/rose-solo/card.jpg" aria-label="Put The Rose Solo in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+        <button class="card-bag" data-add="alliance" data-name="Alliance" data-price="0" data-sub="" data-img="../assets/shop/cards/IMG_0983.webp" aria-label="Put Alliance in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
       </article>
-      <article data-species="Cockatoo" data-price="0" data-name="The Sanctum" class="card">
-        <a href="p/sanctum.html" aria-label="The Sanctum">
+      <article class="card" data-species="" data-price="0" data-name="Orb" data-slug="orb" data-mat="" data-col="" data-orbit="../sculpture/360/IMG_0985">
+        <a href="#piece/orb" aria-label="Orb — turn the piece">
           <div class="card-img">
-            <img src="../assets/sculptures/_derived/sanctum/card.jpg" alt="The Sanctum — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
-            
+            <img src="../assets/shop/cards/IMG_0985.webp" alt="Orb — hand-carved sculpture by Phaöra" width="269" height="720" loading="lazy" decoding="async">
           </div>
           <div class="card-body">
-            <h3 class="card-name">The Sanctum</h3>
-            <p class="card-sub">Cockatoo</p>
+            <h3 class="card-name">Orb</h3>
+            <p class="card-sub"></p>
             <div class="card-price poa">On request</div>
           </div>
         </a>
-        <button class="card-bag" data-add="sanctum" data-name="The Sanctum" data-price="0" data-sub="Cockatoo" data-img="../assets/sculptures/_derived/sanctum/card.jpg" aria-label="Put The Sanctum in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+        <button class="card-bag" data-add="orb" data-name="Orb" data-price="0" data-sub="" data-img="../assets/shop/cards/IMG_0985.webp" aria-label="Put Orb in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
       </article>
-      <article data-species="Macaw" data-price="0" data-name="The Reverie" class="card">
-        <a href="p/reverie.html" aria-label="The Reverie">
+      <article class="card" data-species="" data-price="0" data-name="Obelisk" data-slug="obelisk" data-mat="" data-col="" data-orbit="../sculpture/360/IMG_0987">
+        <a href="#piece/obelisk" aria-label="Obelisk — turn the piece">
           <div class="card-img">
-            <img src="../assets/sculptures/_derived/reverie/card.jpg" alt="The Reverie — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
-            
+            <img src="../assets/shop/cards/IMG_0987.webp" alt="Obelisk — hand-carved sculpture by Phaöra" width="310" height="720" loading="lazy" decoding="async">
           </div>
           <div class="card-body">
-            <h3 class="card-name">The Reverie</h3>
-            <p class="card-sub">Macaw</p>
+            <h3 class="card-name">Obelisk</h3>
+            <p class="card-sub"></p>
             <div class="card-price poa">On request</div>
           </div>
         </a>
-        <button class="card-bag" data-add="reverie" data-name="The Reverie" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/reverie/card.jpg" aria-label="Put The Reverie in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+        <button class="card-bag" data-add="obelisk" data-name="Obelisk" data-price="0" data-sub="" data-img="../assets/shop/cards/IMG_0987.webp" aria-label="Put Obelisk in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
       </article>
-      <article data-species="Macaw" data-price="0" data-name="The Seraph" class="card">
-        <a href="p/seraph.html" aria-label="The Seraph">
+      <article class="card" data-species="" data-price="0" data-name="Gull" data-slug="gull" data-mat="" data-col="" data-orbit="../sculpture/360/IMG_0989">
+        <a href="#piece/gull" aria-label="Gull — turn the piece">
           <div class="card-img">
-            <img src="../assets/sculptures/_derived/seraph/card.jpg" alt="The Seraph — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async" style="filter:brightness(0.94) saturate(0.82)">
-            
+            <img src="../assets/shop/cards/IMG_0989.webp" alt="Gull — hand-carved sculpture by Phaöra" width="389" height="720" loading="lazy" decoding="async">
           </div>
           <div class="card-body">
-            <h3 class="card-name">The Seraph</h3>
-            <p class="card-sub">Macaw</p>
+            <h3 class="card-name">Gull</h3>
+            <p class="card-sub"></p>
             <div class="card-price poa">On request</div>
           </div>
         </a>
-        <button class="card-bag" data-add="seraph" data-name="The Seraph" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/seraph/card.jpg" aria-label="Put The Seraph in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+        <button class="card-bag" data-add="gull" data-name="Gull" data-price="0" data-sub="" data-img="../assets/shop/cards/IMG_0989.webp" aria-label="Put Gull in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
       </article>
-      <article data-species="Cockatoo" data-price="0" data-name="The Sky Pair" class="card">
-        <a href="p/sky-pair.html" aria-label="The Sky Pair">
+      <article class="card" data-species="" data-price="0" data-name="Pillar" data-slug="pillar" data-mat="" data-col="" data-orbit="../sculpture/360/IMG_0991">
+        <a href="#piece/pillar" aria-label="Pillar — turn the piece">
           <div class="card-img">
-            <img src="../assets/sculptures/_derived/sky-pair/card.jpg" alt="The Sky Pair — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
-            
+            <img src="../assets/shop/cards/IMG_0991.webp" alt="Pillar — hand-carved sculpture by Phaöra" width="317" height="720" loading="lazy" decoding="async">
           </div>
           <div class="card-body">
-            <h3 class="card-name">The Sky Pair</h3>
-            <p class="card-sub">Cockatoo</p>
+            <h3 class="card-name">Pillar</h3>
+            <p class="card-sub"></p>
             <div class="card-price poa">On request</div>
           </div>
         </a>
-        <button class="card-bag" data-add="sky-pair" data-name="The Sky Pair" data-price="0" data-sub="Cockatoo" data-img="../assets/sculptures/_derived/sky-pair/card.jpg" aria-label="Put The Sky Pair in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+        <button class="card-bag" data-add="pillar" data-name="Pillar" data-price="0" data-sub="" data-img="../assets/shop/cards/IMG_0991.webp" aria-label="Put Pillar in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
       </article>
-      <article data-species="Macaw" data-price="0" data-name="The Solara" class="card">
-        <a href="p/solara.html" aria-label="The Solara">
+      <article class="card" data-species="" data-price="0" data-name="Jade" data-slug="jade" data-mat="" data-col="" data-orbit="../sculpture/360/IMG_0992">
+        <a href="#piece/jade" aria-label="Jade — turn the piece">
           <div class="card-img">
-            <img src="../assets/sculptures/_derived/solara/card.jpg" alt="The Solara — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
-            
+            <img src="../assets/shop/cards/IMG_0992.webp" alt="Jade — hand-carved sculpture by Phaöra" width="300" height="720" loading="lazy" decoding="async">
           </div>
           <div class="card-body">
-            <h3 class="card-name">The Solara</h3>
-            <p class="card-sub">Macaw</p>
+            <h3 class="card-name">Jade</h3>
+            <p class="card-sub"></p>
             <div class="card-price poa">On request</div>
           </div>
         </a>
-        <button class="card-bag" data-add="solara" data-name="The Solara" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/solara/card.jpg" aria-label="Put The Solara in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+        <button class="card-bag" data-add="jade" data-name="Jade" data-price="0" data-sub="" data-img="../assets/shop/cards/IMG_0992.webp" aria-label="Put Jade in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
       </article>
-      <article data-species="Chair" data-price="0" data-name="The Vigil" class="card">
-        <a href="p/vigil.html" aria-label="The Vigil">
+      <article class="card" data-species="" data-price="0" data-name="Snowcap" data-slug="snowcap" data-mat="" data-col="" data-orbit="../sculpture/360/IMG_0993">
+        <a href="#piece/snowcap" aria-label="Snowcap — turn the piece">
           <div class="card-img">
-            <img src="../assets/sculptures/_derived/vigil/card.jpg" alt="The Vigil — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
-            
+            <img src="../assets/shop/cards/IMG_0993.webp" alt="Snowcap — hand-carved sculpture by Phaöra" width="309" height="720" loading="lazy" decoding="async">
           </div>
           <div class="card-body">
-            <h3 class="card-name">The Vigil</h3>
-            <p class="card-sub">Chair</p>
+            <h3 class="card-name">Snowcap</h3>
+            <p class="card-sub"></p>
             <div class="card-price poa">On request</div>
           </div>
         </a>
-        <button class="card-bag" data-add="vigil" data-name="The Vigil" data-price="0" data-sub="Chair" data-img="../assets/sculptures/_derived/vigil/card.jpg" aria-label="Put The Vigil in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+        <button class="card-bag" data-add="snowcap" data-name="Snowcap" data-price="0" data-sub="" data-img="../assets/shop/cards/IMG_0993.webp" aria-label="Put Snowcap in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
       </article>
-      <article data-species="Macaw" data-price="0" data-name="The Violet" class="card">
-        <a href="p/violet.html" aria-label="The Violet">
+      <article class="card" data-species="" data-price="0" data-name="Cliff" data-slug="cliff" data-mat="" data-col="" data-orbit="../sculpture/360/IMG_0994">
+        <a href="#piece/cliff" aria-label="Cliff — turn the piece">
           <div class="card-img">
-            <img src="../assets/sculptures/_derived/violet/card.jpg" alt="The Violet — hand-carved crystal sculpture" width="640" height="640" loading="lazy" decoding="async">
-            
+            <img src="../assets/shop/cards/IMG_0994.webp" alt="Cliff — hand-carved sculpture by Phaöra" width="591" height="720" loading="lazy" decoding="async">
           </div>
           <div class="card-body">
-            <h3 class="card-name">The Violet</h3>
-            <p class="card-sub">Macaw</p>
+            <h3 class="card-name">Cliff</h3>
+            <p class="card-sub"></p>
             <div class="card-price poa">On request</div>
           </div>
         </a>
-        <button class="card-bag" data-add="violet" data-name="The Violet" data-price="0" data-sub="Macaw" data-img="../assets/sculptures/_derived/violet/card.jpg" aria-label="Put The Violet in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+        <button class="card-bag" data-add="cliff" data-name="Cliff" data-price="0" data-sub="" data-img="../assets/shop/cards/IMG_0994.webp" aria-label="Put Cliff in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
+      </article>
+      <article class="card" data-species="" data-price="0" data-name="Harlequin" data-slug="harlequin" data-mat="" data-col="" data-orbit="../sculpture/360/IMG_0998">
+        <a href="#piece/harlequin" aria-label="Harlequin — turn the piece">
+          <div class="card-img">
+            <img src="../assets/shop/cards/IMG_0998.webp" alt="Harlequin — hand-carved sculpture by Phaöra" width="292" height="720" loading="lazy" decoding="async">
+          </div>
+          <div class="card-body">
+            <h3 class="card-name">Harlequin</h3>
+            <p class="card-sub"></p>
+            <div class="card-price poa">On request</div>
+          </div>
+        </a>
+        <button class="card-bag" data-add="harlequin" data-name="Harlequin" data-price="0" data-sub="" data-img="../assets/shop/cards/IMG_0998.webp" aria-label="Put Harlequin in the bag"><svg width="14" height="14" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3.4 5.4h10.2l-.9 9.2H4.3L3.4 5.4Z"/><path d="M6.2 7.2V4.6a2.3 2.3 0 0 1 4.6 0v2.6"/></svg></button>
       </article>
       <p class="empty" id="empty" hidden>No work matches that.</p>
     </div>
@@ -662,9 +874,9 @@
 
 <!-- THE DIFFERENCE -->
 <section class="band">
-  <div class="band-img">
-    <img src="../assets/sculptures/sanctum/00-hero.jpg" alt="Crystal detail from The Sanctum" loading="lazy" decoding="async">
-  </div>
+  <a class="band-img" href="#piece/flare" aria-label="Flare — turn the piece">
+    <img src="../assets/shop/cards/IMG_0982.webp" alt="Flare — hand-carved sculpture by Phaöra" width="483" height="720" loading="lazy" decoding="async">
+  </a>
   <div class="band-copy">
     <p class="eyebrow">The Pha&ouml;ra difference</p>
     <h3 class="display">Authenticity in every piece</h3>
@@ -672,85 +884,6 @@
     <a href="about.html" class="ghost-btn">Discover more <span class="arw">&rarr;</span></a>
   </div>
 </section>
-
-<script>
-(function(){
-  var grid=document.getElementById('grid');
-  var empty=document.getElementById('empty');
-  var cards=[].slice.call(grid.querySelectorAll('.card'));
-  var order=cards.slice();
-  var chip=document.getElementById('qchip'), term=document.getElementById('qterm');
-  var current='all', query='';
-
-  function apply(){
-    var shown=0;
-    cards.forEach(function(c){
-      var okSpecies = current==='all' || c.getAttribute('data-species')===current;
-      var hay=(c.getAttribute('data-name')+' '+c.getAttribute('data-species')).toLowerCase();
-      var okQuery = !query || hay.indexOf(query)!==-1;
-      var ok = okSpecies && okQuery;
-      c.hidden=!ok;
-      if(ok) shown++;
-    });
-    empty.hidden = shown>0;
-    chip.hidden = !query;
-    term.textContent = query;
-  }
-
-  function sync(){
-    var u=new URL(location);
-    current==='all' ? u.searchParams.delete('only') : u.searchParams.set('only',current);
-    query ? u.searchParams.set('q',query) : u.searchParams.delete('q');
-    history.replaceState(null,'',u);
-  }
-
-  function setFilter(v){
-    current=v;
-    document.querySelectorAll('.fbtn').forEach(function(b){
-      b.classList.toggle('on', b.getAttribute('data-filter')===v);
-    });
-    apply(); sync();
-  }
-
-  document.getElementById('filters').addEventListener('click',function(e){
-    var b=e.target.closest('.fbtn'); if(!b) return;
-    setFilter(b.getAttribute('data-filter'));
-  });
-
-  /* the category row is the same filter, further up the page */
-  document.getElementById('cats').addEventListener('click',function(e){
-    var a=e.target.closest('.cat'); if(!a) return;
-    setFilter(a.getAttribute('data-cat'));
-  });
-
-  document.getElementById('qclear').addEventListener('click',function(){
-    query=''; apply(); sync();
-    var i=document.getElementById('searchInput'); if(i) i.value='';
-  });
-
-  document.getElementById('sort').addEventListener('change',function(){
-    var m=this.value,next=order.slice();
-    function p(c){return parseInt(c.getAttribute('data-price'),10)||0}
-    // An unpriced piece is not a cheap piece. It sorts last either way rather
-    // than pretending to be zero.
-    if(m==='price-desc') next.sort(function(a,b){return p(b)-p(a)});
-    else if(m==='price-asc') next.sort(function(a,b){return (p(a)||Infinity)-(p(b)||Infinity)});
-    else if(m==='name') next.sort(function(a,b){return a.getAttribute('data-name').localeCompare(b.getAttribute('data-name'))});
-    next.forEach(function(c){grid.insertBefore(c,empty)});
-  });
-
-  var params=new URLSearchParams(location.search);
-  var only=params.get('only');
-  if(only) current=only;
-  var q=(params.get('q')||'').trim().toLowerCase();
-  if(q){
-    query=q;
-    var input=document.getElementById('searchInput');
-    if(input) input.value=params.get('q');
-  }
-  if(only) setFilter(only); else apply();
-})();
-</script>
 
 <footer class="foot">
   <div class="foot-in">
@@ -772,6 +905,376 @@
   </div>
 </footer>
 </div>
+
+<!-- THE PIECE, IN PLACE -->
+<div class="sheet" id="sheet" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="sheetName">
+  <div class="sheet-scrim" data-sheet-close></div>
+  <div class="sheet-panel">
+    <button class="icon-btn sheet-x" data-sheet-close aria-label="Close"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.2"><path d="m1 1 16 16M17 1 1 17"/></svg></button>
+    <div class="sheet-stage" id="sheetStage"></div>
+    <div class="sheet-info">
+      <p class="eyebrow" id="sheetCol"></p>
+      <h2 class="sheet-name" id="sheetName"></h2>
+      <p class="sheet-mat" id="sheetMat"></p>
+      <div class="sheet-price" id="sheetPrice"></div>
+      <button class="solid-btn sheet-add" id="sheetAdd" data-add=""><span class="lb-out">Put it in the bag</span><span class="lb-in">In the bag &mdash; take it out</span></button>
+      <p class="sheet-note">Every piece is one of one. The studio confirms a piece is still available and quotes crating and delivery when you send the bag across &mdash; nothing is charged here.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ==========================================================================
+   PHAÖRA — the sky behind the shop.
+   A 2D canvas, deliberately not a second WebGL context: the page already
+   carries thirty-five lazy images and a turntable, and a phone should not be
+   asked to keep two GPU contexts warm to look at a night sky.
+   Stars live in normalised space, so an iOS address bar sliding away resizes
+   the canvas without rebuilding the field.
+   ========================================================================== */
+(function(){
+  var cv=document.getElementById('skyCanvas');
+  if(!cv||!cv.getContext) return;
+  var ctx=cv.getContext('2d');
+  if(!ctx) return;
+
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)');
+  var conn=navigator.connection||{};
+  var thin=conn.saveData===true||/(^|-)(2g|slow-2g)$/.test(conn.effectiveType||'');
+
+  /* The ramp from the site, weighted cool. Gold is a guest: a couple of warm
+     points keep the field from reading as a screensaver, more than that and
+     it stops being a sky. */
+  var TINT=[[226,241,250],[219,230,240],[175,196,216],[100,120,143],[217,188,124],[200,164,94]];
+  function pickTint(){
+    var r=Math.random();
+    if(r<0.40) return 0;
+    if(r<0.68) return 1;
+    if(r<0.90) return 2;
+    if(r<0.968) return 3;
+    return r<0.99?4:5;
+  }
+  /* three depths — size, brightness, drift and parallax all follow from one */
+  var DEPTH=[
+    {r:0.55,lo:0.15,hi:0.38,p:0.030,v:0.00045},
+    {r:0.85,lo:0.26,hi:0.58,p:0.070,v:0.00085},
+    {r:1.30,lo:0.40,hi:0.82,p:0.130,v:0.00135}
+  ];
+
+  var W=0,H=0,DPR=1,stars=[],sprites=[],raf=0,last=0,t0=0;
+  var FRAME=1000/24;        /* a twinkle is slow; 24fps is already generous */
+  var running=false,awake=true,onscreen=true,lit=false;
+
+  function makeSprite(rgb,r){
+    var halo=Math.max(2.2,r*4.2), s=Math.ceil(halo*2), mid=s/2;
+    var cn=document.createElement('canvas'); cn.width=cn.height=s;
+    var g=cn.getContext('2d'), c=rgb[0]+','+rgb[1]+','+rgb[2];
+    var grd=g.createRadialGradient(mid,mid,0,mid,mid,halo);
+    grd.addColorStop(0,'rgba('+c+',1)');
+    grd.addColorStop(Math.min(0.30,r/halo*0.9),'rgba('+c+',0.90)');
+    grd.addColorStop(Math.min(0.70,r/halo*2.1),'rgba('+c+',0.16)');
+    grd.addColorStop(1,'rgba('+c+',0)');
+    g.fillStyle=grd; g.fillRect(0,0,s,s);
+    return cn;
+  }
+  function buildSprites(){
+    sprites=[];
+    for(var d=0;d<DEPTH.length;d++){
+      sprites[d]=[];
+      for(var c=0;c<TINT.length;c++) sprites[d][c]=makeSprite(TINT[c],DEPTH[d].r*DPR);
+    }
+  }
+  function build(){
+    var n=Math.round((W/DPR)*(H/DPR)/3200);
+    n=Math.max(70,Math.min(420,n));
+    if(thin) n=Math.round(n*0.55);
+    stars=[];
+    for(var i=0;i<n;i++){
+      /* weighted to the far layer, so the field has depth rather than a crowd */
+      var d=Math.random()<0.54?0:(Math.random()<0.62?1:2), dep=DEPTH[d];
+      stars.push({
+        d:d,c:pickTint(),
+        x:Math.random(),y:Math.random(),
+        a:dep.lo+Math.random()*(dep.hi-dep.lo),
+        tw:Math.random()<0.32,
+        ph:Math.random()*Math.PI*2,
+        rt:0.32+Math.random()*0.85,
+        vx:dep.v*(0.55+Math.random()*0.9)*(Math.random()<0.5?-1:1)
+      });
+    }
+  }
+  function frac(v){ v%=1; return v<0?v+1:v; }
+
+  function draw(now){
+    if(!W||!H) return;
+    ctx.clearRect(0,0,W,H);
+    var moving=!reduce.matches;
+    var t=moving?(now-t0)/1000:0;
+    var vh=H/DPR||1;
+    var sc=moving?(window.pageYOffset||document.documentElement.scrollTop||0):0;
+    ctx.globalCompositeOperation='lighter';
+    for(var i=0;i<stars.length;i++){
+      var s=stars[i], sp=sprites[s.d][s.c];
+      var x=frac(s.x+(moving?t*s.vx:0))*W;
+      var y=frac(s.y-sc*DEPTH[s.d].p/vh)*H;
+      var a=s.a;
+      if(moving&&s.tw) a*=0.56+0.44*(0.5+0.5*Math.sin(t*s.rt+s.ph));
+      ctx.globalAlpha=a;
+      ctx.drawImage(sp,x-sp.width*0.5,y-sp.height*0.5);
+    }
+    ctx.globalAlpha=1;
+    ctx.globalCompositeOperation='source-over';
+    if(!lit){ lit=true; cv.classList.add('lit'); }
+  }
+  function tick(now){
+    raf=requestAnimationFrame(tick);
+    if(now-last<FRAME) return;
+    last=now;
+    draw(now);
+  }
+  function start(){
+    if(running||reduce.matches||!awake||!onscreen) return;
+    running=true; last=0; raf=requestAnimationFrame(tick);
+  }
+  function stop(){
+    if(!running) return;
+    running=false; cancelAnimationFrame(raf); raf=0;
+  }
+  function resize(){
+    DPR=Math.min(window.devicePixelRatio||1,1.5);   /* stars are points; 1.5 is plenty */
+    var w=cv.clientWidth||window.innerWidth, h=cv.clientHeight||window.innerHeight;
+    var nw=Math.max(1,Math.round(w*DPR)), nh=Math.max(1,Math.round(h*DPR));
+    /* Only a width change is a new sky. Height alone is the address bar. */
+    var rebuild=!stars.length||nw!==W;
+    W=nw; H=nh; cv.width=W; cv.height=H;      /* setting either clears the canvas */
+    buildSprites();
+    if(rebuild) build();
+    draw(performance.now());
+  }
+
+  var rt=0;
+  function later(ms){ clearTimeout(rt); rt=setTimeout(resize,ms); }
+  window.addEventListener('resize',function(){ later(160); },{passive:true});
+  window.addEventListener('orientationchange',function(){ later(280); });
+
+  document.addEventListener('visibilitychange',function(){
+    awake=!document.hidden;
+    if(awake) start(); else stop();
+  });
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(en){
+      onscreen=en[0].isIntersecting;
+      if(onscreen) start(); else stop();
+    },{threshold:0}).observe(cv);
+  }
+  function motion(){
+    if(reduce.matches){ stop(); draw(performance.now()); }
+    else { t0=performance.now(); start(); }
+  }
+  if(reduce.addEventListener) reduce.addEventListener('change',motion);
+  else if(reduce.addListener) reduce.addListener(motion);
+
+  t0=performance.now();
+  resize();
+  motion();
+})();
+</script>
+<script src="../orbit360.js"></script>
 <script src="shop.js"></script>
+<script>
+/* ==========================================================================
+   PHAÖRA — the shop front.
+   Three things: the hero turntable, the filter rail, and the piece sheet.
+   Loaded after shop.js, so window.PhaoraBag is already there.
+   ========================================================================== */
+(function(){
+  'use strict';
+  var conn=navigator.connection||{};
+  var thin=conn.saveData===true||/(^|-)(2g|slow-2g)$/.test(conn.effectiveType||'');
+
+  /* ---------------------------------------------------------------- hero */
+  /* Twelve frames, not a mesh. It costs a third of what the scan did, holds
+     no GPU context open, and it is a piece that is actually for sale.
+     The still inside the div is the fallback: no script, or a metered
+     connection, and it simply stays. */
+  var hero=document.getElementById('heroOrbit');
+  if(hero&&window.Orbit360&&!thin){
+    Orbit360.mount(hero,{
+      dir:hero.getAttribute('data-orbit'),
+      frames:12,
+      label:hero.getAttribute('data-label')
+    });
+  }
+
+  /* ------------------------------------------------------------- filters */
+  var grid=document.getElementById('grid');
+  var empty=document.getElementById('empty');
+  var cards=[].slice.call(grid.querySelectorAll('.card'));
+  var order=cards.slice();
+  var chip=document.getElementById('qchip'), term=document.getElementById('qterm');
+  var current='all', query='';
+
+  function apply(){
+    var shown=0;
+    cards.forEach(function(c){
+      var okColl = current==='all' || c.getAttribute('data-species')===current;
+      var hay=(c.getAttribute('data-name')+' '+c.getAttribute('data-species')+' '+
+               (c.getAttribute('data-mat')||'')).toLowerCase();
+      var ok = okColl && (!query || hay.indexOf(query)!==-1);
+      c.hidden=!ok;
+      if(ok) shown++;
+    });
+    empty.hidden = shown>0;
+    chip.hidden = !query;
+    term.textContent = query;
+  }
+  function sync(){
+    var u=new URL(location);
+    current==='all' ? u.searchParams.delete('only') : u.searchParams.set('only',current);
+    query ? u.searchParams.set('q',query) : u.searchParams.delete('q');
+    history.replaceState(null,'',u);
+  }
+  function setFilter(v){
+    current=v;
+    document.querySelectorAll('.fbtn').forEach(function(b){
+      b.classList.toggle('on', b.getAttribute('data-filter')===v);
+    });
+    apply(); sync();
+  }
+  document.getElementById('filters').addEventListener('click',function(e){
+    var b=e.target.closest('.fbtn'); if(!b) return;
+    setFilter(b.getAttribute('data-filter'));
+  });
+  /* the collection row is the same filter, further up the page */
+  document.getElementById('cats').addEventListener('click',function(e){
+    var a=e.target.closest('.cat'); if(!a) return;
+    setFilter(a.getAttribute('data-cat'));
+  });
+  document.getElementById('qclear').addEventListener('click',function(){
+    query=''; apply(); sync();
+    var i=document.getElementById('searchInput'); if(i) i.value='';
+  });
+  document.getElementById('sort').addEventListener('change',function(){
+    var m=this.value,next=order.slice();
+    function p(c){return parseInt(c.getAttribute('data-price'),10)||0}
+    // An unpriced piece is not a cheap piece. It sorts last either way rather
+    // than pretending to be zero.
+    if(m==='price-desc') next.sort(function(a,b){return p(b)-p(a)});
+    else if(m==='price-asc') next.sort(function(a,b){return (p(a)||Infinity)-(p(b)||Infinity)});
+    else if(m==='name') next.sort(function(a,b){return a.getAttribute('data-name').localeCompare(b.getAttribute('data-name'))});
+    next.forEach(function(c){grid.insertBefore(c,empty)});
+  });
+
+  var params=new URLSearchParams(location.search);
+  var only=params.get('only');
+  if(only) current=only;
+  var q=(params.get('q')||'').trim().toLowerCase();
+  if(q){
+    query=q;
+    var input=document.getElementById('searchInput');
+    if(input) input.value=params.get('q');
+  }
+  if(only) setFilter(only); else apply();
+
+  /* --------------------------------------------------------- piece sheet */
+  /* These thirty-five pieces have no page of their own, so a card opens the
+     piece here instead — with its twelve frames, which is the whole reason
+     they were shot. The route is a real hash, so a piece is linkable, the
+     back button closes it, and nothing can 404. Exactly one viewer is ever
+     mounted: thirty-five turntables on load would be thirty-five turntables
+     nobody asked to see. */
+  var sheet=document.getElementById('sheet');
+  if(!sheet) return;
+  var stage=document.getElementById('sheetStage');
+  var elCol=document.getElementById('sheetCol'), elName=document.getElementById('sheetName');
+  var elMat=document.getElementById('sheetMat'), elPrice=document.getElementById('sheetPrice');
+  var addBtn=document.getElementById('sheetAdd');
+  var openSlug='', lastFocus=null, pushed=false, scrollLock='';
+
+  function money(n){ return '$ ' + Number(n).toLocaleString('en-US'); }
+
+  function fill(card){
+    var bag=card.querySelector('.card-bag');
+    var name=card.getAttribute('data-name');
+    var mat=card.getAttribute('data-mat')||'';
+    var price=parseInt(card.getAttribute('data-price'),10)||0;
+    var slug=card.getAttribute('data-slug');
+
+    var col=card.getAttribute('data-col')||'';
+    elCol.textContent=col; elCol.hidden=!col;
+    elName.textContent=name;
+    elMat.textContent=mat; elMat.hidden=!mat;
+    elPrice.textContent=price?money(price):'On request';
+    elPrice.classList.toggle('poa',!price);
+
+    /* the same five attributes shop.js reads off a card button */
+    addBtn.setAttribute('data-add',slug);
+    addBtn.setAttribute('data-name',name);
+    addBtn.setAttribute('data-price',String(price));
+    addBtn.setAttribute('data-sub',mat);
+    addBtn.setAttribute('data-img',bag?bag.getAttribute('data-img'):'');
+    addBtn.classList.toggle('in', !!(window.PhaoraBag&&window.PhaoraBag.has(slug)));
+
+    stage.innerHTML='';
+    if(window.Orbit360){
+      Orbit360.mount(stage,{dir:card.getAttribute('data-orbit'),frames:12,label:name});
+    }
+  }
+
+  function open(slug){
+    var card=grid.querySelector('.card[data-slug="'+slug.replace(/"/g,'')+'"]');
+    if(!card){ shut(true); return; }
+    if(openSlug===slug) return;
+    openSlug=slug;
+    lastFocus=document.activeElement;
+    fill(card);
+    sheet.hidden=false;
+    sheet.setAttribute('aria-hidden','false');
+    scrollLock=document.body.style.overflow;
+    document.body.style.overflow='hidden';
+    requestAnimationFrame(function(){ sheet.classList.add('on'); });
+    var x=sheet.querySelector('.sheet-x'); if(x) x.focus();
+  }
+
+  function shut(silent){
+    if(!openSlug){ return; }
+    openSlug='';
+    sheet.classList.remove('on');
+    sheet.setAttribute('aria-hidden','true');
+    document.body.style.overflow=scrollLock;
+    /* let the panel go down before the frames are thrown away */
+    setTimeout(function(){
+      if(openSlug) return;
+      sheet.hidden=true;
+      stage.innerHTML='';
+    },320);
+    if(!silent&&lastFocus&&lastFocus.focus) lastFocus.focus();
+  }
+
+  function slugOf(){
+    var h=location.hash||'';
+    return h.indexOf('#piece/')===0 ? decodeURIComponent(h.slice(7)) : '';
+  }
+  function route(){
+    var s=slugOf();
+    if(s) open(s); else shut();
+  }
+  window.addEventListener('hashchange',function(){
+    if(slugOf()) pushed=true;
+    route();
+  });
+  sheet.addEventListener('click',function(e){
+    if(!e.target.closest('[data-sheet-close]')) return;
+    e.preventDefault();
+    if(pushed){ pushed=false; history.back(); }
+    else { history.replaceState(null,'',location.pathname+location.search); route(); }
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key!=='Escape'||!openSlug) return;
+    var x=sheet.querySelector('[data-sheet-close]'); if(x) x.click();
+  });
+  route();
+})();
+</script>
 </body>
 </html>
