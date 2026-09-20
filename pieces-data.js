@@ -61,6 +61,35 @@ const PIECES = [
   { sku: 31, name: 'The Nest', collection: 'canopy', tier: 'entry', price: 14500, material: 'Green Aventurine Duo', status: 'available', image: 'https://phaora.com/IMG_7052.JPG' },
   { sku: 34, name: 'The Embrace', collection: 'canopy', tier: 'entry', price: 14500, material: 'Rose Quartz Chalice Duo', status: 'available', image: 'https://phaora.com/Untitled%20%284320%20x%201350%20px%29%20%282160%20x%201000%20px%29%20%28720%20x%201000%20px%29%20-%2029.png' },
   { sku: 37, name: 'The Tenderness', collection: 'canopy', tier: 'entry', price: 14500, material: 'Rose Quartz Soft Duo', status: 'available', image: 'https://phaora.com/img/IMG_6962.JPG' },
+
+  // ── THE TURNTABLE WORKS ───────────────────────────────────────────
+  // Nineteen pieces shot on the turntable, each one carved from its own
+  // stone — no two alike, and no two priced alike. `orbit` is what the
+  // piece page leads with: twelve frames you can turn, not a photograph.
+  { sku: 45, name: 'Assembly', collection: 'blue-macaws', tier: 'entry', price: 2975, material: 'Sodalite Flock on Amethyst', status: 'available', image: 'sculpture/360/IMG_1025/hero.webp', orbit: 'sculpture/360/IMG_1025' },
+  { sku: 46, name: 'Council', collection: 'blue-macaws', tier: 'entry', price: 2850, material: 'Sodalite Trio on Amethyst', status: 'available', image: 'sculpture/360/IMG_1024/hero.webp', orbit: 'sculpture/360/IMG_1024' },
+  { sku: 47, name: 'Hollow', collection: 'blue-macaws', tier: 'entry', price: 2775, material: 'Sodalite Macaws on Amethyst Cave', status: 'available', image: 'sculpture/360/IMG_1027/hero.webp', orbit: 'sculpture/360/IMG_1027' },
+  { sku: 48, name: 'Twilight', collection: 'blue-macaws', tier: 'entry', price: 2375, material: 'Sodalite Duo on Raw Stone', status: 'available', image: 'sculpture/360/IMG_1038/hero.webp', orbit: 'sculpture/360/IMG_1038' },
+  { sku: 49, name: 'Choir', collection: 'white-cockatoos', tier: 'entry', price: 2900, material: 'White Quartz Trio on Amethyst Cluster', status: 'available', image: 'sculpture/360/IMG_1047/hero.webp', orbit: 'sculpture/360/IMG_1047' },
+  { sku: 50, name: 'Consorts', collection: 'white-cockatoos', tier: 'entry', price: 2725, material: 'Golden Quartz Duo on Amethyst', status: 'available', image: 'sculpture/360/IMG_1023/hero.webp', orbit: 'sculpture/360/IMG_1023' },
+  { sku: 51, name: 'Veil', collection: 'white-cockatoos', tier: 'entry', price: 2625, material: 'White Quartz Duo on Amethyst', status: 'available', image: 'sculpture/360/IMG_1042/hero.webp', orbit: 'sculpture/360/IMG_1042' },
+  { sku: 52, name: 'Confidants', collection: 'white-cockatoos', tier: 'entry', price: 2575, material: 'White Quartz Duo on Amethyst', status: 'available', image: 'sculpture/360/IMG_1048/hero.webp', orbit: 'sculpture/360/IMG_1048' },
+  { sku: 53, name: 'Updraft', collection: 'white-cockatoos', tier: 'entry', price: 2050, material: 'White Quartz Bird on Clear Quartz', status: 'available', image: 'sculpture/360/IMG_1015/hero.webp', orbit: 'sculpture/360/IMG_1015' },
+  { sku: 54, name: 'Dawn', collection: 'canopy', tier: 'entry', price: 2675, material: 'Rose & White Quartz on Amethyst', status: 'available', image: 'sculpture/360/IMG_1040/hero.webp', orbit: 'sculpture/360/IMG_1040' },
+  { sku: 55, name: 'Murmur', collection: 'canopy', tier: 'entry', price: 2525, material: 'Rose Quartz Duo on Amethyst', status: 'available', image: 'sculpture/360/IMG_1051/hero.webp', orbit: 'sculpture/360/IMG_1051' },
+  { sku: 56, name: 'Rosewater', collection: 'canopy', tier: 'entry', price: 2475, material: 'Rose & White Quartz Pair', status: 'available', image: 'sculpture/360/IMG_1046/hero.webp', orbit: 'sculpture/360/IMG_1046' },
+  { sku: 57, name: 'Verdance', collection: 'canopy', tier: 'entry', price: 2425, material: 'Rose Quartz Pair on Serpentine', status: 'available', image: 'sculpture/360/IMG_1041/hero.webp', orbit: 'sculpture/360/IMG_1041' },
+  { sku: 58, name: 'Moss', collection: 'canopy', tier: 'entry', price: 2300, material: 'White & Rose Quartz on Serpentine', status: 'available', image: 'sculpture/360/IMG_1043/hero.webp', orbit: 'sculpture/360/IMG_1043' },
+  { sku: 59, name: 'Falcon', collection: 'canopy', tier: 'entry', price: 2250, material: 'Rose Quartz Eagle', status: 'available', image: 'sculpture/360/IMG_1012/hero.webp', orbit: 'sculpture/360/IMG_1012' },
+  { sku: 60, name: 'Petal', collection: 'canopy', tier: 'entry', price: 2150, material: 'Rose Quartz Duo on Pale Stone', status: 'available', image: 'sculpture/360/IMG_1052/hero.webp', orbit: 'sculpture/360/IMG_1052' },
+  { sku: 61, name: 'Emperor', collection: 'canopy', tier: 'entry', price: 1950, material: 'Carved Stone Penguin', status: 'available', image: 'sculpture/360/IMG_1003/hero.webp', orbit: 'sculpture/360/IMG_1003' },
+  { sku: 62, name: 'Blush', collection: 'canopy', tier: 'entry', price: 1450, material: 'Rose Quartz Macaw on Geode', status: 'available', image: 'sculpture/360/IMG_1008/hero.webp', orbit: 'sculpture/360/IMG_1008' },
+  { sku: 63, name: 'Stem', collection: 'canopy', tier: 'entry', price: 850, material: 'Rose Quartz Bloom on Gold Stem', status: 'available', image: 'sculpture/360/IMG_1005/hero.webp', orbit: 'sculpture/360/IMG_1005' },
+
+  // Named and shot, waiting on a price before they can be listed. Leaving
+  // them out of PIECES rather than guessing a number onto a sculpture:
+  //   0976 Fern, 0977 Orchard, 0978 Azurite, 0979 Frost, 0980 Meadow, 0981 Plume, 0982 Flare, 0983 Alliance
+  //   0985 Orb, 0987 Obelisk, 0989 Gull, 0991 Pillar, 0992 Jade, 0993 Snowcap, 0994 Cliff, 0998 Harlequin
 ];
 
 // Palettes per collection — ordered from darkest to lightest.
