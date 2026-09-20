@@ -142,6 +142,113 @@ const TOWNS = [
     workingIn: 'Cape Elizabeth is Cumberland County, Maine, the open shore below Portland from Two Lights out to Kettle Cove.',
     nearby: ['kennebunkport', 'ogunquit', 'york'],
   },
+  // ── The rest of the Connecticut shore ──────────────────────────────────────
+  //
+  // Every planning region below was read back from the Census geographies
+  // endpoint against a real address off that town's own parcel roll, not from
+  // memory. Two reasons it had to be. Connecticut abolished county government
+  // and Census now returns PLANNING REGIONS, so a page naming "Fairfield
+  // County" would name a thing that no longer exists. And the lookup corrected
+  // me: East Lyme reads Lower Connecticut River Valley, not Southeastern, which
+  // is what its neighbours would have you assume.
+  //
+  // Checked against the five CT pages already written by hand — Guilford,
+  // Madison, Old Saybrook, Old Lyme, Stonington — and all five agree.
+  {
+    slug: 'greenwich', name: 'Greenwich', state: 'ct', county: 'Western Connecticut', coastal: true,
+    workingIn: 'Greenwich is in the Western Connecticut planning region, the westernmost town in the state and the last one before the New York line. Connecticut replaced its county governments with planning regions, so that is the unit that now means anything here. We reach it on the same run as Stamford and Darien.',
+    nearby: ['stamford', 'darien', 'norwalk'],
+  },
+  {
+    slug: 'stamford', name: 'Stamford', state: 'ct', county: 'Western Connecticut', coastal: true,
+    workingIn: 'Stamford is in the Western Connecticut planning region on the Sound between Greenwich and Darien, and the same crews cover all three on one trip.',
+    nearby: ['greenwich', 'darien', 'norwalk'],
+  },
+  {
+    slug: 'darien', name: 'Darien', state: 'ct', county: 'Western Connecticut', coastal: true,
+    workingIn: 'Darien is in the Western Connecticut planning region on the Sound between Stamford and Norwalk, and we run it alongside both.',
+    nearby: ['stamford', 'norwalk', 'westport'],
+  },
+  {
+    slug: 'norwalk', name: 'Norwalk', state: 'ct', county: 'Western Connecticut', coastal: true,
+    workingIn: 'Norwalk is in the Western Connecticut planning region, out on the Sound with the Norwalk Islands off its shore, and the same run takes in Darien and Westport.',
+    nearby: ['darien', 'westport', 'stamford'],
+  },
+  {
+    slug: 'westport', name: 'Westport', state: 'ct', county: 'Western Connecticut', coastal: true,
+    workingIn: 'Westport is in the Western Connecticut planning region where the Saugatuck River meets the Sound, between Norwalk and Fairfield, and we cover it on the same trip as both.',
+    nearby: ['norwalk', 'fairfield', 'darien'],
+  },
+  {
+    slug: 'fairfield', name: 'Fairfield', state: 'ct', county: 'Greater Bridgeport', coastal: true,
+    workingIn: 'Fairfield is in the Greater Bridgeport planning region on the Sound between Westport and Bridgeport, and the same crews run all three.',
+    nearby: ['westport', 'bridgeport', 'stratford'],
+  },
+  {
+    slug: 'bridgeport', name: 'Bridgeport', state: 'ct', county: 'Greater Bridgeport', coastal: true,
+    workingIn: 'Bridgeport is in the Greater Bridgeport planning region, the largest city in Connecticut, on the Sound between Fairfield and Stratford.',
+    nearby: ['fairfield', 'stratford', 'milford'],
+  },
+  {
+    slug: 'stratford', name: 'Stratford', state: 'ct', county: 'Greater Bridgeport', coastal: true,
+    workingIn: 'Stratford is in the Greater Bridgeport planning region at the mouth of the Housatonic River, and we reach it on the same run as Bridgeport and Milford across the water.',
+    nearby: ['bridgeport', 'milford', 'fairfield'],
+  },
+  {
+    slug: 'milford', name: 'Milford', state: 'ct', county: 'South Central Connecticut', coastal: true,
+    workingIn: 'Milford is in the South Central Connecticut planning region on the far side of the Housatonic from Stratford, with a long stretch of Sound shoreline, and we run it alongside West Haven.',
+    nearby: ['stratford', 'west-haven', 'new-haven'],
+  },
+  {
+    slug: 'west-haven', name: 'West Haven', state: 'ct', county: 'South Central Connecticut', coastal: true,
+    workingIn: 'West Haven is in the South Central Connecticut planning region on New Haven Harbour between Milford and New Haven, and the same trip covers all three.',
+    nearby: ['milford', 'new-haven', 'east-haven'],
+  },
+  {
+    slug: 'new-haven', name: 'New Haven', state: 'ct', county: 'South Central Connecticut', coastal: true,
+    workingIn: 'New Haven is in the South Central Connecticut planning region at the head of its own harbour, between West Haven and East Haven, and we cover the three on one run.',
+    nearby: ['west-haven', 'east-haven', 'branford'],
+  },
+  {
+    slug: 'east-haven', name: 'East Haven', state: 'ct', county: 'South Central Connecticut', coastal: true,
+    workingIn: 'East Haven is in the South Central Connecticut planning region on the Sound between New Haven and Branford, and the same crews run it with both.',
+    nearby: ['new-haven', 'branford', 'guilford'],
+  },
+  {
+    slug: 'branford', name: 'Branford', state: 'ct', county: 'South Central Connecticut', coastal: true,
+    workingIn: 'Branford is in the South Central Connecticut planning region, out on the Sound with the Thimble Islands off its shore, between East Haven and Guilford.',
+    nearby: ['east-haven', 'guilford', 'madison'],
+  },
+  {
+    slug: 'clinton', name: 'Clinton', state: 'ct', county: 'Lower Connecticut River Valley', coastal: true,
+    workingIn: 'Clinton is in the Lower Connecticut River Valley planning region on the Sound between Madison and Westbrook, and we run it alongside both.',
+    nearby: ['madison', 'westbrook', 'old-saybrook'],
+  },
+  {
+    slug: 'westbrook', name: 'Westbrook', state: 'ct', county: 'Lower Connecticut River Valley', coastal: true,
+    workingIn: 'Westbrook is in the Lower Connecticut River Valley planning region on the Sound between Clinton and Old Saybrook, on the same run as both.',
+    nearby: ['clinton', 'old-saybrook', 'madison'],
+  },
+  {
+    slug: 'east-lyme', name: 'East Lyme', state: 'ct', county: 'Lower Connecticut River Valley', coastal: true,
+    workingIn: 'East Lyme is in the Lower Connecticut River Valley planning region — Niantic sits on its own bay — east of Old Lyme and next to Waterford, and we reach it on the same trip as both.',
+    nearby: ['old-lyme', 'waterford', 'old-saybrook'],
+  },
+  {
+    slug: 'waterford', name: 'Waterford', state: 'ct', county: 'Southeastern Connecticut', coastal: true,
+    workingIn: 'Waterford is in the Southeastern Connecticut planning region on the Sound between East Lyme and New London, and the same crews cover all three.',
+    nearby: ['east-lyme', 'new-london', 'groton'],
+  },
+  {
+    slug: 'new-london', name: 'New London', state: 'ct', county: 'Southeastern Connecticut', coastal: true,
+    workingIn: 'New London is in the Southeastern Connecticut planning region on the west bank of the Thames where it meets the Sound, opposite Groton, and we run the two together.',
+    nearby: ['groton', 'waterford', 'stonington'],
+  },
+  {
+    slug: 'groton', name: 'Groton', state: 'ct', county: 'Southeastern Connecticut', coastal: true,
+    workingIn: 'Groton is in the Southeastern Connecticut planning region across the Thames from New London, and the same run takes in New London and Stonington to the east.',
+    nearby: ['new-london', 'stonington', 'waterford'],
+  },
   {
     slug: 'stonington', name: 'Stonington', state: 'ct', county: 'Southeastern Connecticut', coastal: true,
     workingIn: 'Stonington sits in the Southeastern Connecticut planning region at the Rhode Island line — Connecticut replaced its county governments with planning regions, so that is the unit that now means anything here. Stonington Borough runs out on its own point, and we reach it on the same trip as Westerly.',
