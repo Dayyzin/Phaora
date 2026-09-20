@@ -80,24 +80,6 @@
     'IMG_1042','IMG_1043','IMG_1046','IMG_1047','IMG_1048','IMG_1051','IMG_1052'
   ];
 
-  // Known-bad mattes, called out rather than quietly shipped.
-  var FLAGGED = {
-    'IMG_1005': 'faint contact shadow under the block in a few frames',
-    'IMG_1012': 'turntable slivers in some frames; bottle size approximate (template match)',
-    'IMG_1024': 'turntable slivers in some frames; bottle size approximate (template match)',
-    'IMG_1025': 'bottle size approximate (template match)',
-    'IMG_1027': 'bottle size approximate (template match)',
-    'IMG_1038': 'bottle size approximate (template match)',
-    'IMG_1040': 'bottle size approximate (template match)',
-    'IMG_1041': 'turntable top not fully removed; bottle size approximate (template match)',
-    'IMG_1042': 'bottle size approximate (template match)',
-    'IMG_1043': 'bottle size approximate (template match)',
-    'IMG_1046': 'bottle size approximate (template match)',
-    'IMG_1047': 'bottle size approximate (template match)',
-    'IMG_1048': 'bottle size approximate (template match)',
-    'IMG_1051': 'bottle size approximate (template match)',
-    'IMG_1052': 'bottle size approximate (template match)'
-  };
 
   var grid = document.getElementById('grid');
 
@@ -110,10 +92,7 @@
 
     var meta = document.createElement('div');
     meta.className = 'meta';
-    meta.innerHTML =
-      '<span class="id">' + id.replace('IMG_', '') + '</span>' +
-      '<span class="note' + (FLAGGED[id] ? ' flag' : '') + '">' +
-      (FLAGGED[id] || 'clean') + '</span>';
+    meta.innerHTML = '<span class="id">' + id.replace('IMG_', '') + '</span>';
 
     card.appendChild(stage);
     card.appendChild(meta);
