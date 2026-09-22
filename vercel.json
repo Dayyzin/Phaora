@@ -1,33 +1,120 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-
   "redirects": [
-    { "source": "/affiliate",  "destination": "/partners", "permanent": true },
-    { "source": "/affiliates", "destination": "/partners", "permanent": true },
-    { "source": "/referral",   "destination": "/partners", "permanent": true },
-    { "source": "/referrals",  "destination": "/partners", "permanent": true },
-    { "source": "/journal",    "destination": "/blog",     "permanent": true },
-    { "source": "/shop/collection.html", "destination": "/shop/", "permanent": true },
-    { "source": "/quote",      "destination": "/estimate/", "permanent": true },
-    { "source": "/portfolio/currently-building",       "destination": "/portfolio/bard-residence/", "permanent": true },
-    { "source": "/portfolio/currently-building/:path*", "destination": "/portfolio/bard-residence/:path*", "permanent": true }
+    {
+      "source": "/affiliate",
+      "destination": "/partners",
+      "permanent": true
+    },
+    {
+      "source": "/affiliates",
+      "destination": "/partners",
+      "permanent": true
+    },
+    {
+      "source": "/referral",
+      "destination": "/partners",
+      "permanent": true
+    },
+    {
+      "source": "/referrals",
+      "destination": "/partners",
+      "permanent": true
+    },
+    {
+      "source": "/journal",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/shop/collection.html",
+      "destination": "/shop/",
+      "permanent": true
+    },
+    {
+      "source": "/quote",
+      "destination": "/estimate/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/currently-building",
+      "destination": "/portfolio/bard-residence/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/currently-building/:path*",
+      "destination": "/portfolio/bard-residence/:path*",
+      "permanent": true
+    }
   ],
-
   "rewrites": [
-    { "source": "/blog",              "destination": "https://crm.phaora.com/blog" },
-    { "source": "/blog/:path*",       "destination": "https://crm.phaora.com/blog/:path*" },
-    { "source": "/api/estimate/:path*", "destination": "https://crm.phaora.com/api/estimate/:path*" },
-    { "source": "/partners",          "destination": "https://crm.phaora.com/partners" },
-    { "source": "/partners/:path*",   "destination": "https://crm.phaora.com/partners/:path*" },
-    { "source": "/l/:path*",          "destination": "https://crm.phaora.com/l/:path*" },
-    { "source": "/a/:path*",          "destination": "https://crm.phaora.com/a/:path*" },
-    { "source": "/r/:path*",          "destination": "https://crm.phaora.com/r/:path*" },
-    { "source": "/rate/:path*",       "destination": "https://crm.phaora.com/rate/:path*" },
-    { "source": "/p/:path*",          "destination": "https://crm.phaora.com/p/:path*" },
-    { "source": "/api/subscribe",     "destination": "https://crm.phaora.com/api/subscribe" },
-    { "source": "/api/l/:path*",      "destination": "https://crm.phaora.com/api/l/:path*" },
-    { "source": "/api/partners/:path*", "destination": "https://crm.phaora.com/api/partners/:path*" },
-    { "source": "/api/review/:path*",   "destination": "https://crm.phaora.com/api/review/:path*" },
-    { "source": "/blog-sitemap.xml",    "destination": "https://crm.phaora.com/sitemap.xml" }
+    {
+      "source": "/blog",
+      "destination": "https://crm.phaora.com/blog"
+    },
+    {
+      "source": "/blog/:path*",
+      "destination": "https://crm.phaora.com/blog/:path*"
+    },
+    {
+      "source": "/api/shop/:path*",
+      "destination": "https://crm.phaora.com/api/shop/:path*"
+    },
+    {
+      "source": "/api/estimate/:path*",
+      "destination": "https://crm.phaora.com/api/estimate/:path*"
+    },
+    {
+      "source": "/partners",
+      "destination": "https://crm.phaora.com/partners"
+    },
+    {
+      "source": "/partners/:path*",
+      "destination": "https://crm.phaora.com/partners/:path*"
+    },
+    {
+      "source": "/l/:path*",
+      "destination": "https://crm.phaora.com/l/:path*"
+    },
+    {
+      "source": "/a/:path*",
+      "destination": "https://crm.phaora.com/a/:path*"
+    },
+    {
+      "source": "/r/:path*",
+      "destination": "https://crm.phaora.com/r/:path*"
+    },
+    {
+      "source": "/rate/:path*",
+      "destination": "https://crm.phaora.com/rate/:path*"
+    },
+    {
+      "source": "/p/:path*",
+      "destination": "https://crm.phaora.com/p/:path*"
+    },
+    {
+      "source": "/m/:path*",
+      "destination": "https://admin.phaora.com/api/m/:path*"
+    },
+    {
+      "source": "/api/subscribe",
+      "destination": "https://crm.phaora.com/api/subscribe"
+    },
+    {
+      "source": "/api/l/:path*",
+      "destination": "https://crm.phaora.com/api/l/:path*"
+    },
+    {
+      "source": "/api/partners/:path*",
+      "destination": "https://crm.phaora.com/api/partners/:path*"
+    },
+    {
+      "source": "/api/review/:path*",
+      "destination": "https://crm.phaora.com/api/review/:path*"
+    },
+    {
+      "source": "/blog-sitemap.xml",
+      "destination": "https://crm.phaora.com/sitemap.xml"
+    }
   ]
 }
