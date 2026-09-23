@@ -37,28 +37,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;display:grid;grid-template-c
 .nav-links{display:flex;gap:24px;align-items:center}
 .nav-links a{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(234,239,245,.38);transition:color .2s;white-space:nowrap}
 .nav-links a:hover{color:rgba(234,239,245,.82)}
-.nav-links a.av-link{color:rgba(79,181,190,.7)}
-.nav-links a.av-link:hover{color:var(--teal)}
-.nav-dropdown{position:relative;display:flex;align-items:center}
-.nav-dropdown-trigger{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(79,181,190,.62);white-space:nowrap;cursor:pointer;display:flex;align-items:center;gap:5px;transition:color .2s}
-.nav-dropdown:hover .nav-dropdown-trigger,.nav-dropdown.active .nav-dropdown-trigger{color:rgba(79,181,190,.95)}
-.nav-dropdown-chevron{opacity:.42;transition:transform .28s,opacity .2s;flex-shrink:0}
-.nav-dropdown:hover .nav-dropdown-chevron{transform:rotate(180deg);opacity:.88}
-.nav-dropdown-panel{position:absolute;top:calc(100% + 18px);left:50%;transform:translateX(-50%) translateY(-6px);background:rgba(2,8,18,.97);border:1px solid rgba(79,181,190,.16);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);min-width:192px;padding:16px 0;opacity:0;pointer-events:none;transition:opacity .22s,transform .22s;z-index:300}
-.nav-dropdown:hover .nav-dropdown-panel{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
-.nav-dropdown-panel::before{content:'';position:absolute;top:-18px;left:0;right:0;height:18px}
-.nav-dp-header{font-size:8px;letter-spacing:.28em;text-transform:uppercase;color:rgba(200,164,94,.38);padding:0 18px 12px;border-bottom:1px solid rgba(79,181,190,.08);margin-bottom:6px}
-.nav-dp-item{display:flex;align-items:baseline;gap:9px;padding:5px 18px;text-decoration:none;transition:background .15s}
-.nav-dp-item:hover{background:rgba(79,181,190,.05)}
-.nav-dp-num{font-family:'Cormorant Garamond',serif;font-size:11px;font-style:italic;color:rgba(79,181,190,.22);width:26px;flex-shrink:0;transition:color .15s}
-.nav-dp-item:hover .nav-dp-num{color:rgba(79,181,190,.52)}
-.nav-dp-name{font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(79,181,190,.48);transition:color .15s}
-.nav-dp-item:hover .nav-dp-name{color:rgba(79,181,190,1)}
-.nav-dp-gold .nav-dp-name{color:rgba(201,168,76,.8)!important}
-.nav-dp-item.nav-dp-gold:hover .nav-dp-name{color:rgba(201,168,76,1)!important}
-.nav-dp-footer{margin-top:8px;padding:10px 18px 0;border-top:1px solid rgba(79,181,190,.08)}
-.nav-dp-footer a{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:rgba(200,164,94,.52);transition:color .2s}
-.nav-dp-footer a:hover{color:rgba(200,164,94,.9)}
 .nav-wm{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:19px;letter-spacing:.42em;text-indent:.42em;text-transform:uppercase;color:var(--pearl);text-align:center;white-space:nowrap}
 .nav-wm .o{color:var(--teal-d)}
 .nav-right{display:flex;gap:20px;align-items:center;justify-content:flex-end}
@@ -170,27 +148,8 @@ footer{position:relative;padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);borde
   <div class="nav-links">
     <a href="/portfolio/">Our Work</a>
     <a href="/hardscape-gallery.html">Hardscape</a>
-    <a href="/shop/">Shop</a>
     <a href="/blog">Journal</a>
     <a href="/contact.html">Contact Us</a>
-    <div class="nav-dropdown">
-      <a class="nav-dropdown-trigger" href="/sculptures.html">Águas Vivas <svg class="nav-dropdown-chevron" width="7" height="5" viewBox="0 0 7 5" fill="none"><path d="M.5 1L3.5 4l3-3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></a>
-      <div class="nav-dropdown-panel">
-        <p class="nav-dp-header">Collection 003 &nbsp;·&nbsp; Eleven Works</p>
-        <a href="/av-alba-bianca.html" class="nav-dp-item nav-dp-gold"><span class="nav-dp-num">I</span><span class="nav-dp-name">Alba Bianca</span></a>
-        <a href="/av-la-corte.html" class="nav-dp-item nav-dp-gold"><span class="nav-dp-num">II</span><span class="nav-dp-name">La Corte</span></a>
-        <a href="/av-crepuscolo.html" class="nav-dp-item"><span class="nav-dp-num">III</span><span class="nav-dp-name">Crepuscolo</span></a>
-        <a href="/av-l-ascesa.html" class="nav-dp-item"><span class="nav-dp-num">IV</span><span class="nav-dp-name">L&rsquo;Ascesa</span></a>
-        <a href="/av-la-protezione.html" class="nav-dp-item"><span class="nav-dp-num">V</span><span class="nav-dp-name">La Protezione</span></a>
-        <a href="/av-il-bacio.html" class="nav-dp-item"><span class="nav-dp-num">VI</span><span class="nav-dp-name">Il Bacio</span></a>
-        <a href="/av-origine.html" class="nav-dp-item"><span class="nav-dp-num">VII</span><span class="nav-dp-name">Origine</span></a>
-        <a href="/av-duetto.html" class="nav-dp-item"><span class="nav-dp-num">VIII</span><span class="nav-dp-name">Duetto</span></a>
-        <a href="/av-maesta.html" class="nav-dp-item"><span class="nav-dp-num">IX</span><span class="nav-dp-name">Maest&agrave;</span></a>
-        <a href="/av-sull-altare.html" class="nav-dp-item"><span class="nav-dp-num">X</span><span class="nav-dp-name">Sull&rsquo;Altare</span></a>
-        <a href="/av-volo-d-amore.html" class="nav-dp-item"><span class="nav-dp-num">XI</span><span class="nav-dp-name">Volo d&rsquo;Amore</span></a>
-        <div class="nav-dp-footer"><a href="/sculptures.html">Enter the collection →</a></div>
-      </div>
-    </div>
   </div>
   <a href="/" class="nav-wm">PHA<span class="o">&Ouml;</span>RA</a>
   <div class="nav-right">
@@ -203,30 +162,11 @@ footer{position:relative;padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);borde
 
 <div class="mobile-menu" id="mobileMenu">
   <div class="mobile-menu-scroll">
-  <a href="/sculptures.html" class="m-viewall-top">View All Sculptures</a>
   <a href="/">Home</a>
   <a href="/portfolio/">Our Work</a>
   <a href="/hardscape-gallery.html">Hardscape</a>
-  <a href="/shop/">Shop</a>
   <a href="/blog">Journal</a>
   <a href="/contact.html">Contact Us</a>
-  <button type="button" class="av m-acc" id="mAvToggle">Águas Vivas <span class="m-chev">&#9662;</span></button>
-  <div class="m-sub" id="mAvSub">
-  <div class="m-eyebrow">Eleven Works</div>
-  <div class="m-birds">
-    <a href="/av-alba-bianca.html" class="m-bird m-gold"><span class="m-num">I</span>Alba Bianca</a>
-    <a href="/av-la-corte.html" class="m-bird m-gold"><span class="m-num">II</span>La Corte</a>
-    <a href="/av-crepuscolo.html" class="m-bird"><span class="m-num">III</span>Crepuscolo</a>
-    <a href="/av-l-ascesa.html" class="m-bird"><span class="m-num">IV</span>L&#8217;Ascesa</a>
-    <a href="/av-la-protezione.html" class="m-bird"><span class="m-num">V</span>La Protezione</a>
-    <a href="/av-il-bacio.html" class="m-bird"><span class="m-num">VI</span>Il Bacio</a>
-    <a href="/av-origine.html" class="m-bird"><span class="m-num">VII</span>Origine</a>
-    <a href="/av-duetto.html" class="m-bird"><span class="m-num">VIII</span>Duetto</a>
-    <a href="/av-maesta.html" class="m-bird"><span class="m-num">IX</span>Maest&agrave;</a>
-    <a href="/av-sull-altare.html" class="m-bird"><span class="m-num">X</span>Sull&#8217;Altare</a>
-    <a href="/av-volo-d-amore.html" class="m-bird"><span class="m-num">XI</span>Volo d&#8217;Amore</a>
-  </div>
-  </div>
   <div class="m-rule"></div>
   <a href="/estimate/" class="m-enquire">Price your project →</a>
   <a href="#" class="m-enquire">Studio</a>
@@ -342,8 +282,6 @@ footer{position:relative;padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);borde
   document.addEventListener('keydown',function(e){
     if(e.key==='Escape'&&menu.classList.contains('open')) setOpen(false);
   });
-  var av=document.getElementById('mAvToggle'),sub=document.getElementById('mAvSub');
-  if(av&&sub){av.addEventListener('click',function(e){e.stopPropagation();av.classList.toggle('open');sub.classList.toggle('open');});}
   menu.querySelectorAll('a').forEach(function(a){
     a.addEventListener('click',function(){ setOpen(false) });
   });

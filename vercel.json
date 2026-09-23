@@ -27,11 +27,6 @@
       "permanent": true
     },
     {
-      "source": "/shop/collection.html",
-      "destination": "/shop/",
-      "permanent": true
-    },
-    {
       "source": "/quote",
       "destination": "/estimate/",
       "permanent": true
@@ -55,10 +50,6 @@
     {
       "source": "/blog/:path*",
       "destination": "https://crm.phaora.com/blog/:path*"
-    },
-    {
-      "source": "/api/shop/:path*",
-      "destination": "https://crm.phaora.com/api/shop/:path*"
     },
     {
       "source": "/api/estimate/:path*",

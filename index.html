@@ -55,27 +55,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;display:grid;grid-template-c
 .nav-links{display:flex;gap:24px;align-items:center}
 .nav-links a{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(234,239,245,.38);transition:color .2s;white-space:nowrap}
 .nav-links a:hover{color:rgba(234,239,245,.82)}
-.nav-links a.av-link{color:rgba(79,181,190,.7)}
-.nav-links a.av-link:hover{color:var(--teal)}
-/* Águas Vivas nav dropdown */
-.nav-dropdown{position:relative;display:flex;align-items:center}
-.nav-dropdown-trigger{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(79,181,190,.62);white-space:nowrap;cursor:pointer;display:flex;align-items:center;gap:5px;transition:color .2s}
-.nav-dropdown:hover .nav-dropdown-trigger,.nav-dropdown.active .nav-dropdown-trigger{color:rgba(79,181,190,.95)}
-.nav-dropdown-chevron{opacity:.42;transition:transform .28s,opacity .2s;flex-shrink:0}
-.nav-dropdown:hover .nav-dropdown-chevron{transform:rotate(180deg);opacity:.88}
-.nav-dropdown-panel{position:absolute;top:calc(100% + 18px);left:50%;transform:translateX(-50%) translateY(-6px);background:rgba(2,8,18,.97);border:1px solid rgba(79,181,190,.16);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);min-width:192px;padding:16px 0;opacity:0;pointer-events:none;transition:opacity .22s,transform .22s;z-index:300}
-.nav-dropdown:hover .nav-dropdown-panel{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
-.nav-dropdown-panel::before{content:'';position:absolute;top:-18px;left:0;right:0;height:18px}
-.nav-dp-header{font-size:8px;letter-spacing:.28em;text-transform:uppercase;color:rgba(200,164,94,.38);padding:0 18px 12px;border-bottom:1px solid rgba(79,181,190,.08);margin-bottom:6px}
-.nav-dp-item{display:flex;align-items:baseline;gap:9px;padding:5px 18px;text-decoration:none;transition:background .15s}
-.nav-dp-item:hover{background:rgba(79,181,190,.05)}
-.nav-dp-num{font-family:'Cormorant Garamond',serif;font-size:11px;font-style:italic;color:rgba(79,181,190,.22);width:26px;flex-shrink:0;transition:color .15s}
-.nav-dp-item:hover .nav-dp-num{color:rgba(79,181,190,.52)}
-.nav-dp-name{font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(79,181,190,.48);transition:color .15s}
-.nav-dp-item:hover .nav-dp-name{color:rgba(79,181,190,1)}.nav-dp-gold .nav-dp-name{color:rgba(201,168,76,.8)!important}.nav-dp-item.nav-dp-gold:hover .nav-dp-name{color:rgba(201,168,76,1)!important}
-.nav-dp-footer{margin-top:8px;padding:10px 18px 0;border-top:1px solid rgba(79,181,190,.08)}
-.nav-dp-footer a{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:rgba(200,164,94,.52);transition:color .2s}
-.nav-dp-footer a:hover{color:rgba(200,164,94,.9)}
 .nav-wm{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:19px;letter-spacing:.42em;text-indent:.42em;text-transform:uppercase;color:var(--pearl);text-align:center;white-space:nowrap}
 .nav-wm .o{color:var(--teal-d)}
 .nav-right{display:flex;gap:20px;align-items:center;justify-content:flex-end}
@@ -350,7 +329,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;display:grid;grid-template-c
 .div-img--void{background:radial-gradient(ellipse 70% 55% at 50% 60%,rgba(14,96,110,.22) 0%,rgba(8,60,72,.10) 42%,transparent 66%),linear-gradient(180deg,#010408 0%,#020C14 50%,#010609 100%)}
 .div-img--sc{background:radial-gradient(ellipse 60% 70% at 50% 40%,rgba(60,50,40,.35) 0%,rgba(30,25,20,.18) 46%,transparent 68%),linear-gradient(180deg,#0A0807 0%,#111009 55%,#0A0806 100%)}
 .div-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(2,6,16,.88) 100%);z-index:1}
-.div-block--02 .div-overlay{background:linear-gradient(180deg,transparent 20%,rgba(2,6,16,.92) 100%),radial-gradient(ellipse 70% 50% at 50% 60%,rgba(14,96,110,.18) 0%,transparent 60%)}
 .div-body{position:relative;z-index:2;padding:clamp(28px,4vw,60px)}
 .div-tag{font-size:9px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:rgba(234,239,245,.3);margin-bottom:6px}
 .div-name{font-size:9px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:rgba(234,239,245,.25);margin-bottom:22px}
@@ -359,15 +337,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;display:grid;grid-template-c
 .div-desc{font-size:13px;line-height:1.72;color:rgba(234,239,245,.42);margin-bottom:26px;max-width:360px}
 .div-link{font-size:10px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:rgba(79,181,190,.65);transition:color .2s}
 .div-link:hover{color:var(--teal)}
-.div-block--02 .div-heading em{color:var(--gold-lt)}
-.div-block--02 .div-link{color:rgba(200,164,94,.65)}
-.div-block--02 .div-link:hover{color:var(--gold-lt)}
-.div-block--03 .div-tag{color:rgba(79,181,190,.55)}
-.div-block--03 .div-collection{font-family:'Cormorant Garamond',serif;font-weight:300;font-style:italic;font-size:clamp(28px,2.8vw,42px);line-height:1;color:var(--silver);margin-bottom:14px;text-shadow:0 0 50px rgba(79,181,190,.28),0 0 100px rgba(20,90,110,.18)}
-.div-block--03 .div-arriving{font-size:9px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:rgba(200,164,94,.6);margin-bottom:24px}
-.div-block--03 .div-link{color:rgba(200,164,94,.65)}
-.div-block--03 .div-link:hover{color:var(--gold-lt)}
-.div-accent{position:absolute;top:0;right:0;width:38%;height:46%;object-fit:cover;object-position:top;opacity:.5;-webkit-mask-image:linear-gradient(200deg,#000 0%,transparent 75%);mask-image:linear-gradient(200deg,#000 0%,transparent 75%);z-index:1;pointer-events:none}
 
 /* SC FEATURED */
 .sc-featured{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid rgba(200,164,94,.22);margin:0 clamp(24px,4vw,60px);overflow:hidden}
@@ -397,17 +366,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;display:grid;grid-template-c
 .ab-link{display:inline-block;font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:rgba(200,164,94,.7);border-bottom:1px solid rgba(200,164,94,.22);padding-bottom:4px;transition:color .2s,border-color .2s;width:fit-content}
 .ab-link:hover{color:var(--gold-lt);border-color:var(--gold-lt)}
 
-/* COUNTDOWN */
-.av-countdown{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:100px clamp(24px,4vw,60px) 100px;margin:0;position:relative;text-align:center}
-.av-countdown::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(200,164,94,.09) 0%,transparent 70%);pointer-events:none;z-index:0}
-.av-cd-label,.av-cd-units,.av-cd-sub{position:relative;z-index:1}
-.av-cd-label{font-size:9px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:rgba(200,164,94,.45)}
-.av-cd-units{display:flex;align-items:center;gap:20px}
-.av-cd-unit{display:flex;flex-direction:column;align-items:center;gap:4px}
-.av-cd-num{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(32px,4vw,56px);line-height:1;color:var(--pearl);letter-spacing:.04em;min-width:2ch;text-align:center}
-.av-cd-name{font-size:8px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:rgba(234,239,245,.25)}
-.av-cd-sep{font-family:'Cormorant Garamond',serif;font-size:28px;color:rgba(200,164,94,.2);line-height:1;margin-bottom:16px}
-.av-cd-sub{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(234,239,245,.18)}
 
 /* GALLERY */
 .gallery-section{padding:clamp(60px,8vw,100px) clamp(24px,4vw,60px);border-bottom:1px solid rgba(234,239,245,.05)}
@@ -418,8 +376,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;display:grid;grid-template-c
 .gf-btn{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;padding:0;color:rgba(234,239,245,.38);border:none;background:none;cursor:pointer;transition:color .2s;white-space:nowrap}
 .gf-btn.active{color:rgba(234,239,245,.82)}
 .gf-btn:hover{color:rgba(234,239,245,.7)}
-.gf-btn.av-filter{color:rgba(79,181,190,.5)}
-.gf-btn.av-filter:hover,.gf-btn.av-filter.active{color:var(--teal)}
 .gallery-masonry{columns:4;column-gap:2px}
 .gm-item{break-inside:avoid;margin-bottom:2px;position:relative;overflow:hidden;cursor:pointer}
 .gm-item img{width:100%;display:block;filter:brightness(.72) saturate(.8);transition:filter .4s,transform .5s}
@@ -465,10 +421,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;display:grid;grid-template-c
   .ab-teaser-body{border-left:none;border-top:1px solid rgba(234,239,245,.05);padding:32px 20px}
   .ab-name{font-size:clamp(36px,8vw,60px)}
 
-  /* Countdown */
-  .av-countdown{padding:60px 20px}
-  .av-cd-units{gap:14px}
-  .av-cd-num{font-size:clamp(28px,7vw,48px)}
 
   /* Gallery */
   .gallery-section{padding:36px 16px 56px !important}
@@ -495,7 +447,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;display:grid;grid-template-c
 @media(max-width:520px){
   .gallery-masonry{columns:1}
   .terr-grid{grid-template-columns:1fr}
-  .av-cd-sep{font-size:18px}
   .divisions .div-block{aspect-ratio:4/3}
 }
 
@@ -641,27 +592,8 @@ img.parallax{top:-8%;height:116%;will-change:transform}
   <div class="nav-links">
     <a href="portfolio/">Our Work</a>
     <a href="hardscape-gallery.html">Hardscape</a>
-    <a href="/shop/">Shop</a>
     <a href="/blog">Journal</a>
     <a href="contact.html">Contact Us</a>
-    <div class="nav-dropdown">
-      <a class="nav-dropdown-trigger" href="sculptures.html">Águas Vivas <svg class="nav-dropdown-chevron" width="7" height="5" viewBox="0 0 7 5" fill="none"><path d="M.5 1L3.5 4l3-3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></a>
-      <div class="nav-dropdown-panel">
-        <p class="nav-dp-header">Collection 003 &nbsp;·&nbsp; Eleven Works</p>
-        <a href="av-alba-bianca.html" class="nav-dp-item nav-dp-gold"><span class="nav-dp-num">I</span><span class="nav-dp-name">Alba Bianca</span></a>
-        <a href="av-la-corte.html" class="nav-dp-item nav-dp-gold"><span class="nav-dp-num">II</span><span class="nav-dp-name">La Corte</span></a>
-        <a href="av-crepuscolo.html" class="nav-dp-item"><span class="nav-dp-num">III</span><span class="nav-dp-name">Crepuscolo</span></a>
-        <a href="av-l-ascesa.html" class="nav-dp-item"><span class="nav-dp-num">IV</span><span class="nav-dp-name">L&rsquo;Ascesa</span></a>
-        <a href="av-la-protezione.html" class="nav-dp-item"><span class="nav-dp-num">V</span><span class="nav-dp-name">La Protezione</span></a>
-        <a href="av-il-bacio.html" class="nav-dp-item"><span class="nav-dp-num">VI</span><span class="nav-dp-name">Il Bacio</span></a>
-        <a href="av-origine.html" class="nav-dp-item"><span class="nav-dp-num">VII</span><span class="nav-dp-name">Origine</span></a>
-        <a href="av-duetto.html" class="nav-dp-item"><span class="nav-dp-num">VIII</span><span class="nav-dp-name">Duetto</span></a>
-        <a href="av-maesta.html" class="nav-dp-item"><span class="nav-dp-num">IX</span><span class="nav-dp-name">Maest&agrave;</span></a>
-        <a href="av-sull-altare.html" class="nav-dp-item"><span class="nav-dp-num">X</span><span class="nav-dp-name">Sull&rsquo;Altare</span></a>
-        <a href="av-volo-d-amore.html" class="nav-dp-item"><span class="nav-dp-num">XI</span><span class="nav-dp-name">Volo d&rsquo;Amore</span></a>
-        <div class="nav-dp-footer"><a href="sculptures.html">Enter the collection →</a></div>
-      </div>
-    </div>
   </div>
   <a href="index.html" class="nav-wm">PHA<span class="o">&Ouml;</span>RA</a>
   <div class="nav-right">
@@ -675,30 +607,11 @@ img.parallax{top:-8%;height:116%;will-change:transform}
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <div class="mobile-menu-scroll">
-  <a href="sculptures.html" class="m-viewall-top">View All Sculptures</a>
   <a href="index.html">Home</a>
   <a href="portfolio/">Our Work</a>
   <a href="hardscape-gallery.html">Hardscape</a>
-  <a href="/shop/">Shop</a>
   <a href="/blog">Journal</a>
   <a href="contact.html">Contact Us</a>
-  <button type="button" class="av m-acc" id="mAvToggle">Águas Vivas <span class="m-chev">&#9662;</span></button>
-  <div class="m-sub" id="mAvSub">
-  <div class="m-eyebrow">Eleven Works</div>
-  <div class="m-birds">
-    <a href="av-alba-bianca.html" class="m-bird m-gold"><span class="m-num">I</span>Alba Bianca</a>
-    <a href="av-la-corte.html" class="m-bird m-gold"><span class="m-num">II</span>La Corte</a>
-    <a href="av-crepuscolo.html" class="m-bird"><span class="m-num">III</span>Crepuscolo</a>
-    <a href="av-l-ascesa.html" class="m-bird"><span class="m-num">IV</span>L&#8217;Ascesa</a>
-    <a href="av-la-protezione.html" class="m-bird"><span class="m-num">V</span>La Protezione</a>
-    <a href="av-il-bacio.html" class="m-bird"><span class="m-num">VI</span>Il Bacio</a>
-    <a href="av-origine.html" class="m-bird"><span class="m-num">VII</span>Origine</a>
-    <a href="av-duetto.html" class="m-bird"><span class="m-num">VIII</span>Duetto</a>
-    <a href="av-maesta.html" class="m-bird"><span class="m-num">IX</span>Maest&agrave;</a>
-    <a href="av-sull-altare.html" class="m-bird"><span class="m-num">X</span>Sull&#8217;Altare</a>
-    <a href="av-volo-d-amore.html" class="m-bird"><span class="m-num">XI</span>Volo d&#8217;Amore</a>
-  </div>
-  </div>
   <div class="m-rule"></div>
   <a href="/estimate/" class="m-enquire">Price your project →</a>
   <a href="#" class="m-enquire">Studio</a>
@@ -906,64 +819,7 @@ img.parallax{top:-8%;height:116%;will-change:transform}
       <a class="div-link" href="hardscape-gallery.html">Enter the gallery →</a>
     </div>
   </div>
-  <div class="div-block div-block--03" id="aguas-vivas">
-    <div class="div-img">
-      <img src="av/phaora-aguasvivas-cover.jpeg" alt="Águas Vivas" loading="lazy" style="filter:brightness(.85) saturate(.95)">
-    </div>
-    <img class="div-accent" src="assets/misc/amethyst-point.jpg" alt="" aria-hidden="true" loading="lazy">
-    <div class="div-overlay"></div>
-    <div class="div-body">
-      <p class="div-tag">Division 03 &nbsp;·&nbsp; New Collection</p>
-      <h3 class="div-collection">Águas Vivas</h3>
-      <p class="div-arriving">Arriving &nbsp;·&nbsp; August MMXXVI</p>
-      <p class="div-desc">Hand-carved crystal from the mountains of Minas Gerais. Eleven works. One collection. Available by private inquiry.</p>
-      <a class="div-link" href="sculptures.html">View the collection →</a>
-    </div>
-  </div>
-  <div class="div-block div-block--02">
-    <div class="div-img div-img--sc">
-      <img src="assets/PHAORA%20IMAGES/Sculptures/canopy/phaora-canopy-1.jpeg" alt="Sculpture" loading="lazy" style="filter:brightness(.55) saturate(.75)">
-    </div>
-    <div class="div-overlay"></div>
-    <div class="div-body">
-      <p class="div-tag">Division 02</p>
-      <p class="div-name">Sculpture</p>
-      <h3 class="div-heading">Form born from <em>the stone itself</em></h3>
-      <p class="div-desc">Crystal birds, amethyst pedestals, driftwood sanctuaries. Each work is a singular commission, owned by one family, built for generations.</p>
-      <a class="div-link" href="sculptures.html">View commissions →</a>
-    </div>
-  </div>
 </section>
-
-<!-- SCULPTURE FEATURED -->
-<section class="sc-featured" id="sculpture">
-  <div class="featured-body" style="width: 640px; height: 400px">
-    <p class="feat-label">Work I of XI &nbsp;·&nbsp; Águas Vivas &nbsp;·&nbsp; August MMXXVI</p>
-    <h2 class="feat-title"><em>Alba Bianca</em> — White Dawn</h2>
-    <dl class="feat-meta" style="height: 200px">
-      <dt>Work</dt><dd>I of XI</dd>
-      <dt>Material</dt><dd>Selenite · Amethyst · 24k Gold</dd>
-      <dt>Origin</dt><dd>Minas Gerais, Brazil</dd>
-      <dt>Edition</dt><dd>Unique — one family</dd>
-      <dt>Availability</dt><dd>Private inquiry only</dd>
-    </dl>
-    <a class="feat-link" href="contact.html" style="padding: 0px 0px 1px; border-width: 0px 0px 1px; line-height: 1.4; letter-spacing: 4px; text-align: left; height: 15px">Request a private introduction →</a>
-  </div>
-  <div class="featured-img">
-    <video autoplay loop muted playsinline style="width: 640px; height: 500px; object-fit: cover; object-position: center 15%; display: block; font-weight: 400; opacity: 0.6"><source src="av/videos/Alba Bianca.mp4" type="video/mp4"></video>
-  </div>
-</section>
-
-<!-- COUNTDOWN
-     No fixed date. A ticking clock with nothing behind it is worse than an
-     honest "opening soon" — the previous version auto-declared the
-     collection open the moment it hit zero, whether or not it actually was.
-     Restore the timer (see removed script below, git history) once a real
-     launch date is set. -->
-<div class="av-countdown" style="gap: 1px">
-  <div class="av-cd-label">Águas Vivas &nbsp;·&nbsp; Opening Soon</div>
-  <div class="av-cd-sub">Private inquiry opens at launch</div>
-</div>
 
 <!-- GALLERY -->
 <section class="gallery-section" id="gallery" style="padding: 20px 56px 100px">
@@ -974,7 +830,6 @@ img.parallax{top:-8%;height:116%;will-change:transform}
   <div class="gallery-filters">
     <button class="gf-btn active" onclick="filterGallery(this,'all')">All</button>
     <button class="gf-btn" onclick="filterGallery(this,'hardscape')">Hardscape</button>
-    <button class="gf-btn av-filter" onclick="filterGallery(this,'aguas-vivas')">Águas Vivas</button>
   </div>
   <div class="gallery-masonry" id="galleryGrid">
     <div class="gm-item" data-div="hardscape"><img src="portfolio/images/wall-granite-steps.jpg" alt="Stone wall with granite steps" loading="lazy"><div class="gm-label"><div class="gm-label-div">Hardscape · 01</div><div class="gm-label-name">Fieldstone Wall &amp; Granite Steps</div></div></div>
@@ -1130,22 +985,6 @@ img.parallax{top:-8%;height:116%;will-change:transform}
   </div>
 </section>
 
-<!-- STUDIO NOTE -->
-<section class="studio">
-  <div class="studio-label">
-    <p class="studio-label-tag">From the studio</p>
-    <dl>
-      <dt>Founder</dt><dd>DMV</dd>
-      <dt>Filed</dt><dd>June MMXXVI</dd>
-      <dt>Subject</dt><dd>What comes next</dd>
-    </dl>
-  </div>
-  <div class="studio-body">
-    <p class="studio-text">The studio has been <em>quiet</em> for two years. Not because nothing was happening — because everything was. Águas Vivas is not a new product. It is the result of forty years of devotion, carried across an ocean, shaped again by hands that have never rushed anything.</p>
-    <blockquote class="studio-quote">The water does not hurry. Neither did we.</blockquote>
-    <p class="studio-sig">— David Machado Vaz &nbsp;·&nbsp; Founder, Phaöra</p>
-  </div>
-</section>
 
 <!-- TERRITORIES -->
 <section class="territories">
@@ -1210,7 +1049,7 @@ img.parallax{top:-8%;height:116%;will-change:transform}
     </div>
     <div class="footer-col">
       <h5>Divisions</h5>
-      <ul><li><a href="/shop/">Shop</a></li><li><a href="hardscape-gallery.html">Hardscape</a></li><li><a href="sculptures.html">Sculpture</a></li><li><a href="sculptures.html" class="av">Águas Vivas</a></li></ul>
+      <ul><li><a href="hardscape-gallery.html">Hardscape</a></li></ul>
     </div>
     <div class="footer-col">
       <h5>Connect</h5>
@@ -1479,16 +1318,10 @@ function filterGallery(btn,div){document.querySelectorAll('.gf-btn').forEach(fun
   document.addEventListener('keydown',function(e){
     if(e.key==='Escape'&&menu.classList.contains('open')) setOpen(false);
   });
-  var av=document.getElementById('mAvToggle'),sub=document.getElementById('mAvSub');
-  if(av&&sub){av.addEventListener('click',function(e){e.stopPropagation();av.classList.toggle('open');sub.classList.toggle('open');});}
   menu.querySelectorAll('a').forEach(function(a){
     a.addEventListener('click',function(){ setOpen(false) });
   });
 })();
-
-// COUNTDOWN — removed along with the fixed date. Re-add once a real launch
-// date is set: target = new Date('YYYY-MM-DDTHH:MM:SS'), restore the
-// av-cd-units markup above, and reinstate the tick()/setInterval pair.
 </script>
 </body>
 </html>

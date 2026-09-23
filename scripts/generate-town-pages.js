@@ -575,7 +575,7 @@ ${nearbyLinks}
     </div>
     <div class="footer-col">
       <h5>Divisions</h5>
-      <ul><li><a href="/shop/">Shop</a></li><li><a href="/hardscape-gallery.html">Hardscape</a></li><li><a href="/sculptures.html">Sculpture</a></li><li><a href="/sculptures.html" class="av">Águas Vivas</a></li></ul>
+      <ul><li><a href="/hardscape-gallery.html">Hardscape</a></li></ul>
     </div>
     <div class="footer-col">
       <h5>Connect</h5>
