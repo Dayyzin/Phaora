@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>PHAÖRA — Thank you</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{--ink:#1F3552;--ink-d:#16202E;--gold:#C8A45E;--pearl:#EAEFF5;--dim:#9DB2C9}
+  html,body{min-height:100%}
+  body{background:var(--ink);color:var(--pearl);
+    font:300 16px/1.6 'Inter',system-ui,sans-serif;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:48px 16px calc(48px + env(safe-area-inset-bottom,0px))}
+  .wrap{max-width:560px;text-align:center}
+  .mark{font-family:Georgia,serif;font-size:12px;letter-spacing:.36em;color:var(--gold)}
+  h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;
+     font-size:clamp(32px,8vw,52px);line-height:1.05;margin:16px 0 0;text-wrap:balance}
+  p{color:var(--dim);margin-top:16px}
+  p strong{color:var(--pearl);font-weight:400}
+  .next{margin-top:30px;padding-top:22px;border-top:1px solid rgba(220,235,250,.14);text-align:left}
+  .next h2{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:500}
+  ol{margin:14px 0 0 18px;color:var(--dim)}
+  ol li{margin-top:9px}
+  .btn{display:inline-block;margin-top:30px;padding:13px 24px;min-height:44px;
+    border:1px solid var(--gold);color:var(--gold);text-decoration:none;
+    font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+  .btn:hover{background:var(--gold);color:var(--ink-d)}
+  .ref{margin-top:24px;font-size:11px;color:rgba(157,178,201,.6);word-break:break-all}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="mark">PHA&Ouml;RA</div>
+    <h1>The piece is yours</h1>
+    <p>Payment went through and the work has come off the floor &mdash; nobody else can
+       buy it. A receipt is on its way to the address you gave Stripe.</p>
+
+    <div class="next">
+      <h2>What happens next</h2>
+      <ol>
+        <li>David measures the piece and builds a crate around its own dimensions.</li>
+        <li>He sends you the crating and delivery figure, with the ways in that suit it.</li>
+        <li>Once that is settled it ships, insured, and you get the tracking.</li>
+      </ol>
+    </div>
+
+    <a class="btn" href="index.html">Back to the shop</a>
+    <p class="ref" id="ref"></p>
+  </div>
+
+<script>
+  /* Stripe hands the session id back on the URL. Shown only so someone
+     emailing about their order has something to quote — it confirms nothing
+     on its own, and the order is already recorded server-side by the webhook. */
+  (function(){
+    var id=new URLSearchParams(location.search).get('session');
+    if(id){ document.getElementById('ref').textContent='Reference '+id; }
+    /* the bag is spent */
+    try{ localStorage.removeItem('phaora_bag'); }catch(_){}
+  })();
+</script>
+</body>
+</html>
