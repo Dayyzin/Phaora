@@ -189,6 +189,10 @@
   .quote:hover{background:var(--teal);color:var(--ink)}
   .legal{margin-top:42px;font-family:var(--mono);font-size:10px;letter-spacing:.13em;color:var(--pearl3);line-height:1.9}
 </style>
+<!-- Galleries marked data-stack become a pile of photos you swipe through;
+     the before/after sliders are never stacked. See assets/stack/. -->
+<link rel="stylesheet" href="/assets/stack/photo-stack.css">
+<script src="/assets/stack/photo-stack.js" defer></script>
 </head>
 <body>
 
@@ -238,7 +242,7 @@
 
   <div class="rule"><b>What Was There</b><i></i></div>
   <p class="say">Nothing here had failed outright. It had just been moving for years — steps settling at different rates, joints opening, the path narrowing every season as the beds grew into it. That's the point at which most people stop noticing, and start walking around it instead.</p>
-  <div class="befores">
+  <div class="befores" data-stack>
     <div><img src="images/before1.jpg" loading="lazy" alt="Before — the old cobble steps seen from the deck, moss and weeds through open joints"></div>
     <div><img src="images/before2.jpg" loading="lazy" alt="Before — the old steps and low walls seen across the gravel driveway"></div>
     <div><img src="images/before3.jpg" loading="lazy" alt="Before — the old flagstone path narrowed to a gap between overgrown hostas"></div>
@@ -304,7 +308,7 @@
       Your browser can't play this clip — the stills below show the same wall.
     </video>
   </div>
-  <div class="duo">
+  <div class="duo" data-stack>
     <figure>
       <div class="frame"><img src="images/wall1.jpg" loading="lazy" alt="A dry-laid fieldstone wall running the length of the driveway, capped flat"></div>
       <p class="cap"><b>Along the drive.</b> No mortar anywhere in it. It stands because each stone was chosen to lock the ones underneath, and it will still be standing when the mortared ones have let go.</p>
@@ -316,7 +320,7 @@
   </div>
 
   <div class="rule"><b>Finished</b><i></i></div>
-  <div class="stills">
+  <div class="stills" data-stack>
     <div><img src="images/fin1.jpg" loading="lazy" alt="The finished flagstone walk seen from the driveway, running to the steps and the deck"></div>
     <div><img src="images/fin2.jpg" loading="lazy" alt="The walk and granite steps with the lamp post and fieldstone wall alongside"></div>
     <div><img src="images/fin3.jpg" loading="lazy" alt="Granite cobble edging where the walk meets the driveway"></div>
