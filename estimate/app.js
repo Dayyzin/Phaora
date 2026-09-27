@@ -269,8 +269,8 @@ function renderRange() {
       a.note ? `<small>${a.note}</small>` : ""
     }</div>`).join("");
   el.innerHTML = `
-    <p class="fig serif">${money(q.low)}<i>–</i>${money(q.high)}</p>
-    <p class="note">${mat ? mat.label : ""} at ${q.quantity.toLocaleString()} ${q.unit === "lf" ? "ft" : "sq ft"} — our own pricing, not an internet average.</p>
+    <p class="fig serif">${q.low === q.high ? money(q.low) : `${money(q.low)}<i>–</i>${money(q.high)}`}</p>
+    <p class="note">${q.low === q.high ? "Our minimum job" : `${mat ? mat.label : ""} at ${q.quantity.toLocaleString()} ${q.unit === "lf" ? "ft" : "sq ft"}`} — our own pricing, not an internet average.</p>
     ${adds ? `<div class="adds">${adds}</div>` : ""}`;
 }
 
