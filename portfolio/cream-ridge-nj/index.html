@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<!-- NAMING (CLAUDE.md rules 4 and 5). Jobs are named for the client surname,
+     and the surname is not confirmed yet, so this page is named for the town
+     it is in until it is. When it is: title, og:title, the h1 and the
+     portfolio card become "The <Surname> ..." — and the folder can move, with
+     a redirect from /portfolio/cream-ridge-nj/ in vercel.json so no link
+     breaks. Scope and start date are left off the facts for the same reason:
+     neither has been given, and neither gets guessed. -->
+<title>Now Building in Cream Ridge, NJ | PHAÖRA</title>
+<meta name="description" content="A job in progress in Cream Ridge, New Jersey — starting where every PHAÖRA job starts, walking the ground with the person who has to live on it.">
+<link rel="canonical" href="https://phaora.com/portfolio/cream-ridge-nj/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Now Building — Cream Ridge, NJ">
+<meta property="og:description" content="Every job starts the same way: the walk.">
+<meta property="og:image" content="https://phaora.com/portfolio/cream-ridge-nj/video/walk-poster.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--pearl:#EAEFF5;--silver:#DBE6F0;--teal:#4FB5BE;--teal-d:rgba(79,181,190,.55);--gold:#C8A45E;--gold-lt:#D9BC7C;--ink:#020610}
+html{background:var(--ink);scroll-behavior:smooth}
+body{background:var(--ink);color:var(--pearl);font-family:'Inter','Helvetica Neue',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.serif{font-family:'Cormorant Garamond',serif}
+a{color:inherit;text-decoration:none}
+img{display:block;width:100%;height:auto}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:300;display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(20px,5vw,56px);height:60px;background:rgba(2,6,16,.9);backdrop-filter:blur(14px);border-bottom:1px solid rgba(79,181,190,.08)}
+nav a.back{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(234,239,245,.42)}
+nav a.back:hover{color:var(--pearl)}
+.wm{font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.4em;text-indent:.4em;text-transform:uppercase}
+.wm .o{color:var(--teal-d)}
+
+.wrap{max-width:1000px;margin:0 auto;padding:0 clamp(20px,5vw,48px)}
+header{padding:clamp(96px,15vh,150px) 0 clamp(28px,5vh,48px)}
+.done{display:inline-flex;align-items:center;gap:10px;font-size:10px;font-weight:500;letter-spacing:.26em;
+  text-transform:uppercase;color:rgba(79,181,190,.92);margin-bottom:20px}
+/* A live job: the dot pulses. When the job finishes it holds steady, as on
+   the Bard page — a blinking light on a finished job says the opposite. */
+.done i{width:7px;height:7px;border-radius:50%;background:var(--teal);box-shadow:0 0 10px 2px rgba(79,181,190,.45);
+  animation:live 2.4s ease-in-out infinite}
+@keyframes live{0%,100%{opacity:1}50%{opacity:.35}}
+@media (prefers-reduced-motion:reduce){.done i{animation:none}}
+h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(34px,6.4vw,72px);line-height:1.04;color:var(--silver);text-wrap:balance}
+h1 span{color:var(--gold-lt)}
+/* The editorial line the h1 used to carry, now under the client's name. */
+.lede{margin-top:14px;font-family:'Cormorant Garamond',serif;font-weight:300;
+  font-size:clamp(20px,3.2vw,32px);line-height:1.24;color:var(--silver);text-wrap:balance}
+.lede em{font-style:italic;color:var(--gold-lt)}
+.sub{margin-top:20px;font-size:clamp(14px,1.5vw,17px);line-height:1.72;color:rgba(234,239,245,.55);max-width:56ch}
+.facts{display:flex;flex-wrap:wrap;gap:0 clamp(24px,5vw,56px);margin-top:30px;padding-top:24px;border-top:1px solid rgba(79,181,190,.1)}
+.facts div{padding:8px 0}
+.facts dt{font-size:9px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:rgba(234,239,245,.3);margin-bottom:6px}
+.facts dd{font-size:14px;color:rgba(234,239,245,.78)}
+
+.stage{padding:clamp(34px,6vh,64px) 0;border-top:1px solid rgba(234,239,245,.055)}
+.stage-head{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.stage-name{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,4vw,44px);font-weight:300;color:var(--pearl);line-height:1}
+.stage-name span{color:var(--gold-lt)}
+.stage-tag{font-size:10px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:rgba(79,181,190,.8)}
+.stage p{font-size:14.5px;line-height:1.75;color:rgba(234,239,245,.56);max-width:60ch;margin-bottom:22px}
+.grid{display:grid;gap:clamp(10px,1.6vw,18px)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g2{grid-template-columns:repeat(2,1fr)}
+@media(max-width:700px){.g3{grid-template-columns:repeat(2,1fr)}.g2{grid-template-columns:1fr}}
+.grid figure{overflow:hidden;border:1px solid rgba(79,181,190,.1);background:#04080f}
+.grid img{transition:transform .7s,filter .5s;filter:brightness(.94)}
+.grid figure:hover img{transform:scale(1.03);filter:brightness(1)}
+  /* Drag-to-compare. Ported from the Sowinski job page and restyled to this
+     page's tokens — teal and gold on ink, not bronze on basalt.
+
+     The whole frame is the drag target rather than a thin handle: a handle
+     you have to hit is unusable with a thumb. touch-action:pan-y so a
+     vertical swipe still scrolls the page instead of being eaten by the
+     wipe. */
+  .cmp{margin:0}
+  .cmp-box{position:relative;overflow:hidden;background:rgba(255,255,255,.03);
+    border:1px solid rgba(79,181,190,.2);touch-action:pan-y;cursor:ew-resize;
+    user-select:none;-webkit-user-select:none;border-radius:2px}
+  .cmp-box img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+  .cmp-before{clip-path:inset(0 calc(100% - var(--pos,50%)) 0 0)}
+  .cmp-tag{position:absolute;top:12px;left:12px;font-size:9.5px;font-weight:500;
+    letter-spacing:.2em;padding:5px 9px;background:rgba(2,6,16,.72);
+    border:1px solid rgba(234,239,245,.14);color:var(--pearl);pointer-events:none}
+  .cmp-tag.after{left:auto;right:12px;border-color:rgba(79,181,190,.45);color:var(--teal)}
+  .cmp-line{position:absolute;top:0;bottom:0;left:var(--pos,50%);width:2px;
+    margin-left:-1px;background:var(--teal);pointer-events:none}
+  .cmp-knob{position:absolute;top:50%;left:var(--pos,50%);width:48px;height:48px;
+    margin:-24px 0 0 -24px;border-radius:50%;background:rgba(2,6,16,.72);
+    border:1.5px solid var(--teal);backdrop-filter:blur(3px);
+    -webkit-backdrop-filter:blur(3px);display:grid;place-items:center;
+    pointer-events:none;color:var(--teal);font-size:15px;line-height:1}
+  .cmp-hint{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);
+    pointer-events:none;font-size:9.5px;font-weight:500;letter-spacing:.18em;
+    color:var(--pearl);background:rgba(2,6,16,.72);
+    border:1px solid rgba(234,239,245,.14);padding:6px 12px;transition:opacity .45s ease}
+  .cmp-box.touched .cmp-hint{opacity:0}
+  .cmp-box:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+  .cmp figcaption{margin-top:11px;font-size:14px;color:rgba(234,239,245,.62);line-height:1.6}
+  .cmp figcaption b{color:var(--pearl);font-weight:400}
+
+  /* A before and an after shot from the same job, labelled in the corner.
+     Not a drag-slider: these two are not framed alike — one looks down the
+     run mid-work, the other along the nose once it was finished — and a
+     slider over mismatched frames reads as a fault rather than a comparison. */
+  .grid figure.ba{position:relative}
+  .ba::after{content:attr(data-tag);position:absolute;top:10px;left:10px;
+    font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9.5px;letter-spacing:.2em;padding:5px 9px;
+    background:rgba(2,6,16,.78);border:1px solid rgba(79,181,190,.22);color:var(--gold-lt)}
+
+.next{padding:clamp(34px,6vh,64px) 0;border-top:1px solid rgba(234,239,245,.055)}
+.next .stage-name{color:rgba(234,239,245,.34)}
+.next p{color:rgba(234,239,245,.4)}
+.close{text-align:center;padding:clamp(52px,9vh,110px) 0 clamp(40px,7vh,80px);border-top:1px solid rgba(234,239,245,.055)}
+.close p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(22px,3.6vw,38px);color:var(--silver);max-width:22ch;margin:0 auto 30px;line-height:1.3}
+.close p span{color:var(--gold-lt)}
+.btn{display:inline-block;border:1px solid rgba(79,181,190,.34);padding:14px 32px;font-size:10px;font-weight:500;
+  letter-spacing:.26em;text-transform:uppercase;color:rgba(79,181,190,.85);transition:border-color .2s,color .2s}
+.btn:hover{border-color:var(--teal);color:var(--teal)}
+footer{border-top:1px solid rgba(234,239,245,.05);padding:32px 0;text-align:center}
+footer p{font-size:11px;letter-spacing:.16em;color:rgba(234,239,245,.24)}
+/* The walk plays as a film, with its sound: this is the conversation, not a
+   loop behind type like the homepage hero. Portrait phone footage is held to
+   a readable column rather than stretched across a desktop. */
+.film{margin:0;border:1px solid rgba(79,181,190,.14);background:#04080f;max-width:560px}
+.film video{display:block;width:100%;height:auto;background:#04080f}
+.film figcaption{padding:12px 14px;font-size:13px;color:rgba(234,239,245,.55);border-top:1px solid rgba(79,181,190,.08)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="back" href="../">&larr; Our work</a>
+  <a class="wm serif" href="/">PHA<span class="o">Ö</span>RA</a>
+  <a class="back" href="/estimate/">Estimate</a>
+</nav>
+
+<div class="wrap">
+  <header>
+    <div class="done"><i></i>Building now</div>
+    <h1>Now building in <span>Cream Ridge</span></h1>
+    <p class="lede">Every job starts the <em>same</em> way.</p>
+    <p class="sub">You walk the ground with the person who has to live on it — where the water goes, what has to stay, what the grade is really doing — before anything is priced. This page follows the job as it is built.</p>
+    <dl class="facts">
+      <div><dt>Where</dt><dd>Cream Ridge, NJ</dd></div>
+      <div><dt>Status</dt><dd>In progress</dd></div>
+    </dl>
+  </header>
+
+  <!-- STAGES RUN OLDEST → NEWEST, the same as the Bard page. Add each stage
+       below the last as it is built. No dates on stages; no street address
+       anywhere (rule 5). -->
+
+  <section class="stage">
+    <div class="stage-head">
+      <div class="stage-name serif">The <span>walk</span></div>
+      <div class="stage-tag">Before anything is priced</div>
+    </div>
+    <p>Walking the property together, end to end: what is there now, what has to change, and what the finished job has to hold up to.</p>
+    <figure class="film">
+      <video controls playsinline preload="metadata" poster="video/walk-poster.jpg">
+        <source src="video/walk.mp4" type="video/mp4">
+      </video>
+      <figcaption>The walkaround, on site in Cream Ridge</figcaption>
+    </figure>
+  </section>
+
+  <section class="next">
+    <div class="stage-head">
+      <div class="stage-name serif">Next</div>
+    </div>
+    <p>The build goes up here stage by stage as it is laid.</p>
+  </section>
+
+  <div class="close">
+    <p>Anyone can set the middle. The edge tells you <span>who built it</span>.</p>
+    <a class="btn" href="/estimate/">Price your project</a>
+  </div>
+</div>
+
+<footer><p>SKYINCH CAPITAL LLC &nbsp;·&nbsp; PHAÖRA &nbsp;·&nbsp; Fully insured</p></footer>
+
+</body>
+</html>
