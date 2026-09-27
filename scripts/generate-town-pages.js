@@ -466,7 +466,7 @@ const TOWNS = [
   // ── New states ─────────────────────────────────────────────────────────────
   //
   // The counties the bench holds outside New England (Harris, Tarrant, Bexar,
-  // Adams CO, Laramie, Natrona, Adams IN). Every town below is a real
+  // Adams CO, Laramie, Natrona, and Adams, Allen, Hamilton, Lake and Marion IN). Every town below is a real
   // municipality in that county, and every neighbour is another page in this
   // list, written 'slug|st' because slugs repeat across states (there is a
   // Monroe in Connecticut). The copy that differs by ground is in REGIONS.
@@ -659,7 +659,7 @@ const TOWNS = [
   {
     slug: 'decatur', name: "Decatur", state: 'in', county: 'Adams',
     workingIn: "Decatur is the seat of Adams County, Indiana, and we cover it alongside Berne, Geneva and Monroe.",
-    nearby: ['berne|in', 'geneva|in', 'monroe|in'],
+    nearby: ['berne|in', 'geneva|in', 'monroe|in', 'fort-wayne|in'],
   },
   {
     slug: 'berne', name: "Berne", state: 'in', county: 'Adams',
@@ -675,6 +675,57 @@ const TOWNS = [
     slug: 'monroe', name: "Monroe", state: 'in', county: 'Adams',
     workingIn: "Monroe is Adams County, Indiana, between Decatur and Berne, and we cover it alongside both.",
     nearby: ['decatur|in', 'berne|in', 'geneva|in'],
+  },
+  // Indiana beyond Adams: Marion, Allen, Hamilton and Lake are on file too.
+  {
+    slug: 'indianapolis', name: "Indianapolis", state: 'in', county: 'Marion',
+    workingIn: "Indianapolis is the seat of Marion County and the capital of Indiana, and we cover it alongside Carmel and Fishers to the north.",
+    nearby: ['carmel|in', 'fishers|in', 'westfield|in'],
+  },
+  {
+    slug: 'fort-wayne', name: "Fort Wayne", state: 'in', county: 'Allen',
+    workingIn: "Fort Wayne is the seat of Allen County, Indiana, and we cover it alongside Decatur to the south.",
+    nearby: ['decatur|in', 'monroe|in', 'berne|in'],
+  },
+  {
+    slug: 'carmel', name: "Carmel", state: 'in', county: 'Hamilton',
+    workingIn: "Carmel is Hamilton County, Indiana, just north of Indianapolis, and we cover it alongside Westfield and Fishers.",
+    nearby: ['westfield|in', 'fishers|in', 'noblesville|in'],
+  },
+  {
+    slug: 'fishers', name: "Fishers", state: 'in', county: 'Hamilton',
+    workingIn: "Fishers is Hamilton County, Indiana, northeast of Indianapolis, and we cover it alongside Carmel and Noblesville.",
+    nearby: ['carmel|in', 'noblesville|in', 'indianapolis|in'],
+  },
+  {
+    slug: 'noblesville', name: "Noblesville", state: 'in', county: 'Hamilton',
+    workingIn: "Noblesville is the seat of Hamilton County, Indiana, and we cover it alongside Fishers and Westfield.",
+    nearby: ['fishers|in', 'westfield|in', 'carmel|in'],
+  },
+  {
+    slug: 'westfield', name: "Westfield", state: 'in', county: 'Hamilton',
+    workingIn: "Westfield is Hamilton County, Indiana, north of Carmel, and we cover it alongside Carmel and Noblesville.",
+    nearby: ['carmel|in', 'noblesville|in', 'fishers|in'],
+  },
+  {
+    slug: 'crown-point', name: "Crown Point", state: 'in', county: 'Lake',
+    workingIn: "Crown Point is the seat of Lake County, Indiana, and we cover it alongside Merrillville and Schererville.",
+    nearby: ['merrillville|in', 'schererville|in', 'munster|in'],
+  },
+  {
+    slug: 'merrillville', name: "Merrillville", state: 'in', county: 'Lake',
+    workingIn: "Merrillville is Lake County, Indiana, north of Crown Point, and we cover it alongside Crown Point and Schererville.",
+    nearby: ['crown-point|in', 'schererville|in', 'munster|in'],
+  },
+  {
+    slug: 'schererville', name: "Schererville", state: 'in', county: 'Lake',
+    workingIn: "Schererville is Lake County, Indiana, and we cover it alongside Munster, Merrillville and Crown Point.",
+    nearby: ['munster|in', 'merrillville|in', 'crown-point|in'],
+  },
+  {
+    slug: 'munster', name: "Munster", state: 'in', county: 'Lake',
+    workingIn: "Munster is Lake County, Indiana, at the Illinois line, and we cover it alongside Schererville.",
+    nearby: ['schererville|in', 'merrillville|in', 'crown-point|in'],
   },
 ];
 
