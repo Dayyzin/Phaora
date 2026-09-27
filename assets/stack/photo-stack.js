@@ -1,6 +1,6 @@
 /*
- * Photo stack — turns each .stage .grid of photos on a job page into a pile of
- * prints. Swipe the top one off either way, or tap it, and it goes to the
+ * Photo stack — turns each .stage .grid of photos on a job page, and any
+ * container marked data-stack, into a pile of prints. Swipe the top one off either way, or tap it, and it goes to the
  * bottom of the pile; the next one is on top. Arrow keys, Space and Enter do
  * the same for a keyboard.
  *
@@ -24,8 +24,10 @@
   function pad(n) { return n < 10 ? '0' + n : String(n); }
 
   function build(grid) {
+    // A before/after slider is dragged sideways to work; a pile would fight it.
+    if (grid.querySelector('.cmp')) return;
     var figs = Array.prototype.slice.call(grid.children).filter(function (el) {
-      return el.tagName === 'FIGURE' && el.querySelector('img');
+      return (el.tagName === 'FIGURE' || el.tagName === 'DIV') && el.querySelector('img');
     });
     if (figs.length < 2) return;
 
@@ -41,12 +43,17 @@
     foot.className = 'pstack-foot';
     var count = document.createElement('span');
     count.className = 'pstack-count';
+    // A photo that carries a caption keeps it: the top print's caption is
+    // shown under the pile and changes with it.
+    var cap = document.createElement('div');
+    cap.className = 'pstack-cap';
     var hint = document.createElement('span');
     hint.className = 'pstack-hint';
     hint.textContent = 'Swipe through';
     foot.appendChild(count);
     foot.appendChild(hint);
     wrap.appendChild(deck);
+    wrap.appendChild(cap);
     wrap.appendChild(foot);
 
     figs.forEach(function (fig) {
@@ -55,6 +62,8 @@
       fill.className = 'pstack-fill';
       fig.insertBefore(fill, fig.firstChild);
       fig.classList.add('pstack-card');
+      var c = fig.querySelector('.cap, figcaption');
+      if (c) { fig._cap = c.innerHTML; c.style.display = 'none'; }
       fig.setAttribute('aria-hidden', 'true');
       var setFill = function () { fill.style.backgroundImage = 'url("' + (img.currentSrc || img.src) + '")'; };
       if (img.complete && img.naturalWidth) setFill(); else img.addEventListener('load', setFill, { once: true });
@@ -62,15 +71,11 @@
     });
     grid.parentNode.replaceChild(wrap, grid);
 
-    // The deck takes the shape of its first photo, held between 3:4 and 4:3.
-    var first = figs[0].querySelector('img');
-    function shape() {
-      if (!first.naturalWidth) return;
-      var ar = Math.max(0.75, Math.min(1.3334, first.naturalWidth / first.naturalHeight));
-      deck.style.setProperty('--ar', ar.toFixed(4));
-    }
-    first.loading = 'eager';
-    if (first.complete) shape(); else first.addEventListener('load', shape, { once: true });
+    // Every pile is the same landscape print. Taking the shape of the first
+    // photo stood a portrait pile taller than the grid it replaced, and the
+    // point of the pile is a shorter page; portraits still show whole, with
+    // the blur either side.
+    figs[0].querySelector('img').loading = 'eager';
 
     var order = figs.slice(); // order[0] is the print on top
 
@@ -87,6 +92,8 @@
         if (i < 3) { var im = fig.querySelector('img'); if (im.loading === 'lazy') im.loading = 'eager'; }
       });
       count.textContent = pad(figs.indexOf(order[0]) + 1) + ' / ' + pad(figs.length);
+      cap.innerHTML = order[0]._cap || '';
+      cap.style.display = order[0]._cap ? '' : 'none';
     }
 
     function toBottom(dir) {
@@ -157,7 +164,7 @@
   }
 
   function init() {
-    document.querySelectorAll('.stage .grid').forEach(build);
+    document.querySelectorAll('.stage .grid, [data-stack]').forEach(build);
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();

@@ -154,6 +154,10 @@
   .quote:hover{background:var(--teal);color:var(--ink)}
   .legal{margin-top:42px;font-family:var(--mono);font-size:10px;letter-spacing:.13em;color:var(--pearl3);line-height:1.9}
 </style>
+<!-- Galleries marked data-stack become a pile of photos you swipe through;
+     the before/after sliders are never stacked. See assets/stack/. -->
+<link rel="stylesheet" href="/assets/stack/photo-stack.css">
+<script src="/assets/stack/photo-stack.js" defer></script>
 </head>
 <body>
 
@@ -279,7 +283,7 @@
   </div>
 
   <div class="rule"><b>Finished</b><i></i></div>
-  <div class="stills">
+  <div class="stills" data-stack>
     <div><img src="images/fin1.jpg" loading="lazy" alt="The finished paver driveway in Marlborough, MA"></div>
     <div><img src="images/fin2.jpg" loading="lazy" alt="Paver field meeting the garage apron"></div>
     <div><img src="images/fin3.jpg" loading="lazy" alt="The finished driveway looking back toward the street"></div>
