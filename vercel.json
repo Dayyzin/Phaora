@@ -33,13 +33,13 @@
     },
     {
       "source": "/portfolio/currently-building",
-      "destination": "/portfolio/bard-residence/",
-      "permanent": true
+      "destination": "/portfolio/cream-ridge-nj/",
+      "permanent": false
     },
     {
       "source": "/portfolio/currently-building/:path*",
-      "destination": "/portfolio/bard-residence/:path*",
-      "permanent": true
+      "destination": "/portfolio/cream-ridge-nj/:path*",
+      "permanent": false
     }
   ],
   "rewrites": [
