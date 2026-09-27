@@ -125,9 +125,10 @@ h1 span{color:var(--gold-lt)}
 .btn:hover{border-color:var(--teal);color:var(--teal)}
 footer{border-top:1px solid rgba(234,239,245,.05);padding:32px 0;text-align:center}
 footer p{font-size:11px;letter-spacing:.16em;color:rgba(234,239,245,.24)}
-/* The walk plays as a film, with its sound: this is the conversation, not a
-   loop behind type like the homepage hero. Portrait phone footage is held to
-   a readable column rather than stretched across a desktop. */
+/* The walk is a cut of the walkaround, not the whole of it, and none of the
+   conversation: what the client said on his own property stays his. It plays
+   muted on a loop like the homepage film; the controls bring up the piano.
+   Portrait phone footage is held to a readable column on a desktop. */
 .film{margin:0;border:1px solid rgba(79,181,190,.14);background:#04080f;max-width:560px}
 .film video{display:block;width:100%;height:auto;background:#04080f}
 .film figcaption{padding:12px 14px;font-size:13px;color:rgba(234,239,245,.55);border-top:1px solid rgba(79,181,190,.08)}
@@ -164,7 +165,7 @@ footer p{font-size:11px;letter-spacing:.16em;color:rgba(234,239,245,.24)}
     </div>
     <p>Walking the property together, end to end: what is there now, what has to change, and what the finished job has to hold up to.</p>
     <figure class="film">
-      <video controls playsinline preload="metadata" poster="video/walk-poster.jpg">
+      <video controls autoplay muted loop playsinline preload="metadata" poster="video/walk-poster.jpg">
         <source src="video/walk.mp4" type="video/mp4">
       </video>
       <figcaption>The walkaround, on site in Cream Ridge</figcaption>
