@@ -3,6 +3,7 @@
  * PHAÖRA — town page generator
  *
  *   node scripts/generate-town-pages.js
+ *   node scripts/generate-town-pages.js --states=tx,co,wy,in   only those states
  *
  * Extends the existing masonry-<town>-ma/ pattern (13 hand-built pages) to
  * more real, already-claimed towns, without hand-copying and editing HTML
@@ -45,7 +46,80 @@ const STATE_NAMES = {
   nh: 'New Hampshire',
   me: 'Maine',
   ct: 'Connecticut',
+  tx: 'Texas',
+  co: 'Colorado',
+  wy: 'Wyoming',
+  in: 'Indiana',
 };
+
+/**
+ * What the ground does, by region — the part of the page that is not the same
+ * everywhere.
+ *
+ * The New England copy was written about New England ground and says so:
+ * "New England frost depth", "anywhere else in New England", 42 to 48 inches
+ * inland. Printed on a San Antonio page every one of those is false. Texas is
+ * decided by clay and water, not frost; Colorado's Front Range by both; Wyoming
+ * and Indiana by frost. No depth is printed for any of them — the building
+ * department's own table is the number, and the page says so rather than
+ * quoting one from memory. Nor do these pages say "our own crews" or
+ * "registered": what is true of the New England operation is not yet a fact
+ * about Texas, and a published page states facts.
+ */
+const NE = {
+  where: 'New England',
+  descTail: 'Built to New England frost depth by our own crews.',
+  lede: 'Patios, walkways, retaining walls, steps and drainage — built by our own crews, for ground that freezes.',
+  ground: ['Below the frost line', 'New England ground moves in winter. A footing poured above the frost line lifts with it, and the wall on top of it cracks — not that winter, usually the third one.'],
+  water: 'Saturated soil expands about nine percent when it freezes, against something that cannot move. Clean stone, fabric, and a pipe run out to daylight.',
+  joint: 'A tooled joint sheds water off the face of the stone. A joint struck flush holds it there, and held water is what freezes.',
+  wall: 'Block or natural stone, drained behind and footed below the frost line.',
+  footTag: 'Full-service home improvement across New England — masonry, the whole home, and snow plowing.<br><strong>Registered &amp; insured · One-year workmanship warranty · New England</strong>',
+  footCopy: 'Phaöra · MMXXVI &nbsp;·&nbsp; New England &nbsp;·&nbsp; All rights reserved',
+  coords: '42°21′N 71°03′W',
+};
+const FROST_LOCAL = 'Frost depth is on your building department’s own table, not a number from the state. We build to the depth it gives, and we ask before we dig.';
+const REGIONS = {
+  tx: {
+    where: 'Texas',
+    descTail: 'Built for clay that swells and shrinks.',
+    lede: 'Patios, walkways, retaining walls, steps and drainage — built for ground that swells when it rains and shrinks in a drought.',
+    ground: ['Built for the clay', 'Much of the ground here is clay that swells when it is wet and shrinks when it dries. A patio laid straight on it rises and falls with every wet spring and dry summer, and cracks where it does. The base is what keeps that movement from reaching the stone.'],
+    water: 'Water standing against a wall or soaking in under a patio is what makes clay move. Clean stone, fabric, and a pipe run out to daylight keep the ground under the work at an even moisture.',
+    joint: 'A tooled joint sheds water off the face of the stone. A joint struck flush holds it there, and held water is what stains the stone and washes the joint out.',
+    wall: 'Block or natural stone, drained behind and footed on ground that has been prepared for it.',
+    frost: 'Frost is rarely what decides a job here; water and clay are. We look at the soil and at where the water goes before we price, and we build to what your building department requires.',
+  },
+  co: {
+    where: 'Colorado',
+    descTail: 'Built for ground that freezes and clay that swells.',
+    lede: 'Patios, walkways, retaining walls, steps and drainage — built for ground that freezes, and clay that swells.',
+    ground: ['Below the frost line', 'Front Range ground freezes and thaws over and over through a winter. A footing poured above the frost line lifts with it, and the wall on top of it cracks — not that winter, usually the third one.'],
+    frost: `${FROST_LOCAL} Parts of the Front Range also sit on clay that swells when it gets wet, which is why the drainage matters here as much as the depth.`,
+  },
+  wy: {
+    where: 'Wyoming',
+    descTail: 'Built for ground that freezes.',
+    lede: 'Patios, walkways, retaining walls, steps and drainage — built for ground that freezes.',
+    ground: ['Below the frost line', 'Wyoming ground freezes hard in winter. A footing poured above the frost line lifts with it, and the wall on top of it cracks — not that winter, usually the third one.'],
+    frost: FROST_LOCAL,
+  },
+  in: {
+    where: 'Indiana',
+    descTail: 'Built for ground that freezes.',
+    lede: 'Patios, walkways, retaining walls, steps and drainage — built for ground that freezes.',
+    ground: ['Below the frost line', 'Indiana ground freezes in winter. A footing poured above the frost line lifts with it, and the wall on top of it cracks — not that winter, usually the third one.'],
+    frost: FROST_LOCAL,
+  },
+};
+const NEUTRAL_FOOT = {
+  footTag: 'Full-service home improvement — masonry, the whole home, and snow plowing.<br><strong>One-year workmanship warranty</strong>',
+  footCopy: 'Phaöra · MMXXVI &nbsp;·&nbsp; All rights reserved',
+  coords: '',
+};
+function regionFor(st) {
+  return REGIONS[st] ? { ...NE, ...NEUTRAL_FOOT, ...REGIONS[st] } : NE;
+}
 
 const HERO_IMAGES = [
   '/portfolio/images/retaining-wall-lit.jpg',
@@ -389,6 +463,219 @@ const TOWNS = [
     workingIn: 'Bourne sits at the canal, Barnstable County, the first stop over the bridge — Cape work runs on its own seasonal schedule, alongside Falmouth, Dennis and Chatham.',
     nearby: ['falmouth', 'dennis', 'chatham'],
   },
+  // ── New states ─────────────────────────────────────────────────────────────
+  //
+  // The counties the bench holds outside New England (Harris, Tarrant, Bexar,
+  // Adams CO, Laramie, Natrona, Adams IN). Every town below is a real
+  // municipality in that county, and every neighbour is another page in this
+  // list, written 'slug|st' because slugs repeat across states (there is a
+  // Monroe in Connecticut). The copy that differs by ground is in REGIONS.
+  // Written with --states=tx,co,wy,in so no New England page is touched.
+  {
+    slug: 'houston', name: "Houston", state: 'tx', county: 'Harris',
+    workingIn: "Houston is Harris County, Texas, the largest city in the state, and we cover it alongside Bellaire, West University Place and the Memorial Villages.",
+    nearby: ['bellaire|tx', 'west-university-place|tx', 'hunters-creek-village|tx'],
+  },
+  {
+    slug: 'bellaire', name: "Bellaire", state: 'tx', county: 'Harris',
+    workingIn: "Bellaire is Harris County, Texas, a city of its own entirely surrounded by Houston, and we cover it alongside West University Place.",
+    nearby: ['west-university-place|tx', 'houston|tx', 'hunters-creek-village|tx'],
+  },
+  {
+    slug: 'west-university-place', name: "West University Place", state: 'tx', county: 'Harris',
+    workingIn: "West University Place is Harris County, Texas, a small city inside Houston next to Rice University, and we cover it alongside Bellaire.",
+    nearby: ['bellaire|tx', 'houston|tx', 'piney-point-village|tx'],
+  },
+  {
+    slug: 'hunters-creek-village', name: "Hunters Creek Village", state: 'tx', county: 'Harris',
+    workingIn: "Hunters Creek Village is Harris County, Texas, one of the Memorial Villages west of central Houston, and we cover it alongside Piney Point Village and Bunker Hill Village.",
+    nearby: ['piney-point-village|tx', 'bunker-hill-village|tx', 'spring-valley-village|tx'],
+  },
+  {
+    slug: 'piney-point-village', name: "Piney Point Village", state: 'tx', county: 'Harris',
+    workingIn: "Piney Point Village is Harris County, Texas, one of the Memorial Villages along the Memorial corridor west of Houston, and we cover it alongside Hunters Creek Village.",
+    nearby: ['hunters-creek-village|tx', 'bunker-hill-village|tx', 'hedwig-village|tx'],
+  },
+  {
+    slug: 'bunker-hill-village', name: "Bunker Hill Village", state: 'tx', county: 'Harris',
+    workingIn: "Bunker Hill Village is Harris County, Texas, one of the Memorial Villages west of Houston, and we cover it alongside Piney Point Village and Hedwig Village.",
+    nearby: ['piney-point-village|tx', 'hedwig-village|tx', 'hunters-creek-village|tx'],
+  },
+  {
+    slug: 'hedwig-village', name: "Hedwig Village", state: 'tx', county: 'Harris',
+    workingIn: "Hedwig Village is Harris County, Texas, one of the Memorial Villages west of Houston, and we cover it alongside Spring Valley Village and Bunker Hill Village.",
+    nearby: ['spring-valley-village|tx', 'bunker-hill-village|tx', 'piney-point-village|tx'],
+  },
+  {
+    slug: 'spring-valley-village', name: "Spring Valley Village", state: 'tx', county: 'Harris',
+    workingIn: "Spring Valley Village is Harris County, Texas, one of the Memorial Villages west of Houston, and we cover it alongside Hedwig Village.",
+    nearby: ['hedwig-village|tx', 'hunters-creek-village|tx', 'houston|tx'],
+  },
+  {
+    slug: 'tomball', name: "Tomball", state: 'tx', county: 'Harris',
+    workingIn: "Tomball is Harris County, Texas, in the northwest of the county, and we cover it alongside Houston.",
+    nearby: ['houston|tx', 'humble|tx', 'spring-valley-village|tx'],
+  },
+  {
+    slug: 'humble', name: "Humble", state: 'tx', county: 'Harris',
+    workingIn: "Humble is Harris County, Texas, in the northeast of the county, and we cover it alongside Houston.",
+    nearby: ['houston|tx', 'tomball|tx', 'bellaire|tx'],
+  },
+  {
+    slug: 'fort-worth', name: "Fort Worth", state: 'tx', county: 'Tarrant',
+    workingIn: "Fort Worth is the seat of Tarrant County, Texas, and we cover it alongside Benbrook, Keller and Southlake.",
+    nearby: ['benbrook|tx', 'keller|tx', 'southlake|tx'],
+  },
+  {
+    slug: 'arlington', name: "Arlington", state: 'tx', county: 'Tarrant',
+    workingIn: "Arlington is Tarrant County, Texas, between Fort Worth and Dallas, and we cover it alongside Bedford and Euless.",
+    nearby: ['bedford|tx', 'euless|tx', 'fort-worth|tx'],
+  },
+  {
+    slug: 'southlake', name: "Southlake", state: 'tx', county: 'Tarrant',
+    workingIn: "Southlake is Tarrant County, Texas, in the northeast of the county, and we cover it alongside Colleyville, Grapevine and Keller.",
+    nearby: ['colleyville|tx', 'grapevine|tx', 'keller|tx'],
+  },
+  {
+    slug: 'colleyville', name: "Colleyville", state: 'tx', county: 'Tarrant',
+    workingIn: "Colleyville is Tarrant County, Texas, between Southlake and Bedford, and we cover it alongside both.",
+    nearby: ['southlake|tx', 'bedford|tx', 'grapevine|tx'],
+  },
+  {
+    slug: 'grapevine', name: "Grapevine", state: 'tx', county: 'Tarrant',
+    workingIn: "Grapevine is Tarrant County, Texas, next to DFW Airport, and we cover it alongside Southlake and Colleyville.",
+    nearby: ['southlake|tx', 'colleyville|tx', 'euless|tx'],
+  },
+  {
+    slug: 'keller', name: "Keller", state: 'tx', county: 'Tarrant',
+    workingIn: "Keller is Tarrant County, Texas, north of Fort Worth, and we cover it alongside Southlake and North Richland Hills.",
+    nearby: ['southlake|tx', 'north-richland-hills|tx', 'fort-worth|tx'],
+  },
+  {
+    slug: 'north-richland-hills', name: "North Richland Hills", state: 'tx', county: 'Tarrant',
+    workingIn: "North Richland Hills is Tarrant County, Texas, northeast of Fort Worth, and we cover it alongside Keller and Bedford.",
+    nearby: ['keller|tx', 'bedford|tx', 'colleyville|tx'],
+  },
+  {
+    slug: 'bedford', name: "Bedford", state: 'tx', county: 'Tarrant',
+    workingIn: "Bedford is Tarrant County, Texas, in the Mid-Cities between Fort Worth and Dallas, and we cover it alongside Euless and Colleyville.",
+    nearby: ['euless|tx', 'colleyville|tx', 'north-richland-hills|tx'],
+  },
+  {
+    slug: 'euless', name: "Euless", state: 'tx', county: 'Tarrant',
+    workingIn: "Euless is Tarrant County, Texas, in the Mid-Cities next to Bedford, and we cover it alongside Bedford and Grapevine.",
+    nearby: ['bedford|tx', 'grapevine|tx', 'arlington|tx'],
+  },
+  {
+    slug: 'benbrook', name: "Benbrook", state: 'tx', county: 'Tarrant',
+    workingIn: "Benbrook is Tarrant County, Texas, on the southwest side of Fort Worth by Benbrook Lake, and we cover it alongside Fort Worth.",
+    nearby: ['fort-worth|tx', 'arlington|tx', 'keller|tx'],
+  },
+  {
+    slug: 'san-antonio', name: "San Antonio", state: 'tx', county: 'Bexar',
+    workingIn: "San Antonio is the seat of Bexar County, Texas, and we cover it alongside Alamo Heights, Terrell Hills and Olmos Park.",
+    nearby: ['alamo-heights|tx', 'terrell-hills|tx', 'olmos-park|tx'],
+  },
+  {
+    slug: 'alamo-heights', name: "Alamo Heights", state: 'tx', county: 'Bexar',
+    workingIn: "Alamo Heights is Bexar County, Texas, a city of its own north of downtown San Antonio, and we cover it alongside Terrell Hills and Olmos Park.",
+    nearby: ['terrell-hills|tx', 'olmos-park|tx', 'san-antonio|tx'],
+  },
+  {
+    slug: 'terrell-hills', name: "Terrell Hills", state: 'tx', county: 'Bexar',
+    workingIn: "Terrell Hills is Bexar County, Texas, a small city inside San Antonio next to Alamo Heights, and we cover the two together.",
+    nearby: ['alamo-heights|tx', 'olmos-park|tx', 'san-antonio|tx'],
+  },
+  {
+    slug: 'olmos-park', name: "Olmos Park", state: 'tx', county: 'Bexar',
+    workingIn: "Olmos Park is Bexar County, Texas, a small city inside San Antonio by the Olmos Basin, and we cover it alongside Alamo Heights.",
+    nearby: ['alamo-heights|tx', 'terrell-hills|tx', 'san-antonio|tx'],
+  },
+  {
+    slug: 'shavano-park', name: "Shavano Park", state: 'tx', county: 'Bexar',
+    workingIn: "Shavano Park is Bexar County, Texas, on the northwest side of San Antonio, and we cover it alongside Helotes and Hollywood Park.",
+    nearby: ['helotes|tx', 'hollywood-park|tx', 'san-antonio|tx'],
+  },
+  {
+    slug: 'helotes', name: "Helotes", state: 'tx', county: 'Bexar',
+    workingIn: "Helotes is Bexar County, Texas, at the edge of the Hill Country northwest of San Antonio, and we cover it alongside Shavano Park.",
+    nearby: ['shavano-park|tx', 'san-antonio|tx', 'hollywood-park|tx'],
+  },
+  {
+    slug: 'hollywood-park', name: "Hollywood Park", state: 'tx', county: 'Bexar',
+    workingIn: "Hollywood Park is Bexar County, Texas, on the north side of San Antonio, and we cover it alongside Shavano Park.",
+    nearby: ['shavano-park|tx', 'san-antonio|tx', 'alamo-heights|tx'],
+  },
+  {
+    slug: 'thornton', name: "Thornton", state: 'co', county: 'Adams',
+    workingIn: "Thornton is Adams County, Colorado, north of Denver, and we cover it alongside Northglenn and Brighton.",
+    nearby: ['northglenn|co', 'brighton|co', 'federal-heights|co'],
+  },
+  {
+    slug: 'northglenn', name: "Northglenn", state: 'co', county: 'Adams',
+    workingIn: "Northglenn is Adams County, Colorado, north of Denver next to Thornton, and we cover it alongside Thornton and Federal Heights.",
+    nearby: ['thornton|co', 'federal-heights|co', 'brighton|co'],
+  },
+  {
+    slug: 'brighton', name: "Brighton", state: 'co', county: 'Adams',
+    workingIn: "Brighton is the seat of Adams County, Colorado, and we cover it alongside Thornton and Commerce City.",
+    nearby: ['thornton|co', 'commerce-city|co', 'northglenn|co'],
+  },
+  {
+    slug: 'commerce-city', name: "Commerce City", state: 'co', county: 'Adams',
+    workingIn: "Commerce City is Adams County, Colorado, northeast of Denver, and we cover it alongside Brighton and Thornton.",
+    nearby: ['brighton|co', 'thornton|co', 'northglenn|co'],
+  },
+  {
+    slug: 'federal-heights', name: "Federal Heights", state: 'co', county: 'Adams',
+    workingIn: "Federal Heights is Adams County, Colorado, north of Denver, and we cover it alongside Thornton and Northglenn.",
+    nearby: ['northglenn|co', 'thornton|co', 'commerce-city|co'],
+  },
+  {
+    slug: 'cheyenne', name: "Cheyenne", state: 'wy', county: 'Laramie',
+    workingIn: "Cheyenne is the seat of Laramie County and the capital of Wyoming, and we cover the city and the county around it.",
+    nearby: ['casper|wy', 'mills|wy', 'bar-nunn|wy'],
+  },
+  {
+    slug: 'casper', name: "Casper", state: 'wy', county: 'Natrona',
+    workingIn: "Casper is the seat of Natrona County, Wyoming, and we cover it alongside Mills, Evansville and Bar Nunn.",
+    nearby: ['mills|wy', 'evansville|wy', 'bar-nunn|wy'],
+  },
+  {
+    slug: 'mills', name: "Mills", state: 'wy', county: 'Natrona',
+    workingIn: "Mills is Natrona County, Wyoming, on the west side of Casper, and we cover it alongside Casper.",
+    nearby: ['casper|wy', 'evansville|wy', 'bar-nunn|wy'],
+  },
+  {
+    slug: 'evansville', name: "Evansville", state: 'wy', county: 'Natrona',
+    workingIn: "Evansville is Natrona County, Wyoming, on the east side of Casper, and we cover it alongside Casper.",
+    nearby: ['casper|wy', 'mills|wy', 'bar-nunn|wy'],
+  },
+  {
+    slug: 'bar-nunn', name: "Bar Nunn", state: 'wy', county: 'Natrona',
+    workingIn: "Bar Nunn is Natrona County, Wyoming, just north of Casper, and we cover it alongside Casper and Mills.",
+    nearby: ['casper|wy', 'mills|wy', 'evansville|wy'],
+  },
+  {
+    slug: 'decatur', name: "Decatur", state: 'in', county: 'Adams',
+    workingIn: "Decatur is the seat of Adams County, Indiana, and we cover it alongside Berne, Geneva and Monroe.",
+    nearby: ['berne|in', 'geneva|in', 'monroe|in'],
+  },
+  {
+    slug: 'berne', name: "Berne", state: 'in', county: 'Adams',
+    workingIn: "Berne is Adams County, Indiana, south of Decatur, and we cover it alongside Geneva and Monroe.",
+    nearby: ['geneva|in', 'monroe|in', 'decatur|in'],
+  },
+  {
+    slug: 'geneva', name: "Geneva", state: 'in', county: 'Adams',
+    workingIn: "Geneva is Adams County, Indiana, in the south of the county, and we cover it alongside Berne.",
+    nearby: ['berne|in', 'decatur|in', 'monroe|in'],
+  },
+  {
+    slug: 'monroe', name: "Monroe", state: 'in', county: 'Adams',
+    workingIn: "Monroe is Adams County, Indiana, between Decatur and Berne, and we cover it alongside both.",
+    nearby: ['decatur|in', 'berne|in', 'geneva|in'],
+  },
 ];
 
 /**
@@ -421,7 +708,8 @@ const SCRIPT_BLOCK = fs.readFileSync(path.join(__dirname, '_town-template-script
 function render(town, heroImage) {
   const st = (town.state || 'ma').toLowerCase();
   const stateName = STATE_NAMES[st];
-  const desc = `Patios, walkways, retaining walls, steps and drainage in ${town.name}, ${stateName}. Built to New England frost depth by our own crews. Free on-site estimate, and a price online in about thirty seconds.`;
+  const R = regionFor(st);
+  const desc = `Patios, walkways, retaining walls, steps and drainage in ${town.name}, ${stateName}. ${R.descTail} Free on-site estimate, and a price online in about thirty seconds.`;
   const title = `Masonry &amp; Hardscape Contractor in ${town.name}, ${st.toUpperCase()} | PHAÖRA`;
   const url = `https://phaora.com/masonry-${town.slug}-${st}/`;
 
@@ -435,7 +723,7 @@ function render(town, heroImage) {
   // in their place. Appending " County" to "Southeastern Connecticut" names a
   // unit of government that does not exist, on a published page.
   const regionLabel = st === 'ct' ? `${town.county} Planning Region` : `${town.county} County`;
-  const frostParagraph = town.coastal
+  const frostParagraph = R.frost ? R.frost : town.coastal
     ? `Frost depth here is set by the town, not the state — Table R301.2(1) of ${codeName} is filled in by each building department, and coastal towns commonly run shallower than inland ones. We build to the depth your building department gives, and we ask before we dig.`
     : `Frost depth here is set by the town, not the state — Table R301.2(1) of ${codeName} is filled in by each building department. Inland it is commonly 42 to 48 inches; nearer the coast it is often less. We build to the depth your building department gives, and we ask before we dig.`;
 
@@ -502,7 +790,7 @@ ${NAV_BODY}
   <div class="tp-wrap">
     <p class="eyebrow">${town.name}, ${stateName} &nbsp;·&nbsp; ${regionLabel}</p>
     <h1>Masonry and hardscape<br>in <em>${town.name}</em>.</h1>
-    <p class="tp-lede">Patios, walkways, retaining walls, steps and drainage — built by our own crews, for ground that freezes.</p>
+    <p class="tp-lede">${R.lede}</p>
     <a class="tp-cta" href="/estimate/">Price your project &rarr;</a>
   </div>
 </header>
@@ -514,7 +802,7 @@ ${NAV_BODY}
     <div class="tp-grid">
       <div class="tp-cell"><h3>Patios</h3><p>Concrete paver, bluestone, flagstone or brick, set on a base built for the ground it sits in.</p></div>
       <div class="tp-cell"><h3>Walkways</h3><p>Front walks, garden paths and steps — the run people use every day and notice when it moves.</p></div>
-      <div class="tp-cell"><h3>Retaining walls</h3><p>Block or natural stone, drained behind and footed below the frost line.</p></div>
+      <div class="tp-cell"><h3>Retaining walls</h3><p>${R.wall}</p></div>
       <div class="tp-cell"><h3>Driveways</h3><p>Paver and cobblestone, edged and restrained so the border holds its line.</p></div>
       <div class="tp-cell"><h3>Steps and landings</h3><p>Granite, bluestone and built treads, set solid and pitched to shed.</p></div>
       <div class="tp-cell"><h3>Stone veneer</h3><p>Foundations, columns, chimneys and facades in natural and manufactured stone.</p></div>
@@ -525,13 +813,13 @@ ${NAV_BODY}
   <section class="tp-sec">
     <h2 class="tp-h2">What decides whether it lasts here</h2>
     <p class="tp-p">Every wall and patio we have taken apart failed for one of these five reasons.
-      They are the same in ${town.name} as anywhere else in New England, and they are most of
+      They are the same in ${town.name} as anywhere else in ${R.where}, and they are most of
       what separates a job that looks right at twenty years from one that does not make five.</p>
     <ol class="tp-num">
       <li><h3>A base that was built, not just levelled</h3><p>Compacted gravel, deep enough for the ground it sits in. Every course above copies the first one, and so does every mistake in it.</p></li>
-      <li><h3>Below the frost line</h3><p>New England ground moves in winter. A footing poured above the frost line lifts with it, and the wall on top of it cracks — not that winter, usually the third one.</p></li>
-      <li><h3>Somewhere for the water to go</h3><p>Saturated soil expands about nine percent when it freezes, against something that cannot move. Clean stone, fabric, and a pipe run out to daylight.</p></li>
-      <li><h3>Joints shaped, not just filled</h3><p>A tooled joint sheds water off the face of the stone. A joint struck flush holds it there, and held water is what freezes.</p></li>
+      <li><h3>${R.ground[0]}</h3><p>${R.ground[1]}</p></li>
+      <li><h3>Somewhere for the water to go</h3><p>${R.water}</p></li>
+      <li><h3>Joints shaped, not just filled</h3><p>${R.joint}</p></li>
       <li><h3>A cap that sheds</h3><p>The top takes the weather and everything anyone sets on it. Pitched away, set solid, joints tight.</p></li>
     </ol>
   </section>
@@ -567,7 +855,7 @@ ${nearbyLinks}
   <div class="footer-top">
     <div>
       <div class="footer-wm">PHA<span class="o">&Ouml;</span>RA</div>
-      <p class="footer-tagline">Full-service home improvement across New England — masonry, the whole home, and snow plowing.<br><strong>Registered &amp; insured · One-year workmanship warranty · New England</strong></p>
+      <p class="footer-tagline">${R.footTag}</p>
     </div>
     <div class="footer-col">
       <h5>The House</h5>
@@ -583,8 +871,8 @@ ${nearbyLinks}
     </div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-copy">Phaöra · MMXXVI &nbsp;·&nbsp; New England &nbsp;·&nbsp; All rights reserved</span>
-    <span class="footer-coords">42°21′N 71°03′W</span>
+    <span class="footer-copy">${R.footCopy}</span>
+    <span class="footer-coords">${R.coords}</span>
   </div>
 </footer>
 
@@ -617,7 +905,7 @@ function rewriteSitemap() {
   }
   const xml = fs.readFileSync(file, 'utf8');
   const lines = xml.split('\n');
-  const isTown = (line) => /<loc>https:\/\/phaora\.com\/masonry-[a-z-]+-(ma|ri|nh|me|ct)\//.test(line);
+  const isTown = (line) => /<loc>https:\/\/phaora\.com\/masonry-[a-z-]+-(ma|ri|nh|me|ct|tx|co|wy|in)\//.test(line);
 
   const firstTown = lines.findIndex(isTown);
   if (firstTown === -1) {
@@ -630,7 +918,7 @@ function rewriteSitemap() {
   // alone dropped all thirteen the first time this ran.
   const slugs = fs
     .readdirSync(ROOT)
-    .filter((name) => /^masonry-[a-z-]+-(ma|ri|nh|me|ct)$/.test(name))
+    .filter((name) => /^masonry-[a-z-]+-(ma|ri|nh|me|ct|tx|co|wy|in)$/.test(name))
     .filter((name) => fs.existsSync(path.join(ROOT, name, 'index.html')))
     .sort();
 
@@ -646,8 +934,13 @@ function rewriteSitemap() {
   console.log(`sitemap.xml: ${entries.length} town URLs (was ${lines.filter(isTown).length})`);
 }
 
+const onlyStates = (process.argv.find((a) => a.startsWith('--states=')) || '').slice(9)
+  .split(',').map((x) => x.trim().toLowerCase()).filter(Boolean);
 let written = 0;
 TOWNS.forEach((town, i) => {
+  // Pages already on disk carry edits made after they were generated, so a
+  // run scoped to new states leaves every other page exactly as it is.
+  if (onlyStates.length && !onlyStates.includes((town.state || 'ma').toLowerCase())) return;
   const dir = path.join(ROOT, `masonry-${town.slug}-${(town.state || 'ma').toLowerCase()}`);
   fs.mkdirSync(dir, { recursive: true });
   const html = render(town, HERO_IMAGES[i % HERO_IMAGES.length]);

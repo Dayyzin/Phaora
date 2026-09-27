@@ -27,6 +27,7 @@ const OUT = path.join(__dirname, 'town-gap-data.js')
 const STATE_NAME = {
   ma: 'Massachusetts', ri: 'Rhode Island', ct: 'Connecticut',
   nh: 'New Hampshire', me: 'Maine',
+  tx: 'Texas', co: 'Colorado', wy: 'Wyoming', in: 'Indiana',
 }
 
 function slugify(name) {
@@ -71,7 +72,7 @@ function main() {
   // names it.
   const existing = new Set(
     fs.readdirSync(ROOT)
-      .filter((d) => /^masonry-[a-z-]+-(ma|ri|nh|me|ct)$/.test(d))
+      .filter((d) => /^masonry-[a-z-]+-(ma|ri|nh|me|ct|tx|co|wy|in)$/.test(d))
       .map((d) => d.replace(/^masonry-/, '')),
   )
   const willExist = new Set([

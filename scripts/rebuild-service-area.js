@@ -26,9 +26,10 @@ const FILE = path.join(ROOT, 'service-area', 'index.html')
 const STATE_NAME = {
   ma: 'Massachusetts', ri: 'Rhode Island', ct: 'Connecticut',
   nh: 'New Hampshire', me: 'Maine',
+  tx: 'Texas', co: 'Colorado', wy: 'Wyoming', in: 'Indiana',
 }
 /** The order the grid reads in. Home state first, then out. */
-const STATE_ORDER = ['ma', 'ri', 'nh', 'me', 'ct']
+const STATE_ORDER = ['ma', 'ri', 'nh', 'me', 'ct', 'tx', 'co', 'wy', 'in']
 
 function titleFromSlug(slug) {
   return slug.split('-').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')
@@ -40,14 +41,14 @@ function main() {
   // Counties already printed on this page, so nothing regresses.
   const known = new Map()
   for (const m of html.matchAll(
-    /<a href="\/masonry-([a-z-]+)-(ma|ri|nh|me|ct)\/"><b>([^<]+)<\/b><span>([^<]*)<\/span><\/a>/g,
+    /<a href="\/masonry-([a-z-]+)-(ma|ri|nh|me|ct|tx|co|wy|in)\/"><b>([^<]+)<\/b><span>([^<]*)<\/span><\/a>/g,
   )) {
     known.set(`${m[1]}-${m[2]}`, { name: m[3], county: m[4] })
   }
 
   const dirs = fs
     .readdirSync(ROOT)
-    .filter((d) => /^masonry-[a-z-]+-(ma|ri|nh|me|ct)$/.test(d))
+    .filter((d) => /^masonry-[a-z-]+-(ma|ri|nh|me|ct|tx|co|wy|in)$/.test(d))
     .filter((d) => fs.existsSync(path.join(ROOT, d, 'index.html')))
     .sort()
 
@@ -56,7 +57,7 @@ function main() {
 
   for (const dir of dirs) {
     const key = dir.replace(/^masonry-/, '')
-    const m = /^(.+)-(ma|ri|nh|me|ct)$/.exec(key)
+    const m = /^(.+)-(ma|ri|nh|me|ct|tx|co|wy|in)$/.exec(key)
     const slug = m[1]
     const state = m[2]
     const page = fs.readFileSync(path.join(ROOT, dir, 'index.html'), 'utf8')
@@ -68,7 +69,7 @@ function main() {
     const name = (t && t[1].trim()) || (prior && prior.name) || titleFromSlug(slug)
 
     // 'X is Norfolk County, Massachusetts' / 'X sits in Middlesex County, ...'
-    const c = /\b(?:is|sits in|is in)\s+([A-Z][A-Za-z ]*?)\s+County\b/.exec(page)
+    const c = /\b(?:is the seat of|is|sits in|is in)\s+([A-Z][A-Za-z ]*?)\s+County\b/.exec(page)
     // Connecticut abolished county government in 2022 and the pages there name
     // a planning region instead — correctly, which is why the County pattern
     // finds nothing and must not be forced to.

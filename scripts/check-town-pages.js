@@ -48,7 +48,7 @@ function visibleText(html) {
 function main() {
   const dirs = fs
     .readdirSync(ROOT)
-    .filter((d) => /^masonry-[a-z-]+-(ma|ri|nh|me|ct)$/.test(d))
+    .filter((d) => /^masonry-[a-z-]+-(ma|ri|nh|me|ct|tx|co|wy|in)$/.test(d))
     .filter((d) => fs.existsSync(path.join(ROOT, d, 'index.html')))
     .sort()
 
@@ -78,7 +78,7 @@ function main() {
 
     // A link to a directory that does not exist is a 404 that only shows up
     // when somebody clicks it.
-    for (const m of html.matchAll(/href="\/(masonry-[a-z-]+-(?:ma|ri|nh|me|ct))\//g)) {
+    for (const m of html.matchAll(/href="\/(masonry-[a-z-]+-(?:ma|ri|nh|me|ct|tx|co|wy|in))\//g)) {
       if (!onDisk.has(m[1])) say(`links to /${m[1]}/ which does not exist`)
     }
 
@@ -107,7 +107,7 @@ function main() {
   // sitemap that is not on disk.
   const sitemap = fs.readFileSync(path.join(ROOT, 'sitemap.xml'), 'utf8')
   const listed = new Set(
-    [...sitemap.matchAll(/phaora\.com\/(masonry-[a-z-]+-(?:ma|ri|nh|me|ct))\//g)].map((m) => m[1]),
+    [...sitemap.matchAll(/phaora\.com\/(masonry-[a-z-]+-(?:ma|ri|nh|me|ct|tx|co|wy|in))\//g)].map((m) => m[1]),
   )
   for (const d of onDisk) if (!listed.has(d)) problems.push(`sitemap: /${d}/ is missing`)
   for (const d of listed) if (!onDisk.has(d)) problems.push(`sitemap: /${d}/ has no directory`)
@@ -116,7 +116,7 @@ function main() {
   // orphan whatever the sitemap says.
   const sa = fs.readFileSync(path.join(ROOT, 'service-area', 'index.html'), 'utf8')
   const linked = new Set(
-    [...sa.matchAll(/href="\/(masonry-[a-z-]+-(?:ma|ri|nh|me|ct))\//g)].map((m) => m[1]),
+    [...sa.matchAll(/href="\/(masonry-[a-z-]+-(?:ma|ri|nh|me|ct|tx|co|wy|in))\//g)].map((m) => m[1]),
   )
   for (const d of onDisk) {
     if (!linked.has(d)) problems.push(`service-area: /${d}/ is not linked — orphan`)
