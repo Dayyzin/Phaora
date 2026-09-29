@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#00060C">
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <title>PHAÖRA — Instant Estimate | Price Your Patio, Driveway or Wall</title>
 <meta name="description" content="Type the size or trace it from a satellite view of your own property, and see a real price range in about thirty seconds. PHAÖRA masonry across New England. Free on-site visit for the exact number.">
@@ -18,329 +19,325 @@
 <meta name="twitter:image" content="https://phaora.com/assets/og/phaora-share.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 /* The page is served from phaora.com. Only its data comes from the CRM: the
    satellite tiles, the address lookup, the rate card and the lead. Those are
    the three things a static site cannot hold — a billable key, a price list
-   nobody should be able to view-source, and a database. */
+   nobody should be able to view-source, and a database.
+
+   THE LOOK is the reel's: the scanner. Navy ground, ice type, teal for what is
+   live and measured, verdigris for what you press, a faint grid and one slow
+   sweep line. Same five colours as the reel, the postcard and the CRM post. */
 *{box-sizing:border-box}
-:root{--navy:#0C1626;--navy2:#16273D;--paper:#E7EDF6;--card:#FFF;
-  --ink:#0F1E33;--muted:#56697F;--line:#CBD8E6;
-  --teal:#17828F;--teal-lt:#63CBD6;--gold:#E3B761}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--paper);color:var(--ink);
-  font-family:'Inter',system-ui,-apple-system,sans-serif;font-weight:400;-webkit-font-smoothing:antialiased}
+:root{color-scheme:dark;--navy:#00060C;--navy2:#03101A;--paper:#00060C;--card:#041019;--card2:#07172295;
+  --ink:#DDEEF4;--muted:rgba(221,238,244,.58);--dim:rgba(221,238,244,.34);--line:rgba(90,191,198,.16);
+  --line2:rgba(90,191,198,.3);--teal:#5ABFC6;--verd:#3E9DA6;--teal-lt:#5ABFC6;--gold:#DDEEF4;--paper2:rgba(221,238,244,.08)}
+
+/* The grid lives on html, so the sweep line (z-index -1) runs over the
+   ground and under every word and picture. */
+html{scroll-behavior:smooth;
+  background:
+    linear-gradient(rgba(90,191,198,.035) 1px,transparent 1px) 0 0/100% 56px,
+    linear-gradient(90deg,rgba(90,191,198,.035) 1px,transparent 1px) 0 0/56px 100%,
+    var(--navy)}
+body{margin:0;color:var(--ink);font-family:'Jost',system-ui,-apple-system,sans-serif;font-weight:400;
+  -webkit-font-smoothing:antialiased}
+/* one sweep line down the screen, like the reel's scanner — decoration only */
+body::before{content:"";position:fixed;left:0;right:0;top:0;height:1px;z-index:-1;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(90,191,198,.5) 30%,rgba(221,238,244,.6) 50%,rgba(90,191,198,.5) 70%,transparent);
+  box-shadow:0 0 12px 1px rgba(90,191,198,.22);opacity:.4;animation:sweep 11s linear infinite}
+@keyframes sweep{0%{transform:translateY(64px)}100%{transform:translateY(100vh)}}
+@media(prefers-reduced-motion:reduce){body::before{display:none}}
 a{color:inherit;text-decoration:none}
 .serif{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400}
 .wrap{max-width:780px;margin:0 auto;padding:0 22px}
 [hidden]{display:none!important}
+::selection{background:rgba(90,191,198,.35);color:#fff}
 
-/* Lifted from the homepage. This page is an extension of the site, so the
-   bar across the top of it is the site's bar — same ground, same lockup, same
-   letter-spacing, same half-lit O. */
-nav{position:sticky;top:0;z-index:40;background:#020610;
-  border-bottom:1px solid rgba(79,181,190,.08)}
-/* Opaque rather than the homepage's translucent bar. There it blurs a black
-   body and lands black; here it would blur the pale one and come out slate,
-   which is the same CSS reading as a different colour. */
+/* The site's bar — same lockup and letter-spacing as the homepage, with the
+   reel's teal Ö. */
+nav{position:sticky;top:0;z-index:40;background:rgba(0,6,12,.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line)}
 nav .wrap{height:64px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:14px}
 nav .lnk:first-of-type{justify-self:start}
 nav .lnk:last-of-type{justify-self:end}
-nav .wm{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:19px;letter-spacing:.42em;
-  text-indent:.42em;text-transform:uppercase;color:#EAEFF5;text-align:center;white-space:nowrap}
-nav .wm .o{color:rgba(79,181,190,.55)}
+nav .wm{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:19px;letter-spacing:.42em;
+  text-indent:.42em;text-transform:uppercase;color:var(--ink);text-align:center;white-space:nowrap}
+nav .wm .o{color:var(--teal)}
 nav .lnk{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;
-  color:rgba(234,239,245,.38);transition:color .2s;white-space:nowrap}
-nav .lnk:hover{color:rgba(234,239,245,.82)}
+  color:var(--dim);transition:color .2s;white-space:nowrap}
+nav .lnk:hover{color:var(--ink)}
 
+/* The header photograph is a job of ours run through the reel's scanner ramp
+   (navy → teal → ice), with a viewfinder over it. */
 header.hero{position:relative;overflow:hidden;background:var(--navy);
-  min-height:clamp(430px,72vh,620px);display:flex;align-items:flex-start}
-/* On a phone the min-height and the bottom padding together held about 200px
-   of empty navy under the lede, pushing the tool past a screen and a half. */
+  min-height:clamp(430px,72vh,620px);display:flex;align-items:flex-start;border-bottom:1px solid var(--line)}
 @media(max-width:700px){
   header.hero{min-height:clamp(380px,58vh,560px)}
   header.hero .wrap{padding-bottom:clamp(72px,17vw,140px)}
 }
-header.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 62%}
-header.hero .veil{position:absolute;inset:0;background:linear-gradient(180deg,
-  rgba(12,22,38,.9) 0%,rgba(12,22,38,.74) 28%,rgba(12,22,38,.36) 56%,
-  rgba(12,22,38,.34) 70%,rgba(12,22,38,.9) 93%,var(--paper) 100%)}
-header.hero .wrap{position:relative;padding-top:clamp(38px,10vw,74px);padding-bottom:clamp(120px,30vw,200px);color:#fff}
-header.hero .eyebrow{color:var(--teal-lt)}
-header.hero h1,header.hero .lede{text-shadow:0 2px 28px rgba(6,12,22,.9)}
-.eyebrow{font-size:10px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--teal);margin:0}
-h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;
-  font-size:clamp(38px,9.2vw,64px);line-height:1.05;letter-spacing:-.012em;margin:16px 0 0}
-h1 em{font-style:italic;color:var(--gold)}
-.lede{color:rgba(255,255,255,.86);font-size:clamp(16px,4vw,18px);line-height:1.6;margin:18px 0 0;max-width:50ch}
-/* The one thing to do on arrival. A visitor off a paid click has already
-   decided they want a price; without this the first tappable thing on the
-   page was a link to the contact form, a screen and a half above the tool. */
-.hero-cta{display:inline-block;margin:26px 0 0;padding:14px 26px;border:1px solid rgba(255,255,255,.34);
-  background:rgba(255,255,255,.06);color:#fff;font-size:11px;font-weight:600;letter-spacing:.2em;
-  text-transform:uppercase;text-decoration:none;backdrop-filter:blur(6px);transition:background .2s,border-color .2s}
-.hero-cta:hover{background:var(--teal);border-color:var(--teal)}
+header.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 62%;opacity:.9}
+header.hero .veil{position:absolute;inset:0;background:
+  linear-gradient(180deg,rgba(0,6,12,.9) 0%,rgba(0,6,12,.66) 30%,rgba(0,6,12,.3) 58%,rgba(0,6,12,.4) 76%,var(--navy) 100%)}
+header.hero .veil::before,header.hero .veil::after{content:"";position:absolute;width:26px;height:26px;border:1px solid rgba(90,191,198,.55)}
+header.hero .veil::before{left:clamp(12px,3vw,28px);top:clamp(12px,3vw,24px);border-right:0;border-bottom:0}
+header.hero .veil::after{right:clamp(12px,3vw,28px);bottom:clamp(12px,3vw,24px);border-left:0;border-top:0}
+header.hero .wrap{position:relative;padding-top:clamp(38px,10vw,74px);padding-bottom:clamp(120px,30vw,200px);color:var(--ink)}
+header.hero .eyebrow{color:var(--teal)}
+header.hero h1,header.hero .lede{text-shadow:0 2px 28px rgba(0,6,12,.95)}
+.eyebrow{font-size:10px;font-weight:500;letter-spacing:.34em;text-transform:uppercase;color:var(--teal);margin:0}
+h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;color:var(--ink);
+  font-size:clamp(38px,9.2vw,64px);line-height:1.05;letter-spacing:-.005em;margin:16px 0 0}
+h1 em{font-style:italic;color:var(--teal)}
+.lede{color:rgba(221,238,244,.8);font-size:clamp(16px,4vw,18px);font-weight:300;line-height:1.65;margin:18px 0 0;max-width:50ch}
+.hero-cta{display:inline-block;margin:26px 0 0;padding:14px 26px;border:1px solid rgba(90,191,198,.5);
+  background:rgba(0,6,12,.5);color:var(--teal);font-size:11px;font-weight:500;letter-spacing:.24em;
+  text-transform:uppercase;text-decoration:none;backdrop-filter:blur(6px);transition:background .2s,border-color .2s,color .2s}
+.hero-cta:hover{background:var(--verd);border-color:var(--verd);color:#fff}
 .hero-cta span{margin-left:8px}
-.assure{margin:14px 0 0;padding:14px 16px;border-left:2px solid var(--teal);background:rgba(23,130,143,.05);
-  font-size:14px;line-height:1.6;color:var(--ink);max-width:58ch}
-.assure b{font-weight:600}
-.aside{color:var(--muted);font-size:14.5px;line-height:1.65;margin:0;max-width:54ch;padding:26px 0 34px}
-.aside a{color:var(--teal);font-weight:500;border-bottom:1px solid rgba(23,130,143,.34)}
+.assure{margin:14px 0 0;padding:14px 16px;border-left:2px solid var(--teal);background:rgba(90,191,198,.06);
+  font-size:14.5px;line-height:1.6;color:var(--ink);max-width:58ch;font-weight:300}
+.assure b{font-weight:500}
+.aside{color:var(--muted);font-size:14.5px;line-height:1.65;margin:0;max-width:54ch;padding:26px 0 34px;font-weight:300}
+.aside a{color:var(--teal);font-weight:400;border-bottom:1px solid rgba(90,191,198,.34)}
 
 .step{padding:clamp(30px,7vw,46px) 0;border-bottom:1px solid var(--line)}
 .step-n{display:flex;align-items:baseline;gap:15px;margin-bottom:22px}
-.step-n span{font-size:11.5px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--ink)}
+.step-n span{font-size:11px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:var(--ink)}
 .step-n b{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(38px,9vw,46px);font-weight:400;color:var(--teal);line-height:.8;min-width:1.1em}
-.step-n .bar{flex:1;height:1px;background:var(--line);transform:translateY(-4px)}
-/* On a narrow screen the longer labels wrap to two lines and the rule ends up
-   floating beside the first of them. There is nothing for it to separate at
-   that width anyway. */
+.step-n .bar{flex:1;height:1px;background:linear-gradient(90deg,var(--line2),transparent);transform:translateY(-4px)}
 @media(max-width:520px){.step-n .bar{display:none}}
 
 .tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}
 @media(min-width:640px){.tiles{grid-template-columns:repeat(4,1fr)}}
 .tile{position:relative;aspect-ratio:4/5;border:0;overflow:hidden;cursor:pointer;padding:0;
-  border-radius:6px;background:#dfe7f0;box-shadow:0 0 0 2px var(--teal);transition:box-shadow .22s,transform .22s}
-.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.72);transition:filter .3s,transform .5s}
+  border-radius:4px;background:var(--card);box-shadow:0 0 0 1px var(--line2);transition:box-shadow .22s,transform .22s}
+.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.55) brightness(.72);transition:filter .3s,transform .5s}
 .tile .cap{position:absolute;left:0;right:0;bottom:0;padding:11px 12px;text-align:left;
-  background:linear-gradient(180deg,transparent,rgba(9,17,29,.88));
-  font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#fff}
+  background:linear-gradient(180deg,transparent,rgba(0,6,12,.92));
+  font-family:'Jost',sans-serif;font-size:10.5px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--ink)}
 .tile:hover{transform:translateY(-2px)}
 .tile:hover img{transform:scale(1.05)}
-/* All four are outlined; the chosen one is the one in full colour, sitting
-   proud of the others. An outline that only appears on selection made the
-   other three look switched off. */
-.tile[aria-pressed="true"]{box-shadow:0 0 0 3px var(--teal),0 10px 24px rgba(15,30,51,.2);transform:translateY(-2px)}
+.tile[aria-pressed="true"]{box-shadow:0 0 0 2px var(--teal),0 0 26px rgba(90,191,198,.28);transform:translateY(-2px)}
 .tile[aria-pressed="true"] img{filter:none}
+.tile[aria-pressed="true"] .cap{color:var(--teal)}
 
 .mats{display:flex;flex-wrap:wrap;gap:8px 24px;margin-top:22px}
 .mat{background:none;border:0;padding:5px 0 7px;cursor:pointer;font-family:inherit;
-  font-size:13.5px;color:var(--muted);border-bottom:2px solid transparent;transition:all .2s}
+  font-size:14px;color:var(--muted);border-bottom:1px solid transparent;transition:all .2s}
 .mat:hover{color:var(--ink)}
-.mat[aria-pressed="true"]{color:var(--ink);font-weight:600;border-bottom-color:var(--teal)}
+.mat[aria-pressed="true"]{color:var(--ink);font-weight:500;border-bottom-color:var(--teal)}
 
 .modes{display:flex;gap:22px;margin-bottom:24px}
 .mode{background:none;border:0;padding:0 0 7px;cursor:pointer;font-family:inherit;
-  font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--muted);border-bottom:2px solid transparent;transition:all .2s}
+  font-size:11px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--muted);border-bottom:1px solid transparent;transition:all .2s}
 .mode[aria-pressed="true"]{color:var(--teal);border-bottom-color:var(--teal)}
 .dims{display:flex;gap:clamp(18px,6vw,40px);flex-wrap:wrap;align-items:flex-end}
 .dim{flex:1 1 130px;min-width:120px}
-.dim label{display:block;font-size:10.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
-.dim .row{display:flex;align-items:baseline;gap:8px;border-bottom:2px solid var(--line);transition:border-color .2s}
+.dim label{display:block;font-size:10.5px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.dim .row{display:flex;align-items:baseline;gap:8px;border-bottom:1px solid var(--line2);transition:border-color .2s}
 .dim .row:focus-within{border-bottom-color:var(--teal)}
 .dim input{flex:1;min-width:0;width:100%;background:none;border:0;outline:none;color:var(--ink);
   font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:46px;line-height:1.25;padding:0}
-.dim input::placeholder{color:#B9C7D8}
-.dim .unit{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
-.hint{color:var(--muted);font-size:14.5px;line-height:1.6;margin:0 0 18px;max-width:52ch}
+.dim input::placeholder{color:rgba(221,238,244,.2)}
+.dim .unit,.unit{font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.hint{color:var(--muted);font-size:15px;font-weight:300;line-height:1.65;margin:0 0 18px;max-width:52ch}
 
 .readout{display:flex;gap:clamp(22px,7vw,44px);flex-wrap:wrap;align-items:baseline;
-  margin-top:26px;padding:18px 20px;background:var(--card);border:1px solid var(--line);border-radius:8px}
+  margin-top:26px;padding:18px 20px;background:var(--card);border:1px solid var(--line);border-radius:4px;
+  box-shadow:inset 0 1px 0 rgba(90,191,198,.08)}
 .readout .n{font-family:'Cormorant Garamond',Georgia,serif;line-height:1;font-variant-numeric:tabular-nums;color:var(--ink)}
-.readout .big .n{font-size:clamp(38px,10vw,54px)}
+.readout .big .n{font-size:clamp(38px,10vw,54px);color:var(--teal)}
 .readout .sm .n{font-size:26px;color:var(--muted)}
-.readout .l{font-size:10.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:7px}
+.readout .l{font-size:10.5px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-top:7px}
 
 .cond{display:flex;gap:13px;align-items:flex-start;cursor:pointer;padding:14px 16px;margin-bottom:8px;
-  background:var(--card);border:1px solid var(--line);border-radius:8px;font-size:15px;line-height:1.45;transition:all .2s}
-.cond:hover{border-color:#BFD0E2}
-.cond:has(input:checked){border-color:var(--teal);box-shadow:0 0 0 1px var(--teal)}
+  background:var(--card);border:1px solid var(--line);border-radius:4px;font-size:15px;font-weight:300;line-height:1.45;transition:all .2s}
+.cond:hover{border-color:var(--line2)}
+.cond:has(input:checked){border-color:var(--teal);box-shadow:0 0 0 1px var(--teal);background:rgba(90,191,198,.06)}
 .cond input{appearance:none;-webkit-appearance:none;width:20px;height:20px;flex:0 0 20px;margin:0;
-  border:2px solid #C3D1E0;border-radius:4px;background:#fff;cursor:pointer;position:relative;transition:all .2s}
+  border:1px solid rgba(90,191,198,.45);border-radius:3px;background:transparent;cursor:pointer;position:relative;transition:all .2s}
 .cond input:checked{border-color:var(--teal);background:var(--teal)}
 .cond input:checked::after{content:"";position:absolute;left:6px;top:2px;width:4px;height:9px;
-  border:solid #fff;border-width:0 2px 2px 0;transform:rotate(42deg)}
+  border:solid var(--navy);border-width:0 2px 2px 0;transform:rotate(42deg)}
 
-.range{margin-top:26px;background:var(--navy);border-radius:10px;padding:clamp(24px,6vw,32px);color:#fff}
+/* the price reads like the reel's end card: ice on navy, a teal rule */
+.range{position:relative;margin-top:26px;background:linear-gradient(180deg,#051620,#020B12);border:1px solid var(--line2);
+  border-radius:4px;padding:clamp(24px,6vw,32px);color:var(--ink);box-shadow:0 0 50px rgba(62,157,166,.12)}
+.range::before{content:"";position:absolute;left:clamp(24px,6vw,32px);top:0;width:64px;height:1px;background:var(--teal);box-shadow:0 0 10px var(--teal)}
 .range .fig{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(38px,10.5vw,58px);
-  line-height:1.02;color:var(--gold);margin:0;letter-spacing:-.01em}
-.range .fig i{color:rgba(255,255,255,.34);font-style:normal;padding:0 6px}
-.range .note{color:rgba(255,255,255,.66);font-size:13.5px;line-height:1.6;margin:12px 0 0}
-.adds{margin-top:20px;border-top:1px solid rgba(255,255,255,.14)}
+  line-height:1.02;color:var(--ink);margin:0;letter-spacing:-.005em}
+.range .fig i{color:var(--teal);font-style:normal;padding:0 6px}
+.range .note{color:var(--muted);font-size:14px;font-weight:300;line-height:1.6;margin:12px 0 0}
+.adds{margin-top:20px;border-top:1px solid var(--line2)}
 .adds div{display:flex;justify-content:space-between;gap:16px;padding:11px 0;
-  border-bottom:1px solid rgba(255,255,255,.08);font-size:14px;color:rgba(255,255,255,.72)}
+  border-bottom:1px solid var(--line);font-size:14px;font-weight:300;color:rgba(221,238,244,.78)}
 .adds div:last-child{border-bottom:0}
-.adds b{font-weight:500;color:var(--gold);font-variant-numeric:tabular-nums;white-space:nowrap}
-/* A row carrying a note wraps: label and figure keep the line they always had,
-   the note takes the full width underneath. Without the wrap the flex row puts
-   a sentence in the gap between the two and squeezes both. */
+.adds b{font-weight:500;color:var(--teal);font-variant-numeric:tabular-nums;white-space:nowrap}
 .adds div.add-noted{flex-wrap:wrap}
-.adds div.add-noted small{flex:0 0 100%;margin-top:6px;font-size:12.5px;line-height:1.5;
-  color:rgba(255,255,255,.5)}
+.adds div.add-noted small{flex:0 0 100%;margin-top:6px;font-size:12.5px;line-height:1.5;color:var(--dim)}
 
 .drivers{margin:0;padding:0;list-style:none}
 .drivers li{padding:12px 0 12px 24px;border-bottom:1px solid var(--line);
-  font-size:14.5px;line-height:1.55;color:var(--muted);position:relative}
+  font-size:15px;font-weight:300;line-height:1.55;color:var(--muted);position:relative}
 .drivers li:last-child{border-bottom:0}
-.drivers li::before{content:"";position:absolute;left:0;top:20px;width:11px;height:2px;background:var(--teal);border-radius:2px}
+.drivers li::before{content:"";position:absolute;left:0;top:21px;width:11px;height:1px;background:var(--teal);box-shadow:0 0 6px var(--teal)}
 
 .f{display:grid;gap:12px;margin-top:4px;max-width:460px}
-.f input{background:var(--card);border:1px solid var(--line);border-radius:8px;outline:none;
-  color:var(--ink);font-family:inherit;font-size:16px;padding:15px 16px;transition:all .2s}
-.f input::placeholder{color:#93A6BB}
-.f input:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(23,130,143,.13)}
+.f input{background:var(--card);border:1px solid var(--line2);border-radius:4px;outline:none;
+  color:var(--ink);font-family:inherit;font-size:16px;font-weight:400;padding:15px 16px;transition:all .2s}
+.f input::placeholder{color:rgba(221,238,244,.36)}
+.f input:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(90,191,198,.16)}
+.f input:-webkit-autofill{-webkit-text-fill-color:var(--ink);-webkit-box-shadow:0 0 0 40px var(--card) inset;caret-color:var(--ink)}
 .hp{position:absolute;left:-9999px;width:1px;height:1px}
 /* PHOTOS — the way in for everything the satellite cannot see */
 .shots{margin:0 0 20px}
 .shots-add{display:flex;gap:14px;align-items:flex-start;cursor:pointer;background:var(--card);
-  border:1px dashed #B9C9DB;border-radius:10px;padding:16px 18px;transition:all .2s}
-.shots-add:hover{border-color:var(--teal);background:#fbfdff}
-.shots-add .ico{flex:0 0 34px;height:34px;border-radius:50%;background:rgba(23,130,143,.1);
-  color:var(--teal);font-size:21px;line-height:34px;text-align:center;font-weight:400}
-.shots-add b{display:block;font-size:15.5px;font-weight:600;color:var(--ink)}
-.shots-add em{display:block;font-style:normal;color:var(--muted);font-size:13.5px;line-height:1.55;margin-top:4px}
+  border:1px dashed var(--line2);border-radius:4px;padding:16px 18px;transition:all .2s}
+.shots-add:hover{border-color:var(--teal);background:rgba(90,191,198,.05)}
+.shots-add .ico{flex:0 0 34px;height:34px;border-radius:50%;border:1px solid rgba(90,191,198,.45);
+  color:var(--teal);font-size:21px;line-height:32px;text-align:center;font-weight:300}
+.shots-add b{display:block;font-size:15.5px;font-weight:500;color:var(--ink)}
+.shots-add em{display:block;font-style:normal;color:var(--muted);font-size:14px;font-weight:300;line-height:1.55;margin-top:4px}
 .shots-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:9px;margin-top:11px}
-.shot{position:relative;aspect-ratio:1/1;border-radius:8px;overflow:hidden;background:#dbe4ef;
-  border:1px solid var(--line)}
+.shot{position:relative;aspect-ratio:1/1;border-radius:4px;overflow:hidden;background:var(--card);
+  border:1px solid var(--line2)}
 .shot img{width:100%;height:100%;object-fit:cover;display:block}
 .shot.busy img{opacity:.4}
-.shot .spin{position:absolute;inset:0;display:grid;place-items:center;font-size:10px;font-weight:600;
-  letter-spacing:.1em;text-transform:uppercase;color:var(--teal)}
+.shot .spin{position:absolute;inset:0;display:grid;place-items:center;font-size:10px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--teal)}
 .shot .x{position:absolute;top:4px;right:4px;width:24px;height:24px;border:0;border-radius:50%;
-  background:rgba(12,22,38,.78);color:#fff;font-size:15px;line-height:24px;padding:0;cursor:pointer}
+  background:rgba(0,6,12,.82);color:var(--ink);font-size:15px;line-height:24px;padding:0;cursor:pointer}
 .shot.bad{border-color:#C2695A}
-.shots-note{font-size:12.5px;color:var(--muted);margin:9px 0 0}
-.shots-note.err{color:#B4432F;font-weight:500}
-.shot .tag{position:absolute;left:4px;bottom:4px;background:rgba(23,130,143,.92);color:#fff;
-  font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;line-height:1.4}
+.shots-note{font-size:13px;color:var(--muted);margin:9px 0 0}
+.shots-note.err{color:#E08A78;font-weight:500}
+.shot .tag{position:absolute;left:4px;bottom:4px;background:var(--teal);color:var(--navy);
+  font-size:10px;font-weight:600;padding:2px 6px;border-radius:3px;line-height:1.4}
 .shot{cursor:pointer}
 /* MEASURING ON THEIR OWN PHOTO */
-.pmeasure{margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:12px;
+.pmeasure{margin-top:14px;background:var(--card);border:1px solid var(--line2);border-radius:4px;
   padding:16px 16px 18px}
 .pm-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
-.pm-head b{font-size:14.5px;font-weight:600;color:var(--ink)}
+.pm-head b{font-size:14.5px;font-weight:500;color:var(--ink)}
 .pm-close{width:30px;height:30px;border:0;border-radius:50%;background:var(--paper2);color:var(--ink);
   font-size:18px;line-height:30px;padding:0;cursor:pointer}
-.pm-frame{position:relative;border-radius:9px;overflow:hidden;background:#dbe4ef;line-height:0;
+.pm-frame{position:relative;border-radius:3px;overflow:hidden;background:var(--navy2);line-height:0;
   touch-action:pan-y}
 /* No letterboxing: the frame takes the picture's own shape, so a percentage
    on screen is the same percentage of the photograph's pixels. The rectifying
    maths below works in those pixels. */
 .pm-frame>img{width:100%;height:auto;display:block}
 .pm-frame svg{position:absolute;inset:0;width:100%;height:100%}
-.pm-frame svg polygon{fill:rgba(99,203,214,.24);stroke:#63CBD6;stroke-width:2.5;vector-effect:non-scaling-stroke}
+.pm-frame svg polygon{fill:rgba(90,191,198,.22);stroke:#5ABFC6;stroke-width:2;vector-effect:non-scaling-stroke}
 .pm-read{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;
   align-items:center;gap:7px;z-index:3;pointer-events:none;line-height:0}
-/* Inside the stack the badges are laid out by the flexbox, not pinned. */
 .pm-read .demo-a,.pm-read .demo-p{position:static;transform:none}
 .pm-read[hidden]{display:none}
-/* The one edge whose length they gave us. The other three are worked out. */
-.demo-e.is-known{background:var(--teal);box-shadow:0 2px 8px rgba(6,14,26,.45)}
+.demo-e.is-known{background:var(--teal);color:var(--navy);box-shadow:0 2px 8px rgba(0,6,12,.45)}
 .pm-ask{margin-top:14px}
-.pm-ask label{display:block;font-size:13.5px;color:var(--muted);margin-bottom:6px}
-.pm-ask label b{color:var(--teal);font-weight:600}
+.pm-ask label{display:block;font-size:14px;font-weight:300;color:var(--muted);margin-bottom:6px}
+.pm-ask label b{color:var(--teal);font-weight:500}
 .pm-row{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
-.pm-row input{width:110px;background:none;border:0;border-bottom:2px solid var(--line);outline:none;
+.pm-row input{width:110px;background:none;border:0;border-bottom:1px solid var(--line2);outline:none;
   color:var(--ink);font-size:34px;padding:0 2px;transition:border-color .2s}
 .pm-row input:focus{border-bottom-color:var(--teal)}
-.pm-row input::placeholder{color:#B9C7D8}
+.pm-row input::placeholder{color:rgba(221,238,244,.2)}
 .pm-flip{margin-left:auto;background:none;border:0;padding:0;cursor:pointer;font-family:inherit;
-  font-size:12.5px;color:var(--teal);font-weight:600;border-bottom:1px solid rgba(23,130,143,.3)}
-.pm-hint{font-size:12.5px;color:var(--muted);margin:8px 0 0}
-.btn{margin-top:10px;justify-self:start;cursor:pointer;font-family:inherit;border:0;border-radius:8px;
-  background:var(--teal);color:#fff;padding:16px 32px;
-  font-size:11.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;transition:all .2s}
-.btn:hover{background:#12707B}
+  font-size:13px;color:var(--teal);font-weight:400;border-bottom:1px solid rgba(90,191,198,.34)}
+.pm-hint{font-size:13px;color:var(--muted);margin:8px 0 0}
+.btn{margin-top:10px;justify-self:start;cursor:pointer;font-family:inherit;border:1px solid var(--verd);border-radius:3px;
+  background:var(--verd);color:#fff;padding:16px 32px;
+  font-size:11.5px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;transition:all .2s;
+  box-shadow:0 0 24px rgba(62,157,166,.25)}
+.btn:hover{background:var(--teal);border-color:var(--teal);color:var(--navy)}
 .btn:disabled{opacity:.55;cursor:default}
-.btn-q{background:var(--navy)}
-.btn-q:hover{background:var(--navy2)}
+.btn-q{background:transparent;color:var(--teal);border-color:rgba(90,191,198,.5);box-shadow:none}
+.btn-q:hover{background:rgba(90,191,198,.1);border-color:var(--teal);color:var(--ink)}
 .ghost{background:none;border:0;cursor:pointer;font-family:inherit;color:var(--muted);
-  font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding:16px 0}
+  font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;padding:16px 0}
 .ghost:hover{color:var(--ink)}
 .ghost:disabled{opacity:.4;cursor:default}
-.err{color:#B4432F;font-size:14px;margin:14px 0 0;font-weight:500}
+.err{color:#E08A78;font-size:14px;margin:14px 0 0;font-weight:500}
 
-/* THE DEMO — the mechanism, standing still.
-   The same marks as the live tracer below: teal shape, white corner handles, a
-   length on every edge, the running area in the middle. Marked as an example,
-   because the numbers on it are illustrative and the photograph is a real job. */
+/* THE DEMO — the mechanism, standing still. Marked as an example, because the
+   numbers on it are illustrative and the photograph is a real job. */
 .demo{margin:34px 0 0}
-/* The words sit on the picture. The top of this frame is night trees and a
-   pergola, dark enough to carry white type once a scrim steadies it, and the
-   panel reads as one thing instead of a caption stacked on a photograph. */
 /* pointer-events:none — a corner dragged to the top of the frame lands UNDER
-   this caption, which sits at z-index 2 and used to swallow the pointer. The
-   dot was still there and could not be picked up again; the only way out was
-   reload. Nothing in here is clickable, so it has no business taking a press. */
+   this caption; nothing in here is clickable, so it has no business taking a
+   press. */
 .demo-cap-top{position:absolute;left:0;right:0;top:0;z-index:2;padding:18px 20px 40px;
   pointer-events:none;
-  background:linear-gradient(180deg,rgba(6,12,22,.82) 0%,rgba(6,12,22,.55) 45%,transparent 100%)}
-.demo-lbl{font-size:10px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;
-  color:var(--teal-lt);margin:0}
+  background:linear-gradient(180deg,rgba(0,6,12,.86) 0%,rgba(0,6,12,.55) 45%,transparent 100%)}
+.demo-lbl{font-size:10px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--teal);margin:0}
 .demo-h{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(22px,5.4vw,29px);
-  line-height:1.18;margin:8px 0 0;color:#fff;text-shadow:0 2px 18px rgba(6,12,22,.7);max-width:16ch}
-/* user-select:none — dragging a corner across the headline used to select the
-   headline instead, leaving "Drag a corner. It counts the feet." highlighted
-   blue mid-drag. */
-.demo-frame{position:relative;border-radius:10px;overflow:hidden;border:1px solid var(--line);
-  background:#c9d4e0;line-height:0;user-select:none;-webkit-user-select:none}
+  line-height:1.18;margin:8px 0 0;color:var(--ink);text-shadow:0 2px 18px rgba(0,6,12,.7);max-width:16ch}
+/* user-select:none — dragging a corner across the headline used to select it */
+.demo-frame{position:relative;border-radius:3px;overflow:hidden;border:1px solid var(--line2);
+  background:var(--navy2);line-height:0;user-select:none;-webkit-user-select:none}
+.demo-frame::after{content:"";position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 0 1px rgba(90,191,198,.08)}
 .demo-frame>img{width:100%;height:auto;display:block}
 .demo-frame svg{position:absolute;inset:0;width:100%;height:100%}
-.demo-frame svg polygon{fill:rgba(99,203,214,.24);stroke:#63CBD6;stroke-width:2.5;vector-effect:non-scaling-stroke}
+.demo-frame svg polygon{fill:rgba(90,191,198,.22);stroke:#5ABFC6;stroke-width:2;vector-effect:non-scaling-stroke}
 /* z-index above the caption so a dot dragged to the top stays visible as well
-   as grabbable. touch-action:none so a drag on a phone moves the corner
-   instead of scrolling the page out from under the thumb. The 15px dot is
-   under the 44px touch floor, so ::after pads the target without growing the
-   mark — a corner has to look precise and still be catchable with a thumb. */
+   as grabbable. touch-action:none so a drag on a phone moves the corner. */
 .demo-dot{position:absolute;width:15px;height:15px;margin:-7.5px 0 0 -7.5px;border-radius:50%;
   z-index:3;touch-action:none;
-  background:#fff;border:3px solid var(--teal);box-shadow:0 2px 7px rgba(6,14,26,.55)}
+  background:var(--ink);border:3px solid var(--teal);box-shadow:0 0 0 1px rgba(0,6,12,.6),0 0 12px rgba(90,191,198,.6)}
 .demo-dot::after{content:"";position:absolute;left:50%;top:50%;width:44px;height:44px;
   transform:translate(-50%,-50%);border-radius:50%}
-.demo-e{position:absolute;pointer-events:none;transform:translate(-50%,-50%);background:rgba(12,22,38,.86);color:#fff;
-  font-size:11px;font-weight:600;padding:3px 7px;border-radius:4px;white-space:nowrap;line-height:1.3}
-.demo-a{position:absolute;pointer-events:none;transform:translate(-50%,-50%);background:var(--gold);color:#1B1405;
-  font-size:16px;font-weight:700;padding:7px 13px;border-radius:6px;white-space:nowrap;line-height:1.2;
-  box-shadow:0 3px 12px rgba(6,14,26,.4)}
-.demo-a em{font-style:normal;font-weight:600;font-size:11px;opacity:.75;margin-left:4px}
-/* The distance around, under the area. The tool reports both — coping, edge
-   restraint and wall run all price by the foot, not the square foot — so the
-   picture of the tool should report both too. */
-.demo-p{position:absolute;pointer-events:none;transform:translate(-50%,-50%);background:rgba(12,22,38,.86);color:#fff;
-  font-size:12px;font-weight:600;padding:5px 10px;border-radius:5px;white-space:nowrap;line-height:1.2}
-.demo-p em{font-style:normal;font-weight:500;opacity:.7;margin-left:4px}
-.demo-cap{color:var(--muted);font-size:13.5px;line-height:1.6;margin:12px 0 0}
-.demo-cap b{color:var(--ink);font-weight:600}
+.demo-e{position:absolute;pointer-events:none;transform:translate(-50%,-50%);background:rgba(0,6,12,.88);color:var(--ink);
+  border:1px solid var(--line2);font-size:11px;font-weight:500;letter-spacing:.04em;padding:3px 7px;border-radius:3px;white-space:nowrap;line-height:1.3}
+.demo-a{position:absolute;pointer-events:none;transform:translate(-50%,-50%);background:var(--teal);color:var(--navy);
+  font-size:16px;font-weight:600;padding:7px 13px;border-radius:3px;white-space:nowrap;line-height:1.2;
+  box-shadow:0 0 18px rgba(90,191,198,.45)}
+.demo-a em{font-style:normal;font-weight:500;font-size:11px;opacity:.75;margin-left:4px}
+.demo-p{position:absolute;pointer-events:none;transform:translate(-50%,-50%);background:rgba(0,6,12,.88);color:var(--ink);
+  border:1px solid var(--line2);font-size:12px;font-weight:500;padding:5px 10px;border-radius:3px;white-space:nowrap;line-height:1.2}
+.demo-p em{font-style:normal;font-weight:400;opacity:.7;margin-left:4px}
+.demo-cap{color:var(--muted);font-size:14px;font-weight:300;line-height:1.6;margin:12px 0 0}
+.demo-cap b{color:var(--ink);font-weight:500}
 .demo-reset{background:none;border:0;padding:0;margin-left:6px;cursor:pointer;font-family:inherit;
-  font-size:13.5px;color:var(--teal);font-weight:600;border-bottom:1px solid rgba(23,130,143,.35)}
-/* Grab targets, not decorations. The dot stays 15px; the thing your thumb has
-   to find is 38. */
+  font-size:14px;color:var(--teal);font-weight:400;border-bottom:1px solid rgba(90,191,198,.35)}
+/* Grab targets, not decorations. The dot stays 15px; the target is 38. */
 .demo-dot{cursor:grab;touch-action:none}
 .demo-dot::after{content:"";position:absolute;left:50%;top:50%;width:38px;height:38px;
   margin:-19px 0 0 -19px;border-radius:50%}
 .demo-dot:active{cursor:grabbing;transform:scale(1.12)}
 .demo-frame{touch-action:pan-y}
 
-.map{position:relative;width:100%;aspect-ratio:1/1;overflow:hidden;border-radius:10px;
-  border:1px solid var(--line);background:#c9d4e0;touch-action:none;user-select:none;cursor:grab}
+.map{position:relative;width:100%;aspect-ratio:1/1;overflow:hidden;border-radius:3px;
+  border:1px solid var(--line2);background:var(--navy2);touch-action:none;user-select:none;cursor:grab}
 .map>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
 .map .shape{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-.map .shape polygon{fill:rgba(99,203,214,.26);stroke:#63CBD6;stroke-width:2.5;vector-effect:non-scaling-stroke}
-.map .shape polyline{fill:none;stroke:#63CBD6;stroke-width:4;vector-effect:non-scaling-stroke;stroke-linecap:round}
+.map .shape polygon{fill:rgba(90,191,198,.24);stroke:#5ABFC6;stroke-width:2.5;vector-effect:non-scaling-stroke}
+.map .shape polyline{fill:none;stroke:#5ABFC6;stroke-width:4;vector-effect:non-scaling-stroke;stroke-linecap:round}
 .shape-grab{position:absolute;inset:0;cursor:move}
 .handle{position:absolute;width:34px;height:34px;margin-left:-17px;margin-top:-17px;padding:0;
   border:0;background:none;cursor:grab;touch-action:none;z-index:3}
 .handle::after{content:"";position:absolute;left:50%;top:50%;width:15px;height:15px;
-  margin:-7.5px 0 0 -7.5px;border-radius:50%;background:#fff;
-  border:3px solid var(--teal);box-shadow:0 2px 7px rgba(6,14,26,.55)}
-.handle:active::after{background:var(--teal);border-color:#fff}
+  margin:-7.5px 0 0 -7.5px;border-radius:50%;background:var(--ink);
+  border:3px solid var(--teal);box-shadow:0 0 0 1px rgba(0,6,12,.6),0 0 12px rgba(90,191,198,.6)}
+.handle:active::after{background:var(--teal);border-color:var(--ink)}
 .edge-ft{position:absolute;transform:translate(-50%,-50%);pointer-events:none;z-index:2;
-  background:rgba(12,22,38,.86);color:#fff;font-size:11px;font-weight:600;
-  padding:3px 7px;border-radius:4px;white-space:nowrap}
+  background:rgba(0,6,12,.88);color:var(--ink);border:1px solid var(--line2);font-size:11px;font-weight:500;
+  padding:3px 7px;border-radius:3px;white-space:nowrap}
 .area-ft{position:absolute;transform:translate(-50%,-50%);pointer-events:none;z-index:2;
-  background:var(--gold);color:#1B1405;font-size:15px;font-weight:700;
-  padding:6px 12px;border-radius:6px;white-space:nowrap;box-shadow:0 3px 12px rgba(6,14,26,.4)}
-.area-ft em{font-style:normal;font-weight:600;font-size:11px;opacity:.75;margin-left:3px}
+  background:var(--teal);color:var(--navy);font-size:15px;font-weight:600;
+  padding:6px 12px;border-radius:3px;white-space:nowrap;box-shadow:0 0 18px rgba(90,191,198,.45)}
+.area-ft em{font-style:normal;font-weight:500;font-size:11px;opacity:.75;margin-left:3px}
 .zoom{position:absolute;right:10px;top:10px;display:grid;gap:6px;z-index:4}
-.zoom button{width:38px;height:38px;border:0;border-radius:7px;background:rgba(12,22,38,.86);
-  color:#fff;font-size:18px;line-height:1;cursor:pointer;box-shadow:0 2px 8px rgba(6,14,26,.3)}
+.zoom button{width:38px;height:38px;border:1px solid var(--line2);border-radius:3px;background:rgba(0,6,12,.88);
+  color:var(--ink);font-size:18px;line-height:1;cursor:pointer;box-shadow:0 2px 8px rgba(0,6,12,.3)}
 .tools{display:flex;gap:18px;align-items:center;margin-top:14px;flex-wrap:wrap}
 
-footer{border-top:1px solid var(--line);margin-top:14px;background:var(--card)}
+footer{border-top:1px solid var(--line);margin-top:14px;background:rgba(0,6,12,.7)}
 footer .wrap{padding:28px 22px 64px;color:var(--muted);font-size:13px;line-height:2}
-footer a.t{color:var(--teal);font-weight:500}
+footer .wrap>a:first-child{font-family:'Cormorant Garamond',serif;font-weight:500;letter-spacing:.3em;color:var(--ink)}
+footer .wrap>a:first-child .o{color:var(--teal)}
+footer a.t{color:var(--teal);font-weight:400}
 </style>
 <script src="/tag.js"></script>
 </head>
@@ -355,7 +352,7 @@ footer a.t{color:var(--teal);font-weight:500}
 </nav>
 
 <header class="hero">
-  <img src="../assets/backdrop/hardscape-hero-plain.jpg" alt="" aria-hidden="true">
+  <img src="../assets/estimate/hero-scan.jpg" alt="" aria-hidden="true">
   <div class="veil"></div>
   <div class="wrap">
     <p class="eyebrow">Instant estimate &nbsp;·&nbsp; Massachusetts &amp; Rhode Island</p>
@@ -533,7 +530,7 @@ footer a.t{color:var(--teal);font-weight:500}
 
 <footer>
   <div class="wrap">
-    <a href="/">PHAÖRA</a> · Masonry and full-service home improvement ·
+    <a href="/">PHA<span class="o">Ö</span>RA</a> · Masonry and full-service home improvement ·
     <a class="t" href="../hardscape-gallery.html">See the work</a>
   </div>
 </footer>

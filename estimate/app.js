@@ -171,7 +171,15 @@ const S = {
   zoom: 20,
   pts: [],
   quote: null,
-  src: new URLSearchParams(location.search).get("src") || "",
+  // Where they came from: ?src= on this page, or what /tag.js kept for the tab
+  // when they landed elsewhere first (the Instagram bio link goes to the
+  // homepage). The CRM files the lead under it — src=instagram → Instagram.
+  src: (() => {
+    const q = new URLSearchParams(location.search).get("src");
+    if (q) return q.slice(0, 80);
+    try { return (window.phaoraSrc || sessionStorage.getItem("phaora_src") || "").slice(0, 80); }
+    catch { return window.phaoraSrc || ""; }
+  })(),
   // The postcard's own code, when they arrived by scanning one. It is printed
   // on exactly one card, so it says which household came back — not which
   // campaign, which household. Opaque: it names a piece of card, not a person.
