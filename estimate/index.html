@@ -535,6 +535,9 @@ footer a.t{color:var(--teal);font-weight:400}
   </div>
 </footer>
 
-<script src="app.js"></script>
+<!-- Absolute: /estimate without the slash serves this page too (the
+     Instagram bio link is typed that way), and a relative app.js then
+     resolved to /app.js — a 404, and a page with no tool on it. -->
+<script src="/estimate/app.js"></script>
 </body>
 </html>
