@@ -102,7 +102,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;display:grid;grid-template-c
    The film is vertical (9:16) with its own HUD and words burnt in, so it is
    never cropped: on a phone it fills the width; on a wide screen it stands in
    the middle of a dark scanner stage, the brand ground either side of it.
-   The file is muted and silent — no sound button. Two sizes: 720 for phones
+   It autoplays muted (browsers allow nothing else); the sound button in the
+   frame's top-right corner turns the score on and, the first time, starts the
+   film from 0:00 so the bell lands on the Ö. Two sizes: 720 for phones
    and small frames, 1080 where the frame is tall enough to use it. The poster
    is the reel's own end card, which is also all a reduced-motion or
    Save-Data visitor gets: no video is requested for them at all. */
@@ -128,6 +130,18 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;display:grid;grid-template-c
   min-height:420px;max-height:1100px;aspect-ratio:9/16;background:#00060C url(assets/video/phaora-reel-poster.jpg) center/cover no-repeat;
   box-shadow:0 0 0 1px rgba(90,191,198,.16),0 30px 90px rgba(0,0,0,.6),0 0 120px rgba(62,157,166,.12)}
 .reel-frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:transparent}
+/* sound: top-right, clear of the reel's wordmark (top-left) and captions */
+.reel-sound{position:absolute;top:14px;right:14px;z-index:3;display:flex;align-items:center;gap:8px;
+  min-height:44px;padding:0 14px;border:1px solid rgba(90,191,198,.4);border-radius:999px;
+  background:rgba(0,6,12,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  color:#5ABFC6;font:inherit;font-size:10px;font-weight:500;line-height:1;letter-spacing:.28em;text-transform:uppercase;
+  cursor:pointer;transition:border-color .2s,color .2s,background .2s}
+.reel-sound:hover{border-color:#5ABFC6;color:#DDEEF4;background:rgba(62,157,166,.18)}
+.reel-sound svg{width:16px;height:16px;flex:none}
+.reel-sound .rs-wave{transition:opacity .2s}
+.reel-sound[aria-pressed="false"] .rs-wave{opacity:0}
+.reel-sound[aria-pressed="true"] .rs-x{opacity:0}
+.reel-sound[hidden]{display:none}
 /* viewfinder corners, the same mark the reel's own HUD uses */
 .reel-frame::before,.reel-frame::after{content:"";position:absolute;width:22px;height:22px;z-index:2;pointer-events:none;
   border:1px solid rgba(90,191,198,.6)}
@@ -579,6 +593,13 @@ img.parallax{top:-8%;height:116%;will-change:transform}
              data-sd="assets/video/phaora-reel-720.mp4"
              data-hd="assets/video/phaora-reel-1080.mp4"
              aria-label="PHAÖRA reel — six jobs we built, each scanned and then shown as it is: steps, wall and walk; an outdoor fireplace; a patio and fire pit; granite cobble; the substrate; a patio and seat wall"></video>
+      <button type="button" class="reel-sound" id="reelSound" aria-pressed="false" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/>
+          <path class="rs-wave" d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/>
+          <path class="rs-x" d="M16 9.5l5 5M21 9.5l-5 5"/>
+        </svg><span>Sound on</span>
+      </button>
       <script>
       (function(){
         var v=document.getElementById('heroReel'); if(!v) return;
@@ -1004,6 +1025,23 @@ el.innerHTML=html})();
     if(on!==last){ if(last) last.classList.remove('on'); if(on) on.classList.add('on'); last=on }
   }
   v.addEventListener('timeupdate',tick);
+  // Sound. Muted is the only autoplay browsers permit; the button is the
+  // visitor's say-so. The first time it restarts the film, so the score is
+  // heard whole and the bell lands on the Ö.
+  var sb=document.getElementById('reelSound'), heard=false;
+  if(sb){
+    var label=sb.querySelector('span');
+    sb.hidden=false;
+    sb.addEventListener('click',function(){
+      var on=v.muted;
+      v.muted=!on;
+      if(on&&!heard){ heard=true; try{v.currentTime=0}catch(e){} }
+      sb.setAttribute('aria-pressed',on?'true':'false');
+      label.textContent=on?'Mute':'Sound on';
+      var p=v.play(); if(p&&p.catch) p.catch(function(){});
+      if(on&&window.phaoraTrack) phaoraTrack('reel_sound');
+    });
+  }
   // The hero has no controls, so any pause is the browser's doing — tab
   // hidden, bfcache restore, power saver. Put it back while it is on screen;
   // off screen it stops, for the battery.
