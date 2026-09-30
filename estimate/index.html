@@ -200,6 +200,7 @@ h1 em{font-style:italic;color:var(--teal)}
 .shots-add .ico{flex:0 0 34px;height:34px;border-radius:50%;border:1px solid rgba(90,191,198,.45);
   color:var(--teal);font-size:21px;line-height:32px;text-align:center;font-weight:300}
 .shots-add b{display:block;font-size:15.5px;font-weight:500;color:var(--ink)}
+.shots-add b small{font-size:12px;font-weight:400;color:var(--muted);letter-spacing:.02em}
 .shots-add em{display:block;font-style:normal;color:var(--muted);font-size:14px;font-weight:300;line-height:1.55;margin-top:4px}
 .shots-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:9px;margin-top:11px}
 .shot{position:relative;aspect-ratio:1/1;border-radius:4px;overflow:hidden;background:var(--card);
@@ -467,9 +468,10 @@ footer a.t{color:var(--teal);font-weight:400}
         <label class="shots-add" for="b-photos">
           <span class="ico" aria-hidden="true">+</span>
           <span>
-            <b>Add photos</b>
-            <em>A fireplace, steps, a repair, a wall that moved — anything the satellite
-            cannot show. Send pictures and skip the measuring entirely.</em>
+            <b>Add photos to this request <small>(optional)</small></b>
+            <em>They are sent with your booking below, so we see the job before we
+            arrive. Best for what a satellite cannot show: a fireplace, steps, a repair,
+            a wall that moved. With photos, you can skip measuring in step two.</em>
           </span>
         </label>
         <input id="b-photos" type="file" accept="image/*" multiple hidden>
