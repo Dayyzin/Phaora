@@ -194,6 +194,64 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;display:grid;grid-template-c
 @media(prefers-reduced-motion:reduce){.reel-ground::after{animation:none;display:none}
   .reel-index li,.reel-index li b{transition:none}}
 
+/* WHAT'S UNDER A PHAÖRA PATIO — the section under the reel. A pinned stage
+   while the layers come apart, then it lets go. Colours are the scanner ramp
+   and the Ink & Ice text colours, nothing else. The 3D (assets/substrate/
+   substrate.js) loads only as the section nears the screen; until then, and
+   for reduced-motion or Save-Data visitors for good, the poster holds the
+   space. No depth or spec is written here: David has not confirmed any. */
+.sub{position:relative;height:200vh;height:200svh;background:#03080D;color:#F4F8FA}
+.sub-stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;
+  background:radial-gradient(ellipse 80% 46% at 42% 56%,#05202A 0%,#03080D 72%)}
+.sub-head{position:absolute;left:0;right:0;top:0;z-index:2;display:flex;justify-content:space-between;align-items:flex-start;gap:14px;
+  padding:88px 20px 0}
+.sub-h{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(30px,8.6vw,56px);line-height:1.02;color:#DDEEF4;max-width:9.5em;letter-spacing:.005em}
+.sub-h .wmx{letter-spacing:.05em}
+.sub-h .o{color:#5ABFC6}
+.sub-count{flex:none;min-width:6.4em;padding-top:9px;text-align:right;font-size:10px;font-weight:500;letter-spacing:.26em;color:#5ABFC6;font-variant-numeric:tabular-nums}
+.sub-fig{position:absolute;inset:0;margin:0}
+.sub-cv{position:absolute;inset:0;width:100%;height:100%;display:block}
+.sub-poster{color:transparent;position:absolute;left:50%;top:56%;transform:translate(-50%,-50%);height:54%;width:auto;max-width:88%;object-fit:contain;transition:opacity .45s}
+.sub[data-mode=live] .sub-poster{opacity:0}
+.sub-tag{display:none}
+.sub-lead{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.sub-lead line{stroke:#5ABFC6;stroke-width:1}
+.sub-lead circle{fill:#03080D;stroke:#5ABFC6;stroke-width:1.25}
+.sub-list{list-style:none;margin:0;padding:0}
+.sub-list li{display:grid;grid-template-columns:24px 1fr;align-items:baseline}
+.sub-list .n{font-size:10px;font-weight:500;letter-spacing:.2em;color:#5ABFC6;font-variant-numeric:tabular-nums}
+.sub-list b{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:20px;line-height:22px;color:#DDEEF4}
+.sub-list p{grid-column:2;font-size:12px;line-height:1.45;color:#F4F8FA;margin-top:5px}
+.sub:not([data-mode=static]) .sub-list li{position:absolute;left:0;top:0;width:var(--sub-col,150px);opacity:0;will-change:transform,opacity}
+.sub:not([data-mode=static]) .sub-list li:not(.on) p{display:none}
+.sub:not([data-mode=static]) .sub-list li:not(.cur) b{color:#6CC3CA}
+.sub-wm{position:absolute;left:50%;bottom:calc(env(safe-area-inset-bottom) + 92px);opacity:0;white-space:nowrap;
+  font-family:'Cormorant Garamond',serif;font-weight:400;font-size:30px;line-height:1;letter-spacing:.42em;padding-left:.42em;color:#F4F8FA}
+.sub-wm svg{display:inline-block;width:1.34em;height:1.34em;vertical-align:-.25em;margin:0 .07em 0 -.35em}
+.sub-foot{position:absolute;left:0;right:0;bottom:0;z-index:3;display:flex;justify-content:center;padding:0 20px calc(env(safe-area-inset-bottom) + 20px)}
+.sub-cta{display:inline-flex;align-items:center;min-height:44px;padding:0 24px;border:1px solid #1F6E78;background:#03080D;
+  font-size:10px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:#5ABFC6;transition:border-color .25s,color .25s}
+.sub-cta:hover{border-color:#5ABFC6;color:#DDEEF4}
+@media(min-width:760px){
+  .sub-head{padding:104px clamp(40px,5vw,72px) 0}
+  .sub-count{padding-top:16px}
+  .sub-list b{font-size:24px;line-height:24px}
+  .sub-list p{font-size:13px;margin-top:6px}
+  .sub-wm{font-size:40px;bottom:112px}
+  .sub-foot{padding-bottom:36px}
+}
+/* static: reduced motion, Save-Data, no WebGL — the poster and the list, no pin */
+.sub[data-mode=static]{height:auto;padding:0 20px 64px}
+.sub[data-mode=static] .sub-stage{position:relative;height:auto;overflow:visible;background:none}
+.sub[data-mode=static] .sub-head{position:static;padding:88px 0 8px;max-width:560px;margin:0 auto}
+.sub[data-mode=static] .sub-count,.sub[data-mode=static] .sub-cv,.sub[data-mode=static] .sub-lead,.sub[data-mode=static] .sub-wm{display:none}
+.sub[data-mode=static] .sub-fig{position:relative;inset:auto;max-width:290px;margin:0 auto 0 calc(50% - 170px)}
+.sub[data-mode=static] .sub-poster{position:static;transform:none;display:block;width:100%;height:auto;max-width:none;opacity:1}
+.sub[data-mode=static] .sub-tag{display:block;position:absolute;transform:translate(10px,-50%);font-size:10px;font-weight:500;letter-spacing:.2em;color:#5ABFC6;font-variant-numeric:tabular-nums}
+.sub[data-mode=static] .sub-tag::before{content:"";position:absolute;right:calc(100% + 4px);top:50%;width:8px;height:1px;background:#5ABFC6}
+.sub[data-mode=static] .sub-list{display:grid;gap:18px;max-width:560px;margin:24px auto 0}
+.sub[data-mode=static] .sub-foot{position:static;padding:32px 0 0}
+
 /* TICKER */
 .ticker-wrap{position:relative;border-top:1px solid rgba(79,181,190,.08);border-bottom:1px solid rgba(79,181,190,.08);overflow:hidden;background:rgba(3,10,18,.6);padding:13px 0}
 .ticker-wrap::before,.ticker-wrap::after{content:'';position:absolute;top:0;bottom:0;width:60px;z-index:2;pointer-events:none}
@@ -631,6 +689,56 @@ img.parallax{top:-8%;height:116%;will-change:transform}
   <div class="hero-rule"></div>
   <p>Masonry flagship &nbsp;·&nbsp; whole-home trades &nbsp;·&nbsp; snow plowing</p>
 </div>
+
+<!-- WHAT'S UNDER A PHAÖRA PATIO — see the .sub styles. Layer names and one
+     plain line each; no depth, thickness or spec until David confirms one. -->
+<section class="sub" id="substrate" aria-labelledby="sub-h">
+  <div class="sub-stage">
+    <div class="sub-head">
+      <h2 class="sub-h" id="sub-h">What&rsquo;s under a <span class="wmx">PHA<span class="o">&Ouml;</span>RA</span> patio</h2>
+      <span class="sub-count" aria-hidden="true"></span>
+    </div>
+    <figure class="sub-fig">
+      <img class="sub-poster" src="assets/substrate/poster.webp" width="600" height="1080" loading="lazy" decoding="async"
+           alt="A PHAÖRA patio taken apart into its layers: pavers, joint sand, bedding sand, a compacted gravel base and compacted subgrade">
+      <span class="sub-tag" aria-hidden="true" style="left:96.7%;top:11.8%">01</span>
+      <span class="sub-tag" aria-hidden="true" style="left:95.7%;top:28.6%">02</span>
+      <span class="sub-tag" aria-hidden="true" style="left:94.7%;top:46.1%">03</span>
+      <span class="sub-tag" aria-hidden="true" style="left:93.8%;top:62.1%">04</span>
+      <span class="sub-tag" aria-hidden="true" style="left:92.8%;top:80.7%">05</span>
+      <canvas class="sub-cv" aria-hidden="true"></canvas>
+      <svg class="sub-lead" aria-hidden="true"></svg>
+    </figure>
+    <ol class="sub-list">
+      <li><span class="n">01</span><b>Pavers</b><p>The surface you see and walk on.</p></li>
+      <li><span class="n">02</span><b>Joint sand</b><p>Polymeric sand. Locks the field together and keeps water out of the base.</p></li>
+      <li><span class="n">03</span><b>Bedding sand</b><p>A thin, level bed the pavers sit in.</p></li>
+      <li><span class="n">04</span><b>Compacted gravel base</b><p>Where the work is. It keeps the surface flat for years.</p></li>
+      <li><span class="n">05</span><b>Compacted subgrade</b><p>The native ground, compacted before anything goes on it.</p></li>
+    </ol>
+    <div class="sub-wm" aria-hidden="true">PHA<svg viewBox="0 0 100 100"><circle cx="41" cy="30" r="4" fill="#5ABFC6"/><circle cx="59" cy="30" r="4" fill="#5ABFC6"/><circle cx="50" cy="58" r="21" fill="none" stroke="#5ABFC6" stroke-width="5.5"/></svg>RA</div>
+    <div class="sub-foot"><a class="sub-cta" href="/estimate/">Price your project</a></div>
+  </div>
+</section>
+<script>
+/* Boot: nothing but the poster until the section is about to scroll in. */
+(function(){
+  var s=document.getElementById('substrate'); if(!s) return;
+  var still=false;
+  try{ still=matchMedia('(prefers-reduced-motion: reduce)').matches ||
+    !!(navigator.connection&&navigator.connection.saveData) }catch(e){}
+  if(still||!window.IntersectionObserver||!window.WebGL2RenderingContext){ s.setAttribute('data-mode','static'); return }
+  var io=new IntersectionObserver(function(es){
+    for(var i=0;i<es.length;i++) if(es[i].isIntersecting){
+      io.disconnect();
+      import('/assets/substrate/substrate.js').then(function(m){ m.start(s) })
+        .catch(function(){ s.setAttribute('data-mode','static') });
+      return;
+    }
+  });
+  io.observe(s);
+})();
+</script>
 
 <!-- RECENT WORK -->
 <!-- Newest job goes FIRST. Date is the headline; the name sits under it.
