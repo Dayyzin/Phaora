@@ -209,7 +209,7 @@ function render(service, heroImage) {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","serviceType":"${esc(service.h1)}","provider":{"@type":"GeneralContractor","name":"PHAÖRA","legalName":"SKYINCH CAPITAL LLC","url":"${SITE}/","telephone":"+1-561-299-1261","email":"phaoraco@gmail.com"},"areaServed":[{"@type":"State","name":"Massachusetts"},{"@type":"State","name":"Rhode Island"},{"@type":"State","name":"Connecticut"},{"@type":"State","name":"New Hampshire"},{"@type":"State","name":"Maine"}],"url":"${url}","description":"${esc(service.desc)}"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","serviceType":"${esc(service.h1)}","provider":{"@type":"GeneralContractor","name":"PHAÖRA","url":"${SITE}/","telephone":"+1-561-299-1261","email":"phaoraco@gmail.com"},"areaServed":[{"@type":"State","name":"Massachusetts"},{"@type":"State","name":"Rhode Island"},{"@type":"State","name":"Connecticut"},{"@type":"State","name":"New Hampshire"},{"@type":"State","name":"Maine"}],"url":"${url}","description":"${esc(service.desc)}"}</script>
 <script src="/tag.js"></script>
 <style>
 ${STYLE_BLOCK}

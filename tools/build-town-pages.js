@@ -148,7 +148,7 @@ function page(t, all) {
 
   const ld = {
     "@context": "https://schema.org", "@type": "GeneralContractor",
-    name: "PHAÖRA", legalName: "SKYINCH CAPITAL LLC", url,
+    name: "PHAÖRA", url,
     telephone: "+1-561-299-1261", email: "phaoraco@gmail.com",
     description: desc,
     areaServed: [{ "@type": "City", name: `${t.town}, Massachusetts` }]
