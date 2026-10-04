@@ -37,6 +37,11 @@
       "permanent": false
     },
     {
+      "source": "/portfolio/currently-building/",
+      "destination": "/portfolio/cream-ridge-nj/",
+      "permanent": false
+    },
+    {
       "source": "/portfolio/currently-building/:path*",
       "destination": "/portfolio/cream-ridge-nj/:path*",
       "permanent": false
@@ -50,6 +55,10 @@
     {
       "source": "/blog/:path*",
       "destination": "https://crm.phaora.com/blog/:path*"
+    },
+    {
+      "source": "/_next/:path*",
+      "destination": "https://crm.phaora.com/_next/:path*"
     },
     {
       "source": "/api/estimate/:path*",
