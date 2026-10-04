@@ -910,7 +910,7 @@ ${nearbyLinks}
     </div>
     <div class="footer-col">
       <h5>The House</h5>
-      <ul><li><a href="#">About</a></li><li><a href="#">Studio</a></li><li><a href="#">Press</a></li></ul>
+      <ul><li><a href="/portfolio/">Our Work</a></li></ul>
     </div>
     <div class="footer-col">
       <h5>Divisions</h5>
