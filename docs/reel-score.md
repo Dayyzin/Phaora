@@ -8,22 +8,22 @@ mix.
 The old score was −16.1 LUFS, so this is 6 dB down, half as loud.
 
 **What you hear.** David asked for "something more logical" than the old drone, which was a low bed from
-20 to 600 Hz for the whole 24 seconds. The new score is the places in the shots:
+20 to 600 Hz for the whole 24 seconds. Only the work, and no bed: no drone, no birdsong, no breeze.
+A first take had birds and a breeze under it; David rejected it.
+Between the shots that make a sound, the reel is quiet.
 
 | Time | Picture | Sound |
 |---|---|---|
-| 0.4–23.9 s | Throughout | Morning birdsong, low cut at 300 Hz |
-| 0.3–13.5 s | The six jobs | A light breeze through trees, low cut at 220 Hz so it never rumbles |
 | 0.7 s | The first scan | A soft swoosh |
 | 3.45–5.6 s | Outdoor fireplace | Fire crackle |
 | 5.45–7.6 s | Patio and fire pit | Fire crackle, a second take |
 | 7.8 s | Granite cobble | A chisel on stone |
 | 9.45–11.5 s | The substrate (excavator, trench) | Machinery on site |
-| 13.4 s | The Ö | A synthesised chime, E5 with bell partials, about 5 s ring |
+| 13.4 s | The Ö | A synthesised chime, E5 with bell partials, rings about 7 s and fades |
 | 22.5–23.9 s | End card | Fade out |
 
-**Sources.** Mixkit sound effects, free for commercial use with no credit required: 2472 Morning
-birds, 2427 Breeze through the trees, 2632 Whoosh wind sweep, 1330 Campfire crackles, 1329 Campfire
+**Sources.** Mixkit sound effects, free for commercial use with no credit required: 2632 Whoosh wind
+sweep, 1330 Campfire crackles, 1329 Campfire
 burning crackles, 3195 Writing on a stone, 800 Construction place and bulldozer ambiance. The chime
 is generated (ffmpeg `aevalsrc`), not sampled.
 
