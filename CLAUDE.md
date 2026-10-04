@@ -45,7 +45,7 @@ answers.
 
 ## 4. Names
 
-- The job at **1021 Main St, Route 6A, Dennis MA** is the **Cindy job**.
+- The job on **Route 6A, Dennis MA** is the **Cindy job**.
   Dennis is the town. Never "the Dennis job".
 - Portfolio jobs are named for the client surname, not the address:
   **The Costa Driveway**, **The Sowinski Walk**.
