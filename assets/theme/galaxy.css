@@ -25,9 +25,9 @@ body > nav:has(.nav-wm, .wm), .gx-old-nav,
 /* ---------- the starfield ---------- */
 .gx-sky{position:fixed;inset:0;width:100vw;height:100vh;z-index:-1;pointer-events:none;display:block}
 .gx-sky{opacity:0;transition:opacity 1.2s ease}
-/* behind a page's content the sky sits back — a fine blur, dimmed — so the
-   words read first. The menu keeps the full, sharp sky. */
-.gx-sky{filter:blur(.8px)}
+/* behind a page's content the sky sits back — dimmed, with only the faintest
+   softening — so the words read first. The menu keeps the full, sharp sky. */
+.gx-sky{filter:blur(.3px)}
 .gx-sky.gx-lit{opacity:.6}
 
 /* ---------- the floating Ö ---------- */
