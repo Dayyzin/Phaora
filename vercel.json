@@ -45,6 +45,21 @@
       "source": "/portfolio/currently-building/:path*",
       "destination": "/portfolio/cream-ridge-nj/:path*",
       "permanent": false
+    },
+    {
+      "source": "/portfolio",
+      "destination": "/portfolio/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/:slug([a-z0-9-]+)",
+      "destination": "/portfolio/:slug/",
+      "permanent": true
+    },
+    {
+      "source": "/estimate",
+      "destination": "/estimate/",
+      "permanent": true
     }
   ],
   "rewrites": [
