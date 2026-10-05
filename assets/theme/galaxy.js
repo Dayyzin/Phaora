@@ -5,8 +5,24 @@
 (function () {
   if (window.__gx) return; window.__gx = 1;
   var doc = document, root = doc.documentElement;
-  var still = false;
+  var still = false, lite = false, lowBattery = false, lastInput = performance.now();
   try { still = matchMedia('(prefers-reduced-motion: reduce)').matches } catch (e) {}
+  try { if (navigator.connection && navigator.connection.saveData) still = true } catch (e) {}
+  // an older or smaller phone (few cores, little memory) gets fewer stars and particles
+  try { lite = (navigator.hardwareConcurrency || 8) <= 4 || (navigator.deviceMemory || 8) <= 3 } catch (e) {}
+  // on battery and under 20%, everything moves at a crawl
+  try {
+    navigator.getBattery && navigator.getBattery().then(function (b) {
+      function check() { lowBattery = !b.charging && b.level <= 0.2 }
+      check(); b.addEventListener('levelchange', check); b.addEventListener('chargingchange', check);
+    });
+  } catch (e) {}
+  ['scroll', 'pointermove', 'pointerdown', 'touchstart', 'keydown', 'wheel'].forEach(function (ev) {
+    addEventListener(ev, function () { lastInput = performance.now() }, { passive: true });
+  });
+  // the least time between two frames: nobody has touched the page for 20s,
+  // or the battery is low → 4 a second, enough to keep the sky alive
+  function minGap(now) { return lowBattery || now - lastInput > 20000 ? 250 : 0 }
 
   // How far the Ö turns: one full turn every 2,400px of scroll.
   var DEG_PER_PX = 360 / 2400;
@@ -58,9 +74,17 @@
       '<button type="button" class="gx-orb" id="gxOrb" aria-label="Menu" aria-expanded="false" aria-controls="gxMenu">' +
         '<canvas class="gx-orb-cv" aria-hidden="true"></canvas>' +
         '<svg class="gx-x" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg>' +
+        '<span class="gx-orb-label" aria-hidden="true">Menu</span>' +
       '</button>' +
+      '<div class="gx-scrim" aria-hidden="true"></div>' +
       '<a class="gx-wm" href="/" aria-label="PHAÖRA home">PHA<span class="o">Ö</span>RA</a>' +
-      (onEstimate ? '' : '<a class="gx-cta" href="/estimate/">Price it now</a>') +
+      '<div class="gx-right">' +
+        '<a class="gx-quick" href="/portfolio/">Our Work</a>' +
+        '<a class="gx-call" href="tel:+15612991261" aria-label="Call (561) 299-1261">' +
+          '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.6 3.5h3l1.5 4.2-2 1.4a12 12 0 0 0 5.8 5.8l1.4-2 4.2 1.5v3a2 2 0 0 1-2.2 2A17.5 17.5 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2z"/></svg>' +
+          '<span>(561) 299-1261</span></a>' +
+        (onEstimate ? '' : '<a class="gx-cta" href="/estimate/">Price it now</a>') +
+      '</div>' +
       '<div class="gx-menu" id="gxMenu" role="dialog" aria-modal="true" aria-label="Menu">' +
         '<canvas class="gx-menu-sky" aria-hidden="true"></canvas>' +
         '<div class="gx-menu-inner">' +
@@ -78,17 +102,18 @@
     while (wrap.firstChild) body.appendChild(wrap.firstChild);
 
     var orb = doc.getElementById('gxOrb'), menu = doc.getElementById('gxMenu');
-    var wm = doc.querySelector('.gx-wm');
+    var wm = doc.querySelector('.gx-wm'), scrim = doc.querySelector('.gx-scrim');
 
     // the corner Ö, and the big one inside the menu
-    var orbMark = oMark(orb.querySelector('.gx-orb-cv'), { fit: 12, dust: 60, inner: 70 });
-    var bigMark = oMark(menu.querySelector('.gx-mark-cv'), { fit: 7.2, dust: 200, inner: 300, lazy: true });
+    var orbMark = oMark(orb.querySelector('.gx-orb-cv'), { fit: 12, dust: lite ? 36 : 60, inner: lite ? 40 : 70 });
+    var bigMark = oMark(menu.querySelector('.gx-mark-cv'), { fit: 7.2, dust: lite ? 120 : 200, inner: lite ? 160 : 300, lazy: true });
 
     /* ---------- the turn ---------- */
     function aim() {
       var y = window.scrollY || root.scrollTop || 0;
       orbMark.turn(still ? 0 : y * DEG_PER_PX);
       wm.classList.toggle('gx-away', y > 60);
+      scrim.classList.toggle('gx-on', y > 40);           // content slides under the corner controls, not into them
     }
     addEventListener('scroll', aim, { passive: true });
     aim();
@@ -100,6 +125,7 @@
       open = v;
       orb.setAttribute('aria-expanded', String(v));
       orb.setAttribute('aria-label', v ? 'Close menu' : 'Menu');
+      orb.querySelector('.gx-orb-label').textContent = v ? 'Close' : 'Menu';
       root.classList.toggle('gx-open', v);
       if (v) {
         lastFocus = doc.activeElement;
@@ -129,7 +155,8 @@
 
     /* ---------- the stars ---------- */
     // behind the content, a little quieter than the menu's sky
-    var mainSky = starfield(sky, { parallax: true, dust: 0.7, haze: 0.2, gain: 0.72 });
+    // on an older phone the sky holds still under a scroll, so the page itself stays smooth
+    var mainSky = starfield(sky, { parallax: !lite, dust: lite ? 0.45 : 0.7, haze: 0.2, gain: 0.72 });
     mainSky.start(function () { sky.classList.add('gx-lit') });
     var menuSky = starfield(menu.querySelector('.gx-menu-sky'), { parallax: false, dust: 1.3, lazy: true });
   }
@@ -143,7 +170,7 @@
   var FROST = null;
   function frost() {
     if (FROST) return FROST;
-    var N = 256, G = 9, cells = Math.ceil(N / G), c = doc.createElement('canvas');
+    var N = lite ? 128 : 256, G = lite ? 5 : 9, cells = Math.ceil(N / G), c = doc.createElement('canvas');
     c.width = c.height = N;
     var x = c.getContext('2d'), img = x.createImageData(N, N), d = img.data, i, j;
     var pts = [];
@@ -185,7 +212,7 @@
       d[k + 3] = 255 * Math.min(1, 0.5 + 0.55 * lum);
     }
     var FIRE = [[255, 214, 236], [255, 240, 196], [206, 190, 255], [190, 255, 236]];
-    for (i = 0; i < 300; i++) {                        // specks: most white, a few with a diamond's fire
+    for (i = 0; i < (lite ? 90 : 300); i++) {          // specks: most white, a few with a diamond's fire
       var s = (Math.floor(Math.random() * N) * N + Math.floor(Math.random() * N)) * 4;
       var fc = Math.random() < 0.15 ? FIRE[i % 4] : [255, 255, 255];
       d[s] = fc[0]; d[s + 1] = fc[1]; d[s + 2] = fc[2]; d[s + 3] = 255;
@@ -213,7 +240,7 @@
     var ctx = cv.getContext('2d');
     var dead = { start: noop, stop: noop, turn: noop, kick: noop, settle: noop, angle: function () { return 0 } };
     if (!ctx) return dead;
-    var NS = 120, HW = 0.105, HZ = 0.04, DOTX = 0.41, DOTY = -1.38, DR = 0.18, LIFT = 0.23, CAM = 7;
+    var NS = lite ? 64 : 120, HW = 0.105, HZ = 0.04, DOTX = 0.41, DOTY = -1.38, DR = 0.18, LIFT = 0.23, CAM = 7;
     var W = 0, H = 0, dpr = 1, U = 1, running = false, raf = 0, last = 0;
     var target = 0, turn = 0, kickAt = -1, kickBy = -300;
     var flick = [], nextFlick = 0;
@@ -339,16 +366,25 @@
       for (var g = 0; g < MID.length; g++) { var mp = proj(rot(MID[g])); if (g) ctx.lineTo(mp[0], mp[1]); else ctx.moveTo(mp[0], mp[1]) }
       ctx.closePath();
       ctx.lineWidth = 2 * HW * U;
-      ctx.strokeStyle = 'rgba(40,110,210,' + (0.22 * I).toFixed(3) + ')';    // the outermost layer: blue
-      ctx.shadowColor = 'rgba(40,110,210,' + (0.6 * I).toFixed(3) + ')';
-      ctx.shadowBlur = U * 1.4 * dpr; ctx.stroke();
-      ctx.strokeStyle = 'rgba(80,204,218,' + (0.5 * I).toFixed(3) + ')';
-      ctx.shadowColor = 'rgba(80,204,218,' + Math.min(1, 0.85 * I).toFixed(3) + ')';
-      ctx.shadowBlur = U * 0.8 * dpr; ctx.stroke();
-      ctx.shadowBlur = U * 0.3 * dpr; ctx.stroke();
-      ctx.shadowColor = 'rgba(160,238,246,' + Math.min(1, 0.9 * I).toFixed(3) + ')';
-      ctx.shadowBlur = U * 0.12 * dpr; ctx.stroke();
-      ctx.shadowBlur = 0; ctx.shadowColor = 'transparent';
+      if (lite) {
+        // an older phone: the same layers as wide soft strokes, no blur to compute
+        var gw = [[6, '40,110,210', 0.035], [5, '40,110,210', 0.045], [4.1, '80,204,218', 0.06], [3.3, '80,204,218', 0.08], [2.6, '110,222,232', 0.11], [2, '110,222,232', 0.15], [1.45, '160,238,246', 0.22]];
+        for (var gq = 0; gq < gw.length; gq++) {
+          ctx.lineWidth = 2 * HW * U * gw[gq][0];
+          ctx.strokeStyle = 'rgba(' + gw[gq][1] + ',' + (gw[gq][2] * I).toFixed(3) + ')'; ctx.stroke();
+        }
+      } else {
+        ctx.strokeStyle = 'rgba(40,110,210,' + (0.22 * I).toFixed(3) + ')';    // the outermost layer: blue
+        ctx.shadowColor = 'rgba(40,110,210,' + (0.6 * I).toFixed(3) + ')';
+        ctx.shadowBlur = U * 1.4 * dpr; ctx.stroke();
+        ctx.strokeStyle = 'rgba(80,204,218,' + (0.5 * I).toFixed(3) + ')';
+        ctx.shadowColor = 'rgba(80,204,218,' + Math.min(1, 0.85 * I).toFixed(3) + ')';
+        ctx.shadowBlur = U * 0.8 * dpr; ctx.stroke();
+        ctx.shadowBlur = U * 0.3 * dpr; ctx.stroke();
+        ctx.shadowColor = 'rgba(160,238,246,' + Math.min(1, 0.9 * I).toFixed(3) + ')';
+        ctx.shadowBlur = U * 0.12 * dpr; ctx.stroke();
+        ctx.shadowBlur = 0; ctx.shadowColor = 'transparent';
+      }
       for (var bl = 0; bl < BLOOM.length; bl++) {
         var bo = BLOOM[bl], pulse = still ? 0.6 : 0.5 + 0.5 * Math.sin(t * bo.f + bo.p);
         pulse = pulse * pulse * (0.75 + 0.25 * Math.sin(t * bo.f2 + bo.p * 3));
@@ -490,8 +526,8 @@
     function loop(now) {
       if (!running) return;
       raf = requestAnimationFrame(loop);
-      // full rate while it is turning, half rate at rest
-      if (turn === target && kickAt < 0 && now - last < 30) return;
+      // full rate while it is turning, half rate at rest, a crawl when idle
+      if (now - last < Math.max(minGap(now), lite ? 50 : turn === target && kickAt < 0 ? 30 : 0)) return;
       last = now; draw(now);
     }
     var sized = false;
@@ -600,7 +636,7 @@
         share: 1.4 - 1.25 * d,                               // the far layers hold the most stars
         size: 0.8 + 1.1 * d,                                 // and the finest
         alpha: 0.12 + 0.8 * d * d,                           // and the dimmest, by a long way
-        blur: d < 0.5 && k % 2 === 0 ? 1.8 - 2.4 * d : 0,    // some far ones soft, the rest sharp
+        blur: !lite && d < 0.5 && k % 2 === 0 ? 1.8 - 2.4 * d : 0,  // some far ones soft (not on an older phone)
         band: k >= 2 && k <= 13 ? (k % 3 ? 0.78 : 0.4) : 0.15  // how many sit in the milky column
       };
     }
@@ -627,11 +663,12 @@
       })];
 
       for (var k = 0; k < LAYERS; k++) (function (L) {
+        var n = Math.round(area * L.share / 760 * (opt.dust || 1)), BATCH = 1200;
+        for (var from = 0; from < n; from += BATCH) (function (first, last, count) {
           jobs.push(at(function () {
             var tgt = L.blur ? scratch : np[L.plane], g = tgt.g, i, x, y, bins = {};
-            if (L.blur) g.clearRect(0, 0, W, H);
-            var n = Math.round(area * L.share / 760 * (opt.dust || 1));
-            for (i = 0; i < n; i++) {
+            if (L.blur && first) g.clearRect(0, 0, W, H);
+            for (i = 0; i < count; i++) {
               x = Math.random() < L.band ? W / 2 + gauss() * sig : Math.random() * W;
               if (x < 0 || x > W) continue;
               y = Math.random() * H;
@@ -645,8 +682,9 @@
               g.fillStyle = 'rgba(' + key2 + ')';
               for (var j = 0; j < b.length; j += 3) g.fillRect(b[j], b[j + 1], b[j + 2], b[j + 2]);
             }
-            if (L.blur) np[L.plane].g.drawImage(soften(scratch.c, L.blur * D), 0, 0, W, H);
+            if (L.blur && last) np[L.plane].g.drawImage(soften(scratch.c, L.blur * D), 0, 0, W, H);
           }));
+        })(from === 0, from + BATCH >= n, Math.min(BATCH, n - from));
       })(layerOf(k));
 
       jobs.push(
@@ -782,7 +820,7 @@
       if (!running) return;
       raf = requestAnimationFrame(loop);
       // smooth while the page is moving, light on the battery when it is not
-      var gap = now - lastScroll < 400 ? 0 : 45;
+      var gap = now - lastScroll < 400 ? 0 : Math.max(lite ? 66 : 45, minGap(now));
       if (now - last < gap) return;
       last = now; draw(now);
     }
