@@ -104,7 +104,7 @@
       if (v) {
         lastFocus = doc.activeElement;
         menu.classList.add('gx-on');
-        bigMark.turn(orbMark.angle()); bigMark.kick(); bigMark.start(); menuSky.start(); orbMark.stop();
+        bigMark.settle(orbMark.angle()); bigMark.start(); menuSky.start(); orbMark.stop();
         setTimeout(function () { var a = menu.querySelector('.gx-links a'); a && a.focus({ preventScroll: true }) }, 60);
       } else {
         menu.classList.remove('gx-on');
@@ -210,11 +210,11 @@
      ====================================================================== */
   function oMark(cv, opt) {
     var ctx = cv.getContext('2d');
-    var dead = { start: noop, stop: noop, turn: noop, kick: noop, angle: function () { return 0 } };
+    var dead = { start: noop, stop: noop, turn: noop, kick: noop, settle: noop, angle: function () { return 0 } };
     if (!ctx) return dead;
     var NS = 120, HW = 0.105, HZ = 0.04, DOTX = 0.41, DOTY = -1.38, DR = 0.18, LIFT = 0.23, CAM = 7;
     var W = 0, H = 0, dpr = 1, U = 1, running = false, raf = 0, last = 0;
-    var target = 0, turn = 0, kickAt = -1;
+    var target = 0, turn = 0, kickAt = -1, kickBy = -300;
     var flick = [], nextFlick = 0;
 
     /* ---- the solid: the band's outer and inner circle, sampled finely ---- */
@@ -305,7 +305,7 @@
       var spinIn = 0;
       if (kickAt >= 0) {
         var pk = Math.min(1, (now - kickAt) / 1300);
-        spinIn = -300 * Math.pow(1 - pk, 3);
+        spinIn = kickBy * Math.pow(1 - pk, 3);
         if (pk >= 1) kickAt = -1;
       }
       var ry = (turn + spinIn + (still ? 0 : 7 * Math.sin(t * 0.33))) * Math.PI / 180;
@@ -504,7 +504,14 @@
       },
       stop: function () { running = false; cancelAnimationFrame(raf) },
       turn: function (deg) { target = deg; if (still) { turn = deg; if (sized) draw(performance.now()) } },
-      kick: function () { if (!still) kickAt = performance.now() },
+      kick: function () { if (!still) { kickBy = -300; kickAt = performance.now() } },
+      // spin in from an angle and come to rest facing front, the way the lockup reads
+      settle: function (from) {
+        var front = 360 * Math.ceil(from / 360);
+        if (front - from < 60) front += 360;              // always at least a short turn
+        target = turn = still ? 0 : front;
+        if (!still) { kickBy = from - front; kickAt = performance.now() }
+      },
       angle: function () { return turn }
     };
   }
