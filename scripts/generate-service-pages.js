@@ -214,8 +214,8 @@ function render(service, heroImage) {
 <style>
 ${STYLE_BLOCK}
 </style>
-<link rel="stylesheet" href="/assets/theme/galaxy.css?v=8">
-<script src="/assets/theme/galaxy.js?v=8" defer></script>
+<link rel="stylesheet" href="/assets/theme/galaxy.css?v=9">
+<script src="/assets/theme/galaxy.js?v=9" defer></script>
 </head>
 <body>
 
@@ -232,6 +232,7 @@ ${NAV_BODY}
 </header>
 
 <section class="gx-proof" aria-label="How we work">
+  <div class="gx-proof-item gx-proof-lead"><strong class="gx-proof-num">30+</strong><b>Years of experience</b><span>In masonry and stonework, by the people who build it.</span></div>
   <div class="gx-proof-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3.5h8M7 5.5H5.5v15h13v-15H17M9 11h6M9 15h4"/><rect x="8" y="2.5" width="8" height="3.5" rx="1"/></svg><b>Free on-site estimate</b><span>No charge for the visit, no obligation after it.</span></div>
   <div class="gx-proof-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2.5h8.5L19 7v14.5H6zM14 2.5V7h5M9 12h7M9 15.5h7M9 19h4"/></svg><b>Written scope and price</b><span>Before anyone touches the ground.</span></div>
   <div class="gx-proof-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18.5a8 8 0 0 1 16 0M7 18.5h10M9 11V7.5a3 3 0 0 1 6 0V11M3 21.5h18"/></svg><b>Our own crews</b><span>The people who quote the job are the people setting the stone.</span></div>
