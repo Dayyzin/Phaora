@@ -81,8 +81,8 @@
     var wm = doc.querySelector('.gx-wm');
 
     // the corner Ö, and the big one inside the menu
-    var orbMark = oMark(orb.querySelector('.gx-orb-cv'), { fit: 12, dust: 70, glitter: 220 });
-    var bigMark = oMark(menu.querySelector('.gx-mark-cv'), { fit: 8.6, dust: 240, glitter: 700, lazy: true });
+    var orbMark = oMark(orb.querySelector('.gx-orb-cv'), { fit: 12, dust: 60 });
+    var bigMark = oMark(menu.querySelector('.gx-mark-cv'), { fit: 8.6, dust: 200, lazy: true });
 
     /* ---------- the turn ---------- */
     function aim() {
@@ -134,33 +134,92 @@
   }
 
   /* ======================================================================
-     The Ö in three dimensions, drawn on a 2D canvas.
-     A torus (the ring) and two spheres (the dots), lit from the front, with
-     a glitter of points on the ring's surface like the lockup's crushed-ice
-     texture. Its glow breathes, and now and then flickers like a tube light.
-     Sky dust orbits it on tilted paths and swirls a little as the page turns.
+     The Ö in three dimensions, cut like a crystal and drawn on a 2D canvas.
+     No tubes and no spheres: every surface is a flat cut.
+       The ring — 24 straight segments. In section each is a six-sided cut:
+         a flat table facing you, a bevel either side of it, and the same
+         again on the back, so the ring is a thin, sharp-edged band.
+       The dots — two small gems: an octagonal table, eight crown facets and
+         eight pavilion facets running to a point behind.
+     Each face is flat-shaded from a light above and to the left, with a
+     specular flash and a cool rim light from behind, so as the Ö turns the
+     cuts catch and lose the light one at a time. Its glow breathes, and
+     now and then stutters like a tube light. Sky dust, sharp single points,
+     orbits it on tilted paths and swirls a little as the page turns.
      Units: the ring's radius is 1. `fit` is how many units span the canvas.
      ====================================================================== */
   function oMark(cv, opt) {
     var ctx = cv.getContext('2d');
     var dead = { start: noop, stop: noop, turn: noop, kick: noop, angle: function () { return 0 } };
     if (!ctx) return dead;
-    var TUBE = 0.1, DOTX = 0.4, DOTY = -1.45, DOTR = 0.19, LIFT = 0.27, CAM = 7, SEG = 84;
-    var W = 0, H = 0, dpr = 1, U = 1, running = false, raf = 0;
+    var SEG = 24, HW = 0.082, HZ = 0.05, DOTX = 0.4, DOTY = -1.45, DR = 0.17, LIFT = 0.27, CAM = 7;
+    var W = 0, H = 0, dpr = 1, U = 1, running = false, raf = 0, last = 0;
     var target = 0, turn = 0, kickAt = -1;
-    var glit = [], dust = [];
     var flick = [], nextFlick = 0;
 
-    for (var i = 0; i < opt.glitter; i++)
-      glit.push({ u: Math.random() * 6.2832, v: Math.random() * 6.2832, p: Math.random() * 6.28, s: 1.5 + Math.random() * 5, b: 0.35 + Math.random() * 0.65 });
+    /* ---- the solid: a list of flat faces, each with its outward normal ---- */
+    var faces = [];
+    function face(pts, out) {
+      // normal from the winding, turned to point away from `out`'s inside
+      var a = pts[0], b = pts[1], c = pts[pts.length - 1];
+      var ux = b[0] - a[0], uy = b[1] - a[1], uz = b[2] - a[2], vx = c[0] - a[0], vy = c[1] - a[1], vz = c[2] - a[2];
+      var nx = uy * vz - uz * vy, ny = uz * vx - ux * vz, nz = ux * vy - uy * vx;
+      var cx = 0, cy = 0, cz = 0;
+      for (var i = 0; i < pts.length; i++) { cx += pts[i][0]; cy += pts[i][1]; cz += pts[i][2] }
+      cx /= pts.length; cy /= pts.length; cz /= pts.length;
+      if (nx * (cx - out[0]) + ny * (cy - out[1]) + nz * (cz - out[2]) < 0) { nx = -nx; ny = -ny; nz = -nz }
+      var l = Math.sqrt(nx * nx + ny * ny + nz * nz) || 1;
+      faces.push({ p: pts, n: [nx / l, ny / l, nz / l], c: [cx, cy, cz] });
+    }
+    // the ring's section, as (radius offset, depth) pairs round the band
+    var SECT = [[HW, 0], [HW * 0.42, HZ], [-HW * 0.42, HZ], [-HW, 0], [-HW * 0.42, -HZ], [HW * 0.42, -HZ]];
+    for (var s = 0; s < SEG; s++) {
+      var a0 = (s / SEG) * 6.2832, a1 = ((s + 1) / SEG) * 6.2832, am = (a0 + a1) / 2;
+      for (var k = 0; k < SECT.length; k++) {
+        var p = SECT[k], q = SECT[(k + 1) % SECT.length];
+        face([
+          [(1 + p[0]) * Math.cos(a0), (1 + p[0]) * Math.sin(a0), p[1]],
+          [(1 + p[0]) * Math.cos(a1), (1 + p[0]) * Math.sin(a1), p[1]],
+          [(1 + q[0]) * Math.cos(a1), (1 + q[0]) * Math.sin(a1), q[1]],
+          [(1 + q[0]) * Math.cos(a0), (1 + q[0]) * Math.sin(a0), q[1]]
+        ], [Math.cos(am), Math.sin(am), 0]);
+      }
+    }
+    // a gem: octagonal table, crown, pavilion to a culet
+    function gem(gx, gy) {
+      var girdle = [], table = [], o = [gx, gy, 0];
+      for (var i = 0; i < 8; i++) {
+        var t = (i / 8) * 6.2832 + 0.3927;
+        girdle.push([gx + DR * Math.cos(t), gy + DR * Math.sin(t), 0]);
+        table.push([gx + DR * 0.52 * Math.cos(t), gy + DR * 0.52 * Math.sin(t), DR * 0.42]);
+      }
+      face(table.slice(), o);
+      for (var j = 0; j < 8; j++) {
+        var n = (j + 1) % 8;
+        face([girdle[j], girdle[n], table[n], table[j]], o);
+        face([girdle[j], girdle[n], [gx, gy, -DR * 0.95]], o);
+      }
+    }
+    gem(-DOTX, DOTY); gem(DOTX, DOTY);
+    // the ring's mid-line, for the glow under it
+    var MID = [];
+    for (var m = 0; m < 48; m++) MID.push([Math.cos(m / 48 * 6.2832), Math.sin(m / 48 * 6.2832), 0]);
+
+    /* ---- light: a key from above left, a cool rim from behind right ---- */
+    function norm(v) { var l = Math.sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]); return [v[0] / l, v[1] / l, v[2] / l] }
+    var KEY = norm([-0.42, -0.6, 0.68]), KEY2 = norm([0.6, -0.3, 0.74]), RIM = norm([0.7, 0.35, -0.2]);
+    var HALF = norm([KEY[0], KEY[1], KEY[2] + 1]), HALF2 = norm([KEY2[0], KEY2[1], KEY2[2] + 1]);
+
+    /* ---- sky dust ---- */
+    var dust = [];
     for (var d = 0; d < opt.dust; d++) {
-      var q = 1.55 + Math.pow(Math.random(), 0.8) * 2.9;
+      var qd = 1.55 + Math.pow(Math.random(), 0.8) * 2.9;
       dust.push({
-        q: q, a: Math.random() * 6.2832, w: (0.08 + Math.random() * 0.22) / Math.sqrt(q) * (Math.random() < 0.85 ? 1 : -1),
+        q: qd, a: Math.random() * 6.2832, w: (0.08 + Math.random() * 0.22) / Math.sqrt(qd) * (Math.random() < 0.85 ? 1 : -1),
         tx: (Math.random() - 0.5) * 1.6, tz: (Math.random() - 0.5) * 0.9,
         bob: 0.05 + Math.random() * 0.22, bs: 0.2 + Math.random() * 0.5, p: Math.random() * 6.28,
-        r: 0.18 + Math.pow(Math.random(), 3) * 0.75, tw: 0.6 + Math.random() * 2.2, g: Math.random() < 0.18 ? 1.6 : 0.85,
-        c: Math.random() < 0.3 ? '120,220,232' : (Math.random() < 0.5 ? '214,240,248' : '255,255,255')
+        big: Math.random() < 0.14, tw: 0.4 + Math.random() * 1.4,
+        c: Math.random() < 0.3 ? '150,232,240' : (Math.random() < 0.5 ? '222,244,250' : '255,255,255')
       });
     }
 
@@ -173,12 +232,14 @@
       return true;
     }
 
-    // rotate about Y (the scroll), then X (a slow sway), then project
-    function P(x, y, z, cy_, sy_, cx_, sx_) {
-      var x1 = x * cy_ + z * sy_, z1 = -x * sy_ + z * cy_;
-      var y1 = y * cx_ - z1 * sx_, z2 = y * sx_ + z1 * cx_;
-      var k = CAM / (CAM - z2);
-      return [W / 2 + x1 * k * U, H / 2 + (y1 * k + LIFT) * U, z2, k];
+    var cY = 1, sY = 0, cX = 1, sX = 0;
+    function rot(v) {                                   // about Y (the scroll), then X (a slow sway)
+      var x1 = v[0] * cY + v[2] * sY, z1 = -v[0] * sY + v[2] * cY;
+      return [x1, v[1] * cX - z1 * sX, v[1] * sX + z1 * cX];
+    }
+    function proj(v) {
+      var k = CAM / (CAM - v[2]);
+      return [W / 2 + v[0] * k * U, H / 2 + (v[1] * k + LIFT) * U, v[2]];
     }
 
     function glowLevel(t) {
@@ -211,144 +272,117 @@
       }
       var ry = (turn + spinIn + (still ? 0 : 7 * Math.sin(t * 0.33))) * Math.PI / 180;
       var rx = (still ? 0 : 6 * Math.sin(t * 0.27 + 0.8)) * Math.PI / 180;
-      var cY = Math.cos(ry), sY = Math.sin(ry), cX = Math.cos(rx), sX = Math.sin(rx);
-      var I = glowLevel(t);
+      cY = Math.cos(ry); sY = Math.sin(ry); cX = Math.cos(rx); sX = Math.sin(rx);
+      var I = glowLevel(t), B = 0.78 + 0.22 * I;
 
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.clearRect(0, 0, W, H);
 
-      /* sky dust behind the Ö */
-      var swirl = turn * Math.PI / 180 * 0.4;
-      var front = [];
-      ctx.globalCompositeOperation = 'lighter';
+      /* dust behind */
+      var swirl = turn * Math.PI / 180 * 0.4, front = [];
       for (var di = 0; di < dust.length; di++) {
         var o = dust[di];
         var A = o.a + (still ? 0 : o.w * t) + swirl;
         var px = o.q * Math.cos(A), pz = o.q * Math.sin(A), py = o.bob * Math.sin(t * o.bs + o.p);
-        // tilt the orbit's plane
-        var cy1 = Math.cos(o.tx), sy1 = Math.sin(o.tx);
-        var y2 = py * cy1 - pz * sy1, z2 = py * sy1 + pz * cy1;
-        var cz = Math.cos(o.tz), sz = Math.sin(o.tz);
-        var x3 = px * cz - y2 * sz, y3 = px * sz + y2 * cz;
-        var pr = P(x3, y3, z2, 1, 0, 1, 0);
-        if (pr[2] > 0.2) { front.push([o, pr]); continue }
-        dustDot(o, pr, t, 0.55);
+        var c1 = Math.cos(o.tx), s1 = Math.sin(o.tx), y2 = py * c1 - pz * s1, z2 = py * s1 + pz * c1;
+        var c2 = Math.cos(o.tz), s2 = Math.sin(o.tz);
+        var pr = proj([px * c2 - y2 * s2, px * s2 + y2 * c2, z2]);
+        if (pr[2] > 0.2) front.push([o, pr]); else mote(o, pr, t, 0.6);
       }
-      ctx.globalCompositeOperation = 'source-over';
 
-      /* the ring as depth-sorted tube segments, and the two dots, back to front */
-      var items = [];
-      var prev = P(1, 0, 0, cY, sY, cX, sX);
-      for (var s = 1; s <= SEG; s++) {
-        var a = s / SEG * 6.2832;
-        var cur = P(Math.cos(a), Math.sin(a), 0, cY, sY, cX, sX);
-        items.push({ z: (prev[2] + cur[2]) / 2, a: prev, b: cur });
-        prev = cur;
-      }
-      var d1 = P(-DOTX, DOTY, 0, cY, sY, cX, sX), d2 = P(DOTX, DOTY, 0, cY, sY, cX, sX);
-      items.push({ z: d1[2], dot: d1 }, { z: d2[2], dot: d2 });
-      items.sort(function (m, n) { return m.z - n.z });
-
-      // glow, under everything
+      /* glow: the ring's mid-line and the two gems, blurred, in light only */
       ctx.globalCompositeOperation = 'lighter';
-      ctx.lineCap = 'round';
+      var cc = proj(rot([0, -0.25, 0])), aura = ctx.createRadialGradient(cc[0], cc[1], U * 0.4, cc[0], cc[1], U * 2.3);
+      aura.addColorStop(0, 'rgba(60,190,205,' + (0.16 * I).toFixed(3) + ')'); aura.addColorStop(1, 'rgba(60,190,205,0)');
+      ctx.fillStyle = aura; ctx.beginPath(); ctx.arc(cc[0], cc[1], U * 2.3, 0, 6.2832); ctx.fill();
       ctx.beginPath();
-      for (var g = 0; g < SEG; g++) {
-        var gp = P(Math.cos(g / SEG * 6.2832), Math.sin(g / SEG * 6.2832), 0, cY, sY, cX, sX);
-        if (g) ctx.lineTo(gp[0], gp[1]); else ctx.moveTo(gp[0], gp[1]);
-      }
+      for (var g = 0; g < MID.length; g++) { var mp = proj(rot(MID[g])); if (g) ctx.lineTo(mp[0], mp[1]); else ctx.moveTo(mp[0], mp[1]) }
       ctx.closePath();
-      // a soft glow: the ring's own path, blurred, twice over
-      var w = 2 * TUBE * U;
-      ctx.lineWidth = w * 1.4;
-      ctx.shadowColor = 'rgba(95,211,222,' + Math.min(1, 0.95 * I).toFixed(3) + ')';
-      ctx.strokeStyle = 'rgba(95,211,222,' + (0.5 * I).toFixed(3) + ')';
-      ctx.shadowBlur = U * 0.9 * dpr; ctx.stroke();
-      ctx.shadowBlur = U * 0.35 * dpr; ctx.stroke();
+      ctx.lineWidth = HW * U;
+      ctx.strokeStyle = 'rgba(110,222,232,' + (0.6 * I).toFixed(3) + ')';
+      ctx.shadowColor = 'rgba(95,211,222,' + Math.min(1, I).toFixed(3) + ')';
+      ctx.shadowBlur = U * 1.1 * dpr; ctx.stroke();
+      ctx.shadowBlur = U * 0.45 * dpr; ctx.stroke();
+      ctx.shadowBlur = U * 0.15 * dpr; ctx.stroke();
+      var g1 = proj(rot([-DOTX, DOTY, 0])), g2 = proj(rot([DOTX, DOTY, 0]));
+      ctx.fillStyle = 'rgba(110,222,232,' + (0.6 * I).toFixed(3) + ')';
+      ctx.shadowBlur = U * 0.6 * dpr;
+      ctx.beginPath(); ctx.arc(g1[0], g1[1], DR * U * 0.8, 0, 6.2832); ctx.arc(g2[0], g2[1], DR * U * 0.8, 0, 6.2832); ctx.fill();
       ctx.shadowBlur = 0; ctx.shadowColor = 'transparent';
-      halo(d1, I); halo(d2, I);
       ctx.globalCompositeOperation = 'source-over';
 
-      // body
-      var B = 0.72 + 0.28 * I;
-      for (var m = 0; m < items.length; m++) {
-        var it2 = items[m];
-        if (it2.dot) { sphere(it2.dot, B); continue }
-        // ice where it faces you, deeper teal as it turns away
-        var depth = Math.max(0, Math.min(1, 0.72 + it2.z * 0.28));
-        var r = Math.round((60 + 180 * depth) * B), gg = Math.round((150 + 102 * depth) * B), bb = Math.round((165 + 90 * depth) * B);
-        ctx.strokeStyle = 'rgb(' + r + ',' + gg + ',' + bb + ')';
-        ctx.lineWidth = 2 * TUBE * U * it2.a[3];
-        seg(it2);
-        // a thin bright line along the tube where the light catches it
-        ctx.strokeStyle = 'rgba(255,255,255,' + (0.35 * depth * I).toFixed(3) + ')';
-        ctx.lineWidth = TUBE * U * 0.55 * it2.a[3];
-        seg(it2);
+      /* the cuts: front-facing faces, far to near, flat-shaded */
+      var vis = [];
+      for (var f = 0; f < faces.length; f++) {
+        var F = faces[f], n = rot(F.n), c = rot(F.c);
+        // facing the camera, allowing for perspective
+        if (n[0] * -c[0] + n[1] * -c[1] + n[2] * (CAM - c[2]) <= 0) continue;
+        vis.push({ F: F, n: n, z: c[2] });
+      }
+      vis.sort(function (a, b) { return a.z - b.z });
+      var edge = Math.max(0.5, U * 0.012), glints = [];
+      ctx.lineJoin = 'round';
+      for (var vi = 0; vi < vis.length; vi++) {
+        var it = vis[vi], N = it.n;
+        // crystal: hard contrast between cuts — some deep, some near white —
+        // and two lights, so as it turns a different cut flashes
+        var dif = Math.max(0, N[0] * KEY[0] + N[1] * KEY[1] + N[2] * KEY[2]);
+        var dif2 = Math.max(0, N[0] * KEY2[0] + N[1] * KEY2[1] + N[2] * KEY2[2]);
+        var spec = Math.pow(Math.max(0, N[0] * HALF[0] + N[1] * HALF[1] + N[2] * HALF[2]), 22)
+          + 0.8 * Math.pow(Math.max(0, N[0] * HALF2[0] + N[1] * HALF2[1] + N[2] * HALF2[2]), 22);
+        var rim = Math.pow(Math.max(0, N[0] * RIM[0] + N[1] * RIM[1] + N[2] * RIM[2]), 2);
+        var lum = Math.min(1, 0.1 + 0.62 * Math.pow(dif, 1.6) + 0.38 * dif2 * dif2);
+        var r = (16 + 196 * lum + 30 * rim) * B + 255 * spec;
+        var gg = (70 + 176 * lum + 80 * rim) * B + 255 * spec;
+        var bb = (90 + 162 * lum + 80 * rim) * B + 255 * spec;
+        var col = 'rgb(' + Math.min(255, r | 0) + ',' + Math.min(255, gg | 0) + ',' + Math.min(255, bb | 0) + ')';
+        ctx.beginPath();
+        var P0;
+        for (var pi = 0; pi < it.F.p.length; pi++) {
+          var pp = proj(rot(it.F.p[pi]));
+          if (pi) ctx.lineTo(pp[0], pp[1]); else { ctx.moveTo(pp[0], pp[1]); P0 = pp }
+        }
+        ctx.closePath();
+        ctx.fillStyle = col; ctx.fill();
+        // the cut line: a hair of light along each edge
+        ctx.strokeStyle = 'rgba(236,252,255,' + Math.min(1, 0.26 + 0.6 * spec + 0.2 * lum).toFixed(3) + ')';
+        ctx.lineWidth = edge; ctx.stroke();
+        if (spec > 0.55) glints.push([P0, spec]);
       }
 
-      // glitter: points on the torus that face the viewer
+      /* where a cut catches the light full on, a pin of white */
       ctx.globalCompositeOperation = 'lighter';
-      for (var gi = 0; gi < glit.length; gi++) {
-        var p = glit[gi];
-        var cu = Math.cos(p.u), su = Math.sin(p.u), cv_ = Math.cos(p.v), sv = Math.sin(p.v);
-        var nx = cv_ * cu, ny = cv_ * su, nz = sv;
-        // the normal's z after rotation: only lit facets sparkle
-        var nz1 = -nx * sY + nz * cY, nzz = ny * sX + nz1 * cX;
-        if (nzz < 0.05) continue;
-        var R = 1 + TUBE * cv_;
-        var pg = P(R * cu, R * su, TUBE * sv, cY, sY, cX, sX);
-        var tw = still ? 0.6 : 0.5 + 0.5 * Math.sin(t * p.s + p.p);
-        var al = p.b * tw * tw * nzz * I;
-        if (al < 0.04) continue;
-        ctx.fillStyle = 'rgba(255,255,255,' + Math.min(1, al).toFixed(3) + ')';
-        var sz = Math.max(0.5, U * 0.022) * (0.6 + tw * 0.8);
-        ctx.fillRect(pg[0] - sz / 2, pg[1] - sz / 2, sz, sz);
+      for (var gi = 0; gi < glints.length && gi < 6; gi++) {
+        var gp = glints[gi][0], ga = Math.min(1, (glints[gi][1] - 0.55) * 2.2) * I, L = U * 0.16;
+        ctx.fillStyle = 'rgba(255,255,255,' + ga.toFixed(3) + ')';
+        ctx.fillRect(gp[0] - L, gp[1] - 0.4, L * 2, 0.8);
+        ctx.fillRect(gp[0] - 0.4, gp[1] - L, 0.8, L * 2);
       }
-
-      /* sky dust in front of the Ö */
-      for (var fi = 0; fi < front.length; fi++) dustDot(front[fi][0], front[fi][1], t, 1);
       ctx.globalCompositeOperation = 'source-over';
+
+      /* dust in front */
+      for (var fi = 0; fi < front.length; fi++) mote(front[fi][0], front[fi][1], t, 1);
     }
 
-    function seg(it) { ctx.beginPath(); ctx.moveTo(it.a[0], it.a[1]); ctx.lineTo(it.b[0], it.b[1]); ctx.stroke() }
-    function halo(pt, I) {
-      var r = DOTR * U * pt[3] * 3.6;
-      var g = ctx.createRadialGradient(pt[0], pt[1], 0, pt[0], pt[1], r);
-      g.addColorStop(0, 'rgba(95,211,222,' + (0.45 * I).toFixed(3) + ')'); g.addColorStop(1, 'rgba(95,211,222,0)');
-      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(pt[0], pt[1], r, 0, 6.2832); ctx.fill();
-    }
-    function sphere(pt, B) {
-      var r = DOTR * U * pt[3];
-      var g = ctx.createRadialGradient(pt[0] - r * 0.3, pt[1] - r * 0.35, r * 0.05, pt[0], pt[1], r);
-      g.addColorStop(0, 'rgb(255,255,255)');
-      g.addColorStop(0.55, 'rgb(' + Math.round(236 * B) + ',' + Math.round(251 * B) + ',' + Math.round(253 * B) + ')');
-      g.addColorStop(1, 'rgb(' + Math.round(140 * B) + ',' + Math.round(216 * B) + ',' + Math.round(226 * B) + ')');
-      ctx.shadowColor = 'rgba(95,211,222,' + Math.min(1, 0.9 * B).toFixed(3) + ')'; ctx.shadowBlur = r * 1.6 * dpr;
-      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(pt[0], pt[1], r, 0, 6.2832); ctx.fill();
-      ctx.shadowBlur = 0; ctx.shadowColor = 'transparent';
-    }
-    function dustDot(o, pr, t, dim) {
+    // one grain of dust: a sharp point, no bloom
+    function mote(o, pr, t, dim) {
       var x = pr[0], y = pr[1];
       var dx = (x - W / 2) / (W / 2), dy = (y - H / 2) / (H / 2);
-      var edge = 1 - Math.min(1, Math.max(0, (Math.sqrt(dx * dx + dy * dy) - 0.62) / 0.36));  // fade before the canvas edge
-      if (edge <= 0) return;
-      var tw = still ? 0.7 : 0.55 + 0.45 * Math.sin(t * o.tw + o.p);
-      var al = Math.min(1, tw * edge * dim * (0.55 + 0.45 * pr[3]) * o.g);
-      var r = o.r * pr[3] * Math.sqrt(U / 14) + 0.15;
-      if (r > 0.75) {
-        var g = ctx.createRadialGradient(x, y, 0, x, y, r * 2.2);
-        g.addColorStop(0, 'rgba(' + o.c + ',' + al.toFixed(3) + ')'); g.addColorStop(1, 'rgba(' + o.c + ',0)');
-        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(x, y, r * 2.2, 0, 6.2832); ctx.fill();
-      } else {
-        ctx.fillStyle = 'rgba(' + o.c + ',' + al.toFixed(3) + ')';
-        ctx.beginPath(); ctx.arc(x, y, r, 0, 6.2832); ctx.fill();
-      }
+      var edgeF = 1 - Math.min(1, Math.max(0, (Math.sqrt(dx * dx + dy * dy) - 0.62) / 0.36));  // fade before the canvas edge
+      if (edgeF <= 0) return;
+      var tw = still ? 0.9 : 0.78 + 0.22 * Math.sin(t * o.tw + o.p);
+      var a = Math.min(1, tw * edgeF * dim * (o.big ? 1 : 0.8));
+      var s = (o.big ? 1.5 : 1) / dpr * (dpr > 1 ? 1.2 : 1);
+      ctx.fillStyle = 'rgba(' + o.c + ',' + a.toFixed(3) + ')';
+      ctx.fillRect(x - s / 2, y - s / 2, s, s);
     }
 
     function loop(now) {
       if (!running) return;
       raf = requestAnimationFrame(loop);
-      draw(now);
+      // full rate while it is turning, half rate at rest
+      if (turn === target && kickAt < 0 && now - last < 30) return;
+      last = now; draw(now);
     }
     var sized = false;
     addEventListener('resize', function () { if (sized) { size(); if (!running) draw(performance.now()) } });
@@ -537,9 +571,9 @@
     }
     function glowStar(g, s, x, y, a) {
       if (s.r > 1.05) {
-        var rg = g.createRadialGradient(x, y, 0, x, y, s.r * 2.8);
-        rg.addColorStop(0, 'rgba(' + s.c + ',' + (a * 0.28).toFixed(3) + ')'); rg.addColorStop(1, 'rgba(' + s.c + ',0)');
-        g.fillStyle = rg; g.beginPath(); g.arc(x, y, s.r * 2.8, 0, 6.2832); g.fill();
+        var rg = g.createRadialGradient(x, y, 0, x, y, s.r * 2);
+        rg.addColorStop(0, 'rgba(' + s.c + ',' + (a * 0.2).toFixed(3) + ')'); rg.addColorStop(1, 'rgba(' + s.c + ',0)');
+        g.fillStyle = rg; g.beginPath(); g.arc(x, y, s.r * 2, 0, 6.2832); g.fill();
       }
       g.fillStyle = 'rgba(255,255,255,' + Math.min(1, a * 1.15).toFixed(3) + ')';
       g.beginPath(); g.arc(x, y, s.r * 0.55, 0, 6.2832); g.fill();
@@ -557,7 +591,11 @@
       g.fillStyle = 'rgba(255,255,255,' + a + ')'; g.beginPath(); g.arc(x, y, 1.1, 0, 6.2832); g.fill();
     }
 
-    var idle = window.requestIdleCallback || function (f) { return setTimeout(function () { f({ timeRemaining: function () { return 8 } }) }, 16) };
+    // between frames when the browser is idle, and within 100ms regardless —
+    // the Ö animating can keep a slow phone from ever being idle
+    var idle = window.requestIdleCallback
+      ? function (f) { return requestIdleCallback(f, { timeout: 100 }) }
+      : function (f) { return setTimeout(function () { f({ timeRemaining: function () { return 8 } }) }, 16) };
     var waiting = [];
     function work(done) {
       if (done) waiting.push(done);
