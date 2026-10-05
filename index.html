@@ -608,8 +608,8 @@ img.parallax{top:-8%;height:116%;will-change:transform}
 @media(prefers-reduced-motion:reduce){img.parallax{transform:none!important}}
 </style>
 <script src="/tag.js"></script>
-<link rel="stylesheet" href="/assets/theme/galaxy.css?v=7">
-<script src="/assets/theme/galaxy.js?v=7" defer></script>
+<link rel="stylesheet" href="/assets/theme/galaxy.css?v=8">
+<script src="/assets/theme/galaxy.js?v=8" defer></script>
 </head>
 <body>
 
@@ -701,59 +701,13 @@ img.parallax{top:-8%;height:116%;will-change:transform}
   <p>Masonry flagship &nbsp;·&nbsp; whole-home trades &nbsp;·&nbsp; snow plowing</p>
 </div>
 
-<!-- WHAT'S UNDER A PHAÖRA PATIO — see the .sub styles. Layer names and one
-     plain line each; no depth, thickness or spec until David confirms one. -->
-<section class="sub" id="substrate" aria-labelledby="sub-h">
-  <div class="sub-stage">
-    <div class="sub-head">
-      <h2 class="sub-h" id="sub-h">What&rsquo;s under a <span class="wmx">PHA<span class="o">&Ouml;</span>RA</span> patio</h2>
-      <span class="sub-count" aria-hidden="true"></span>
-    </div>
-    <figure class="sub-fig">
-      <img class="sub-poster" src="assets/substrate/poster.webp" width="600" height="1080" loading="lazy" decoding="async"
-           alt="A PHAÖRA patio taken apart into its layers: pavers, joint sand, bedding sand, a compacted gravel base and compacted subgrade">
-      <span class="sub-tag" aria-hidden="true" style="left:96.7%;top:11.8%">01</span>
-      <span class="sub-tag" aria-hidden="true" style="left:95.7%;top:28.6%">02</span>
-      <span class="sub-tag" aria-hidden="true" style="left:94.7%;top:46.1%">03</span>
-      <span class="sub-tag" aria-hidden="true" style="left:93.8%;top:62.1%">04</span>
-      <span class="sub-tag" aria-hidden="true" style="left:92.8%;top:80.7%">05</span>
-      <canvas class="sub-cv" aria-hidden="true"></canvas>
-      <svg class="sub-lead" aria-hidden="true"></svg>
-    </figure>
-    <ol class="sub-list">
-      <li><span class="n">01</span><b>Pavers</b><p>The surface you see and walk on.</p></li>
-      <li><span class="n">02</span><b>Joint sand</b><p>Locks the field together and keeps water out of the base.</p></li>
-      <li><span class="n">03</span><b>Bedding sand</b><p>A thin, level bed the pavers sit in.</p></li>
-      <li><span class="n">04</span><b>Compacted gravel base</b><p>Where the work is. It keeps the surface flat for years.</p></li>
-      <li><span class="n">05</span><b>Compacted subgrade</b><p>The native ground, compacted before anything goes on it.</p></li>
-    </ol>
-    <div class="sub-wm" aria-hidden="true">PHA<svg viewBox="0 0 100 100"><circle cx="41" cy="30" r="4" fill="#5ABFC6"/><circle cx="59" cy="30" r="4" fill="#5ABFC6"/><circle cx="50" cy="58" r="21" fill="none" stroke="#5ABFC6" stroke-width="5.5"/></svg>RA</div>
-    <div class="sub-foot"><a class="sub-cta" href="/estimate/">Price your project</a></div>
-  </div>
+<section class="gx-proof" aria-label="How we work">
+  <div class="gx-proof-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3.5h8M7 5.5H5.5v15h13v-15H17M9 11h6M9 15h4"/><rect x="8" y="2.5" width="8" height="3.5" rx="1"/></svg><b>Free on-site estimate</b><span>No charge for the visit, no obligation after it.</span></div>
+  <div class="gx-proof-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2.5h8.5L19 7v14.5H6zM14 2.5V7h5M9 12h7M9 15.5h7M9 19h4"/></svg><b>Written scope and price</b><span>Before anyone touches the ground.</span></div>
+  <div class="gx-proof-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18.5a8 8 0 0 1 16 0M7 18.5h10M9 11V7.5a3 3 0 0 1 6 0V11M3 21.5h18"/></svg><b>Our own crews</b><span>The people who quote the job are the people setting the stone.</span></div>
+  <div class="gx-proof-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l7.5 3v6c0 4.6-3.2 8.4-7.5 10-4.3-1.6-7.5-5.4-7.5-10v-6zM8.5 12l2.5 2.5 4.5-5"/></svg><b>One-year workmanship warranty</b></div>
 </section>
-<script>
-/* Boot: nothing but the poster until the section is about to scroll in. */
-(function(){
-  var s=document.getElementById('substrate'); if(!s) return;
-  var still=false;
-  try{ still=matchMedia('(prefers-reduced-motion: reduce)').matches ||
-    !!(navigator.connection&&navigator.connection.saveData) }catch(e){}
-  if(still||!window.IntersectionObserver||!window.WebGL2RenderingContext){ s.setAttribute('data-mode','static'); return }
-  var io=new IntersectionObserver(function(es){
-    for(var i=0;i<es.length;i++) if(es[i].isIntersecting){
-      io.disconnect();
-      import('/assets/substrate/substrate.js').then(function(m){ m.start(s) })
-        .catch(function(){ s.setAttribute('data-mode','static') });
-      return;
-    }
-  });
-  io.observe(s);
-})();
-</script>
 
-<!-- RECENT WORK -->
-<!-- Newest job goes FIRST. Date is the headline; the name sits under it.
-     Never guess a month or a town here — see CLAUDE.md rule 5. -->
 <section class="recent" id="recent">
   <div class="recent-head">
     <!-- The band leads with the job running right now, so the heading covers
@@ -807,6 +761,60 @@ img.parallax{top:-8%;height:116%;will-change:transform}
 
   <a class="recent-all" href="portfolio/">Every job we've finished &rarr;</a>
 </section>
+
+<!-- WHAT'S UNDER A PHAÖRA PATIO — see the .sub styles. Layer names and one
+     plain line each; no depth, thickness or spec until David confirms one. -->
+<section class="sub" id="substrate" aria-labelledby="sub-h">
+  <div class="sub-stage">
+    <div class="sub-head">
+      <h2 class="sub-h" id="sub-h">What&rsquo;s under a <span class="wmx">PHA<span class="o">&Ouml;</span>RA</span> patio</h2>
+      <span class="sub-count" aria-hidden="true"></span>
+    </div>
+    <figure class="sub-fig">
+      <img class="sub-poster" src="assets/substrate/poster.webp" width="600" height="1080" loading="lazy" decoding="async"
+           alt="A PHAÖRA patio taken apart into its layers: pavers, joint sand, bedding sand, a compacted gravel base and compacted subgrade">
+      <span class="sub-tag" aria-hidden="true" style="left:96.7%;top:11.8%">01</span>
+      <span class="sub-tag" aria-hidden="true" style="left:95.7%;top:28.6%">02</span>
+      <span class="sub-tag" aria-hidden="true" style="left:94.7%;top:46.1%">03</span>
+      <span class="sub-tag" aria-hidden="true" style="left:93.8%;top:62.1%">04</span>
+      <span class="sub-tag" aria-hidden="true" style="left:92.8%;top:80.7%">05</span>
+      <canvas class="sub-cv" aria-hidden="true"></canvas>
+      <svg class="sub-lead" aria-hidden="true"></svg>
+    </figure>
+    <ol class="sub-list">
+      <li><span class="n">01</span><b>Pavers</b><p>The surface you see and walk on.</p></li>
+      <li><span class="n">02</span><b>Joint sand</b><p>Locks the field together and keeps water out of the base.</p></li>
+      <li><span class="n">03</span><b>Bedding sand</b><p>A thin, level bed the pavers sit in.</p></li>
+      <li><span class="n">04</span><b>Compacted gravel base</b><p>Where the work is. It keeps the surface flat for years.</p></li>
+      <li><span class="n">05</span><b>Compacted subgrade</b><p>The native ground, compacted before anything goes on it.</p></li>
+    </ol>
+    <div class="sub-wm" aria-hidden="true">PHA<svg viewBox="0 0 100 100"><circle cx="41" cy="30" r="4" fill="#5ABFC6"/><circle cx="59" cy="30" r="4" fill="#5ABFC6"/><circle cx="50" cy="58" r="21" fill="none" stroke="#5ABFC6" stroke-width="5.5"/></svg>RA</div>
+    <div class="sub-foot"><a class="sub-cta" href="/estimate/">Price your project</a></div>
+  </div>
+</section>
+<script>
+/* Boot: nothing but the poster until the section is about to scroll in. */
+(function(){
+  var s=document.getElementById('substrate'); if(!s) return;
+  var still=false;
+  try{ still=matchMedia('(prefers-reduced-motion: reduce)').matches ||
+    !!(navigator.connection&&navigator.connection.saveData) }catch(e){}
+  if(still||!window.IntersectionObserver||!window.WebGL2RenderingContext){ s.setAttribute('data-mode','static'); return }
+  var io=new IntersectionObserver(function(es){
+    for(var i=0;i<es.length;i++) if(es[i].isIntersecting){
+      io.disconnect();
+      import('/assets/substrate/substrate.js').then(function(m){ m.start(s) })
+        .catch(function(){ s.setAttribute('data-mode','static') });
+      return;
+    }
+  });
+  io.observe(s);
+})();
+</script>
+
+<!-- RECENT WORK -->
+<!-- Newest job goes FIRST. Date is the headline; the name sits under it.
+     Never guess a month or a town here — see CLAUDE.md rule 5. -->
 
 <!-- TICKER -->
 <div class="ticker-wrap"><div class="ticker-inner" id="ticker"></div></div>
