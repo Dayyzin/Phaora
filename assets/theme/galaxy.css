@@ -45,6 +45,13 @@ body > nav:has(.nav-wm, .wm), .gx-old-nav,
 .gx-orb[aria-expanded="true"] .gx-orb-cv{opacity:0}
 .gx-orb[aria-expanded="true"] .gx-x{opacity:1;transform:translate(-50%,-50%) rotate(0)}
 
+/* once the page scrolls, a fade at the top so the words slide under the
+   corner controls instead of running into them */
+.gx-scrim{position:fixed;left:0;right:0;top:0;height:calc(env(safe-area-inset-top,0px) + 92px);z-index:1085;pointer-events:none;
+  background:linear-gradient(180deg,rgba(2,6,16,.94) 0%,rgba(2,6,16,.82) 55%,rgba(2,6,16,0) 100%);opacity:0;transition:opacity .3s}
+.gx-scrim.gx-on{opacity:1}
+html.gx-open .gx-scrim{opacity:0}
+
 /* the name beside it, at the top of the page only */
 .gx-wm{position:fixed;z-index:1090;top:calc(env(safe-area-inset-top,0px) + 8px);height:56px;display:flex;align-items:center;
   left:calc(clamp(10px,2.4vw,40px) + 66px);
@@ -54,16 +61,33 @@ body > nav:has(.nav-wm, .wm), .gx-old-nav,
 .gx-wm .o{color:var(--gx-glow)}
 .gx-wm.gx-away{opacity:0;transform:translateX(-8px);pointer-events:none}
 
-/* the one button that stays: the estimate */
-.gx-cta{position:fixed;z-index:1090;top:calc(env(safe-area-inset-top,0px) + 18px);right:clamp(12px,2.4vw,40px);
-  display:inline-flex;align-items:center;min-height:36px;padding:0 16px;border-radius:999px;
-  border:1px solid rgba(95,211,222,.42);background:rgba(1,6,12,.62);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
-  font-family:'Inter','Helvetica Neue',sans-serif;font-size:10px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;
-  color:var(--gx-ice);text-decoration:none;white-space:nowrap;
-  box-shadow:0 0 22px rgba(95,211,222,.12);transition:border-color .25s,box-shadow .25s,color .25s}
+/* top right: Our Work, the phone, and the estimate — in sight on every page,
+   so nobody has to know the Ö is a menu to find them */
+.gx-right{position:fixed;z-index:1090;top:calc(env(safe-area-inset-top,0px) + 14px);right:clamp(12px,2.4vw,40px);
+  display:flex;align-items:center;gap:10px}
+.gx-quick,.gx-call,.gx-cta{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:999px;
+  font-family:'Inter','Helvetica Neue',sans-serif;font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gx-ice);text-decoration:none;white-space:nowrap;transition:border-color .25s,box-shadow .25s,color .25s,background .25s}
+.gx-quick,.gx-call{border:1px solid transparent;background:rgba(1,6,12,.5);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.gx-quick:hover,.gx-call:hover{border-color:rgba(95,211,222,.4);color:#fff}
+.gx-call svg{width:16px;height:16px;flex:none;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linejoin:round}
+.gx-call span{letter-spacing:.08em}
+.gx-cta{border:1px solid rgba(95,211,222,.5);background:rgba(1,6,12,.62);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  box-shadow:0 0 22px rgba(95,211,222,.12)}
 .gx-cta:hover{border-color:var(--gx-glow);box-shadow:0 0 28px rgba(95,211,222,.3);color:#fff}
-@media(max-width:520px){.gx-wm{font-size:15px;letter-spacing:.34em}.gx-cta{padding:0 12px;letter-spacing:.18em}}
-@media(max-width:400px){.gx-wm{display:none}}
+/* the word under the Ö, so it reads as the menu */
+.gx-orb-label{position:absolute;left:50%;top:calc(100% - 2px);transform:translateX(-50%);
+  font-family:'Inter','Helvetica Neue',sans-serif;font-size:9px;font-weight:600;letter-spacing:.24em;padding-left:.24em;
+  text-transform:uppercase;color:var(--gx-ice);text-shadow:0 0 10px rgba(1,6,12,.9),0 0 4px rgba(1,6,12,.9);pointer-events:none}
+@media(max-width:900px){.gx-quick{display:none}}
+/* on a phone the number becomes a round call button */
+@media(max-width:620px){
+  .gx-call{width:44px;padding:0;justify-content:center;border-color:rgba(95,211,222,.3)}
+  .gx-call span{display:none}
+  .gx-cta{padding:0 14px;letter-spacing:.16em}
+}
+@media(max-width:520px){.gx-wm{font-size:15px;letter-spacing:.34em}}
+@media(max-width:560px){.gx-wm{display:none}}
 
 /* ---------- the menu ---------- */
 html.gx-open{overflow:hidden}
@@ -124,4 +148,4 @@ html.gx-open{overflow:hidden}
 @media(prefers-reduced-motion:reduce){
   .gx-mark-cv,.gx-links li,.gx-menu,.gx-menu-foot,.gx-wm{transition:none}
 }
-@media print{.gx-sky,.gx-orb,.gx-wm,.gx-cta,.gx-menu{display:none!important}}
+@media print{.gx-sky,.gx-orb,.gx-wm,.gx-right,.gx-menu,.gx-scrim{display:none!important}}

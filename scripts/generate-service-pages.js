@@ -214,8 +214,8 @@ function render(service, heroImage) {
 <style>
 ${STYLE_BLOCK}
 </style>
-<link rel="stylesheet" href="/assets/theme/galaxy.css?v=6">
-<script src="/assets/theme/galaxy.js?v=6" defer></script>
+<link rel="stylesheet" href="/assets/theme/galaxy.css?v=7">
+<script src="/assets/theme/galaxy.js?v=7" defer></script>
 </head>
 <body>
 

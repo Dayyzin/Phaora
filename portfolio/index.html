@@ -39,12 +39,12 @@
   /* NAV — matches the rest of the site */
   nav{position:fixed;top:0;left:0;right:0;z-index:300;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 clamp(20px,4vw,60px);height:64px;background:rgba(2,6,16,.9);backdrop-filter:blur(14px);border-bottom:1px solid rgba(79,181,190,.08)}
   .nav-links{display:flex;gap:24px}
-  .nav-links a{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(234,239,245,.55);transition:color .2s;white-space:nowrap}
+  .nav-links a{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(234,239,245,.70);transition:color .2s;white-space:nowrap}
   .nav-links a:hover,.nav-links a.active{color:var(--pearl)}
   .nav-wm{font-family:var(--serif);font-size:19px;letter-spacing:.42em;text-indent:.42em;text-transform:uppercase;color:var(--pearl);text-align:center;white-space:nowrap}
   .nav-wm .o{color:var(--teal-d)}
   .nav-right{display:flex;gap:20px;align-items:center;justify-content:flex-end}
-  .nav-right a{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(234,239,245,.55);transition:color .2s}
+  .nav-right a{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(234,239,245,.70);transition:color .2s}
   .nav-right a:hover{color:var(--pearl)}
   .nav-right .enq{border:1px solid rgba(169,233,240,.28);padding:7px 16px;color:rgba(169,233,240,.75);transition:border-color .2s,color .2s}
   .nav-right .enq:hover{border-color:var(--gold);color:var(--gold)}
@@ -59,7 +59,7 @@
   /* MOBILE MENU — same pattern as every other page */
   .mobile-menu{position:fixed;inset:0;z-index:200;background:rgba(2,6,16,.97);backdrop-filter:blur(16px);opacity:0;pointer-events:none;transition:opacity .35s}
   .mobile-menu.open{opacity:1;pointer-events:auto}
-  .mobile-menu a{font-family:var(--serif);font-weight:300;font-size:clamp(22px,5vw,32px);color:rgba(234,239,245,.55);padding:9px 0;letter-spacing:.08em;transition:color .2s;text-align:center}
+  .mobile-menu a{font-family:var(--serif);font-weight:300;font-size:clamp(22px,5vw,32px);color:rgba(234,239,245,.70);padding:9px 0;letter-spacing:.08em;transition:color .2s;text-align:center}
   .mobile-menu a:hover{color:var(--pearl)}
   .mobile-menu a.av{color:rgba(79,181,190,.65)}
   .mobile-menu .m-rule{width:32px;height:1px;background:linear-gradient(90deg,transparent,rgba(169,233,240,.3),transparent);margin:20px 0}
@@ -68,8 +68,8 @@
   .mobile-menu-scroll>*{flex-shrink:0}
   .m-birds{display:flex;flex-direction:column;align-items:center;width:100%;margin:4px 0}
   .mobile-menu .m-eyebrow{font-family:var(--serif);font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:rgba(79,181,190,.4);margin:14px 0 6px;padding:0}
-  .mobile-menu .m-bird{font-size:clamp(18px,4.4vw,24px);padding:6px 0;display:inline-flex;align-items:baseline;gap:11px;color:rgba(234,239,245,.5)}
-  .mobile-menu .m-bird .m-num{font-family:var(--sans);font-size:9.5px;letter-spacing:.1em;color:rgba(234,239,245,.26);min-width:30px;text-align:right}
+  .mobile-menu .m-bird{font-size:clamp(18px,4.4vw,24px);padding:6px 0;display:inline-flex;align-items:baseline;gap:11px;color:rgba(234,239,245,.65)}
+  .mobile-menu .m-bird .m-num{font-family:var(--sans);font-size:9.5px;letter-spacing:.1em;color:rgba(234,239,245,.48);min-width:30px;text-align:right}
   .mobile-menu .m-bird:hover{color:var(--pearl)}
   .mobile-menu .m-bird.m-gold,.mobile-menu .m-bird.m-gold .m-num{color:rgba(201,168,76,.92)}
   .mobile-menu .m-acc{font-family:var(--serif);font-weight:300;font-size:clamp(22px,5vw,32px);color:rgba(79,181,190,.65);background:none;border:0;cursor:pointer;padding:9px 0;letter-spacing:.08em;text-align:center;display:inline-flex;align-items:center;gap:9px;transition:color .2s}
@@ -157,8 +157,8 @@
   @media(max-width:640px){.hero{padding:110px 0 24px}}
 </style>
 <script src="/tag.js"></script>
-<link rel="stylesheet" href="/assets/theme/galaxy.css?v=6">
-<script src="/assets/theme/galaxy.js?v=6" defer></script>
+<link rel="stylesheet" href="/assets/theme/galaxy.css?v=7">
+<script src="/assets/theme/galaxy.js?v=7" defer></script>
 </head>
 <body>
 
