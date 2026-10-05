@@ -128,8 +128,8 @@
     });
 
     /* ---------- the stars ---------- */
-    // behind the content: the far stars soft and dim, the near ones sharp
-    var mainSky = starfield(sky, { parallax: true, dust: 0.6, haze: 0.2, depth: 1.1, far: 0.55, near: 0.85 });
+    // behind the content, a little quieter than the menu's sky
+    var mainSky = starfield(sky, { parallax: true, dust: 0.7, haze: 0.2, gain: 0.72 });
     mainSky.start(function () { sky.classList.add('gx-lit') });
     var menuSky = starfield(menu.querySelector('.gx-menu-sky'), { parallax: false, dust: 1.3, lazy: true });
   }
@@ -519,20 +519,19 @@
   function noop() {}
 
   /* ======================================================================
-     The sky, made to read as a photograph rather than a pattern.
-     Painted once per screen size into two layers, then only moved:
-       deep  — a teal haze in a column down the middle, thousands of
-               one-pixel grains of star dust packed into that column, and
-               the faint field stars, which thin out towards the edges;
-       near  — the brighter stars, a few with a soft halo, a rare one with
-               the four-point diffraction cross of a real lens.
-     Over them, every frame: a hundred of the brightest scintillating, and a
-     fixed overlay — the column's glow and a lens vignette. The two layers drift at different speeds as the
-     page scrolls; both wrap top to bottom without a seam.
+     The sky, made to read as a photograph rather than a pattern: twenty
+     layers of stars at different depths, in different colours, some soft
+     and most sharp (see layerOf), a two-tint haze in a column down the
+     middle, and the nearest stars bright, some scintillating, a rare one
+     with a lens's cross. Painted once per screen size into four planes,
+     which then only move: each drifts at its own speed as the page scrolls,
+     and all of them wrap top to bottom without a seam. Over them, every
+     frame: the twinkling stars, and a fixed overlay — the column's glow and
+     a lens vignette.
      ====================================================================== */
   function starfield(cv, opt) {
     var ctx = cv.getContext('2d'); if (!ctx) return { start: noop, stop: noop };
-    var W = 0, H = 0, dpr = 1, deep = null, near = null, over = null, twinkles = [];
+    var W = 0, H = 0, dpr = 1, planes = [], over = null, twinkles = [];
     var running = false, raf = 0, last = 0, lastScroll = -1e9, seeded = false, jobs = [], working = false;
 
     function canvas() {
@@ -558,11 +557,11 @@
       var ux = fx * fx * (3 - 2 * fx), uy = fy * fy * (3 - 2 * fy);
       return a + (b - a) * ux + (c - a) * uy + (a - b - c + d) * ux * uy;
     }
-    function haze(g) {
+    function haze(g, violet) {
       var nw = Math.max(8, Math.ceil(W / 9)), nh = Math.max(8, Math.ceil(H / 9));
       var nc = doc.createElement('canvas'); nc.width = nw; nc.height = nh;
       var nx = nc.getContext('2d'), img = nx.createImageData(nw, nh), px = img.data;
-      var cells = Math.max(2, Math.round(nh / 27)), ox = Math.random() * 100;
+      var cells = Math.max(2, Math.round(nh / 27)), ox = Math.random() * 100 + (violet ? 40 : 0);
       for (var y = 0; y < nh; y++) for (var x = 0; x < nw; x++) {
         var n = 0, amp = 0.55, f = 1;
         for (var o = 0; o < 4; o++) {
@@ -572,82 +571,93 @@
         }
         var a = Math.max(0, n - 0.42) * 1.9 * column(x / nw * W);
         var i = (y * nw + x) * 4;
-        px[i] = 22; px[i + 1] = 112 + 60 * a; px[i + 2] = 140 + 60 * a; px[i + 3] = Math.min(255, a * 110);
+        if (violet) { px[i] = 70 + 40 * a; px[i + 1] = 56 + 30 * a; px[i + 2] = 150 + 60 * a }
+        else { px[i] = 22; px[i + 1] = 112 + 60 * a; px[i + 2] = 140 + 60 * a }
+        px[i + 3] = Math.min(255, a * 110);
       }
       nx.putImageData(img, 0, 0);
       g.save(); g.imageSmoothingEnabled = true; g.imageSmoothingQuality = 'high';
-      g.globalAlpha = opt.haze || 0.32; g.drawImage(nc, 0, 0, W, H); g.restore();
+      g.globalAlpha = (opt.haze || 0.32) * (violet ? 0.6 : 1); g.drawImage(nc, 0, 0, W, H); g.restore();
     }
 
     // draw at y, and again across the wrap if it hangs over an edge
     function wrapped(y, pad, fn) { fn(y); if (y < pad) fn(y + H); else if (y > H - pad) fn(y - H) }
 
+    // Twenty layers of sky, far to near. The far ones hold the most stars,
+    // the finest and the dimmest, in dark galaxy colours — deep blue, violet,
+    // teal — and some of them are soft; the middle ones are cyan, pale blue
+    // and lavender; the near ones white and ice, the brightest and all sharp.
+    // They are painted into four planes that drift at their own speeds as the
+    // page scrolls.
+    var LAYERS = 20, SPEED = [0.015, 0.03, 0.05, 0.08];
+    var FAR = ['52,84,168', '96,80,180', '34,120,150', '70,150,200', '120,100,200', '40,104,170', '30,140,160', '84,120,210'];
+    var MID = ['120,200,228', '150,190,240', '110,222,234', '176,170,240', '140,214,236', '190,210,250'];
+    var NEAR = ['214,236,250', '255,255,255', '200,240,250', '255,244,226', '232,246,255'];
+    function layerOf(k) {
+      var d = k / (LAYERS - 1), pal = d < 0.4 ? FAR : d < 0.75 ? MID : NEAR;
+      return {
+        plane: Math.min(3, Math.floor(k / 5)), rgb: pal[k % pal.length],
+        share: 1.4 - 1.25 * d,                               // the far layers hold the most stars
+        size: 0.8 + 1.1 * d,                                 // and the finest
+        alpha: 0.12 + 0.8 * d * d,                           // and the dimmest, by a long way
+        blur: d < 0.5 && k % 2 === 0 ? 1.8 - 2.4 * d : 0,    // some far ones soft, the rest sharp
+        band: k >= 2 && k <= 13 ? (k % 3 ? 0.78 : 0.4) : 0.15  // how many sit in the milky column
+      };
+    }
+
     // Builds a new sky as a queue of small jobs (see work()), into fresh
     // canvases: whatever is on screen keeps drawing until the last job swaps
-    // the new layers in, so a resize never flashes an empty sky.
+    // the new planes in, so a resize never flashes an empty sky.
     function seed() {
       var D = Math.min(window.devicePixelRatio || 1, 2);
       var w = cv.clientWidth || innerWidth, ht = cv.clientHeight || innerHeight;
       // a phone gets the same sky as a desktop, fitted to its screen: as many
       // stars per screen, each a little finer — not a sparse cut-out of it
-      var fill = Math.max(1, 1.5e6 / (w * ht)), f = Math.max(0.68, 1 / Math.sqrt(fill)), fb = Math.max(0.72, f);
-      var area = w * ht * fill, px1 = 1 / D, grain = Math.max(px1, 0.5);
+      var fill = Math.max(1, 1.5e6 / (w * ht)), fb = Math.max(0.72, 1 / Math.sqrt(fill));
+      var area = w * ht * fill, grain = Math.max(1 / D, 0.5), gain = opt.gain || 1;
       var sig = Math.max(w * 0.12, 70);
-      var nd, nn, no, tw = [];
+      var np = [], scratch = null, no, tw = [];
       // the helpers read W, H and dpr: point them at the new size while building
       function at(f) { return function () { var s0 = W, s1 = H, s2 = dpr; W = w; H = ht; dpr = D; try { f() } finally { W = s0; H = s1; dpr = s2 } } }
 
-      jobs = [
-        /* deep: haze, dust, field stars */
-        at(function () { nd = canvas(); haze(nd.g) }),
-        at(function () {
-          var g = nd.g, i, x, y;
-          // tens of thousands of grains: grouped by colour and strength, so the
-          // canvas parses a colour twenty times, not twenty thousand
-          var bins = {};
-          function grainAt(rgb, a, x, y, s) {
-            var k = rgb + ',' + (Math.round(Math.min(1, a) * 20) / 20);
-            (bins[k] || (bins[k] = [])).push(x, y, s);
-          }
-          var dust = Math.round(area / 70 * (opt.dust || 1));
-          for (i = 0; i < dust; i++) {
-            x = Math.random() < 0.82 ? W / 2 + gauss() * sig : Math.random() * W;
-            if (x < 0 || x > W) continue;
-            y = Math.random() * H;
-            grainAt(Math.random() < 0.8 ? '110,222,234' : '225,246,250', (0.2 + Math.pow(Math.random(), 2) * 0.85) * column(x),
-              x, y, Math.random() < 0.88 ? grain : grain * 1.6);
-          }
-          var field = Math.round(area / 190);
-          for (i = 0; i < field; i++) {
-            x = Math.random() * W; y = Math.random() * H;
-            if (Math.random() > column(x) * 0.45 + 0.55) continue;   // a little thinner towards the edges
-            var m = Math.pow(Math.random(), 3.2);
-            var r = (0.3 + m * 0.65) * f, al = 0.3 + m * 0.7;
-            if (r < 0.55) { grainAt(tint(), al, x, y, Math.max(grain, r * 1.4)); continue }
-            g.fillStyle = 'rgba(' + tint() + ',' + al.toFixed(3) + ')';
-            g.beginPath(); g.arc(x, y, r, 0, 6.2832); g.fill();
-          }
-          var slices = [];
-          Object.keys(bins).forEach(function (k) {
-            var b = bins[k];
-            for (var from = 0; from < b.length; from += 3 * 2500) (function (from) {
-              slices.push(function () {
-                g.fillStyle = 'rgba(' + k + ')';
-                for (var j = from, end = Math.min(b.length, from + 3 * 2500); j < end; j += 3) g.fillRect(b[j], b[j + 1], b[j + 2], b[j + 2]);
-              });
-            })(from);
-          });
-          jobs = slices.concat(jobs);
-        }),
+      jobs = [at(function () {
+        for (var q = 0; q < SPEED.length; q++) np.push(canvas());
+        scratch = canvas();
+        haze(np[0].g, false); haze(np[0].g, true);           // teal, then a faint violet through it
+      })];
 
-        /* near: the bright stars */
+      for (var k = 0; k < LAYERS; k++) (function (L) {
+          jobs.push(at(function () {
+            var tgt = L.blur ? scratch : np[L.plane], g = tgt.g, i, x, y, bins = {};
+            if (L.blur) g.clearRect(0, 0, W, H);
+            var n = Math.round(area * L.share / 760 * (opt.dust || 1));
+            for (i = 0; i < n; i++) {
+              x = Math.random() < L.band ? W / 2 + gauss() * sig : Math.random() * W;
+              if (x < 0 || x > W) continue;
+              y = Math.random() * H;
+              var a = L.alpha * gain * (0.45 + 0.55 * Math.pow(Math.random(), 0.7)) * (0.55 + 0.45 * column(x));
+              // grouped by colour and strength: the canvas parses a colour a few times, not thousands
+              var key = (Math.random() < 0.06 ? '255,255,255' : L.rgb) + ',' + (Math.round(Math.min(1, a) * 20) / 20);
+              (bins[key] || (bins[key] = [])).push(x, y, grain * L.size * (Math.random() < 0.1 ? 1.6 : 1));
+            }
+            for (var key2 in bins) {
+              var b = bins[key2];
+              g.fillStyle = 'rgba(' + key2 + ')';
+              for (var j = 0; j < b.length; j += 3) g.fillRect(b[j], b[j + 1], b[j + 2], b[j + 2]);
+            }
+            if (L.blur) np[L.plane].g.drawImage(soften(scratch.c, L.blur * D), 0, 0, W, H);
+          }));
+      })(layerOf(k));
+
+      jobs.push(
+        /* the nearest: bright stars, the ones that twinkle, the lens crosses */
         at(function () {
-          nn = canvas(); var h = nn.g, i, x, y;
-          var bright = Math.round(area / 6000);
+          var h = np[SPEED.length - 1].g, i, x, y;
+          var bright = Math.round(area / 6000 * gain);
           for (i = 0; i < bright; i++) {
             x = Math.random() * W; y = Math.random() * H;
             var mb = Math.pow(Math.random(), 2.2);
-            var star = { x: x, y: y, r: (0.65 + mb * 0.9) * fb, a: 0.55 + mb * 0.45, c: tint(), f: 0.8 + Math.random() * 2.6, p: Math.random() * 6.28 };
+            var star = { x: x, y: y, r: (0.65 + mb * 0.9) * fb, a: (0.55 + mb * 0.45) * Math.min(1, gain + 0.1), c: tint(), f: 0.8 + Math.random() * 2.6, p: Math.random() * 6.28 };
             if (tw.length < 110 && Math.random() < 0.6) { tw.push(star); continue }
             (function (star) { wrapped(star.y, 12, function (yy) { glowStar(h, star, star.x, yy, star.a) }) })(star);
           }
@@ -671,17 +681,13 @@
           v.fillStyle = vg; v.fillRect(0, 0, W, H);
         }),
 
-        /* depth of field: the far layer, which holds most of the stars, the
-           dust and the haze, goes soft; the near layer stays pin-sharp */
-        function () { if (opt.depth) nd.c = soften(nd.c, opt.depth * D) },
-
         /* swap the finished sky in */
         function () {
           W = w; H = ht; dpr = D;
           cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
-          deep = nd; near = nn; over = no; twinkles = tw; seeded = true;
+          planes = np; over = no; twinkles = tw; seeded = true; scratch = null;
         }
-      ];
+      );
     }
     function tint() {
       var k = Math.random();
@@ -762,16 +768,14 @@
       var t = still ? 0 : now / 1000;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.clearRect(0, 0, W, H);
-      ctx.globalAlpha = opt.far || 1; blit(deep, sc * 0.03);
-      ctx.globalAlpha = opt.near || 1; blit(near, sc * 0.08);
-      var o = ((sc * 0.08 % H) + H) % H;
+      for (var pl = 0; pl < planes.length; pl++) blit(planes[pl], sc * SPEED[pl]);
+      var o = ((sc * SPEED[SPEED.length - 1] % H) + H) % H;
       for (var i = 0; i < twinkles.length; i++) {
         var s = twinkles[i], y = s.y - o; if (y < -12) y += H;
         // scintillation: a slow swell and a fast shiver, as air does to starlight
         var a = s.a * (0.62 + 0.28 * Math.sin(t * s.f + s.p) + 0.1 * Math.sin(t * s.f * 4.3 + s.p * 2));
         glowStar(ctx, s, s.x, y, Math.max(0, a));
       }
-      ctx.globalAlpha = 1;
       ctx.drawImage(over.c, 0, 0, W, H);
     }
     function loop(now) {
