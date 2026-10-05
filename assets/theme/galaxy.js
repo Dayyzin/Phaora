@@ -128,7 +128,8 @@
     });
 
     /* ---------- the stars ---------- */
-    var mainSky = starfield(sky, { parallax: true, dust: 0.6, haze: 0.2 });   // calmer behind the content
+    // behind the content: the far stars soft and dim, the near ones sharp
+    var mainSky = starfield(sky, { parallax: true, dust: 0.6, haze: 0.2, depth: 1.1, far: 0.55, near: 0.85 });
     mainSky.start(function () { sky.classList.add('gx-lit') });
     var menuSky = starfield(menu.querySelector('.gx-menu-sky'), { parallax: false, dust: 1.3, lazy: true });
   }
@@ -670,6 +671,10 @@
           v.fillStyle = vg; v.fillRect(0, 0, W, H);
         }),
 
+        /* depth of field: the far layer, which holds most of the stars, the
+           dust and the haze, goes soft; the near layer stays pin-sharp */
+        function () { if (opt.depth) nd.c = soften(nd.c, opt.depth * D) },
+
         /* swap the finished sky in */
         function () {
           W = w; H = ht; dpr = D;
@@ -732,6 +737,21 @@
         for (var i = 0; i < w.length; i++) w[i]();
       });
     }
+    // blur a whole layer once, by `px` device pixels
+    function soften(src, px) {
+      var out = doc.createElement('canvas'); out.width = src.width; out.height = src.height;
+      var o = out.getContext('2d'), f = 'blur(' + px.toFixed(2) + 'px)';
+      o.filter = f;
+      if (o.filter === f) { o.drawImage(src, 0, 0); return out }
+      // no canvas filter (older Safari): down and back up again, which softens the same way
+      var k = Math.max(2, Math.round(px * 1.6)), sm = doc.createElement('canvas');
+      sm.width = Math.max(1, Math.round(src.width / k)); sm.height = Math.max(1, Math.round(src.height / k));
+      var sc = sm.getContext('2d'); sc.imageSmoothingEnabled = true; sc.imageSmoothingQuality = 'high';
+      sc.drawImage(src, 0, 0, sm.width, sm.height);
+      o.imageSmoothingEnabled = true; o.imageSmoothingQuality = 'high';
+      o.drawImage(sm, 0, 0, out.width, out.height);
+      return out;
+    }
     function blit(layer, off) {
       var o = ((off % H) + H) % H;
       ctx.drawImage(layer.c, 0, -o, W, H);
@@ -742,8 +762,8 @@
       var t = still ? 0 : now / 1000;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.clearRect(0, 0, W, H);
-      blit(deep, sc * 0.03);
-      blit(near, sc * 0.08);
+      ctx.globalAlpha = opt.far || 1; blit(deep, sc * 0.03);
+      ctx.globalAlpha = opt.near || 1; blit(near, sc * 0.08);
       var o = ((sc * 0.08 % H) + H) % H;
       for (var i = 0; i < twinkles.length; i++) {
         var s = twinkles[i], y = s.y - o; if (y < -12) y += H;
@@ -751,6 +771,7 @@
         var a = s.a * (0.62 + 0.28 * Math.sin(t * s.f + s.p) + 0.1 * Math.sin(t * s.f * 4.3 + s.p * 2));
         glowStar(ctx, s, s.x, y, Math.max(0, a));
       }
+      ctx.globalAlpha = 1;
       ctx.drawImage(over.c, 0, 0, W, H);
     }
     function loop(now) {
