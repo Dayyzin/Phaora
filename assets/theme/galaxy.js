@@ -134,9 +134,11 @@
   }
 
   /* The Ö's material: crushed ice, one texture shared by every Ö on the page.
-     Cells of frosted crystal in a cloud of pale cyan to near white, brighter
-     along the cracks between cells, a scatter of white specks, and thinner
-     (more see-through) in the darker cells. Made once, on first use. */
+     Cells of frosted crystal, each its own layer of colour — deep teal-blue,
+     cyan, ice, a pale blue-violet, near white — in a cloud that brightens
+     and dims them, whiter along the cracks between cells, thinner (more
+     see-through) in the deeper cells, and a scatter of specks, most white,
+     a few with a diamond's fire. Made once, on first use. */
   var FROST = null;
   function frost() {
     if (FROST) return FROST;
@@ -144,9 +146,12 @@
     c.width = c.height = N;
     var x = c.getContext('2d'), img = x.createImageData(N, N), d = img.data, i, j;
     var pts = [];
-    for (j = 0; j < cells; j++) for (i = 0; i < cells; i++) pts.push([(i + Math.random()) * G, (j + Math.random()) * G, Math.random()]);
+    var PAL = [[38, 124, 168], [96, 206, 228], [178, 236, 246], [160, 184, 250], [236, 250, 255]], CUM = [0.16, 0.5, 0.82, 0.92, 1];
+    function pick() { var r = Math.random(), q = 0; while (r > CUM[q]) q++; return PAL[q] }
+    for (j = 0; j < cells; j++) for (i = 0; i < cells; i++) pts.push([(i + Math.random()) * G, (j + Math.random()) * G, pick()]);
     var L = 32, lat = [];
     for (i = 0; i < L * L; i++) lat.push(Math.random());
+    function sstep(a, b, v) { var q = Math.max(0, Math.min(1, (v - a) / (b - a))); return q * q * (3 - 2 * q) }
     function vn(px, py) {
       var ix = Math.floor(px), iy = Math.floor(py), fx = px - ix, fy = py - iy;
       var a = lat[((iy % L) + L) % L * L + ((ix % L) + L) % L], b = lat[((iy % L) + L) % L * L + (((ix + 1) % L) + L) % L];
@@ -155,7 +160,7 @@
       return a + (b - a) * fx + (cc - a) * fy + (a - b - cc + dd) * fx * fy;
     }
     for (var py = 0; py < N; py++) for (var px = 0; px < N; px++) {
-      var gx = Math.floor(px / G), gy = Math.floor(py / G), f1 = 1e9, f2 = 1e9, tone = 0;
+      var gx = Math.floor(px / G), gy = Math.floor(py / G), f1 = 1e9, f2 = 1e9, tone = PAL[1];
       for (var oy = -1; oy <= 1; oy++) for (var ox = -1; ox <= 1; ox++) {
         var cx = gx + ox, cy = gy + oy;
         if (cx < 0 || cy < 0 || cx >= cells || cy >= cells) continue;
@@ -163,15 +168,26 @@
         if (dist < f1) { f2 = f1; f1 = dist; tone = p[2] } else if (dist < f2) f2 = dist;
       }
       var crack = Math.max(0, 1 - (f2 - f1) / 1.8);
-      var cloud = 0.6 * vn(px / 22, py / 22) + 0.4 * vn(px / 7, py / 7);
-      var lum = Math.min(1, 0.42 + 0.3 * tone + 0.22 * cloud + 0.3 * crack);
+      var cloud = 0.6 * vn(px / 18, py / 18) + 0.4 * vn(px / 6, py / 6);
+      // colour in soft layers rather than tiles: cyan to ice by the cloud, with
+      // drifts of deep teal-blue and pale violet through it; the cell's own
+      // colour only tints it, and the cracks are faint
+      var deep = sstep(0.6, 0.86, vn(px / 26 + 7.3, py / 26 + 3.1)), viol = sstep(0.66, 0.92, vn(px / 30 + 13.7, py / 30 + 21.2));
+      var r0 = 96 + 100 * cloud, g0 = 206 + 34 * cloud, b0 = 228 + 20 * cloud;
+      r0 += (44 - r0) * deep * 0.7; g0 += (130 - g0) * deep * 0.7; b0 += (176 - b0) * deep * 0.7;
+      r0 += (170 - r0) * viol * 0.6; g0 += (190 - g0) * viol * 0.6; b0 += (250 - b0) * viol * 0.6;
+      r0 += (tone[0] - r0) * 0.2; g0 += (tone[1] - g0) * 0.2; b0 += (tone[2] - b0) * 0.2;
+      var wh = Math.min(1, 0.16 + 0.32 * crack + 0.22 * cloud);
       var k = (py * N + px) * 4;
-      d[k] = 104 + (246 - 104) * lum; d[k + 1] = 196 + (254 - 196) * lum; d[k + 2] = 212 + (255 - 212) * lum;
-      d[k + 3] = 255 * Math.min(1, 0.6 + 0.45 * lum);
+      d[k] = r0 + (252 - r0) * wh; d[k + 1] = g0 + (255 - g0) * wh; d[k + 2] = b0 + (255 - b0) * wh;
+      var lum = (0.3 * d[k] + 0.59 * d[k + 1] + 0.11 * d[k + 2]) / 255;
+      d[k + 3] = 255 * Math.min(1, 0.5 + 0.55 * lum);
     }
-    for (i = 0; i < 300; i++) {                        // specks of white
+    var FIRE = [[255, 214, 236], [255, 240, 196], [206, 190, 255], [190, 255, 236]];
+    for (i = 0; i < 300; i++) {                        // specks: most white, a few with a diamond's fire
       var s = (Math.floor(Math.random() * N) * N + Math.floor(Math.random() * N)) * 4;
-      d[s] = d[s + 1] = d[s + 2] = d[s + 3] = 255;
+      var fc = Math.random() < 0.15 ? FIRE[i % 4] : [255, 255, 255];
+      d[s] = fc[0]; d[s + 1] = fc[1]; d[s + 2] = fc[2]; d[s + 3] = 255;
     }
     x.putImageData(img, 0, 0);
     return (FROST = c);
@@ -208,7 +224,8 @@
     var LIVE = [];                                       // particles suspended inside the crystal
     for (var li = 0; li < (opt.inner || 80); li++) LIVE.push({
       a: Math.random() * 6.2832, r: (Math.random() * 2 - 1) * HW * 0.82, z: (Math.random() * 2 - 1) * HZ * 0.9,
-      w: (Math.random() - 0.5) * 0.06, s: Math.random() < 0.18 ? 1.8 : 1, tw: 0.8 + Math.random() * 3, p: Math.random() * 6.28
+      w: (Math.random() - 0.5) * 0.06, s: Math.random() < 0.18 ? 1.8 : 1, tw: 0.8 + Math.random() * 3, p: Math.random() * 6.28,
+      c: (function (r) { return r < 0.68 ? '255,255,255' : r < 0.84 ? '170,240,250' : r < 0.95 ? '190,205,255' : '255,226,240' })(Math.random())
     });
     var DOTLIVE = [];                                    // and inside each dot
     for (var dl = 0; dl < (opt.inner || 80) / 6; dl++) DOTLIVE.push({
@@ -216,7 +233,8 @@
       s: Math.random() < 0.2 ? 1.8 : 1, tw: 0.8 + Math.random() * 3, p: Math.random() * 6.28
     });
     var BLOOM = [];                                      // the glow: patches that swell and fade on their own
-    for (var bi = 0; bi < 26; bi++) BLOOM.push({
+    var HUES = ['120,230,240', '70,160,230', '110,236,214', '150,200,255'];
+    for (var bi = 0; bi < 26; bi++) BLOOM.push({ h: HUES[bi % 4],
       a: (bi + Math.random() * 0.6) / 26 * 6.2832, amp: 0.35 + Math.random() * 0.65,
       f: 0.35 + Math.random() * 1.1, p: Math.random() * 6.28, f2: 1.7 + Math.random() * 2.4
     });
@@ -320,6 +338,9 @@
       for (var g = 0; g < MID.length; g++) { var mp = proj(rot(MID[g])); if (g) ctx.lineTo(mp[0], mp[1]); else ctx.moveTo(mp[0], mp[1]) }
       ctx.closePath();
       ctx.lineWidth = 2 * HW * U;
+      ctx.strokeStyle = 'rgba(40,110,210,' + (0.22 * I).toFixed(3) + ')';    // the outermost layer: blue
+      ctx.shadowColor = 'rgba(40,110,210,' + (0.6 * I).toFixed(3) + ')';
+      ctx.shadowBlur = U * 1.4 * dpr; ctx.stroke();
       ctx.strokeStyle = 'rgba(80,204,218,' + (0.5 * I).toFixed(3) + ')';
       ctx.shadowColor = 'rgba(80,204,218,' + Math.min(1, 0.85 * I).toFixed(3) + ')';
       ctx.shadowBlur = U * 0.8 * dpr; ctx.stroke();
@@ -333,7 +354,7 @@
         var wgt = I * bo.amp * pulse; if (wgt < 0.04) continue;
         var bp = proj(rot([Math.cos(bo.a) * (1 + HW * 0.9), Math.sin(bo.a) * (1 + HW * 0.9), 0])), br = U * (0.32 + 0.38 * pulse * bo.amp);
         var bg = ctx.createRadialGradient(bp[0], bp[1], 0, bp[0], bp[1], br);
-        bg.addColorStop(0, 'rgba(120,230,240,' + (0.55 * wgt).toFixed(3) + ')'); bg.addColorStop(1, 'rgba(60,190,205,0)');
+        bg.addColorStop(0, 'rgba(' + bo.h + ',' + (0.55 * wgt).toFixed(3) + ')'); bg.addColorStop(1, 'rgba(' + bo.h + ',0)');
         ctx.fillStyle = bg; ctx.beginPath(); ctx.arc(bp[0], bp[1], br, 0, 6.2832); ctx.fill();
       }
       var dots = [proj(rot([-DOTX, DOTY, 0])), proj(rot([DOTX, DOTY, 0]))];
@@ -407,7 +428,7 @@
         var pp = proj(rot([Math.cos(la) * lr, Math.sin(la) * lr, lp.z]));
         var ltw = still ? 0.8 : 0.5 + 0.5 * Math.sin(t * lp.tw + lp.p);
         var lal = Math.min(1, (0.35 + 0.75 * ltw * ltw) * B), lsz = lp.s / dpr * (dpr > 1 ? 1.3 : 1);
-        ctx.fillStyle = 'rgba(255,255,255,' + lal.toFixed(3) + ')';
+        ctx.fillStyle = 'rgba(' + lp.c + ',' + lal.toFixed(3) + ')';
         ctx.fillRect(pp[0] - lsz / 2, pp[1] - lsz / 2, lsz, lsz);
         if (lp.s > 1 && ltw > 0.85) {                  // the brightest catch the light like a cut stone
           var Lx = U * 0.045 * (ltw - 0.85) / 0.15;
@@ -656,24 +677,34 @@
     }
     function glowStar(g, s, x, y, a) {
       if (s.r > 1.05) {
-        var rg = g.createRadialGradient(x, y, 0, x, y, s.r * 2);
-        rg.addColorStop(0, 'rgba(' + s.c + ',' + (a * 0.2).toFixed(3) + ')'); rg.addColorStop(1, 'rgba(' + s.c + ',0)');
-        g.fillStyle = rg; g.beginPath(); g.arc(x, y, s.r * 2, 0, 6.2832); g.fill();
+        var rg = g.createRadialGradient(x, y, 0, x, y, s.r * 1.5);
+        rg.addColorStop(0, 'rgba(' + s.c + ',' + (a * 0.14).toFixed(3) + ')'); rg.addColorStop(1, 'rgba(' + s.c + ',0)');
+        g.fillStyle = rg; g.beginPath(); g.arc(x, y, s.r * 1.5, 0, 6.2832); g.fill();
       }
       g.fillStyle = 'rgba(255,255,255,' + Math.min(1, a * 1.15).toFixed(3) + ')';
       g.beginPath(); g.arc(x, y, s.r * 0.55, 0, 6.2832); g.fill();
     }
+    // a lens's diffraction cross: a pin-sharp core and four thin spikes that
+    // taper to nothing — white at the heart, then ice, cyan and blue to the tips
     function crossStar(g, x, y, L, a) {
-      var rg = g.createRadialGradient(x, y, 0, x, y, L * 0.9);
-      rg.addColorStop(0, 'rgba(170,240,248,' + (a * 0.55).toFixed(3) + ')'); rg.addColorStop(1, 'rgba(95,211,222,0)');
-      g.fillStyle = rg; g.beginPath(); g.arc(x, y, L * 0.9, 0, 6.2832); g.fill();
-      var hz = g.createLinearGradient(x - L, 0, x + L, 0), vt = g.createLinearGradient(0, y - L, 0, y + L);
-      [hz, vt].forEach(function (gr) {
-        gr.addColorStop(0, 'rgba(200,246,250,0)'); gr.addColorStop(0.5, 'rgba(245,255,255,' + a + ')'); gr.addColorStop(1, 'rgba(200,246,250,0)');
-      });
-      g.fillStyle = hz; g.fillRect(x - L, y - 0.5, L * 2, 1);
-      g.fillStyle = vt; g.fillRect(x - 0.5, y - L, 1, L * 2);
-      g.fillStyle = 'rgba(255,255,255,' + a + ')'; g.beginPath(); g.arc(x, y, 1.1, 0, 6.2832); g.fill();
+      var core = g.createRadialGradient(x, y, 0, x, y, 2.4);
+      core.addColorStop(0, 'rgba(255,255,255,' + a + ')');
+      core.addColorStop(0.45, 'rgba(220,244,255,' + (a * 0.45).toFixed(3) + ')');
+      core.addColorStop(1, 'rgba(150,210,255,0)');
+      g.fillStyle = core; g.beginPath(); g.arc(x, y, 2.4, 0, 6.2832); g.fill();
+      var DX = [1, -1, 0, 0], DY = [0, 0, 1, -1], w0 = 0.7;
+      for (var k = 0; k < 4; k++) {
+        var dx = DX[k], dy = DY[k], gr = g.createLinearGradient(x, y, x + dx * L, y + dy * L);
+        gr.addColorStop(0, 'rgba(255,255,255,' + a + ')');
+        gr.addColorStop(0.22, 'rgba(214,240,255,' + (a * 0.8).toFixed(3) + ')');
+        gr.addColorStop(0.6, 'rgba(120,206,240,' + (a * 0.42).toFixed(3) + ')');
+        gr.addColorStop(1, 'rgba(90,140,255,0)');
+        g.fillStyle = gr; g.beginPath();
+        if (dx) { g.moveTo(x, y - w0); g.lineTo(x + dx * L, y); g.lineTo(x, y + w0) }
+        else { g.moveTo(x - w0, y); g.lineTo(x, y + dy * L); g.lineTo(x + w0, y) }
+        g.closePath(); g.fill();
+      }
+      g.fillStyle = 'rgba(255,255,255,' + a + ')'; g.beginPath(); g.arc(x, y, 0.8, 0, 6.2832); g.fill();
     }
 
     // between frames when the browser is idle, and within 100ms regardless —

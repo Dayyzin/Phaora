@@ -74,11 +74,14 @@ html.gx-open{overflow:hidden}
   opacity:0;visibility:hidden;transition:opacity .45s,visibility 0s linear .45s}
 .gx-menu.gx-on{opacity:1;visibility:visible;transition:opacity .45s}
 .gx-menu-sky{position:fixed;inset:0;width:100%;height:100%;pointer-events:none}
-.gx-flare{position:absolute;left:50%;width:28px;height:28px;transform:translateX(-50%);pointer-events:none}
-.gx-flare::before,.gx-flare::after{content:"";position:absolute;left:50%;top:50%;background:#EFFFFF;border-radius:50%;
-  box-shadow:0 0 10px 2px rgba(95,211,222,.8),0 0 26px 6px rgba(95,211,222,.35)}
-.gx-flare::before{width:28px;height:1.5px;transform:translate(-50%,-50%)}
-.gx-flare::after{width:1.5px;height:28px;transform:translate(-50%,-50%)}
+.gx-flare{position:absolute;left:50%;width:34px;height:34px;transform:translateX(-50%);pointer-events:none;
+  background:radial-gradient(circle,#fff 0 1.2px,rgba(214,240,255,.55) 1.8px,rgba(150,210,255,0) 4px)}
+/* a lens's cross: thin spikes that taper to nothing, white at the heart to blue at the tips */
+.gx-flare::before,.gx-flare::after{content:"";position:absolute;left:50%;top:50%}
+.gx-flare::before{width:34px;height:1px;transform:translate(-50%,-50%);
+  background:linear-gradient(90deg,rgba(90,140,255,0),rgba(120,206,240,.45) 20%,rgba(214,240,255,.85) 39%,#fff 50%,rgba(214,240,255,.85) 61%,rgba(120,206,240,.45) 80%,rgba(90,140,255,0))}
+.gx-flare::after{width:1px;height:34px;transform:translate(-50%,-50%);
+  background:linear-gradient(180deg,rgba(90,140,255,0),rgba(120,206,240,.45) 20%,rgba(214,240,255,.85) 39%,#fff 50%,rgba(214,240,255,.85) 61%,rgba(120,206,240,.45) 80%,rgba(90,140,255,0))}
 
 .gx-menu nav{position:static;display:block;height:auto;width:auto;padding:0;margin:0;background:none;border:0;
   backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:none;transform:none}
