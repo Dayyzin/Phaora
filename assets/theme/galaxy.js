@@ -128,7 +128,7 @@
     });
 
     /* ---------- the stars ---------- */
-    var mainSky = starfield(sky, { parallax: true });
+    var mainSky = starfield(sky, { parallax: true, dust: 0.6, haze: 0.2 });   // calmer behind the content
     mainSky.start(function () { sky.classList.add('gx-lit') });
     var menuSky = starfield(menu.querySelector('.gx-menu-sky'), { parallax: false, dust: 1.3, lazy: true });
   }
@@ -575,7 +575,7 @@
       }
       nx.putImageData(img, 0, 0);
       g.save(); g.imageSmoothingEnabled = true; g.imageSmoothingQuality = 'high';
-      g.globalAlpha = 0.32; g.drawImage(nc, 0, 0, W, H); g.restore();
+      g.globalAlpha = opt.haze || 0.32; g.drawImage(nc, 0, 0, W, H); g.restore();
     }
 
     // draw at y, and again across the wrap if it hangs over an edge
