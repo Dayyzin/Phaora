@@ -128,11 +128,9 @@
     });
 
     /* ---------- the stars ---------- */
-    sky.style.background =
-      'radial-gradient(ellipse 22% 70% at 50% 18%,rgba(40,150,170,.10) 0%,transparent 70%),' +
-      'radial-gradient(ellipse 70% 40% at 50% 100%,rgba(16,90,108,.12) 0%,transparent 70%)';
-    starfield(sky, { parallax: true, density: 2600 }).start();
-    var menuSky = starfield(menu.querySelector('.gx-menu-sky'), { parallax: false, density: 1500, lazy: true });
+    var mainSky = starfield(sky, { parallax: true });
+    mainSky.start(function () { sky.classList.add('gx-lit') });
+    var menuSky = starfield(menu.querySelector('.gx-menu-sky'), { parallax: false, dust: 1.3, lazy: true });
   }
 
   /* ======================================================================
@@ -370,73 +368,257 @@
   function noop() {}
 
   /* ======================================================================
-     A canvas of stars: most still, some breathing, a few cross-shaped
-     flares like the lockup's. Two depths drift at different speeds on scroll.
+     The sky, made to read as a photograph rather than a pattern.
+     Painted once per screen size into two layers, then only moved:
+       deep  — a teal haze in a column down the middle, thousands of
+               one-pixel grains of star dust packed into that column, and
+               the faint field stars, which thin out towards the edges;
+       near  — the brighter stars, a few with a soft halo, a rare one with
+               the four-point diffraction cross of a real lens.
+     Over them, every frame: a hundred of the brightest scintillating, and a
+     fixed overlay — the column's glow, a hairline of light down the middle
+     and a lens vignette. The two layers drift at different speeds as the
+     page scrolls; both wrap top to bottom without a seam.
      ====================================================================== */
   function starfield(cv, opt) {
     var ctx = cv.getContext('2d'); if (!ctx) return { start: noop, stop: noop };
-    var W = 0, H = 0, dpr = 1, stars = [], flares = [], running = false, last = 0, raf = 0;
-    function seed() {
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
-      W = cv.clientWidth || innerWidth; H = cv.clientHeight || innerHeight;
-      cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
-      var n = Math.min(900, Math.round(W * H / opt.density));
-      stars = [];
-      for (var i = 0; i < n; i++) {
-        var deep = Math.random() < 0.72;
-        stars.push({
-          x: Math.random() * W, y: Math.random() * H,
-          r: deep ? 0.35 + Math.random() * 0.55 : 0.7 + Math.random() * 0.9,
-          a: deep ? 0.25 + Math.random() * 0.45 : 0.5 + Math.random() * 0.5,
-          d: deep ? 0.035 : 0.09,
-          t: Math.random() < 0.35 ? 0.6 + Math.random() * 1.8 : 0,
-          p: Math.random() * 6.28,
-          c: Math.random() < 0.22 ? '120,220,232' : (Math.random() < 0.5 ? '214,236,246' : '255,255,255')
-        });
+    var W = 0, H = 0, dpr = 1, deep = null, near = null, over = null, twinkles = [];
+    var running = false, raf = 0, last = 0, lastScroll = -1e9, seeded = false, jobs = [], working = false;
+
+    function canvas() {
+      var c = doc.createElement('canvas');
+      c.width = Math.round(W * dpr); c.height = Math.round(H * dpr);
+      var g = c.getContext('2d'); g.setTransform(dpr, 0, 0, dpr, 0, 0);
+      return { c: c, g: g };
+    }
+    function gauss() {                                   // Box–Muller
+      var u = 1 - Math.random(), v = Math.random();
+      return Math.sqrt(-2 * Math.log(u)) * Math.cos(6.2832 * v);
+    }
+    // how much of the sky's matter sits at this x: a column in the middle,
+    // never quite nothing at the edges
+    function column(x) { var d = (x / W - 0.5) / 0.2; return 0.22 + 0.78 * Math.exp(-d * d) }
+
+    // value noise, periodic in y so the haze wraps without a seam
+    function hash(x, y) { var s = Math.sin(x * 127.1 + y * 311.7) * 43758.5453; return s - Math.floor(s) }
+    function vnoise(x, y, py) {
+      var ix = Math.floor(x), iy = Math.floor(y), fx = x - ix, fy = y - iy;
+      var y0 = ((iy % py) + py) % py, y1 = (y0 + 1) % py;
+      var a = hash(ix, y0), b = hash(ix + 1, y0), c = hash(ix, y1), d = hash(ix + 1, y1);
+      var ux = fx * fx * (3 - 2 * fx), uy = fy * fy * (3 - 2 * fy);
+      return a + (b - a) * ux + (c - a) * uy + (a - b - c + d) * ux * uy;
+    }
+    function haze(g) {
+      var nw = Math.max(8, Math.ceil(W / 9)), nh = Math.max(8, Math.ceil(H / 9));
+      var nc = doc.createElement('canvas'); nc.width = nw; nc.height = nh;
+      var nx = nc.getContext('2d'), img = nx.createImageData(nw, nh), px = img.data;
+      var cells = Math.max(2, Math.round(nh / 27)), ox = Math.random() * 100;
+      for (var y = 0; y < nh; y++) for (var x = 0; x < nw; x++) {
+        var n = 0, amp = 0.55, f = 1;
+        for (var o = 0; o < 4; o++) {
+          var p = cells * f;
+          n += amp * vnoise(ox + x / nh * p, y / nh * p, p);
+          amp *= 0.5; f *= 2;
+        }
+        var a = Math.max(0, n - 0.42) * 1.9 * column(x / nw * W);
+        var i = (y * nw + x) * 4;
+        px[i] = 22; px[i + 1] = 112 + 60 * a; px[i + 2] = 140 + 60 * a; px[i + 3] = Math.min(255, a * 110);
       }
-      flares = [];
-      var nf = Math.max(2, Math.round(W * H / 380000));
-      for (var k = 0; k < nf; k++) flares.push({ x: Math.random() * W, y: Math.random() * H, s: 7 + Math.random() * 9, p: Math.random() * 6.28 });
+      nx.putImageData(img, 0, 0);
+      g.save(); g.imageSmoothingEnabled = true; g.imageSmoothingQuality = 'high';
+      g.globalAlpha = 0.32; g.drawImage(nc, 0, 0, W, H); g.restore();
+    }
+
+    // draw at y, and again across the wrap if it hangs over an edge
+    function wrapped(y, pad, fn) { fn(y); if (y < pad) fn(y + H); else if (y > H - pad) fn(y - H) }
+
+    // Builds a new sky as a queue of small jobs (see work()), into fresh
+    // canvases: whatever is on screen keeps drawing until the last job swaps
+    // the new layers in, so a resize never flashes an empty sky.
+    function seed() {
+      var D = Math.min(window.devicePixelRatio || 1, 2);
+      var w = cv.clientWidth || innerWidth, ht = cv.clientHeight || innerHeight;
+      var area = w * ht * (1 + 0.4 * (D - 1)), px1 = 1 / D, grain = Math.max(px1, 0.5);
+      var sig = Math.max(w * 0.12, 70);
+      var nd, nn, no, tw = [];
+      // the helpers read W, H and dpr: point them at the new size while building
+      function at(f) { return function () { var s0 = W, s1 = H, s2 = dpr; W = w; H = ht; dpr = D; try { f() } finally { W = s0; H = s1; dpr = s2 } } }
+
+      jobs = [
+        /* deep: haze, dust, field stars */
+        at(function () { nd = canvas(); haze(nd.g) }),
+        at(function () {
+          var g = nd.g, i, x, y;
+          // tens of thousands of grains: grouped by colour and strength, so the
+          // canvas parses a colour twenty times, not twenty thousand
+          var bins = {};
+          function grainAt(rgb, a, x, y, s) {
+            var k = rgb + ',' + (Math.round(Math.min(1, a) * 20) / 20);
+            (bins[k] || (bins[k] = [])).push(x, y, s);
+          }
+          var dust = Math.round(area / 70 * (opt.dust || 1));
+          for (i = 0; i < dust; i++) {
+            x = Math.random() < 0.82 ? W / 2 + gauss() * sig : Math.random() * W;
+            if (x < 0 || x > W) continue;
+            y = Math.random() * H;
+            grainAt(Math.random() < 0.8 ? '110,222,234' : '225,246,250', (0.2 + Math.pow(Math.random(), 2) * 0.85) * column(x),
+              x, y, Math.random() < 0.88 ? grain : grain * 1.6);
+          }
+          var field = Math.round(area / 190);
+          for (i = 0; i < field; i++) {
+            x = Math.random() * W; y = Math.random() * H;
+            if (Math.random() > column(x) * 0.45 + 0.55) continue;   // a little thinner towards the edges
+            var m = Math.pow(Math.random(), 3.2);
+            var r = 0.3 + m * 0.65, al = 0.3 + m * 0.7;
+            if (r < 0.55) { grainAt(tint(), al, x, y, Math.max(grain, r * 1.4)); continue }
+            g.fillStyle = 'rgba(' + tint() + ',' + al.toFixed(3) + ')';
+            g.beginPath(); g.arc(x, y, r, 0, 6.2832); g.fill();
+          }
+          var slices = [];
+          Object.keys(bins).forEach(function (k) {
+            var b = bins[k];
+            for (var from = 0; from < b.length; from += 3 * 2500) (function (from) {
+              slices.push(function () {
+                g.fillStyle = 'rgba(' + k + ')';
+                for (var j = from, end = Math.min(b.length, from + 3 * 2500); j < end; j += 3) g.fillRect(b[j], b[j + 1], b[j + 2], b[j + 2]);
+              });
+            })(from);
+          });
+          jobs = slices.concat(jobs);
+        }),
+
+        /* near: the bright stars */
+        at(function () {
+          nn = canvas(); var h = nn.g, i, x, y;
+          var bright = Math.round(area / 6000);
+          for (i = 0; i < bright; i++) {
+            x = Math.random() * W; y = Math.random() * H;
+            var mb = Math.pow(Math.random(), 2.2);
+            var star = { x: x, y: y, r: 0.65 + mb * 0.9, a: 0.55 + mb * 0.45, c: tint(), f: 0.8 + Math.random() * 2.6, p: Math.random() * 6.28 };
+            if (tw.length < 110 && Math.random() < 0.6) { tw.push(star); continue }
+            (function (star) { wrapped(star.y, 12, function (yy) { glowStar(h, star, star.x, yy, star.a) }) })(star);
+          }
+          var crosses = Math.max(2, Math.round(area / 420000));
+          for (i = 0; i < crosses; i++) {
+            x = W / 2 + gauss() * W * 0.22; y = Math.random() * H;
+            var L = 7 + Math.random() * 10;
+            (function (x, L) { wrapped(y, L * 2, function (yy) { crossStar(h, x, yy, L, 0.85) }) })(x, L);
+          }
+        }),
+
+        /* fixed overlay: the column's glow, the hairline, the vignette */
+        at(function () {
+          no = canvas(); var v = no.g;
+          var cg = v.createLinearGradient(0, 0, W, 0);
+          cg.addColorStop(0, 'rgba(20,110,128,0)'); cg.addColorStop(0.32, 'rgba(20,110,128,0.035)');
+          cg.addColorStop(0.5, 'rgba(48,170,186,0.09)'); cg.addColorStop(0.68, 'rgba(20,110,128,0.035)'); cg.addColorStop(1, 'rgba(20,110,128,0)');
+          v.fillStyle = cg; v.fillRect(0, 0, W, H);
+          var lg = v.createLinearGradient(0, 0, 0, H);
+          lg.addColorStop(0, 'rgba(120,226,236,0)'); lg.addColorStop(0.18, 'rgba(120,226,236,0.32)');
+          lg.addColorStop(0.5, 'rgba(160,236,244,0.4)'); lg.addColorStop(0.82, 'rgba(120,226,236,0.32)'); lg.addColorStop(1, 'rgba(120,226,236,0)');
+          v.fillStyle = lg; v.fillRect(W / 2 - px1 / 2, 0, Math.max(px1, 0.75), H);
+          v.globalAlpha = 0.18; v.fillRect(W / 2 - 2, 0, 4, H); v.globalAlpha = 1;
+          var vg = v.createRadialGradient(W / 2, H / 2, Math.min(W, H) * 0.35, W / 2, H / 2, Math.hypot(W, H) * 0.62);
+          vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, 'rgba(0,2,5,0.55)');
+          v.fillStyle = vg; v.fillRect(0, 0, W, H);
+        }),
+
+        /* swap the finished sky in */
+        function () {
+          W = w; H = ht; dpr = D;
+          cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+          deep = nd; near = nn; over = no; twinkles = tw; seeded = true;
+        }
+      ];
+    }
+    function tint() {
+      var k = Math.random();
+      return k < 0.18 ? '150,228,238' : k < 0.55 ? '214,236,250' : k < 0.97 ? '255,255,255' : '255,240,222';
+    }
+    function glowStar(g, s, x, y, a) {
+      if (s.r > 1.05) {
+        var rg = g.createRadialGradient(x, y, 0, x, y, s.r * 2.8);
+        rg.addColorStop(0, 'rgba(' + s.c + ',' + (a * 0.28).toFixed(3) + ')'); rg.addColorStop(1, 'rgba(' + s.c + ',0)');
+        g.fillStyle = rg; g.beginPath(); g.arc(x, y, s.r * 2.8, 0, 6.2832); g.fill();
+      }
+      g.fillStyle = 'rgba(255,255,255,' + Math.min(1, a * 1.15).toFixed(3) + ')';
+      g.beginPath(); g.arc(x, y, s.r * 0.55, 0, 6.2832); g.fill();
+    }
+    function crossStar(g, x, y, L, a) {
+      var rg = g.createRadialGradient(x, y, 0, x, y, L * 0.9);
+      rg.addColorStop(0, 'rgba(170,240,248,' + (a * 0.55).toFixed(3) + ')'); rg.addColorStop(1, 'rgba(95,211,222,0)');
+      g.fillStyle = rg; g.beginPath(); g.arc(x, y, L * 0.9, 0, 6.2832); g.fill();
+      var hz = g.createLinearGradient(x - L, 0, x + L, 0), vt = g.createLinearGradient(0, y - L, 0, y + L);
+      [hz, vt].forEach(function (gr) {
+        gr.addColorStop(0, 'rgba(200,246,250,0)'); gr.addColorStop(0.5, 'rgba(245,255,255,' + a + ')'); gr.addColorStop(1, 'rgba(200,246,250,0)');
+      });
+      g.fillStyle = hz; g.fillRect(x - L, y - 0.5, L * 2, 1);
+      g.fillStyle = vt; g.fillRect(x - 0.5, y - L, 1, L * 2);
+      g.fillStyle = 'rgba(255,255,255,' + a + ')'; g.beginPath(); g.arc(x, y, 1.1, 0, 6.2832); g.fill();
+    }
+
+    var idle = window.requestIdleCallback || function (f) { return setTimeout(function () { f({ timeRemaining: function () { return 8 } }) }, 16) };
+    var waiting = [];
+    function work(done) {
+      if (done) waiting.push(done);
+      if (working) return; working = true;
+      idle(function tick(dl) {
+        var t0 = performance.now();
+        while (jobs.length && (dl.timeRemaining() > 2 || performance.now() - t0 < 4)) jobs.shift()();
+        if (jobs.length) return idle(tick);
+        working = false;
+        var w = waiting; waiting = [];
+        for (var i = 0; i < w.length; i++) w[i]();
+      });
+    }
+    function blit(layer, off) {
+      var o = ((off % H) + H) % H;
+      ctx.drawImage(layer.c, 0, -o, W, H);
+      if (o) ctx.drawImage(layer.c, 0, H - o, W, H);
     }
     function draw(now) {
       var sc = opt.parallax && !still ? (window.scrollY || 0) : 0;
       var t = still ? 0 : now / 1000;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.clearRect(0, 0, W, H);
-      for (var i = 0; i < stars.length; i++) {
-        var s = stars[i];
-        var y = (s.y - sc * s.d) % H; if (y < 0) y += H;
-        var a = s.t ? s.a * (0.55 + 0.45 * Math.sin(t * s.t + s.p)) : s.a;
-        ctx.fillStyle = 'rgba(' + s.c + ',' + a.toFixed(3) + ')';
-        ctx.beginPath(); ctx.arc(s.x, y, s.r, 0, 6.2832); ctx.fill();
+      blit(deep, sc * 0.03);
+      blit(near, sc * 0.08);
+      var o = ((sc * 0.08 % H) + H) % H;
+      for (var i = 0; i < twinkles.length; i++) {
+        var s = twinkles[i], y = s.y - o; if (y < -12) y += H;
+        // scintillation: a slow swell and a fast shiver, as air does to starlight
+        var a = s.a * (0.62 + 0.28 * Math.sin(t * s.f + s.p) + 0.1 * Math.sin(t * s.f * 4.3 + s.p * 2));
+        glowStar(ctx, s, s.x, y, Math.max(0, a));
       }
-      for (var k = 0; k < flares.length; k++) {
-        var f = flares[k], fy = (f.y - sc * 0.09) % H; if (fy < 0) fy += H;
-        var fa = 0.55 + 0.45 * Math.sin(t * 0.7 + f.p), L = f.s * (0.8 + 0.2 * fa);
-        var g = ctx.createRadialGradient(f.x, fy, 0, f.x, fy, L * 1.6);
-        g.addColorStop(0, 'rgba(160,236,244,' + (0.5 * fa).toFixed(3) + ')'); g.addColorStop(1, 'rgba(95,211,222,0)');
-        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(f.x, fy, L * 1.6, 0, 6.2832); ctx.fill();
-        ctx.fillStyle = 'rgba(240,255,255,' + (0.85 * fa).toFixed(3) + ')';
-        ctx.fillRect(f.x - L, fy - 0.6, L * 2, 1.2);
-        ctx.fillRect(f.x - 0.6, fy - L, 1.2, L * 2);
-      }
+      ctx.drawImage(over.c, 0, 0, W, H);
     }
     function loop(now) {
       if (!running) return;
       raf = requestAnimationFrame(loop);
-      if (now - last < 33) return;                   // ~30 frames a second is plenty for stars
+      // smooth while the page is moving, light on the battery when it is not
+      var gap = now - lastScroll < 400 ? 0 : 45;
+      if (now - last < gap) return;
       last = now; draw(now);
     }
-    var resizeT;
+    if (opt.parallax) addEventListener('scroll', function () { lastScroll = performance.now() }, { passive: true });
+    var resizeT, lastW = 0;
     addEventListener('resize', function () {
       clearTimeout(resizeT);
-      resizeT = setTimeout(function () { if (running || !opt.lazy) { seed(); draw(performance.now()) } }, 150);
+      resizeT = setTimeout(function () {
+        // a phone's toolbar sliding away changes the height, not the width: keep the sky
+        if (!(running || !opt.lazy) || (cv.clientWidth === lastW && Math.abs(cv.clientHeight - H) < 140)) return;
+        lastW = cv.clientWidth; seed(); work(function () { draw(performance.now()) });
+      }, 150);
     });
     return {
-      start: function () {
-        if (running) return; seed(); draw(performance.now());
-        if (still) return;
-        running = true; raf = requestAnimationFrame(loop);
+      start: function (ready) {
+        if (running) return;
+        running = !still;
+        if (!working && (!seeded || cv.clientWidth !== lastW)) { lastW = cv.clientWidth; seed() }
+        work(function () {
+          draw(performance.now()); ready && ready();
+          if (running) { cancelAnimationFrame(raf); raf = requestAnimationFrame(loop) }
+        });
       },
       stop: function () { running = false; cancelAnimationFrame(raf) }
     };
