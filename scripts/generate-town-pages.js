@@ -830,8 +830,8 @@ function render(town, heroImage) {
 <style>
 ${STYLE_BLOCK}
 </style>
-<link rel="stylesheet" href="/assets/theme/galaxy.css?v=4">
-<script src="/assets/theme/galaxy.js?v=4" defer></script>
+<link rel="stylesheet" href="/assets/theme/galaxy.css?v=5">
+<script src="/assets/theme/galaxy.js?v=5" defer></script>
 </head>
 <body>
 
