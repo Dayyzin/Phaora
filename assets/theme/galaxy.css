@@ -154,19 +154,26 @@ html.gx-open{overflow:hidden}
    Solid cards, not the sky: these are the facts a homeowner checks before
    calling, so they read like a contractor's paperwork, clear and steady.
    Every line is already stated elsewhere on the site; nothing here is new. */
-.gx-proof{position:relative;z-index:1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;
-  max-width:1120px;margin:0 auto;padding:clamp(28px,4vw,48px) clamp(16px,4vw,40px)}
+.gx-proof{position:relative;z-index:1;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;
+  max-width:1240px;margin:0 auto;padding:clamp(28px,4vw,48px) clamp(16px,4vw,40px)}
 .gx-proof-item{display:grid;grid-template-columns:28px 1fr;column-gap:12px;row-gap:4px;align-items:start;align-content:start;
   padding:18px 18px 18px 16px;border-radius:14px;background:#06111B;border:1px solid #1C3242}
 .gx-proof-item svg{grid-row:1 / span 2;width:26px;height:26px;fill:none;stroke:#8FDDE6;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 .gx-proof-item b{font-family:'Inter','Helvetica Neue',sans-serif;font-weight:600;font-size:14px;line-height:1.3;color:#F2F7FA;letter-spacing:.01em}
 .gx-proof-item span{font-family:'Inter','Helvetica Neue',sans-serif;font-size:13px;line-height:1.5;color:#B9CAD4}
+.gx-proof-num{grid-row:1 / span 2;font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:44px;line-height:.9;
+  color:#DDF6FA;text-shadow:0 0 22px rgba(95,211,222,.35)}
+/* the strongest fact leads: experience, in the lockup's ice */
+.gx-proof-lead{grid-column:span 2;grid-template-columns:auto 1fr;column-gap:14px;border-color:#2C5466;background:#071824}
+@media(max-width:1100px){.gx-proof{grid-template-columns:repeat(4,minmax(0,1fr))}.gx-proof-lead{grid-column:1 / -1}}
 @media(max-width:900px){.gx-proof{grid-template-columns:repeat(2,minmax(0,1fr))}}
 /* a phone: two by two, icon above, so the four read in one glance */
 @media(max-width:520px){
   .gx-proof{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:22px 12px}
   .gx-proof-item{grid-template-columns:1fr;row-gap:6px;padding:14px 12px}
   .gx-proof-item svg{grid-row:auto;width:22px;height:22px}
+  .gx-proof-lead{grid-template-columns:auto 1fr;column-gap:12px}
+  .gx-proof-lead .gx-proof-num{grid-row:1 / span 2;font-size:40px}
   .gx-proof-item b{font-size:13px}
   .gx-proof-item span{font-size:12px;line-height:1.45}
 }
