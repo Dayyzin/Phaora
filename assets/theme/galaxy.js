@@ -81,8 +81,8 @@
     var wm = doc.querySelector('.gx-wm');
 
     // the corner Ö, and the big one inside the menu
-    var orbMark = oMark(orb.querySelector('.gx-orb-cv'), { fit: 12, dust: 60 });
-    var bigMark = oMark(menu.querySelector('.gx-mark-cv'), { fit: 8.6, dust: 200, lazy: true });
+    var orbMark = oMark(orb.querySelector('.gx-orb-cv'), { fit: 12, dust: 60, inner: 70 });
+    var bigMark = oMark(menu.querySelector('.gx-mark-cv'), { fit: 7.2, dust: 200, inner: 300, lazy: true });
 
     /* ---------- the turn ---------- */
     function aim() {
@@ -133,24 +133,70 @@
     var menuSky = starfield(menu.querySelector('.gx-menu-sky'), { parallax: false, dust: 1.3, lazy: true });
   }
 
+  /* The Ö's material: crushed ice, one texture shared by every Ö on the page.
+     Cells of frosted crystal in a cloud of pale cyan to near white, brighter
+     along the cracks between cells, a scatter of white specks, and thinner
+     (more see-through) in the darker cells. Made once, on first use. */
+  var FROST = null;
+  function frost() {
+    if (FROST) return FROST;
+    var N = 256, G = 9, cells = Math.ceil(N / G), c = doc.createElement('canvas');
+    c.width = c.height = N;
+    var x = c.getContext('2d'), img = x.createImageData(N, N), d = img.data, i, j;
+    var pts = [];
+    for (j = 0; j < cells; j++) for (i = 0; i < cells; i++) pts.push([(i + Math.random()) * G, (j + Math.random()) * G, Math.random()]);
+    var L = 32, lat = [];
+    for (i = 0; i < L * L; i++) lat.push(Math.random());
+    function vn(px, py) {
+      var ix = Math.floor(px), iy = Math.floor(py), fx = px - ix, fy = py - iy;
+      var a = lat[((iy % L) + L) % L * L + ((ix % L) + L) % L], b = lat[((iy % L) + L) % L * L + (((ix + 1) % L) + L) % L];
+      var cc = lat[(((iy + 1) % L) + L) % L * L + ((ix % L) + L) % L], dd = lat[(((iy + 1) % L) + L) % L * L + (((ix + 1) % L) + L) % L];
+      fx = fx * fx * (3 - 2 * fx); fy = fy * fy * (3 - 2 * fy);
+      return a + (b - a) * fx + (cc - a) * fy + (a - b - cc + dd) * fx * fy;
+    }
+    for (var py = 0; py < N; py++) for (var px = 0; px < N; px++) {
+      var gx = Math.floor(px / G), gy = Math.floor(py / G), f1 = 1e9, f2 = 1e9, tone = 0;
+      for (var oy = -1; oy <= 1; oy++) for (var ox = -1; ox <= 1; ox++) {
+        var cx = gx + ox, cy = gy + oy;
+        if (cx < 0 || cy < 0 || cx >= cells || cy >= cells) continue;
+        var p = pts[cy * cells + cx], dx = p[0] - px, dy = p[1] - py, dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < f1) { f2 = f1; f1 = dist; tone = p[2] } else if (dist < f2) f2 = dist;
+      }
+      var crack = Math.max(0, 1 - (f2 - f1) / 1.8);
+      var cloud = 0.6 * vn(px / 22, py / 22) + 0.4 * vn(px / 7, py / 7);
+      var lum = Math.min(1, 0.42 + 0.3 * tone + 0.22 * cloud + 0.3 * crack);
+      var k = (py * N + px) * 4;
+      d[k] = 104 + (246 - 104) * lum; d[k + 1] = 196 + (254 - 196) * lum; d[k + 2] = 212 + (255 - 212) * lum;
+      d[k + 3] = 255 * Math.min(1, 0.6 + 0.45 * lum);
+    }
+    for (i = 0; i < 300; i++) {                        // specks of white
+      var s = (Math.floor(Math.random() * N) * N + Math.floor(Math.random() * N)) * 4;
+      d[s] = d[s + 1] = d[s + 2] = d[s + 3] = 255;
+    }
+    x.putImageData(img, 0, 0);
+    return (FROST = c);
+  }
+
   /* ======================================================================
-     The Ö in three dimensions, drawn on a 2D canvas.
-       The ring — a flat, round band with four faces and no more: one flat
-         front, one flat back, the outer edge and the inner edge. Each of
-         the front and back is a single plane, so it lights all at once and
-         a sheen slides across it as it turns.
-       The dots — two spheres.
-     Lit from above left with a second light above right and a cool rim
-     light from behind. Its glow breathes, and now and then stutters like a
-     tube light. Sky dust, sharp single points, orbits it on tilted paths
-     and swirls a little as the page turns.
+     The Ö in three dimensions, drawn on a 2D canvas, made to read as the
+     lockup does: a flat band of crushed diamond, not a modelled object.
+       The ring — a round band with four faces: a flat front, a flat back,
+         the outer edge and the inner edge. The face is crushed ice you can
+         half see through (frost()), with crisp near-white edges, and
+         particles suspended inside it at their own depths, drifting and
+         twinkling, so they shift against one another as it turns.
+       The dots — spheres of the same ice, with their own life inside.
+     The glow is a soft base all round plus patches that swell and fade on
+     their own, so it is never even and never still; it breathes, and now
+     and then stutters like a tube light. Sky dust, sharp single points,
+     orbits it on tilted paths and swirls a little as the page turns.
      Units: the ring's radius is 1. `fit` is how many units span the canvas.
      ====================================================================== */
   function oMark(cv, opt) {
     var ctx = cv.getContext('2d');
     var dead = { start: noop, stop: noop, turn: noop, kick: noop, angle: function () { return 0 } };
     if (!ctx) return dead;
-    var NS = 120, HW = 0.082, HZ = 0.05, DOTX = 0.4, DOTY = -1.45, DR = 0.18, LIFT = 0.27, CAM = 7;
+    var NS = 120, HW = 0.105, HZ = 0.04, DOTX = 0.41, DOTY = -1.38, DR = 0.18, LIFT = 0.23, CAM = 7;
     var W = 0, H = 0, dpr = 1, U = 1, running = false, raf = 0, last = 0;
     var target = 0, turn = 0, kickAt = -1;
     var flick = [], nextFlick = 0;
@@ -158,6 +204,23 @@
     /* ---- the solid: the band's outer and inner circle, sampled finely ---- */
     var RO = 1 + HW, RI = 1 - HW, COS = [], SIN = [];
     for (var ci = 0; ci <= NS; ci++) { COS.push(Math.cos(ci / NS * 6.2832)); SIN.push(Math.sin(ci / NS * 6.2832)) }
+    // what lives in and around the band
+    var LIVE = [];                                       // particles suspended inside the crystal
+    for (var li = 0; li < (opt.inner || 80); li++) LIVE.push({
+      a: Math.random() * 6.2832, r: (Math.random() * 2 - 1) * HW * 0.82, z: (Math.random() * 2 - 1) * HZ * 0.9,
+      w: (Math.random() - 0.5) * 0.06, s: Math.random() < 0.18 ? 1.8 : 1, tw: 0.8 + Math.random() * 3, p: Math.random() * 6.28
+    });
+    var DOTLIVE = [];                                    // and inside each dot
+    for (var dl = 0; dl < (opt.inner || 80) / 6; dl++) DOTLIVE.push({
+      d: dl % 2, rr: Math.sqrt(Math.random()) * 0.8, a: Math.random() * 6.2832, w: (Math.random() - 0.5) * 0.4,
+      s: Math.random() < 0.2 ? 1.8 : 1, tw: 0.8 + Math.random() * 3, p: Math.random() * 6.28
+    });
+    var BLOOM = [];                                      // the glow: patches that swell and fade on their own
+    for (var bi = 0; bi < 26; bi++) BLOOM.push({
+      a: (bi + Math.random() * 0.6) / 26 * 6.2832, amp: 0.35 + Math.random() * 0.65,
+      f: 0.35 + Math.random() * 1.1, p: Math.random() * 6.28, f2: 1.7 + Math.random() * 2.4
+    });
+    var DOTBLOOM = [0, 1].map(function () { return { f: 0.4 + Math.random() * 0.9, p: Math.random() * 6.28 } });
     // the ring's mid-line, for the glow under it
     var MID = [];
     for (var m = 0; m < 48; m++) MID.push([Math.cos(m / 48 * 6.2832), Math.sin(m / 48 * 6.2832), 0]);
@@ -247,45 +310,47 @@
         if (pr[2] > 0.2) front.push([o, pr]); else mote(o, pr, t, 0.6);
       }
 
-      /* glow: the ring's mid-line and the two gems, blurred, in light only */
+      /* the glow, in light only: a soft base all round, then patches that
+         swell and fade on their own, so it is never even and never still */
       ctx.globalCompositeOperation = 'lighter';
-      var cc = proj(rot([0, -0.25, 0])), aura = ctx.createRadialGradient(cc[0], cc[1], U * 0.4, cc[0], cc[1], U * 2.3);
-      aura.addColorStop(0, 'rgba(60,190,205,' + (0.16 * I).toFixed(3) + ')'); aura.addColorStop(1, 'rgba(60,190,205,0)');
-      ctx.fillStyle = aura; ctx.beginPath(); ctx.arc(cc[0], cc[1], U * 2.3, 0, 6.2832); ctx.fill();
+      var cc = proj(rot([0, -0.2, 0])), aura = ctx.createRadialGradient(cc[0], cc[1], U * 0.5, cc[0], cc[1], U * 2.4);
+      aura.addColorStop(0, 'rgba(50,180,198,' + (0.15 * I).toFixed(3) + ')'); aura.addColorStop(1, 'rgba(50,180,198,0)');
+      ctx.fillStyle = aura; ctx.beginPath(); ctx.arc(cc[0], cc[1], U * 2.4, 0, 6.2832); ctx.fill();
       ctx.beginPath();
       for (var g = 0; g < MID.length; g++) { var mp = proj(rot(MID[g])); if (g) ctx.lineTo(mp[0], mp[1]); else ctx.moveTo(mp[0], mp[1]) }
       ctx.closePath();
-      ctx.lineWidth = HW * U;
-      ctx.strokeStyle = 'rgba(110,222,232,' + (0.6 * I).toFixed(3) + ')';
-      ctx.shadowColor = 'rgba(95,211,222,' + Math.min(1, I).toFixed(3) + ')';
-      ctx.shadowBlur = U * 1.1 * dpr; ctx.stroke();
-      ctx.shadowBlur = U * 0.45 * dpr; ctx.stroke();
-      ctx.shadowBlur = U * 0.15 * dpr; ctx.stroke();
-      var g1 = proj(rot([-DOTX, DOTY, 0])), g2 = proj(rot([DOTX, DOTY, 0]));
-      ctx.fillStyle = 'rgba(110,222,232,' + (0.6 * I).toFixed(3) + ')';
-      ctx.shadowBlur = U * 0.6 * dpr;
-      ctx.beginPath(); ctx.arc(g1[0], g1[1], DR * U * 0.8, 0, 6.2832); ctx.arc(g2[0], g2[1], DR * U * 0.8, 0, 6.2832); ctx.fill();
+      ctx.lineWidth = 2 * HW * U;
+      ctx.strokeStyle = 'rgba(80,204,218,' + (0.5 * I).toFixed(3) + ')';
+      ctx.shadowColor = 'rgba(80,204,218,' + Math.min(1, 0.85 * I).toFixed(3) + ')';
+      ctx.shadowBlur = U * 0.8 * dpr; ctx.stroke();
+      ctx.shadowBlur = U * 0.3 * dpr; ctx.stroke();
+      ctx.shadowColor = 'rgba(160,238,246,' + Math.min(1, 0.9 * I).toFixed(3) + ')';
+      ctx.shadowBlur = U * 0.12 * dpr; ctx.stroke();
       ctx.shadowBlur = 0; ctx.shadowColor = 'transparent';
+      for (var bl = 0; bl < BLOOM.length; bl++) {
+        var bo = BLOOM[bl], pulse = still ? 0.6 : 0.5 + 0.5 * Math.sin(t * bo.f + bo.p);
+        pulse = pulse * pulse * (0.75 + 0.25 * Math.sin(t * bo.f2 + bo.p * 3));
+        var wgt = I * bo.amp * pulse; if (wgt < 0.04) continue;
+        var bp = proj(rot([Math.cos(bo.a) * (1 + HW * 0.9), Math.sin(bo.a) * (1 + HW * 0.9), 0])), br = U * (0.32 + 0.38 * pulse * bo.amp);
+        var bg = ctx.createRadialGradient(bp[0], bp[1], 0, bp[0], bp[1], br);
+        bg.addColorStop(0, 'rgba(120,230,240,' + (0.55 * wgt).toFixed(3) + ')'); bg.addColorStop(1, 'rgba(60,190,205,0)');
+        ctx.fillStyle = bg; ctx.beginPath(); ctx.arc(bp[0], bp[1], br, 0, 6.2832); ctx.fill();
+      }
+      var dots = [proj(rot([-DOTX, DOTY, 0])), proj(rot([DOTX, DOTY, 0]))];
+      for (var dg = 0; dg < 2; dg++) {
+        var db = DOTBLOOM[dg], dpul = still ? 0.6 : 0.55 + 0.45 * Math.sin(t * db.f + db.p);
+        var dr0 = DR * U * (1.9 + 0.8 * dpul), dgr = ctx.createRadialGradient(dots[dg][0], dots[dg][1], DR * U * 0.6, dots[dg][0], dots[dg][1], dr0);
+        dgr.addColorStop(0, 'rgba(110,226,236,' + (0.5 * I * (0.6 + 0.4 * dpul)).toFixed(3) + ')'); dgr.addColorStop(1, 'rgba(60,190,205,0)');
+        ctx.fillStyle = dgr; ctx.beginPath(); ctx.arc(dots[dg][0], dots[dg][1], dr0, 0, 6.2832); ctx.fill();
+      }
       ctx.globalCompositeOperation = 'source-over';
 
       /* the band */
-      function shade(N) {
-        var dif = Math.max(0, N[0] * KEY[0] + N[1] * KEY[1] + N[2] * KEY[2]);
-        var dif2 = Math.max(0, N[0] * KEY2[0] + N[1] * KEY2[1] + N[2] * KEY2[2]);
-        // a face flashes white only as it passes the exact angle of a light
-        var spec = Math.pow(Math.max(0, N[0] * HALF[0] + N[1] * HALF[1] + N[2] * HALF[2]), 70)
-          + 0.8 * Math.pow(Math.max(0, N[0] * HALF2[0] + N[1] * HALF2[1] + N[2] * HALF2[2]), 70);
-        var rim = Math.pow(Math.max(0, N[0] * RIM[0] + N[1] * RIM[1] + N[2] * RIM[2]), 2);
-        var lum = Math.min(1, 0.12 + 0.6 * Math.pow(dif, 1.4) + 0.38 * dif2 * dif2);
-        return 'rgb(' + Math.min(255, ((22 + 200 * lum + 30 * rim) * B + 255 * spec) | 0) + ',' +
-          Math.min(255, ((80 + 170 * lum + 80 * rim) * B + 255 * spec) | 0) + ',' +
-          Math.min(255, ((100 + 155 * lum + 80 * rim) * B + 255 * spec) | 0) + ')';
-      }
       function seen(n, c) { return n[0] * -c[0] + n[1] * -c[1] + n[2] * (CAM - c[2]) > 0 }
       // the face towards you: the front, or once it has turned past edge-on, the back
       var fn = rot([0, 0, 1]), fz = HZ;
       if (!seen(fn, rot([0, 0, HZ]))) { fn = [-fn[0], -fn[1], -fn[2]]; fz = -HZ }
-      // the outer and inner edges: thin strips round the circle, those facing you, far to near
+      // the outer and inner edges, pale ice, only where they face you
       var strips = [];
       for (var e = 0; e < NS; e++) {
         var cm = (COS[e] + COS[e + 1]) / 2, sm = (SIN[e] + SIN[e + 1]) / 2;
@@ -301,12 +366,14 @@
       strips.sort(function (a, b) { return a.z - b.z });
       ctx.lineJoin = 'round'; ctx.lineWidth = 0.6;
       for (var si = 0; si < strips.length; si++) {
-        var st = strips[si], col = shade(st.n);
+        var st = strips[si], N = st.n;
+        var l2 = 0.75 + 0.25 * Math.max(0, N[0] * KEY[0] + N[1] * KEY[1] + N[2] * KEY[2]);
+        var col = 'rgba(' + (190 * l2 * B | 0) + ',' + (238 * l2 * B | 0) + ',' + (246 * l2 * B | 0) + ',0.9)';
         ctx.beginPath(); ctx.moveTo(st.q[0][0], st.q[0][1]);
         for (var qi = 1; qi < 4; qi++) ctx.lineTo(st.q[qi][0], st.q[qi][1]);
-        ctx.closePath(); ctx.fillStyle = col; ctx.fill(); ctx.strokeStyle = col; ctx.stroke();   // stroke hides the seams
+        ctx.closePath(); ctx.fillStyle = col; ctx.fill(); ctx.strokeStyle = col; ctx.stroke();
       }
-      // the face itself: one plane, one shade, a sheen that slides across as it turns
+      // the face: crushed ice you can half see through, with life inside it
       var outer = [], inner = [];
       for (var k = 0; k <= NS; k++) {
         outer.push(proj(rot([COS[k] * RO, SIN[k] * RO, fz])));
@@ -316,32 +383,69 @@
       ctx.moveTo(outer[0][0], outer[0][1]); for (k = 1; k <= NS; k++) ctx.lineTo(outer[k][0], outer[k][1]);
       ctx.moveTo(inner[NS][0], inner[NS][1]); for (k = NS - 1; k >= 0; k--) ctx.lineTo(inner[k][0], inner[k][1]);
       ctx.closePath();
-      ctx.fillStyle = shade(fn); ctx.fill('evenodd');
       ctx.save(); ctx.clip('evenodd');
+      var o0 = proj(rot([0, 0, fz])), ox = proj(rot([1, 0, fz])), oy = proj(rot([0, 1, fz]));
+      ctx.globalAlpha = 0.72 + 0.2 * B;
+      ctx.setTransform(dpr * (ox[0] - o0[0]), dpr * (ox[1] - o0[1]), dpr * (oy[0] - o0[0]), dpr * (oy[1] - o0[1]), dpr * o0[0], dpr * o0[1]);
+      ctx.drawImage(frost(), -RO, -RO, 2 * RO, 2 * RO);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.globalAlpha = 1;
+      // a sheen that slides across as it turns
       var cx0 = proj(rot([-RO, 0, fz]))[0], cx1 = proj(rot([RO, 0, fz]))[0];
       if (Math.abs(cx1 - cx0) > 1) {
         var at = 0.5 + 0.42 * Math.sin(ry * 1.3 + 0.9 + (still ? 0 : 0.15 * Math.sin(t * 0.5)));
         var sh = ctx.createLinearGradient(cx0, 0, cx1, 0);
         sh.addColorStop(Math.max(0, at - 0.22), 'rgba(255,255,255,0)');
-        sh.addColorStop(at, 'rgba(255,255,255,' + (0.3 * B).toFixed(3) + ')');
+        sh.addColorStop(at, 'rgba(255,255,255,' + (0.22 * B).toFixed(3) + ')');
         sh.addColorStop(Math.min(1, at + 0.22), 'rgba(255,255,255,0)');
         ctx.fillStyle = sh; ctx.fillRect(0, 0, W, H);
       }
+      // the particles inside: at their own depths, so they shift against one another as it turns
+      ctx.globalCompositeOperation = 'lighter';
+      for (var pi2 = 0; pi2 < LIVE.length; pi2++) {
+        var lp = LIVE[pi2], la = lp.a + (still ? 0 : lp.w * t), lr = 1 + lp.r;
+        var pp = proj(rot([Math.cos(la) * lr, Math.sin(la) * lr, lp.z]));
+        var ltw = still ? 0.8 : 0.5 + 0.5 * Math.sin(t * lp.tw + lp.p);
+        var lal = Math.min(1, (0.35 + 0.75 * ltw * ltw) * B), lsz = lp.s / dpr * (dpr > 1 ? 1.3 : 1);
+        ctx.fillStyle = 'rgba(255,255,255,' + lal.toFixed(3) + ')';
+        ctx.fillRect(pp[0] - lsz / 2, pp[1] - lsz / 2, lsz, lsz);
+        if (lp.s > 1 && ltw > 0.85) {                  // the brightest catch the light like a cut stone
+          var Lx = U * 0.045 * (ltw - 0.85) / 0.15;
+          ctx.fillStyle = 'rgba(255,255,255,' + (0.7 * lal).toFixed(3) + ')';
+          ctx.fillRect(pp[0] - Lx, pp[1] - 0.3, Lx * 2, 0.6); ctx.fillRect(pp[0] - 0.3, pp[1] - Lx, 0.6, Lx * 2);
+        }
+      }
+      ctx.globalCompositeOperation = 'source-over';
       ctx.restore();
-      // the face's two edges, a hairline of light
-      ctx.strokeStyle = 'rgba(236,252,255,' + (0.45 * B).toFixed(3) + ')'; ctx.lineWidth = Math.max(0.5, U * 0.014);
+      // the face's two edges: crisp, near white, lit from within
+      ctx.strokeStyle = 'rgba(238,253,255,' + (0.88 * B).toFixed(3) + ')'; ctx.lineWidth = Math.max(0.6, U * 0.022);
+      ctx.shadowColor = 'rgba(120,230,240,' + (0.9 * I).toFixed(3) + ')'; ctx.shadowBlur = U * 0.12 * dpr;
       ctx.stroke();
+      ctx.shadowBlur = 0; ctx.shadowColor = 'transparent';
 
-      /* the dots: spheres, lit from the same side */
-      var dots = [proj(rot([-DOTX, DOTY, 0])), proj(rot([DOTX, DOTY, 0]))];
+      /* the dots: spheres of the same ice, with their own life inside */
       for (var dd = 0; dd < 2; dd++) {
         var dp = dots[dd], r0 = DR * U * (CAM / (CAM - dp[2]));
-        var sg2 = ctx.createRadialGradient(dp[0] - r0 * 0.36, dp[1] - r0 * 0.42, r0 * 0.04, dp[0], dp[1], r0);
-        sg2.addColorStop(0, 'rgb(255,255,255)');
-        sg2.addColorStop(0.32, 'rgb(' + (226 * B | 0) + ',' + (249 * B | 0) + ',' + (253 * B | 0) + ')');
-        sg2.addColorStop(0.82, 'rgb(' + (110 * B | 0) + ',' + (196 * B | 0) + ',' + (212 * B | 0) + ')');
-        sg2.addColorStop(1, 'rgb(' + (60 * B | 0) + ',' + (140 * B | 0) + ',' + (160 * B | 0) + ')');
-        ctx.fillStyle = sg2; ctx.beginPath(); ctx.arc(dp[0], dp[1], r0, 0, 6.2832); ctx.fill();
+        ctx.save();
+        ctx.beginPath(); ctx.arc(dp[0], dp[1], r0, 0, 6.2832); ctx.clip();
+        ctx.globalAlpha = 0.74 + 0.2 * B;
+        var F = frost(), sz = F.width * (2 * DR) / (2 * RO);
+        ctx.drawImage(F, dd ? F.width * 0.62 : F.width * 0.18, F.height * 0.2, sz, sz, dp[0] - r0, dp[1] - r0, r0 * 2, r0 * 2);
+        ctx.globalAlpha = 1;
+        ctx.globalCompositeOperation = 'lighter';
+        for (var dq = 0; dq < DOTLIVE.length; dq++) {
+          var dlp = DOTLIVE[dq]; if (dlp.d !== dd) continue;
+          var dla = dlp.a + (still ? 0 : dlp.w * t), dtw = still ? 0.8 : 0.5 + 0.5 * Math.sin(t * dlp.tw + dlp.p);
+          var dsz = dlp.s / dpr * (dpr > 1 ? 1.3 : 1);
+          ctx.fillStyle = 'rgba(255,255,255,' + Math.min(1, (0.35 + 0.75 * dtw * dtw) * B).toFixed(3) + ')';
+          ctx.fillRect(dp[0] + Math.cos(dla) * dlp.rr * r0 - dsz / 2, dp[1] + Math.sin(dla) * dlp.rr * r0 - dsz / 2, dsz, dsz);
+        }
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.restore();
+        ctx.beginPath(); ctx.arc(dp[0], dp[1], r0, 0, 6.2832);
+        ctx.strokeStyle = 'rgba(238,253,255,' + (0.88 * B).toFixed(3) + ')'; ctx.lineWidth = Math.max(0.6, U * 0.022);
+        ctx.shadowColor = 'rgba(120,230,240,' + (0.9 * I).toFixed(3) + ')'; ctx.shadowBlur = U * 0.12 * dpr;
+        ctx.stroke(); ctx.shadowBlur = 0; ctx.shadowColor = 'transparent';
       }
 
       /* dust in front */
