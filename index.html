@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="google-site-verification" content="7MoV0NBSyVoaD_N9ElZU6k3TXJiRQaijoNTGCu1m_PQ" />
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preload" href="assets/fonts/PhaoraFable-Lower.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/PhaoraFable-Wordmark.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
@@ -606,6 +608,27 @@ footer{position:relative;padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);borde
 .mobile-menu-scroll{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:78px 0 48px}.mobile-menu-scroll>*{flex-shrink:0}.mobile-menu a{font-size:clamp(22px,5vw,32px);padding:9px 0}.m-birds{display:flex;flex-direction:column;align-items:center;width:100%;margin:4px 0}.mobile-menu .m-eyebrow{font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:rgba(79,181,190,.4);margin:14px 0 6px;padding:0}.mobile-menu .m-bird{font-size:clamp(18px,4.4vw,24px);padding:6px 0;display:inline-flex;align-items:baseline;gap:11px;color:rgba(234,239,245,.65)}.mobile-menu .m-bird .m-num{font-family:'Helvetica Neue',Arial,sans-serif;font-size:9.5px;letter-spacing:.1em;color:rgba(234,239,245,.48);min-width:30px;text-align:right}.mobile-menu .m-bird:hover{color:var(--pearl)}.mobile-menu .m-bird.m-gold,.mobile-menu .m-bird.m-gold .m-num{color:rgba(201,168,76,.92)}.mobile-menu .m-acc{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(22px,5vw,32px);color:rgba(79,181,190,.65);background:none;border:0;cursor:pointer;padding:9px 0;letter-spacing:.08em;text-align:center;display:inline-flex;align-items:center;gap:9px;transition:color .2s}.mobile-menu .m-acc:hover{color:var(--pearl)}.m-chev{font-size:.5em;opacity:.7;transition:transform .3s}.m-acc.open .m-chev{transform:rotate(180deg)}.m-sub{max-height:0;overflow:hidden;width:100%;display:flex;flex-direction:column;align-items:center;transition:max-height .45s cubic-bezier(.16,1,.3,1)}.m-sub.open{max-height:760px}.mobile-menu .m-viewall-top{font-style:italic;color:rgba(169,233,240,.8)}.mobile-menu .m-viewall-top:hover{color:var(--gold)}
 img.parallax{top:-8%;height:116%;will-change:transform}
 @media(prefers-reduced-motion:reduce){img.parallax{transform:none!important}}
+
+/* Fable type: the custom PHAÖRA faces, traced from Fable's specimens.
+   Wordmark = the capitals (P H A Ö R). Text = the lowercase set, unicase, for headings.
+   Cormorant stays behind both for punctuation, figures and x. */
+@font-face{font-family:'Phaora Fable Wordmark';src:url(assets/fonts/PhaoraFable-Wordmark.woff2) format('woff2');font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:'Phaora Fable Text';src:url(assets/fonts/PhaoraFable-Lower.woff2) format('woff2');font-weight:100 900;font-style:normal;font-display:swap}
+.nav-wm,.footer-wm,.sub-wm,.sub-h .wmx{font-family:'Phaora Fable Wordmark','Cormorant Garamond',serif;font-style:normal}
+.nav-wm{font-size:22px;letter-spacing:.14em;text-indent:.14em}
+/* the galaxy bar's wordmark and menu name (shared theme, loaded after this block) */
+body .gx-wm,body .gx-name{font-family:'Phaora Fable Wordmark','Cormorant Garamond',serif;font-style:normal;letter-spacing:.14em}
+body .gx-wm{font-size:21px}
+body .gx-work-h{font-family:'Phaora Fable Text','Cormorant Garamond',serif}
+.footer-wm{font-size:26px;letter-spacing:.14em}
+.sub-wm{letter-spacing:.12em;padding-left:.12em}
+.sub-wm .o{color:#5ABFC6}
+.sub-h .wmx{font-size:.78em;letter-spacing:.06em}
+.hero-name,.hero-title h1,.reel-lede,.sub-h,.feat-title,.div-heading,.ab-name,.works-title,.winter-title,
+.how-title,.notes-title,.mat-title,.beyond-title,.terr-title,.inv-title,.mobile-menu a:not(.m-enquire){
+  font-family:'Phaora Fable Text','Cormorant Garamond',serif;font-style:normal;font-weight:400;letter-spacing:.01em}
+.feat-title em,.works-title em,.winter-title em,.how-title em,.notes-title em,.mat-title em,.beyond-title em,
+.terr-title em,.inv-title em,.div-heading em,.sub-h em{font-style:normal;color:var(--teal)}
 </style>
 <script src="/tag.js"></script>
 <link rel="stylesheet" href="/assets/theme/galaxy.css?v=10">
@@ -804,7 +827,7 @@ img.parallax{top:-8%;height:116%;will-change:transform}
       <li><span class="n">04</span><b>Compacted gravel base</b><p>Where the work is. It keeps the surface flat for years.</p></li>
       <li><span class="n">05</span><b>Compacted subgrade</b><p>The native ground, compacted before anything goes on it.</p></li>
     </ol>
-    <div class="sub-wm" aria-hidden="true">PHA<svg viewBox="0 0 100 100"><circle cx="41" cy="30" r="4" fill="#5ABFC6"/><circle cx="59" cy="30" r="4" fill="#5ABFC6"/><circle cx="50" cy="58" r="21" fill="none" stroke="#5ABFC6" stroke-width="5.5"/></svg>RA</div>
+    <div class="sub-wm" aria-hidden="true">PHA<span class="o">&Ouml;</span>RA</div>
     <div class="sub-foot"><a class="sub-cta" href="/estimate/">Price your project</a></div>
   </div>
 </section>
