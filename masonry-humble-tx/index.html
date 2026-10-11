@@ -165,6 +165,31 @@ footer{position:relative;padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);borde
 </style>
 <link rel="stylesheet" href="/assets/theme/galaxy.css?v=10">
 <script src="/assets/theme/galaxy.js?v=10" defer></script>
+<!-- town-data-head:start -->
+<style>
+.td-stats{grid-template-columns:1fr 1fr}
+@media(min-width:700px){.td-stats{grid-template-columns:repeat(var(--n,4),minmax(0,1fr))}}
+@media(max-width:699px){.td-stats>:last-child:nth-child(odd){grid-column:1/-1}}
+.td-stats .tp-cell h3{font-size:10.5px;letter-spacing:.16em;color:rgba(234,239,245,.62)}
+.td-stats .td-n{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(30px,6vw,40px);line-height:1;color:var(--gold-lt);margin:10px 0 0}
+.td-stats .td-sub{font-size:12.5px;line-height:1.5;color:rgba(234,239,245,.62);margin:6px 0 0}
+.td-faq{margin:30px 0 0;border-top:1px solid rgba(234,239,245,.08)}
+.td-qa{padding:18px 0;border-bottom:1px solid rgba(234,239,245,.08)}
+.td-qa h3{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(19px,4vw,23px);line-height:1.25;color:var(--pearl);margin:0}
+.td-qa p{color:rgba(234,239,245,.73);font-size:14.5px;line-height:1.7;margin:8px 0 0;max-width:64ch}
+.td-qa a{color:var(--pearl);border-bottom:1px solid rgba(234,239,245,.14)}
+.td-qa a:hover{color:var(--teal);border-color:var(--teal)}
+.td-svc{margin:28px 0 0}
+.td-svc .lbl{font-size:10px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:rgba(234,239,245,.58);margin:0}
+.td-svc .row{display:flex;flex-wrap:wrap;gap:10px 18px;margin:14px 0 0}
+.td-svc a{font-size:14px;color:rgba(234,239,245,.6);border-bottom:1px solid rgba(234,239,245,.14);padding-bottom:2px}
+.td-svc a:hover{color:var(--teal);border-color:var(--teal)}
+.td-src{font-size:12px;line-height:1.6;color:rgba(234,239,245,.58);margin:22px 0 0}
+.td .gx-work-all{margin-top:8px}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Harris County homes by the numbers","description":"Homes on record, Median year built, Share of homes built before 1980, Homes with a new owner in 24 months for Harris County, Texas, computed by PHAÖRA from Harris Central Appraisal District property records.","url":"https://phaora.com/masonry-humble-tx/#by-the-numbers","variableMeasured":["Homes on record","Median year built","Share of homes built before 1980","Homes with a new owner in 24 months"],"spatialCoverage":{"@type":"Place","name":"Harris County, Texas"},"temporalCoverage":"2024-08/2026-07","dateModified":"2026-10-11","isAccessibleForFree":true,"creator":{"@type":"Organization","name":"PHAÖRA","url":"https://phaora.com/"},"isBasedOn":{"@type":"CreativeWork","name":"Harris Central Appraisal District property records","publisher":{"@type":"Organization","name":"Harris Central Appraisal District"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How old are the homes in Harris County?","acceptedAnswer":{"@type":"Answer","text":"The median year built on record in Harris County is 1990, and 441,820 of its 1,155,497 homes on record, 38%, were built before 1980."}},{"@type":"Question","name":"How many homes in Harris County have changed owners recently?","acceptedAnswer":{"@type":"Answer","text":"In public property records, 133,996 homes in Harris County changed owners in the 24 months to July 2026, 12% of the homes on record."}},{"@type":"Question","name":"How many homes are in Harris County?","acceptedAnswer":{"@type":"Answer","text":"Public property records list 1,155,497 homes in Harris County."}},{"@type":"Question","name":"What hardscape work does PHAÖRA do in Humble?","acceptedAnswer":{"@type":"Answer","text":"PHAÖRA builds patios, paver driveways, retaining walls, walkways and steps, stone veneer and drainage in Humble. The on-site estimate is free."}}]}</script>
+<!-- town-data-head:end -->
 </head>
 <body>
 
@@ -270,6 +295,37 @@ footer{position:relative;padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);borde
       <li><h3>A cap that sheds</h3><p>The top takes the weather and everything anyone sets on it. Pitched away, set solid, joints tight.</p></li>
     </ol>
   </section>
+
+  <!-- town-data:start -->
+  <section class="tp-sec td" id="by-the-numbers" aria-labelledby="td-h">
+    <h2 class="tp-h2" id="td-h">Harris County by the numbers</h2>
+    <p class="tp-p">Humble is in Harris County, where 133,996 homes changed owners in the 24 months to July 2026.</p>
+    <div class="tp-grid td-stats" style="--n:4">
+      <div class="tp-cell"><h3>Homes on record</h3><p class="td-n">1,155,497</p></div>
+      <div class="tp-cell"><h3>Built before 1980</h3><p class="td-n">38%</p><p class="td-sub">441,820 homes</p></div>
+      <div class="tp-cell"><h3>New owners in 24 months</h3><p class="td-n">133,996</p><p class="td-sub">To July 2026 · 12% of homes</p></div>
+      <div class="tp-cell"><h3>Median year built</h3><p class="td-n">1990</p></div>
+    </div>
+    <div class="td-faq">
+      <div class="td-qa"><h3>How old are the homes in Harris County?</h3><p>The median year built on record in Harris County is 1990, and 441,820 of its 1,155,497 homes on record, 38%, were built before 1980.</p></div>
+      <div class="td-qa"><h3>How many homes in Harris County have changed owners recently?</h3><p>In public property records, 133,996 homes in Harris County changed owners in the 24 months to July 2026, 12% of the homes on record.</p></div>
+      <div class="td-qa"><h3>How many homes are in Harris County?</h3><p>Public property records list 1,155,497 homes in Harris County.</p></div>
+      <div class="td-qa"><h3>What hardscape work does PHAÖRA do in Humble?</h3><p>PHAÖRA builds <a href="/patios/">patios</a>, <a href="/paver-driveways/">paver driveways</a>, <a href="/retaining-walls/">retaining walls</a>, <a href="/walkways-and-steps/">walkways and steps</a>, <a href="/stone-veneer/">stone veneer</a> and <a href="/drainage/">drainage</a> in Humble. The on-site estimate is free.</p></div>
+    </div>
+    <div class="td-svc">
+      <p class="lbl">Services in Humble</p>
+      <div class="row">
+        <a href="/patios/">Patios</a>
+        <a href="/paver-driveways/">Paver driveways</a>
+        <a href="/retaining-walls/">Retaining walls</a>
+        <a href="/walkways-and-steps/">Walkways and steps</a>
+        <a href="/stone-veneer/">Stone veneer</a>
+        <a href="/drainage/">Drainage</a>
+      </div>
+    </div>
+    <p class="td-src">Source: Harris Central Appraisal District property records; updated October 2026.</p>
+  </section>
+  <!-- town-data:end -->
 
   <section class="tp-sec">
     <h2 class="tp-h2">Working in Humble</h2>
