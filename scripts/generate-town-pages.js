@@ -752,6 +752,7 @@ try {
   if (e.code !== 'MODULE_NOT_FOUND') throw e;
 }
 
+const TD = require('./town-data-block.js');
 const NAV_BODY = fs.readFileSync(path.join(__dirname, '_town-template-nav.html'), 'utf8');
 const STYLE_BLOCK = fs.readFileSync(path.join(__dirname, '_town-template-style.css'), 'utf8');
 const SCRIPT_BLOCK = fs.readFileSync(path.join(__dirname, '_town-template-script.js'), 'utf8');
@@ -761,6 +762,8 @@ function render(town, heroImage) {
   const stateName = STATE_NAMES[st];
   const R = regionFor(st);
   const desc = `Patios, walkways, retaining walls, steps and drainage in ${town.name}, ${stateName}. ${R.descTail} Free on-site estimate, and a price online in about thirty seconds.`;
+  // The figures block, from scripts/town-data.json; inject-town-data.js writes the same.
+  const dataPage = { slug: town.slug, st, name: town.name, county: town.county, coastal: Boolean(town.coastal) };
   const title = `Masonry &amp; Hardscape Contractor in ${town.name}, ${st.toUpperCase()} | PHAÖRA`;
   const url = `https://phaora.com/masonry-${town.slug}-${st}/`;
 
@@ -832,7 +835,7 @@ ${STYLE_BLOCK}
 </style>
 <link rel="stylesheet" href="/assets/theme/galaxy.css?v=10">
 <script src="/assets/theme/galaxy.js?v=10" defer></script>
-</head>
+${TD.headBlock(dataPage)}</head>
 <body>
 
 ${NAV_BODY}
@@ -911,7 +914,7 @@ ${NAV_BODY}
     </ol>
   </section>
 
-  <section class="tp-sec">
+${TD.bodyBlock(dataPage)}  <section class="tp-sec">
     <h2 class="tp-h2">Working in ${town.name}</h2>
     <p class="tp-p">${town.workingIn}</p>
     <p class="tp-p">${frostParagraph}</p>
@@ -1021,19 +1024,24 @@ function rewriteSitemap() {
   console.log(`sitemap.xml: ${entries.length} town URLs (was ${lines.filter(isTown).length})`);
 }
 
-const onlyStates = (process.argv.find((a) => a.startsWith('--states=')) || '').slice(9)
-  .split(',').map((x) => x.trim().toLowerCase()).filter(Boolean);
-let written = 0;
-TOWNS.forEach((town, i) => {
-  // Pages already on disk carry edits made after they were generated, so a
-  // run scoped to new states leaves every other page exactly as it is.
-  if (onlyStates.length && !onlyStates.includes((town.state || 'ma').toLowerCase())) return;
-  const dir = path.join(ROOT, `masonry-${town.slug}-${(town.state || 'ma').toLowerCase()}`);
-  fs.mkdirSync(dir, { recursive: true });
-  const html = render(town, HERO_IMAGES[i % HERO_IMAGES.length]);
-  fs.writeFileSync(path.join(dir, 'index.html'), html);
-  console.log(`wrote masonry-${town.slug}-${(town.state || 'ma').toLowerCase()}/index.html`);
-  written++;
-});
-console.log(`\n${written} town page(s) generated.`);
-rewriteSitemap();
+// Required by inject-town-data.js for TOWNS, so loading it must not write pages.
+module.exports = { TOWNS, STATE_NAMES, render };
+
+if (require.main === module) {
+  const onlyStates = (process.argv.find((a) => a.startsWith('--states=')) || '').slice(9)
+    .split(',').map((x) => x.trim().toLowerCase()).filter(Boolean);
+  let written = 0;
+  TOWNS.forEach((town, i) => {
+    // Pages already on disk carry edits made after they were generated, so a
+    // run scoped to new states leaves every other page exactly as it is.
+    if (onlyStates.length && !onlyStates.includes((town.state || 'ma').toLowerCase())) return;
+    const dir = path.join(ROOT, `masonry-${town.slug}-${(town.state || 'ma').toLowerCase()}`);
+    fs.mkdirSync(dir, { recursive: true });
+    const html = render(town, HERO_IMAGES[i % HERO_IMAGES.length]);
+    fs.writeFileSync(path.join(dir, 'index.html'), html);
+    console.log(`wrote masonry-${town.slug}-${(town.state || 'ma').toLowerCase()}/index.html`);
+    written++;
+  });
+  console.log(`\n${written} town page(s) generated.`);
+  rewriteSitemap();
+}

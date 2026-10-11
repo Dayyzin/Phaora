@@ -1,0 +1,33 @@
+# PHAÖRA
+
+> Full-service home improvement across New England. Masonry and stonework are the flagship: patios, walkways, retaining walls, steps, driveways, stone veneer and drainage, built by our own crews. Free on-site estimates, a written scope and price before work starts, and a one-year workmanship warranty.
+
+- 30+ years of experience and 100+ jobs completed in masonry and stonework.
+- Registered and insured.
+- Instant estimate: https://phaora.com/estimate/ (type the size or trace it on a satellite view and see a price range in about thirty seconds; the on-site visit is free).
+- Phone: (561) 299-1261. Email: phaoraco@gmail.com.
+
+## Services
+
+- [Patios](https://phaora.com/patios/): paver, bluestone, flagstone and brick patios across MA, RI, CT, NH and ME.
+- [Paver driveways](https://phaora.com/paver-driveways/): paver and cobblestone driveways, built on a base sized for vehicle load and frost.
+- [Retaining walls](https://phaora.com/retaining-walls/): segmental block and natural stone walls, drained behind and footed below frost.
+- [Walkways and steps](https://phaora.com/walkways-and-steps/): front walks, garden paths, granite and bluestone steps.
+- [Stone veneer](https://phaora.com/stone-veneer/): natural and manufactured stone on foundations, columns, chimneys and facades.
+- [Drainage](https://phaora.com/drainage/): French drains, swales, regrading and dry wells.
+- [Seawalls and shore protection](https://phaora.com/seawalls-and-shore-protection/): seawall, revetment, bulkhead and riprap repair on the New England coast.
+
+## Data
+
+- [Massachusetts Hardscape Replacement Index](https://phaora.com/hardscape-index/): every Massachusetts town with 500 or more homes in the MassGIS statewide property tax parcels, ranked by the share of homes built before 1980, with homes on record, median year built and sales in the last 24 months on record.
+
+## Town pages
+
+- Every town page lives at `https://phaora.com/masonry-<town>-<state>/`, for example https://phaora.com/masonry-dennis-ma/. The full list is at [Service area](https://phaora.com/service-area/).
+- Each page covers what we build there, what decides whether it lasts in that ground, and how we work in that town, with links to the service pages.
+- Most pages carry a "by the numbers" section: homes on record, year built, recent sales and median sale price where the public record carries them, with the public source named. Massachusetts, Connecticut, Rhode Island, New Hampshire and Maine pages give the town's own figures. Texas and Indiana pages are cities and give their county's figures, labelled as the county.
+
+## Work
+
+- [Our work](https://phaora.com/portfolio/): finished and current jobs.
+- [Hardscape gallery](https://phaora.com/hardscape-gallery.html): photographs of finished hardscape.
