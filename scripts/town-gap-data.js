@@ -67,7 +67,7 @@ module.exports = [
     "name": "Quincy",
     "state": "ma",
     "county": "Norfolk",
-    "coastal": false,
+    "coastal": true,
     "workingIn": "Quincy is Norfolk County, Massachusetts. Milton, Braintree and Weymouth are all within 5 miles of it, and one run covers the lot.",
     "nearby": [
       "milton|ma",
@@ -80,7 +80,7 @@ module.exports = [
     "name": "Revere",
     "state": "ma",
     "county": "Suffolk",
-    "coastal": false,
+    "coastal": true,
     "workingIn": "Revere sits in Suffolk County, Massachusetts, with Winthrop 3 miles out and Saugus 3 — close enough that the same crew takes all three.",
     "nearby": [
       "winthrop|ma",
@@ -119,7 +119,7 @@ module.exports = [
     "name": "Beverly",
     "state": "ma",
     "county": "Essex",
-    "coastal": false,
+    "coastal": true,
     "workingIn": "Beverly is Essex County, Massachusetts. Wenham, Salem and Hamilton are all within 4 miles of it, and one run covers the lot.",
     "nearby": [
       "wenham|ma",
@@ -184,7 +184,7 @@ module.exports = [
     "name": "Salem",
     "state": "ma",
     "county": "Essex",
-    "coastal": false,
+    "coastal": true,
     "workingIn": "Salem sits in Essex County, Massachusetts, with Marblehead 2 miles out and Swampscott 3 — close enough that the same crew takes all three.",
     "nearby": [
       "marblehead|ma",
@@ -249,7 +249,7 @@ module.exports = [
     "name": "Kingston",
     "state": "ma",
     "county": "Plymouth",
-    "coastal": false,
+    "coastal": true,
     "workingIn": "Kingston is Plymouth County, Massachusetts, 4 miles from Duxbury and 8 from Marshfield. It is inside our core run, not an outlying job.",
     "nearby": [
       "duxbury|ma",
@@ -288,7 +288,7 @@ module.exports = [
     "name": "Rowley",
     "state": "ma",
     "county": "Essex",
-    "coastal": false,
+    "coastal": true,
     "workingIn": "Rowley sits in Essex County, Massachusetts, with Ipswich 4 miles out and Newbury 5 — close enough that the same crew takes all three.",
     "nearby": [
       "ipswich|ma",
@@ -340,7 +340,7 @@ module.exports = [
     "name": "Essex",
     "state": "ma",
     "county": "Essex",
-    "coastal": false,
+    "coastal": true,
     "workingIn": "Essex sits in Essex County, Massachusetts, with Hamilton 4 miles out and Ipswich 5 — close enough that the same crew takes all three.",
     "nearby": [
       "hamilton|ma",
@@ -352,7 +352,7 @@ module.exports = [
     "name": "Swampscott",
     "state": "ma",
     "county": "Essex",
-    "coastal": false,
+    "coastal": true,
     "workingIn": "Swampscott is Essex County, Massachusetts, 2 miles from Lynn and 3 from Marblehead. It is inside our core run, not an outlying job.",
     "nearby": [
       "lynn|ma",
@@ -378,7 +378,7 @@ module.exports = [
     "name": "Weymouth",
     "state": "ma",
     "county": "Norfolk",
-    "coastal": false,
+    "coastal": true,
     "workingIn": "Weymouth is Norfolk County, Massachusetts. Braintree, Hingham and Quincy are all within 5 miles of it, and one run covers the lot.",
     "nearby": [
       "braintree|ma",
@@ -456,7 +456,7 @@ module.exports = [
     "name": "Lynn",
     "state": "ma",
     "county": "Essex",
-    "coastal": false,
+    "coastal": true,
     "workingIn": "Lynn is Essex County, Massachusetts, 2 miles from Swampscott and 3 from Saugus. It is inside our core run, not an outlying job.",
     "nearby": [
       "swampscott|ma",
@@ -508,7 +508,7 @@ module.exports = [
     "name": "Ipswich",
     "state": "ma",
     "county": "Essex",
-    "coastal": false,
+    "coastal": true,
     "workingIn": "Ipswich is Essex County, Massachusetts, 4 miles from Rowley and 5 from Essex. It is inside our core run, not an outlying job.",
     "nearby": [
       "rowley|ma",
@@ -547,7 +547,7 @@ module.exports = [
     "name": "Portsmouth",
     "state": "ri",
     "county": "Newport",
-    "coastal": false,
+    "coastal": true,
     "workingIn": "Portsmouth sits in Newport County, Rhode Island, with Newport 9 miles out and Narragansett 16 — close enough that the same crew takes all three.",
     "nearby": [
       "newport|ri",
@@ -560,7 +560,7 @@ module.exports = [
     "name": "North Hampton",
     "state": "nh",
     "county": "Rockingham",
-    "coastal": false,
+    "coastal": true,
     "workingIn": "North Hampton is Rockingham County, New Hampshire, 3 miles from Hampton and 4 from Greenland. It is inside our regular run, not an outlying job.",
     "nearby": [
       "hampton|nh",
@@ -573,7 +573,7 @@ module.exports = [
     "name": "Greenland",
     "state": "nh",
     "county": "Rockingham",
-    "coastal": false,
+    "coastal": true,
     "workingIn": "Greenland is in Rockingham County, New Hampshire, 4 miles from North Hampton and 4 from Portsmouth — on the route either way.",
     "nearby": [
       "north-hampton|nh",
@@ -586,7 +586,7 @@ module.exports = [
     "name": "Newmarket",
     "state": "nh",
     "county": "Rockingham",
-    "coastal": false,
+    "coastal": true,
     "workingIn": "Newmarket is Rockingham County, New Hampshire. Durham, Greenland and Newington are all within 6 miles of it, and one run covers the lot.",
     "nearby": [
       "durham|nh",
@@ -599,7 +599,7 @@ module.exports = [
     "name": "Durham",
     "state": "nh",
     "county": "Strafford",
-    "coastal": false,
+    "coastal": true,
     "workingIn": "Durham sits in Strafford County, New Hampshire, with Newmarket 4 miles out and Newington 5 — close enough that the same crew takes all three.",
     "nearby": [
       "newmarket|nh",
@@ -612,7 +612,7 @@ module.exports = [
     "name": "Seabrook",
     "state": "nh",
     "county": "Rockingham",
-    "coastal": false,
+    "coastal": true,
     "workingIn": "Seabrook is Rockingham County, New Hampshire, 2 miles from Salisbury and 4 from Hampton. It is inside our regular run, not an outlying job.",
     "nearby": [
       "salisbury|ma",
@@ -625,7 +625,7 @@ module.exports = [
     "name": "Newington",
     "state": "nh",
     "county": "Rockingham",
-    "coastal": false,
+    "coastal": true,
     "workingIn": "Newington is in Rockingham County, New Hampshire, 4 miles from Portsmouth and 5 from Greenland — on the route either way.",
     "nearby": [
       "portsmouth|nh",

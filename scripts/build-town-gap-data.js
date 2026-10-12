@@ -30,6 +30,26 @@ const STATE_NAME = {
   tx: 'Texas', co: 'Colorado', wy: 'Wyoming', in: 'Indiana',
 }
 
+/**
+ * The towns on this list with salt water at the shore: the ocean, a harbor or
+ * a tidal bay. coastal selects the coastal frost-depth paragraph and adds the
+ * seawalls link to the page's services.
+ *
+ * Read off the states' own coastal-zone rosters, not recalled: Massachusetts
+ * CZM's 78 coastal communities (mass.gov, "CZM Regions, Coastal Communities,
+ * and Coastal Zone Boundary") and NHDES's 17 coastal-zone municipalities
+ * (des.nh.gov, Coastal Resilience Grants). Portsmouth RI is on Aquidneck
+ * Island in Narragansett Bay. A town on a roster whose only tidal water is a
+ * river stays inland, as Milton does in the hand-written list: Saugus,
+ * Braintree and Norwell.
+ */
+const COASTAL = new Set([
+  'quincy|ma', 'revere|ma', 'beverly|ma', 'salem|ma', 'lynn|ma', 'swampscott|ma', 'weymouth|ma',
+  'kingston|ma', 'essex|ma', 'ipswich|ma', 'rowley|ma',
+  'north-hampton|nh', 'seabrook|nh', 'greenland|nh', 'newington|nh', 'newmarket|nh', 'durham|nh',
+  'portsmouth|ri',
+])
+
 function slugify(name) {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 }
@@ -99,11 +119,7 @@ function main() {
       name: t.name,
       state: t.state,
       county: t.county,
-      // Left false throughout. The flag only selects which frost-depth
-      // paragraph prints, and the inland one ends 'we build to the depth your
-      // building department gives, and we ask before we dig' — true in every
-      // town on this list, and it claims nothing.
-      coastal: false,
+      coastal: COASTAL.has(`${t.slug}|${t.state}`),
       workingIn: FORMS[i % FORMS.length](t, near, stateName),
       nearby: near.map((n) => `${slugify(n.town)}|${n.state.toLowerCase()}`),
     })
