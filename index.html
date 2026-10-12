@@ -131,7 +131,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;display:grid;grid-template-c
 .reel-frame{position:relative;margin:0;height:calc(100vh - 64px - clamp(52px,9.4vh,104px));
   min-height:420px;max-height:1100px;aspect-ratio:9/16;background:#00060C url(assets/video/phaora-reel-poster.jpg) center/cover no-repeat;
   box-shadow:0 0 0 1px rgba(90,191,198,.16),0 30px 90px rgba(0,0,0,.6),0 0 120px rgba(62,157,166,.12)}
-.reel-frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:transparent}
+.reel-frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:transparent;
+  opacity:0;transition:opacity .6s}
+/* The film opens on black. A phone that declines to autoplay it (Low Power
+   Mode, a call in progress) parks on that first frame, so the video stays
+   clear, and the frame's own poster shows, until it is actually playing. */
+.reel-frame video.is-live{opacity:1}
 /* sound: top-right, clear of the reel's wordmark (top-left) and captions */
 .reel-sound{position:absolute;top:14px;right:14px;z-index:3;display:flex;align-items:center;gap:8px;
   min-height:44px;padding:0 14px;border:1px solid rgba(90,191,198,.4);border-radius:999px;
@@ -194,7 +199,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;display:grid;grid-template-c
   .hero--reel::after{display:none}
 }
 @media(prefers-reduced-motion:reduce){.reel-ground::after{animation:none;display:none}
-  .reel-index li,.reel-index li b{transition:none}}
+  .reel-index li,.reel-index li b,.reel-frame video{transition:none}}
 
 /* THE TITLE under the reel. Its rules went missing when the reel became the
    hero (df2c2ad), which left the line at the hero's 80-160px, flush left. */
@@ -1184,6 +1189,12 @@ el.innerHTML=html})();
    then the end card. Re-cut the reel and the data-in/out values move with it. */
 (function(){
   var v=document.getElementById('heroReel'); if(!v||!v.getAttribute('src')) return;
+  // Shown once a frame is moving; until then the poster behind it is the picture.
+  function live(){ v.classList.add('is-live') }
+  v.addEventListener('playing',live);
+  if(!v.paused&&v.readyState>2) live();
+  // Where autoplay was refused, a tap on the film starts it, still muted.
+  v.addEventListener('click',function(){ if(v.paused){ var p=v.play(); if(p&&p.catch) p.catch(function(){}) } });
   var items=[].slice.call(document.querySelectorAll('#reelIndex li[data-in]')), last=null;
   function tick(){
     var t=v.currentTime, on=null;
