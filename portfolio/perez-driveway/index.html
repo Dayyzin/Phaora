@@ -6,14 +6,20 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <!-- Named for the client surname (CLAUDE.md rule 4): Mr. Perez, a
      driveway in Cranston, RI. No street address on the page (rule 5), and no
-     start date or size, because neither has been given. -->
+     start date or size, because neither has been given. The house number is
+     blurred out of every frame that showed it, and the plates in the drone
+     shot with it.
+
+     PAVER: NOT NAMED ON PURPOSE. David, 2026-10-24: "it's actually the
+     Dimensions by Belgard I think". Unconfirmed, so it stays off the page
+     (rule 5) until it is read off a pallet tag or the order. -->
 <title>Driveway in Cranston, RI — The Perez Driveway | PHAÖRA</title>
-<meta name="description" content="A driveway being built in Cranston, Rhode Island — The Perez Driveway, followed stage by stage as it goes in.">
+<meta name="description" content="A paver driveway and granite front steps in Cranston, Rhode Island — The Perez Driveway, from the old concrete to the finished edge.">
 <link rel="canonical" href="https://phaora.com/portfolio/perez-driveway/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="The Perez Driveway — Cranston, RI">
-<meta property="og:description" content="A driveway in Cranston, followed stage by stage.">
-<meta property="og:image" content="https://phaora.com/portfolio/perez-driveway/images/cover.jpg">
+<meta property="og:description" content="A paver driveway and granite steps in Cranston, from the old concrete to the finished edge.">
+<meta property="og:image" content="https://phaora.com/portfolio/perez-driveway/images/finished.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
@@ -37,12 +43,9 @@ nav a.back:hover{color:var(--pearl)}
 header{padding:clamp(96px,15vh,150px) 0 clamp(28px,5vh,48px)}
 .done{display:inline-flex;align-items:center;gap:10px;font-size:10px;font-weight:500;letter-spacing:.26em;
   text-transform:uppercase;color:rgba(79,181,190,.92);margin-bottom:20px}
-/* A live job: the dot pulses. When the job finishes it holds steady, as on
-   the Bard page — a blinking light on a finished job says the opposite. */
-.done i{width:7px;height:7px;border-radius:50%;background:var(--teal);box-shadow:0 0 10px 2px rgba(79,181,190,.45);
-  animation:live 2.4s ease-in-out infinite}
-@keyframes live{0%,100%{opacity:1}50%{opacity:.35}}
-@media (prefers-reduced-motion:reduce){.done i{animation:none}}
+/* A finished job: the dot holds steady, as on the Bard page — a blinking
+   light on a finished job says the opposite. */
+.done i{width:7px;height:7px;border-radius:50%;background:var(--teal);box-shadow:0 0 10px 2px rgba(79,181,190,.45)}
 h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(34px,6.4vw,72px);line-height:1.04;color:var(--silver);text-wrap:balance}
 h1 span{color:var(--gold-lt)}
 /* The editorial line the h1 used to carry, now under the client's name. */
@@ -144,20 +147,34 @@ footer p{font-size:11px;letter-spacing:.16em;color:rgba(234,239,245,.46)}
 
 <div class="wrap">
   <header>
-    <div class="done"><i></i>Building now</div>
+    <div class="done"><i></i>Finished</div>
     <h1>The <span>Perez</span> Driveway</h1>
     <p class="lede">Nothing sits on <em>dirt</em>.</p>
-    <p class="sub">A driveway is only as good as what is under it: the ground dug out, the base laid and compacted in lifts, and the surface set on that. This page follows the job stage by stage, in the order it happens.</p>
+    <p class="sub">A driveway is only as good as what is under it: the ground dug out, the base laid and compacted in lifts, and the surface set on that. This page follows the job stage by stage, from the old concrete to the finished edge.</p>
     <dl class="facts">
       <div><dt>Where</dt><dd>Cranston, RI</dd></div>
-      <div><dt>Scope</dt><dd>Driveway</dd></div>
-      <div><dt>Status</dt><dd>In progress</dd></div>
+      <div><dt>Scope</dt><dd>Driveway and front steps</dd></div>
+      <div><dt>Status</dt><dd>Complete</dd></div>
     </dl>
   </header>
 
-  <!-- STAGES RUN OLDEST → NEWEST, the same as the Bard page. Add each stage
-       below the last as it is built. No dates on stages; no street address
-       anywhere (rule 5). -->
+  <!-- STAGES RUN OLDEST → NEWEST, the same as the Bard page: rough to
+       polished. No dates on stages; no street address anywhere (rule 5). -->
+
+  <!-- The before is a Street View frame, the only one of the old driveway
+       from the street. David chose to run it (2026-10-24); the Google mark
+       stays on it and the caption credits it. -->
+  <section class="stage">
+    <div class="stage-head">
+      <div class="stage-name serif">The <span>before</span></div>
+      <div class="stage-tag">What was there</div>
+    </div>
+    <p>Concrete slabs laid end to end, heaved and split along every joint, with grass growing up through the cracks and a strip of bare ground beside it where the cars actually parked.</p>
+    <div class="grid g2">
+      <figure class="ba" data-tag="BEFORE"><img src="images/before-street.jpg" alt="The old driveway from the street: cracked concrete slabs with grass in the joints, bare ground beside it, the garage at the end" loading="lazy"></figure>
+    </div>
+    <p style="margin:12px 0 0;font-size:12px;color:rgba(234,239,245,.54)">Before image © Google Street View.</p>
+  </section>
 
   <section class="stage">
     <div class="stage-head">
@@ -175,11 +192,87 @@ footer p{font-size:11px;letter-spacing:.16em;color:rgba(234,239,245,.46)}
 
 
 
-  <section class="next">
+  <section class="stage">
     <div class="stage-head">
-      <div class="stage-name serif">Next</div>
+      <div class="stage-name serif">The <span>tear-out</span></div>
+      <div class="stage-tag">Down to firm ground</div>
     </div>
-    <p>The build goes up here stage by stage as it is laid.</p>
+    <p>The old slabs and the cracked apron come up and leave on the trailer. Then the ground is dug out past the old base, cut to the lines and graded, so what goes back in is built on something that will not move.</p>
+    <figure class="film">
+      <video autoplay muted loop playsinline preload="metadata" poster="video/tearout-poster.jpg">
+        <source src="video/tearout.mp4" type="video/mp4">
+      </video>
+      <figcaption>The skid steer taking the old driveway out</figcaption>
+    </figure>
+    <div class="grid g2" style="margin-top:clamp(10px,1.6vw,18px)">
+      <figure><img src="images/subgrade.jpg" alt="The driveway dug out to graded subgrade between the fence and the house, string lines set" loading="lazy"></figure>
+      <figure><img src="images/tearout-machine.jpg" alt="The skid steer and equipment trailer on site, the driveway dug out behind them" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <section class="stage">
+    <div class="stage-head">
+      <div class="stage-name serif">The <span>base</span></div>
+      <div class="stage-tag">Laid, wetted and compacted</div>
+    </div>
+    <p>Gravel brought in and compacted in lifts, then the bedding course screeded flat under the string lines. Every line on the finished surface is decided here: the pitch away from the house, the edge along the fence, the level at the garage door.</p>
+    <div class="grid g2">
+      <figure><img src="images/base1.jpg" alt="The finished base from the street, screeded flat up to the garage, string lines across the front" loading="lazy"></figure>
+      <figure><img src="images/base2.jpg" alt="The base along the fence line, stakes and string marking the edge" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <section class="stage">
+    <div class="stage-head">
+      <div class="stage-name serif">The <span>laying</span></div>
+      <div class="stage-tag">Set from the house out</div>
+    </div>
+    <p>The pavers go down in a random pattern of mixed sizes, set tight from the house out. The plate compactor follows, seating each section into the bedding course.</p>
+    <div class="grid g2">
+      <figure><img src="images/lay1.jpg" alt="Pavers going down across the base, the plate compactor and pallets in the foreground" loading="lazy"></figure>
+      <figure><img src="images/lay2.jpg" alt="Close on the laying edge, the next pavers standing ready on the field" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <section class="stage">
+    <div class="stage-head">
+      <div class="stage-name serif">The front <span>steps</span></div>
+      <div class="stage-tag">Granite, on laid stone</div>
+    </div>
+    <p>The poured stoop came out with the driveway, undercut where the ground had washed from beneath it. In its place: three granite treads, each a single piece with the rock face left on its edge, carried on courses of laid stone.</p>
+
+    <figure class="cmp">
+      <div class="cmp-box" style="aspect-ratio:0.75" role="slider" tabindex="0"
+           aria-label="Drag to compare the old concrete stoop with the new granite steps"
+           aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+        <img src="images/cmp-steps-after.jpg" alt="After — three granite treads with rock-faced edges on risers of laid stone, at the front door">
+        <img class="cmp-before" src="images/cmp-steps-before.jpg" alt="Before — the old poured concrete stoop, the ground washed out from under its bottom step" loading="lazy">
+        <span class="cmp-tag">BEFORE</span>
+        <span class="cmp-tag after">AFTER</span>
+        <div class="cmp-line"></div>
+        <div class="cmp-knob">⇄</div>
+        <div class="cmp-hint">← DRAG →</div>
+      </div>
+      <figcaption><b>The same door, from the same place.</b> A poured stoop with nothing left under its front edge, against granite on stone.</figcaption>
+    </figure>
+
+    <div class="grid g2" style="margin-top:clamp(10px,1.6vw,18px)">
+      <figure><img src="images/steps-side.jpg" alt="The granite steps from the side, the treads stepping down past the stone risers" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <section class="stage">
+    <div class="stage-head">
+      <div class="stage-name serif">The <span>finish</span></div>
+      <div class="stage-tag">Edged, sanded, done</div>
+    </div>
+    <p>A darker border course runs the whole perimeter and squares off at the street, so the field has a clean edge on every side. Joints sanded, the beds beside it topsoiled, and the drive runs from the curb to the garage door in one surface.</p>
+    <div class="grid g2">
+      <figure class="ba" data-tag="AFTER"><img src="images/finished.jpg" alt="The finished paver driveway from the street, a dark border course around the field, the garage at the end" loading="lazy"></figure>
+      <figure><img src="images/fin-garage.jpg" alt="The finished driveway in full sun, looking toward the garage past the new granite steps" loading="lazy"></figure>
+      <figure><img src="images/fin-street.jpg" alt="Along the finished border course toward the street, new topsoil beside it" loading="lazy"></figure>
+      <figure><img src="images/fin-drone.jpg" alt="The finished driveway from above, three cars parked on it between the fence and the house" loading="lazy"></figure>
+    </div>
   </section>
 
   <div class="close">
@@ -189,6 +282,44 @@ footer p{font-size:11px;letter-spacing:.16em;color:rgba(234,239,245,.46)}
 </div>
 
 <footer><p>PHAÖRA &nbsp;·&nbsp; Fully insured</p></footer>
+<script>
+// The wipe, the same as the Bard page. Pointer events cover mouse, touch and
+// pen in one path, and the whole frame is the drag target — a thin handle is
+// unusable with a thumb.
+document.querySelectorAll('.cmp-box').forEach(function (box) {
+  var dragging = false;
+
+  function move(clientX) {
+    var r = box.getBoundingClientRect();
+    var pct = Math.min(100, Math.max(0, ((clientX - r.left) / r.width) * 100));
+    box.style.setProperty('--pos', pct + '%');
+    box.setAttribute('aria-valuenow', Math.round(pct));
+    box.classList.add('touched');
+  }
+
+  box.addEventListener('pointerdown', function (e) {
+    dragging = true;
+    box.setPointerCapture(e.pointerId);
+    move(e.clientX);
+  });
+  box.addEventListener('pointermove', function (e) { if (dragging) move(e.clientX); });
+  box.addEventListener('pointerup', function (e) {
+    dragging = false;
+    try { box.releasePointerCapture(e.pointerId); } catch (err) { /* already released */ }
+  });
+  box.addEventListener('pointercancel', function () { dragging = false; });
+
+  box.addEventListener('keydown', function (e) {
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    e.preventDefault();
+    var now = parseFloat(box.getAttribute('aria-valuenow')) || 50;
+    var next = Math.min(100, Math.max(0, now + (e.key === 'ArrowLeft' ? -4 : 4)));
+    box.style.setProperty('--pos', next + '%');
+    box.setAttribute('aria-valuenow', Math.round(next));
+    box.classList.add('touched');
+  });
+});
+</script>
 
 </body>
 </html>
