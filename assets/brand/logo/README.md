@@ -7,7 +7,7 @@ at any size.
 | File | What it is |
 |---|---|
 | `phaora-crest-primary.svg` | Silver on obsidian, teal Ö, tagline. The top-left board panel |
-| `phaora-crest-editorial.svg` | The black artwork on pewter (#77777D) — ground dark enough for the Ö to glow |
+| `phaora-crest-editorial.svg` | The black artwork, unchanged, on antique silver (#BFC0C4) |
 | `phaora-crest-mark.svg` | The ornament alone, transparent, one colour — hangtags, embroidery, foil |
 | `phaora-crest-primary-1200.png`, `-2400.png` | Raster exports of the primary |
 | `phaora-crest-editorial-1200.png` | Raster export of the editorial |
