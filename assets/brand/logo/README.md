@@ -26,8 +26,7 @@ ice teal  #5ABFC6
 - The wordmark is set from real glyph outlines of `assets/fonts/PhaoraFable-Wordmark.woff2`
   in a lens warp David sketched 2026-10-25: each letter scales with the envelope (small at
   the ends, swelled at the centre) and its cap line and baseline bend along the arcs; the
-  band mask follows the same curves. The Ö is ice teal (glowing in the primary, flat in the
-  editorial). No live text in the files — everything is paths, nothing depends on a font.
+  band mask follows the same curves. The Ö is ice teal and glows in both colourways. No live text in the files — everything is paths, nothing depends on a font.
 - The tagline is Inter 500 capitals, 0.50em tracking, also outlined.
 - A cut gem (David's sketch, 2026-10-25) frames the crest: apex at the top star, girdle
   at the wordmark, culet at the bottom star. The facets are filled tonal planes behind

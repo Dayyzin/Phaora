@@ -11,7 +11,8 @@
   </filter>
   <filter id="tealGlow" x="-80%" y="-80%" width="260%" height="260%">
     <feGaussianBlur in="SourceGraphic" stdDeviation="5.5" result="b"/>
-    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    <feGaussianBlur in="SourceGraphic" stdDeviation="11" result="b2"/>
+    <feMerge><feMergeNode in="b2"/><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
   </filter>
   <mask id="bandMask">
     <rect x="-200" y="-200" width="2400" height="3000" fill="#fff"/>
