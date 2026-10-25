@@ -7,7 +7,7 @@ at any size.
 | File | What it is |
 |---|---|
 | `phaora-crest-primary.svg` | Silver on obsidian, teal Ö, tagline. The top-left board panel |
-| `phaora-crest-editorial.svg` | Black on bone |
+| `phaora-crest-editorial.svg` | Bone on graphite (#232529) — the dark ground lets the Ö glow |
 | `phaora-crest-mark.svg` | The ornament alone, transparent, one colour — hangtags, embroidery, foil |
 | `phaora-crest-primary-1200.png`, `-2400.png` | Raster exports of the primary |
 | `phaora-crest-editorial-1200.png` | Raster export of the editorial |
