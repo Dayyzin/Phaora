@@ -26,15 +26,10 @@ ice teal  #5ABFC6
 - The wordmark is set from real glyph outlines of `assets/fonts/PhaoraFable-Wordmark.woff2`
   in a lens warp David sketched 2026-10-25: each letter scales with the envelope (small at
   the ends, swelled at the centre) and its cap line and baseline bend along the arcs; the
-  band mask follows the same curves. The Ö is ice teal and glows in both colourways. No live text in the files — everything is paths, nothing depends on a font.
+  band mask follows the same curves. The Ö is flat ice teal in both colourways — no glow. No live text in the files — everything is paths, nothing depends on a font.
 - The tagline is Inter 500 capitals, 0.50em tracking, also outlined.
-- A cut gem (David's sketch, 2026-10-25) frames the crest, its dimensions measured from
-  the artwork: apex on the top star's centre, culet on the bottom star's centre, girdle
-  carrying the wordmark, and the table at 57% of the girdle — the ideal round-brilliant
-  ratio. The facets are filled tonal planes behind the engraving — adjacent faces differ
-  in value, so the edges come from contrast, not strokes — fading under the lettering
-  with the same lens mask. The lettering's arcs split 0.527/0.473 above and below the
-  girdle, the gem's own crown-to-pavilion proportion.
+- The facet planes were retired 2026-10-25 (David: only the object). The lettering keeps
+  the lens geometry: arcs split 0.527/0.473 above and below the girdle line.
 - The ornament engraving was generated 2026-10-25 (gpt-image-2.5-sunburst, Figma file
   "PHAÖRA Logo — Crest"), its cartouche box removed, then vectorized with vtracer
   (binary, cutout) from a 2x upscale, in two tonal layers: strong ink as the bright
