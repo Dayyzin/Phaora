@@ -29,6 +29,9 @@ ice teal  #5ABFC6
   band mask follows the same curves. The Ö is ice teal (glowing in the primary, flat in the
   editorial). No live text in the files — everything is paths, nothing depends on a font.
 - The tagline is Inter 500 capitals, 0.50em tracking, also outlined.
+- A cut-gem wireframe (David's sketch, 2026-10-25) frames the crest: apex at the top star,
+  girdle at the wordmark, culet at the bottom star. Fine facet lines sit behind the
+  engraving and fade under the lettering with the same lens mask.
 - The ornament engraving was generated 2026-10-25 (gpt-image-2.5-sunburst, Figma file
   "PHAÖRA Logo — Crest"), its cartouche box removed, then vectorized with vtracer
   (binary, cutout) from a 2x upscale, in two tonal layers: strong ink as the bright
