@@ -29,6 +29,8 @@ ice teal  #5ABFC6
 - The tagline is Inter 500 capitals, 0.50em tracking, also outlined.
 - The ornament engraving was generated 2026-10-25 (gpt-image-2.5-sunburst, Figma file
   "PHAÖRA Logo — Crest"), its cartouche box removed, then vectorized with vtracer
-  (binary, cutout). 28 paths.
+  (binary, cutout) from a 2x upscale, in two tonal layers: strong ink as the bright
+  layer, midtone hatching as a dim layer beneath it. The mark variant carries the
+  bright layer only, for flat reproduction.
 - The wordmark band is a feathered SVG `mask` on the ornament group. Mask coordinates
-  are in the ornament's native 960×1280 space, not the document's.
+  are in the ornament's native 1920×2560 space, not the document's.
