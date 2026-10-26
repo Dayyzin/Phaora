@@ -11,6 +11,7 @@ at any size.
 | `phaora-crest-mark.svg` | The ornament alone, transparent, one colour — hangtags, embroidery, foil |
 | `phaora-crest-silver-transparent.svg` | Full lockup, silver, no background — for dark grounds |
 | `phaora-crest-ink-transparent.svg` | Full lockup, ink, no background — for light grounds |
+| `phaora-crest-silver-transparent.png`, `-ink-transparent.png` | The same two as transparent PNGs, 1599×2845, trimmed to the art |
 | `phaora-crest-primary-1200.png`, `-2400.png` | Raster exports of the primary |
 | `phaora-crest-editorial-1200.png` | Raster export of the editorial |
 | `ornament-source.png` | The cleaned raster the vector was traced from. Re-trace from this |
