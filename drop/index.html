@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<title>PHAÖRA — Serpent Emblem Hoodie</title>
+<meta name="description" content="The Serpent Emblem Hoodie: a 28-gauge jacquard knit in dark navy, slate and ice. 15 pieces, numbered 1/15 to 15/15.">
+<link rel="canonical" href="https://phaora.com/drop/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PHAÖRA — Serpent Emblem Hoodie">
+<meta property="og:description" content="A 28-gauge jacquard knit in dark navy, slate and ice. 15 pieces, numbered 1/15 to 15/15.">
+<meta property="og:url" content="https://phaora.com/drop/">
+<meta property="og:image" content="https://phaora.com/assets/drop/serpent-emblem-hoodie.jpg">
+<meta property="og:image:width" content="780">
+<meta property="og:image:height" content="975">
+<meta property="og:image:alt" content="The Serpent Emblem Hoodie in dark navy, slate and ice">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://phaora.com/assets/drop/serpent-emblem-hoodie.jpg">
+<link rel="preload" href="/assets/fonts/PhaoraFable-Wordmark.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* The waitlist for the first clothing drop. The site's own palette and faces
+   (contact.html's tokens, the homepage's Fable wordmark), on the ink ground.
+   Two things every other page loads are left off on purpose:
+     - /tag.js: it reports leads to Google Ads, and a signup here is not one.
+     - the galaxy theme: it puts the hardscape bar (phone, "Price it now") at
+       the top of every page.
+   Error states use the one red, #C22E2A, as a stripe only. */
+@font-face{font-family:'Phaora Fable Wordmark';src:url(/assets/fonts/PhaoraFable-Wordmark.woff2) format('woff2');font-weight:100 900;font-style:normal;font-display:swap}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--pearl:#EAEFF5;--silver:#DBE6F0;--teal:#4FB5BE;--teal-d:rgba(79,181,190,.55);--gold:#A9E9F0;--gold-lt:#DDF6FA;--ink:#020610;--red:#C22E2A}
+html{background:var(--ink)}
+body{background:var(--ink);color:var(--pearl);font-family:'Inter','Helvetica Neue',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased;min-height:100vh;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+[hidden]{display:none!important}
+
+.drop{max-width:480px;margin:0 auto;padding:clamp(36px,7vh,72px) 16px clamp(48px,9vh,96px);text-align:center}
+.wm{display:inline-block;font-family:'Phaora Fable Wordmark','Cormorant Garamond',serif;font-weight:400;font-size:clamp(24px,5vw,30px);
+  letter-spacing:.14em;text-indent:.14em;text-transform:uppercase;color:var(--pearl);white-space:nowrap}
+.wm .o{color:var(--teal)}
+
+.still{margin:clamp(28px,5vh,44px) 0 0}
+.still img{display:block;width:100%;height:auto;aspect-ratio:780/975;object-fit:cover;background:#000;border:1px solid rgba(79,181,190,.1)}
+
+h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(34px,8vw,44px);line-height:1.08;color:var(--silver);margin-top:clamp(26px,4vh,36px);text-wrap:balance}
+.line{margin:14px auto 0;max-width:40ch;font-size:15px;line-height:1.7;color:rgba(234,239,245,.72)}
+
+form{margin-top:32px;text-align:left}
+label{display:block;font-size:10px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:rgba(234,239,245,.60);margin-bottom:9px}
+.row{display:flex;gap:10px}
+input{flex:1;min-width:0;width:100%;background:rgba(255,255,255,.028);border:1px solid rgba(79,181,190,.16);color:var(--pearl);
+  font-family:inherit;font-size:16px;font-weight:300;padding:13px 15px;border-radius:0;transition:border-color .2s,background .2s}
+input:focus{outline:none;border-color:rgba(79,181,190,.55);background:rgba(255,255,255,.05)}
+input::placeholder{color:rgba(234,239,245,.46)}
+button{flex:none;border:1px solid rgba(79,181,190,.4);background:rgba(79,181,190,.07);color:var(--pearl);
+  font-family:inherit;font-size:11px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;padding:15px 22px;cursor:pointer;
+  border-radius:0;transition:background .22s,border-color .22s}
+button:hover:not(:disabled){background:rgba(79,181,190,.16);border-color:var(--teal)}
+button:focus-visible{outline:1px solid var(--gold);outline-offset:3px}
+button:disabled{opacity:.5;cursor:default}
+@media(max-width:480px){.row{flex-direction:column}button{width:100%}}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+.msg{display:none;margin-top:16px;padding:14px 16px;font-size:14px;line-height:1.6;text-align:left}
+.msg.show{display:block}
+.msg.ok{border:1px solid rgba(79,181,190,.45);background:rgba(79,181,190,.07);color:rgba(234,239,245,.92)}
+.msg.err{border:1px solid rgba(234,239,245,.14);border-left:2px solid var(--red);background:rgba(255,255,255,.03);color:var(--pearl)}
+
+/* The film's slot. Hidden until the film is final; ?draft=1 shows where it sits. */
+.film{margin:44px auto 0;max-width:360px}
+.film video{display:block;width:100%;height:auto;aspect-ratio:900/1950;background:#000}
+.film-ph{display:grid;place-items:center;aspect-ratio:900/1950;border:1px dashed rgba(79,181,190,.35);
+  font-size:10px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:rgba(234,239,245,.55);padding:0 24px;line-height:1.9}
+html.draft .film[data-slot="film"]{display:block!important}
+
+footer{border-top:1px solid rgba(234,239,245,.05);padding:30px 16px;text-align:center}
+footer p{font-size:11px;letter-spacing:.16em;color:rgba(234,239,245,.48)}
+</style>
+</head>
+<body>
+<!--
+  phaora.com/drop/ — the waitlist for the first clothing drop.
+  Copy written as a draft for David on 31 Oct 2026; it ships only with his OK.
+  Signups post to crm.phaora.com/api/public/waitlist, which writes the waitlist
+  table (canon migration 0395) and nothing else. Never point this page at
+  /api/public/contact: that files a hardscape lead, and those get called.
+-->
+<main class="drop">
+  <a class="wm" href="/" aria-label="PHAÖRA home">PHA<span class="o">Ö</span>RA</a>
+
+  <!-- Image: still 06 of the launch film, the hoodie in its case, cropped hood
+       to hem (phaora-ops departments/apparel/film/remake/gallery/stills/p06.png,
+       08f2633). A render, not a photograph. -->
+  <figure class="still">
+    <img src="/assets/drop/serpent-emblem-hoodie.jpg" width="780" height="975"
+         alt="The Serpent Emblem Hoodie in dark navy, slate and ice, hood up, in a glass case">
+  </figure>
+
+  <h1>Serpent Emblem Hoodie</h1>
+  <p class="line">A 28-gauge jacquard knit in dark navy, slate and ice&nbsp;— 15 pieces, numbered 1/15 to 15/15.</p>
+  <!-- Price: left blank. None is set; state one only when David does. -->
+  <!-- Date: left blank. No release or delivery date is set; state one only when David does. -->
+
+  <form id="f" novalidate>
+    <label for="email">Email</label>
+    <div class="row">
+      <input id="email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com" maxlength="254" required>
+      <button id="go" type="submit">Join the waitlist</button>
+    </div>
+    <!-- Not visible, not tabbable. Anything in it came from a bot. -->
+    <div class="hp" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
+  </form>
+  <p class="msg" id="msg" role="status" aria-live="polite"></p>
+
+  <!-- FILM SLOT. When the launch film is final: put its <video> in place of
+       .film-ph (poster = the still above, playsinline, muted unless David
+       wants sound) and delete the hidden attribute. Until then this shows
+       only at /drop/?draft=1. -->
+  <figure class="film" data-slot="film" hidden>
+    <div class="film-ph">Film — placeholder until the cut is final</div>
+  </figure>
+</main>
+
+<footer><p>PHAÖRA</p></footer>
+
+<script>
+(function(){
+  var f=document.getElementById('f'), go=document.getElementById('go'), msg=document.getElementById('msg');
+  // The waitlist's own door. It writes one table and files no lead.
+  var ENDPOINT='https://crm.phaora.com/api/public/waitlist';
+  var LIST='serpent-emblem';
+  var q; try{ q=new URLSearchParams(location.search) }catch(e){ q=null }
+  // Who sent them: /drop/?ref=<who>, cleaned the way the server cleans it.
+  var ref=q ? String(q.get('ref')||'').toLowerCase().replace(/[^a-z0-9_.-]/g,'').slice(0,40) : '';
+  if(q && q.get('draft')==='1') document.documentElement.classList.add('draft');
+
+  function say(t,k){ msg.textContent=t; msg.className='msg show '+k; }
+  function reset(){ go.disabled=false; go.textContent='Join the waitlist'; }
+
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var email=f.email.value.trim();
+    if(!email){ say('Add your email.','err'); f.email.focus(); return }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ say("That email doesn't look right.",'err'); f.email.focus(); return }
+    var d={email:email,list:LIST,website:f.website.value};
+    if(ref) d.ref=ref;
+    go.disabled=true; go.textContent='Sending…'; msg.className='msg';
+    fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)})
+      .then(function(r){ return r.json().catch(function(){ return null }).then(function(j){ return {r:r,j:j} }) })
+      .then(function(res){
+        if(res.r.ok && res.j && res.j.ok){ f.hidden=true; say("You're on the waitlist.",'ok'); return }
+        say((res.j&&res.j.error)||'Something went wrong. Please try again.','err'); reset();
+      })
+      .catch(function(){ say('Could not send that. Please try again.','err'); reset(); });
+  });
+})();
+</script>
+</body>
+</html>
