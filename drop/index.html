@@ -1330,6 +1330,16 @@ html, body{overflow-x:clip}
       if (!best) return;
       var im = best.querySelector("img"), fade = im && /-(f|c|w)\.webp/.test(im.getAttribute("src") || "") ? best.getBoundingClientRect().height * .066 : 0;
       h.style.setProperty("--cut", Math.round(bestTop + fade - hr.top) + "px");
+      /* the letters end where the photograph ends: their feet never hang out under it, where the people cut out
+         over them stop covering them (David, 1 Nov, on BRAZIL's stubs under the photo: "That don't look right") */
+      var foot = -Infinity;
+      figs.forEach(function(f){
+        var b = f.getBoundingClientRect(); if (Math.min(r, b.right) - Math.max(l, b.left) < (r - l) * .5 || b.top >= hr.bottom) return;
+        var ty2 = 0; try { ty2 = new DOMMatrixReadOnly(getComputedStyle(f).transform).m42; } catch (e) {}
+        var i2 = f.querySelector("img"), fd = i2 && /-(f|c|w)\.webp/.test(i2.getAttribute("src") || "") ? b.height * .066 : 0;
+        foot = Math.max(foot, b.bottom - ty2 - fd - hr.top);
+      });
+      if (foot > 0) h.style.clipPath = "polygon(-400px -600px, calc(100% + 400px) -600px, calc(100% + 400px) " + Math.round(foot) + "px, -400px " + Math.round(foot) + "px)";
     });
   }
   function fit(){
