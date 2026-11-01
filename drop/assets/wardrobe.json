@@ -1,0 +1,2372 @@
+{
+ "tops": {
+  "jq_serpent_emblem": {
+   "name": "Serpent Emblem Hoodie",
+   "file": "hero_hoodie_film",
+   "hood": true,
+   "baked": true,
+   "hides": [
+    "watch"
+   ],
+   "first": "navy",
+   "colours": {
+    "navy": {
+     "filmSheen": {
+      "weight": 0.35,
+      "tint": [
+       0.1559,
+       0.2462,
+       0.3325
+      ]
+     }
+    }
+   },
+   "figure": "film"
+  },
+  "tee_serpent_emblem": {
+   "name": "Serpent Emblem Tee",
+   "file": "hero_tee",
+   "baked": true,
+   "figure": "base",
+   "first": "navy",
+   "colours": {
+    "navy": {
+     "filmSheen": {
+      "weight": 0.35,
+      "tint": [
+       0.1559,
+       0.2462,
+       0.3325
+      ]
+     }
+    }
+   }
+  },
+  "jq_serpent_damask": {
+   "hides": [
+    "watch"
+   ],
+   "hood": true,
+   "name": "Serpent Damask Hoodie",
+   "file": "hero_hoodie_film",
+   "embedded": false,
+   "first": null,
+   "colours": {
+    "black": {
+     "trims": {
+      "rib": [
+       0.008,
+       0.008,
+       0.0097
+      ],
+      "cord": [
+       0.008,
+       0.008,
+       0.0097
+      ],
+      "aglet": [
+       0.7605,
+       0.7231,
+       0.6445
+      ],
+      "inside": [
+       0.0064,
+       0.0064,
+       0.0078
+      ]
+     },
+     "front": "knit/serpent_damask/front",
+     "back": "knit/serpent_damask/back",
+     "yarns": [
+      [
+       0.008,
+       0.008,
+       0.0097
+      ],
+      [
+       0.305,
+       0.2961,
+       0.2705
+      ],
+      [
+       0.7605,
+       0.7231,
+       0.6445
+      ]
+     ],
+     "maps": {
+      "band": "wardrobe/jacquard/black_rib.webp",
+      "cuff": "wardrobe/jacquard/black_rib.webp",
+      "edge": "wardrobe/jacquard/black_rib.webp",
+      "hood_print": "knit/serpent_damask/back"
+     }
+    },
+    "blue": {
+     "trims": {
+      "rib": [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      "cord": [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      "aglet": [
+       0.008,
+       0.0273,
+       0.2016
+      ],
+      "inside": [
+       0.684,
+       0.6518,
+       0.5785
+      ]
+     },
+     "front": "knit/serpent_damask/front",
+     "back": "knit/serpent_damask/back",
+     "yarns": [
+      [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      [
+       0.107,
+       0.2086,
+       0.552
+      ],
+      [
+       0.008,
+       0.0273,
+       0.2016
+      ]
+     ],
+     "maps": {
+      "band": "wardrobe/jacquard/blue_rib.webp",
+      "cuff": "wardrobe/jacquard/blue_rib.webp",
+      "edge": "wardrobe/jacquard/blue_rib.webp",
+      "hood_print": "knit/serpent_damask/back"
+     }
+    },
+    "white": {
+     "trims": {
+      "rib": [
+       0.9387,
+       0.9387,
+       0.9216
+      ],
+      "cord": [
+       0.9387,
+       0.9387,
+       0.9216
+      ],
+      "aglet": [
+       0.6038,
+       0.6308,
+       0.6795
+      ],
+      "inside": [
+       0.751,
+       0.751,
+       0.7373
+      ]
+     },
+     "front": "knit/serpent_damask/front",
+     "back": "knit/serpent_damask/back",
+     "yarns": [
+      [
+       0.9387,
+       0.9387,
+       0.9216
+      ],
+      [
+       0.7913,
+       0.807,
+       0.8308
+      ],
+      [
+       0.6038,
+       0.6308,
+       0.6795
+      ]
+     ],
+     "maps": {
+      "band": "wardrobe/jacquard/white_rib.webp",
+      "cuff": "wardrobe/jacquard/white_rib.webp",
+      "edge": "wardrobe/jacquard/white_rib.webp",
+      "hood_print": "knit/serpent_damask/back"
+     }
+    },
+    "pink": {
+     "trims": {
+      "rib": [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      "cord": [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      "aglet": [
+       0.2542,
+       0.008,
+       0.0648
+      ],
+      "inside": [
+       0.684,
+       0.6518,
+       0.5785
+      ]
+     },
+     "front": "knit/serpent_damask/front",
+     "back": "knit/serpent_damask/back",
+     "yarns": [
+      [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      [
+       0.6445,
+       0.1274,
+       0.2831
+      ],
+      [
+       0.2542,
+       0.008,
+       0.0648
+      ]
+     ],
+     "maps": {
+      "band": "wardrobe/jacquard/pink_rib.webp",
+      "cuff": "wardrobe/jacquard/pink_rib.webp",
+      "edge": "wardrobe/jacquard/pink_rib.webp",
+      "hood_print": "knit/serpent_damask/back"
+     }
+    },
+    "purple": {
+     "trims": {
+      "rib": [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      "cord": [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      "aglet": [
+       0.0578,
+       0.0116,
+       0.1812
+      ],
+      "inside": [
+       0.684,
+       0.6518,
+       0.5785
+      ]
+     },
+     "front": "knit/serpent_damask/front",
+     "back": "knit/serpent_damask/back",
+     "yarns": [
+      [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      [
+       0.2623,
+       0.15,
+       0.552
+      ],
+      [
+       0.0578,
+       0.0116,
+       0.1812
+      ]
+     ],
+     "maps": {
+      "band": "wardrobe/jacquard/purple_rib.webp",
+      "cuff": "wardrobe/jacquard/purple_rib.webp",
+      "edge": "wardrobe/jacquard/purple_rib.webp",
+      "hood_print": "knit/serpent_damask/back"
+     }
+    },
+    "navy": {
+     "trims": {
+      "rib": [
+       0.007,
+       0.0097,
+       0.013
+      ],
+      "cord": [
+       0.007,
+       0.0097,
+       0.013
+      ],
+      "aglet": [
+       0.2195,
+       0.2789,
+       0.3372
+      ],
+      "inside": [
+       0.0056,
+       0.0078,
+       0.0104
+      ]
+     },
+     "front": "knit/serpent_damask/front",
+     "back": "knit/serpent_damask/back",
+     "yarns": [
+      [
+       0.007,
+       0.0097,
+       0.013
+      ],
+      [
+       0.1329,
+       0.1746,
+       0.2195
+      ],
+      [
+       0.2195,
+       0.2789,
+       0.3372
+      ]
+     ],
+     "maps": {
+      "band": "wardrobe/jacquard/navy_rib.webp",
+      "cuff": "wardrobe/jacquard/navy_rib.webp",
+      "edge": "wardrobe/jacquard/navy_rib.webp",
+      "hood_print": "knit/serpent_damask/back"
+     }
+    }
+   },
+   "figure": "film"
+  },
+  "jq_garden_parterre": {
+   "hides": [
+    "watch"
+   ],
+   "hood": true,
+   "name": "Garden Parterre Hoodie",
+   "file": "hero_hoodie_film",
+   "embedded": false,
+   "first": null,
+   "colours": {
+    "black": {
+     "trims": {
+      "rib": [
+       0.008,
+       0.008,
+       0.0097
+      ],
+      "cord": [
+       0.008,
+       0.008,
+       0.0097
+      ],
+      "aglet": [
+       0.7605,
+       0.7231,
+       0.6445
+      ],
+      "inside": [
+       0.0064,
+       0.0064,
+       0.0078
+      ]
+     },
+     "front": "knit/garden_parterre/front",
+     "back": "knit/garden_parterre/back",
+     "yarns": [
+      [
+       0.008,
+       0.008,
+       0.0097
+      ],
+      [
+       0.305,
+       0.2961,
+       0.2705
+      ],
+      [
+       0.7605,
+       0.7231,
+       0.6445
+      ]
+     ],
+     "maps": {
+      "band": "wardrobe/jacquard/black_rib.webp",
+      "cuff": "wardrobe/jacquard/black_rib.webp",
+      "edge": "wardrobe/jacquard/black_rib.webp",
+      "hood_print": "knit/garden_parterre/back"
+     }
+    },
+    "blue": {
+     "trims": {
+      "rib": [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      "cord": [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      "aglet": [
+       0.008,
+       0.0273,
+       0.2016
+      ],
+      "inside": [
+       0.684,
+       0.6518,
+       0.5785
+      ]
+     },
+     "front": "knit/garden_parterre/front",
+     "back": "knit/garden_parterre/back",
+     "yarns": [
+      [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      [
+       0.107,
+       0.2086,
+       0.552
+      ],
+      [
+       0.008,
+       0.0273,
+       0.2016
+      ]
+     ],
+     "maps": {
+      "band": "wardrobe/jacquard/blue_rib.webp",
+      "cuff": "wardrobe/jacquard/blue_rib.webp",
+      "edge": "wardrobe/jacquard/blue_rib.webp",
+      "hood_print": "knit/garden_parterre/back"
+     }
+    },
+    "white": {
+     "trims": {
+      "rib": [
+       0.9387,
+       0.9387,
+       0.9216
+      ],
+      "cord": [
+       0.9387,
+       0.9387,
+       0.9216
+      ],
+      "aglet": [
+       0.6038,
+       0.6308,
+       0.6795
+      ],
+      "inside": [
+       0.751,
+       0.751,
+       0.7373
+      ]
+     },
+     "front": "knit/garden_parterre/front",
+     "back": "knit/garden_parterre/back",
+     "yarns": [
+      [
+       0.9387,
+       0.9387,
+       0.9216
+      ],
+      [
+       0.7913,
+       0.807,
+       0.8308
+      ],
+      [
+       0.6038,
+       0.6308,
+       0.6795
+      ]
+     ],
+     "maps": {
+      "band": "wardrobe/jacquard/white_rib.webp",
+      "cuff": "wardrobe/jacquard/white_rib.webp",
+      "edge": "wardrobe/jacquard/white_rib.webp",
+      "hood_print": "knit/garden_parterre/back"
+     }
+    },
+    "pink": {
+     "trims": {
+      "rib": [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      "cord": [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      "aglet": [
+       0.2542,
+       0.008,
+       0.0648
+      ],
+      "inside": [
+       0.684,
+       0.6518,
+       0.5785
+      ]
+     },
+     "front": "knit/garden_parterre/front",
+     "back": "knit/garden_parterre/back",
+     "yarns": [
+      [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      [
+       0.6445,
+       0.1274,
+       0.2831
+      ],
+      [
+       0.2542,
+       0.008,
+       0.0648
+      ]
+     ],
+     "maps": {
+      "band": "wardrobe/jacquard/pink_rib.webp",
+      "cuff": "wardrobe/jacquard/pink_rib.webp",
+      "edge": "wardrobe/jacquard/pink_rib.webp",
+      "hood_print": "knit/garden_parterre/back"
+     }
+    },
+    "purple": {
+     "trims": {
+      "rib": [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      "cord": [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      "aglet": [
+       0.0578,
+       0.0116,
+       0.1812
+      ],
+      "inside": [
+       0.684,
+       0.6518,
+       0.5785
+      ]
+     },
+     "front": "knit/garden_parterre/front",
+     "back": "knit/garden_parterre/back",
+     "yarns": [
+      [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      [
+       0.2623,
+       0.15,
+       0.552
+      ],
+      [
+       0.0578,
+       0.0116,
+       0.1812
+      ]
+     ],
+     "maps": {
+      "band": "wardrobe/jacquard/purple_rib.webp",
+      "cuff": "wardrobe/jacquard/purple_rib.webp",
+      "edge": "wardrobe/jacquard/purple_rib.webp",
+      "hood_print": "knit/garden_parterre/back"
+     }
+    },
+    "navy": {
+     "trims": {
+      "rib": [
+       0.007,
+       0.0097,
+       0.013
+      ],
+      "cord": [
+       0.007,
+       0.0097,
+       0.013
+      ],
+      "aglet": [
+       0.2195,
+       0.2789,
+       0.3372
+      ],
+      "inside": [
+       0.0056,
+       0.0078,
+       0.0104
+      ]
+     },
+     "front": "knit/garden_parterre/front",
+     "back": "knit/garden_parterre/back",
+     "yarns": [
+      [
+       0.007,
+       0.0097,
+       0.013
+      ],
+      [
+       0.1329,
+       0.1746,
+       0.2195
+      ],
+      [
+       0.2195,
+       0.2789,
+       0.3372
+      ]
+     ],
+     "maps": {
+      "band": "wardrobe/jacquard/navy_rib.webp",
+      "cuff": "wardrobe/jacquard/navy_rib.webp",
+      "edge": "wardrobe/jacquard/navy_rib.webp",
+      "hood_print": "knit/garden_parterre/back"
+     }
+    }
+   },
+   "figure": "film"
+  },
+  "jq_star_lattice": {
+   "hides": [
+    "watch"
+   ],
+   "hood": true,
+   "name": "Star Lattice Hoodie",
+   "file": "hero_hoodie_film",
+   "embedded": false,
+   "first": null,
+   "colours": {
+    "black": {
+     "trims": {
+      "rib": [
+       0.008,
+       0.008,
+       0.0097
+      ],
+      "cord": [
+       0.008,
+       0.008,
+       0.0097
+      ],
+      "aglet": [
+       0.7605,
+       0.7231,
+       0.6445
+      ],
+      "inside": [
+       0.0064,
+       0.0064,
+       0.0078
+      ]
+     },
+     "front": "knit/star_lattice/front",
+     "back": "knit/star_lattice/back",
+     "yarns": [
+      [
+       0.008,
+       0.008,
+       0.0097
+      ],
+      [
+       0.305,
+       0.2961,
+       0.2705
+      ],
+      [
+       0.7605,
+       0.7231,
+       0.6445
+      ]
+     ],
+     "maps": {
+      "band": "wardrobe/jacquard/black_rib.webp",
+      "cuff": "wardrobe/jacquard/black_rib.webp",
+      "edge": "wardrobe/jacquard/black_rib.webp",
+      "hood_print": "knit/star_lattice/back"
+     }
+    },
+    "blue": {
+     "trims": {
+      "rib": [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      "cord": [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      "aglet": [
+       0.008,
+       0.0273,
+       0.2016
+      ],
+      "inside": [
+       0.684,
+       0.6518,
+       0.5785
+      ]
+     },
+     "front": "knit/star_lattice/front",
+     "back": "knit/star_lattice/back",
+     "yarns": [
+      [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      [
+       0.107,
+       0.2086,
+       0.552
+      ],
+      [
+       0.008,
+       0.0273,
+       0.2016
+      ]
+     ],
+     "maps": {
+      "band": "wardrobe/jacquard/blue_rib.webp",
+      "cuff": "wardrobe/jacquard/blue_rib.webp",
+      "edge": "wardrobe/jacquard/blue_rib.webp",
+      "hood_print": "knit/star_lattice/back"
+     }
+    },
+    "white": {
+     "trims": {
+      "rib": [
+       0.9387,
+       0.9387,
+       0.9216
+      ],
+      "cord": [
+       0.9387,
+       0.9387,
+       0.9216
+      ],
+      "aglet": [
+       0.6038,
+       0.6308,
+       0.6795
+      ],
+      "inside": [
+       0.751,
+       0.751,
+       0.7373
+      ]
+     },
+     "front": "knit/star_lattice/front",
+     "back": "knit/star_lattice/back",
+     "yarns": [
+      [
+       0.9387,
+       0.9387,
+       0.9216
+      ],
+      [
+       0.7913,
+       0.807,
+       0.8308
+      ],
+      [
+       0.6038,
+       0.6308,
+       0.6795
+      ]
+     ],
+     "maps": {
+      "band": "wardrobe/jacquard/white_rib.webp",
+      "cuff": "wardrobe/jacquard/white_rib.webp",
+      "edge": "wardrobe/jacquard/white_rib.webp",
+      "hood_print": "knit/star_lattice/back"
+     }
+    },
+    "pink": {
+     "trims": {
+      "rib": [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      "cord": [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      "aglet": [
+       0.2542,
+       0.008,
+       0.0648
+      ],
+      "inside": [
+       0.684,
+       0.6518,
+       0.5785
+      ]
+     },
+     "front": "knit/star_lattice/front",
+     "back": "knit/star_lattice/back",
+     "yarns": [
+      [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      [
+       0.6445,
+       0.1274,
+       0.2831
+      ],
+      [
+       0.2542,
+       0.008,
+       0.0648
+      ]
+     ],
+     "maps": {
+      "band": "wardrobe/jacquard/pink_rib.webp",
+      "cuff": "wardrobe/jacquard/pink_rib.webp",
+      "edge": "wardrobe/jacquard/pink_rib.webp",
+      "hood_print": "knit/star_lattice/back"
+     }
+    },
+    "purple": {
+     "trims": {
+      "rib": [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      "cord": [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      "aglet": [
+       0.0578,
+       0.0116,
+       0.1812
+      ],
+      "inside": [
+       0.684,
+       0.6518,
+       0.5785
+      ]
+     },
+     "front": "knit/star_lattice/front",
+     "back": "knit/star_lattice/back",
+     "yarns": [
+      [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      [
+       0.2623,
+       0.15,
+       0.552
+      ],
+      [
+       0.0578,
+       0.0116,
+       0.1812
+      ]
+     ],
+     "maps": {
+      "band": "wardrobe/jacquard/purple_rib.webp",
+      "cuff": "wardrobe/jacquard/purple_rib.webp",
+      "edge": "wardrobe/jacquard/purple_rib.webp",
+      "hood_print": "knit/star_lattice/back"
+     }
+    },
+    "navy": {
+     "trims": {
+      "rib": [
+       0.007,
+       0.0097,
+       0.013
+      ],
+      "cord": [
+       0.007,
+       0.0097,
+       0.013
+      ],
+      "aglet": [
+       0.2195,
+       0.2789,
+       0.3372
+      ],
+      "inside": [
+       0.0056,
+       0.0078,
+       0.0104
+      ]
+     },
+     "front": "knit/star_lattice/front",
+     "back": "knit/star_lattice/back",
+     "yarns": [
+      [
+       0.007,
+       0.0097,
+       0.013
+      ],
+      [
+       0.1329,
+       0.1746,
+       0.2195
+      ],
+      [
+       0.2195,
+       0.2789,
+       0.3372
+      ]
+     ],
+     "maps": {
+      "band": "wardrobe/jacquard/navy_rib.webp",
+      "cuff": "wardrobe/jacquard/navy_rib.webp",
+      "edge": "wardrobe/jacquard/navy_rib.webp",
+      "hood_print": "knit/star_lattice/back"
+     }
+    }
+   },
+   "figure": "film"
+  },
+  "jq_damask_blocking": {
+   "hides": [
+    "watch"
+   ],
+   "hood": true,
+   "name": "Damask Blocking Hoodie",
+   "file": "hero_hoodie_film",
+   "embedded": false,
+   "first": null,
+   "colours": {
+    "black": {
+     "trims": {
+      "rib": [
+       0.008,
+       0.008,
+       0.0097
+      ],
+      "cord": [
+       0.008,
+       0.008,
+       0.0097
+      ],
+      "aglet": [
+       0.7605,
+       0.7231,
+       0.6445
+      ],
+      "inside": [
+       0.0064,
+       0.0064,
+       0.0078
+      ],
+      "lining": null
+     },
+     "front": "knit/damask_blocking/front",
+     "back": "knit/damask_blocking/back",
+     "yarns": [
+      [
+       0.008,
+       0.008,
+       0.0097
+      ],
+      [
+       0.305,
+       0.2961,
+       0.2705
+      ],
+      [
+       0.7605,
+       0.7231,
+       0.6445
+      ]
+     ],
+     "maps": {
+      "band": "wardrobe/jacquard/black_rib.webp",
+      "cuff": "wardrobe/jacquard/black_rib.webp",
+      "edge": "wardrobe/jacquard/black_rib.webp",
+      "hood_print": "knit/damask_blocking/back"
+     }
+    },
+    "blue": {
+     "trims": {
+      "rib": [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      "cord": [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      "aglet": [
+       0.008,
+       0.0273,
+       0.2016
+      ],
+      "inside": [
+       0.684,
+       0.6518,
+       0.5785
+      ],
+      "lining": null
+     },
+     "front": "knit/damask_blocking/front",
+     "back": "knit/damask_blocking/back",
+     "yarns": [
+      [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      [
+       0.107,
+       0.2086,
+       0.552
+      ],
+      [
+       0.008,
+       0.0273,
+       0.2016
+      ]
+     ],
+     "maps": {
+      "band": "wardrobe/jacquard/blue_rib.webp",
+      "cuff": "wardrobe/jacquard/blue_rib.webp",
+      "edge": "wardrobe/jacquard/blue_rib.webp",
+      "hood_print": "knit/damask_blocking/back"
+     }
+    },
+    "white": {
+     "trims": {
+      "rib": [
+       0.9387,
+       0.9387,
+       0.9216
+      ],
+      "cord": [
+       0.9387,
+       0.9387,
+       0.9216
+      ],
+      "aglet": [
+       0.6038,
+       0.6308,
+       0.6795
+      ],
+      "inside": [
+       0.751,
+       0.751,
+       0.7373
+      ],
+      "lining": null
+     },
+     "front": "knit/damask_blocking/front",
+     "back": "knit/damask_blocking/back",
+     "yarns": [
+      [
+       0.9387,
+       0.9387,
+       0.9216
+      ],
+      [
+       0.7913,
+       0.807,
+       0.8308
+      ],
+      [
+       0.6038,
+       0.6308,
+       0.6795
+      ]
+     ],
+     "maps": {
+      "band": "wardrobe/jacquard/white_rib.webp",
+      "cuff": "wardrobe/jacquard/white_rib.webp",
+      "edge": "wardrobe/jacquard/white_rib.webp",
+      "hood_print": "knit/damask_blocking/back"
+     }
+    },
+    "pink": {
+     "trims": {
+      "rib": [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      "cord": [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      "aglet": [
+       0.2542,
+       0.008,
+       0.0648
+      ],
+      "inside": [
+       0.684,
+       0.6518,
+       0.5785
+      ],
+      "lining": null
+     },
+     "front": "knit/damask_blocking/front",
+     "back": "knit/damask_blocking/back",
+     "yarns": [
+      [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      [
+       0.6445,
+       0.1274,
+       0.2831
+      ],
+      [
+       0.2542,
+       0.008,
+       0.0648
+      ]
+     ],
+     "maps": {
+      "band": "wardrobe/jacquard/pink_rib.webp",
+      "cuff": "wardrobe/jacquard/pink_rib.webp",
+      "edge": "wardrobe/jacquard/pink_rib.webp",
+      "hood_print": "knit/damask_blocking/back"
+     }
+    },
+    "purple": {
+     "trims": {
+      "rib": [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      "cord": [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      "aglet": [
+       0.0578,
+       0.0116,
+       0.1812
+      ],
+      "inside": [
+       0.684,
+       0.6518,
+       0.5785
+      ],
+      "lining": null
+     },
+     "front": "knit/damask_blocking/front",
+     "back": "knit/damask_blocking/back",
+     "yarns": [
+      [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      [
+       0.2623,
+       0.15,
+       0.552
+      ],
+      [
+       0.0578,
+       0.0116,
+       0.1812
+      ]
+     ],
+     "maps": {
+      "band": "wardrobe/jacquard/purple_rib.webp",
+      "cuff": "wardrobe/jacquard/purple_rib.webp",
+      "edge": "wardrobe/jacquard/purple_rib.webp",
+      "hood_print": "knit/damask_blocking/back"
+     }
+    },
+    "navy": {
+     "trims": {
+      "rib": [
+       0.007,
+       0.0097,
+       0.013
+      ],
+      "cord": [
+       0.007,
+       0.0097,
+       0.013
+      ],
+      "aglet": [
+       0.2195,
+       0.2789,
+       0.3372
+      ],
+      "inside": [
+       0.0056,
+       0.0078,
+       0.0104
+      ],
+      "lining": null
+     },
+     "front": "knit/damask_blocking/front",
+     "back": "knit/damask_blocking/back",
+     "yarns": [
+      [
+       0.007,
+       0.0097,
+       0.013
+      ],
+      [
+       0.1329,
+       0.1746,
+       0.2195
+      ],
+      [
+       0.2195,
+       0.2789,
+       0.3372
+      ]
+     ],
+     "maps": {
+      "band": "wardrobe/jacquard/navy_rib.webp",
+      "cuff": "wardrobe/jacquard/navy_rib.webp",
+      "edge": "wardrobe/jacquard/navy_rib.webp",
+      "hood_print": "knit/damask_blocking/back"
+     }
+    }
+   },
+   "figure": "film"
+  },
+  "jq_hem_cuff_band": {
+   "hides": [
+    "watch"
+   ],
+   "hood": true,
+   "name": "Hem and Cuff Band Hoodie",
+   "file": "hero_hoodie_film",
+   "embedded": false,
+   "first": null,
+   "colours": {
+    "black": {
+     "trims": {
+      "rib": [
+       0.008,
+       0.008,
+       0.0097
+      ],
+      "cord": [
+       0.008,
+       0.008,
+       0.0097
+      ],
+      "aglet": [
+       0.7605,
+       0.7231,
+       0.6445
+      ],
+      "inside": [
+       0.0064,
+       0.0064,
+       0.0078
+      ]
+     },
+     "front": "knit/hem_cuff_band/front",
+     "back": "knit/hem_cuff_band/back",
+     "yarns": [
+      [
+       0.008,
+       0.008,
+       0.0097
+      ],
+      [
+       0.305,
+       0.2961,
+       0.2705
+      ],
+      [
+       0.7605,
+       0.7231,
+       0.6445
+      ]
+     ],
+     "maps": {
+      "band": "wardrobe/jacquard/black_rib.webp",
+      "cuff": "wardrobe/jacquard/black_rib.webp",
+      "edge": "wardrobe/jacquard/black_rib.webp",
+      "hood_print": "knit/hem_cuff_band/back"
+     }
+    },
+    "blue": {
+     "trims": {
+      "rib": [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      "cord": [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      "aglet": [
+       0.008,
+       0.0273,
+       0.2016
+      ],
+      "inside": [
+       0.684,
+       0.6518,
+       0.5785
+      ]
+     },
+     "front": "knit/hem_cuff_band/front",
+     "back": "knit/hem_cuff_band/back",
+     "yarns": [
+      [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      [
+       0.107,
+       0.2086,
+       0.552
+      ],
+      [
+       0.008,
+       0.0273,
+       0.2016
+      ]
+     ],
+     "maps": {
+      "band": "wardrobe/jacquard/blue_rib.webp",
+      "cuff": "wardrobe/jacquard/blue_rib.webp",
+      "edge": "wardrobe/jacquard/blue_rib.webp",
+      "hood_print": "knit/hem_cuff_band/back"
+     }
+    },
+    "white": {
+     "trims": {
+      "rib": [
+       0.9387,
+       0.9387,
+       0.9216
+      ],
+      "cord": [
+       0.9387,
+       0.9387,
+       0.9216
+      ],
+      "aglet": [
+       0.6038,
+       0.6308,
+       0.6795
+      ],
+      "inside": [
+       0.751,
+       0.751,
+       0.7373
+      ]
+     },
+     "front": "knit/hem_cuff_band/front",
+     "back": "knit/hem_cuff_band/back",
+     "yarns": [
+      [
+       0.9387,
+       0.9387,
+       0.9216
+      ],
+      [
+       0.7913,
+       0.807,
+       0.8308
+      ],
+      [
+       0.6038,
+       0.6308,
+       0.6795
+      ]
+     ],
+     "maps": {
+      "band": "wardrobe/jacquard/white_rib.webp",
+      "cuff": "wardrobe/jacquard/white_rib.webp",
+      "edge": "wardrobe/jacquard/white_rib.webp",
+      "hood_print": "knit/hem_cuff_band/back"
+     }
+    },
+    "pink": {
+     "trims": {
+      "rib": [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      "cord": [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      "aglet": [
+       0.2542,
+       0.008,
+       0.0648
+      ],
+      "inside": [
+       0.684,
+       0.6518,
+       0.5785
+      ]
+     },
+     "front": "knit/hem_cuff_band/front",
+     "back": "knit/hem_cuff_band/back",
+     "yarns": [
+      [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      [
+       0.6445,
+       0.1274,
+       0.2831
+      ],
+      [
+       0.2542,
+       0.008,
+       0.0648
+      ]
+     ],
+     "maps": {
+      "band": "wardrobe/jacquard/pink_rib.webp",
+      "cuff": "wardrobe/jacquard/pink_rib.webp",
+      "edge": "wardrobe/jacquard/pink_rib.webp",
+      "hood_print": "knit/hem_cuff_band/back"
+     }
+    },
+    "purple": {
+     "trims": {
+      "rib": [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      "cord": [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      "aglet": [
+       0.0578,
+       0.0116,
+       0.1812
+      ],
+      "inside": [
+       0.684,
+       0.6518,
+       0.5785
+      ]
+     },
+     "front": "knit/hem_cuff_band/front",
+     "back": "knit/hem_cuff_band/back",
+     "yarns": [
+      [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      [
+       0.2623,
+       0.15,
+       0.552
+      ],
+      [
+       0.0578,
+       0.0116,
+       0.1812
+      ]
+     ],
+     "maps": {
+      "band": "wardrobe/jacquard/purple_rib.webp",
+      "cuff": "wardrobe/jacquard/purple_rib.webp",
+      "edge": "wardrobe/jacquard/purple_rib.webp",
+      "hood_print": "knit/hem_cuff_band/back"
+     }
+    },
+    "navy": {
+     "trims": {
+      "rib": [
+       0.007,
+       0.0097,
+       0.013
+      ],
+      "cord": [
+       0.007,
+       0.0097,
+       0.013
+      ],
+      "aglet": [
+       0.2195,
+       0.2789,
+       0.3372
+      ],
+      "inside": [
+       0.0056,
+       0.0078,
+       0.0104
+      ]
+     },
+     "front": "knit/hem_cuff_band/front",
+     "back": "knit/hem_cuff_band/back",
+     "yarns": [
+      [
+       0.007,
+       0.0097,
+       0.013
+      ],
+      [
+       0.1329,
+       0.1746,
+       0.2195
+      ],
+      [
+       0.2195,
+       0.2789,
+       0.3372
+      ]
+     ],
+     "maps": {
+      "band": "wardrobe/jacquard/navy_rib.webp",
+      "cuff": "wardrobe/jacquard/navy_rib.webp",
+      "edge": "wardrobe/jacquard/navy_rib.webp",
+      "hood_print": "knit/hem_cuff_band/back"
+     }
+    }
+   },
+   "figure": "film"
+  },
+  "jq_star_fade": {
+   "hides": [
+    "watch"
+   ],
+   "hood": true,
+   "name": "Star Fade Hoodie",
+   "file": "hero_hoodie_film",
+   "embedded": false,
+   "first": null,
+   "colours": {
+    "black": {
+     "trims": {
+      "rib": [
+       0.008,
+       0.008,
+       0.0097
+      ],
+      "cord": [
+       0.008,
+       0.008,
+       0.0097
+      ],
+      "aglet": [
+       0.7605,
+       0.7231,
+       0.6445
+      ],
+      "inside": [
+       0.0064,
+       0.0064,
+       0.0078
+      ]
+     },
+     "front": "knit/star_fade/front",
+     "back": "knit/star_fade/back",
+     "yarns": [
+      [
+       0.008,
+       0.008,
+       0.0097
+      ],
+      [
+       0.305,
+       0.2961,
+       0.2705
+      ],
+      [
+       0.7605,
+       0.7231,
+       0.6445
+      ]
+     ],
+     "maps": {
+      "band": "wardrobe/jacquard/black_rib.webp",
+      "cuff": "wardrobe/jacquard/black_rib.webp",
+      "edge": "wardrobe/jacquard/black_rib.webp",
+      "hood_print": "knit/star_fade/back"
+     }
+    },
+    "blue": {
+     "trims": {
+      "rib": [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      "cord": [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      "aglet": [
+       0.008,
+       0.0273,
+       0.2016
+      ],
+      "inside": [
+       0.684,
+       0.6518,
+       0.5785
+      ]
+     },
+     "front": "knit/star_fade/front",
+     "back": "knit/star_fade/back",
+     "yarns": [
+      [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      [
+       0.107,
+       0.2086,
+       0.552
+      ],
+      [
+       0.008,
+       0.0273,
+       0.2016
+      ]
+     ],
+     "maps": {
+      "band": "wardrobe/jacquard/blue_rib.webp",
+      "cuff": "wardrobe/jacquard/blue_rib.webp",
+      "edge": "wardrobe/jacquard/blue_rib.webp",
+      "hood_print": "knit/star_fade/back"
+     }
+    },
+    "white": {
+     "trims": {
+      "rib": [
+       0.9387,
+       0.9387,
+       0.9216
+      ],
+      "cord": [
+       0.9387,
+       0.9387,
+       0.9216
+      ],
+      "aglet": [
+       0.6038,
+       0.6308,
+       0.6795
+      ],
+      "inside": [
+       0.751,
+       0.751,
+       0.7373
+      ]
+     },
+     "front": "knit/star_fade/front",
+     "back": "knit/star_fade/back",
+     "yarns": [
+      [
+       0.9387,
+       0.9387,
+       0.9216
+      ],
+      [
+       0.7913,
+       0.807,
+       0.8308
+      ],
+      [
+       0.6038,
+       0.6308,
+       0.6795
+      ]
+     ],
+     "maps": {
+      "band": "wardrobe/jacquard/white_rib.webp",
+      "cuff": "wardrobe/jacquard/white_rib.webp",
+      "edge": "wardrobe/jacquard/white_rib.webp",
+      "hood_print": "knit/star_fade/back"
+     }
+    },
+    "pink": {
+     "trims": {
+      "rib": [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      "cord": [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      "aglet": [
+       0.2542,
+       0.008,
+       0.0648
+      ],
+      "inside": [
+       0.684,
+       0.6518,
+       0.5785
+      ]
+     },
+     "front": "knit/star_fade/front",
+     "back": "knit/star_fade/back",
+     "yarns": [
+      [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      [
+       0.6445,
+       0.1274,
+       0.2831
+      ],
+      [
+       0.2542,
+       0.008,
+       0.0648
+      ]
+     ],
+     "maps": {
+      "band": "wardrobe/jacquard/pink_rib.webp",
+      "cuff": "wardrobe/jacquard/pink_rib.webp",
+      "edge": "wardrobe/jacquard/pink_rib.webp",
+      "hood_print": "knit/star_fade/back"
+     }
+    },
+    "purple": {
+     "trims": {
+      "rib": [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      "cord": [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      "aglet": [
+       0.0578,
+       0.0116,
+       0.1812
+      ],
+      "inside": [
+       0.684,
+       0.6518,
+       0.5785
+      ]
+     },
+     "front": "knit/star_fade/front",
+     "back": "knit/star_fade/back",
+     "yarns": [
+      [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      [
+       0.2623,
+       0.15,
+       0.552
+      ],
+      [
+       0.0578,
+       0.0116,
+       0.1812
+      ]
+     ],
+     "maps": {
+      "band": "wardrobe/jacquard/purple_rib.webp",
+      "cuff": "wardrobe/jacquard/purple_rib.webp",
+      "edge": "wardrobe/jacquard/purple_rib.webp",
+      "hood_print": "knit/star_fade/back"
+     }
+    },
+    "navy": {
+     "trims": {
+      "rib": [
+       0.007,
+       0.0097,
+       0.013
+      ],
+      "cord": [
+       0.007,
+       0.0097,
+       0.013
+      ],
+      "aglet": [
+       0.2195,
+       0.2789,
+       0.3372
+      ],
+      "inside": [
+       0.0056,
+       0.0078,
+       0.0104
+      ]
+     },
+     "front": "knit/star_fade/front",
+     "back": "knit/star_fade/back",
+     "yarns": [
+      [
+       0.007,
+       0.0097,
+       0.013
+      ],
+      [
+       0.1329,
+       0.1746,
+       0.2195
+      ],
+      [
+       0.2195,
+       0.2789,
+       0.3372
+      ]
+     ],
+     "maps": {
+      "band": "wardrobe/jacquard/navy_rib.webp",
+      "cuff": "wardrobe/jacquard/navy_rib.webp",
+      "edge": "wardrobe/jacquard/navy_rib.webp",
+      "hood_print": "knit/star_fade/back"
+     }
+    }
+   },
+   "figure": "film"
+  }
+ },
+ "shorts": {
+  "ivy_shorts_navy": {
+   "name": "Ivy Shorts",
+   "file": "hero_shorts",
+   "baked": true,
+   "colours": {
+    "navy": {}
+   }
+  },
+  "ivy_shorts": {
+   "name": "Ivy Shorts",
+   "colours": {
+    "blue": {
+     "print": "wardrobe/ivy_shorts/blue_print",
+     "band": "wardrobe/ivy_shorts/blue_band.webp",
+     "trims": {
+      "cord": [
+       0.6038,
+       0.5841,
+       0.5395
+      ],
+      "aglet": [
+       0.0075,
+       0.0222,
+       0.1559
+      ],
+      "inside": [
+       0.03,
+       0.05,
+       0.16
+      ]
+     }
+    },
+    "black": {
+     "print": "wardrobe/ivy_shorts/black_print",
+     "band": "wardrobe/ivy_shorts/black_band.webp",
+     "trims": {
+      "cord": [
+       0.0075,
+       0.007,
+       0.008
+      ],
+      "aglet": [
+       0.6308,
+       0.6038,
+       0.5395
+      ],
+      "inside": [
+       0.012,
+       0.012,
+       0.014
+      ]
+     }
+    },
+    "white": {
+     "print": "wardrobe/ivy_shorts/white_print",
+     "band": "wardrobe/ivy_shorts/white_band.webp",
+     "trims": {
+      "cord": [
+       0.807,
+       0.8148,
+       0.7991
+      ],
+      "aglet": [
+       0.5029,
+       0.5149,
+       0.5457
+      ],
+      "inside": [
+       0.35,
+       0.35,
+       0.36
+      ]
+     }
+    },
+    "pink": {
+     "print": "wardrobe/ivy_shorts/pink_print",
+     "band": "wardrobe/ivy_shorts/pink_band.webp",
+     "trims": {
+      "cord": [
+       0.624,
+       0.5776,
+       0.5271
+      ],
+      "aglet": [
+       0.1981,
+       0.0075,
+       0.0529
+      ],
+      "inside": [
+       0.12,
+       0.03,
+       0.05
+      ]
+     }
+    },
+    "purple": {
+     "print": "wardrobe/ivy_shorts/purple_print",
+     "band": "wardrobe/ivy_shorts/purple_band.webp",
+     "trims": {
+      "cord": [
+       0.6105,
+       0.5776,
+       0.5457
+      ],
+      "aglet": [
+       0.0452,
+       0.0097,
+       0.1356
+      ],
+      "inside": [
+       0.06,
+       0.035,
+       0.11
+      ]
+     }
+    }
+   }
+  },
+  "shorts": {
+   "name": "Monogram Shorts",
+   "colours": {
+    "navy": {
+     "print": "wardrobe/shorts/navy_print",
+     "band": "wardrobe/shorts/navy_band.webp",
+     "trims": {}
+    }
+   }
+  },
+  "joggers": {
+   "colours": {
+    "blue": {
+     "print": "wardrobe/joggers/front",
+     "band": "wardrobe/ivy_shorts/blue_band.webp",
+     "yarns": [
+      [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      [
+       0.107,
+       0.2086,
+       0.552
+      ],
+      [
+       0.008,
+       0.0273,
+       0.2016
+      ]
+     ],
+     "maps": {
+      "cuff": "wardrobe/ivy/blue_cuff.webp"
+     },
+     "trims": {
+      "inside": [
+       0.03,
+       0.05,
+       0.16
+      ]
+     }
+    },
+    "black": {
+     "print": "wardrobe/joggers/front",
+     "band": "wardrobe/ivy_shorts/black_band.webp",
+     "yarns": [
+      [
+       0.008,
+       0.008,
+       0.0097
+      ],
+      [
+       0.1274,
+       0.1274,
+       0.1384
+      ],
+      [
+       0.855,
+       0.8148,
+       0.7231
+      ]
+     ],
+     "maps": {
+      "cuff": "wardrobe/ivy/black_cuff.webp"
+     },
+     "trims": {
+      "inside": [
+       0.012,
+       0.012,
+       0.014
+      ]
+     }
+    },
+    "white": {
+     "print": "wardrobe/joggers/front",
+     "band": "wardrobe/ivy_shorts/white_band.webp",
+     "yarns": [
+      [
+       0.9387,
+       0.9387,
+       0.9216
+      ],
+      [
+       0.7913,
+       0.807,
+       0.8308
+      ],
+      [
+       0.6038,
+       0.6308,
+       0.6795
+      ]
+     ],
+     "maps": {
+      "cuff": "wardrobe/ivy/white_cuff.webp"
+     },
+     "trims": {
+      "inside": [
+       0.35,
+       0.35,
+       0.36
+      ]
+     }
+    },
+    "pink": {
+     "print": "wardrobe/joggers/front",
+     "band": "wardrobe/ivy_shorts/pink_band.webp",
+     "yarns": [
+      [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      [
+       0.6445,
+       0.1274,
+       0.2831
+      ],
+      [
+       0.2542,
+       0.008,
+       0.0648
+      ]
+     ],
+     "maps": {
+      "cuff": "wardrobe/ivy/pink_cuff.webp"
+     },
+     "trims": {
+      "inside": [
+       0.12,
+       0.03,
+       0.05
+      ]
+     }
+    },
+    "purple": {
+     "print": "wardrobe/joggers/front",
+     "band": "wardrobe/ivy_shorts/purple_band.webp",
+     "yarns": [
+      [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      [
+       0.2623,
+       0.15,
+       0.552
+      ],
+      [
+       0.0578,
+       0.0116,
+       0.1812
+      ]
+     ],
+     "maps": {
+      "cuff": "wardrobe/ivy/purple_cuff.webp"
+     },
+     "trims": {
+      "inside": [
+       0.06,
+       0.035,
+       0.11
+      ]
+     }
+    }
+   },
+   "name": "Ivy Joggers",
+   "file": "bottom_joggers",
+   "embedded": false,
+   "first": null
+  }
+ },
+ "knit": {
+  "tee_repeat": [
+   75.924,
+   56.301
+  ],
+  "tile_mm": [
+   14.38,
+   13.29
+  ],
+  "shorts_repeat": [
+   84.951,
+   38.515
+  ]
+ },
+ "extras": {
+  "cap": {
+   "name": "Cap",
+   "kind": "hat",
+   "colours": {
+    "white": {}
+   }
+  },
+  "beanie": {
+   "name": "Crest Beanie",
+   "kind": "hat",
+   "file": "extra_beanie",
+   "colours": {
+    "navy": {
+     "maps": {
+      "beanie_print": "wardrobe/beanie/navy"
+     },
+     "trims": {
+      "inside": [
+       0.007,
+       0.0097,
+       0.013
+      ]
+     }
+    }
+   }
+  },
+  "scarf": {
+   "name": "Ivy Scarf",
+   "kind": "scarf",
+   "file": "extra_scarf",
+   "fileHood": "extra_scarf_hood",
+   "colours": {
+    "blue": {
+     "yarns": [
+      [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      [
+       0.107,
+       0.2086,
+       0.552
+      ],
+      [
+       0.008,
+       0.0273,
+       0.2016
+      ]
+     ],
+     "reverse": true,
+     "palette": [
+      "scarf_print"
+     ],
+     "maps": {
+      "scarf_print": "wardrobe/scarf/face",
+      "scarf_rib": "wardrobe/ivy/blue_scarfrib.webp"
+     }
+    },
+    "black": {
+     "yarns": [
+      [
+       0.008,
+       0.008,
+       0.0097
+      ],
+      [
+       0.1274,
+       0.1274,
+       0.1384
+      ],
+      [
+       0.855,
+       0.8148,
+       0.7231
+      ]
+     ],
+     "reverse": true,
+     "palette": [
+      "scarf_print"
+     ],
+     "maps": {
+      "scarf_print": "wardrobe/scarf/face",
+      "scarf_rib": "wardrobe/ivy/black_scarfrib.webp"
+     }
+    },
+    "white": {
+     "yarns": [
+      [
+       0.9387,
+       0.9387,
+       0.9216
+      ],
+      [
+       0.7913,
+       0.807,
+       0.8308
+      ],
+      [
+       0.6038,
+       0.6308,
+       0.6795
+      ]
+     ],
+     "reverse": true,
+     "palette": [
+      "scarf_print"
+     ],
+     "maps": {
+      "scarf_print": "wardrobe/scarf/face",
+      "scarf_rib": "wardrobe/ivy/white_scarfrib.webp"
+     }
+    },
+    "pink": {
+     "yarns": [
+      [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      [
+       0.6445,
+       0.1274,
+       0.2831
+      ],
+      [
+       0.2542,
+       0.008,
+       0.0648
+      ]
+     ],
+     "reverse": true,
+     "palette": [
+      "scarf_print"
+     ],
+     "maps": {
+      "scarf_print": "wardrobe/scarf/face",
+      "scarf_rib": "wardrobe/ivy/pink_scarfrib.webp"
+     }
+    },
+    "purple": {
+     "yarns": [
+      [
+       0.855,
+       0.8148,
+       0.7231
+      ],
+      [
+       0.2623,
+       0.15,
+       0.552
+      ],
+      [
+       0.0578,
+       0.0116,
+       0.1812
+      ]
+     ],
+     "reverse": true,
+     "palette": [
+      "scarf_print"
+     ],
+     "maps": {
+      "scarf_print": "wardrobe/scarf/face",
+      "scarf_rib": "wardrobe/ivy/purple_scarfrib.webp"
+     }
+    }
+   }
+  }
+ }
+}
