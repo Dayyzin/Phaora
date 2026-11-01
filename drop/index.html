@@ -342,14 +342,11 @@ html[data-type="mix"] .label, html[data-type="mix"] .spec dt, html[data-type="mi
 .street .place{margin:10svh 0 14px; font-size:clamp(40px, 13vw, 110px); line-height:.9}
 .street > .reg:first-child > .open > .place{margin-top:0}
 /* the place names, two rows each (David: "BRA / ZIL, PA / RIS, LON / DON"), huge, in Six Caps, the tall
-   magazine gothic (David picked it from the sheet, 1 Nov). White where they stand on the page, black where they cross
-   the photograph, a hard change at the photograph's edge, no fade, no glow (David: "no fade on the region letters,
-   just black on the photo, and white on top"). --cut is that edge, measured by cutNames() */
+   magazine gothic (David picked it from the sheet, 1 Nov). All white, on the page and over the photograph (David,
+   1 Nov: "All white lettering for the country names"), no fade, no glow. */
 .street .place[data-reg]{position:relative; z-index:6; margin:14svh 0 -.72em; line-height:.86;
   font-family:"Six Caps", "Arial Narrow", sans-serif; font-weight:400; letter-spacing:.01em; font-variation-settings:normal;
-  color:transparent; -webkit-text-fill-color:transparent; pointer-events:none;
-  background-image:linear-gradient(180deg, #F4F8FA 0, #F4F8FA var(--cut, 50%), #03080D var(--cut, 50%), #03080D 100%);
-  -webkit-background-clip:text; background-clip:text}
+  color:#F4F8FA; -webkit-text-fill-color:#F4F8FA; pointer-events:none}
 /* DON shorter than LON, tucked in under it (David: "shorten DON to inside the yellow box") */
 .street .place[data-reg="london"]{margin-bottom:-.64em}
 .street .hlstack{display:grid}
