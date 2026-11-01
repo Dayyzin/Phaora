@@ -2,6 +2,21 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
     {
+      "source": "/drop",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/drop/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/drop/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
       "source": "/affiliate",
       "destination": "/partners",
       "permanent": true
@@ -63,6 +78,54 @@
     }
   ],
   "rewrites": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "phaoralandscape.com"
+        }
+      ],
+      "destination": "/home-landscape.html"
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.phaoralandscape.com"
+        }
+      ],
+      "destination": "/home-landscape.html"
+    },
+    {
+      "source": "/index.html",
+      "has": [
+        {
+          "type": "host",
+          "value": "phaoralandscape.com"
+        }
+      ],
+      "destination": "/home-landscape.html"
+    },
+    {
+      "source": "/index.html",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.phaoralandscape.com"
+        }
+      ],
+      "destination": "/home-landscape.html"
+    },
+    {
+      "source": "/",
+      "destination": "/home-drop.html"
+    },
+    {
+      "source": "/index.html",
+      "destination": "/home-drop.html"
+    },
     {
       "source": "/blog",
       "destination": "https://crm.phaora.com/blog"
