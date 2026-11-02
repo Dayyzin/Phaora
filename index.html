@@ -430,9 +430,8 @@ html[data-type="mix"] .label, html[data-type="mix"] .spec dt, html[data-type="mi
   left:var(--px); transform:translateX(calc(-1 * var(--px))); pointer-events:none; clip-path:var(--pc, none)}
 /* Paris 5: its left side fades out, the hood and the frame together (David: "Fade this part") */
 .street .cl figure.pop > img{-webkit-mask-image:var(--pm, none); mask-image:var(--pm, none)}
-/* Paris 5 alone: the figure cut out whole, no photograph behind him, grown to fill the space under Paris 3 (David, 2 Nov:
-   "Photo squared pops out to the full yellow surrounding it. Screw the background") */
-.street .cl figure.pop.solo > img{clip-path:none}
+/* Paris 5 grown to the space under Paris 3, his photograph kept behind him and reaching to the top and right of his
+   frame (David, 2 Nov: "Keep background, to the top right more"); he steps out of it at the left and the foot */
 /* Paris 2 runs to the page's left edge, its left side pan-blurred like the night walk (David: "Motion blur this one
    like the first we ever did") */
 /* flush under Paris 1: no fade at its top (David: "Raise this photo up more closer to the top one") */
@@ -597,8 +596,23 @@ html, body{overflow-x:clip}
   background:
     radial-gradient(80% var(--r1) at 50% var(--c1), #16283A 0%, #0A1520 40%, rgba(3,8,13,0) 80%),
     radial-gradient(80% var(--r2) at 50% var(--c2), #16283A 0%, #0A1520 40%, rgba(3,8,13,0) 80%),
-    radial-gradient(80% var(--r3) at 50% var(--c3), #231A1C 0%, #1B1316 40%, rgba(22,15,18,0) 80%),
-    linear-gradient(to bottom, #03080D 0, #03080D calc(var(--bz) - 70px), #160F12 calc(var(--bz) + 70px), #160F12 calc(100% - 140px), #03080D 100%)}
+    radial-gradient(80% var(--r3) at 50% var(--c3), #5E1520 0%, #52111A 40%, rgba(74,14,23,0) 80%),
+    linear-gradient(to bottom, #03080D 0, #03080D calc(var(--bz) - 70px), #4A0E17 calc(var(--bz) + 70px), #4A0E17 calc(100% - 140px), #03080D 100%)}
+/* Paris stands over a blurred night photograph of the Eiffel Tower (David, 2 Nov: "This background can be a blurred
+   photo of the country touristic point... let's try it?"), fading out before London */
+.street{position:relative; isolation:isolate; --lb:1000px}
+.street::after{content:""; position:absolute; left:0; right:0; top:0; height:var(--lb); z-index:-1; pointer-events:none;
+  background:url(drop/assets/paris-bg.webp) center top / contain no-repeat}   /* the whole photograph, never cropped */
+/* Brazil on a deep oxblood red, scattered with thick knitted heart outlines in a lighter red, one style at different
+   sizes, each tilted a little left or right (David, 2 Nov, from a jacquard sweater: "This in a lighter red than the
+   background"; "different sizes, not styles. And never straight, slightly angled left and right"; "make them thick") */
+.street::before{content:""; position:absolute; left:0; right:0; top:var(--bz); bottom:0; z-index:-1; pointer-events:none;
+  background:url(drop/assets/hearts-knit.webp) repeat; background-size:1000px auto;
+  -webkit-mask-image:linear-gradient(to bottom, transparent, #000 220px); mask-image:linear-gradient(to bottom, transparent, #000 220px)}
+/* the closing line sits in a panel pressed into the ground (David: "Deboss the background make it go down") */
+.street .next{position:relative; margin-inline:calc(-1 * max(20px, env(safe-area-inset-left,0px))); padding:30px max(20px, env(safe-area-inset-left,0px)) 32px;
+  background:rgba(8,4,6,.38); box-shadow:inset 0 4px 10px rgba(0,0,0,.7), inset 0 1px 2px rgba(0,0,0,.8), inset 0 -1px 0 rgba(255,214,220,.06), 0 1px 0 rgba(255,214,220,.05)}
+@media(min-width:900px){ .street .next{margin-inline:0; padding-inline:clamp(24px, 3vw, 48px); border-radius:4px} }
 .knit{position:relative; isolation:isolate}
 .knit::before{content:""; position:absolute; inset:0; z-index:-1; background:url(drop/assets/chart.png) repeat; background-size:132px auto; opacity:.07; pointer-events:none;
   -webkit-mask-image:linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent); mask-image:linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent)}
@@ -684,8 +698,8 @@ html, body{overflow-x:clip}
     <div class="cl">
       <figure class="bleedl" style="grid-area:1 / 1 / 11 / 13; z-index:1"><img style="object-position:62% 50%" src="drop/assets/street-05-f.webp" width="1681" height="1401" decoding="async" alt="Leaning on a stone balustrade at night, a lit lamp and the river behind" loading="lazy"></figure>
       <figure style="grid-area:8 / 1 / 16 / 7; z-index:2"><img style="object-position:42% 35%" src="drop/assets/street-08-f.webp" width="1054" height="1405" decoding="async" alt="Looking back over her shoulder at dusk, a lamp and a domed building behind" loading="lazy"></figure>
-      <figure class="pop" style="grid-area:12 / 7 / 20 / 13; z-index:1; --pi:0 2% 22% 0; --px:45%"><img style="object-position:45% 50%" src="drop/assets/street-04-f.webp" width="1254" height="1254" decoding="async" alt="Hood up beside a stone column at night, under a lit street lamp" loading="lazy"><img class="popfig" src="drop/assets/pop-04.webp" width="1254" height="1254" alt="" aria-hidden="true" loading="lazy" decoding="async"></figure>
-      <figure class="pop solo" style="grid-area:16 / 1 / 28 / 10; z-index:2; --px:50%"><img class="popfig" src="drop/assets/pop-06.webp" width="1094" height="1406" alt="The hood up, close: the emblem across it, the face in its shadow" loading="lazy" decoding="async"></figure>
+      <figure class="pop" style="grid-area:12 / 7 / 20 / 13; z-index:3; --pi:0 2% 22% 0; --px:45%"><img style="object-position:45% 50%" src="drop/assets/street-04-f.webp" width="1254" height="1254" decoding="async" alt="Hood up beside a stone column at night, under a lit street lamp" loading="lazy"><img class="popfig" src="drop/assets/pop-04.webp" width="1254" height="1254" alt="" aria-hidden="true" loading="lazy" decoding="async"></figure>
+      <figure class="pop" style="grid-area:16 / 1 / 28 / 10; z-index:2; --pi:0 0 20% 10%; --px:50%; --pm:linear-gradient(to right, transparent 0, #000 12%)"><img style="object-position:50% 30%" src="drop/assets/street-06-f.webp" width="1094" height="1406" decoding="async" alt="The hood up, close: the emblem across it, the face in its shadow" loading="lazy"><img class="popfig" src="drop/assets/pop-06.webp" width="1094" height="1406" alt="" aria-hidden="true" loading="lazy" decoding="async"></figure>
     </div>
     <figure class="one bleed"><img style="object-position:55% 50%" src="drop/assets/street-07-f.webp" width="1412" height="1402" decoding="async" alt="Walking away across wet stone at night, hood up, a lit colonnade behind" loading="lazy"></figure>
     </div></div>
@@ -1513,6 +1527,7 @@ html, body{overflow-x:clip}
       st.style.setProperty("--r" + (i + 1), Math.round((z[1] - z[0]) / 2 / .8) + "px");
     });
     st.style.setProperty("--bz", Math.round(B) + "px");
+    st.style.setProperty("--lb", Math.round(L) + "px");
   }
   var queued = false;
   function soon(){ if (queued) return; queued = true; requestAnimationFrame(function(){ queued = false; place(); }); }
