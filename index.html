@@ -596,23 +596,35 @@ html, body{overflow-x:clip}
   background:
     radial-gradient(80% var(--r1) at 50% var(--c1), #16283A 0%, #0A1520 40%, rgba(3,8,13,0) 80%),
     radial-gradient(80% var(--r2) at 50% var(--c2), #16283A 0%, #0A1520 40%, rgba(3,8,13,0) 80%),
-    radial-gradient(80% var(--r3) at 50% var(--c3), #5E1520 0%, #52111A 40%, rgba(74,14,23,0) 80%),
-    linear-gradient(to bottom, #03080D 0, #03080D calc(var(--bz) - 70px), #4A0E17 calc(var(--bz) + 70px), #4A0E17 calc(100% - 140px), #03080D 100%)}
+    radial-gradient(80% var(--r3) at 50% var(--c3), #360906 0%, #300806 40%, rgba(43,7,5,0) 80%),
+    linear-gradient(to bottom, #03080D 0, #03080D var(--bz), #2B0705 var(--bz), #2B0705 100%)}
 /* Paris stands over a blurred night photograph of the Eiffel Tower (David, 2 Nov: "This background can be a blurred
    photo of the country touristic point... let's try it?"), fading out before London */
 .street{position:relative; isolation:isolate; --lb:1000px}
-.street::after{content:""; position:absolute; left:0; right:0; top:0; height:var(--lb); z-index:-1; pointer-events:none;
-  background:url(drop/assets/paris-bg.webp) center top / contain no-repeat}   /* the whole photograph, never cropped */
-/* Brazil on a deep oxblood red, scattered with thick knitted heart outlines in a lighter red, one style at different
+/* the whole photograph behind the Paris section, its sky filled with the city's own lights so no part of it reads as the
+   page's navy, stretched down the section's length and smeared straight down as London 3 is (David, 2 Nov: "super
+   stretched and blurry"; "must all be covered in image or scenery") */
+.street .parisbg{position:absolute; left:0; right:0; top:0; height:calc(var(--lb) + 160px); z-index:-1; pointer-events:none;
+  -webkit-mask-image:linear-gradient(to bottom, transparent, #000 120px, #000 calc(100% - 140px), transparent);
+  mask-image:linear-gradient(to bottom, transparent, #000 120px, #000 calc(100% - 140px), transparent)}
+/* two photographs, not one stretched the whole length: the Eiffel scene on the top half, a second Paris scene on the
+   lower, overlapping a little and blended where they meet; the backdrop runs on past the last photograph */
+.street .parisbg i{position:absolute; left:0; right:0; display:block; background:center / 100% 100% no-repeat}
+.street .parisbg i.a{top:0; height:56%; background-image:url(drop/assets/paris-a.webp)}
+.street .parisbg i.b{bottom:0; height:56%; background-image:url(drop/assets/paris-b.webp);
+  -webkit-mask-image:linear-gradient(to bottom, transparent, #000 16%); mask-image:linear-gradient(to bottom, transparent, #000 16%)}
+/* Brazil on a deep oxblood, darker than the swatch (#2B0705: David, 2 Nov, "Make the red darker"), its whole section
+   pressed into the page, with thick knitted heart outlines in Dark Red #7F170E ("deboss the section of BRAZIL not 15
+   pieces"), each heart laid where it shows, in the open ground between the photographs ("Make sure you can see the
+   hearts with the placements"), one style at different
    sizes, each tilted a little left or right (David, 2 Nov, from a jacquard sweater: "This in a lighter red than the
    background"; "different sizes, not styles. And never straight, slightly angled left and right"; "make them thick") */
 .street::before{content:""; position:absolute; left:0; right:0; top:var(--bz); bottom:0; z-index:-1; pointer-events:none;
-  background:url(drop/assets/hearts-knit.webp) repeat; background-size:1000px auto;
-  -webkit-mask-image:linear-gradient(to bottom, transparent, #000 220px); mask-image:linear-gradient(to bottom, transparent, #000 220px)}
-/* the closing line sits in a panel pressed into the ground (David: "Deboss the background make it go down") */
-.street .next{position:relative; margin-inline:calc(-1 * max(20px, env(safe-area-inset-left,0px))); padding:30px max(20px, env(safe-area-inset-left,0px)) 32px;
-  background:rgba(8,4,6,.38); box-shadow:inset 0 4px 10px rgba(0,0,0,.7), inset 0 1px 2px rgba(0,0,0,.8), inset 0 -1px 0 rgba(255,214,220,.06), 0 1px 0 rgba(255,214,220,.05)}
-@media(min-width:900px){ .street .next{margin-inline:0; padding-inline:clamp(24px, 3vw, 48px); border-radius:4px} }
+  /* a dark filter over the red and its hearts, cast toward the page's navy, deepest at the edges, so Brazil keeps the
+     night the blue sections have (David, 2 Nov: "throw a dark filter to kind of keep the moody feel of the blue") */
+  background:radial-gradient(120% 70% at 50% 45%, rgba(3,8,13,.34) 0%, rgba(3,8,13,.5) 60%, rgba(3,8,13,.74) 100%);
+  box-shadow:inset 0 22px 30px -10px rgba(0,0,0,.85), inset 0 3px 4px -1px rgba(0,0,0,.7), inset 0 -18px 26px -12px rgba(0,0,0,.55),
+    inset 16px 0 24px -14px rgba(0,0,0,.5), inset -16px 0 24px -14px rgba(0,0,0,.5), inset 0 -1px 0 rgba(255,190,180,.12)}
 .knit{position:relative; isolation:isolate}
 .knit::before{content:""; position:absolute; inset:0; z-index:-1; background:url(drop/assets/chart.png) repeat; background-size:132px auto; opacity:.07; pointer-events:none;
   -webkit-mask-image:linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent); mask-image:linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent)}
@@ -632,6 +644,12 @@ html, body{overflow-x:clip}
 #specs.knit::before{-webkit-mask-image:linear-gradient(to bottom, #000 0, transparent 55%); mask-image:linear-gradient(to bottom, #000 0, transparent 55%)}
 /* on wide screens the label's hoodie rises behind the register's button: clicks go through it to the button */
 .labelsec.spread .still{pointer-events:none}
+/* the hearts, each its own piece so each takes its own tilt, under the section's pressed lip */
+.street .hearts{position:absolute; left:0; right:0; top:var(--bz); bottom:0; z-index:-2; pointer-events:none; overflow:hidden}
+.street .hearts i{position:absolute; background:center / 100% 100% no-repeat}
+/* Brazil's photographs knitted into the ground, not faded (David, 2 Nov: "Knit the image itself to the background";
+   "That's the knitting I wanted"): each photograph's outer four stitches are knit stitches in its own colours, turning
+   to the oxblood and dropping stitches at the very edge. Baked into the files (street-NN-k.webp, fx/knitin.py). */
 /* the register under the eye is a column on wide screens: its light and its knit run the whole width, never a card */
 .watch{position:relative; isolation:isolate; background:none}
 .watch::after{content:""; position:absolute; top:0; bottom:0; left:50%; width:100vw; transform:translateX(-50%); z-index:-2; pointer-events:none;
@@ -713,24 +731,24 @@ html, body{overflow-x:clip}
     </div></div>
     <div class="reg" data-r="brazil"><div class="open">
     <h2 class="place fit" data-reg="brazil"><span class="ln">Bra</span><span class="ln">zil</span></h2>
-    <div class="hlstack"><figure class="hl full"><img src="drop/assets/street-16.webp" width="1254" height="1254" alt="From behind, long hair over the emblem across her back" loading="lazy"></figure><figure class="hl full cut" aria-hidden="true"><img src="drop/assets/cut-16.webp" width="1254" height="1254" alt="" loading="lazy" decoding="async"></figure></div>
+    <div class="hlstack"><figure class="hl full"><img src="drop/assets/street-16-k.webp" width="1254" height="1254" alt="From behind, long hair over the emblem across her back" loading="lazy"></figure><figure class="hl full cut" aria-hidden="true"><img src="drop/assets/cut-16.webp" width="1254" height="1254" alt="" loading="lazy" decoding="async"></figure></div>
     </div><div class="rest">
     <div class="lw">
-      <figure><img src="drop/assets/street-11-full.webp" width="1254" height="1254" decoding="async" alt="A mirror selfie in a white hallway, the hoodie oversized" loading="lazy"></figure>
+      <figure><img src="drop/assets/street-11-k.webp" width="1254" height="1254" decoding="async" alt="A mirror selfie in a white hallway, the hoodie oversized" loading="lazy"></figure>
     </div>
     <div class="lw duo" style="grid-template-columns:minmax(0,750fr) minmax(0,636fr)">
-      <figure><img src="drop/assets/street-18-f.webp" width="940" height="1254" decoding="async" alt="Laughing behind her sleeve, the knit close" loading="lazy"></figure>
-      <figure><img src="drop/assets/street-14-f.webp" width="891" height="1402" decoding="async" alt="Sitting on the curved concrete steps at night, looking away, the quarter zip open" loading="lazy"></figure>
+      <figure><img src="drop/assets/street-18-k.webp" width="940" height="1254" decoding="async" alt="Laughing behind her sleeve, the knit close" loading="lazy"></figure>
+      <figure><img src="drop/assets/street-14-k.webp" width="891" height="1402" decoding="async" alt="Sitting on the curved concrete steps at night, looking away, the quarter zip open" loading="lazy"></figure>
     </div>
     <div class="lw">
-      <figure><img src="drop/assets/street-19-f.webp" width="1672" height="941" decoding="async" alt="Two friends close to the camera at night, one in the hoodie, the knit on her shoulder" loading="lazy"></figure>
+      <figure><img src="drop/assets/street-19-k.webp" width="1672" height="941" decoding="async" alt="Two friends close to the camera at night, one in the hoodie, the knit on her shoulder" loading="lazy"></figure>
     </div>
     <div class="lw">
-      <figure class="pair2"><img src="drop/assets/street-gru-f.webp" width="1448" height="1086" decoding="async" alt="At the gate in São Paulo, a drink in hand, the planes outside" loading="lazy"><img class="pass" src="drop/assets/street-pass-bw.webp" width="1072" height="1086" alt="The boarding pass, São Paulo to Paris" loading="lazy"></figure>
+      <figure class="pair2"><img src="drop/assets/street-gru-k.webp" width="1448" height="1086" decoding="async" alt="At the gate in São Paulo, a drink in hand, the planes outside" loading="lazy"><img class="pass" src="drop/assets/street-pass-bw.webp" width="1072" height="1086" alt="The boarding pass, São Paulo to Paris" loading="lazy"></figure>
     </div>
     <div class="lw duo" style="grid-template-columns:minmax(0,1000fr) minmax(0,750fr)">
-      <figure><img src="drop/assets/street-15-f.webp" width="624" height="624" decoding="async" alt="From below, hair across her face, the hood down, a friend at the edge of the frame" loading="lazy"></figure>
-      <figure><img src="drop/assets/street-09-f.webp" width="1086" height="1448" decoding="async" alt="On a plane at night, the sleeve pulled up to her face, looking out of the window" loading="lazy"><figcaption class="label">Brazil → Paris</figcaption></figure>
+      <figure><img src="drop/assets/street-15-k.webp" width="624" height="624" decoding="async" alt="From below, hair across her face, the hood down, a friend at the edge of the frame" loading="lazy"></figure>
+      <figure><img src="drop/assets/street-09-k.webp" width="1086" height="1448" decoding="async" alt="On a plane at night, the sleeve pulled up to her face, looking out of the window" loading="lazy"><figcaption class="label">Brazil → Paris</figcaption></figure>
     </div>
     </div></div>
     <div class="next">
@@ -1528,7 +1546,50 @@ html, body{overflow-x:clip}
     });
     st.style.setProperty("--bz", Math.round(B) + "px");
     st.style.setProperty("--lb", Math.round(L) + "px");
+    hearts(s, B, H);
   }
+  /* Brazil's knitted hearts, each laid where it shows: tried at every spot of the section, a heart is kept only where the
+     photographs and the name cover no more than an eighth of it and it stands clear of the hearts already laid; of the
+     spots left, one is drawn at random, and each heart takes its own tilt, left or right at random, never straight
+     (David: "Randomize the heart angles"). The same draw for the same screen width, so a reload does not reshuffle. */
+  var SIZES = [210, 180, 160, 140, 125, 110, 95, 85], ART = { L: [.906, 150], M: [.953, 110], S: [.982, 0] }, laid = "", box = null;
+  function hearts(s, B, H){
+    var W = s.width, top = s.top + B, R = H - B, obs = [];
+    st.querySelectorAll('figure, .place[data-reg="brazil"] .ln').forEach(function(e){
+      var r = e.getBoundingClientRect(); if (!r.width || !r.height) return;
+      var ty = 0; try { ty = new DOMMatrixReadOnly(getComputedStyle(e).transform).m42; } catch (x) {}
+      obs.push([r.left - s.left, r.top - ty - top, r.right - s.left, r.bottom - ty - top]);
+    });
+    var key = Math.round(W) + ":" + Math.round(R) + ":" + obs.map(function(o){ return o.map(Math.round).join(","); }).join(";");
+    if (key === laid) return; laid = key;
+    var seed = Math.round(W) * 7919 + 17, rand = function(){ seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; };
+    var list = W >= 900 ? SIZES.concat(SIZES) : SIZES, placed = [], html = "";
+    list.forEach(function(w){
+      var art = w >= ART.L[1] ? "L" : w >= ART.M[1] ? "M" : "S", h = w * ART[art][0];
+      var deg = (rand() < .5 ? -1 : 1) * (5 + rand() * 12), rad = Math.abs(deg) * Math.PI / 180;
+      var bw = w * Math.cos(rad) + h * Math.sin(rad), bh = w * Math.sin(rad) + h * Math.cos(rad), ok = [];
+      for (var y = 8; y + bh * .75 < R; y += 12) for (var x = -bw * .25; x + bw * .75 <= W; x += 12){
+        var cov = 0;
+        for (var i = 0; i < obs.length; i++){ var o = obs[i];
+          cov += Math.max(0, Math.min(x + bw, o[2]) - Math.max(x, o[0])) * Math.max(0, Math.min(y + bh, o[3]) - Math.max(y, o[1])); }
+        if (cov > bw * bh / 8) continue;
+        var clash = false;
+        for (var j = 0; j < placed.length; j++){ var p = placed[j];
+          if (x < p[0] + p[2] + 28 && p[0] < x + bw + 28 && y < p[1] + p[3] + 28 && p[1] < y + bh + 28){ clash = true; break; } }
+        if (!clash) ok.push([x, y]);
+      }
+      if (!ok.length) return;
+      var q = ok[Math.floor(rand() * ok.length)];
+      placed.push([q[0], q[1], bw, bh]);
+      html += '<i style="left:' + Math.round(q[0] + (bw - w) / 2) + 'px; top:' + Math.round(q[1] + (bh - h) / 2) + 'px; width:' + w + 'px; height:' +
+        Math.round(h) + 'px; transform:rotate(' + deg.toFixed(1) + 'deg); background-image:url(drop/assets/heart-' + art + '.webp)"></i>';
+    });
+    if (!box){ box = document.createElement("div"); box.className = "hearts"; box.setAttribute("aria-hidden", "true"); st.appendChild(box); }
+    box.innerHTML = html;
+  }
+  /* Paris's photograph, behind its section */
+  (function(){ var pb = document.createElement("div"); pb.className = "parisbg"; pb.setAttribute("aria-hidden", "true");
+    ["a", "b"].forEach(function(c){ var i = document.createElement("i"); i.className = c; pb.appendChild(i); }); st.appendChild(pb); })();
   var queued = false;
   function soon(){ if (queued) return; queued = true; requestAnimationFrame(function(){ queued = false; place(); }); }
   if ("ResizeObserver" in window) new ResizeObserver(soon).observe(st);
