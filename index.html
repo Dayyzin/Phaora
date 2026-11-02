@@ -604,7 +604,9 @@ html, body{overflow-x:clip}
    wide as its photograph's shape) */
 .street .reg[data-r="brazil"] .hlstack .hl{margin-bottom:0}
 .street .duo{grid-template-rows:auto; align-items:start}
-.street .duo figcaption{margin:10px 0 0}
+.street .duo figure{position:relative}
+/* the caption sits inside the plane photo, bottom right (David, 2 Nov: "Brazil > Paris put inside the photo on the bottom right"), in from the photo's faded edge */
+.street .duo figcaption{position:absolute; right:9%; bottom:9%; margin:0; color:var(--text); text-shadow:0 1px 2px rgba(3,8,13,.9), 0 0 14px rgba(3,8,13,.8); pointer-events:none}
 /* the register's knit runs on up into the chart and down into the label, fading out at both ends (David: "Stretch this
    to above and bottom section ... fade it"); one weave across the three, its rows lined up by --ky */
 #chart.knit::before, #specs.knit::before, .watch.knit::before{background-position:center var(--ky, 0px)}
