@@ -667,13 +667,26 @@ html, body{overflow-x:clip}
   background:radial-gradient(90% 50% at 50% 50%, #16283A 0%, #0A1520 45%, #03080D 85%)}
 .watch.knit::before{left:50%; right:auto; width:100vw; transform:translateX(-50%)}
 /* the register pop-up: the page's own card, line and knit, over a dimmed, softened page */
-.regpop{position:fixed; inset:0; z-index:50; display:grid; place-items:center; padding:16px; background:rgba(3,8,13,.72);
+.regpop{position:fixed; inset:0; z-index:50; display:flex; align-items:center; justify-content:center; gap:clamp(16px, 3vw, 48px); padding:16px; background:rgba(3,8,13,.72);
   -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); opacity:0; transition:opacity .35s}
 .regpop[hidden]{display:none}
 .regpop.on{opacity:1}
 .regpop-card{position:relative; width:min(100%, 440px); background:var(--card); border:1px solid var(--line); padding:44px 24px 24px;
   display:grid; gap:12px; justify-items:center; text-align:center; transform:translateY(14px); transition:transform .35s; outline:none}
 .regpop.on .regpop-card{transform:none}
+/* two big crests, the register between them (David, 2 Nov: "make the register two big crests and in the middle the
+   register"); on a phone they stand behind the card's sides, its card see-through enough to show them */
+.regpop-crest{flex:none; height:min(78svh, 680px, calc((100vw - 560px) / 1.2)); width:auto; pointer-events:none;
+  filter:drop-shadow(0 0 28px rgba(221,238,244,.16)); transform:scale(.96); transition:transform .5s}
+.regpop.on .regpop-crest{transform:none}
+.regpop .regpop-card{z-index:1; flex:none}
+@media(max-width:899px){
+  .regpop-crest{position:absolute; top:50%; height:min(64svh, 560px); opacity:.5; transform:translateY(-50%) scale(.96)}
+  .regpop.on .regpop-crest{transform:translateY(-50%)}
+  .regpop-crest:first-child{right:calc(50% + 70px)}
+  .regpop-crest:last-child{left:calc(50% + 70px)}
+  .regpop .regpop-card{background:rgba(14,24,34,.86)}
+}
 .regpop-x{position:absolute; top:4px; right:4px; width:44px; height:44px; border:0; background:none; color:var(--label); font-size:28px; line-height:1; cursor:pointer}
 .regpop-x:hover, .regpop-x:focus-visible{color:var(--ice)}
 .regpop h2{font-family:var(--disp); font-weight:var(--dweight); text-transform:var(--dcase); letter-spacing:var(--dtrack); font-size:clamp(32px, 9vw, 44px); line-height:1; color:var(--ice); margin:0}
@@ -902,6 +915,7 @@ html, body{overflow-x:clip}
 
 <!-- the register as a pop-up for visitors at the top of the page (David, 2 Nov: "add pop up for register as they on top") -->
 <div class="regpop" id="regpop" role="dialog" aria-modal="true" aria-labelledby="regpop-h" hidden>
+  <img class="regpop-crest" src="drop/assets/crest-silver.webp" width="600" height="985" alt="" aria-hidden="true" decoding="async">
   <div class="regpop-card knit" tabindex="-1">
     <button class="regpop-x" type="button" aria-label="Close">&times;</button>
     <span class="label">Drop 001</span>
@@ -916,6 +930,7 @@ html, body{overflow-x:clip}
     </form>
     <p class="msg" id="popmsg" aria-live="polite"></p>
   </div>
+  <img class="regpop-crest" src="drop/assets/crest-silver.webp" width="600" height="985" alt="" aria-hidden="true" decoding="async">
 </div>
 
 <script>
