@@ -705,8 +705,8 @@ html, body{overflow-x:clip}
 /* on a wide screen the register fills the space between the crests and comes out of them (David's red line, 2 Nov:
    "Like my redline"; "they need to touch the crest like it's coming out of it"): its sides are each crest's own outline,
    measured row by row from the crest's image and taken 10 px inside it, so the register runs on under the crest's edge
-   with no gap; the crests join into one in the middle, then part, the register opening between them ("Animate it, 2
-   crests, combined form one, then they open revealing the register") */
+   with no gap; the crests start together in the middle as one, then split, the register opening between them ("make the two
+   crest together in the middle, and as they split they reveal") */
 @media(min-width:900px){
   .regpop-set{--cw:min(19vw, 280px, calc((100svh - 80px) / 1.72)); --d:calc(240px + var(--cw) / 2); grid-template-columns:var(--cw) 480px var(--cw)}
   .regpop-set .cr{position:relative; z-index:2}
@@ -1769,14 +1769,14 @@ html, body{overflow-x:clip}
   if (done()) return;
   function open(){
     if (shown || done()) return; shown = true;
+    /* the crests start together in the middle, as one (David, 2 Nov: "make the two crest together in the middle, and as
+       they split they reveal") */
+    if (!still) pop.classList.add("join");
     pop.hidden = false; requestAnimationFrame(function(){ pop.classList.add("on"); });
     document.documentElement.style.overflow = "hidden";
-    /* two crests come in, slide together into one, then part, and the register opens between them */
+    /* one crest in the middle; then it splits into two and the register opens between them */
     if (still){ pop.classList.add("open"); try { card.focus({ preventScroll: true }); } catch (e) {} }
-    else {
-      setTimeout(function(){ pop.classList.add("join"); }, 600);
-      setTimeout(function(){ pop.classList.remove("join"); pop.classList.add("open"); try { card.focus({ preventScroll: true }); } catch (e) {} }, 600 + 800 + 350);
-    }
+    else setTimeout(function(){ pop.classList.remove("join"); pop.classList.add("open"); try { card.focus({ preventScroll: true }); } catch (e) {} }, 1100);
   }
   function close(v){
     remember(v || "closed");
