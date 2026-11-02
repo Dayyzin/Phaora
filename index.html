@@ -433,6 +433,13 @@ html[data-type="mix"] .label, html[data-type="mix"] .spec dt, html[data-type="mi
 .street .hl.full{aspect-ratio:auto; max-height:none; -webkit-mask-image:none; mask-image:none}
 .street .hl.full img{position:static; height:auto; object-fit:fill}
 .street .one{width:84%; margin:8svh 0 8svh auto}
+/* Paris's night walk runs to the page's left edge, its blurred background extended there (David: "Extend the back of
+   the photo until the beginning of page"); on a wide screen it keeps its old crop */
+.street .one.bleed{width:calc(100% + max(20px, env(safe-area-inset-left,0px))); margin-left:calc(-1 * max(20px, env(safe-area-inset-left,0px)))}
+@media(min-width:900px){
+  .street .one.bleed{width:66%; margin-left:auto}
+  .street .one.bleed img{aspect-ratio:1122 / 1402; object-fit:cover; object-position:100% 50%}
+}
 @media(min-width:900px){
   .street .hl{margin-inline:0;
     -webkit-mask-image:linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent), linear-gradient(transparent, #000 20%, #000 80%, transparent);
@@ -615,7 +622,7 @@ html, body{overflow-x:clip}
       <figure style="grid-area:14 / 8 / 19 / 13; z-index:1"><img style="object-position:45% 50%" src="drop/assets/street-04-f.webp" width="1254" height="1254" decoding="async" alt="Hood up beside a stone column at night, under a lit street lamp" loading="lazy"></figure>
       <figure style="grid-area:18 / 2 / 27 / 9; z-index:2"><img style="object-position:50% 30%" src="drop/assets/street-06-f.webp" width="1094" height="1406" decoding="async" alt="The hood up, close: the emblem across it, the face in its shadow" loading="lazy"></figure>
     </div>
-    <figure class="one"><img style="object-position:55% 50%" src="drop/assets/street-07-f.webp" width="1122" height="1402" decoding="async" alt="Walking away across wet stone at night, hood up, a lit colonnade behind" loading="lazy"></figure>
+    <figure class="one bleed"><img style="object-position:55% 50%" src="drop/assets/street-07-f.webp" width="1412" height="1402" decoding="async" alt="Walking away across wet stone at night, hood up, a lit colonnade behind" loading="lazy"></figure>
     </div></div>
     <div class="reg" data-r="london"><div class="open">
     <h2 class="place fit" data-reg="london"><span class="ln">Lon</span><span class="ln">don</span></h2>
