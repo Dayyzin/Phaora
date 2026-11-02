@@ -674,23 +674,29 @@ html, body{overflow-x:clip}
 .regpop-card{position:relative; background:var(--card); border:1px solid var(--line); padding:44px 24px 24px;
   display:grid; gap:12px; justify-items:center; text-align:center; transform:translateY(14px); transition:transform .35s; outline:none}
 .regpop.on .regpop-card{transform:none}
-/* the register comes out of two crests (David, 2 Nov: "two big crests and in the middle the register"; "no phaora
-   written inside"; "Coming out of the crest"): each crest is split where its wordmark sat, the wordmark taken out, and
-   the register runs as a band between them from one crest's spine to the other's, their top halves above it and their
-   bottom halves below. On a phone the band takes the screen's width and the crests stand half off its edges. */
+/* the register opens out of two crests (David, 2 Nov: "two big crests and in the middle the register"; "no phaora
+   written inside"; "the two halves joined together and from there you open the register"): two whole crests stand side
+   by side, their wordmark taken out, each one's halves joined; then each crest parts where its wordmark sat and the
+   register opens between the halves, a band from one crest's spine to the other's. On a phone the band takes the
+   screen's width and the crests stand half off its edges. */
 .regpop{overflow:hidden}
 .regpop-set{--cw:min(20vw, 290px, calc((100svh - 300px) / 1.75)); position:relative; flex:none; display:grid;
-  grid-template-columns:var(--cw) minmax(0, 1fr) var(--cw); width:min(calc(100vw - 32px + var(--cw)), calc(var(--cw) + 720px))}
+  grid-template-columns:var(--cw) minmax(0, 1fr) var(--cw); grid-template-rows:auto 0fr auto;
+  width:min(calc(100vw - 32px + var(--cw)), calc(var(--cw) + 720px)); transition:grid-template-rows .95s cubic-bezier(.65,0,.2,1)}
+.regpop.open .regpop-set{grid-template-rows:auto 1fr auto}
 .regpop-set .cr{display:block; width:100%; height:auto; pointer-events:none; filter:drop-shadow(0 0 24px rgba(221,238,244,.14));
   opacity:0; transition:opacity .5s .1s, transform .5s .1s}
-.regpop-set .cr.t{grid-row:1; transform:translateY(16px)}
-.regpop-set .cr.b{grid-row:3; transform:translateY(-16px)}
+.regpop-set .cr.t{grid-row:1; margin-bottom:-12px; transform:translateY(16px)}
+.regpop-set .cr.b{grid-row:3; margin-top:-12px; transform:translateY(-16px)}
 .regpop-set .cr:nth-of-type(odd){grid-column:1}
 .regpop-set .cr:nth-of-type(even){grid-column:3}
 .regpop.on .regpop-set .cr{opacity:1; transform:none}
-.regpop-set .regpop-card{grid-row:2; grid-column:1 / -1; margin:-12px calc(var(--cw) / 2); width:auto; z-index:1}
+.regpop-set .band{grid-row:2; grid-column:1 / -1; margin:0 calc(var(--cw) / 2); min-height:0; overflow:hidden; position:relative; z-index:1}
+.regpop-set .band{opacity:0; transition:opacity .2s} .regpop.open .regpop-set .band{opacity:1}   /* no seam showing before it opens */
+.regpop-set .regpop-card > *{opacity:0; transition:opacity .4s}
+.regpop.open .regpop-set .regpop-card > *{opacity:1; transition-delay:.55s}
 @media(max-width:899px){ .regpop-set{--cw:140px} }
-@media (prefers-reduced-motion: reduce){ .regpop-set .cr{transition:none} }
+@media (prefers-reduced-motion: reduce){ .regpop-set, .regpop-set .cr, .regpop-set .regpop-card > *{transition:none} }
 .regpop-x{position:absolute; top:4px; right:4px; width:44px; height:44px; border:0; background:none; color:var(--label); font-size:28px; line-height:1; cursor:pointer}
 .regpop-x:hover, .regpop-x:focus-visible{color:var(--ice)}
 .regpop h2{font-family:var(--disp); font-weight:var(--dweight); text-transform:var(--dcase); letter-spacing:var(--dtrack); font-size:clamp(32px, 9vw, 44px); line-height:1; color:var(--ice); margin:0}
@@ -921,7 +927,7 @@ html, body{overflow-x:clip}
 <div class="regpop" id="regpop" role="dialog" aria-modal="true" aria-labelledby="regpop-h" hidden>
   <div class="regpop-set">
     <img class="cr t" src="drop/assets/crest-top.webp" width="600" height="519" alt="" aria-hidden="true" decoding="async"><img class="cr t" src="drop/assets/crest-top.webp" width="600" height="519" alt="" aria-hidden="true" decoding="async">
-    <div class="regpop-card knit" tabindex="-1">
+    <div class="band"><div class="regpop-card knit" tabindex="-1">
     <button class="regpop-x" type="button" aria-label="Close">&times;</button>
     <span class="label">Drop 001</span>
     <h2 id="regpop-h">The register</h2>
@@ -934,7 +940,7 @@ html, body{overflow-x:clip}
       <button class="btn fill" type="submit" id="popbtn">Join the register</button>
     </form>
     <p class="msg" id="popmsg" aria-live="polite"></p>
-  </div>
+  </div></div>
     <img class="cr b" src="drop/assets/crest-bot.webp" width="600" height="539" alt="" aria-hidden="true" decoding="async"><img class="cr b" src="drop/assets/crest-bot.webp" width="600" height="539" alt="" aria-hidden="true" decoding="async">
   </div>
 </div>
@@ -1732,7 +1738,8 @@ html, body{overflow-x:clip}
    below) it does not open again in that browser. Escape, the cross or a tap outside the card closes it. */
 (function(){
   var pop = document.getElementById("regpop"); if (!pop) return;
-  var card = pop.querySelector(".regpop-card"), KEY = "phaora.regpop.v1", shown = false, timer = 0;
+  var card = pop.querySelector(".regpop-card"), KEY = "phaora.regpop.v1", shown = false, timer = 0,
+      still = matchMedia("(prefers-reduced-motion: reduce)").matches;
   function done(){ try { return !!localStorage.getItem(KEY); } catch (e) { return false; } }
   function remember(v){ try { localStorage.setItem(KEY, v); } catch (e) {} }
   if (done()) return;
@@ -1742,12 +1749,14 @@ html, body{overflow-x:clip}
     removeEventListener("scroll", onScroll);
     pop.hidden = false; requestAnimationFrame(function(){ pop.classList.add("on"); });
     document.documentElement.style.overflow = "hidden";
-    try { card.focus({ preventScroll: true }); } catch (e) {}
+    /* the crests come in whole, then part, and the register opens between them */
+    setTimeout(function(){ pop.classList.add("open"); try { card.focus({ preventScroll: true }); } catch (e) {} }, still ? 0 : 900);
   }
   function close(v){
     remember(v || "closed");
-    pop.classList.remove("on"); document.documentElement.style.overflow = "";
-    setTimeout(function(){ pop.hidden = true; }, 360);
+    pop.classList.remove("open");
+    setTimeout(function(){ pop.classList.remove("on"); document.documentElement.style.overflow = ""; }, still ? 0 : 650);
+    setTimeout(function(){ pop.hidden = true; }, still ? 0 : 1050);
   }
   function onScroll(){ if (atTop()) open(); }
   timer = setTimeout(function(){ if (atTop()) open(); else addEventListener("scroll", onScroll, { passive: true }); }, 2500);
