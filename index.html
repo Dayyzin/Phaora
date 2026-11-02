@@ -681,6 +681,13 @@ html, body{overflow-x:clip}
   .street .lon figure.trail{--tw:calc(100% * 34 / 66 + clamp(24px, 4vw, 72px))}
   .street .lon figure.smear.trail{--bh:150%}
 }
+/* LONDON's reflection (see reflect()): faint, fading down from the letters' foot, its lines broken like water */
+.street .refl-wrap{position:absolute; z-index:5; overflow:hidden; pointer-events:none; opacity:.5;
+  -webkit-mask-image:linear-gradient(#000, rgba(0,0,0,.45) 35%, transparent 92%); mask-image:linear-gradient(#000, rgba(0,0,0,.45) 35%, transparent 92%)}
+.street .refl-ripple{position:absolute; inset:0;
+  -webkit-mask-image:repeating-linear-gradient(#000 0 3px, rgba(0,0,0,.35) 3px 5px, #000 5px 9px, rgba(0,0,0,.2) 9px 10px);
+  mask-image:repeating-linear-gradient(#000 0 3px, rgba(0,0,0,.35) 3px 5px, #000 5px 9px, rgba(0,0,0,.2) 9px 10px)}
+.street .refl-wrap .place.refl{position:absolute; left:0; margin:0; z-index:auto; transform:scaleY(-1) skewX(-4deg); filter:blur(1.2px); clip-path:none}
 .knit{position:relative; isolation:isolate}
 .knit::before{content:""; position:absolute; inset:0; z-index:-1; background:url(drop/assets/chart.png) repeat; background-size:132px auto; opacity:.07; pointer-events:none;
   -webkit-mask-image:linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent); mask-image:linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent)}
@@ -1606,7 +1613,7 @@ html, body{overflow-x:clip}
   /* where each name crosses into its photograph: the top of the photograph under the letters (the one they overlap
      most, the reveal's slide taken out), a little lower where the photograph's edge is a baked fade */
   function cutNames(){
-    document.querySelectorAll(".street .place[data-reg]").forEach(function(h){
+    document.querySelectorAll(".street .place[data-reg]:not(.refl)").forEach(function(h){
       var nx = h.nextElementSibling; if (!nx) return;
       var figs = nx.matches("figure") ? [nx] : Array.prototype.slice.call(nx.querySelectorAll("figure:not(.cut)"));
       var hr = h.getBoundingClientRect(), l = Infinity, r = -Infinity, best = null, bestTop = Infinity;
@@ -1629,11 +1636,31 @@ html, body{overflow-x:clip}
         foot = Math.max(foot, b.bottom - ty2 - fd - hr.top);
       });
       if (foot > 0) h.style.clipPath = "polygon(-400px -600px, calc(100% + 400px) -600px, calc(100% + 400px) " + Math.round(foot) + "px, -400px " + Math.round(foot) + "px)";
+      if (h.dataset.reg === "london") reflect(h, foot > 0 ? Math.min(foot, hr.height) : hr.height);
     });
+  }
+  /* LONDON on a wet street: the letters mirrored under their own foot, fading out, broken into ripples (David, 2 Nov:
+     "Make a reflection effect on London writing"). A copy of the name, turned over about the line its letters end on,
+     inside a box that starts at that line; the copy is never measured or cut again (.refl) */
+  function reflect(h, vis){
+    var st = h.closest(".street"); if (!st || !vis) return;
+    var sr = st.getBoundingClientRect(), hr = h.getBoundingClientRect();
+    var wrap = st.querySelector(".refl-wrap");
+    if (!wrap){ wrap = document.createElement("div"); wrap.className = "refl-wrap"; wrap.setAttribute("aria-hidden", "true");
+      wrap.innerHTML = '<div class="refl-ripple"></div>'; st.appendChild(wrap); }
+    var c = h.cloneNode(true);
+    c.removeAttribute("style"); c.classList.add("refl"); c.removeAttribute("id");
+    c.style.fontSize = h.style.fontSize; c.style.width = hr.width + "px";
+    c.style.top = (-vis) + "px"; c.style.transformOrigin = "0 " + vis + "px";
+    var src = h.querySelectorAll(".ln"), dst = c.querySelectorAll(".ln");
+    for (var i = 0; i < dst.length; i++) if (src[i]) dst[i].style.marginLeft = getComputedStyle(src[i]).marginLeft;
+    wrap.style.left = (hr.left - sr.left) + "px"; wrap.style.top = (hr.top - sr.top + vis) + "px";
+    wrap.style.width = hr.width + "px"; wrap.style.height = Math.round(vis * .6) + "px";
+    var rip = wrap.firstChild; rip.innerHTML = ""; rip.appendChild(c);
   }
   function fit(){
     var cap = innerHeight * 0.33;
-    document.querySelectorAll(".fit").forEach(function(h){
+    document.querySelectorAll(".fit:not(.refl)").forEach(function(h){
       h.style.fontSize = "64px";
       var lines = h.querySelectorAll(".ln"), w = 0;
       lines.forEach(function(l){ w = Math.max(w, l.getBoundingClientRect().width); });
