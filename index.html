@@ -691,6 +691,11 @@ html, body{overflow-x:clip}
 /* the fitting room's and the details' photographs knitted along their open edges, as Brazil's are (David, 2 Nov: "Add
    stitching throughout the yellow line like added for Brazil edge"); drawn by knitEdge() below, on the crop the screen gives */
 .knitedge{position:absolute; inset:0; z-index:1; pointer-events:none; background:no-repeat 0 0 / 100% 100%}
+/* the edition's own label, piece No. 01 (David, 2 Nov: "Show prototype for 001 hoodie"): the drop label as the labels
+   sheet draws it (phaora-ops apparel/labels), woven navy damask, the number embroidered on; lying under the line */
+.alone .droplabel{margin:3svh 0 0; width:min(86vw, 420px); display:grid; justify-items:center; gap:2px}
+.alone .droplabel img{width:100%; height:auto; display:block}
+@media(min-width:900px){ .alone .droplabel{grid-column:2; margin:2svh 0 0 -4%; width:min(34vw, 460px)} }
 .knit{position:relative; isolation:isolate}
 .knit::before{content:""; position:absolute; inset:0; z-index:-1; background:url(drop/assets/chart.png) repeat; background-size:132px auto; opacity:.07; pointer-events:none;
   -webkit-mask-image:linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent); mask-image:linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent)}
@@ -988,6 +993,7 @@ html, body{overflow-x:clip}
   <section class="alone gut" aria-label="The edition" data-face="editorial">
     <p class="huge num">15</p>
     <p class="aline">pieces. Each one numbered.</p>
+    <figure class="droplabel"><img src="drop/assets/drop-label-01.webp" width="1086" height="686" loading="lazy" decoding="async" alt="The drop label for piece No. 01: navy woven damask, DROP 01, No. 01 / 15, the number embroidered on"><figcaption class="label">The drop label. No. 01</figcaption></figure>
   </section>
 
   <section class="ch stack reg knit" id="register" data-face="couture">
