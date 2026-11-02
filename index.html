@@ -178,6 +178,9 @@ p{margin:0}
 .regfoot{position:relative; z-index:1; grid-column:1/-1; display:grid; gap:10px; justify-items:center; text-align:center; padding-block:28px 34px}
 .regfoot .mark.big svg{display:block; height:30px; width:153.4px}
 .regfoot .line{font-family:var(--display); font-style:italic; font-weight:500; font-size:18px; color:var(--text-2)}
+/* the one line for stores, quiet, beside the mark (David: "do that instead"): it opens an email, terms go privately */
+.regfoot .wl{color:var(--label); text-decoration:none; border-bottom:1px solid var(--line); padding-bottom:2px}
+.regfoot .wl:hover, .regfoot .wl:focus-visible{color:var(--text); border-color:var(--text-2)}
 @media(min-width:900px){
   .ch.reg{grid-template-rows:1fr auto}
   .ch.reg .media{grid-column:1; grid-row:1}
@@ -781,6 +784,7 @@ html, body{overflow-x:clip}
     <div class="regfoot gut">
       <a class="mark big" href="#film"><svg viewBox="188.0 472.9 624.2 122.1" role="img" aria-label="PHAÖRA"><use href="#wmL"/><use href="#wmO"/><use href="#wmP"/></svg></a>
       <p class="line">Built on standards. Not inherited. Decided.</p>
+      <a class="label wl" href="mailto:phaoraco@gmail.com?subject=Wholesale%20%E2%80%94%20PHA%C3%96RA%20Drop%20001">Wholesale</a>
       <span class="label">© <svg class="logo-inline" viewBox="188.0 472.9 624.2 122.1" role="img" aria-label="PHAÖRA"><use href="#wmL"/><use href="#wmO"/><use href="#wmP"/></svg></span>
     </div>
   </section>
