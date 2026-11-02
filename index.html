@@ -636,6 +636,32 @@ html, body{overflow-x:clip}
   background:radial-gradient(120% 70% at 50% 45%, rgba(3,8,13,.34) 0%, rgba(3,8,13,.5) 60%, rgba(3,8,13,.74) 100%);
   box-shadow:inset 0 22px 30px -10px rgba(0,0,0,.85), inset 0 3px 4px -1px rgba(0,0,0,.7), inset 0 -18px 26px -12px rgba(0,0,0,.55),
     inset 16px 0 24px -14px rgba(0,0,0,.5), inset -16px 0 24px -14px rgba(0,0,0,.5), inset 0 -1px 0 rgba(255,190,180,.12)}
+/* London over Tower Bridge at night, smeared straight down as Paris's scenes are (David, 2 Nov: "Tower Bridge smudge").
+   The photograph is Barney Moss's, CC BY 2.0, credited in the footer */
+.street .lonbg{position:absolute; left:0; right:0; top:var(--lb); height:calc(var(--bz) - var(--lb)); z-index:-1; pointer-events:none;
+  background:url(drop/assets/london-bg.webp) center / 100% 100% no-repeat;
+  -webkit-mask-image:linear-gradient(transparent, #000 160px, #000 calc(100% - 160px), transparent);
+  mask-image:linear-gradient(transparent, #000 160px, #000 calc(100% - 160px), transparent)}
+/* London's photographs left, right, left, the space beside each left open, each photograph motion blurred across it to the
+   page's edge (David: "left right left sequence for photos, leave negative space and motion blur them to the end"): the
+   trail is the photograph's own edge drawn out sideways, softened, thinning as it goes */
+.street .lon figure.trail::before{content:""; position:absolute; top:0; height:100%; left:100%; width:var(--tw, 40%); pointer-events:none;
+  background:var(--src) right top / 4000% var(--bh, 100%) no-repeat; filter:blur(5px) saturate(.9);
+  -webkit-mask-image:linear-gradient(to right, #000, #000 25%, rgba(0,0,0,.3)); mask-image:linear-gradient(to right, #000, #000 25%, rgba(0,0,0,.3))}
+.street .lstack > :nth-child(even).trail::before{left:auto; right:100%; background-position:left top;
+  -webkit-mask-image:linear-gradient(to left, #000, #000 25%, rgba(0,0,0,.3)); mask-image:linear-gradient(to left, #000, #000 25%, rgba(0,0,0,.3))}
+.regfoot .credit{font-size:11px; letter-spacing:.04em; color:var(--label); opacity:.7}
+.regfoot .credit a{color:inherit}
+@media(max-width:899px){
+  .street .lstack > :nth-child(odd){justify-self:start}
+  .street .lstack > :nth-child(even){justify-self:end}
+  .street .lstack > *{width:72%}
+  .street .lon figure.trail{--tw:calc(100% * 28 / 72)}
+}
+@media(min-width:900px){
+  .street .lon figure.trail{--tw:calc(100% * 34 / 66 + clamp(24px, 4vw, 72px))}
+  .street .lon figure.smear.trail{--bh:150%}
+}
 .knit{position:relative; isolation:isolate}
 .knit::before{content:""; position:absolute; inset:0; z-index:-1; background:url(drop/assets/chart.png) repeat; background-size:132px auto; opacity:.07; pointer-events:none;
   -webkit-mask-image:linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent); mask-image:linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent)}
@@ -820,9 +846,9 @@ html, body{overflow-x:clip}
     <div class="reg" data-r="london"><div class="open">
     <h2 class="place fit" data-reg="london"><span class="ln">Lon</span><span class="ln">don</span></h2>
     <div class="lstack lon">
-      <div class="lpair r"><figure><img src="drop/assets/street-21-wb.webp" width="1600" height="900" decoding="async" alt="By a graffiti wall at night, head down, the hoodie over wide jeans" loading="lazy"></figure><figure class="cut" aria-hidden="true"><img src="drop/assets/cut-21wb.webp" width="1600" height="900" alt="" loading="lazy" decoding="async"></figure></div>
-      <figure class="l"><img src="drop/assets/street-20-bg.webp" width="1600" height="900" decoding="async" alt="Two friends on a wet street at night, one in the hoodie" loading="lazy"></figure>
-      <figure class="r smear"><img src="drop/assets/street-22-fm.webp" width="1672" height="1411" decoding="async" alt="Hood up by the graffiti wall at dusk, blowing a kiss, the knit on the sleeve close" loading="lazy"></figure>
+      <div class="lpair r"><figure class="trail" style="--src:url(drop/assets/street-21-wb.webp)"><img src="drop/assets/street-21-wb.webp" width="1600" height="900" decoding="async" alt="By a graffiti wall at night, head down, the hoodie over wide jeans" loading="lazy"></figure><figure class="cut" aria-hidden="true"><img src="drop/assets/cut-21wb.webp" width="1600" height="900" alt="" loading="lazy" decoding="async"></figure></div>
+      <figure class="l trail" style="--src:url(drop/assets/street-20-bg.webp)"><img src="drop/assets/street-20-bg.webp" width="1600" height="900" decoding="async" alt="Two friends on a wet street at night, one in the hoodie" loading="lazy"></figure>
+      <figure class="r smear trail" style="--src:url(drop/assets/street-22-fm.webp)"><img src="drop/assets/street-22-fm.webp" width="1672" height="1411" decoding="async" alt="Hood up by the graffiti wall at dusk, blowing a kiss, the knit on the sleeve close" loading="lazy"></figure>
     </div>
     </div></div>
     <div class="reg" data-r="brazil"><div class="open">
@@ -953,6 +979,7 @@ html, body{overflow-x:clip}
       <a class="mark big" href="#film"><svg viewBox="188.0 472.9 624.2 122.1" role="img" aria-label="PHAÖRA"><use href="#wmL"/><use href="#wmO"/><use href="#wmP"/></svg></a>
       <p class="line">Built on standards. Not inherited. Decided.</p>
       <a class="label wl" href="mailto:phaoraco@gmail.com?subject=Wholesale%20%E2%80%94%20PHA%C3%96RA%20Drop%20001">Wholesale</a>
+      <span class="credit">London: Tower Bridge at night by Barney Moss, <a href="https://creativecommons.org/licenses/by/2.0/" rel="noopener" target="_blank">CC BY 2.0</a>, blurred</span>
       <span class="label">© <svg class="logo-inline" viewBox="188.0 472.9 624.2 122.1" role="img" aria-label="PHAÖRA"><use href="#wmL"/><use href="#wmO"/><use href="#wmP"/></svg></span>
     </div>
   </section>
@@ -1718,6 +1745,7 @@ html, body{overflow-x:clip}
   /* Paris's photograph, behind its section */
   (function(){ var pb = document.createElement("div"); pb.className = "parisbg"; pb.setAttribute("aria-hidden", "true");
     ["a", "b"].forEach(function(c){ var i = document.createElement("i"); i.className = c; pb.appendChild(i); }); st.appendChild(pb); })();
+  (function(){ var lb = document.createElement("div"); lb.className = "lonbg"; lb.setAttribute("aria-hidden", "true"); st.appendChild(lb); })();
   var queued = false;
   function soon(){ if (queued) return; queued = true; requestAnimationFrame(function(){ queued = false; place(); }); }
   if ("ResizeObserver" in window) new ResizeObserver(soon).observe(st);
