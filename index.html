@@ -698,27 +698,38 @@ html, body{overflow-x:clip}
 .regpop.open .regpop-set .band{clip-path:inset(0 0 0 0)}
 .regpop-set .regpop-card > *{opacity:0; transition:opacity .4s}
 .regpop.open .regpop-set .regpop-card > *{opacity:1; transition-delay:.5s}
-@media(max-width:899px){
-  .regpop-set{--cw:130px; grid-template-columns:var(--cw) minmax(0, 1fr) var(--cw); width:calc(100vw - 32px + var(--cw))}
-  .regpop-set .band{width:auto; margin:0 calc(var(--cw) / -2)}
-}
-/* on a wide screen the register fills the space between the crests and comes out of them (David's red line, 2 Nov:
+/* the register fills the space between the crests and comes out of them (David's red line, 2 Nov:
    "Like my redline"; "they need to touch the crest like it's coming out of it"): its sides are each crest's own outline,
    measured row by row from the crest's image and taken 10 px inside it, so the register runs on under the crest's edge
-   with no gap; the crests start together in the middle as one, then split, the register opening between them ("make the two
+   with no gap, on a phone as on a wide screen, the register no taller than the crests ("Make the register reveal
+   smaller (fit into) the crest"); the crests start together in the middle as one, then split, the register opening between them ("make the two
    crest together in the middle, and as they split they reveal") */
+.regpop-set .cr{position:relative; z-index:2}
+.regpop-set .band{grid-column:1 / -1; grid-row:1 / 3; align-self:stretch; width:auto; margin:0;
+  clip-path:polygon(50% 9.0%, 50% 12.17%, 50% 15.33%, 50% 18.5%, 50% 21.67%, 50% 24.83%, 50% 28.0%, 50% 31.17%, 50% 34.33%, 50% 37.5%, 50% 40.67%, 50% 43.83%, 50% 47.0%, 50% 50.17%, 50% 53.33%, 50% 56.5%, 50% 59.67%, 50% 62.83%, 50% 66.0%, 50% 69.17%, 50% 72.33%, 50% 75.5%, 50% 78.67%, 50% 81.83%, 50% 85.0%, 50% 85.0%, 50% 81.83%, 50% 78.67%, 50% 75.5%, 50% 72.33%, 50% 69.17%, 50% 66.0%, 50% 62.83%, 50% 59.67%, 50% 56.5%, 50% 53.33%, 50% 50.17%, 50% 47.0%, 50% 43.83%, 50% 40.67%, 50% 37.5%, 50% 34.33%, 50% 31.17%, 50% 28.0%, 50% 24.83%, 50% 21.67%, 50% 18.5%, 50% 15.33%, 50% 12.17%, 50% 9.0%)}
+.regpop.open .regpop-set .band{clip-path:polygon(calc(var(--cw) * 0.5567) 9.0%, calc(var(--cw) * 0.5367) 12.17%, calc(var(--cw) * 0.5933) 15.33%, calc(var(--cw) * 0.6150) 18.5%, calc(var(--cw) * 0.6933) 21.67%, calc(var(--cw) * 0.7267) 24.83%, calc(var(--cw) * 0.7217) 28.0%, calc(var(--cw) * 0.8367) 31.17%, calc(var(--cw) * 0.8683) 34.33%, calc(var(--cw) * 0.8583) 37.5%, calc(var(--cw) * 0.8800) 40.67%, calc(var(--cw) * 0.8800) 43.83%, calc(var(--cw) * 0.9617) 47.0%, calc(var(--cw) * 0.9700) 50.17%, calc(var(--cw) * 0.9217) 53.33%, calc(var(--cw) * 0.8383) 56.5%, calc(var(--cw) * 0.8217) 59.67%, calc(var(--cw) * 0.7850) 62.83%, calc(var(--cw) * 0.7683) 66.0%, calc(var(--cw) * 0.6933) 69.17%, calc(var(--cw) * 0.6817) 72.33%, calc(var(--cw) * 0.6183) 75.5%, calc(var(--cw) * 0.5833) 78.67%, calc(var(--cw) * 0.5517) 81.83%, calc(var(--cw) * 0.5500) 85.0%, calc(100% - var(--cw) * 0.5550) 85.0%, calc(100% - var(--cw) * 0.5533) 81.83%, calc(100% - var(--cw) * 0.5850) 78.67%, calc(100% - var(--cw) * 0.6200) 75.5%, calc(100% - var(--cw) * 0.6833) 72.33%, calc(100% - var(--cw) * 0.6967) 69.17%, calc(100% - var(--cw) * 0.7700) 66.0%, calc(100% - var(--cw) * 0.7867) 62.83%, calc(100% - var(--cw) * 0.8233) 59.67%, calc(100% - var(--cw) * 0.8400) 56.5%, calc(100% - var(--cw) * 0.9233) 53.33%, calc(100% - var(--cw) * 0.9717) 50.17%, calc(100% - var(--cw) * 0.9633) 47.0%, calc(100% - var(--cw) * 0.8817) 43.83%, calc(100% - var(--cw) * 0.8817) 40.67%, calc(100% - var(--cw) * 0.8600) 37.5%, calc(100% - var(--cw) * 0.8700) 34.33%, calc(100% - var(--cw) * 0.8383) 31.17%, calc(100% - var(--cw) * 0.7233) 28.0%, calc(100% - var(--cw) * 0.7283) 24.83%, calc(100% - var(--cw) * 0.6950) 21.67%, calc(100% - var(--cw) * 0.5567) 18.5%, calc(100% - var(--cw) * 0.7050) 15.33%, calc(100% - var(--cw) * 0.5617) 12.17%, calc(100% - var(--cw) * 0.5567) 9.0%)}
+.regpop-set .regpop-card{height:100%; border:0; gap:8px; align-content:center}
+.regpop-set .regpop-card p{max-width:none}
+.regpop-set .regpop-card .msg:empty{display:none}
 @media(min-width:900px){
   .regpop-set{--cw:min(19vw, 280px, calc((100svh - 80px) / 1.72)); --d:calc(240px + var(--cw) / 2); grid-template-columns:var(--cw) 480px var(--cw)}
-  .regpop-set .cr{position:relative; z-index:2}
-  .regpop-set .band{grid-column:1 / -1; grid-row:1 / 3; align-self:stretch; width:auto; margin:0;
-    clip-path:polygon(50% 9.0%, 50% 12.17%, 50% 15.33%, 50% 18.5%, 50% 21.67%, 50% 24.83%, 50% 28.0%, 50% 31.17%, 50% 34.33%, 50% 37.5%, 50% 40.67%, 50% 43.83%, 50% 47.0%, 50% 50.17%, 50% 53.33%, 50% 56.5%, 50% 59.67%, 50% 62.83%, 50% 66.0%, 50% 69.17%, 50% 72.33%, 50% 75.5%, 50% 78.67%, 50% 81.83%, 50% 85.0%, 50% 85.0%, 50% 81.83%, 50% 78.67%, 50% 75.5%, 50% 72.33%, 50% 69.17%, 50% 66.0%, 50% 62.83%, 50% 59.67%, 50% 56.5%, 50% 53.33%, 50% 50.17%, 50% 47.0%, 50% 43.83%, 50% 40.67%, 50% 37.5%, 50% 34.33%, 50% 31.17%, 50% 28.0%, 50% 24.83%, 50% 21.67%, 50% 18.5%, 50% 15.33%, 50% 12.17%, 50% 9.0%)}
-  .regpop.open .regpop-set .band{clip-path:polygon(calc(var(--cw) * 0.5567) 9.0%, calc(var(--cw) * 0.5367) 12.17%, calc(var(--cw) * 0.5933) 15.33%, calc(var(--cw) * 0.6150) 18.5%, calc(var(--cw) * 0.6933) 21.67%, calc(var(--cw) * 0.7267) 24.83%, calc(var(--cw) * 0.7217) 28.0%, calc(var(--cw) * 0.8367) 31.17%, calc(var(--cw) * 0.8683) 34.33%, calc(var(--cw) * 0.8583) 37.5%, calc(var(--cw) * 0.8800) 40.67%, calc(var(--cw) * 0.8800) 43.83%, calc(var(--cw) * 0.9617) 47.0%, calc(var(--cw) * 0.9700) 50.17%, calc(var(--cw) * 0.9217) 53.33%, calc(var(--cw) * 0.8383) 56.5%, calc(var(--cw) * 0.8217) 59.67%, calc(var(--cw) * 0.7850) 62.83%, calc(var(--cw) * 0.7683) 66.0%, calc(var(--cw) * 0.6933) 69.17%, calc(var(--cw) * 0.6817) 72.33%, calc(var(--cw) * 0.6183) 75.5%, calc(var(--cw) * 0.5833) 78.67%, calc(var(--cw) * 0.5517) 81.83%, calc(var(--cw) * 0.5500) 85.0%, calc(100% - var(--cw) * 0.5550) 85.0%, calc(100% - var(--cw) * 0.5533) 81.83%, calc(100% - var(--cw) * 0.5850) 78.67%, calc(100% - var(--cw) * 0.6200) 75.5%, calc(100% - var(--cw) * 0.6833) 72.33%, calc(100% - var(--cw) * 0.6967) 69.17%, calc(100% - var(--cw) * 0.7700) 66.0%, calc(100% - var(--cw) * 0.7867) 62.83%, calc(100% - var(--cw) * 0.8233) 59.67%, calc(100% - var(--cw) * 0.8400) 56.5%, calc(100% - var(--cw) * 0.9233) 53.33%, calc(100% - var(--cw) * 0.9717) 50.17%, calc(100% - var(--cw) * 0.9633) 47.0%, calc(100% - var(--cw) * 0.8817) 43.83%, calc(100% - var(--cw) * 0.8817) 40.67%, calc(100% - var(--cw) * 0.8600) 37.5%, calc(100% - var(--cw) * 0.8700) 34.33%, calc(100% - var(--cw) * 0.8383) 31.17%, calc(100% - var(--cw) * 0.7233) 28.0%, calc(100% - var(--cw) * 0.7283) 24.83%, calc(100% - var(--cw) * 0.6950) 21.67%, calc(100% - var(--cw) * 0.5567) 18.5%, calc(100% - var(--cw) * 0.7050) 15.33%, calc(100% - var(--cw) * 0.5617) 12.17%, calc(100% - var(--cw) * 0.5567) 9.0%)}
-  .regpop-set .regpop-card{height:100%; border:0; padding:0 calc(var(--cw) * .98 + 10px); gap:8px; align-content:center}
-  .regpop-set .regpop-card p{max-width:none}
+  .regpop-set .regpop-card{padding:0 calc(var(--cw) * .98 + 10px)}
   .regpop-set .regpop-card form{gap:12px 16px; width:100%}
   .regpop-set .regpop-card input[type=email]{flex-basis:190px}
-  .regpop-set .regpop-card .msg:empty{display:none}
   .regpop-set .regpop-x{top:calc(9% + 10px); right:calc(var(--cw) * 1.02 + 6px)}
+}
+/* on a phone the crests' spines stand at the screen's margins, half of each crest off the edge; the words sit between
+   their points, the email and the button stacked */
+@media(max-width:899px){
+  .regpop-set{--cw:170px; grid-template-columns:var(--cw) minmax(0, 1fr) var(--cw); width:calc(100vw - 32px + var(--cw))}
+  .regpop-set .regpop-card{padding:0 calc(var(--cw) / 2 + 8px); gap:5px; justify-items:center}
+  .regpop-set .regpop-card .label{font-size:11px}
+  .regpop .regpop-set h2{font-size:28px}
+  .regpop-set .regpop-card p{font-size:13px; line-height:1.4; max-width:24ch}
+  .regpop-set .regpop-card form{flex-direction:column; gap:4px; margin-top:0; width:auto}
+  .regpop-set .regpop-card input[type=email]{flex:none; width:min(200px, 100%); min-height:40px; font-size:16px}
+  .regpop-set .regpop-card .btn{min-height:36px; font-size:12px}
+  .regpop-set .regpop-x{top:calc(9% + 2px); right:calc(var(--cw) * .72)}
 }
 @media (prefers-reduced-motion: reduce){ .regpop-set .cr, .regpop-set .band, .regpop-set .regpop-card > *{transition:none} }
 .regpop-x{position:absolute; top:4px; right:4px; width:44px; height:44px; border:0; background:none; color:var(--label); font-size:28px; line-height:1; cursor:pointer}
@@ -1695,6 +1706,14 @@ html, body{overflow-x:clip}
     });
     if (!box){ box = document.createElement("div"); box.className = "hearts"; box.setAttribute("aria-hidden", "true"); st.appendChild(box); }
     box.innerHTML = html;
+    /* the heart on the right beside "15 pieces" leans up and to the left, where David's arrow points (2 Nov: "Keep this
+       heart where it is, just angle it pointing towards my arrow"); it keeps its place, only its angle changes */
+    var nx = st.querySelector(".next"), nb = nx && nx.getBoundingClientRect(), pick = null, px = -Infinity;
+    if (nb && nb.height) box.querySelectorAll("i").forEach(function(h){
+      var r = h.getBoundingClientRect(), cy = (r.top + r.bottom) / 2, cx = (r.left + r.right) / 2;
+      if (cy > nb.top - r.height * .4 && cy < nb.bottom + r.height * .4 && cx > s.left + W / 2 && cx > px){ pick = h; px = cx; }
+    });
+    if (pick) pick.style.transform = "rotate(-45deg)";
   }
   /* Paris's photograph, behind its section */
   (function(){ var pb = document.createElement("div"); pb.className = "parisbg"; pb.setAttribute("aria-hidden", "true");
