@@ -430,6 +430,9 @@ html[data-type="mix"] .label, html[data-type="mix"] .spec dt, html[data-type="mi
   left:var(--px); transform:translateX(calc(-1 * var(--px))); pointer-events:none; clip-path:var(--pc, none)}
 /* Paris 5: its left side fades out, the hood and the frame together (David: "Fade this part") */
 .street .cl figure.pop > img{-webkit-mask-image:var(--pm, none); mask-image:var(--pm, none)}
+/* Paris 5 alone: the figure cut out whole, no photograph behind him, grown to fill the space under Paris 3 (David, 2 Nov:
+   "Photo squared pops out to the full yellow surrounding it. Screw the background") */
+.street .cl figure.pop.solo > img{clip-path:none}
 /* Paris 2 runs to the page's left edge, its left side pan-blurred like the night walk (David: "Motion blur this one
    like the first we ever did") */
 /* flush under Paris 1: no fade at its top (David: "Raise this photo up more closer to the top one") */
@@ -682,7 +685,7 @@ html, body{overflow-x:clip}
       <figure class="bleedl" style="grid-area:1 / 1 / 11 / 13; z-index:1"><img style="object-position:62% 50%" src="drop/assets/street-05-f.webp" width="1681" height="1401" decoding="async" alt="Leaning on a stone balustrade at night, a lit lamp and the river behind" loading="lazy"></figure>
       <figure style="grid-area:8 / 1 / 16 / 7; z-index:2"><img style="object-position:42% 35%" src="drop/assets/street-08-f.webp" width="1054" height="1405" decoding="async" alt="Looking back over her shoulder at dusk, a lamp and a domed building behind" loading="lazy"></figure>
       <figure class="pop" style="grid-area:12 / 7 / 20 / 13; z-index:1; --pi:0 2% 22% 0; --px:45%"><img style="object-position:45% 50%" src="drop/assets/street-04-f.webp" width="1254" height="1254" decoding="async" alt="Hood up beside a stone column at night, under a lit street lamp" loading="lazy"><img class="popfig" src="drop/assets/pop-04.webp" width="1254" height="1254" alt="" aria-hidden="true" loading="lazy" decoding="async"></figure>
-      <figure class="pop" style="grid-area:18 / 2 / 27 / 9; z-index:2; --pi:11% 13% 9% 14%; --px:50%; --pm:linear-gradient(to right, transparent 14%, #000 34%)"><img style="object-position:50% 30%" src="drop/assets/street-06-f.webp" width="1094" height="1406" decoding="async" alt="The hood up, close: the emblem across it, the face in its shadow" loading="lazy"><img class="popfig" src="drop/assets/pop-06.webp" width="1094" height="1406" alt="" aria-hidden="true" loading="lazy" decoding="async"></figure>
+      <figure class="pop solo" style="grid-area:16 / 1 / 28 / 10; z-index:2; --px:50%"><img class="popfig" src="drop/assets/pop-06.webp" width="1094" height="1406" alt="The hood up, close: the emblem across it, the face in its shadow" loading="lazy" decoding="async"></figure>
     </div>
     <figure class="one bleed"><img style="object-position:55% 50%" src="drop/assets/street-07-f.webp" width="1412" height="1402" decoding="async" alt="Walking away across wet stone at night, hood up, a lit colonnade behind" loading="lazy"></figure>
     </div></div>
