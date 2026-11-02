@@ -9,6 +9,25 @@
 <meta property="og:url" content="https://phaora.com/">
 <meta name="theme-color" content="#03080D">
 <title>PHAÖRA Drop 001</title>
+<!-- the tab icon: the wordmark's Ö, the eye (David, 2 Nov: "Tab icon too") -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<!-- visits, counted by Vercel Web Analytics (no cookies); a ?ref= link's ref is counted as its source, so each shop's
+     and creator's clicks can be read apart (David, 2 Nov: "Visit tracking yes"). The script answers once Web Analytics
+     is on for the project; until then it is a quiet 404 and nothing is counted. -->
+<script>
+  window.va = window.va || function(){ (window.vaq = window.vaq || []).push(arguments); };
+  window.va("beforeSend", function(ev){
+    try {
+      var u = new URL(ev.url), ref = u.searchParams.get("ref");
+      if (ref && /^[a-z0-9-]{1,40}$/.test(ref) && !u.searchParams.get("utm_source")){ u.searchParams.set("utm_source", ref); u.searchParams.set("utm_medium", "ref"); }
+      ev.url = u.toString();
+    } catch (e) {}
+    return ev;
+  });
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
 <meta name="claude:viewport-fit-sides" content="cover">
 <script>document.documentElement.dataset.type = "mix";</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
