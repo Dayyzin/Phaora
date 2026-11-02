@@ -1757,9 +1757,9 @@ html, body{overflow-x:clip}
 })();
 </script>
 <script>
-/* the register pop-up: opens 2.5 s after a visitor lands, while they are still at the top of the page; if they have
-   already scrolled on, it waits until they are back at the top. Once closed or joined (here or on either register
-   below) it does not open again in that browser. Escape, the cross or a tap outside the card closes it. */
+/* the register pop-up: opens once a visitor has scrolled down as far as Brazil, never at the top (David, 2 Nov: "Wait
+   until they get to like Brazil to show it, don't do it too early"). Once closed or joined (here or on either register
+   on the page) it does not open again in that browser. Escape, the cross or a tap outside the card closes it. */
 (function(){
   var pop = document.getElementById("regpop"); if (!pop) return;
   var card = pop.querySelector(".regpop-card"), KEY = "phaora.regpop.v1", shown = false, timer = 0,
@@ -1767,10 +1767,8 @@ html, body{overflow-x:clip}
   function done(){ try { return !!localStorage.getItem(KEY); } catch (e) { return false; } }
   function remember(v){ try { localStorage.setItem(KEY, v); } catch (e) {} }
   if (done()) return;
-  function atTop(){ return scrollY < innerHeight * .6; }
   function open(){
     if (shown || done()) return; shown = true;
-    removeEventListener("scroll", onScroll);
     pop.hidden = false; requestAnimationFrame(function(){ pop.classList.add("on"); });
     document.documentElement.style.overflow = "hidden";
     /* two crests come in, slide together into one, then part, and the register opens between them */
@@ -1786,8 +1784,14 @@ html, body{overflow-x:clip}
     setTimeout(function(){ pop.classList.remove("on"); document.documentElement.style.overflow = ""; }, still ? 0 : 650);
     setTimeout(function(){ pop.hidden = true; }, still ? 0 : 1050);
   }
-  function onScroll(){ if (atTop()) open(); }
-  timer = setTimeout(function(){ if (atTop()) open(); else addEventListener("scroll", onScroll, { passive: true }); }, 2500);
+  /* Brazil's name coming up into the top three fifths of the screen */
+  var br = document.querySelector('.place[data-reg="brazil"]'), seen = null;
+  if (br && "IntersectionObserver" in window){
+    seen = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if (e.isIntersecting){ seen.disconnect(); timer = setTimeout(open, 500); } });
+    }, { rootMargin: "0px 0px -40% 0px" });
+    seen.observe(br);
+  }
   pop.querySelector(".regpop-x").addEventListener("click", function(){ close("closed"); });
   pop.addEventListener("click", function(e){ if (e.target === pop) close("closed"); });
   addEventListener("keydown", function(e){ if (e.key === "Escape" && shown && !pop.hidden) close("closed"); });
@@ -1796,7 +1800,7 @@ html, body{overflow-x:clip}
     f.addEventListener("phaora:joined", function(){
       remember("joined");
       if (f.id === "popform") setTimeout(function(){ close("joined"); }, 1800);
-      else { clearTimeout(timer); removeEventListener("scroll", onScroll); }
+      else { clearTimeout(timer); if (seen) seen.disconnect(); }
     });
   });
 })();
