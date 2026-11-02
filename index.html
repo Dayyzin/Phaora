@@ -420,6 +420,10 @@ html[data-type="mix"] .label, html[data-type="mix"] .spec dt, html[data-type="mi
 .street .cl figure{margin:0; position:relative; width:auto; box-shadow:0 14px 36px rgba(0,0,0,.55)}
 .street .cl img{width:100%; height:100%; aspect-ratio:auto; object-fit:cover; display:block}
 .street .cl figcaption{position:absolute; left:0; top:calc(100% + 10px)}
+/* Paris 2 runs to the page's left edge, its left side pan-blurred like the night walk (David: "Motion blur this one
+   like the first we ever did") */
+.street .cl figure.bleedl{margin-left:calc(-1 * max(20px, env(safe-area-inset-left,0px)))}
+@media(min-width:900px){ .street .cl figure.bleedl{margin-left:0} }
 .street .lw{display:grid; gap:6px; margin:6px calc(-1 * max(20px, env(safe-area-inset-left,0px)))}
 .street .lw figure{margin:0; width:auto}
 .street .lw img{width:100%; height:auto; display:block}
@@ -627,7 +631,7 @@ html, body{overflow-x:clip}
     <div class="hlstack"><figure class="hl full"><img src="drop/assets/street-03.webp" width="1254" height="1254" alt="From below, blonde hair blowing across the hood, a stone facade behind" loading="lazy"></figure><figure class="hl full cut" aria-hidden="true"><img src="drop/assets/cut-03.webp" width="1254" height="1254" alt="" loading="lazy" decoding="async"></figure></div>
     </div><div class="rest">
     <div class="cl">
-      <figure style="grid-area:1 / 5 / 11 / 13; z-index:1"><img style="object-position:62% 50%" src="drop/assets/street-05-f.webp" width="1121" height="1401" decoding="async" alt="Leaning on a stone balustrade at night, a lit lamp and the river behind" loading="lazy"></figure>
+      <figure class="bleedl" style="grid-area:1 / 1 / 11 / 13; z-index:1"><img style="object-position:62% 50%" src="drop/assets/street-05-f.webp" width="1595" height="1401" decoding="async" alt="Leaning on a stone balustrade at night, a lit lamp and the river behind" loading="lazy"></figure>
       <figure style="grid-area:8 / 1 / 16 / 7; z-index:2"><img style="object-position:42% 35%" src="drop/assets/street-08-f.webp" width="1054" height="1405" decoding="async" alt="Looking back over her shoulder at dusk, a lamp and a domed building behind" loading="lazy"></figure>
       <figure style="grid-area:14 / 8 / 19 / 13; z-index:1"><img style="object-position:45% 50%" src="drop/assets/street-04-f.webp" width="1254" height="1254" decoding="async" alt="Hood up beside a stone column at night, under a lit street lamp" loading="lazy"></figure>
       <figure style="grid-area:18 / 2 / 27 / 9; z-index:2"><img style="object-position:50% 30%" src="drop/assets/street-06-f.webp" width="1094" height="1406" decoding="async" alt="The hood up, close: the emblem across it, the face in its shadow" loading="lazy"></figure>
@@ -647,7 +651,7 @@ html, body{overflow-x:clip}
     <div class="hlstack"><figure class="hl full"><img src="drop/assets/street-16.webp" width="1254" height="1254" alt="From behind, long hair over the emblem across her back" loading="lazy"></figure><figure class="hl full cut" aria-hidden="true"><img src="drop/assets/cut-16.webp" width="1254" height="1254" alt="" loading="lazy" decoding="async"></figure></div>
     </div><div class="rest">
     <div class="cl">
-      <figure style="grid-area:1 / 1 / 12 / 8; z-index:1"><img style="object-position:8% 40%" src="drop/assets/street-11-f.webp" width="798" height="1254" decoding="async" alt="A mirror selfie in a white hallway, the hoodie oversized" loading="lazy"></figure>
+      <figure style="grid-area:1 / 1 / 12 / 13; z-index:1"><img style="object-position:50% 50%" src="drop/assets/street-11-full.webp" width="1254" height="1254" decoding="async" alt="A mirror selfie in a white hallway, the hoodie oversized" loading="lazy"></figure>
       <figure style="grid-area:8 / 7 / 16 / 13; z-index:2"><img style="object-position:50% 40%" src="drop/assets/street-18-f.webp" width="940" height="1254" decoding="async" alt="Laughing behind her sleeve, the knit close" loading="lazy"></figure>
     </div>
     <div class="lw">
