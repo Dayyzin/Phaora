@@ -688,6 +688,9 @@ html, body{overflow-x:clip}
   -webkit-mask-image:repeating-linear-gradient(#000 0 3px, rgba(0,0,0,.35) 3px 5px, #000 5px 9px, rgba(0,0,0,.2) 9px 10px);
   mask-image:repeating-linear-gradient(#000 0 3px, rgba(0,0,0,.35) 3px 5px, #000 5px 9px, rgba(0,0,0,.2) 9px 10px)}
 .street .refl-wrap .place.refl{position:absolute; left:0; margin:0; z-index:auto; transform:scaleY(-1) skewX(-4deg); filter:blur(1.2px); clip-path:none}
+/* the fitting room's and the details' photographs knitted along their open edges, as Brazil's are (David, 2 Nov: "Add
+   stitching throughout the yellow line like added for Brazil edge"); drawn by knitEdge() below, on the crop the screen gives */
+.knitedge{position:absolute; inset:0; z-index:1; pointer-events:none; background:no-repeat 0 0 / 100% 100%}
 .knit{position:relative; isolation:isolate}
 .knit::before{content:""; position:absolute; inset:0; z-index:-1; background:url(drop/assets/chart.png) repeat; background-size:132px auto; opacity:.07; pointer-events:none;
   -webkit-mask-image:linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent); mask-image:linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent)}
@@ -1714,6 +1717,92 @@ html, body{overflow-x:clip}
     if (document.fonts.ready) document.fonts.ready.then(fit);
     if (document.fonts.addEventListener) document.fonts.addEventListener("loadingdone", fit);
   }
+})();
+</script>
+<script>
+/* knitEdge: a photograph's open edges knitted, the way Brazil's are (fx/knitin.py, there baked into the files): four rows of
+   stitches each the photograph's own colour where it sits, turning to the ground's colour toward the edge, the outermost
+   row dropping stitches at random. Here the photograph is cropped differently on each screen (object-fit), so the
+   stitches are drawn in the page on the crop actually shown: the fitting room's top and left on a phone, the details'
+   right and bottom everywhere (David, 2 Nov: "Add stitching throughout the yellow line like added for Brazil edge") */
+(function(){
+  var GROUND = [3, 8, 13], SW = 6, SH = 4.8, ROWS = 4;
+  var narrow = matchMedia("(max-width: 899px)");
+  function rand(s){ return function(){ s = s + 0x6D2B79F5 | 0; var t = Math.imul(s ^ s >>> 15, 1 | s); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  function knit(img, sides, phoneOnly){
+    var box = img.parentNode, ov = null, url = null, made = "";
+    function clear(){
+      if (ov){ ov.remove(); ov = null; } if (url){ URL.revokeObjectURL(url); url = null; }
+      img.style.webkitMaskImage = img.style.maskImage = ""; made = "";
+    }
+    function draw(){
+      if (phoneOnly && !narrow.matches){ clear(); return; }
+      var bw = img.clientWidth, bh = img.clientHeight, nw = img.naturalWidth, nh = img.naturalHeight;
+      if (!bw || !bh || !nw) return;
+      var key = bw + "x" + bh; if (key === made) return; made = key;
+      /* the crop on screen: object-fit cover at the photograph's object-position */
+      var s = Math.max(bw / nw, bh / nh), dw = nw * s, dh = nh * s,
+          op = getComputedStyle(img).objectPosition.split(" "),
+          ox = (bw - dw) * (parseFloat(op[0]) / 100), oy = (bh - dh) * (parseFloat(op[1] || op[0]) / 100);
+      var sc = document.createElement("canvas"); sc.width = Math.round(bw); sc.height = Math.round(bh);
+      var sx = sc.getContext("2d"); sx.drawImage(img, ox, oy, dw, dh);
+      var px; try { px = sx.getImageData(0, 0, sc.width, sc.height).data; } catch (e) { return; }
+      var R = Math.min(2, devicePixelRatio || 1), cv = document.createElement("canvas");
+      cv.width = Math.round(bw * R); cv.height = Math.round(bh * R);
+      var c = cv.getContext("2d"); c.scale(R, R);
+      var L = sides.indexOf("left") >= 0, T = sides.indexOf("top") >= 0, Rt = sides.indexOf("right") >= 0, B = sides.indexOf("bottom") >= 0;
+      var nx = Math.ceil(bw / SW), ny = Math.ceil(bh / SH), rnd = rand(nw * 7 + nh);
+      function mean(x0, y0, x1, y1){
+        x0 = Math.max(0, Math.floor(x0)); y0 = Math.max(0, Math.floor(y0)); x1 = Math.min(sc.width, Math.ceil(x1)); y1 = Math.min(sc.height, Math.ceil(y1));
+        var r = 0, g = 0, b = 0, n = 0;
+        for (var y = y0; y < y1; y++) for (var x = x0; x < x1; x++){ var k = (y * sc.width + x) * 4; r += px[k]; g += px[k + 1]; b += px[k + 2]; n++; }
+        return n ? [r / n, g / n, b / n] : GROUND;
+      }
+      function rgb(v, f){ return "rgb(" + Math.min(255, v[0] * f | 0) + "," + Math.min(255, v[1] * f | 0) + "," + Math.min(255, v[2] * f | 0) + ")"; }
+      for (var j = 0; j < ny; j++) for (var i = 0; i < nx; i++){
+        /* stitches from the nearest knitted edge, counted from that edge */
+        var d = Infinity;
+        if (L) d = Math.min(d, i); if (Rt) d = Math.min(d, i);
+        if (T) d = Math.min(d, j); if (B) d = Math.min(d, j);
+        if (d >= ROWS) continue;
+        var x0 = Rt ? bw - (i + 1) * SW : i * SW, y0 = B ? bh - (j + 1) * SH : j * SH;
+        var m = (d + (rnd() * .7 - .35)) / ROWS, t = Math.max(0, Math.min(1, m + .4));   /* a dark photograph: less of the near-black ground, or the stitches vanish into it */
+        if (d === 0 && rnd() < .45) continue;                 /* a dropped stitch: the ground shows */
+        var cm = mean(x0, y0, x0 + SW, y0 + SH),
+            col = [cm[0] * t + GROUND[0] * (1 - t), cm[1] * t + GROUND[1] * (1 - t), cm[2] * t + GROUND[2] * (1 - t)];
+        c.save(); c.beginPath(); c.rect(x0, y0, SW, SH); c.clip();
+        c.globalAlpha = d === 0 ? .55 : 1; c.fillStyle = rgb(col, .5); c.fillRect(x0, y0, SW, SH);   /* the seam */
+        c.globalAlpha = 1;
+        [[-1, 26], [1, -26]].forEach(function(p){                                            /* two leaning loops */
+          var cx = x0 + SW * (.5 + p[0] * .23), cy = y0 + SH * .52, a = p[1] * Math.PI / 180;
+          c.fillStyle = rgb(col, 1); c.beginPath(); c.ellipse(cx, cy, SW * .19, SH * .56, a, 0, Math.PI * 2); c.fill();
+          c.globalAlpha = .8; c.fillStyle = rgb(col, 1.7); c.beginPath(); c.ellipse(cx, cy - SH * .06, SW * .07, SH * .36, a, 0, Math.PI * 2); c.fill();
+          c.globalAlpha = 1;
+        });
+        c.restore();
+      }
+      cv.toBlob(function(bl){
+        if (!bl) return;
+        if (!ov){ ov = document.createElement("div"); ov.className = "knitedge"; ov.setAttribute("aria-hidden", "true"); box.appendChild(ov); }
+        if (url) URL.revokeObjectURL(url);
+        url = URL.createObjectURL(bl); ov.style.backgroundImage = "url(" + url + ")";
+        /* the photograph itself stops where the knitting starts */
+        var mx = (L || Rt) ? ROWS * SW : 0, my = (T || B) ? ROWS * SH : 0,
+            pos = (L ? "100%" : "0") + " " + (T ? "100%" : "0");
+        img.style.webkitMaskImage = img.style.maskImage = "linear-gradient(#000, #000)";
+        img.style.webkitMaskSize = img.style.maskSize = "calc(100% - " + mx + "px) calc(100% - " + my + "px)";
+        img.style.webkitMaskPosition = img.style.maskPosition = pos;
+        img.style.webkitMaskRepeat = img.style.maskRepeat = "no-repeat";
+      });
+    }
+    var go = function(){ if (img.complete && img.naturalWidth) draw(); else img.addEventListener("load", draw, { once: true }); };
+    var tm; addEventListener("resize", function(){ clearTimeout(tm); tm = setTimeout(go, 200); });
+    if (narrow.addEventListener) narrow.addEventListener("change", go);
+    go();
+  }
+  var room = document.querySelector("#room .media img"), det = document.querySelector("#details .stage img");
+  if (room) knit(room, ["top", "left"], true);
+  if (det) knit(det, ["right", "bottom"], false);
 })();
 </script>
 <script>
