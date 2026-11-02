@@ -381,12 +381,22 @@ html[data-type="mix"] .label, html[data-type="mix"] .spec dt, html[data-type="mi
 .street .lstack .lpair > figure{grid-area:1 / 1; width:100%; margin:0}
 .street .lstack figure{aspect-ratio:4 / 3}
 .street .lstack img{width:100%; height:100%; object-fit:cover; display:block}
+/* London 3 runs on below its edge as a vertical motion smear, into the gap above BRAZIL, which stays where it was
+   (David: "Motion blur the yellow end to end the bottom of the image until the end of yellow box"); wide screens keep
+   the old crop */
+.street .lstack figure.smear{aspect-ratio:1255 / 1411; margin-bottom:calc(-100% * 470 / 1255)}
+@media(min-width:900px){
+  .street .lstack figure.smear{aspect-ratio:16 / 9; margin-bottom:0}
+  .street .lstack figure.smear img{object-position:50% 0}
+}
 @media(min-width:900px){ .street .lstack{margin-inline:0} }
 /* London's photos sit in a viewfinder (David: "view finder is good"): a thin pointed corner and a
    quatrefoil at each corner, inside the fade */
 .street .lon figure{position:relative}
 .street .lon figure::after{content:""; position:absolute; inset:9% 7%; pointer-events:none; opacity:.75;
   background:url('data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20width=%2744%27%20height=%2744%27%20fill=%27none%27%20stroke=%27%23A9BAC5%27%20stroke-width=%271%27%3E%3Cpath%20d=%27M1.5%2044V15L15%201.5H44%27/%3E%3Cpath%20d=%27M6.5%2044V17.5L17.5%206.5H44%27%20opacity=%27.55%27/%3E%3Cg%20opacity=%27.9%27%3E%3Ccircle%20cx=%2715.5%27%20cy=%2713%27%20r=%272.3%27/%3E%3Ccircle%20cx=%2715.5%27%20cy=%2718%27%20r=%272.3%27/%3E%3Ccircle%20cx=%2713%27%20cy=%2715.5%27%20r=%272.3%27/%3E%3Ccircle%20cx=%2718%27%20cy=%2715.5%27%20r=%272.3%27/%3E%3C/g%3E%3C/svg%3E') left top no-repeat, url('data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20width=%2744%27%20height=%2744%27%20fill=%27none%27%20stroke=%27%23A9BAC5%27%20stroke-width=%271%27%3E%3Cg%20transform=%27matrix%28-1%200%200%201%2044%200%29%27%3E%3Cpath%20d=%27M1.5%2044V15L15%201.5H44%27/%3E%3Cpath%20d=%27M6.5%2044V17.5L17.5%206.5H44%27%20opacity=%27.55%27/%3E%3Cg%20opacity=%27.9%27%3E%3Ccircle%20cx=%2715.5%27%20cy=%2713%27%20r=%272.3%27/%3E%3Ccircle%20cx=%2715.5%27%20cy=%2718%27%20r=%272.3%27/%3E%3Ccircle%20cx=%2713%27%20cy=%2715.5%27%20r=%272.3%27/%3E%3Ccircle%20cx=%2718%27%20cy=%2715.5%27%20r=%272.3%27/%3E%3C/g%3E%3C/g%3E%3C/svg%3E') right top no-repeat, url('data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20width=%2744%27%20height=%2744%27%20fill=%27none%27%20stroke=%27%23A9BAC5%27%20stroke-width=%271%27%3E%3Cg%20transform=%27matrix%281%200%200%20-1%200%2044%29%27%3E%3Cpath%20d=%27M1.5%2044V15L15%201.5H44%27/%3E%3Cpath%20d=%27M6.5%2044V17.5L17.5%206.5H44%27%20opacity=%27.55%27/%3E%3Cg%20opacity=%27.9%27%3E%3Ccircle%20cx=%2715.5%27%20cy=%2713%27%20r=%272.3%27/%3E%3Ccircle%20cx=%2715.5%27%20cy=%2718%27%20r=%272.3%27/%3E%3Ccircle%20cx=%2713%27%20cy=%2715.5%27%20r=%272.3%27/%3E%3Ccircle%20cx=%2718%27%20cy=%2715.5%27%20r=%272.3%27/%3E%3C/g%3E%3C/g%3E%3C/svg%3E') left bottom no-repeat, url('data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20width=%2744%27%20height=%2744%27%20fill=%27none%27%20stroke=%27%23A9BAC5%27%20stroke-width=%271%27%3E%3Cg%20transform=%27matrix%28-1%200%200%20-1%2044%2044%29%27%3E%3Cpath%20d=%27M1.5%2044V15L15%201.5H44%27/%3E%3Cpath%20d=%27M6.5%2044V17.5L17.5%206.5H44%27%20opacity=%27.55%27/%3E%3Cg%20opacity=%27.9%27%3E%3Ccircle%20cx=%2715.5%27%20cy=%2713%27%20r=%272.3%27/%3E%3Ccircle%20cx=%2715.5%27%20cy=%2718%27%20r=%272.3%27/%3E%3Ccircle%20cx=%2713%27%20cy=%2715.5%27%20r=%272.3%27/%3E%3Ccircle%20cx=%2718%27%20cy=%2715.5%27%20r=%272.3%27/%3E%3C/g%3E%3C/g%3E%3C/svg%3E') right bottom no-repeat}
+.street .lon figure.smear::after{inset:6% 7% 39.3% 7%}
+@media(min-width:900px){ .street .lon figure.smear::after{inset:9% 7%} }
 .street .grid{display:grid; grid-template-columns:1fr 1fr; gap:4px; margin-inline:calc(-1 * max(20px, env(safe-area-inset-left,0px)))}
 .street .grid figure{margin:0; width:auto; position:relative}
 .street .grid .full{grid-column:1 / -1}
@@ -629,7 +639,7 @@ html, body{overflow-x:clip}
     <div class="lstack lon">
       <div class="lpair r"><figure><img src="drop/assets/street-21-wb.webp" width="1600" height="900" decoding="async" alt="By a graffiti wall at night, head down, the hoodie over wide jeans" loading="lazy"></figure><figure class="cut" aria-hidden="true"><img src="drop/assets/cut-21wb.webp" width="1600" height="900" alt="" loading="lazy" decoding="async"></figure></div>
       <figure class="l"><img src="drop/assets/street-20-bg.webp" width="1600" height="900" decoding="async" alt="Two friends on a wet street at night, one in the hoodie" loading="lazy"></figure>
-      <figure class="r"><img src="drop/assets/street-22-fm.webp" width="1672" height="941" decoding="async" alt="Hood up by the graffiti wall at dusk, blowing a kiss, the knit on the sleeve close" loading="lazy"></figure>
+      <figure class="r smear"><img src="drop/assets/street-22-fm.webp" width="1672" height="1411" decoding="async" alt="Hood up by the graffiti wall at dusk, blowing a kiss, the knit on the sleeve close" loading="lazy"></figure>
     </div>
     </div></div>
     <div class="reg" data-r="brazil"><div class="open">
