@@ -674,29 +674,53 @@ html, body{overflow-x:clip}
 .regpop-card{position:relative; background:var(--card); border:1px solid var(--line); padding:44px 24px 24px;
   display:grid; gap:12px; justify-items:center; text-align:center; transform:translateY(14px); transition:transform .35s; outline:none}
 .regpop.on .regpop-card{transform:none}
-/* the register opens out of two crests (David, 2 Nov: "two big crests and in the middle the register"; "no phaora
-   written inside"; "the two halves joined together and from there you open the register"): two whole crests stand side
-   by side, their wordmark taken out, each one's halves joined; then each crest parts where its wordmark sat and the
-   register opens between the halves, a band from one crest's spine to the other's. On a phone the band takes the
-   screen's width and the crests stand half off its edges. */
+/* the register between two whole crests (David, 2 Nov: "two big crests and in the middle the register"; "no phaora
+   written inside"; "the two halves joined together and from there you open the register"; "This is it"; "add in between
+   the register"): each crest whole, its wordmark taken out and its halves joined; a hairline runs between them at their
+   middle, and the register opens out of that line, between the crests. On a phone the register takes the screen's width
+   and the crests stand half off its edges. */
 .regpop{overflow:hidden}
-.regpop-set{--cw:min(20vw, 290px, calc((100svh - 300px) / 1.75)); position:relative; flex:none; display:grid;
-  grid-template-columns:var(--cw) minmax(0, 1fr) var(--cw); grid-template-rows:auto 0fr auto;
-  width:min(calc(100vw - 32px + var(--cw)), calc(var(--cw) + 720px)); transition:grid-template-rows .95s cubic-bezier(.65,0,.2,1)}
-.regpop.open .regpop-set{grid-template-rows:auto 1fr auto}
+.regpop-set{--cw:min(20vw, 270px, calc((100svh - 80px) / 1.72)); position:relative; flex:none; display:grid;
+  grid-template-columns:var(--cw) auto var(--cw); grid-template-rows:auto auto; align-items:end}
+.regpop-set{--d:calc(50vw - 16px)}
 .regpop-set .cr{display:block; width:100%; height:auto; pointer-events:none; filter:drop-shadow(0 0 24px rgba(221,238,244,.14));
-  opacity:0; transition:opacity .5s .1s, transform .5s .1s}
-.regpop-set .cr.t{grid-row:1; margin-bottom:-12px; transform:translateY(16px)}
-.regpop-set .cr.b{grid-row:3; margin-top:-12px; transform:translateY(-16px)}
+  opacity:0; transition:opacity .5s, transform .8s cubic-bezier(.65,0,.35,1)}
+.regpop-set .cr.t{grid-row:1; margin-bottom:-12px}
+.regpop-set .cr.b{grid-row:2; margin-top:-12px; align-self:start}
+/* the two crests slide into one in the middle, then part again with the register opening between them */
+.regpop.join .regpop-set .cr:nth-of-type(odd){transform:translateX(var(--d))}
+.regpop.join .regpop-set .cr:nth-of-type(even){transform:translateX(calc(-1 * var(--d)))}
 .regpop-set .cr:nth-of-type(odd){grid-column:1}
 .regpop-set .cr:nth-of-type(even){grid-column:3}
-.regpop.on .regpop-set .cr{opacity:1; transform:none}
-.regpop-set .band{grid-row:2; grid-column:1 / -1; margin:0 calc(var(--cw) / 2); min-height:0; overflow:hidden; position:relative; z-index:1}
-.regpop-set .band{opacity:0; transition:opacity .2s} .regpop.open .regpop-set .band{opacity:1}   /* no seam showing before it opens */
+.regpop.on .regpop-set .cr{opacity:1}
+.regpop-set .band{grid-column:2; grid-row:1 / 3; align-self:center; width:min(440px, calc(100vw - 32px - 1.6 * var(--cw)));
+  margin:0 calc(var(--cw) * -.1); position:relative; z-index:1; clip-path:inset(0 50% 0 50%); transition:clip-path .8s cubic-bezier(.65,0,.35,1)}
+.regpop.open .regpop-set .band{clip-path:inset(0 0 0 0)}
 .regpop-set .regpop-card > *{opacity:0; transition:opacity .4s}
-.regpop.open .regpop-set .regpop-card > *{opacity:1; transition-delay:.55s}
-@media(max-width:899px){ .regpop-set{--cw:140px} }
-@media (prefers-reduced-motion: reduce){ .regpop-set, .regpop-set .cr, .regpop-set .regpop-card > *{transition:none} }
+.regpop.open .regpop-set .regpop-card > *{opacity:1; transition-delay:.5s}
+@media(max-width:899px){
+  .regpop-set{--cw:130px; grid-template-columns:var(--cw) minmax(0, 1fr) var(--cw); width:calc(100vw - 32px + var(--cw))}
+  .regpop-set .band{width:auto; margin:0 calc(var(--cw) / -2)}
+}
+/* on a wide screen the register fills the space between the crests and comes out of them (David's red line, 2 Nov:
+   "Like my redline"; "they need to touch the crest like it's coming out of it"): its sides are each crest's own outline,
+   measured row by row from the crest's image and taken 10 px inside it, so the register runs on under the crest's edge
+   with no gap; the crests join into one in the middle, then part, the register opening between them ("Animate it, 2
+   crests, combined form one, then they open revealing the register") */
+@media(min-width:900px){
+  .regpop-set{--cw:min(19vw, 280px, calc((100svh - 80px) / 1.72)); --d:calc(240px + var(--cw) / 2); grid-template-columns:var(--cw) 480px var(--cw)}
+  .regpop-set .cr{position:relative; z-index:2}
+  .regpop-set .band{grid-column:1 / -1; grid-row:1 / 3; align-self:stretch; width:auto; margin:0;
+    clip-path:polygon(50% 9.0%, 50% 12.17%, 50% 15.33%, 50% 18.5%, 50% 21.67%, 50% 24.83%, 50% 28.0%, 50% 31.17%, 50% 34.33%, 50% 37.5%, 50% 40.67%, 50% 43.83%, 50% 47.0%, 50% 50.17%, 50% 53.33%, 50% 56.5%, 50% 59.67%, 50% 62.83%, 50% 66.0%, 50% 69.17%, 50% 72.33%, 50% 75.5%, 50% 78.67%, 50% 81.83%, 50% 85.0%, 50% 85.0%, 50% 81.83%, 50% 78.67%, 50% 75.5%, 50% 72.33%, 50% 69.17%, 50% 66.0%, 50% 62.83%, 50% 59.67%, 50% 56.5%, 50% 53.33%, 50% 50.17%, 50% 47.0%, 50% 43.83%, 50% 40.67%, 50% 37.5%, 50% 34.33%, 50% 31.17%, 50% 28.0%, 50% 24.83%, 50% 21.67%, 50% 18.5%, 50% 15.33%, 50% 12.17%, 50% 9.0%)}
+  .regpop.open .regpop-set .band{clip-path:polygon(calc(var(--cw) * 0.5567) 9.0%, calc(var(--cw) * 0.5367) 12.17%, calc(var(--cw) * 0.5933) 15.33%, calc(var(--cw) * 0.6150) 18.5%, calc(var(--cw) * 0.6933) 21.67%, calc(var(--cw) * 0.7267) 24.83%, calc(var(--cw) * 0.7217) 28.0%, calc(var(--cw) * 0.8367) 31.17%, calc(var(--cw) * 0.8683) 34.33%, calc(var(--cw) * 0.8583) 37.5%, calc(var(--cw) * 0.8800) 40.67%, calc(var(--cw) * 0.8800) 43.83%, calc(var(--cw) * 0.9617) 47.0%, calc(var(--cw) * 0.9700) 50.17%, calc(var(--cw) * 0.9217) 53.33%, calc(var(--cw) * 0.8383) 56.5%, calc(var(--cw) * 0.8217) 59.67%, calc(var(--cw) * 0.7850) 62.83%, calc(var(--cw) * 0.7683) 66.0%, calc(var(--cw) * 0.6933) 69.17%, calc(var(--cw) * 0.6817) 72.33%, calc(var(--cw) * 0.6183) 75.5%, calc(var(--cw) * 0.5833) 78.67%, calc(var(--cw) * 0.5517) 81.83%, calc(var(--cw) * 0.5500) 85.0%, calc(100% - var(--cw) * 0.5550) 85.0%, calc(100% - var(--cw) * 0.5533) 81.83%, calc(100% - var(--cw) * 0.5850) 78.67%, calc(100% - var(--cw) * 0.6200) 75.5%, calc(100% - var(--cw) * 0.6833) 72.33%, calc(100% - var(--cw) * 0.6967) 69.17%, calc(100% - var(--cw) * 0.7700) 66.0%, calc(100% - var(--cw) * 0.7867) 62.83%, calc(100% - var(--cw) * 0.8233) 59.67%, calc(100% - var(--cw) * 0.8400) 56.5%, calc(100% - var(--cw) * 0.9233) 53.33%, calc(100% - var(--cw) * 0.9717) 50.17%, calc(100% - var(--cw) * 0.9633) 47.0%, calc(100% - var(--cw) * 0.8817) 43.83%, calc(100% - var(--cw) * 0.8817) 40.67%, calc(100% - var(--cw) * 0.8600) 37.5%, calc(100% - var(--cw) * 0.8700) 34.33%, calc(100% - var(--cw) * 0.8383) 31.17%, calc(100% - var(--cw) * 0.7233) 28.0%, calc(100% - var(--cw) * 0.7283) 24.83%, calc(100% - var(--cw) * 0.6950) 21.67%, calc(100% - var(--cw) * 0.5567) 18.5%, calc(100% - var(--cw) * 0.7050) 15.33%, calc(100% - var(--cw) * 0.5617) 12.17%, calc(100% - var(--cw) * 0.5567) 9.0%)}
+  .regpop-set .regpop-card{height:100%; border:0; padding:0 calc(var(--cw) * .98 + 10px); gap:8px; align-content:center}
+  .regpop-set .regpop-card p{max-width:none}
+  .regpop-set .regpop-card form{gap:12px 16px; width:100%}
+  .regpop-set .regpop-card input[type=email]{flex-basis:190px}
+  .regpop-set .regpop-card .msg:empty{display:none}
+  .regpop-set .regpop-x{top:calc(9% + 10px); right:calc(var(--cw) * 1.02 + 6px)}
+}
+@media (prefers-reduced-motion: reduce){ .regpop-set .cr, .regpop-set .band, .regpop-set .regpop-card > *{transition:none} }
 .regpop-x{position:absolute; top:4px; right:4px; width:44px; height:44px; border:0; background:none; color:var(--label); font-size:28px; line-height:1; cursor:pointer}
 .regpop-x:hover, .regpop-x:focus-visible{color:var(--ice)}
 .regpop h2{font-family:var(--disp); font-weight:var(--dweight); text-transform:var(--dcase); letter-spacing:var(--dtrack); font-size:clamp(32px, 9vw, 44px); line-height:1; color:var(--ice); margin:0}
@@ -1733,9 +1757,9 @@ html, body{overflow-x:clip}
 })();
 </script>
 <script>
-/* the register pop-up: opens 2.5 s after a visitor lands, while they are still at the top of the page; if they have
-   already scrolled on, it waits until they are back at the top. Once closed or joined (here or on either register
-   below) it does not open again in that browser. Escape, the cross or a tap outside the card closes it. */
+/* the register pop-up: opens once a visitor has scrolled down as far as Brazil, never at the top (David, 2 Nov: "Wait
+   until they get to like Brazil to show it, don't do it too early"). Once closed or joined (here or on either register
+   on the page) it does not open again in that browser. Escape, the cross or a tap outside the card closes it. */
 (function(){
   var pop = document.getElementById("regpop"); if (!pop) return;
   var card = pop.querySelector(".regpop-card"), KEY = "phaora.regpop.v1", shown = false, timer = 0,
@@ -1743,14 +1767,16 @@ html, body{overflow-x:clip}
   function done(){ try { return !!localStorage.getItem(KEY); } catch (e) { return false; } }
   function remember(v){ try { localStorage.setItem(KEY, v); } catch (e) {} }
   if (done()) return;
-  function atTop(){ return scrollY < innerHeight * .6; }
   function open(){
     if (shown || done()) return; shown = true;
-    removeEventListener("scroll", onScroll);
     pop.hidden = false; requestAnimationFrame(function(){ pop.classList.add("on"); });
     document.documentElement.style.overflow = "hidden";
-    /* the crests come in whole, then part, and the register opens between them */
-    setTimeout(function(){ pop.classList.add("open"); try { card.focus({ preventScroll: true }); } catch (e) {} }, still ? 0 : 900);
+    /* two crests come in, slide together into one, then part, and the register opens between them */
+    if (still){ pop.classList.add("open"); try { card.focus({ preventScroll: true }); } catch (e) {} }
+    else {
+      setTimeout(function(){ pop.classList.add("join"); }, 600);
+      setTimeout(function(){ pop.classList.remove("join"); pop.classList.add("open"); try { card.focus({ preventScroll: true }); } catch (e) {} }, 600 + 800 + 350);
+    }
   }
   function close(v){
     remember(v || "closed");
@@ -1758,8 +1784,14 @@ html, body{overflow-x:clip}
     setTimeout(function(){ pop.classList.remove("on"); document.documentElement.style.overflow = ""; }, still ? 0 : 650);
     setTimeout(function(){ pop.hidden = true; }, still ? 0 : 1050);
   }
-  function onScroll(){ if (atTop()) open(); }
-  timer = setTimeout(function(){ if (atTop()) open(); else addEventListener("scroll", onScroll, { passive: true }); }, 2500);
+  /* Brazil's name coming up into the top three fifths of the screen */
+  var br = document.querySelector('.place[data-reg="brazil"]'), seen = null;
+  if (br && "IntersectionObserver" in window){
+    seen = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if (e.isIntersecting){ seen.disconnect(); timer = setTimeout(open, 500); } });
+    }, { rootMargin: "0px 0px -40% 0px" });
+    seen.observe(br);
+  }
   pop.querySelector(".regpop-x").addEventListener("click", function(){ close("closed"); });
   pop.addEventListener("click", function(e){ if (e.target === pop) close("closed"); });
   addEventListener("keydown", function(e){ if (e.key === "Escape" && shown && !pop.hidden) close("closed"); });
@@ -1768,7 +1800,7 @@ html, body{overflow-x:clip}
     f.addEventListener("phaora:joined", function(){
       remember("joined");
       if (f.id === "popform") setTimeout(function(){ close("joined"); }, 1800);
-      else { clearTimeout(timer); removeEventListener("scroll", onScroll); }
+      else { clearTimeout(timer); if (seen) seen.disconnect(); }
     });
   });
 })();
