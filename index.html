@@ -116,6 +116,23 @@ p{margin:0}
 .sc .stage{position:relative; overflow:hidden; min-height:0}
 .sc .stage > img, .sc .stage > canvas, .sc .slides{position:absolute; inset:0; width:100%; height:100%; display:block}
 .sc .stage img{object-fit:cover; object-position:50% 28%}
+/* the knit on the two garment photographs: Brazil's own stitches, cut out of street-16-k.webp and
+   tiled over the whole picture, then masked to a frame — one continuous piece of knitting that thins
+   into the photograph, rather than a band that stops on a line (David, 3 Nov: "you just copy what was
+   there?"; "ITS A STRAIGHT LINE"). Brazil's is baked into its own files; these two are object-fit:cover
+   and crop to 70% of their width on a phone, so a baked edge would be cut off the sides he marked.
+   The tile is a whole number of stitches and courses, so it repeats with no join, and one or two stitches are taken out
+   of it every few, so the band is knitting with gaps rather than an unbroken ribbon. The frame itself is a mask image whose
+   boundary wanders rather than two straight gradients, since Brazil's edge is not a ruler either
+   ("the pattern is all verticle lines ... Randomize outside line"). fx/knitedge.py, fx/framemask.py. */
+#details .stage, #room .media{position:relative}
+#details .stage::after, #room .media::after{content:""; position:absolute; inset:0; z-index:2; pointer-events:none;
+  background-repeat:repeat; background-size:205px auto;
+  -webkit-mask-image:url(drop/assets/knit-frame.png); mask-image:url(drop/assets/knit-frame.png);
+  -webkit-mask-size:100% 100%; mask-size:100% 100%; -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat}
+#details .stage::after{background-image:url(drop/assets/knit-band-hood.png)}
+#room .media::after{background-image:url(drop/assets/knit-band-low.png)}
+@media(min-width:900px){ #details .stage::after, #room .media::after{background-size:290px auto} }
 .sc .cap{display:grid; gap:10px; justify-items:start; align-content:start; padding-block:22px 30px; background:var(--ground)}
 .sc .cap p{color:var(--text-2); font-size:var(--lead); max-width:40ch}
 .slides img{position:absolute; inset:0; width:100%; height:100%; display:block; opacity:0}
@@ -261,6 +278,14 @@ html[data-type="anton"] .dl{text-transform:uppercase}
 .huge{margin:0; font-family:var(--disp); font-weight:var(--dweight); font-size:clamp(200px, 72vw, 620px); line-height:.78; letter-spacing:-.03em; color:var(--ice)}
 .aline{font-family:var(--disp); font-size:clamp(26px, 7vw, 56px); line-height:1.05; color:var(--ice); text-transform:var(--dcase)}
 html[data-type="anton"] .aline{text-transform:uppercase}
+/* the needle bed under the number it names: one inch of it, drawn and run on a canvas.
+   Full width under the 28 and its line, in both of .alone's layouts. */
+.bed{margin:clamp(64px, 11vw, 112px) auto 0; display:grid; justify-items:center; gap:clamp(8px, 1.4vw, 12px);
+  justify-self:stretch; width:100%; max-width:820px}
+.bed .label{letter-spacing:.24em; font-size:clamp(9.5px, 1.65vw, 13px)}
+.bed canvas{display:block; width:100%; height:auto; aspect-ratio:600/436}
+.bednote{margin:clamp(40px, 7vw, 64px) auto 0; max-width:34em; justify-self:stretch; text-align:center;
+  color:var(--text-2); font-size:var(--lead); line-height:1.72}
 /* off-centre: photos pushed to one side, the headings crossing them */
 #worn .stage{margin-right:18%}
 #details .stage{margin-right:18%}
@@ -570,6 +595,7 @@ html, body{overflow-x:clip}
   .alone{min-height:100svh; grid-template-columns:auto auto; justify-content:center; align-content:center; align-items:end; justify-items:start; column-gap:clamp(24px, 4vw, 72px); text-align:left}
   .alone .huge{grid-row:1 / span 2}
   .alone .aline{max-width:9em}
+  .alone .bed, .alone .bednote{grid-column:1 / -1; text-align:center}
   .chartbox{width:min(100%, 49svh, 640px)}
   #room .media, #register .media{width:100%; height:100svh; max-height:none; aspect-ratio:auto; justify-self:stretch; -webkit-mask-image:linear-gradient(90deg, #000 72%, transparent); mask-image:linear-gradient(90deg, #000 72%, transparent)}
 }
@@ -626,8 +652,8 @@ html, body{overflow-x:clip}
   background:
     radial-gradient(80% var(--r1) at 50% var(--c1), #16283A 0%, #0A1520 40%, rgba(3,8,13,0) 80%),
     radial-gradient(80% var(--r2) at 50% var(--c2), #16283A 0%, #0A1520 40%, rgba(3,8,13,0) 80%),
-    radial-gradient(80% var(--r3) at 50% var(--c3), #360906 0%, #300806 40%, rgba(43,7,5,0) 80%),
-    linear-gradient(to bottom, #03080D 0, #03080D var(--bz), #2B0705 var(--bz), #2B0705 100%)}
+    radial-gradient(80% var(--r3) at 50% var(--c3), #16283A 0%, #0A1520 40%, rgba(3,8,13,0) 80%),
+    linear-gradient(to bottom, #03080D 0, #03080D 100%)}
 /* Paris stands over a blurred night photograph of the Eiffel Tower (David, 2 Nov: "This background can be a blurred
    photo of the country touristic point... let's try it?"), fading out before London */
 .street{position:relative; isolation:isolate; --lb:1000px}
@@ -643,18 +669,23 @@ html, body{overflow-x:clip}
 .street .parisbg i.a{top:0; height:56%; background-image:url(drop/assets/paris-a.webp)}
 .street .parisbg i.b{bottom:0; height:56%; background-image:url(drop/assets/paris-b.webp);
   -webkit-mask-image:linear-gradient(to bottom, transparent, #000 16%); mask-image:linear-gradient(to bottom, transparent, #000 16%)}
-/* Brazil on a deep oxblood, darker than the swatch (#2B0705: David, 2 Nov, "Make the red darker"), its whole section
-   pressed into the page, with thick knitted heart outlines in Dark Red #7F170E ("deboss the section of BRAZIL not 15
-   pieces"), each heart laid where it shows, in the open ground between the photographs ("Make sure you can see the
-   hearts with the placements"), one style at different
-   sizes, each tilted a little left or right (David, 2 Nov, from a jacquard sweater: "This in a lighter red than the
-   background"; "different sizes, not styles. And never straight, slightly angled left and right"; "make them thick") */
+/* Brazil's whole section is still pressed into the page ("deboss the section of BRAZIL not 15 pieces"), but over
+   its own photograph now. The oxblood ground and the knitted hearts that stood on it are gone (David, 3 Nov:
+   "no red bro I said REPLACE"); the band is the page's night, as Paris's and London's are. */
 .street::before{content:""; position:absolute; left:0; right:0; top:var(--bz); bottom:0; z-index:-1; pointer-events:none;
   /* a dark filter over the red and its hearts, cast toward the page's navy, deepest at the edges, so Brazil keeps the
      night the blue sections have (David, 2 Nov: "throw a dark filter to kind of keep the moody feel of the blue") */
   background:radial-gradient(120% 70% at 50% 45%, rgba(3,8,13,.34) 0%, rgba(3,8,13,.5) 60%, rgba(3,8,13,.74) 100%);
   box-shadow:inset 0 22px 30px -10px rgba(0,0,0,.85), inset 0 3px 4px -1px rgba(0,0,0,.7), inset 0 -18px 26px -12px rgba(0,0,0,.55),
-    inset 16px 0 24px -14px rgba(0,0,0,.5), inset -16px 0 24px -14px rgba(0,0,0,.5), inset 0 -1px 0 rgba(255,190,180,.12)}
+    inset 16px 0 24px -14px rgba(0,0,0,.5), inset -16px 0 24px -14px rgba(0,0,0,.5), inset 0 -1px 0 rgba(190,214,232,.12)}
+/* Brazil over Copacabana at sunset — the beach, the promenade and the sun on the water — smeared straight down as London's Tower
+   Bridge and Paris's scenes are (David, 3 Nov: "replace it with a Brazil picture with motion effect like Paris
+   and London has"). Its own colours, ungraded ("No blue, original colors"), on the page's night. It stands where the oxblood and
+   the knitted hearts stood; the hearts are kept for the pop-up David wants them on. Built by fx/brazil-bg.py. */
+.street .brzbg{position:absolute; left:0; right:0; top:var(--bz); bottom:0; z-index:-2; pointer-events:none;
+  background:url(drop/assets/brazil-bg.webp) center / 100% 100% no-repeat;
+  -webkit-mask-image:linear-gradient(transparent, #000 170px, #000 calc(100% - 200px), transparent);
+  mask-image:linear-gradient(transparent, #000 170px, #000 calc(100% - 200px), transparent)}
 /* London over Tower Bridge at night, smeared straight down as Paris's scenes are (David, 2 Nov: "Tower Bridge smudge").
    The photograph is Barney Moss's, CC BY 2.0, credited in the footer */
 .street .lonbg{position:absolute; left:0; right:0; top:var(--lb); height:calc(var(--bz) - var(--lb)); z-index:-1; pointer-events:none;
@@ -707,7 +738,8 @@ html, body{overflow-x:clip}
 #specs.knit::before{-webkit-mask-image:linear-gradient(to bottom, #000 0, transparent 55%); mask-image:linear-gradient(to bottom, #000 0, transparent 55%)}
 /* on wide screens the label's hoodie rises behind the register's button: clicks go through it to the button */
 .labelsec.spread .still{pointer-events:none}
-/* the hearts, each its own piece so each takes its own tilt, under the section's pressed lip */
+/* the hearts, each its own piece so each takes its own tilt, under the section's pressed lip.
+   Parked, not deleted: nothing lays them since Brazil took its own backdrop, and they are waiting on a pop-up. */
 .street .hearts{position:absolute; left:0; right:0; top:var(--bz); bottom:0; z-index:-2; pointer-events:none; overflow:hidden}
 .street .hearts i{position:absolute; background:center / 100% 100% no-repeat}
 /* Brazil's photographs knitted into the ground, not faded (David, 2 Nov: "Knit the image itself to the background";
@@ -921,6 +953,15 @@ html, body{overflow-x:clip}
     <p class="huge num">28</p>
     <p class="aline">needles to the inch.</p>
     <span class="label">28-gauge jacquard</span>
+    <figure class="bed">
+      <span class="label">1 inch &middot; 28 needles</span>
+      <canvas id="bedc" width="600" height="436" aria-label="One inch of the needle bed: the carriage working back and forth across 28 needles, the three yarns feeding into their hooks, and the jacquard knitting below."></canvas>
+    </figure>
+    <!-- David's reference image carries one more sentence after this one. It is cut off in the
+         screenshot and is his to supply; nothing is guessed onto the page. -->
+    <p class="bednote">One inch of the needle bed, slowed down: <span class="num">28</span> needles,
+      <span class="num">0.9</span>&nbsp;mm apart. As the carriage passes, the needles the chart picks
+      for each yarn rise, catch it in their hooks and pull it through the last loop.</p>
   </section>
 
   <section class="ch plain gut knit" id="chart" data-face="editorial">
@@ -1005,6 +1046,8 @@ html, body{overflow-x:clip}
       <a class="mark big" href="#film"><svg viewBox="188.0 472.9 624.2 122.1" role="img" aria-label="PHAÖRA"><use href="#wmL"/><use href="#wmO"/><use href="#wmP"/></svg></a>
       <p class="line">Built on standards. Not inherited. Decided.</p>
       <a class="label wl" href="mailto:phaoraco@gmail.com?subject=Wholesale%20%E2%80%94%20PHA%C3%96RA%20Drop%20001">Wholesale</a>
+      <!-- Brazil's backdrop is the Copacabana sunset David supplied on 3 Nov. No credit line until he
+           says what its licence is; nothing is guessed onto a published page. -->
       <span class="credit">London: Tower Bridge at night by Barney Moss, <a href="https://creativecommons.org/licenses/by/2.0/" rel="noopener" target="_blank">CC BY 2.0</a>, blurred</span>
       <span class="label">© <svg class="logo-inline" viewBox="188.0 472.9 624.2 122.1" role="img" aria-label="PHAÖRA"><use href="#wmL"/><use href="#wmO"/><use href="#wmP"/></svg></span>
     </div>
@@ -1313,6 +1356,181 @@ html, body{overflow-x:clip}
   if (wf) join(wf, document.getElementById("w-msg"), document.getElementById("w-btn"));
   var pf = document.getElementById("popform");
   if (pf) join(pf, document.getElementById("popmsg"), document.getElementById("popbtn"));
+})();
+</script>
+
+<script>
+/* The needle bed under the 28: one inch of it, 28 needles, the carriage working back and forth,
+   knitting a true window of the Serpent Emblem chart (drop/assets/chart.png, columns 222-249,
+   rows 321-368) in the hoodie's own three yarns. It runs only while the section is on screen. */
+(function(){
+  "use strict";
+  var cv = document.getElementById("bedc");
+  if (!cv || !cv.getContext) return;
+  var ctx = cv.getContext("2d");
+
+  var SRC = ["0000000000000000000000000000","0000000000000000000000000000","0000000000000000000000000000","0000000000000000000000000000","0000000000000000000000000000","0000000000000011000000000000","0000000000000111000000000000","0000000000001111000000000000","0000000000222111100000000000","0000000011222111110000000000","0000000111120001111000000000","0000000111110000111000000000","0000000000100000011100000001","0000000000000000011100001111","0000000110000000001110011111","0000000110000000001111111111","0000000000001100001111111111","0000000000001100011111110001","0000000000001110111111000011","0000000000000111111110000011","0000000000000011111100000111","0000000000000011111100001111","0000000000000011122000011110","0000000000000011122000111110","0110000110000011220001111100","0010000111000022221111111000","0011100011000022211111110000","0111100011000011111111100001","0011000011100011111111000011","0000000111100011111110000111","0000000111100011111100002111","0000000011110011111100002211","0000000011110011111100022211","0000000001111111111000022211","0000000011111111110000222211","0000000111111111100000222111","0000101111001111000002222111","0000111111001100000022222111","0000011111111100000022221111","0000001111111100000022222111","0000000111111000000022222222","0000000111111000000022222222","0000000101110000000022222222","0000000000000000000022222222","0000000000000000000022222222","0000000000000000000002222222","1000000001000000000002222222","1000000011100000000012222222"];
+
+  var N = 28, P = 20, X0 = 30;              /* 28 needles, 20 units apart, the first at x=30 */
+  var BAR_Y = 6, RAIL_Y = 52;
+  var HOOK_REST = 92, HOOK_UP = 76, NEEDLE_FOOT = 138;
+  var FAB_Y = 140, ROW_H = 18, ROWS = 16;
+  var CAR_W = 128, CAR_H = 24, EYE_DX = 34;
+
+  var C = { ice:"#DDEEF4", label:"#A9BAC5", line:"#2E4252",
+            needle:"#7E94A6", hook:"#AFC3D1", carFill:"rgba(14,24,34,.78)" };
+  /* each yarn as it lies, and the same yarn where the light catches the near leg. The navy is
+     lifted off its true #0C1320: at the yarn's own value it disappears into the ground. */
+  var YARN = [["#121D2C","#2C3949"], ["#6E889C","#7992A5"], ["#BACDDA","#C6D6E1"]];
+
+  var nx = function(i){ return X0 + i * P; };
+  var smooth = function(t){ return t <= 0 ? 0 : t >= 1 ? 1 : t * t * (3 - 2 * t); };
+  /* the take-down draws the cloth down off the needles, so each earlier course sits lower */
+  var srcRow = function(k){ var n = SRC.length; return SRC[((k % n) + n) % n]; };
+
+  function fit(){
+    var r = Math.min(window.devicePixelRatio || 1, 2.5), w = cv.clientWidth || 600;
+    if (!w) return;
+    cv.width = Math.round(w * r); cv.height = Math.round(w * 436 / 600 * r);
+    ctx.setTransform(cv.width / 600, 0, 0, cv.width / 600, 0, 0);
+  }
+
+  function stitch(x, y, yarn){
+    ctx.lineCap = "round"; ctx.lineJoin = "round";
+    ctx.strokeStyle = YARN[yarn][0]; ctx.lineWidth = 4.8;
+    ctx.beginPath();
+    ctx.moveTo(x - 7, y + 2.6); ctx.lineTo(x, y + 13.4); ctx.lineTo(x + 7, y + 2.6);
+    ctx.stroke();
+    ctx.strokeStyle = YARN[yarn][1]; ctx.lineWidth = 1.8;
+    ctx.beginPath(); ctx.moveTo(x - 6.4, y + 2.4); ctx.lineTo(x - 0.5, y + 11.8); ctx.stroke();
+  }
+
+  function needle(x, hookY, worked){
+    ctx.lineCap = "round";
+    ctx.strokeStyle = C.needle; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(x, hookY + 6); ctx.lineTo(x, NEEDLE_FOOT); ctx.stroke();
+    ctx.strokeStyle = C.hook; ctx.lineWidth = 2.1;
+    ctx.beginPath(); ctx.arc(x + 2.2, hookY + 3.0, 2.9, Math.PI * 0.84, Math.PI * 2.12); ctx.stroke();
+    if (!worked){                                      /* latch still open, waiting */
+      ctx.strokeStyle = C.needle; ctx.lineWidth = 1.3;
+      ctx.beginPath(); ctx.arc(x, hookY + 14, 2.1, 0, Math.PI * 2); ctx.stroke();
+    }
+  }
+
+  function draw(phase, rowOffset){
+    ctx.clearRect(0, 0, 600, 436);
+    /* the carriage works back and forth, easing as it turns at each end of the bed */
+    var cx = -90 + 390 * (1 - Math.cos(Math.PI * phase));
+    var dir = Math.sin(Math.PI * phase) >= 0 ? 1 : -1;
+
+    ctx.strokeStyle = C.label; ctx.globalAlpha = .55; ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(20, BAR_Y + 6); ctx.lineTo(580, BAR_Y + 6);
+    ctx.moveTo(20, BAR_Y); ctx.lineTo(20, BAR_Y + 12);
+    ctx.moveTo(580, BAR_Y); ctx.lineTo(580, BAR_Y + 12);
+    ctx.stroke(); ctx.globalAlpha = 1;
+
+    ctx.strokeStyle = C.line; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(0, RAIL_Y); ctx.lineTo(600, RAIL_Y); ctx.stroke();
+
+    for (var r = ROWS; r >= 0; r--){
+      var row = srcRow(rowOffset - r), y = FAB_Y + r * ROW_H;
+      for (var i = 0; i < N; i++){
+        /* the course fills behind the carriage, from whichever end it set out */
+        if (r === 0 && (dir > 0 ? nx(i) > cx - 16 : nx(i) < cx + 16)) continue;
+        stitch(nx(i), y, +row.charAt(i));
+      }
+    }
+
+    var lifted = [];
+    for (var j = 0; j < N; j++){
+      var x = nx(j), d = Math.abs(x - (cx - 6 * dir)), lift = smooth(1 - d / 74);
+      var hy = HOOK_REST - (HOOK_REST - HOOK_UP) * lift;
+      needle(x, hy, dir > 0 ? x < cx - 16 : x > cx + 16);
+      if (lift > .35) lifted.push([x, hy]);
+    }
+
+    /* the three yarns, out of the carriage and into the hooks it has raised */
+    ctx.globalAlpha = .9; ctx.lineCap = "round";
+    for (var k = 0; k < 3; k++){
+      var ex = cx + (k - 1) * EYE_DX, t = lifted[Math.min(k, lifted.length - 1)];
+      if (!t) continue;
+      ctx.strokeStyle = YARN[k === 1 ? 1 : 2][k === 1 ? 1 : 0]; ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.moveTo(ex, RAIL_Y + 8);
+      ctx.quadraticCurveTo(ex, t[1] - 16, t[0], t[1] + 2); ctx.stroke();
+    }
+
+    /* the yarn running back to the feeder: taut along the rail, fading out before the edge */
+    ctx.globalAlpha = 1;
+    if (cx + EYE_DX < 592){
+      var fg = ctx.createLinearGradient(cx + EYE_DX, RAIL_Y, 600, RAIL_Y);
+      fg.addColorStop(0, "rgba(221,238,244,.7)");
+      fg.addColorStop(.65, "rgba(221,238,244,.16)");
+      fg.addColorStop(1, "rgba(221,238,244,0)");
+      ctx.strokeStyle = fg; ctx.lineWidth = 1.2;
+      ctx.beginPath(); ctx.moveTo(cx + EYE_DX, RAIL_Y); ctx.lineTo(600, RAIL_Y); ctx.stroke();
+    }
+
+    var cl = cx - CAR_W / 2, ct = RAIL_Y - CAR_H / 2;
+    ctx.fillStyle = C.carFill; ctx.strokeStyle = C.label; ctx.globalAlpha = .95; ctx.lineWidth = 1.2;
+    ctx.beginPath();
+    if (ctx.roundRect) ctx.roundRect(cl, ct, CAR_W, CAR_H, CAR_H / 2);
+    else { ctx.moveTo(cl + 12, ct); ctx.lineTo(cl + CAR_W - 12, ct);
+           ctx.quadraticCurveTo(cl + CAR_W, ct, cl + CAR_W, ct + CAR_H / 2);
+           ctx.quadraticCurveTo(cl + CAR_W, ct + CAR_H, cl + CAR_W - 12, ct + CAR_H);
+           ctx.lineTo(cl + 12, ct + CAR_H);
+           ctx.quadraticCurveTo(cl, ct + CAR_H, cl, ct + CAR_H / 2);
+           ctx.quadraticCurveTo(cl, ct, cl + 12, ct); }
+    ctx.fill(); ctx.stroke(); ctx.globalAlpha = 1;
+
+    for (var e = 0; e < 3; e++){
+      var ex2 = cx + (e - 1) * EYE_DX;
+      ctx.beginPath(); ctx.arc(ex2, RAIL_Y, 5.4, 0, Math.PI * 2);
+      if (e === 0){ ctx.strokeStyle = C.ice; ctx.lineWidth = 1.4; ctx.stroke(); }
+      else { ctx.fillStyle = YARN[e][0]; ctx.fill();
+             ctx.strokeStyle = C.label; ctx.globalAlpha = .5; ctx.lineWidth = .9; ctx.stroke();
+             ctx.globalAlpha = 1; }
+    }
+  }
+
+  var START = 0.49, TRAVERSE_MS = 3600;   /* phase 0-1 is the run out, 1-2 the run back */
+  var phase = START, rowOffset = 0, last = null, raf = 0, onScreen = false;
+  var still = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  function frame(t){
+    if (last === null) last = t;
+    var dt = t - last; last = t;
+    var was = phase;
+    phase += dt / TRAVERSE_MS;
+    /* a course is finished at each end of the bed, so the cloth grows on every traverse */
+    if (phase >= 2){ phase -= 2; rowOffset = (rowOffset + 1) % SRC.length; }
+    else if (was < 1 && phase >= 1){ rowOffset = (rowOffset + 1) % SRC.length; }
+    draw(phase, rowOffset);
+    raf = requestAnimationFrame(frame);
+  }
+
+  function stop(){ if (raf) cancelAnimationFrame(raf); raf = 0; last = null; }
+  function run(){
+    stop();
+    if (still.matches || !onScreen){ draw(phase, rowOffset); return; }
+    raf = requestAnimationFrame(frame);
+  }
+
+  fit();
+  draw(START, 0);
+  window.addEventListener("resize", function(){ fit(); if (!raf) draw(phase, rowOffset); });
+  if (still.addEventListener) still.addEventListener("change", run);
+  document.addEventListener("visibilitychange", function(){
+    onScreen = onScreen && !document.hidden; run();
+  });
+
+  if (window.IntersectionObserver){
+    new IntersectionObserver(function(es){
+      onScreen = es[0].isIntersecting && !document.hidden; run();
+    }, { rootMargin: "120px 0px" }).observe(cv);
+  } else { onScreen = true; run(); }
+
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ fit(); if (!raf) draw(phase, rowOffset); });
 })();
 </script>
 
@@ -1717,7 +1935,7 @@ html, body{overflow-x:clip}
 })();
 </script>
 <script>
-/* the street's light: one spotlight to each place and Brazil's warm stretch, placed where each place starts.
+/* the street's light: one spotlight to each place, placed where each place starts.
    A region is measured on its own box where it has one (wide screens) and on its name where it does not (phones,
    where the regions are display:contents and their boxes read zero) */
 (function(){
@@ -1731,15 +1949,16 @@ html, body{overflow-x:clip}
     var s = st.getBoundingClientRect(), H = s.height; if (!H) return;
     var L = at("london"), B = at("brazil"); if (L === null || B === null) return;
     L -= s.top; B -= s.top;
-    /* each spotlight is centred on its place and ends where the place does, so London's never spills blue over
-       Brazil's warm stretch */
+    /* each spotlight is centred on its place and ends where the place does */
     [[0, L], [L, B], [B, H]].forEach(function(z, i){
       st.style.setProperty("--c" + (i + 1), Math.round((z[0] + z[1]) / 2) + "px");
       st.style.setProperty("--r" + (i + 1), Math.round((z[1] - z[0]) / 2 / .8) + "px");
     });
     st.style.setProperty("--bz", Math.round(B) + "px");
     st.style.setProperty("--lb", Math.round(L) + "px");
-    hearts(s, B, H);
+    /* the hearts are no longer laid in Brazil: it has its own backdrop now (.brzbg). hearts() below, the
+       .hearts rules and heart-{L,M,S}.webp are kept whole for the pop-up David wants them on (3 Nov:
+       "save the heart background for something else, maybe a pop up ... it's a really solid background"). */
   }
   /* Brazil's knitted hearts, each laid where it shows: tried at every spot of the section, a heart is kept only where the
      photographs and the name cover no more than an eighth of it and it stands clear of the hearts already laid; of the
@@ -1792,6 +2011,7 @@ html, body{overflow-x:clip}
   (function(){ var pb = document.createElement("div"); pb.className = "parisbg"; pb.setAttribute("aria-hidden", "true");
     ["a", "b"].forEach(function(c){ var i = document.createElement("i"); i.className = c; pb.appendChild(i); }); st.appendChild(pb); })();
   (function(){ var lb = document.createElement("div"); lb.className = "lonbg"; lb.setAttribute("aria-hidden", "true"); st.appendChild(lb); })();
+  (function(){ var bb = document.createElement("div"); bb.className = "brzbg"; bb.setAttribute("aria-hidden", "true"); st.appendChild(bb); })();
   var queued = false;
   function soon(){ if (queued) return; queued = true; requestAnimationFrame(function(){ queued = false; place(); }); }
   if ("ResizeObserver" in window) new ResizeObserver(soon).observe(st);
