@@ -664,6 +664,15 @@ html, body{overflow-x:clip}
   background:radial-gradient(120% 70% at 50% 45%, rgba(3,8,13,.34) 0%, rgba(3,8,13,.5) 60%, rgba(3,8,13,.74) 100%);
   box-shadow:inset 0 22px 30px -10px rgba(0,0,0,.85), inset 0 3px 4px -1px rgba(0,0,0,.7), inset 0 -18px 26px -12px rgba(0,0,0,.55),
     inset 16px 0 24px -14px rgba(0,0,0,.5), inset -16px 0 24px -14px rgba(0,0,0,.5), inset 0 -1px 0 rgba(255,190,180,.12)}
+/* Brazil over Rio at dusk — Guanabara Bay, Sugarloaf, Corcovado — smeared straight down as London's Tower
+   Bridge and Paris's scenes are (David, 3 Nov: "replace it with a Brazil picture with motion effect like Paris
+   and London has"). Graded into the section's own oxblood, since this band is red where those two are navy, and
+   laid under the deboss filter above, which is what still presses the section into the page. It stands where the
+   knitted hearts stood; they are kept for the pop-up David wants them on. Built by fx/brazil-bg.py. */
+.street .brzbg{position:absolute; left:0; right:0; top:var(--bz); bottom:0; z-index:-2; pointer-events:none; opacity:.8;
+  background:url(drop/assets/brazil-bg.webp) center / 100% 100% no-repeat;
+  -webkit-mask-image:linear-gradient(transparent, #000 170px, #000 calc(100% - 200px), transparent);
+  mask-image:linear-gradient(transparent, #000 170px, #000 calc(100% - 200px), transparent)}
 /* London over Tower Bridge at night, smeared straight down as Paris's scenes are (David, 2 Nov: "Tower Bridge smudge").
    The photograph is Barney Moss's, CC BY 2.0, credited in the footer */
 .street .lonbg{position:absolute; left:0; right:0; top:var(--lb); height:calc(var(--bz) - var(--lb)); z-index:-1; pointer-events:none;
@@ -716,7 +725,8 @@ html, body{overflow-x:clip}
 #specs.knit::before{-webkit-mask-image:linear-gradient(to bottom, #000 0, transparent 55%); mask-image:linear-gradient(to bottom, #000 0, transparent 55%)}
 /* on wide screens the label's hoodie rises behind the register's button: clicks go through it to the button */
 .labelsec.spread .still{pointer-events:none}
-/* the hearts, each its own piece so each takes its own tilt, under the section's pressed lip */
+/* the hearts, each its own piece so each takes its own tilt, under the section's pressed lip.
+   Parked, not deleted: nothing lays them since Brazil took its own backdrop, and they are waiting on a pop-up. */
 .street .hearts{position:absolute; left:0; right:0; top:var(--bz); bottom:0; z-index:-2; pointer-events:none; overflow:hidden}
 .street .hearts i{position:absolute; background:center / 100% 100% no-repeat}
 /* Brazil's photographs knitted into the ground, not faded (David, 2 Nov: "Knit the image itself to the background";
@@ -1932,7 +1942,9 @@ html, body{overflow-x:clip}
     });
     st.style.setProperty("--bz", Math.round(B) + "px");
     st.style.setProperty("--lb", Math.round(L) + "px");
-    hearts(s, B, H);
+    /* the hearts are no longer laid in Brazil: it has its own backdrop now (.brzbg). hearts() below, the
+       .hearts rules and heart-{L,M,S}.webp are kept whole for the pop-up David wants them on (3 Nov:
+       "save the heart background for something else, maybe a pop up ... it's a really solid background"). */
   }
   /* Brazil's knitted hearts, each laid where it shows: tried at every spot of the section, a heart is kept only where the
      photographs and the name cover no more than an eighth of it and it stands clear of the hearts already laid; of the
@@ -1985,6 +1997,7 @@ html, body{overflow-x:clip}
   (function(){ var pb = document.createElement("div"); pb.className = "parisbg"; pb.setAttribute("aria-hidden", "true");
     ["a", "b"].forEach(function(c){ var i = document.createElement("i"); i.className = c; pb.appendChild(i); }); st.appendChild(pb); })();
   (function(){ var lb = document.createElement("div"); lb.className = "lonbg"; lb.setAttribute("aria-hidden", "true"); st.appendChild(lb); })();
+  (function(){ var bb = document.createElement("div"); bb.className = "brzbg"; bb.setAttribute("aria-hidden", "true"); st.appendChild(bb); })();
   var queued = false;
   function soon(){ if (queued) return; queued = true; requestAnimationFrame(function(){ queued = false; place(); }); }
   if ("ResizeObserver" in window) new ResizeObserver(soon).observe(st);
