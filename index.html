@@ -132,8 +132,17 @@ p{margin:0}
   -webkit-mask-size:100% 100%; mask-size:100% 100%; -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat}
 #details .stage::after{background-image:url(drop/assets/knit-band-hood.png);
   -webkit-mask-image:url(drop/assets/knit-frame-hood.png); mask-image:url(drop/assets/knit-frame-hood.png)}
+/* the fitting room's picture fades out at the shoes and the knockout is baked into the asset, so the
+   knit is clipped to the photograph's own alpha as well as to its frame — otherwise the band carries
+   on down past where the picture has gone and ends on a cut in the black (David, 3 Nov: "Cut thiss
+   too"). Positioned exactly as the <img> is, so the two line up. */
 #room .media::after{background-image:url(drop/assets/knit-band-low.png);
-  -webkit-mask-image:url(drop/assets/knit-frame-low.png); mask-image:url(drop/assets/knit-frame-low.png)}
+  -webkit-mask-image:url(drop/assets/knit-frame-low.png), url(drop/assets/l-low-pop.webp);
+  mask-image:url(drop/assets/knit-frame-low.png), url(drop/assets/l-low-pop.webp);
+  -webkit-mask-size:100% 100%, cover; mask-size:100% 100%, cover;
+  -webkit-mask-position:0 0, 50% 30%; mask-position:0 0, 50% 30%;
+  -webkit-mask-repeat:no-repeat, no-repeat; mask-repeat:no-repeat, no-repeat;
+  -webkit-mask-composite:source-in; mask-composite:intersect}
 @media(min-width:900px){ #details .stage::after, #room .media::after{background-size:290px auto} }
 .sc .cap{display:grid; gap:10px; justify-items:start; align-content:start; padding-block:22px 30px; background:var(--ground)}
 .sc .cap p{color:var(--text-2); font-size:var(--lead); max-width:40ch}
