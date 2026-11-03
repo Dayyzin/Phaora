@@ -116,16 +116,23 @@ p{margin:0}
 .sc .stage{position:relative; overflow:hidden; min-height:0}
 .sc .stage > img, .sc .stage > canvas, .sc .slides{position:absolute; inset:0; width:100%; height:100%; display:block}
 .sc .stage img{object-fit:cover; object-position:50% 28%}
-/* the knit edge on the two garment photographs, the one Brazil's photographs carry (David, 3 Nov, tracing
-   both photos' edges in yellow: "Do same stitch work along the edges"; "copy and paste Brazils and change
-   colors to match the pattern the photo has"). Brazil's is baked into its files; these two are
-   object-fit:cover and crop to 70% of their width on a phone and 84% of their height on a wide screen, so a
-   baked edge would be cut off two sides. It is drawn round the displayed box instead, by border-image, and
-   each photograph has its own tile knitted in three tones read off that photograph. Built by fx/knitedge.py. */
-#details .stage img, #room .media img{border:22px solid transparent; border-image-slice:64; border-image-repeat:repeat}
-#details .stage img{border-image-source:url(drop/assets/knit-edge-hood.png)}
-#room .media img{border-image-source:url(drop/assets/knit-edge-low.png)}
-@media(min-width:900px){ #details .stage img, #room .media img{border-width:30px} }
+/* the knit on the two garment photographs: Brazil's own stitches, cut out of street-16-k.webp and
+   tiled over the whole picture, then masked to a frame — one continuous piece of knitting that thins
+   into the photograph, rather than a band that stops on a line (David, 3 Nov: "you just copy what was
+   there?"; "ITS A STRAIGHT LINE"). Brazil's is baked into its own files; these two are object-fit:cover
+   and crop to 70% of their width on a phone, so a baked edge would be cut off the sides he marked.
+   The tile is a whole number of stitches and courses, so it repeats with no join. fx/knitedge.py. */
+#details .stage, #room .media{position:relative}
+#details .stage::after, #room .media::after{content:""; position:absolute; inset:0; z-index:2; pointer-events:none;
+  background-repeat:repeat; background-size:172px auto;
+  -webkit-mask-image:linear-gradient(to right, #000 0 1.5%, transparent 8%, transparent 92%, #000 98.5% 100%),
+                     linear-gradient(to bottom, #000 0 1.5%, transparent 8%, transparent 92%, #000 98.5% 100%);
+  mask-image:linear-gradient(to right, #000 0 1.5%, transparent 8%, transparent 92%, #000 98.5% 100%),
+             linear-gradient(to bottom, #000 0 1.5%, transparent 8%, transparent 92%, #000 98.5% 100%);
+  -webkit-mask-composite:source-over; mask-composite:add}
+#details .stage::after{background-image:url(drop/assets/knit-band-hood.png)}
+#room .media::after{background-image:url(drop/assets/knit-band-low.png)}
+@media(min-width:900px){ #details .stage::after, #room .media::after{background-size:248px auto} }
 .sc .cap{display:grid; gap:10px; justify-items:start; align-content:start; padding-block:22px 30px; background:var(--ground)}
 .sc .cap p{color:var(--text-2); font-size:var(--lead); max-width:40ch}
 .slides img{position:absolute; inset:0; width:100%; height:100%; display:block; opacity:0}
