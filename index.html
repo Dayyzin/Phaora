@@ -116,6 +116,16 @@ p{margin:0}
 .sc .stage{position:relative; overflow:hidden; min-height:0}
 .sc .stage > img, .sc .stage > canvas, .sc .slides{position:absolute; inset:0; width:100%; height:100%; display:block}
 .sc .stage img{object-fit:cover; object-position:50% 28%}
+/* the knit edge on the two garment photographs, the one Brazil's photographs carry (David, 3 Nov, tracing
+   both photos' edges in yellow: "Do same stitch work along the edges"; "copy and paste Brazils and change
+   colors to match the pattern the photo has"). Brazil's is baked into its files; these two are
+   object-fit:cover and crop to 70% of their width on a phone and 84% of their height on a wide screen, so a
+   baked edge would be cut off two sides. It is drawn round the displayed box instead, by border-image, and
+   each photograph has its own tile knitted in three tones read off that photograph. Built by fx/knitedge.py. */
+#details .stage img, #room .media img{border:22px solid transparent; border-image-slice:64; border-image-repeat:repeat}
+#details .stage img{border-image-source:url(drop/assets/knit-edge-hood.png)}
+#room .media img{border-image-source:url(drop/assets/knit-edge-low.png)}
+@media(min-width:900px){ #details .stage img, #room .media img{border-width:30px} }
 .sc .cap{display:grid; gap:10px; justify-items:start; align-content:start; padding-block:22px 30px; background:var(--ground)}
 .sc .cap p{color:var(--text-2); font-size:var(--lead); max-width:40ch}
 .slides img{position:absolute; inset:0; width:100%; height:100%; display:block; opacity:0}
