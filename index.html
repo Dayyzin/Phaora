@@ -126,10 +126,17 @@ p{margin:0}
    boundary wanders rather than two straight gradients, since Brazil's edge is not a ruler either
    ("the pattern is all verticle lines ... Randomize outside line"). fx/knitedge.py, fx/framemask.py. */
 #details .stage, #room .media{position:relative}
+/* the photograph itself is cut to a knitted outline, not a box: stitches drop off its edge and the
+   page shows through, as they do on Brazil's (David: "See? Straight line?"). fx/edgecut.py */
+#details .stage img, #room .media img{-webkit-mask-image:url(drop/assets/knit-cut.png); mask-image:url(drop/assets/knit-cut.png);
+  -webkit-mask-size:100% 100%; mask-size:100% 100%; -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat}
 #details .stage::after, #room .media::after{content:""; position:absolute; inset:0; z-index:2; pointer-events:none;
   background-repeat:repeat; background-size:205px auto;
-  -webkit-mask-image:url(drop/assets/knit-frame.png); mask-image:url(drop/assets/knit-frame.png);
-  -webkit-mask-size:100% 100%; mask-size:100% 100%; -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat}
+  -webkit-mask-image:url(drop/assets/knit-frame.png), url(drop/assets/knit-cut.png);
+  mask-image:url(drop/assets/knit-frame.png), url(drop/assets/knit-cut.png);
+  -webkit-mask-size:100% 100%, 100% 100%; mask-size:100% 100%, 100% 100%;
+  -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat;
+  -webkit-mask-composite:source-in; mask-composite:intersect}
 #details .stage::after{background-image:url(drop/assets/knit-band-hood.png)}
 #room .media::after{background-image:url(drop/assets/knit-band-low.png)}
 @media(min-width:900px){ #details .stage::after, #room .media::after{background-size:290px auto} }
