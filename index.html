@@ -612,6 +612,13 @@ html, body{overflow-x:clip}
   .alone .bed, .alone .bednote{grid-column:1 / -1; text-align:center}
   .chartbox{width:min(100%, 49svh, 640px)}
   #room .media, #register .media{width:100%; height:100svh; max-height:none; aspect-ratio:auto; justify-self:stretch; -webkit-mask-image:linear-gradient(90deg, #000 72%, transparent); mask-image:linear-gradient(90deg, #000 72%, transparent)}
+  /* the fitting room's box takes the photograph's own shape on a wide screen. Stretched to the full
+     column it is far wider than the picture, and object-fit:cover then crops the man's head off
+     (David, 3 Nov: "you cut his head off") — at that shape there is no crop that keeps both his head
+     and the shoes breaking the frame. Shaped to the picture, nothing is cropped at all, and the knit
+     still lands on the picture's own edges because the box and the picture are now the same thing. */
+  #room .media{width:auto; aspect-ratio:1086 / 1448; justify-self:center;
+    -webkit-mask-image:none; mask-image:none}
 }
 
 /* the Ö watches the register (David, 1 Nov: "make a Ö eye literally opening out of the black, looking left and right
