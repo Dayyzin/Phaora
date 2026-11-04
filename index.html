@@ -845,24 +845,6 @@ html, body{overflow-x:clip}
 .regpop .msg{min-height:1.5em}
 @media (prefers-reduced-motion: reduce){ .regpop, .regpop-card{transition:none} }
 
-/* The edition: the fifteen numbers, the label, what the piece carries. */
-#edition .ed-wrap{width:100%; max-width:360px; margin:38px auto 0; display:grid; gap:26px; justify-items:center}
-#edition .ed-grid{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px; width:100%;
-  background:rgba(221,238,244,.14); border:1px solid rgba(221,238,244,.14)}
-#edition .ed-n{background:var(--ground); padding:15px 0; text-align:center; font-family:var(--disp);
-  font-size:21px; line-height:1; color:var(--label); font-variant-numeric:tabular-nums}
-#edition .ed-n.is-yours{color:var(--ice); background:rgba(221,238,244,.07)}
-#edition .ed-card{width:100%; aspect-ratio:16/9; display:grid; align-content:center; justify-items:center; gap:11px;
-  background:linear-gradient(150deg,#1b2d47,#132238 62%,#0d1828); border-radius:3px;
-  box-shadow:0 22px 50px -22px rgba(0,0,0,.9), inset 0 0 0 1px rgba(221,238,244,.1)}
-#edition .ed-drop{font-size:11px; font-weight:500; letter-spacing:.3em; text-transform:uppercase; color:var(--label)}
-#edition .ed-no{font-family:var(--disp); font-size:clamp(21px,5.4vw,28px); color:var(--ice)}
-#edition .ed-slot{display:inline-block; min-width:2.1em; border-bottom:1px solid rgba(221,238,244,.55)}
-#edition .ed-line{margin:0; max-width:30ch; text-align:center}
-#edition .ed-spec{width:100%; text-align:left}
-#edition .ed-spec .sw{display:inline-block; width:9px; height:9px; border-radius:50%; margin:0 5px 0 0; vertical-align:1px; box-shadow:inset 0 0 0 1px rgba(221,238,244,.45)}
-#edition .ed-spec .sw + .sw, #edition .ed-spec i + i{margin-left:9px}
-@media (max-width:420px){ #edition .ed-n{font-size:19px; padding:13px 0} }
 
 /* The fitting room: the picture stops at the shoes, the shoes do not.
    The knockout is baked into the asset, so nothing here may paint a panel
@@ -1068,43 +1050,9 @@ html, body{overflow-x:clip}
     <div class="say gut"><h2 class="fit"><span class="ln it">The fitting</span><span class="ln">room</span></h2><p>Hood up, as the film ends. Turn it front, side and back.</p><a class="btn fill" href="drop/fitting-room.html">Open the fitting room</a></div>
   </section>
 
-  <section class="alone gut" id="edition" aria-label="The edition" data-face="editorial">
+  <section class="alone gut" aria-label="The edition" data-face="editorial">
     <p class="huge num">15</p>
     <p class="aline">pieces. Each one numbered.</p>
-
-    <div class="ed-wrap">
-      <div class="ed-grid" role="list" aria-label="The fifteen numbers in Drop 001">
-        <span class="ed-n">01</span>
-        <span class="ed-n">02</span>
-        <span class="ed-n">03</span>
-        <span class="ed-n">04</span>
-        <span class="ed-n">05</span>
-        <span class="ed-n">06</span>
-        <span class="ed-n is-yours">07</span>
-        <span class="ed-n">08</span>
-        <span class="ed-n">09</span>
-        <span class="ed-n">10</span>
-        <span class="ed-n">11</span>
-        <span class="ed-n">12</span>
-        <span class="ed-n">13</span>
-        <span class="ed-n">14</span>
-        <span class="ed-n">15</span>
-      </div>
-
-      <div class="ed-card">
-        <span class="ed-drop">Drop 001</span>
-        <span class="ed-no num">No.&nbsp;<span class="ed-slot">&nbsp;&nbsp;</span>&nbsp;/&nbsp;15</span>
-      </div>
-
-      <p class="ed-line">Your number is written on the label, and it is the only one like it.</p>
-
-      <dl class="spec ed-spec">
-        <div class="row"><dt>Edition</dt><dd>Fifteen, numbered <span class="num">1/15</span> to <span class="num">15/15</span></dd></div>
-        <div class="row"><dt>Piece</dt><dd>Serpent Emblem Hoodie</dd></div>
-        <div class="row"><dt>Knit</dt><dd><span class="num">28</span>-gauge jacquard, <span class="num">300</span> gsm</dd></div>
-        <div class="row"><dt>Yarns</dt><dd><i class="sw" style="background:var(--yarn-navy)"></i>Navy <i class="sw" style="background:var(--yarn-slate)"></i>Slate <i class="sw" style="background:var(--yarn-ice)"></i>Ice</dd></div>
-      </dl>
-    </div>
   </section>
 
   <section class="ch stack reg knit" id="register" data-face="couture">
