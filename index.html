@@ -127,6 +127,9 @@ p{margin:0}
    and left ("I literally drew a line where I want stitches and rest of the edges don't touch") —
    which is what each photograph's own frame mask carries. fx/knitedge.py, fx/framemask.py. */
 #details .stage, #room .media{position:relative}
+/* the headings ride up over the foot of their picture, so they sit above the knit: at z-index 2 the
+   band was painting over the top of the T in "The" (David, 3 Nov: "you cut the lettee") */
+#details .cap, #room .say{position:relative; z-index:3}
 #details .stage::after, #room .media::after{content:""; position:absolute; inset:0; z-index:2; pointer-events:none;
   background-repeat:repeat; background-size:205px auto;
   -webkit-mask-size:100% 100%; mask-size:100% 100%; -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat}
