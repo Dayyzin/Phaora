@@ -696,6 +696,12 @@ html, body{overflow-x:clip}
 .alone .droplabel{margin:3svh 0 0; width:min(86vw, 420px); display:grid; justify-items:center; gap:2px}
 .alone .droplabel img{width:100%; height:auto; display:block}
 @media(min-width:900px){ .alone .droplabel{grid-column:2; margin:2svh 0 0 -4%; width:min(34vw, 460px)} }
+/* 28 needles to the inch, working (David, 2 Nov: "Make animation showing how knitting works and how proximate the
+   needles are. True example of a 28 gauge in action"): needleBed() below */
+.alone .needlebed{margin:5svh 0 0; width:min(100%, 560px); display:grid; gap:14px; justify-items:center}
+.needlebed canvas{width:100%; aspect-ratio:1 / .84; display:block}
+.needlebed figcaption{max-width:36ch; color:var(--text-2); font-size:15px; line-height:1.55}
+@media(min-width:900px){ .alone .needlebed{grid-column:1 / -1; justify-self:center; width:min(78vw, 820px); margin-top:4svh} .needlebed canvas{aspect-ratio:1 / .6} }
 .knit{position:relative; isolation:isolate}
 .knit::before{content:""; position:absolute; inset:0; z-index:-1; background:url(drop/assets/chart.png) repeat; background-size:132px auto; opacity:.07; pointer-events:none;
   -webkit-mask-image:linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent); mask-image:linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent)}
@@ -929,6 +935,10 @@ html, body{overflow-x:clip}
     <p class="huge num">28</p>
     <p class="aline">needles to the inch.</p>
     <span class="label">28-gauge jacquard</span>
+    <figure class="needlebed">
+      <canvas id="needlec" role="img" aria-label="One inch of a knitting machine's needle bed: 28 latch needles side by side. A carriage with three yarn feeders passes over them; the needles picked for each yarn rise, catch it and pull it through as a stitch, and the emblem grows below one row at a time."></canvas>
+      <figcaption>One inch of the needle bed, slowed down: 28 needles, <span class="num">0.9</span> mm apart. As the carriage passes, the needles the chart picks for each yarn rise, catch it in their hooks and pull it through the last loop. That is a stitch. Below, one inch of the emblem, knitted a row at a time.</figcaption>
+    </figure>
   </section>
 
   <section class="ch plain gut knit" id="chart" data-face="editorial">
@@ -1723,6 +1733,137 @@ html, body{overflow-x:clip}
     if (document.fonts.ready) document.fonts.ready.then(fit);
     if (document.fonts.addEventListener) document.fonts.addEventListener("loadingdone", fit);
   }
+})();
+</script>
+<script>
+/* needleBed: one inch of a 28-gauge flat machine, working (see the CSS note). True to the trade, slowed down: 28 latch
+   needles at one pitch, the carriage carrying three feeders (the hoodie's three yarns), each needle picked for one yarn
+   per row rising under its feeder, catching the yarn and drawing it through its old loop. The fabric below is the
+   emblem's own chart (drop/assets/chart.png), 28 stitches of it, knitted from the hem up, so it reads the right way up
+   hanging from the needles */
+(function(){
+  var cv = document.getElementById("needlec"); if (!cv) return;
+  var c = cv.getContext("2d");
+  var YARN = [[12, 19, 32], [110, 136, 156], [186, 205, 218]], N = 28, X0 = 116;
+  var LIFT = [[44, 58, 82], [110, 136, 156], [186, 205, 218]];      /* the navy lifted a little, or it vanishes on the page */
+  var chart = null, CH = 0, row = 330, rows = [], cur = null, held = [];
+  var pass = { dir: 1, t0: 0, dur: 2600 }, shiftT0 = 0;
+  var W = 0, H = 0, p = 0, R = 1, on = false, raf = 0;
+  var reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var im = new Image(); im.src = "drop/assets/chart.png";
+  im.onload = function(){
+    var k = document.createElement("canvas"); k.width = im.width; k.height = im.height;
+    var kx = k.getContext("2d"); kx.drawImage(im, 0, 0);
+    var d = kx.getImageData(X0, 0, N, im.height).data; CH = im.height; chart = [];
+    for (var y = 0; y < CH; y++){ var r = []; for (var x = 0; x < N; x++){ var v = d[(y * N + x) * 4]; r.push(v < 60 ? 0 : v < 150 ? 1 : 2); } chart.push(r); }
+    /* the fabric already on the machine: the rows under the one it starts on */
+    for (var j = 1; j <= 26; j++) rows.push(chart[(row + j) % CH].slice());
+    held = chart[(row + 1) % CH].slice();
+    start(performance.now()); size(); draw(performance.now() + (reduced ? 1300 : 0));
+  };
+  function start(now){ cur = { yarn: chart[row], done: new Array(N).fill(false), at: new Array(N).fill(0) }; pass.t0 = now; shiftT0 = now; }
+  function size(){
+    W = cv.clientWidth; H = cv.clientHeight; if (!W) return;
+    R = Math.min(2, devicePixelRatio || 1); cv.width = Math.round(W * R); cv.height = Math.round(H * R);
+    p = W / 30;
+  }
+  function rgb(v, f, a){ return "rgba(" + Math.min(255, v[0] * f | 0) + "," + Math.min(255, v[1] * f | 0) + "," + Math.min(255, v[2] * f | 0) + "," + (a == null ? 1 : a) + ")"; }
+  function nx(i){ return (1.5 + i) * p; }
+  function stitch(x, y, w, h, col, a){
+    c.globalAlpha = a; c.fillStyle = rgb(col, .55); c.fillRect(x - w / 2, y, w, h);
+    [[-1, -.45], [1, .45]].forEach(function(s){                 /* two loops leaning in: the V of a knit stitch */
+      var cx = x + s[0] * w * .23, cy = y + h * .5;
+      c.fillStyle = rgb(col, 1); c.beginPath(); c.ellipse(cx, cy, w * .19, h * .56, s[1], 0, 7); c.fill();
+      c.fillStyle = rgb(col, 1.5); c.beginPath(); c.ellipse(cx, cy - h * .06, w * .07, h * .34, s[1], 0, 7); c.fill();
+    });
+    c.globalAlpha = 1;
+  }
+  function draw(now){
+    if (!chart || !W) return;
+    c.setTransform(R, 0, 0, R, 0, 0); c.clearRect(0, 0, W, H);
+    var t = (now - pass.t0) / pass.dur, dir = pass.dir;
+    var span = 38 * p, cx = dir > 0 ? -4 * p + t * span : 34 * p - t * span;
+    var yRail = 2.5 * p, yTip = 3.9 * p, yRest = 5.6 * p, yK = 7.6 * p, rise = 1.5 * p, camW = 2.1 * p, rowH = .74 * p;
+    /* the inch, measured: 28 pitches end to end */
+    c.strokeStyle = "rgba(221,238,244,.55)"; c.lineWidth = 1; c.beginPath();
+    c.moveTo(p, 1.25 * p); c.lineTo(29 * p, 1.25 * p); c.moveTo(p, .95 * p); c.lineTo(p, 1.55 * p); c.moveTo(29 * p, .95 * p); c.lineTo(29 * p, 1.55 * p); c.stroke();
+    c.fillStyle = "rgba(221,238,244,.85)"; c.font = "500 " + Math.max(9, Math.round(p * .62)) + "px Jost, Manrope, system-ui, sans-serif";
+    c.textAlign = "center"; c.textBaseline = "bottom";
+    if (c.letterSpacing !== undefined) c.letterSpacing = ".2em";
+    c.fillText("1 INCH · 28 NEEDLES", 15 * p, .8 * p);
+    if (c.letterSpacing !== undefined) c.letterSpacing = "0px";
+    /* the rail and the carriage with its three feeders, the leading one first */
+    c.strokeStyle = "rgba(221,238,244,.18)"; c.beginPath(); c.moveTo(0, yRail); c.lineTo(W, yRail); c.stroke();
+    var fx = [0, 1, 2].map(function(k){ return cx + dir * (1 - k) * 2 * p; });
+    c.fillStyle = "rgba(221,238,244,.07)"; c.strokeStyle = "rgba(221,238,244,.3)";
+    c.beginPath(); if (c.roundRect) c.roundRect(cx - 3.4 * p, yRail - .55 * p, 6.8 * p, 1.1 * p, .3 * p); else c.rect(cx - 3.4 * p, yRail - .55 * p, 6.8 * p, 1.1 * p); c.fill(); c.stroke();
+    /* each needle's lift under its own yarn's feeder: the cam */
+    var lifts = [], active = [null, null, null], last = [null, null, null];
+    for (var i = 0; i < N; i++){
+      var k = cur.yarn[i], u = (fx[k] - nx(i)) * dir / camW, h = 0;
+      if (u > -1 && u < 1) h = .5 * (1 + Math.cos(Math.PI * u));
+      if (u >= .8 && !cur.done[i]){ cur.done[i] = true; cur.at[i] = now; held[i] = k; }
+      if (u > -1 && u < 1 && (active[k] === null || Math.abs(u) < Math.abs(active[k].u))) active[k] = { i: i, u: u };
+      if (cur.done[i]) last[k] = (last[k] === null || (dir > 0 ? i > last[k] : i < last[k])) ? i : last[k];
+      lifts.push({ h: h, u: u });
+    }
+    /* the fabric: the newest row in the top slot, the rest let down a row at the start of each pass (the takedown) */
+    var sh = Math.min(1, (now - shiftT0) / 450), off = -rowH * (1 - (1 - Math.pow(1 - sh, 3)));
+    var vis = Math.ceil((H - yK) / rowH) + 1;
+    for (var r = 0; r < Math.min(rows.length, vis); r++){
+      var y = yK + .2 * p + (r + 1) * rowH + off, fade = Math.max(0, 1 - (y - yK) / (H - yK) * .95);
+      for (var i2 = 0; i2 < N; i2++) stitch(nx(i2), y, p, rowH, LIFT[rows[r][i2]], fade);
+    }
+    /* the bed: a slot (a trick) for every needle, one pitch apart */
+    c.fillStyle = "rgba(221,238,244,.035)"; c.fillRect(p, yRest - .2 * p, 28 * p, yK - yRest + .2 * p);
+    c.strokeStyle = "rgba(221,238,244,.10)"; c.lineWidth = 1; c.beginPath();
+    for (var tr = 0; tr <= N; tr++){ c.moveTo((1 + tr) * p, yRest - .2 * p); c.lineTo((1 + tr) * p, yK); } c.stroke();
+    /* the needles, over the fabric they hang it from */
+    for (var n = 0; n < N; n++){
+      var x = nx(n), top = yRest - lifts[n].h * rise;
+      var g = c.createLinearGradient(x - .12 * p, 0, x + .12 * p, 0);
+      g.addColorStop(0, "#6F8291"); g.addColorStop(.5, "#E4ECF1"); g.addColorStop(1, "#7E92A1");
+      c.strokeStyle = g; c.lineWidth = Math.max(1, .17 * p); c.lineCap = "round";
+      c.beginPath(); c.moveTo(x, yK + .05 * p); c.lineTo(x, top + .26 * p);
+      c.arc(x + .13 * p, top + .26 * p, .13 * p, Math.PI, 0); c.lineTo(x + .26 * p, top + .4 * p); c.stroke();
+      /* the latch: open while the needle is up, shut as it comes down through the old loop */
+      var o = Math.min(1, lifts[n].h / .55), py = top + .95 * p;
+      c.lineWidth = Math.max(.75, .07 * p); c.strokeStyle = "#B9C8D2"; c.beginPath(); c.moveTo(x, py);
+      c.lineTo(x + .26 * p * (1 - o) - .1 * p * o, py - .55 * p * (1 - o) + .5 * p * o); c.stroke();
+      /* the old loop it holds, sitting at the knock-over line while the needle slides through it */
+      var nc = cur.done[n] ? cur.yarn[n] : held[n], pop = cur.done[n] ? Math.min(1, (now - cur.at[n]) / 220) : 1;
+      c.strokeStyle = rgb(LIFT[nc], 1.3); c.lineWidth = Math.max(1, .11 * p);
+      c.beginPath(); c.ellipse(x, yK - .02 * p, .3 * p, .1 * p * pop + .02 * p, 0, 0, 7); c.stroke();
+      /* this row's new stitch, drawn through */
+      if (cur.done[n]) stitch(x, yK + .2 * p + off * 0, p, rowH, LIFT[cur.yarn[n]], pop);
+    }
+    /* the feeders and their yarn, running down to the hook it is being laid in, or back to its last stitch */
+    for (var f = 0; f < 3; f++){
+      var col = LIFT[f], ax = fx[f];
+      var a = active[f], tx, ty;
+      if (a && a.u > -.35){ tx = nx(a.i) + .17 * p; ty = yRest - lifts[a.i].h * rise + .28 * p; }
+      else if (last[f] !== null){ tx = nx(last[f]); ty = yK; }
+      else { tx = dir > 0 ? -p : W + p; ty = yK; }
+      c.strokeStyle = rgb(col, 1.3); c.lineWidth = Math.max(1, .1 * p); c.beginPath(); c.moveTo(ax, yTip);
+      c.quadraticCurveTo(ax, (yTip + ty) / 2, tx, ty); c.stroke();
+      if (a && a.u > -.35 && last[f] !== null){ c.beginPath(); c.moveTo(tx, ty); c.quadraticCurveTo((tx + nx(last[f])) / 2, ty + .6 * p, nx(last[f]), yK); c.stroke(); }
+      c.strokeStyle = "rgba(221,238,244,.6)"; c.lineWidth = Math.max(1, .14 * p); c.beginPath(); c.moveTo(ax, yRail + .55 * p); c.lineTo(ax, yTip); c.stroke();
+      c.fillStyle = rgb(YARN[f], 1); c.strokeStyle = "rgba(221,238,244,.75)"; c.lineWidth = 1;
+      c.beginPath(); c.arc(ax, yRail, .32 * p, 0, 7); c.fill(); c.stroke();
+    }
+    /* the pass ends: the row joins the fabric, the next row comes from the chart, the carriage turns back */
+    if (t >= 1 && !reduced){
+      rows.unshift(cur.yarn.slice()); if (rows.length > 60) rows.pop();
+      row = (row - 1 + CH) % CH; pass.dir = -dir; start(now);
+    }
+  }
+  function loop(now){ draw(now); if (on) raf = requestAnimationFrame(loop); }
+  new IntersectionObserver(function(es){
+    var v = es[0].isIntersecting;
+    if (v && !on && !reduced){ on = true; var n0 = performance.now(); cur.done.fill(false); pass.t0 = n0; shiftT0 = n0 - 1000; raf = requestAnimationFrame(loop); }
+    if (!v && on){ on = false; cancelAnimationFrame(raf); }
+  }, { rootMargin: "100px" }).observe(cv);
+  addEventListener("resize", function(){ size(); if (!on && chart) draw(performance.now()); });
 })();
 </script>
 <script>
