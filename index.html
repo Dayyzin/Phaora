@@ -745,6 +745,15 @@ html, body{overflow-x:clip}
   -webkit-mask-image:repeating-linear-gradient(#000 0 3px, rgba(0,0,0,.35) 3px 5px, #000 5px 9px, rgba(0,0,0,.2) 9px 10px);
   mask-image:repeating-linear-gradient(#000 0 3px, rgba(0,0,0,.35) 3px 5px, #000 5px 9px, rgba(0,0,0,.2) 9px 10px)}
 .street .refl-wrap .place.refl{position:absolute; left:0; margin:0; z-index:auto; transform:scaleY(-1) skewX(-4deg); filter:blur(1.2px); clip-path:none}
+/* the edition's ground: the piece's own labels, woven, scattered and faint (David, 2 Nov: "Try to fill it more with
+   these in the background kinda high transparency"; 6 Nov: "Don't show all possible numbers"): the neck label, the care
+   label, the neck tape, the beanie tab, the scarf label, and one drop label, No. 01. Drawn from the labels sheet
+   (phaora-ops apparel/labels), one seamless tile (fx/labelsbg) */
+.labelsbg{position:relative; isolation:isolate}
+.labelsbg::before{content:""; position:absolute; inset:0; z-index:-1; pointer-events:none; opacity:.2;
+  background:url(drop/assets/labels-tile.webp) center / 680px auto repeat;
+  -webkit-mask-image:linear-gradient(transparent, #000 14%, #000 86%, transparent); mask-image:linear-gradient(transparent, #000 14%, #000 86%, transparent)}
+@media(min-width:900px){ .labelsbg::before{background-size:820px auto} }
 .knit{position:relative; isolation:isolate}
 .knit::before{content:""; position:absolute; inset:0; z-index:-1; background:url(drop/assets/chart.png) repeat; background-size:132px auto; opacity:.07; pointer-events:none;
   -webkit-mask-image:linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent); mask-image:linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent)}
@@ -1060,7 +1069,7 @@ html, body{overflow-x:clip}
     <div class="say gut"><h2 class="fit"><span class="ln it">The fitting</span><span class="ln">room</span></h2><p>Hood up, as the film ends. Turn it front, side and back.</p><a class="btn fill" href="drop/fitting-room.html">Open the fitting room</a></div>
   </section>
 
-  <section class="alone gut" aria-label="The edition" data-face="editorial">
+  <section class="alone gut labelsbg" aria-label="The edition" data-face="editorial">
     <p class="huge num">15</p>
     <p class="aline">pieces. Each one numbered.</p>
   </section>
