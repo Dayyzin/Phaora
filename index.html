@@ -2198,7 +2198,9 @@ async function init(){
   const camera = new THREE.PerspectiveCamera(26, 1, .05, 20);
   const loader = new GLTFLoader();
   loader.setMeshoptDecoder(MeshoptDecoder);
-  const r = await fetch("drop/assets/hero_hoodie.glb.txt");
+  /* the very hoodie the fitting room's mannequin wears (construction's model A, the Serpent Emblem jacquard at the
+     28-gauge stitch), so the piece and the fitting room are one garment (David, 7 Nov) */
+  const r = await fetch("drop/assets/hero_hoodie_film.glb.txt");
   if (!r.ok) throw new Error("missing");
   const b64 = (await r.text()).trim();
   const bin = atob(b64), u = new Uint8Array(bin.length);
@@ -2213,6 +2215,8 @@ async function init(){
     for (const m of ms){
       for (const k of ["map", "normalMap", "aoMap"]) if (m[k]) m[k].anisotropy = 8;
       const n = (m.name || "").split(".")[0];
+      /* the stitches in relief as the fitting room shows them: prints at 2.7 times, the rib at 1.5 */
+      if (m.normalMap){ if (/print/.test(n)) m.normalScale.multiplyScalar(2.7); else if (["cuff","band","edge"].includes(n)) m.normalScale.multiplyScalar(1.5); }
       if (["fabric_print", "fabric_print_back", "hood_print", "sleeve_print"].includes(n) && m.sheen !== undefined){
         m.sheen = .35;
         if (m.sheenColor) m.sheenColor.setRGB(...slate);
@@ -2230,14 +2234,20 @@ async function init(){
   const box = new THREE.Box3().setFromObject(group);
   const c = box.getCenter(new THREE.Vector3()), s = box.getSize(new THREE.Vector3());
   g.position.sub(c);
-  const dist = (s.y / 2) / Math.tan(camera.fov * Math.PI / 360) * 1.35;
-  camera.position.set(0, 0, dist);
-  camera.lookAt(0, 0, 0);
+  /* framed on its height and, as it turns, on its widest (the diagonal across the chest): model A is an oversized
+     cut with dropped shoulders, and a phone's tall frame cropped its sleeves when only the height was used */
+  const half = Math.tan(camera.fov * Math.PI / 360), across = Math.hypot(s.x, s.z);
+  function frameIt(){
+    const dist = Math.max((s.y / 2) / half * 1.35, (across / 2) / (half * camera.aspect) * 1.12);
+    camera.position.set(0, 0, dist);
+    camera.lookAt(0, 0, 0);
+  }
   function size(){
     const w = canvas.clientWidth || 1, h = canvas.clientHeight || 1;
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
+    frameIt();
   }
   let rot = 0, drawn = null, shown = false, near = true;
   /* a phone can take the 3D away (memory, the app sent to the back): the still comes back at once,
