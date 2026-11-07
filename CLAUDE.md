@@ -67,3 +67,14 @@ Anything meant to be **copied** — a URL, an env var value, a command, a key
 name, a block of text for a client — never goes inside a table. Table cells
 can't be selected on a phone. Put it in a fenced code block instead, on its
 own line.
+
+## Logo: PHAÖRA is never typed
+
+Set by David, 7 Nov 2026, after a drop 2 mockup set the name in a font: "never use the one you just did for the
+mockup sites. It's the wrong one all sessions go for."
+
+- The PHAÖRA logo is David's own lettering and nothing else: phaora-ops
+  `departments/apparel/packaging/artwork/PHAORA-lettering.svg` (solid; give it the page's dark ink on a light ground)
+  or `departments/apparel/labels/lettering-offwhite.svg` (on a dark ground). Inline the SVG and keep its proportions.
+- Never set "PHAÖRA" in a font as a logo or wordmark (spaced serif capitals, Cormorant Garamond or any other face) on
+  a site, mockup, landing page, render, deck or email. The name may appear in running text; the logo is never typed.
