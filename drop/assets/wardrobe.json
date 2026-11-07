@@ -42,6 +42,27 @@
     }
    }
   },
+  "drop2_tee": {
+   "name": "Drop 2 Tee",
+   "file": "hero_tee_drop2",
+   "figure": "film",
+   "body": "hero_figure_tee",
+   "baked": true,
+   "first": "white",
+   "colours": {
+    "white": {}
+   }
+  },
+  "drop2_crew": {
+   "name": "Drop 2 Crewneck",
+   "file": "hero_crew_drop2",
+   "figure": "film",
+   "baked": true,
+   "first": "white",
+   "colours": {
+    "white": {}
+   }
+  },
   "jq_serpent_damask": {
    "hides": [
     "watch"

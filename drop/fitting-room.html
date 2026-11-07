@@ -194,6 +194,8 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--blue-2); outline-of
   <div class="row" role="group" aria-label="Top">
     <button class="tog" data-top="jq_serpent_emblem" aria-pressed="true">Serpent Emblem</button>
     <button class="tog" data-top="tee_serpent_emblem" aria-pressed="false">Emblem Tee</button>
+    <button class="tog" data-top="drop2_tee" aria-pressed="false">Drop 2 Tee</button>
+    <button class="tog" data-top="drop2_crew" aria-pressed="false">Drop 2 Crewneck</button>
     <button class="tog" data-top="jq_serpent_damask" aria-pressed="false">Damask</button>
     <button class="tog" data-top="jq_garden_parterre" aria-pressed="false">Parterre</button>
     <button class="tog" data-top="jq_star_lattice" aria-pressed="false">Star Lattice</button>
@@ -551,8 +553,8 @@ function filmFixes(file, scn){
      body, watch and bracelet, hero_hoodie_film the hoodie; the shorts, shoes and socks are this figure's
      own, identical. The film's figure stands 2.9 cm lower (feet at 0, crown 1.795 against 0.029 and 1.824),
      so all of it is raised by that */
-  const HERO = file === "hero_hoodie" || file === "hero_hoodie_film" || file === "hero_tee" || file === "hero_shorts" || file === "hero_figure";
-  if (file === "hero_figure"){ const fm = materials(scn); if (fm.mani_chrome){ fm.mani_chrome.envMapIntensity = 1.1; fm.mani_chrome.needsUpdate = true; } }
+  const HERO = file === "hero_crew_drop2" || file === "hero_tee_drop2" || file === "hero_figure_tee" || file === "hero_hoodie" || file === "hero_hoodie_film" || file === "hero_tee" || file === "hero_shorts" || file === "hero_figure";
+  if (file === "hero_figure" || file === "hero_figure_tee"){ const fm = materials(scn); if (fm.mani_chrome){ fm.mani_chrome.envMapIntensity = 1.1; fm.mani_chrome.needsUpdate = true; } }
   if (HERO) scn.position.y += 0.029;
   if (HEAD && !HERO){
     const hoods = [];
@@ -743,7 +745,9 @@ function dress(){
   if (slotRoots.top && WARDROBE.tops[outfit.top] && WARDROBE.tops[outfit.top].hood) hoodUp(slotRoots.top, !slotRoots.beanie);
   /* the hero wears the film's figure; every other top this one */
   const heroOn = !!(WARDROBE.tops[outfit.top] && WARDROBE.tops[outfit.top].figure === "film");
-  if (heroOn !== figureWanted){ figureWanted = heroOn; setSlot("figure", heroOn ? "hero_figure" : ""); }
+  /* a short sleeve shows his upper arms, which hero_figure leaves out under the hoodie: such a top names its own */
+  const figFile = heroOn ? (WARDROBE.tops[outfit.top].body || "hero_figure") : "";
+  if (figFile !== figureWanted){ figureWanted = figFile; setSlot("figure", figFile); }
   /* under the film's hoodie, nothing of the bottoms above its hem: it is hidden there anyway, and on white
      their waist came out through the rib at his hips */
   clipBottoms(heroOn && slotRoots.top ? hemOf(slotRoots.top) : null);
@@ -752,7 +756,7 @@ function dress(){
   });
   syncSpots();
 }
-let figureWanted = false;
+let figureWanted = "";
 const HEMCLIP = new THREE.Plane(new THREE.Vector3(0, -1, 0), 0);
 /* the lowest point of a top's hem rib, in the room */
 function hemOf(root){
@@ -762,7 +766,7 @@ function hemOf(root){
   root.updateWorldMatrix(true, true);
   let lo = Infinity; const v = new THREE.Vector3();
   root.traverse(o => {
-    if (!o.isMesh || ![].concat(o.material).some(m => baseName(m.name) === "band")) return;
+    if (!o.isMesh || ![].concat(o.material).some(m => ["band","hem_rib"].includes(baseName(m.name)))) return;
     const pos = o.geometry.attributes.position;
     for (let i = 0; i < pos.count; i++){ v.fromBufferAttribute(pos, i).applyMatrix4(o.matrixWorld); if (v.y < lo) lo = v.y; }
   });
