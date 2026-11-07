@@ -548,9 +548,13 @@ function filmFixes(file, scn){
      his mannequin"; finish's hero.final_mannequin(), 977a17e): its body, the chrome tucked under the knit,
      its hoodie with the sleeves fitted to his forearms and the hood worn as film 20 has it, its watch
      and the silver bracelet. Cut from final_mannequin.glb byte for byte (subset.py): hero_figure is the
-     body, watch and bracelet, hero_hoodie_film the hoodie; the shorts, shoes and socks are this figure's
+     body, watch and bracelet; the shorts, shoes and socks are this figure's
      own, identical. The film's figure stands 2.9 cm lower (feet at 0, crown 1.795 against 0.029 and 1.824),
      so all of it is raised by that */
+  /* LABELS (David, 7 Nov: "Mani has the heavyweight"): hero_hoodie_film is the mannequin's hoodie, construction's
+     model A (27cd1f7), the HEAVYWEIGHT and the only final hoodie. hero_hoodie (= phaora-ops
+     film/remake/finish/hero/hoodie_serpent_emblem_navy.glb, the hoodie inside final_mannequin.glb) is the LIGHTWEIGHT
+     film hoodie: kept, not final, never a base. Sheet: docs/HOODIES.md */
   const HERO = file === "hero_hoodie" || file === "hero_hoodie_film" || file === "hero_tee" || file === "hero_shorts" || file === "hero_figure";
   if (file === "hero_figure"){ const fm = materials(scn); if (fm.mani_chrome){ fm.mani_chrome.envMapIntensity = 1.1; fm.mani_chrome.needsUpdate = true; } }
   if (HERO) scn.position.y += 0.029;
