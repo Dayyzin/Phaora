@@ -61,7 +61,11 @@
    "first": "white",
    "colours": {
     "white": {}
-   }
+   },
+   "hides": [
+    "watch",
+    "figure_watch"
+   ]
   },
   "jq_serpent_damask": {
    "hides": [

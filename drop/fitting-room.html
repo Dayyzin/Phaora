@@ -706,6 +706,12 @@ function dress(){
     const hides = (slotRoots.top && WARDROBE.tops[outfit.top] && WARDROBE.tops[outfit.top].hides) || [];
     for (const n of ["watch"]){ const o = slotRoots.base.getObjectByName(n); if (o) o.visible = !hides.includes(n); }
   }
+  /* the film figure's own watch, under a top that covers that wrist (the drop 2 crewneck's cuff; round the watch it
+     stood out like a bell) */
+  if (slotRoots.figure){
+    const hides = (slotRoots.top && WARDROBE.tops[outfit.top] && WARDROBE.tops[outfit.top].hides) || [];
+    const o = slotRoots.figure.getObjectByName("WORN_watch"); if (o) o.visible = !hides.includes("figure_watch");
+  }
   if (slotRoots.bottom && WARDROBE.shorts[outfit.bottom] && !WARDROBE.shorts[outfit.bottom].baked){
     const g = WARDROBE.shorts[outfit.bottom];
     const c = g.colours[outfit.bottomColour] || g.colours[Object.keys(g.colours)[0]];
