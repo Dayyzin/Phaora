@@ -37,6 +37,24 @@ button svg{width:22px;height:10px;fill:none;stroke:currentColor;stroke-width:1.1
 main{opacity:1}
 @media (prefers-reduced-motion:reduce){#intro{display:none}}
 </style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1079296041748995');
+fbq('track', 'PageView');
+fbq('track', 'ViewContent', { content_name: 'chapter-1 register' }, { eventID: 'vc-' + Date.now().toString(36) + Math.random().toString(36).slice(2, 8) });
+</script>
+<noscript><img height="1" width="1" style="display:none" alt=""
+src="https://www.facebook.com/tr?id=1079296041748995&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
 <main>
@@ -85,7 +103,7 @@ main{opacity:1}
     fetch('https://crm.phaora.com/api/public/waitlist', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
       .then(function (r) { return r.json(); })
       .then(function (j) {
-        if (j && j.ok) { msg.textContent = "You're on the register."; f.reset(); }
+        if (j && j.ok) { msg.textContent = "You're on the register."; f.reset(); if (window.fbq) fbq('track', 'Lead', { content_name: 'chapter-1' }, { eventID: 'lead-' + Date.now().toString(36) + Math.random().toString(36).slice(2, 8) }); }
         else { msg.textContent = (j && j.error) || "That email didn't take. Try it once more."; }
       })
       .catch(function () { msg.textContent = "The register didn't answer. Try it once more."; })
