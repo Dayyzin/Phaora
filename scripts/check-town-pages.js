@@ -66,7 +66,7 @@ function main() {
     // nothing about the page looks broken.
     const canon = /<link rel="canonical" href="([^"]+)"/.exec(html)
     if (!canon) say('no canonical')
-    else if (canon[1] !== `https://phaora.com/${dir}/`) {
+    else if (canon[1] !== `https://phaoralandscape.com/${dir}/`) {
       say(`canonical points at ${canon[1]}, not /${dir}/`)
     }
 

@@ -61,7 +61,7 @@ problems = []
 
 for t in towns:
     ag = f"{t['town']} - Masonry"
-    url = f"https://phaora.com/{t['slug']}/"
+    url = f"https://phaoralandscape.com/{t['slug']}/"
     p2 = t['town'].lower().replace(' ', '-')
     if len(p2) > P_MAX:
         problems.append(f"path2 too long for {t['town']}")

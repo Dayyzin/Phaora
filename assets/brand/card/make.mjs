@@ -124,7 +124,7 @@ const BACK = `<section class="face back">
     <div class="name">DAVID</div>
     <div class="line">(561) 299-1261</div>
     <div class="line">phaoraco@gmail.com</div>
-    <div class="line">phaora.com</div>
+    <div class="line">phaoralandscape.com</div>
   </div>
 </section>`
 

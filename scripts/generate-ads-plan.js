@@ -318,7 +318,7 @@ function build() {
   for (const s of SERVICES) {
     const campaign = `Phaora – ${s.name}`
     const group = s.name
-    const url = `https://phaora.com/${s.slug}/`
+    const url = `https://phaoralandscape.com/${s.slug}/`
 
     // Keywords: phrase and exact for each. Broad is left out on purpose — on a
     // starting budget, broad match is a donation.

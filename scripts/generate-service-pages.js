@@ -29,8 +29,8 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const SITE = 'https://phaora.com';
-const FALLBACK_OG_IMAGE = 'https://phaora.com/assets/og/phaora-share.jpg';
+const SITE = 'https://phaoralandscape.com';
+const FALLBACK_OG_IMAGE = 'https://phaoralandscape.com/assets/og/phaora-share.jpg';
 
 const NAV_BODY = fs.readFileSync(path.join(__dirname, '_town-template-nav.html'), 'utf8');
 const STYLE_BLOCK = fs.readFileSync(path.join(__dirname, '_town-template-style.css'), 'utf8');

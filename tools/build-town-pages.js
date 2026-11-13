@@ -144,7 +144,7 @@ function page(t, all) {
   const title = `Masonry & Hardscape Contractor in ${t.town}, MA | PHAÖRA`;
   const desc = `Patios, walkways, retaining walls, steps and drainage in ${t.town}, Massachusetts. `
              + `Built to New England frost depth by our own crews. Free on-site estimate, and a price online in about thirty seconds.`;
-  const url = `https://phaora.com/${t.slug}/`;
+  const url = `https://phaoralandscape.com/${t.slug}/`;
 
   const ld = {
     "@context": "https://schema.org", "@type": "GeneralContractor",
@@ -168,14 +168,14 @@ function page(t, all) {
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(desc)}">
 <meta property="og:url" content="${url}">
-<meta property="og:image" content="https://phaora.com/assets/og/town-${t.slug}.jpg">
+<meta property="og:image" content="https://phaoralandscape.com/assets/og/town-${t.slug}.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="${esc(`Masonry and hardscape in ${t.town}, Massachusetts by PHAÖRA`)}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(title)}">
 <meta name="twitter:description" content="${esc(desc)}">
-<meta name="twitter:image" content="https://phaora.com/assets/og/town-${t.slug}.jpg">
+<meta name="twitter:image" content="https://phaoralandscape.com/assets/og/town-${t.slug}.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="${C.fonts}" rel="stylesheet">
@@ -282,16 +282,16 @@ function hub(all) {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
-<link rel="canonical" href="https://phaora.com/service-area/">
+<link rel="canonical" href="https://phaoralandscape.com/service-area/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(desc)}">
-<meta property="og:url" content="https://phaora.com/service-area/">
-<meta property="og:image" content="https://phaora.com/assets/og/town-service-area.jpg">
+<meta property="og:url" content="https://phaoralandscape.com/service-area/">
+<meta property="og:image" content="https://phaoralandscape.com/assets/og/town-service-area.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://phaora.com/assets/og/town-service-area.jpg">
+<meta name="twitter:image" content="https://phaoralandscape.com/assets/og/town-service-area.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="${C.fonts}" rel="stylesheet">
@@ -365,9 +365,9 @@ const live = DATA.towns.filter((t) => fs.existsSync(path.join(ROOT, t.slug, "ind
 let xml = fs.readFileSync(SITEMAP, "utf8");
 xml = xml.replace(/\n  <!-- towns -->[\s\S]*?<!-- \/towns -->/, "");
 const block = "\n  <!-- towns -->\n" +
-  `  <url><loc>https://phaora.com/service-area/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>\n` +
+  `  <url><loc>https://phaoralandscape.com/service-area/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>\n` +
   live.map((t) =>
-  `  <url><loc>https://phaora.com/${t.slug}/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>`
+  `  <url><loc>https://phaoralandscape.com/${t.slug}/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>`
 ).join("\n") + "\n  <!-- /towns -->";
 fs.writeFileSync(SITEMAP, xml.replace("</urlset>", block.trimEnd() + "\n</urlset>"));
 
