@@ -344,7 +344,7 @@ BOOK = [
 ]
 BOOK_CODA = dict(text=["Up in the booth, the first reel came off the projector and another went on.", "In the empty house the new leader ran, and read, in red: II."],
                  plate=('The booth: one reel off the projector, another on.', 'Every seat in the house, empty.', [ST+'b8_the-next-reel_108x144.png'], '3:4'))
-BOOK_LAST = "PHAÖRA is a house of knitwear, leather and silk, in black, cream and gold. Chapter I is its first line: seventeen pieces, each one a stitch chart, a cut plan or a print file before it is anything else."
+BOOK_LAST = "PHAÖRA is a house of knitwear, leather and silk, in black, cream and gold. Chapter I is its first line: fifteen pieces, each one a stitch chart, a cut plan or a print file before it is anything else."
 
 # Each piece's maker's notes as BOOK.md has them (its "enters" block): heading, numbered lines, the closing line.
 BOOK_NOTES = {

@@ -399,7 +399,7 @@ def home(fronts):
   <p class="scrollcue">The room</p>
  </section>
  <div class="room">{''.join(room)}</div>
- <section class="cats"><p class="eyebrow">The line</p>{fa('seventeen pieces in black, cream and gold', 'h2')}<div class="catgrid">{cats}</div><a class="more-link" href="line.html">See the whole line</a></section>
+ <section class="cats"><p class="eyebrow">The line</p>{fa('fifteen pieces in black, cream and gold', 'h2')}<div class="catgrid">{cats}</div><a class="more-link" href="line.html">See the whole line</a></section>
  <section class="duo">
   <a class="tile" href="film.html">{FILM_POSTER.img(sizes="(min-width: 821px) 48vw, 100vw")}<span class="eyebrow">The film</span>{fa('a seat is kept for you', 'span', 'big')}</a>
   <a class="tile" href="book.html">{BOOK_COVER.img(sizes="(min-width: 821px) 48vw, 100vw")}<span class="eyebrow">The book</span>{fa('two reels, nine chapters', 'span', 'big')}</a>
