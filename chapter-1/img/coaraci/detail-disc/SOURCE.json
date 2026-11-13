@@ -1,0 +1,17 @@
+{
+ "source": "departments/apparel/website/chapter2/assets/line/disc_belt/disc-belt-closeup-disc.webp",
+ "sig": "disc-belt-closeup-disc.webp:20234",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w800.webp"
+ ],
+ "w": 800,
+ "h": 600,
+ "bbox": [
+  0.0,
+  0.0,
+  1.0,
+  1.0
+ ]
+}

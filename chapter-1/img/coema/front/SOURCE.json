@@ -1,0 +1,18 @@
+{
+ "source": "departments/apparel/website/chapter2/assets/line/matinee/matinee-front.webp",
+ "sig": "matinee-front.webp:185608",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w960.webp",
+  "w1274.webp"
+ ],
+ "w": 1274,
+ "h": 1021,
+ "bbox": [
+  0.0149,
+  0.0176,
+  0.9576,
+  0.9589
+ ]
+}

@@ -1,0 +1,18 @@
+{
+ "source": "departments/apparel/website/chapter2/assets/line/silk_scarf/silk-scarf-front.webp",
+ "sig": "silk-scarf-front.webp:307416",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w960.webp",
+  "w1597.webp"
+ ],
+ "w": 1597,
+ "h": 1335,
+ "bbox": [
+  0.0131,
+  0.0165,
+  0.9887,
+  0.9843
+ ]
+}

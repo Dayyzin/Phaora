@@ -1,0 +1,21 @@
+{
+ "source": "departments/apparel/new-pieces-2026-11/build/sunglasses/site/sunglasses_plate_8k.jpg",
+ "sig": "sunglasses_plate_8k.jpg:2245797",
+ "final": true,
+ "files": [
+  "w480.webp",
+  "w960.webp",
+  "w1600.webp",
+  "w2560.webp",
+  "w3840.webp",
+  "w7680.webp"
+ ],
+ "w": 7680,
+ "h": 4320,
+ "bbox": [
+  0.0,
+  0.0,
+  1.0,
+  1.0
+ ]
+}

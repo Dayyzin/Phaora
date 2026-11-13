@@ -1,0 +1,18 @@
+{
+ "source": "departments/apparel/new-pieces-2026-11/build/veil-coat/site/preview_16k_net-fade.png",
+ "sig": "preview_16k_net-fade.png:1259395",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w960.webp",
+  "w1600.webp"
+ ],
+ "w": 1600,
+ "h": 900,
+ "bbox": [
+  0.11,
+  0.0,
+  0.885,
+  0.9956
+ ]
+}

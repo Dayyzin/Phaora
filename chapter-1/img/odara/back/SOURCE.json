@@ -1,0 +1,19 @@
+{
+ "source": "departments/apparel/website/chapter2/assets/line/muse_bomber/muse-bomber-back.webp",
+ "sig": "muse-bomber-back.webp:240502",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w960.webp",
+  "w1372.webp"
+ ],
+ "w": 1372,
+ "h": 1383,
+ "bbox": [
+  0.062,
+  0.0152,
+  0.9555,
+  0.9638
+ ],
+ "ground": null
+}

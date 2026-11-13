@@ -1,0 +1,18 @@
+{
+ "source": "departments/apparel/new-pieces-2026-11/build/cantilena/real/cantilena_front_1600_black_cream.png",
+ "sig": "cantilena_front_1600_black_cream.png:2401977",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w960.webp",
+  "w1600.webp"
+ ],
+ "w": 1600,
+ "h": 1600,
+ "bbox": [
+  0.205,
+  0.125,
+  1.0,
+  0.87
+ ]
+}

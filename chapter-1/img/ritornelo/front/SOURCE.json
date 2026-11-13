@@ -1,0 +1,18 @@
+{
+ "source": "departments/apparel/website/chapter2/assets/line/opera_gloves/opera-gloves-front.webp",
+ "sig": "opera-gloves-front.webp:194272",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w960.webp",
+  "w1375.webp"
+ ],
+ "w": 1375,
+ "h": 1164,
+ "bbox": [
+  0.0153,
+  0.0198,
+  0.9825,
+  0.9794
+ ]
+}

@@ -1,0 +1,21 @@
+{
+ "source": "departments/apparel/new-pieces-2026-11/build/muse-allover/site/muse_kiss_8k.png",
+ "sig": "muse_kiss_8k.png:49201703",
+ "final": true,
+ "files": [
+  "w480.webp",
+  "w960.webp",
+  "w1600.webp",
+  "w2560.webp",
+  "w3840.webp",
+  "w7680.webp"
+ ],
+ "w": 7680,
+ "h": 4320,
+ "bbox": [
+  0.0333,
+  0.0,
+  1.0,
+  1.0
+ ]
+}

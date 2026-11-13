@@ -1,0 +1,17 @@
+{
+ "source": "departments/apparel/website/chapter2/assets/line/card_holder/card-holder-closeup-disc.webp",
+ "sig": "card-holder-closeup-disc.webp:29586",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w800.webp"
+ ],
+ "w": 800,
+ "h": 600,
+ "bbox": [
+  0.16,
+  0.0133,
+  0.98,
+  0.64
+ ]
+}

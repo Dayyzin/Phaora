@@ -1,0 +1,22 @@
+{
+ "source": "departments/apparel/new-pieces-2026-11/build/muse-bomber/renders/open8k/muse_bomber_open_8k.jpg",
+ "sig": "muse_bomber_open_8k.jpg:2918546",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w960.webp",
+  "w1600.webp",
+  "w2560.webp",
+  "w3840.webp",
+  "w7680.webp"
+ ],
+ "w": 7680,
+ "h": 4320,
+ "bbox": [
+  0.2552,
+  0.063,
+  0.7448,
+  0.9019
+ ],
+ "ground": "#f8f8f8"
+}

@@ -1,0 +1,19 @@
+{
+ "source": "departments/apparel/website/chapter2/assets/packaging/closed-1920.webp",
+ "sig": "closed-1920.webp:26126",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w960.webp",
+  "w1600.webp",
+  "w1920.webp"
+ ],
+ "w": 1920,
+ "h": 1440,
+ "bbox": [
+  0.1833,
+  0.3111,
+  0.9125,
+  0.7722
+ ]
+}

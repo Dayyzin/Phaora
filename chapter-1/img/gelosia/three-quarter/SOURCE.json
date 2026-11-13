@@ -1,0 +1,17 @@
+{
+ "source": "departments/apparel/website/chapter2/assets/line/veil_coat/veil-coat-three-quarter.webp",
+ "sig": "veil-coat-three-quarter.webp:138594",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w563.webp"
+ ],
+ "w": 563,
+ "h": 1283,
+ "bbox": [
+  0.0373,
+  0.0164,
+  0.9627,
+  0.9836
+ ]
+}

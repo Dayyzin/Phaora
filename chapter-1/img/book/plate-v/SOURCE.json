@@ -1,0 +1,21 @@
+{
+ "source": "departments/apparel/marketing/story/stills/8k/b5_seat-L2_the-card_5760x7680.png",
+ "sig": "b5_seat-L2_the-card_5760x7680.png:21202782",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w960.webp",
+  "w1600.webp",
+  "w2560.webp",
+  "w3840.webp",
+  "w5760.webp"
+ ],
+ "w": 5760,
+ "h": 7680,
+ "bbox": [
+  0.0,
+  0.0,
+  1.0,
+  1.0
+ ]
+}

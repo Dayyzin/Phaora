@@ -1,0 +1,18 @@
+{
+ "source": "departments/apparel/website/chapter2/assets/line/disc_belt/disc-belt-front.webp",
+ "sig": "disc-belt-front.webp:96906",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w960.webp",
+  "w1375.webp"
+ ],
+ "w": 1375,
+ "h": 751,
+ "bbox": [
+  0.0436,
+  0.0919,
+  0.9862,
+  0.976
+ ]
+}

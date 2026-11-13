@@ -1,0 +1,16 @@
+{
+ "source": "departments/apparel/marketing/story/stills/b1_the-doors-in-the-snow_256x144.png",
+ "sig": "b1_the-doors-in-the-snow_256x144.png:75107",
+ "final": false,
+ "files": [
+  "w256.webp"
+ ],
+ "w": 256,
+ "h": 144,
+ "bbox": [
+  0.0,
+  0.0,
+  1.0,
+  1.0
+ ]
+}

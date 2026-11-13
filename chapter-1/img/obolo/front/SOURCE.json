@@ -1,0 +1,19 @@
+{
+ "source": "departments/apparel/website/chapter2/assets/line/card_holder/card-holder-front.webp",
+ "sig": "card-holder-front.webp:212218",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w960.webp",
+  "w1600.webp",
+  "w1786.webp"
+ ],
+ "w": 1786,
+ "h": 830,
+ "bbox": [
+  0.0168,
+  0.0169,
+  0.9854,
+  0.9614
+ ]
+}

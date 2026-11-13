@@ -1,0 +1,18 @@
+{
+ "source": "departments/apparel/website/chapter2/assets/line/muse_bomber/muse-bomber-front.webp",
+ "sig": "muse-bomber-front.webp:137390",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w960.webp",
+  "w1350.webp"
+ ],
+ "w": 1350,
+ "h": 1380,
+ "bbox": [
+  0.0385,
+  0.0159,
+  0.957,
+  0.9645
+ ]
+}

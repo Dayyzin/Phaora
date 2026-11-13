@@ -1,0 +1,18 @@
+{
+ "source": "departments/apparel/new-pieces-2026-11/build/opera-gloves/site/preview_16k_net.png",
+ "sig": "preview_16k_net.png:1916048",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w960.webp",
+  "w1600.webp"
+ ],
+ "w": 1600,
+ "h": 900,
+ "bbox": [
+  0.0,
+  0.0267,
+  1.0,
+  0.9956
+ ]
+}

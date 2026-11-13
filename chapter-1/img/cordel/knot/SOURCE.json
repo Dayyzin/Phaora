@@ -1,0 +1,17 @@
+{
+ "source": "departments/apparel/website/chapter2/assets/line/silk_scarf/silk-scarf-knot.webp",
+ "sig": "silk-scarf-knot.webp:341618",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w839.webp"
+ ],
+ "w": 839,
+ "h": 1455,
+ "bbox": [
+  0.025,
+  0.0309,
+  0.9452,
+  0.9849
+ ]
+}

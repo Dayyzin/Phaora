@@ -1,0 +1,17 @@
+{
+ "source": "departments/apparel/new-pieces-2026-11/build/muse-bomber/site/check/front16k_100_gold_pull.png",
+ "sig": "front16k_100_gold_pull.png:1158527",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w801.webp"
+ ],
+ "w": 801,
+ "h": 799,
+ "bbox": [
+  0.0,
+  0.0,
+  0.9988,
+  0.9912
+ ]
+}

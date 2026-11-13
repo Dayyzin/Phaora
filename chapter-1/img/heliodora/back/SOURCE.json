@@ -1,0 +1,18 @@
+{
+ "source": "departments/apparel/website/chapter2/assets/line/muse_allover/muse-back.webp",
+ "sig": "muse-back.webp:248722",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w960.webp",
+  "w1104.webp"
+ ],
+ "w": 1104,
+ "h": 1135,
+ "bbox": [
+  0.0208,
+  0.0185,
+  0.9411,
+  0.9436
+ ]
+}

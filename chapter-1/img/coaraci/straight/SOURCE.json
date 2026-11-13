@@ -1,0 +1,18 @@
+{
+ "source": "departments/apparel/website/chapter2/assets/line/disc_belt/disc-belt-straight.webp",
+ "sig": "disc-belt-straight.webp:117436",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w960.webp",
+  "w1563.webp"
+ ],
+ "w": 1563,
+ "h": 1084,
+ "bbox": [
+  0.0115,
+  0.0175,
+  0.9527,
+  0.9825
+ ]
+}

@@ -72,6 +72,11 @@
       "permanent": true
     },
     {
+      "source": "/chapter-1",
+      "destination": "/chapter-1/",
+      "permanent": true
+    },
+    {
       "source": "/estimate",
       "destination": "/estimate/",
       "permanent": true

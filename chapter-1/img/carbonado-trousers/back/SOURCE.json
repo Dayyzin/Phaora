@@ -1,0 +1,17 @@
+{
+ "source": "departments/apparel/website/chapter2/assets/line/quiet_black_trousers/quiet-black-trousers-back.webp",
+ "sig": "quiet-black-trousers-back.webp:128150",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w812.webp"
+ ],
+ "w": 812,
+ "h": 1307,
+ "bbox": [
+  0.1059,
+  0.0161,
+  0.9249,
+  0.9709
+ ]
+}

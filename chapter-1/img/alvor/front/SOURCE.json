@@ -1,0 +1,17 @@
+{
+ "source": "departments/apparel/website/chapter2/assets/line/silk_slip/silk-slip-front.webp",
+ "sig": "silk-slip-front.webp:48938",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w487.webp"
+ ],
+ "w": 487,
+ "h": 1180,
+ "bbox": [
+  0.0431,
+  0.1178,
+  0.9548,
+  0.9814
+ ]
+}

@@ -1,0 +1,17 @@
+{
+ "source": "departments/apparel/website/chapter2/assets/line/quiet_black_trousers/quiet-black-trousers-three-quarter.webp",
+ "sig": "quiet-black-trousers-three-quarter.webp:110280",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w740.webp"
+ ],
+ "w": 740,
+ "h": 1323,
+ "bbox": [
+  0.1054,
+  0.0159,
+  0.9189,
+  0.9758
+ ]
+}

@@ -1,0 +1,18 @@
+{
+ "source": "departments/apparel/website/chapter2/assets/line/muse_allover/muse-three-quarter.webp",
+ "sig": "muse-three-quarter.webp:241734",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w960.webp",
+  "w972.webp"
+ ],
+ "w": 972,
+ "h": 1186,
+ "bbox": [
+  0.0216,
+  0.0177,
+  0.9372,
+  0.9494
+ ]
+}

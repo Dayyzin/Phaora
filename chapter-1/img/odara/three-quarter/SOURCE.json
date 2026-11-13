@@ -1,0 +1,18 @@
+{
+ "source": "departments/apparel/website/chapter2/assets/line/muse_bomber/muse-bomber-three-quarter.webp",
+ "sig": "muse-bomber-three-quarter.webp:131592",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w960.webp",
+  "w1355.webp"
+ ],
+ "w": 1355,
+ "h": 1392,
+ "bbox": [
+  0.093,
+  0.0151,
+  0.9749,
+  0.9648
+ ]
+}

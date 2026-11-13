@@ -1,0 +1,17 @@
+{
+ "source": "departments/apparel/website/chapter2/assets/line/veil_coat/veil-coat-back.webp",
+ "sig": "veil-coat-back.webp:161800",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w641.webp"
+ ],
+ "w": 641,
+ "h": 1241,
+ "bbox": [
+  0.0343,
+  0.0169,
+  0.9657,
+  0.9831
+ ]
+}

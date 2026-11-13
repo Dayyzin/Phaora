@@ -1,0 +1,19 @@
+{
+ "source": "departments/apparel/website/chapter2/assets/packaging/disc-1920.webp",
+ "sig": "disc-1920.webp:83032",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w960.webp",
+  "w1600.webp",
+  "w1920.webp"
+ ],
+ "w": 1920,
+ "h": 1920,
+ "bbox": [
+  0.0,
+  0.0167,
+  1.0,
+  1.0
+ ]
+}

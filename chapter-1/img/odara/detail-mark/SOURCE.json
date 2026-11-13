@@ -1,0 +1,17 @@
+{
+ "source": "departments/apparel/new-pieces-2026-11/build/muse-bomber/site/check/closeup16k_100_cut_o_holes_silk.png",
+ "sig": "closeup16k_100_cut_o_holes_silk.png:623390",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w799.webp"
+ ],
+ "w": 799,
+ "h": 801,
+ "bbox": [
+  0.2503,
+  0.0,
+  0.6408,
+  0.9988
+ ]
+}

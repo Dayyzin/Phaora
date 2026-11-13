@@ -1,0 +1,18 @@
+{
+ "source": "departments/apparel/new-pieces-2026-11/build/the-reel/site/reel_threequarter_cream_1600.png",
+ "sig": "reel_threequarter_cream_1600.png:2815369",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w960.webp",
+  "w1600.webp"
+ ],
+ "w": 1600,
+ "h": 1600,
+ "bbox": [
+  0.245,
+  0.16,
+  0.77,
+  0.91
+ ]
+}

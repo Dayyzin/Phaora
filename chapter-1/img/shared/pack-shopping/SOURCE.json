@@ -1,0 +1,19 @@
+{
+ "source": "departments/apparel/website/chapter2/assets/packaging/shopping-1920.webp",
+ "sig": "shopping-1920.webp:54720",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w960.webp",
+  "w1600.webp",
+  "w1920.webp"
+ ],
+ "w": 1920,
+ "h": 1440,
+ "bbox": [
+  0.1208,
+  0.1667,
+  1.0,
+  0.8889
+ ]
+}

@@ -1,0 +1,19 @@
+{
+ "source": "departments/apparel/website/chapter2/assets/line/quiet_black/quiet-black-hoodie-closeup-raking-light.webp",
+ "sig": "quiet-black-hoodie-closeup-raking-light.webp:731912",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w960.webp",
+  "w1600.webp",
+  "w1920.webp"
+ ],
+ "w": 1920,
+ "h": 1280,
+ "bbox": [
+  0.0,
+  0.0,
+  1.0,
+  1.0
+ ]
+}

@@ -1,0 +1,21 @@
+{
+ "source": "departments/apparel/new-pieces-2026-11/build/the-reel/site/reel_front_16k.png",
+ "sig": "reel_front_16k.png:85545173",
+ "final": true,
+ "files": [
+  "w480.webp",
+  "w960.webp",
+  "w1600.webp",
+  "w2560.webp",
+  "w3840.webp",
+  "w7680.webp"
+ ],
+ "w": 8640,
+ "h": 15360,
+ "bbox": [
+  0.1222,
+  0.2302,
+  1.0,
+  0.8406
+ ]
+}

@@ -1,0 +1,18 @@
+{
+ "source": "departments/apparel/website/chapter2/assets/line/sunglasses/star-in-shades-sunglasses-flat.webp",
+ "sig": "star-in-shades-sunglasses-flat.webp:85160",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w960.webp",
+  "w1467.webp"
+ ],
+ "w": 1467,
+ "h": 596,
+ "bbox": [
+  0.0136,
+  0.0403,
+  0.9939,
+  0.9262
+ ]
+}

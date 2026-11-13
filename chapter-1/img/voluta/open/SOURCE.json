@@ -1,0 +1,18 @@
+{
+ "source": "departments/apparel/website/chapter2/assets/line/the_reel/reel-open.webp",
+ "sig": "reel-open.webp:110360",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w960.webp",
+  "w998.webp"
+ ],
+ "w": 998,
+ "h": 1311,
+ "bbox": [
+  0.0862,
+  0.0473,
+  0.9269,
+  0.971
+ ]
+}

@@ -1,0 +1,18 @@
+{
+ "source": "departments/apparel/website/chapter2/assets/line/quiet_black/quiet-black-hoodie-back.webp",
+ "sig": "quiet-black-hoodie-back.webp:135394",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w960.webp",
+  "w1105.webp"
+ ],
+ "w": 1105,
+ "h": 1135,
+ "bbox": [
+  0.019,
+  0.0185,
+  0.9421,
+  0.9454
+ ]
+}

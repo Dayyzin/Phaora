@@ -1,0 +1,18 @@
+{
+ "source": "departments/apparel/new-pieces-2026-11/build/po-tophandle/site/preview_1600/po_tophandle_threequarter.png",
+ "sig": "po_tophandle_threequarter.png:8303141",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w960.webp",
+  "w1600.webp"
+ ],
+ "w": 1600,
+ "h": 1600,
+ "bbox": [
+  0.195,
+  0.31,
+  0.755,
+  0.885
+ ]
+}

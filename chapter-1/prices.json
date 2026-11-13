@@ -1,0 +1,109 @@
+{
+ "about": "Every new piece's price, from new-pieces-2026-11/BRIEF.md. Each is a draft until its quote is in and David says so; approved ones carry \"approved\" (the Muse all-over, 11 Nov). presale null: none set (the PRE-SALE button shows the price). price null: from its quote only (shown as a dash).",
+ "prices": {
+  "muse_allover": {
+   "price": "USD 400",
+   "presale": "USD 345",
+   "draft": false,
+   "source": "BRIEF: 'USD 400, pre-sale USD 345 (proposed)'",
+   "approved": "David, 11 Nov (583af4d6)"
+  },
+  "cantilena": {
+   "price": "USD 595",
+   "presale": "USD 495",
+   "draft": false,
+   "source": "pricing/CHAPTER-I-PRICING.md, 13 Nov: the PÖ monogram hoodie takes the Room's place at its own price",
+   "approved": "David, 13 Nov: 'all over monogram shouldn't be on the cheaper end tho'"
+  },
+  "cream_reversed": {
+   "price": "USD 345",
+   "presale": "USD 295",
+   "draft": true,
+   "source": "BRIEF: APPROVED TO BUILD 1"
+  },
+  "quiet_black": {
+   "price": "USD 295",
+   "presale": "USD 255",
+   "draft": true,
+   "source": "BRIEF: APPROVED TO BUILD 3"
+  },
+  "quiet_black_trousers": {
+   "price": "USD 245",
+   "presale": null,
+   "draft": true,
+   "source": "BRIEF: about USD 245, from the quote"
+  },
+  "muse_bomber": {
+   "price": "USD 1,250",
+   "presale": null,
+   "draft": true,
+   "source": "BRIEF: about USD 1,250, from the workshop's quote"
+  },
+  "veil_coat": {
+   "price": "USD 1,800",
+   "presale": null,
+   "draft": true,
+   "source": "BRIEF: about USD 1,800"
+  },
+  "silk_slip": {
+   "price": "USD 450",
+   "presale": null,
+   "draft": true,
+   "source": "BRIEF: about USD 450"
+  },
+  "the_reel": {
+   "price": "USD 1,100",
+   "presale": null,
+   "draft": true,
+   "source": "BRIEF: about USD 1,100, from the workshop's quote"
+  },
+  "po_tophandle": {
+   "price": "USD 950",
+   "presale": null,
+   "draft": true,
+   "source": "build/po-tophandle/README.md: about USD 950, from the workshop's quote"
+  },
+  "matinee": {
+   "price": null,
+   "presale": null,
+   "draft": true,
+   "source": "BRIEF: price from its quote"
+  },
+  "sunglasses": {
+   "price": "USD 450",
+   "presale": null,
+   "draft": true,
+   "source": "BRIEF: about USD 450, from the maker's quote; a pre-sale has to reach the run"
+  },
+  "pendant": {
+   "price": "USD 350",
+   "presale": null,
+   "draft": true,
+   "source": "BRIEF: about USD 350"
+  },
+  "silk_scarf": {
+   "price": "USD 225",
+   "presale": null,
+   "draft": true,
+   "source": "BRIEF: about USD 225"
+  },
+  "card_holder": {
+   "price": "USD 195",
+   "presale": null,
+   "draft": true,
+   "source": "BRIEF: about USD 195"
+  },
+  "opera_gloves": {
+   "price": "USD 395",
+   "presale": null,
+   "draft": true,
+   "source": "BRIEF: about USD 395"
+  },
+  "disc_belt": {
+   "price": "USD 295",
+   "presale": null,
+   "draft": true,
+   "source": "BRIEF: about USD 295"
+  }
+ }
+}
