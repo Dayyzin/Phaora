@@ -1,6 +1,6 @@
 # SLOTS: every image and film on the Chapter I site
 
-Built by `build.py`. 133 slots: **5 final**, **105 holding a stand-in** (the best approved
+Built by `build.py`. 118 slots: **5 final**, **90 holding a stand-in** (the best approved
 render or still we have, at 144p or 1600), **23 waiting** (a quiet placeholder of the right ratio, labelled
 with what it waits for).
 
@@ -27,12 +27,10 @@ path. On phaora.com the labels never show.
 | film | `img/film/poster/` | clip 8: the row from behind and above, the kept seat on the left third (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/stills/b2_the-front-row-and-the-kept-seat_256x144.png (256 × 144) |
 | film | `media/film/next-reel/` | the next reel: the leader, II in red (16:9, 3840 × 2160 MP4) | stand-in: departments/apparel/marketing/ads/next-reel/preview/next_reel_3_leader_II_144p_red.mp4 |
 | film | `img/film/short-c1/` | C1, Heliodora: the coming attraction (until it lands, its last frame) (16:9, 3840 × 2160 MP4 or 8K still) | stand-in: departments/apparel/marketing/story/stills/ca-01-the-muse_108x144.png (108 × 144) |
-| film | `img/film/short-c2/` | C2, Carbonado: the coming attraction (until it lands, its last frame) (16:9, 3840 × 2160 MP4 or 8K still) | stand-in: departments/apparel/marketing/story/stills/ca-02-the-quiet-black-trousers_108x144.png (108 × 144) |
 | film | `img/film/short-c3/` | C3, Ritornelo: the coming attraction (until it lands, its last frame) (16:9, 3840 × 2160 MP4 or 8K still) | stand-in: departments/apparel/marketing/story/stills/ca-03-the-opera-gloves_108x144.png (108 × 144) |
 | film | `img/film/short-c4/` | C4, Cordel: the coming attraction (until it lands, its last frame) (16:9, 3840 × 2160 MP4 or 8K still) | stand-in: departments/apparel/marketing/story/stills/ca-04-the-silk-scarf_108x144.png (108 × 144) |
 | film | `img/film/short-c5/` | C5, Öbolo: the coming attraction (until it lands, its last frame) (16:9, 3840 × 2160 MP4 or 8K still) | stand-in: departments/apparel/marketing/story/stills/ca-05-the-card-holder_108x144.png (108 × 144) |
 | film | `img/film/short-c6/` | C6, Öfusca: the coming attraction (until it lands, its last frame) (16:9, 3840 × 2160 MP4 or 8K still) | stand-in: departments/apparel/marketing/story/stills/ca-06-star-in-shades_108x144.png (108 × 144) |
-| film | `img/film/short-c7/` | C7, Carbonado: the coming attraction (until it lands, its last frame) (16:9, 3840 × 2160 MP4 or 8K still) | stand-in: departments/apparel/marketing/story/stills/ca-07-quiet-black_108x144.png (108 × 144) |
 | film | `img/film/short-c8/` | C8, Itaoca: the coming attraction (until it lands, its last frame) (16:9, 3840 × 2160 MP4 or 8K still) | stand-in: departments/apparel/marketing/story/stills/ca-08-the-po-top-handle_108x144.png (108 × 144) |
 | film | `img/film/short-c9/` | C9, Cantilena: the coming attraction (until it lands, its last frame) (16:9, 3840 × 2160 MP4 or 8K still) | WAITING: a placeholder of the right ratio |
 | film | `img/film/short-c10/` | C10, Ödara: the coming attraction (until it lands, its last frame) (16:9, 3840 × 2160 MP4 or 8K still) | stand-in: departments/apparel/marketing/story/stills/ca-10-the-muse-bomber_108x144.png (108 × 144) |
@@ -67,19 +65,6 @@ path. On phaora.com the labels never show.
 | cantilena | `img/cantilena/detail-cream/` | cream on cream, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/new-pieces-2026-11/build/cantilena/real/cantilena_front_144_cream.png (144 × 144) |
 | cantilena | `img/cantilena/detail-eyelet/` | the gold eyelet and tip, 8K close-up (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
 | cantilena | `img/cantilena/world/` | C9: the last frame, the world plate (the suite, by day) (8K, 5760 × 7680) | WAITING: a placeholder of the right ratio |
-| carbonado | `img/carbonado/front/` | departments/apparel/new-pieces-2026-11/build/quiet-black/site/quiet_black_front_16k.png (16K, 8640 × 15360) | stand-in: departments/apparel/website/chapter2/assets/line/quiet_black/quiet-black-hoodie-front.webp (1116 × 1136) |
-| carbonado | `img/carbonado/three-quarter/` | three-quarter view, 8K (8K, 4320 × 7680) | stand-in: departments/apparel/website/chapter2/assets/line/quiet_black/quiet-black-hoodie-three-quarter.webp (971 × 1186) |
-| carbonado | `img/carbonado/back/` | back view, 8K (8K, 4320 × 7680) | stand-in: departments/apparel/website/chapter2/assets/line/quiet_black/quiet-black-hoodie-back.webp (1105 × 1135) |
-| carbonado | `img/carbonado/detail-raking/` | under raking light, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/website/chapter2/assets/line/quiet_black/quiet-black-hoodie-closeup-raking-light.webp (1920 × 1280) |
-| carbonado | `img/carbonado/detail-hem/` | the hem band, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/website/chapter2/assets/line/quiet_black/quiet-black-hoodie-closeup-hem.webp (1600 × 900) |
-| carbonado | `img/carbonado/detail-fade/` | the fade, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/website/chapter2/assets/line/quiet_black/quiet-black-hoodie-closeup-fade.webp (1600 × 900) |
-| carbonado | `img/carbonado/world/` | C7: the last frame, the world plate (the dressing room) (8K, 5760 × 7680) | stand-in: departments/apparel/marketing/story/stills/ca-07-quiet-black_108x144.png (108 × 144) |
-| carbonado-trousers | `img/carbonado-trousers/front/` | departments/apparel/new-pieces-2026-11/build/quiet-black-trousers/site/quiet_black_trousers_front_16k.png (16K, 8640 × 15360) | stand-in: departments/apparel/website/chapter2/assets/line/quiet_black_trousers/quiet-black-trousers-front.webp (797 × 1311) |
-| carbonado-trousers | `img/carbonado-trousers/three-quarter/` | three-quarter view, 8K (8K, 4320 × 7680) | stand-in: departments/apparel/website/chapter2/assets/line/quiet_black_trousers/quiet-black-trousers-three-quarter.webp (740 × 1323) |
-| carbonado-trousers | `img/carbonado-trousers/back/` | back view, 8K (8K, 4320 × 7680) | stand-in: departments/apparel/website/chapter2/assets/line/quiet_black_trousers/quiet-black-trousers-back.webp (812 × 1307) |
-| carbonado-trousers | `img/carbonado-trousers/detail-fade/` | the fade at the knee, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/website/chapter2/assets/line/quiet_black_trousers/quiet-black-trousers-closeup-fade.webp (600 × 600) |
-| carbonado-trousers | `img/carbonado-trousers/detail-waistband/` | the waistband, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/website/chapter2/assets/line/quiet_black_trousers/quiet-black-trousers-closeup-waistband.webp (800 × 400) |
-| carbonado-trousers | `img/carbonado-trousers/world/` | C2: the last frame, the world plate (the lobby, far end) (8K, 5760 × 7680) | stand-in: departments/apparel/marketing/story/stills/ca-02-the-quiet-black-trousers_108x144.png (108 × 144) |
 | odara | `img/odara/front/` | departments/apparel/new-pieces-2026-11/build/muse-bomber/site/muse_bomber_front_16k.png (16K, 8640 × 15360) | stand-in: departments/apparel/website/chapter2/assets/line/muse_bomber/muse-bomber-front.webp (1350 × 1380) |
 | odara | `img/odara/three-quarter/` | three-quarter view, 8K (8K, 4320 × 7680) | stand-in: departments/apparel/website/chapter2/assets/line/muse_bomber/muse-bomber-three-quarter.webp (1355 × 1392) |
 | odara | `img/odara/back/` | back view, 8K (8K, 4320 × 7680) | stand-in: departments/apparel/website/chapter2/assets/line/muse_bomber/muse-bomber-back.webp (1372 × 1383) |

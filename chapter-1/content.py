@@ -469,3 +469,14 @@ ROW = [
  ('R2', 'muse_bomber', ["It begins as five pieces of black lambskin.", "Her portrait is cut through the back as round holes.", "Inside it: cream silk."]),
  ('ARM', 'opera_gloves', ["Each begins as black lambskin, with one long seam.", "It runs 53 cm from fingertip to top edge.", "It closes on a 10 mm gold snap."]),
 ]
+
+
+# David, 13 Nov: Carbonado (the Quiet Black hoodie and trousers) is out of Chapter I. Its entries above are kept for the
+# record; this takes it off every page, slot and list.
+OUT = {'quiet_black', 'quiet_black_trousers'}
+PIECES = [p for p in PIECES if p['id'] not in OUT]
+for _ch in BOOK:
+    _ch['enter'] = [pid for pid in _ch['enter'] if pid not in OUT]
+for _pid in OUT:
+    BOOK_NOTES.pop(_pid, None)
+ROW = [r for r in ROW if r[1] not in OUT]

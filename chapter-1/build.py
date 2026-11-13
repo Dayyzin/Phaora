@@ -534,10 +534,9 @@ def other_pages():
     rows = lambda rr: '<table class="sz"><thead><tr><th></th><th>S</th><th>M</th><th>L</th><th>XL</th><th>XXL</th></tr></thead><tbody>' + ''.join(
         f'<tr><th>{E(a)}</th><td>·</td><td>{E(b)}</td><td>·</td><td>·</td><td>·</td></tr>' for a, b in rr) + '</tbody></table><p class="small">M is the block. S, L, XL and XXL follow when it is graded.</p>'
     text_page('sizes.html', 'Sizes', 'Chapter I', [
-        ('The hoodies', ['Heliodora, Cantilena and Carbonado.', rows([('Body length, shoulder to hem', '72 cm'), ('Front, knitted width', '65.6 cm'), ('Front, knitted length', '64.4 cm'),
+        ('The hoodies', ['Heliodora and Cantilena.', rows([('Body length, shoulder to hem', '72 cm'), ('Front, knitted width', '65.6 cm'), ('Front, knitted length', '64.4 cm'),
                                                                      ('Back, knitted width', '65.3 cm'), ('Shoulder, seam to seam', '71.5 cm'), ('Shoulder drop', '16.3 cm'),
                                                                      ('Sleeve length', '55.4 cm'), ('Hem band, flat', '51.5 cm')])]),
-        ('The trousers', ['Carbonado.', rows([('Hem, all round', '63 cm'), ('Waistband, 1x1 rib, deep', '4 cm'), ('Hem turned inside', '2.5 cm')])]),
         ('Outerwear and silk', ['Gelosia, Ödara and Alvor come in XS, S, M, L and XL.', for_david('their measurements, once the patterns are graded')]),
         ('The gloves', ['Ritornelo comes in S, M and L.', for_david('the hand measurements for each size')]),
     ], 'PHAÖRA Chapter I: measurements for the knitwear.', lede='Measured flat, in centimetres. The block is cut at size M; the other sizes follow when the block is graded.')
@@ -563,7 +562,6 @@ NAMES = [
  ('Alvor', 'The silk slip', 'A literary word for the first whiteness of dawn.'),
  ('Heliodora', 'The Muse', 'Bárbara Heliodora, the poet-heroine of the 1789 Minas conspiracy; also heliodor, the golden gem of Minas.'),
  ('Cantilena', 'The PÖ hoodie', 'A song that keeps returning to the same few notes: the PÖ said again and again.'),
- ('Carbonado', 'Quiet Black, hoodie and trousers', 'The opaque black diamond found in Brazil.'),
  ('Voluta', 'The Reel', 'The spiral scroll carved on the baroque churches of Minas, and a coil like a reel of film.'),
  ('Coema', 'The Matinee', 'Old Tupi for morning.'),
  ('Itaoca', 'The PÖ top-handle', 'Old Tupi: itá stone and oka house, “house of stone”.'),
@@ -583,6 +581,9 @@ SHORTS = [('C1', 'muse_allover', ST + 'ca-01-the-muse_108x144.png', None), ('C2'
           ('C11', 'silk_slip', ST + 'ca-11-the-silk-slip_108x144.png', None), ('C12', 'disc_belt', ST + 'ca-12-the-disc-belt_108x144.png', None),
           ('C13', 'the_reel', ST + 'ca-13-the-reel_108x144.png', None),
           ('C14', 'matinee', ST + 'ca-14-the-matinee_108x144.png', 'departments/apparel/marketing/story/preview/60_the-matinee_suite-bench_16x9_144p.mp4')]
+
+
+SHORTS = [s for s in SHORTS if s[1] not in C.OUT]   # Carbonado is out (C2, C7)
 
 
 def main():
