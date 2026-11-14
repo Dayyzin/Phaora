@@ -1,0 +1,17 @@
+{
+ "source": "departments/apparel/marketing/story/product-stills/coaraci_sundial_256x144.png",
+ "sig": "coaraci_sundial_256x144.png:44772",
+ "final": false,
+ "files": [
+  "w256.webp"
+ ],
+ "w": 256,
+ "h": 144,
+ "bbox": [
+  0.2188,
+  0.1667,
+  0.8125,
+  0.8889
+ ],
+ "ground": "#efe1c8"
+}

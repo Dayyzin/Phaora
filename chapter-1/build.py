@@ -100,8 +100,8 @@ class Slot:
                     final = self.final_src
                     break
         old = json.loads((self.dir / 'SOURCE.json').read_text()) if (self.dir / 'SOURCE.json').exists() else {}
-        if not src and old and not REPO.exists() and all((self.dir / f).exists() for f in (old.get('files') or ['video.mp4'])):
-            # phaora-ops not here: keep the stand-in already built from it
+        if not src and old and all((self.dir / f).exists() for f in (old.get('files') or ['video.mp4'])):
+            # its source not reachable from here (phaora-ops absent, or a checkout without it): keep the stand-in already built
             self.files = old.get('files') or ['video.mp4']
             self.w, self.h, self.bbox, self.ground = old.get('w', 0), old.get('h', 0), old.get('bbox', [0, 0, 1, 1]), old.get('ground')
             self.state = 'final' if old.get('final') else 'stand-in'
@@ -286,91 +286,90 @@ def piece_slots(p):
 
 
 def piece_page(p, prev, nxt):
+    """A piece's page, top to bottom (the site rebuild, 14 Nov): (a) the piece in its world, full width (the director's
+    signature shot); (b) its views beside its name, specs, price, made to order and sizes (Lustre: nothing about buying);
+    (c) close-ups at 100%; (d) its scene: its page of the book, story and maker's note, and its short inline; (e) the
+    pieces in the same scene; (f) the rest of the line, small."""
+    pg = p['page']
     views, details, world = piece_slots(p)
+    details = details + [Slot(pg, k, f'{lab.lower()}, 8K close-up', '8K, 7680 × 4320', '16:9', lab, [src]) for k, lab, src in C.MORE_DETAILS.get(p['id'], [])]
+    hf, idea = C.HERO[p['id']]
+    hero = Slot(pg, 'hero', f'the director’s signature shot: {idea} (story/product-stills/DIRECTOR-SHOTS.md; its 144p preview stands in)',
+                '8K, 7680 × 4320', '16:9', f'{p["name"]}: {idea}', [C.PS + hf + '_256x144.png'], alt=f'{p["name"]}, {p["plain"].lower()}: {idea}')
     price, presale = price_of(p['id'])
-    vdata = {v: dict(bbox=s.bbox, w=s.w or 1000, h=s.h or (1778 if p['ratio'] == '9:16' else 563), ok=s.state != 'waiting') for v, s in views.items()}
-    # a stop on a view with no picture yet walks on the front instead
-    stops = []
-    for st in p['stops']:
-        v = st['v'] if vdata.get(st['v'], {}).get('ok') else next(iter(views))
-        stops.append(dict(v=v, f=st['f'], z=st['z'], n=[dict(at=a, l=l, v=val, m=m) for a, l, val, m in st['n']]))
-    walkdata = json.dumps(dict(views=vdata, stops=stops), ensure_ascii=False)
-    first = next(iter(views))
-    vhtml = ''.join(f'<div class="view" data-v="{v}">{s.img(sizes="(min-width: 821px) 180vw, 320vw", loading="eager" if v == first else "lazy")}</div>' for v, s in views.items())
-    vtags = ''.join(f'<div class="vtag" data-v="{v}">{s.tag()}</div>' for v, s in views.items())
-    ground = views[first].ground if views[first].state != 'waiting' else None
-    # a render on a black ground (the jewellery's velvet) takes the cream ink over the walk
-    onblack = bool(ground) and sum(int(ground[k:k + 2], 16) for k in (1, 3, 5)) < 3 * 60
-    # the world, where the walk ends: its still (a 144p still is only ever shown soft)
-    wbg = (f'<div class="worldbg{" soft" if world.w < 900 else ""}" style="background-image:url({world.src(1600)})"></div>' if world.state != 'waiting' else '<div class="worldbg none"></div>')
-    notes_html = ''
-    for i, st in enumerate(stops):
-        for j, n in enumerate(st['n']):
-            mk = f'<span class="mk">{E(n["m"])}</span>' if n['m'] else ''
-            notes_html += (f'<div class="note" data-s="{i}" data-n="{j}"><i class="pin"></i><i class="lead"></i>'
-                           f'<span class="txt"><span class="lab">{E(n["l"])}</span><span class="val">{E(n["v"])}</span>{mk}</span></div>')
-    sizes = ''.join(f'<button type="button" class="sz">{s}</button>' for s in p['sizes'])
-    price_html = (f'<p class="price"><span class="nw">{E(price)}</span>' + (f' <span class="pre">pre-sale <span class="nw">{E(presale)}</span></span>' if presale else '') + '</p>') if price else '<p class="price">PRICE ON REQUEST</p>'
     enq = p.get('nosale')
-    if enq:   # a house piece, not for sale: no price, no buying words at all
-        price_html = ''
+    # (b) the buy block
     specs = ''.join(f'<dt>{E(a)}</dt><dd>{E(b)}</dd>' for a, b in p['specs'])
     if p['sizes']:
         specs += f'<dt>SIZE</dt><dd>{" · ".join(p["sizes"])}</dd>'
-    nb = C.BOOK_NOTES.get(p['id'])
-    book = ''
-    if nb:
-        h, lines, close = nb
-        book = (f'<section class="makers"><p class="eyebrow">The maker’s notes</p>{fa(h, "h2")}<ol>' + ''.join(f'<li>{E(x)}</li>' for x in lines)
-                + f'</ol><p class="close">{E(close)}</p><a class="more-link" href="book.html">Read the book</a></section>')
-    det = ''.join(f'<div class="det">{s.img(sizes="(min-width: 821px) 46vw, 100vw")}<p class="cap">{E(s.label)}</p></div>' for s in details)
-    pkg = ''.join(f'<div class="det">{s.img(sizes="(min-width: 821px) 30vw, 100vw")}<p class="cap">{E(s.label)}</p></div>' for s in PACKAGING)
+    sizes = ''.join(f'<button type="button" class="sz">{s}</button>' for s in p['sizes'])
+    if enq:
+        buy = ''
+    else:
+        pr = (f'<span class="nw">{E(price)}</span>' + (f' <span class="pre">pre-sale <span class="nw">{E(presale)}</span></span>' if presale else '')) if price else 'PRICE ON REQUEST'
+        buy = (f'{f"<div class=sizes role=group aria-label=Size>{sizes}</div>" if sizes else ""}<p class="price">{pr}</p><p class="mto">Made to order.</p>'
+               f'<a class="cta" href="{REGISTER}">Keep a seat</a><p class="cta-note">The register sees the pre-sale first.</p>')
     policy = C.POLICY_KNIT if p['policy'] == 'knit' else C.POLICY_MADE
-    wplace, wkept, wcode, _ = p['world']
+    more = ('' if enq else f'<dt>Pre-sale</dt><dd>{E(C.POLICY_PRESALE)}</dd><dt>Returns</dt><dd>{E(policy)}</dd>') + \
+        f'<dt>Care</dt><dd>{E(C.CARE[p["care"]])} <a href="care.html">Care</a></dd><dt>Size</dt><dd><a href="sizes.html">The measurements</a></dd>'
+    vlist = [(v, s) for v, s in views.items()]
+    gal = ''.join(f'<div class="gv{" first" if i == 0 else ""}">{s.img(sizes="(min-width: 821px) 50vw, 100vw", loading="eager" if i == 0 else "lazy")}<p class="cap">{E(v.replace("-", " "))}</p></div>' for i, (v, s) in enumerate(vlist))
+    # (c) close-ups
+    strip = ''.join(f'<div class="mc">{s.img(sizes="(min-width: 821px) 25vw, 80vw")}<p class="cap">{E(s.label)}</p></div>' for s in details[:4])
+    # (d) its scene: the chapter it enters in, the maker's note, and its short (the Veil Coat's is the film itself)
+    ch = next((c for c in C.BOOK if p['id'] in c['enter']), None)
+    scene = ''
+    if ch:
+        plate = BOOK_PLATES[ch['key']]
+        code = next((c for c, pid, _, _ in SHORTS if pid == p['id']), None)
+        short = FILM if p['id'] == 'veil_coat' else SHORT_SLOTS.get(code) if code else None
+        nb = C.BOOK_NOTES.get(p['id'])
+        notes = ''
+        if nb:
+            h, lines, close = nb
+            notes = (f'<div class="sn"><p class="eyebrow">The maker’s notes</p>{fa(h, "h3")}<ol>' + ''.join(f'<li>{E(x)}</li>' for x in lines) +
+                     f'</ol><p class="close">{E(close)}</p></div>')
+        sh = ''
+        if short:
+            lab = 'The film' if short is FILM else f'{code}, the coming attraction'
+            sh = f'<div class="short">{short.img(sizes="(min-width: 821px) 60vw, 100vw", cls="playin")}<p class="cap">{E(lab)}</p></div>'
+        scene = f'''<section class="scene" id="scene">
+  <p class="eyebrow">Its scene · {E(ch['title'])}</p>{fa('a seat is kept for you', 'h2')}
+  <div class="scene-in"><div class="story">{''.join(f'<p>{E(t)}</p>' for t in ch['text'])}<a class="more-link" href="book.html#{ch['key']}">Read the book</a></div>{notes}</div>
+  <div class="scene-media">{sh}<div class="splate">{plate.img(sizes="(min-width: 821px) 34vw, 100vw")}<p class="cap">{E(ch['plate'][0])}</p></div></div>
+ </section>'''
+    # (e) in the same scene
+    same = C.SAME.get(p['id']) or ([x for x in ch['enter'] if x != p['id']] if ch else [])
+    same = [x for x in same if x in PIECE][:3]
+    samehtml = ''
+    if same:
+        cells = ''.join(f'<a class="sc" href="{PIECE[x]["page"]}.html"><span class="im"><img src="assets/room/{x}.webp" alt="{E(PIECE[x]["name"])}" loading="lazy"></span>{fa(PIECE[x]["name"], "span", "nm")}<span class="pl">{E(PIECE[x]["plain"])}</span></a>' for x in same)
+        samehtml = f'<section class="same"><p class="eyebrow">In the same scene</p><div class="sgrid">{cells}</div></section>'
+    # (f) the rest of the line, small
+    rest = ''.join(f'<a class="rl" href="{q["page"]}.html"><span class="im"><img src="assets/room/{q["id"]}.webp" alt="" loading="lazy"></span>{fa(q["name"], "span", "nm")}</a>' for q in C.PIECES if q['id'] != p['id'])
+    hero_tag = hero.tag()
     body = f'''
-<main class="piece" data-id="{p['id']}">
- <section class="walk" aria-label="A walk around {E(p['name'])}">
-  <div class="stage{' onblack' if onblack else ''}"{f' style="--ground:{ground}"' if ground else ''}>
-   <div class="floor"></div>{wbg}
-   <div class="cam">{vhtml}</div><div class="vtags">{vtags}</div>
-   <div class="wcap"><p class="eyebrow">Where it is going</p>{fa(wplace, 'p', 'wplace')}<p class="kept">{E(wkept)}</p></div>
-   <div class="notes">{notes_html}</div>
-   <div class="hud"><p class="eyebrow">Chapter I · {E(dict(C.CATS)[p['cat']])}</p>{fa(p['name'], 'h1', 'pname')}<p class="plain">{E(p['plain'])}</p></div>
-   <div class="where"><span class="place">{E(wplace)}</span></div>
-   <div class="prog"><i></i></div><p class="hint">Scroll to walk around it</p>
-  </div>
-  <div class="track" style="--n:{len(stops) + 1}"></div>
-  <script type="application/json" class="walkdata">{walkdata}</script>
+<main class="pp" data-id="{p['id']}">
+ <section class="hero">{hero.img(sizes="100vw", loading="eager", cls="herofig")}
+  <div class="hero-cap"><p class="eyebrow">Chapter I · {E(dict(C.CATS)[p['cat']])}</p>{fa(p['name'], 'h1', 'pname')}<p class="plain">{E(p['plain'])}</p></div>
  </section>
- <section class="buy" id="buy">
+ <section class="buy2" id="buy">
+  <div class="gallery{' tall' if p['ratio'] == '9:16' else ''}">{gal}</div>
   <div class="buy-in">
    <p class="eyebrow">Chapter I</p>{fa(p['name'], 'h2', 'big')}<p class="plain">{E(p['plain'])}</p>
    <p class="about">{E(p['about'])}</p>
    <dl class="specs">{specs}</dl>
-   {f'<div class="sizes" role="group" aria-label="Size">{sizes}</div>' if sizes else ''}
-   {price_html}
-   {'' if enq else f'<a class="cta" href="{REGISTER}">Keep a seat</a>'}
-   {'' if enq else '<p class="cta-note">The register sees the pre-sale first.</p>'}
-   <details class="more"><summary>Details</summary><dl>
-    {'' if enq else f'<dt>Pre-sale</dt><dd>{E(C.POLICY_PRESALE)}</dd>'}
-    {'' if enq else f'<dt>Returns</dt><dd>{E(policy)}</dd>'}
-    <dt>Care</dt><dd>{E(C.CARE[p['care']])} <a href="care.html">Care</a></dd>
-    <dt>Size</dt><dd><a href="sizes.html">The measurements</a></dd>
-   </dl></details>
+   {buy}
+   <details class="more"><summary>Details</summary><dl>{more}</dl></details>
   </div>
  </section>
- <section class="world">
-  <div class="world-in">{world.img(sizes="(min-width: 821px) 40vw, 90vw", cls="plate")}
-   <div><p class="eyebrow">Where it is going · {E(wcode)}</p>{fa(wplace, 'h2')}<p class="kept">{E(wkept)}</p>
-   <p class="small">On the screen in the film, the picture is tomorrow: each piece in the place it is going, with one place kept for someone.</p><a class="more-link" href="film.html">The film</a></div>
-  </div>
- </section>
- <section class="details"><p class="eyebrow">Close</p><div class="grid">{det}</div></section>
- {book}
- <section class="pack"><p class="eyebrow">The packaging</p><p class="lede">The house lights go down. Black board, cream tissue the colour of the screen, and one gold disc between you and the first scene.</p><div class="grid g3">{pkg}</div></section>
- <nav class="pn"><a href="{prev['page']}.html"><span>Before</span>{fa(prev['name'], 'span')}</a><a href="line.html" class="all">The line</a><a href="{nxt['page']}.html"><span>Next</span>{fa(nxt['name'], 'span')}</a></nav>
+ <section class="macro"><p class="eyebrow">Close, at 100%</p><div class="strip">{strip}</div></section>
+ {scene}
+ {samehtml}
+ <nav class="restline" aria-label="The rest of the line"><p class="eyebrow">The rest of the line</p><div class="rgrid">{rest}</div>
+  <div class="pn"><a href="{prev['page']}.html"><span>Before</span>{fa(prev['name'], 'span')}</a><a href="index.html#catalogue" class="all">The catalogue</a><a href="{nxt['page']}.html"><span>Next</span>{fa(nxt['name'], 'span')}</a></div></nav>
 </main>'''
-    page(f"{p['page']}.html", f"{p['name']}, {p['plain'].lower()}", p['about'], body, theme='light', scripts=['assets/js/walk.js'], here='line.html', bodycls='piecepage' + (' onblack' if onblack else ''))
+    page(f"{pg}.html", f"{p['name']}, {p['plain'].lower()}", p['about'], body, theme='light', scripts=['assets/js/piece.js'], here='line.html', bodycls='piecepage pp-page')
     return views
 
 

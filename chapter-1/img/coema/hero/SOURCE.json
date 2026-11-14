@@ -1,0 +1,17 @@
+{
+ "source": "departments/apparel/marketing/story/product-stills/coema_ref11_256x144.png",
+ "sig": "coema_ref11_256x144.png:47208",
+ "final": false,
+ "files": [
+  "w256.webp"
+ ],
+ "w": 256,
+ "h": 144,
+ "bbox": [
+  0.375,
+  0.0,
+  1.0,
+  1.0
+ ],
+ "ground": "#c1c2b8"
+}

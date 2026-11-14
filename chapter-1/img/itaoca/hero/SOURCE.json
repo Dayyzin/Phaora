@@ -1,0 +1,17 @@
+{
+ "source": "departments/apparel/marketing/story/product-stills/itaoca_snow_256x144.png",
+ "sig": "itaoca_snow_256x144.png:33740",
+ "final": false,
+ "files": [
+  "w256.webp"
+ ],
+ "w": 256,
+ "h": 144,
+ "bbox": [
+  0.0938,
+  0.2778,
+  1.0,
+  1.0
+ ],
+ "ground": "#f5f4ec"
+}

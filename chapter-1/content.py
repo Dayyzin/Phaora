@@ -551,3 +551,35 @@ ROOM_SET = {
 ROOM = list(ROOM_SET)
 for _p in PIECES:
     if _p['id'] in ROOM_SET: _p['room'] = ROOM_SET[_p['id']]
+
+
+# ---------------------------------------------------------------- the product page (site rebuild, 14 Nov)
+# hero: the piece in its world, full width: the director's signature shot (marketing/story/product-stills/DIRECTOR-SHOTS.md,
+# for David's approval; its 144p preview stands in until the shot passes). (file, the idea as DIRECTOR-SHOTS.md has it)
+PS = 'departments/apparel/marketing/story/product-stills/'
+HERO = {
+ 'muse_allover': ('heliodora_mirror', 'Her printed face where the reflection would be, ringed by the mirror’s bulbs'),
+ 'veil_coat': ('gelosia_net', 'The net: one raking light finds the cream in every hole'),
+ 'muse_bomber': ('odara_coatcheck', 'Coat check: one hook, one brass token, her back to us'),
+ 'silk_slip': ('alvor_first-light', 'First light: hung in the window, the dawn coming through the silk'),
+ 'cantilena': ('cantilena_echo', 'The echo: the cream one hangs where the black one’s shadow should be'),
+ 'the_reel': ('voluta_cans', 'The top can: the bag on a stack of wider film-reel cans'),
+ 'po_tophandle': ('itaoca_snow', 'House of stone: alone on fresh snow, one long shadow'),
+ 'matinee': ('coema_ref11', 'Open from above, the kiss inside'),
+ 'sunglasses': ('ofusca_ref09-seat', 'The top of one bounce over the car’s back seat'),
+ 'oitava': ('oitava_35', 'Beside its own giant shadow on the screen'),
+ 'lustre': ('lustre_49', 'On the black-glass tray beside the gold compact'),
+ 'silk_scarf': ('cordel_cord', 'Pegged flat on a cord, like the booklets it is named for'),
+ 'card_holder': ('obolo_scoop', 'The fare: lying in the brass ticket scoop'),
+ 'opera_gloves': ('ritornelo_ref28', 'The kept seat: the pair laid on the one red velvet seat'),
+ 'disc_belt': ('coaraci_sundial', 'The sundial: rolled, the gold disc up, one low sun'),
+}
+# close-ups at 100%: the director's own detail frames, added to a piece's strip (key, caption, source)
+MORE_DETAILS = {
+ 'veil_coat': [('detail-site', 'The net, close', PS + 'site-views/gelosia_detail_256x144.png')],
+ 'po_tophandle': [('detail-site', 'The flap and the disc, close', PS + 'itaoca_detail_256x144.png')],
+ 'the_reel': [('detail-site', 'The clasp and the band, close', PS + 'voluta_detail_256x144.png')],
+}
+# "In the same scene": the pieces it is in a scene with in the book. By default, the others that enter in its chapter;
+# where it enters alone, the scene it shares (the coat comes down the aisle past Ödara and Ritornelo, III)
+SAME = {'veil_coat': ['muse_bomber', 'opera_gloves']}

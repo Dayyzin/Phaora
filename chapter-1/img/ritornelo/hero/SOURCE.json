@@ -1,0 +1,17 @@
+{
+ "source": "departments/apparel/marketing/story/product-stills/ritornelo_ref28_256x144.png",
+ "sig": "ritornelo_ref28_256x144.png:47440",
+ "final": false,
+ "files": [
+  "w256.webp"
+ ],
+ "w": 256,
+ "h": 144,
+ "bbox": [
+  0.0312,
+  0.0,
+  1.0,
+  1.0
+ ],
+ "ground": "#14120b"
+}

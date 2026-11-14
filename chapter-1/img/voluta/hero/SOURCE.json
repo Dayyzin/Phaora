@@ -1,0 +1,17 @@
+{
+ "source": "departments/apparel/marketing/story/product-stills/voluta_cans_256x144.png",
+ "sig": "voluta_cans_256x144.png:43787",
+ "final": false,
+ "files": [
+  "w256.webp"
+ ],
+ "w": 256,
+ "h": 144,
+ "bbox": [
+  0.125,
+  0.0556,
+  1.0,
+  1.0
+ ],
+ "ground": "#f6f7f3"
+}

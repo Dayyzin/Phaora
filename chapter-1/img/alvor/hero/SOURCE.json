@@ -1,0 +1,17 @@
+{
+ "source": "departments/apparel/marketing/story/product-stills/alvor_first-light_256x144.png",
+ "sig": "alvor_first-light_256x144.png:24171",
+ "final": false,
+ "files": [
+  "w256.webp"
+ ],
+ "w": 256,
+ "h": 144,
+ "bbox": [
+  0.4688,
+  0.3889,
+  0.5312,
+  0.8889
+ ],
+ "ground": "#efefed"
+}

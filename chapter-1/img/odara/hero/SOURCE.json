@@ -1,0 +1,17 @@
+{
+ "source": "departments/apparel/marketing/story/product-stills/odara_coatcheck_256x144.png",
+ "sig": "odara_coatcheck_256x144.png:45653",
+ "final": false,
+ "files": [
+  "w256.webp"
+ ],
+ "w": 256,
+ "h": 144,
+ "bbox": [
+  0.0938,
+  0.0,
+  1.0,
+  1.0
+ ],
+ "ground": "#dcd5bf"
+}

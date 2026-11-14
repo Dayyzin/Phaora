@@ -1,0 +1,17 @@
+{
+ "source": "departments/apparel/marketing/story/product-stills/obolo_scoop_256x144.png",
+ "sig": "obolo_scoop_256x144.png:52895",
+ "final": false,
+ "files": [
+  "w256.webp"
+ ],
+ "w": 256,
+ "h": 144,
+ "bbox": [
+  0.0,
+  0.0,
+  1.0,
+  1.0
+ ],
+ "ground": "#f1e4cd"
+}

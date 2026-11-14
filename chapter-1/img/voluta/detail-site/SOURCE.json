@@ -1,0 +1,17 @@
+{
+ "source": "departments/apparel/marketing/story/product-stills/voluta_detail_256x144.png",
+ "sig": "voluta_detail_256x144.png:33969",
+ "final": false,
+ "files": [
+  "w256.webp"
+ ],
+ "w": 256,
+ "h": 144,
+ "bbox": [
+  0.0,
+  0.0,
+  1.0,
+  1.0
+ ],
+ "ground": "#f3e7d6"
+}

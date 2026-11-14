@@ -1,0 +1,17 @@
+{
+ "source": "departments/apparel/marketing/story/product-stills/gelosia_net_256x144.png",
+ "sig": "gelosia_net_256x144.png:40120",
+ "final": false,
+ "files": [
+  "w256.webp"
+ ],
+ "w": 256,
+ "h": 144,
+ "bbox": [
+  0.2812,
+  0.0,
+  1.0,
+  1.0
+ ],
+ "ground": "#f4f1ec"
+}
