@@ -287,6 +287,51 @@ def piece_slots(p):
     return views, details, world
 
 
+def walk_band(p, views, world):
+    """The dark band as the walk-around (David, 14 Nov: "a walkaround the whole piece and zooms into the details and a
+    description is written in 2.5D"): scroll moves the camera round the piece and pushes in to each part; the specs are
+    its notes, engraved beside each part on a leader from a pin (assets/js/walk.js, content.PIECES[i]['stops'])."""
+    vdata = {v: dict(bbox=s.bbox, w=s.w or 1000, h=s.h or (1778 if p['ratio'] == '9:16' else 563), ok=s.state != 'waiting') for v, s in views.items()}
+    first = next(iter(views))
+    # on the dark stage the front walks on the room's clean cut-out (assets/room/<id>.webp, build_room.py): the line's
+    # stand-in carries a light ground shadow in its alpha that reads as a white halo on black. A front master replaces it.
+    cut = HERE / 'assets' / 'room' / f"{p['id']}.webp"
+    cutview = None
+    if cut.exists() and views[first].state != 'final':
+        ci = Image.open(cut); cw, chh = ci.size
+        vdata[first] = dict(bbox=bbox_of(ci), w=cw, h=chh, ok=True)
+        cutview = (f'<figure class="slot stand-in" style="--r:{cw}/{chh}" data-slot="{views[first].rel}"><img src="assets/room/{p["id"]}.webp" '
+                   f'width="{cw}" height="{chh}" alt="{E(views[first].alt or views[first].label)}" loading="eager" decoding="async"></figure>')
+    stops = []
+    for st in p['stops']:   # a stop on a view with no picture yet walks on the front instead
+        v = st['v'] if vdata.get(st['v'], {}).get('ok') else next(iter(views))
+        stops.append(dict(v=v, f=st['f'], z=st['z'], n=[dict(at=a, l=l, v=val, m=m) for a, l, val, m in st['n']]))
+    walkdata = json.dumps(dict(views=vdata, stops=stops), ensure_ascii=False)
+    vhtml = ''.join(f'<div class="view" data-v="{v}">{cutview if (v == first and cutview) else s.img(sizes="(min-width: 821px) 180vw, 320vw", loading="eager" if v == first else "lazy")}</div>' for v, s in views.items())
+    vtags = ''.join(f'<div class="vtag" data-v="{v}">{s.tag()}</div>' for v, s in views.items())
+    wbg = (f'<div class="worldbg{" soft" if world.w < 900 else ""}" style="background-image:url({world.src(1600)})"></div>' if world.state != 'waiting' else '<div class="worldbg none"></div>')
+    notes = ''
+    for i, st in enumerate(stops):
+        for j, n in enumerate(st['n']):
+            mk = f'<span class="mk">{E(n["m"])}</span>' if n['m'] else ''
+            notes += (f'<div class="note" data-s="{i}" data-n="{j}"><i class="pin"></i><i class="lead"></i>'
+                      f'<span class="txt"><span class="lab">{E(n["l"])}</span><span class="val">{E(n["v"])}</span>{mk}</span></div>')
+    wplace, wkept, _, _ = p['world']
+    return f'''<section class="walk band" aria-label="A walk around {E(p['name'])}">
+  <div class="stage onblack lit">
+   <div class="floor"></div>{wbg}
+   <div class="cam">{vhtml}</div><div class="vtags">{vtags}</div>
+   <div class="wcap"><p class="eyebrow">Where it is going</p>{fa(wplace, 'p', 'wplace')}<p class="kept">{E(wkept)}</p></div>
+   <div class="notes">{notes}</div>
+   <div class="hud"><p class="eyebrow">In the world</p>{fa(p['name'], 'p', 'pname')}<p class="plain">{E(p['plain'])}</p></div>
+   <div class="where"><span class="place">{E(wplace)}</span></div>
+   <div class="prog"><i></i></div><p class="hint">Scroll to walk around it</p>
+  </div>
+  <div class="track" style="--n:{len(stops) + 1}"></div>
+  <script type="application/json" class="walkdata">{walkdata}</script>
+ </section>'''
+
+
 def piece_page(p, prev, nxt):
     """A piece's page, top to bottom (the site rebuild, 14 Nov): (a) the piece in its world, full width (the director's
     signature shot); (b) its views beside its name, specs, price, made to order and sizes (Lustre: nothing about buying);
@@ -335,6 +380,8 @@ def piece_page(p, prev, nxt):
         sh = f'<div class="short">{short.img(sizes="(min-width: 821px) 60vw, 100vw", cls="playin")}<p class="cap">{E(lab)}</p></div>'
     scene = (f'<section class="scene" id="scene"><p class="eyebrow">In the world</p><div class="scene-in">{sh}{notes}</div></section>'
              if (sh or notes) else '')
+    if p['id'] in C.WALK:   # the band as the walk-around: the specs as its engraved notes
+        scene = walk_band(p, views, world)
     # (e) in the same scene
     same = C.SAME.get(p['id']) or ([x for x in ch['enter'] if x != p['id']] if ch else [])
     same = [x for x in same if x in PIECE][:3]
@@ -366,7 +413,7 @@ def piece_page(p, prev, nxt):
  <nav class="restline" aria-label="The rest of the line"><p class="eyebrow">The rest of the line</p><div class="rgrid">{rest}</div>
   <div class="pn"><a href="{prev['page']}.html"><span>Before</span>{fa(prev['name'], 'span')}</a><a href="index.html#catalogue" class="all">The catalogue</a><a href="{nxt['page']}.html"><span>Next</span>{fa(nxt['name'], 'span')}</a></div></nav>
 </main>'''
-    page(f"{pg}.html", f"{p['name']}, {p['plain'].lower()}", p['about'], body, theme='light', scripts=['assets/js/piece.js'], here='line.html', bodycls='piecepage pp-page')
+    page(f"{pg}.html", f"{p['name']}, {p['plain'].lower()}", p['about'], body, theme='light', scripts=['assets/js/piece.js'] + (['assets/js/walk.js'] if p['id'] in C.WALK else []), here='line.html', bodycls='piecepage pp-page' + (' onblack' if p['id'] in C.WALK else ''))
     return views
 
 

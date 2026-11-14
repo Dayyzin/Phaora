@@ -539,7 +539,7 @@ ROOM_SET = {
  'cantilena': dict(specs=['28-GAUGE DOUBLE JACQUARD', 'THE PÖ CHECKER', '30S COMBED COTTON', 'CREAM / BLACK AND CREAM', 'SIZE  S · M · L · XL · XXL']),
  'the_reel': dict(specs=['BLACK CALFSKIN', '22 CM ACROSS, 7 CM DEEP', 'A GOLD DISC, 24 MM', 'CREAM SUEDE INSIDE']),
  'po_tophandle': dict(cut='dark', specs=['BLACK CALFSKIN', 'THE PÖ ON THE FLAP', 'A ROLLED HANDLE', 'THE HOUSE DISC, 24 MM', 'CREAM SUEDE INSIDE']),
- 'matinee': dict(specs=['BLACK CALFSKIN', '25 × 11 × 11.5 CM', 'GOLD ZIP, GOLD FEET', 'CREAM SUEDE INSIDE']),
+ 'matinee': dict(drop_white=True, specs=['BLACK CALFSKIN', '25 × 11 × 11.5 CM', 'GOLD ZIP, GOLD FEET', 'CREAM SUEDE INSIDE']),
  'sunglasses': dict(specs=['GLOSSY BLACK ACETATE', 'CAT-EYE, GRADIENT LENSES', 'GOLD PLATES, THE Ö', 'BLACK LEATHER CASE']),
  'oitava': dict(specs=['SOLID 18K YELLOW GOLD', '30.0 × 23.9 MM', 'FINE 18K CABLE CHAIN']),
  'lustre': dict(specs=['FACETED ROCK CRYSTAL, 37', '18K GOLD, POLISHED', 'A 20.8 MM DISC, THE Ö', 'A LAB DIAMOND', 'ABOUT 420 MM']),
@@ -595,3 +595,7 @@ PRICES = {
  'sunglasses': ('USD 495', 'USD 420'), 'oitava': ('USD 3,800', 'USD 3,250'), 'silk_scarf': ('USD 395', 'USD 335'),
  'card_holder': ('USD 295', 'USD 250'), 'opera_gloves': ('USD 1,050', 'USD 900'), 'disc_belt': ('USD 550', 'USD 470'),
 }
+
+
+# the product page's dark band as the walk-around (David, 14 Nov). Coema first, its stops the furthest along; the rest follow
+WALK = {'matinee'}

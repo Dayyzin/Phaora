@@ -523,3 +523,9 @@ body.bookdark{background:#0b0b0b;color:#e9e0cf}
 @media (max-width:820px){.bcover{grid-template-columns:1fr;gap:34px;padding:100px 20px 40px}.bcover-plate .plate{margin:0 auto;max-width:300px}
   .bchapters{padding:10px 20px 80px}.bchapter{padding:100px 20px 40px}.bspread{grid-template-columns:1fr;gap:34px}.btext p{font-size:18.5px}
   .bnotes{grid-template-columns:1fr}.bpn a .fa{font-size:20px}}
+
+/* the dark band as the walk-around: the piece on a lit dark stage (a black piece still reads), the notes in cream */
+.walk.band .stage.lit{background:radial-gradient(58% 62% at 50% 52%,#4b4741 0%,#24211e 46%,#0b0b0b 100%)}
+.walk.band .stage.lit .floor{display:none}
+.walk.band .hud{color:var(--cream)}.walk.band .hud .eyebrow{color:var(--gold);opacity:1}
+.walk.band .hud .pname{font-size:clamp(34px,4vw,54px);margin:0}

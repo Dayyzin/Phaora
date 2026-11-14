@@ -176,6 +176,11 @@ def main():
         elif ground: cut = light_cut(im, ground)
         elif im.mode == 'RGBA' and np.asarray(im)[..., 3].min() < 250: cut = core_cut(im)
         else: cut = ground_cut(im)
+        if r.get('drop_white'):   # a pale studio floor baked under the piece (Coema's stand-in): near-white neutral pixels out
+            ca = np.asarray(cut).astype(np.float32); lum = ca[..., :3].mean(-1); chroma = ca[..., :3].max(-1) - ca[..., :3].min(-1)
+            pale = ndimage.binary_dilation((lum > 150) & (chroma < 14), iterations=2)
+            ca[..., 3] *= 1 - ndimage.gaussian_filter(pale.astype(np.float32), 1.2)
+            cut = Image.fromarray(ca.astype(np.uint8), 'RGBA')
         fr = frame(cut)
         fr.save(os.path.join(A, 'room', f'{pid}.webp'), 'WEBP', quality=90, alpha_quality=100, method=6)
         if not r.get('pins'): pins(pid)

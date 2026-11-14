@@ -48,7 +48,7 @@
     // the walk runs over N stops; one more segment past the last pulls back into the piece's world
     var P = Math.max(0, Math.min(N, (scrollY - top0) / (H * .85))), p = Math.min(N - 1, P), wv = ease(P - (N - 1));
     if (P > .02) root.classList.add('moved');
-    if (stage.classList.contains('onblack')) document.body.classList.toggle('overwalk', root.getBoundingClientRect().bottom > 70);
+    if (stage.classList.contains('onblack')) { var rr = root.getBoundingClientRect(); document.body.classList.toggle('overwalk', rr.top < 70 && rr.bottom > 70); }
     var i = Math.min(N - 2, Math.floor(p)), t = N > 1 ? ease(p - i) : 0;
     if (N === 1) i = 0;
     var a = S[i], b = S[Math.min(N - 1, i + 1)], cams = {}, shown = null;
