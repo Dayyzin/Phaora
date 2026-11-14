@@ -136,12 +136,12 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 @media (min-width:901px) and (orientation:landscape){
   #frame{width:100vw}
   .logo{left:44px;top:36px;height:20px}.logo svg,.logo img{height:20px}
-  /* 1. the doors: the night's still stands at its own proportions, the words beside it, the snow over the whole street */
-  #pane{inset:0 auto 0 calc(50% - 56.25vh - 3vw);width:56.25vh;
-    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%)}
+  /* 1. the doors: b1, the doors in the snow, wide (story/stills, 3840 x 2160), across the whole screen */
+  #cam{transform-origin:50% 64.7%}
+  #cam .still,.cut{background-image:url(assets/register/doors_wide.jpg)}
   #doors{cursor:pointer}
-  #doors .dim{background:linear-gradient(#050404b3 0,#05040400 18%,#05040400 70%,#050404cc 100%)}
-  #doors .txt{left:calc(50% + 4vw);right:6vw;top:50%;bottom:auto;transform:translateY(-50%);text-align:left;padding:0;max-width:560px}
+  #doors .dim{background:linear-gradient(#050404b3 0,#05040400 22%,#05040400 58%,#050404e0 88%)}
+  #doors .txt{bottom:7%;padding:0 6vw}
   #doors .ey{font-size:24px}
   #doors .line{font-size:54px;line-height:1.1;margin-top:22px}
   #doors .sub{font-size:22px;margin-top:16px}
@@ -256,13 +256,18 @@ src="https://www.facebook.com/tr?id=1079296041748995&ev=PageView&noscript=1"
 
   // The still is 900 x 1600. It is laid over the frame as "cover" would lay it (anchored 50% / 40%) so the four door
   // leaves can be cut out of it where they stand: x 222-334-446 | 456-566-678, y 666-1034, the mullion between.
-  const IW = 900, IH = 1600, WAY = { x: 222, y: 666, w: 456, h: 368 };
+  // On a computer it is b1 wide (3840 x 2160, the same camera as its 144p): the leaves projected from the set itself,
+  // x 1183-1566-1910 | 1935-2285-2657, y 815-1981, the mullion between; anchored 50% / 50%.
+  const DOOR = { IW: 900, IH: 1600, WAY: { x: 222, y: 666, w: 456, h: 368 }, pad: 40, sh: 170, ay: .4 },
+        DOORW = { IW: 3840, IH: 2160, WAY: { x: 1183, y: 815, w: 1474, h: 1166 }, pad: 130, sh: 179, ay: .5,
+                  xs: ['1910,1935', '1183,1566', '1566,1910', '1935,2285', '2285,2657'] };
   function layCam() {
+    const D = WIDE.matches ? DOORW : DOOR, { IW, IH, WAY } = D;
     const fw = pane.clientWidth, fh = pane.clientHeight, s = Math.max(fw / IW, fh / IH), w = IW * s, h = IH * s, px = v => v * s + 'px';
-    Object.assign(cam.style, { width: w + 'px', height: h + 'px', left: (fw - w) * .5 + 'px', top: (fh - h) * .4 + 'px' });
+    Object.assign(cam.style, { width: w + 'px', height: h + 'px', left: (fw - w) * .5 + 'px', top: (fh - h) * D.ay + 'px' });
     Object.assign(way.style, { left: px(WAY.x), top: px(WAY.y), width: px(WAY.w), height: px(WAY.h) });
-    Object.assign(spill.style, { left: px(WAY.x - 40), top: px(WAY.y + WAY.h), width: px(WAY.w + 80), height: px(170) });
-    way.querySelectorAll('.cut').forEach(el => { const [a, b] = el.dataset.x.split(',').map(Number);
+    Object.assign(spill.style, { left: px(WAY.x - D.pad), top: px(WAY.y + WAY.h), width: px(WAY.w + 2 * D.pad), height: px(D.sh) });
+    way.querySelectorAll('.cut').forEach((el, i) => { const [a, b] = (D.xs ? D.xs[i] : el.dataset.x).split(',').map(Number);
       Object.assign(el.style, { left: px(a - WAY.x), width: px(b - a), backgroundSize: `${w}px ${h}px`, backgroundPosition: `${-a * s}px ${-WAY.y * s}px` }); });
   }
 
