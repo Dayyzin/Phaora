@@ -120,7 +120,6 @@ PIECES = [
    dict(v='front', f=(.3, .5), z=1.9, n=[((.28, .45), 'LEATHER', 'BLACK LAMBSKIN', 'It begins as five pieces: two fronts, one back, two sleeves, 0.88 m² in all.')]),
    dict(v='back', f=(.5, .4), z=1.4, n=[((.5, .35), 'THE PORTRAIT', 'ROUND HOLES ON A 5 MM SCREEN', 'Her tone sets each hole’s size: none over 4 mm or under 0.7 mm, none within 15 mm of a seam.')]),
    dict(v='back', f=(.55, .3), z=2.4, n=[((.56, .3), 'THE MARK', '39.5 MM', 'Cut whole on her cheek, with 2.5 mm of solid leather round it.')]),
-   dict(v='three-quarter', f=(.5, .5), z=1.1, n=[]),
    dict(v='open', f=(.5, .5), z=1.15, n=[((.45, .5), 'LINING', 'CREAM SILK', 'Cream silk charmeuse; on the lining of the back, a kiss printed in black, 30 cm wide.')]),
   ]),
  dict(id='veil_coat', page='gelosia', name='Gelosia', plain='Black leather coat', cat='outerwear', care='leather', policy='made', ratio='9:16',
@@ -537,16 +536,16 @@ ROOM_SET = {
  'muse_bomber': dict(approved=True, caster='muse_bomber', specs=['BLACK LAMBSKIN', 'CREAM SILK LINING', 'KNITTED JACQUARD RIB', 'GOLD ZIP, THE Ö PULL', 'SIZE  XS · S · M · L · XL']),
  'silk_slip': dict(specs=['CREAM SILK SATIN', 'CUT ON THE BIAS', 'BLACK SILK STRAPS', 'MID-CALF', 'SIZE  XS · S · M · L · XL']),
  'cantilena': dict(specs=['28-GAUGE DOUBLE JACQUARD', 'THE PÖ CHECKER', '30S COMBED COTTON', 'CREAM / BLACK AND CREAM', 'SIZE  S · M · L · XL · XXL']),
- 'the_reel': dict(specs=['BLACK CALFSKIN', '22 CM ACROSS, 7 CM DEEP', 'A GOLD DISC, 24 MM', 'CREAM SUEDE INSIDE']),
+ 'the_reel': dict(cut='dark', keep_pale=True, specs=['BLACK CALFSKIN', '22 CM ACROSS, 7 CM DEEP', 'A GOLD DISC, 24 MM', 'CREAM SUEDE INSIDE']),
  'po_tophandle': dict(cut='dark', specs=['BLACK CALFSKIN', 'THE PÖ ON THE FLAP', 'A ROLLED HANDLE', 'THE HOUSE DISC, 24 MM', 'CREAM SUEDE INSIDE']),
  'matinee': dict(drop_white=True, specs=['BLACK CALFSKIN', '25 × 11 × 11.5 CM', 'GOLD ZIP, GOLD FEET', 'CREAM SUEDE INSIDE']),
- 'sunglasses': dict(specs=['GLOSSY BLACK ACETATE', 'CAT-EYE, GRADIENT LENSES', 'GOLD PLATES, THE Ö', 'BLACK LEATHER CASE']),
+ 'sunglasses': dict(drop_white=True, specs=['GLOSSY BLACK ACETATE', 'CAT-EYE, GRADIENT LENSES', 'GOLD PLATES, THE Ö', 'BLACK LEATHER CASE']),
  'oitava': dict(specs=['SOLID 18K YELLOW GOLD', '30.0 × 23.9 MM', 'FINE 18K CABLE CHAIN']),
  'lustre': dict(specs=['FACETED ROCK CRYSTAL, 37', '18K GOLD, POLISHED', 'A 20.8 MM DISC, THE Ö', 'A LAB DIAMOND', 'ABOUT 420 MM']),
  'silk_scarf': dict(specs=['SILK TWILL', '90 × 90 CM', 'BLACK / CREAM']),
  'card_holder': dict(cut='dark', specs=['BLACK CALFSKIN', 'FINE MATTE PEBBLE', 'THREE SLOTS A SIDE', 'A GOLD DISC, THE Ö']),
- 'opera_gloves': dict(specs=['BLACK LAMBSKIN', 'CREAM SILK INSIDE', 'ABOVE THE ELBOW', 'A GOLD SNAP, THE Ö', 'SIZE  S · M · L']),
- 'disc_belt': dict(specs=['BLACK CALFSKIN, 3 CM', 'A GOLD DISC, 40 MM', 'THE Ö ENGRAVED']),
+ 'opera_gloves': dict(drop_white=True, specs=['BLACK LAMBSKIN', 'CREAM SILK INSIDE', 'ABOVE THE ELBOW', 'A GOLD SNAP, THE Ö', 'SIZE  S · M · L']),
+ 'disc_belt': dict(drop_white=True, specs=['BLACK CALFSKIN, 3 CM', 'A GOLD DISC, 40 MM', 'THE Ö ENGRAVED']),
 }
 ROOM = list(ROOM_SET)
 for _p in PIECES:
@@ -598,4 +597,4 @@ PRICES = {
 
 
 # the product page's dark band as the walk-around (David, 14 Nov). Coema first, its stops the furthest along; the rest follow
-WALK = {'matinee'}
+WALK = {p['id'] for p in PIECES}   # every piece (David, 14 Nov): the stand-ins and the stops there are, until the real stops land

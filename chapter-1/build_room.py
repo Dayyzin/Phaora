@@ -85,7 +85,7 @@ def ground_cut(im, H=1600, shadow=False, shade_cut=True):
     return out.crop((max(0, xs.min() - pad), max(0, ys.min() - pad), min(w, xs.max() + pad + 1), min(h, ys.max() + pad + 1)))
 
 
-def dark_cut(im, H=1600):
+def dark_cut(im, H=1600, keep_pale=False):
     """chapter2 build_room.dark_cut, unchanged: a dark piece on a pale studio ground, closed over its light trims."""
     im = im.convert('RGB')
     if im.height > H: im = im.resize((round(im.width * H / im.height), H), Image.LANCZOS)
@@ -93,7 +93,7 @@ def dark_cut(im, H=1600):
     dark = ndimage.binary_opening(g < 120, iterations=2)
     lab, n = ndimage.label(dark); s = ndimage.sum(dark, lab, range(1, n + 1)); dark = np.isin(lab, 1 + np.nonzero(s > 0.01 * s.max())[0])
     m = ndimage.binary_closing(np.pad(dark, 30), structure=np.ones((3, 3)), iterations=14)[30:-30, 30:-30]
-    m = ndimage.binary_fill_holes(m) & ~((ch < 9) & (g > 125))
+    m = ndimage.binary_fill_holes(m) & (True if keep_pale else ~((ch < 9) & (g > 125)))   # keep_pale: a lid's pale sheen stays (the Reel)
     m = ndimage.binary_opening(m, iterations=1)
     lab, n = ndimage.label(m); s = ndimage.sum(m, lab, range(1, n + 1)); m = np.isin(lab, 1 + np.nonzero(s > 0.01 * s.max())[0])
     h = ndimage.binary_fill_holes(m) & ~m; hl, hn = ndimage.label(h)
@@ -168,7 +168,7 @@ def main():
             continue
         im, ground = front_src(p['page'])
         if r.get('cut') == 'dark':
-            cut = dark_cut(Image.alpha_composite(Image.new('RGBA', im.size, (230, 230, 232, 255)), im.convert('RGBA')))
+            cut = dark_cut(Image.alpha_composite(Image.new('RGBA', im.size, (230, 230, 232, 255)), im.convert('RGBA')), keep_pale=r.get('keep_pale', False))
             ca = np.asarray(cut).astype(np.float32); b = np.concatenate([ca[:6, :, :3].reshape(-1, 3), ca[-6:, :, :3].reshape(-1, 3), ca[:, :6, :3].reshape(-1, 3), ca[:, -6:, :3].reshape(-1, 3)])
             gnd = np.median(b, 0); near = np.abs(ca[..., :3] - gnd).max(-1) < 16   # the studio's own ground caught inside a loop (a strap)
             keep = ndimage.binary_opening(~near, iterations=2); ca[..., 3] *= ndimage.gaussian_filter(keep.astype(np.float32), 0.7)
@@ -188,6 +188,39 @@ def main():
             pillow(pid, fr); fits[pid] = dict(PILLOW_FIT, geo=f'caster-{pid}')
         print(pid, fr.size)
     json.dump(fits, open(os.path.join(A, 'room', 'fits.json'), 'w'), indent=1)
+    walk_cuts(piece)
+
+
+def walk_cuts(piece):
+    """The walk-around's other views on the product page's dark band: each stand-in view cut clean of its light ground
+    shadow (assets/walk/<id>_<view>.webp), as the front's room cut-out is. A view's own master, once it lands, is used as
+    it is."""
+    os.makedirs(os.path.join(A, 'walk'), exist_ok=True)
+    for pid in C.ROOM:
+        p = piece[pid]; r = p['room']
+        for v in list(p['views'])[1:]:
+            d = os.path.join(HERE, 'img', p['page'], v)
+            if not os.path.exists(os.path.join(d, 'SOURCE.json')): continue
+            meta = json.load(open(os.path.join(d, 'SOURCE.json')))
+            if meta.get('final') or not meta.get('files'): continue
+            files = sorted(meta['files'], key=lambda f: int(f[1:-5])); f = next((x for x in files if int(x[1:-5]) >= 1600), files[-1])
+            im = Image.open(os.path.join(d, f)); ground = meta.get('ground')
+            if r.get('cut') == 'dark': cut = dark_cut(Image.alpha_composite(Image.new('RGBA', im.size, (230, 230, 232, 255)), im.convert('RGBA')))
+            elif ground and sum(int(ground[k:k + 2], 16) for k in (1, 3, 5)) < 180: cut = light_cut(im, ground)
+            elif im.mode == 'RGBA' and np.asarray(im)[..., 3].min() < 250: cut = core_cut(im)
+            else: cut = ground_cut(im)
+            if not (ground and sum(int(ground[k:k + 2], 16) for k in (1, 3, 5)) < 180):   # not the jewellery (its crystals are grey)
+                ca = np.asarray(cut).astype(np.float32); lum = ca[..., :3].mean(-1); chroma = ca[..., :3].max(-1) - ca[..., :3].min(-1)
+                grey = ndimage.binary_opening((chroma < 12) & (lum > 105) & (lum < 236), iterations=2)   # a floor shadow: neutral mid-grey
+                lab, n = ndimage.label(grey)
+                if n: sz = ndimage.sum(grey, lab, range(1, n + 1)); grey = np.isin(lab, 1 + np.nonzero(sz > 0.004 * grey.size)[0])
+                ca[..., 3] *= 1 - ndimage.gaussian_filter(ndimage.binary_dilation(grey, iterations=2).astype(np.float32), 1.2)
+                cut = Image.fromarray(ca.astype(np.uint8), 'RGBA')
+            a = np.asarray(cut); ys, xs = np.nonzero(a[..., 3] > 5); pad = 4
+            cut = cut.crop((max(0, xs.min() - pad), max(0, ys.min() - pad), xs.max() + pad + 1, ys.max() + pad + 1))
+            if cut.height > 1600: cut = cut.resize((round(cut.width * 1600 / cut.height), 1600), Image.LANCZOS)
+            cut.save(os.path.join(A, 'walk', f'{pid}_{v}.webp'), 'WEBP', quality=90, alpha_quality=100, method=6)
+            print(pid, v, cut.size)
 
 
 if __name__ == '__main__':

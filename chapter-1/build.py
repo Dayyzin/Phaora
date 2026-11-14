@@ -295,19 +295,26 @@ def walk_band(p, views, world):
     first = next(iter(views))
     # on the dark stage the front walks on the room's clean cut-out (assets/room/<id>.webp, build_room.py): the line's
     # stand-in carries a light ground shadow in its alpha that reads as a white halo on black. A front master replaces it.
-    cut = HERE / 'assets' / 'room' / f"{p['id']}.webp"
-    cutview = None
-    if cut.exists() and views[first].state != 'final':
+    # the other views likewise walk on their clean cut-outs (assets/walk/<id>_<view>.webp, build_room.py walk_cuts)
+    cutviews = {}
+    for v, sl in views.items():
+        cut = HERE / 'assets' / ('room' if v == first else 'walk') / (f"{p['id']}.webp" if v == first else f"{p['id']}_{v}.webp")
+        if not cut.exists():
+            continue
+        if sl.state == 'final' and sl.files and Image.open(sl.dir / sl.files[0]).mode == 'RGBA':   # a final cut-out walks as it is;
+            continue                                                                                # one on its own opaque ground, cut out
+            continue
         ci = Image.open(cut); cw, chh = ci.size
-        vdata[first] = dict(bbox=bbox_of(ci), w=cw, h=chh, ok=True)
-        cutview = (f'<figure class="slot stand-in" style="--r:{cw}/{chh}" data-slot="{views[first].rel}"><img src="assets/room/{p["id"]}.webp" '
-                   f'width="{cw}" height="{chh}" alt="{E(views[first].alt or views[first].label)}" loading="eager" decoding="async"></figure>')
+        vdata[v] = dict(bbox=bbox_of(ci), w=cw, h=chh, ok=True)
+        rel = cut.relative_to(HERE).as_posix()
+        cutviews[v] = (f'<figure class="slot stand-in" style="--r:{cw}/{chh}" data-slot="{sl.rel}"><img src="{rel}" '
+                       f'width="{cw}" height="{chh}" alt="{E(sl.alt or sl.label)}" loading="{"eager" if v == first else "lazy"}" decoding="async"></figure>')
     stops = []
     for st in p['stops']:   # a stop on a view with no picture yet walks on the front instead
         v = st['v'] if vdata.get(st['v'], {}).get('ok') else next(iter(views))
         stops.append(dict(v=v, f=st['f'], z=st['z'], n=[dict(at=a, l=l, v=val, m=m) for a, l, val, m in st['n']]))
     walkdata = json.dumps(dict(views=vdata, stops=stops), ensure_ascii=False)
-    vhtml = ''.join(f'<div class="view" data-v="{v}">{cutview if (v == first and cutview) else s.img(sizes="(min-width: 821px) 180vw, 320vw", loading="eager" if v == first else "lazy")}</div>' for v, s in views.items())
+    vhtml = ''.join(f'<div class="view" data-v="{v}">{cutviews.get(v) or s.img(sizes="(min-width: 821px) 180vw, 320vw", loading="eager" if v == first else "lazy")}</div>' for v, s in views.items())
     vtags = ''.join(f'<div class="vtag" data-v="{v}">{s.tag()}</div>' for v, s in views.items())
     wbg = (f'<div class="worldbg{" soft" if world.w < 900 else ""}" style="background-image:url({world.src(1600)})"></div>' if world.state != 'waiting' else '<div class="worldbg none"></div>')
     notes = ''
