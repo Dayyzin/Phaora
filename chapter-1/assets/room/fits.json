@@ -1,0 +1,110 @@
+{
+ "silk_slip": {
+  "scale": 2.82,
+  "x": 0.0001,
+  "y": 1.6847,
+  "z": 0.9,
+  "tilt": 0.0,
+  "widthFactor": 1.005,
+  "geo": "caster-silk_slip"
+ },
+ "cantilena": {
+  "scale": 2.82,
+  "x": 0.0001,
+  "y": 1.6847,
+  "z": 0.9,
+  "tilt": 0.0,
+  "widthFactor": 1.005,
+  "geo": "caster-cantilena"
+ },
+ "the_reel": {
+  "scale": 2.82,
+  "x": 0.0001,
+  "y": 1.6847,
+  "z": 0.9,
+  "tilt": 0.0,
+  "widthFactor": 1.005,
+  "geo": "caster-the_reel"
+ },
+ "po_tophandle": {
+  "scale": 2.82,
+  "x": 0.0001,
+  "y": 1.6847,
+  "z": 0.9,
+  "tilt": 0.0,
+  "widthFactor": 1.005,
+  "geo": "caster-po_tophandle"
+ },
+ "matinee": {
+  "scale": 2.82,
+  "x": 0.0001,
+  "y": 1.6847,
+  "z": 0.9,
+  "tilt": 0.0,
+  "widthFactor": 1.005,
+  "geo": "caster-matinee"
+ },
+ "sunglasses": {
+  "scale": 2.82,
+  "x": 0.0001,
+  "y": 1.6847,
+  "z": 0.9,
+  "tilt": 0.0,
+  "widthFactor": 1.005,
+  "geo": "caster-sunglasses"
+ },
+ "oitava": {
+  "scale": 2.82,
+  "x": 0.0001,
+  "y": 1.6847,
+  "z": 0.9,
+  "tilt": 0.0,
+  "widthFactor": 1.005,
+  "geo": "caster-oitava"
+ },
+ "lustre": {
+  "scale": 2.82,
+  "x": 0.0001,
+  "y": 1.6847,
+  "z": 0.9,
+  "tilt": 0.0,
+  "widthFactor": 1.005,
+  "geo": "caster-lustre"
+ },
+ "silk_scarf": {
+  "scale": 2.82,
+  "x": 0.0001,
+  "y": 1.6847,
+  "z": 0.9,
+  "tilt": 0.0,
+  "widthFactor": 1.005,
+  "geo": "caster-silk_scarf"
+ },
+ "card_holder": {
+  "scale": 2.82,
+  "x": 0.0001,
+  "y": 1.6847,
+  "z": 0.9,
+  "tilt": 0.0,
+  "widthFactor": 1.005,
+  "geo": "caster-card_holder"
+ },
+ "opera_gloves": {
+  "scale": 2.82,
+  "x": 0.0001,
+  "y": 1.6847,
+  "z": 0.9,
+  "tilt": 0.0,
+  "widthFactor": 1.005,
+  "geo": "caster-opera_gloves"
+ },
+ "disc_belt": {
+  "scale": 2.82,
+  "x": 0.0001,
+  "y": 1.6847,
+  "z": 0.9,
+  "tilt": 0.0,
+  "widthFactor": 1.005,
+  "geo": "caster-disc_belt"
+ }
+}

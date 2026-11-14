@@ -1,6 +1,6 @@
 # SLOTS: every image and film on the Chapter I site
 
-Built by `build.py`. 130 slots: **5 final**, **102 holding a stand-in** (the best approved
+Built by `build.py`. 127 slots: **5 final**, **99 holding a stand-in** (the best approved
 render or still we have, at 144p or 1600), **23 waiting** (a quiet placeholder of the right ratio, labelled
 with what it waits for).
 
@@ -144,6 +144,3 @@ path. On phaora.com the labels never show.
 | coaraci | `img/coaraci/detail-disc/` | the disc, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/website/chapter2/assets/line/disc_belt/disc-belt-closeup-disc.webp (800 × 600) |
 | coaraci | `img/coaraci/detail-edge/` | the painted edge, 8K close-up (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
 | coaraci | `img/coaraci/world/` | C12: the last frame, the world plate (the suite, at first light) (8K, 5760 × 7680) | stand-in: departments/apparel/marketing/story/stills/ca-12-the-disc-belt_108x144.png (108 × 144) |
-| home | `img/home/turn-gelosia/` | Gelosia: one turn, 72 frames, f000-f071.webp (72 frames, 2160 px tall) | stand-in: its views (front, three-quarter, back) turned by the page |
-| home | `img/home/turn-heliodora/` | Heliodora: one turn, 72 frames, f000-f071.webp (72 frames, 2160 px tall) | stand-in: its views (front, three-quarter, back) turned by the page |
-| home | `img/home/turn-odara/` | Ödara: one turn, 72 frames, f000-f071.webp (72 frames, 2160 px tall) | stand-in: its views (front, three-quarter, back, open) turned by the page |

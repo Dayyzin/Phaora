@@ -1,0 +1,18 @@
+{
+ "vertices": 19530,
+ "triangles": 38124,
+ "index": "u16",
+ "bounds": [
+  [
+   -0.29440000653266907,
+   0.9670000076293945,
+   -0.13500000536441803
+  ],
+  [
+   0.2897999882698059,
+   1.4315999746322632,
+   0.13500000536441803
+  ]
+ ],
+ "source": "assets/room/matinee.webp silhouette, a soft volume (build_room.py)"
+}

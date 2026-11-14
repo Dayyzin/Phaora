@@ -524,3 +524,30 @@ for _ch in BOOK:
 for _pid in OUT:
     BOOK_NOTES.pop(_pid, None)
 ROW = [r for r in ROW if r[1] not in OUT]
+
+
+# ---------------------------------------------------------------- the room (the pin room, assets/room.js)
+# David, 14 Nov: the room is the catalogue's front door. First the Muse all-over (Heliodora), the hoped-for best seller;
+# then the house's main piece, the Veil Coat (Gelosia); then the rest of Chapter I. Lustre is shown like the others.
+# specs: the lines carved into the cove under the piece (five at most, each about 26 characters at most).
+# approved: chapter2's approved room set (cut-out, pins, caster) used as it is; pins/caster: an approved part kept.
+ROOM_SET = {
+ 'muse_allover': dict(pins=True, caster='muse_allover', specs=None),   # the approved default lines are hers
+ 'veil_coat': dict(approved=True, caster='veil_coat', specs=['BLACK LEATHER', 'CREAM SILK LINING', 'BELTED, DOUBLE-BREASTED', 'MID-CALF', 'SIZE  XS · S · M · L · XL']),
+ 'muse_bomber': dict(approved=True, caster='muse_bomber', specs=['BLACK LAMBSKIN', 'CREAM SILK LINING', 'KNITTED JACQUARD RIB', 'GOLD ZIP, THE Ö PULL', 'SIZE  XS · S · M · L · XL']),
+ 'silk_slip': dict(specs=['CREAM SILK SATIN', 'CUT ON THE BIAS', 'BLACK SILK STRAPS', 'MID-CALF', 'SIZE  XS · S · M · L · XL']),
+ 'cantilena': dict(specs=['28-GAUGE DOUBLE JACQUARD', 'THE PÖ CHECKER', '30S COMBED COTTON', 'CREAM / BLACK AND CREAM', 'SIZE  S · M · L · XL · XXL']),
+ 'the_reel': dict(specs=['BLACK CALFSKIN', '22 CM ACROSS, 7 CM DEEP', 'A GOLD DISC, 24 MM', 'CREAM SUEDE INSIDE']),
+ 'po_tophandle': dict(cut='dark', specs=['BLACK CALFSKIN', 'THE PÖ ON THE FLAP', 'A ROLLED HANDLE', 'THE HOUSE DISC, 24 MM', 'CREAM SUEDE INSIDE']),
+ 'matinee': dict(specs=['BLACK CALFSKIN', '25 × 11 × 11.5 CM', 'GOLD ZIP, GOLD FEET', 'CREAM SUEDE INSIDE']),
+ 'sunglasses': dict(specs=['GLOSSY BLACK ACETATE', 'CAT-EYE, GRADIENT LENSES', 'GOLD PLATES, THE Ö', 'BLACK LEATHER CASE']),
+ 'oitava': dict(specs=['SOLID 18K YELLOW GOLD', '30.0 × 23.9 MM', 'FINE 18K CABLE CHAIN']),
+ 'lustre': dict(specs=['FACETED ROCK CRYSTAL, 37', '18K GOLD, POLISHED', 'A 20.8 MM DISC, THE Ö', 'A LAB DIAMOND', 'ABOUT 420 MM']),
+ 'silk_scarf': dict(specs=['SILK TWILL', '90 × 90 CM', 'BLACK / CREAM']),
+ 'card_holder': dict(cut='dark', specs=['BLACK CALFSKIN', 'FINE MATTE PEBBLE', 'THREE SLOTS A SIDE', 'A GOLD DISC, THE Ö']),
+ 'opera_gloves': dict(specs=['BLACK LAMBSKIN', 'CREAM SILK INSIDE', 'ABOVE THE ELBOW', 'A GOLD SNAP, THE Ö', 'SIZE  S · M · L']),
+ 'disc_belt': dict(specs=['BLACK CALFSKIN, 3 CM', 'A GOLD DISC, 40 MM', 'THE Ö ENGRAVED']),
+}
+ROOM = list(ROOM_SET)
+for _p in PIECES:
+    if _p['id'] in ROOM_SET: _p['room'] = ROOM_SET[_p['id']]

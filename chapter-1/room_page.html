@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<script>/* index.html#catalogue (the pages' way back): the catalogue from the first paint */
+if (/^#catalogue(=[\w-]+)?$/.test(location.hash)) document.documentElement.classList.add('cat-link');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{TITLE}}</title>
+<meta name="description" content="A cinema in knit, leather and silk. PHAÖRA Chapter I, made to order on pre-sale.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="assets/brand/mark-180.png"><link rel="apple-touch-icon" href="assets/brand/mark-180.png">
+<link rel="stylesheet" href="assets/css/room.css">
+</head>
+<body>
+<!-- The room page, built by build.py (room_home) from this template: chapter2's room host (capture.html), the WebGL room. -->
+<a id="logo" href="index.html" aria-label="PHAÖRA"></a>
+<nav id="sitenav">{{NAV}}</nav>
+<div id="stage">
+  <div id="ui">
+    <div id="name"><div class="t cut" id="nm"></div><div class="s cut" id="sub"></div></div>
+    <div id="btn"></div>
+  </div>
+</div>
+<script>
+// The room (David, 14 Nov): first the Muse all-over (Heliodora), then the house's main piece, the Veil Coat (Gelosia),
+// then the rest of Chapter I. Cut-outs, pins and casters: build_room.py (the Veil Coat's and the Ödara's are chapter2's).
+window.PIECES = {{PIECES}};
+window.CASTER_FIT_EXTRA = {{FITS}};
+window.INTRO_LINES_SITE = ['A seat is kept for you.'];
+const q = new URLSearchParams(location.search);
+if (q.has('capture')) { window.CAPTURE = true; window.CAPTURE_T = 0; }
+</script>
+<div id="cat" style="visibility:hidden;pointer-events:none"><div class="grid"></div></div>
+<div id="intro" hidden><div class="panda"></div></div>
+<script>
+window.CATALOGUE_ON = true;
+window.CAT_LINK = (() => { const m = /^#catalogue(?:=([\w-]+))?$/.exec(location.hash); return m ? { piece: m[1] || null } : null; })();
+// the intro: on a first visit it plays before the room; ?intro=1 plays it again, ?intro=0 and #catalogue skip it
+window.INTRO_ON = (() => { const q = new URLSearchParams(location.search); if (window.CAT_LINK || q.get('intro') === '0') return false;
+  if (q.get('intro') === '1') return true;
+  try { return localStorage.getItem('phaora-ch1-intro-seen') !== '1'; } catch (e) { return true; } })();
+if (window.INTRO_ON) { document.documentElement.classList.add('intro-on'); try { localStorage.setItem('phaora-ch1-intro-seen', '1'); } catch (e) {}
+  setTimeout(() => document.documentElement.classList.add('intro-done'), 8000); }
+window.CATALOGUE = {{CATALOGUE}};
+const CATS = {{CATS}};
+// the catalogue's cells (room.js uses the same; no baked shadows here, so each .rest is empty)
+window.catalogueHTML = (sh) => CATS.map(([k, t], i) => `<p class="cgh${i ? ' next' : ''}">${t}</p>` + window.CATALOGUE.filter(p => p.cat === k).map(p =>
+  `<a class="ci" data-id="${p.id}" href="${p.page}"><div class="ph" style="aspect-ratio:${p.aspect}"><img class="rest" alt="">` +
+  `<img class="g" src="${p.img}" alt="${p.name}"></div><div class="nm">${p.name}</div><div class="pr">${p.plain}</div></a>`).join('')).join('') + '<a class="all" href="line.html">The line</a>';
+if (document.documentElement.classList.contains('cat-link')) {
+  const grid = document.querySelector('#cat .grid'); grid.innerHTML = window.catalogueHTML(null);
+  if (window.CAT_LINK && window.CAT_LINK.piece) { const id = window.CAT_LINK.piece.replace(/-/g, '_');
+    requestAnimationFrame(() => { const c = grid.querySelector(`.ci[data-id="${id}"]`); if (c) document.getElementById('cat').scrollTop = Math.max(0, c.offsetTop - innerHeight * 0.12); }); }
+}
+</script>
+<script type="module" src="assets/room.js"></script>
+</body></html>

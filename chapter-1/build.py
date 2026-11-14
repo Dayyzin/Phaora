@@ -374,6 +374,39 @@ def piece_page(p, prev, nxt):
     return views
 
 
+# ---------------------------------------------------------------- the room (index.html)
+def room_home():
+    """The catalogue's front door: the intro, then the pin room (assets/room.js, chapter2's, scene unchanged), one piece a
+    gesture in content.ROOM's order (Heliodora, then Gelosia, then the line); a tap on the piece opens its page. After the
+    last piece the room opens into the catalogue (every piece by category). The register stays phaora.com's own (/)."""
+    fits = json.loads((HERE / 'assets' / 'room' / 'fits.json').read_text())
+    pins = {'muse_allover': 'muse_allover', 'veil_coat': 'veil_coat', 'muse_bomber': 'muse_bomber'}
+    room = []
+    for pid in C.ROOM:
+        p = PIECE[pid]; r = p['room']
+        w, h = Image.open(HERE / 'assets' / 'room' / f'{pid}.webp').size
+        links = [['The piece', f"{p['page']}.html"]] + ([] if p.get('nosale') else [['Keep a seat', REGISTER]])
+        d = dict(id=pid, name=p['name'].upper(), sub=f"{E(p['plain'].upper())} &nbsp;·&nbsp; CHAPTER I", img=f'assets/room/{pid}.webp',
+                 aspect=round(w / h, 5), page=f"{p['page']}.html", caster=r.get('caster') or pid,
+                 pinsL=f"assets/h_{pins.get(pid, pid)}_L.png", pinsR=f"assets/h_{pins.get(pid, pid)}_R.png", links=links)
+        if r.get('specs'):
+            d['specs'] = r['specs']
+        room.append(d)
+    cat = []
+    for k, t in C.CATS:
+        for p in [p for p in C.PIECES if p['cat'] == k]:
+            w, h = Image.open(HERE / 'assets' / 'room' / f"{p['id']}.webp").size
+            cat.append(dict(id=p['id'], name=p['name'], plain=p['plain'], page=f"{p['page']}.html", img=f"assets/room/{p['id']}.webp",
+                            aspect=round(w / h, 5), cat=k))
+    J = lambda o: json.dumps(o, ensure_ascii=False)
+    nav = ''.join(f'<a href="{h}"{" class=p" if t in ("The line", "Register") else ""}>{E(t)}</a>' for h, t in NAV)   # a phone keeps the line and the register
+    tpl = (HERE / 'room_page.html').read_text()
+    doc = (tpl.replace('{{TITLE}}', f'{SITE_TITLE} · Chapter I').replace('{{NAV}}', nav).replace('{{PIECES}}', J(room))
+           .replace('{{FITS}}', J(fits)).replace('{{CATALOGUE}}', J(cat)).replace('{{CATS}}', J(C.CATS)))
+    (HERE / 'index.html').write_text(doc)
+    PAGES.append('index.html')
+
+
 # ---------------------------------------------------------------- the other pages
 def home(fronts):
     room = []
@@ -631,7 +664,7 @@ def main():
         PIECE_VIEWS_SLOTS[p['id']] = vs
         fronts[p['id']] = next(iter(vs.values()))
     ROW_IMG = {pid: fronts[pid].src(960) for _, pid, _ in C.ROW}
-    home(fronts)
+    room_home()
     line_page(fronts)
     film_page()
     book_page()

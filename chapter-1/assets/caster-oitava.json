@@ -1,0 +1,18 @@
+{
+ "vertices": 4942,
+ "triangles": 7832,
+ "index": "u16",
+ "bounds": [
+  [
+   -0.20010000467300415,
+   0.9761999845504761,
+   -0.13500000536441803
+  ],
+  [
+   0.19089999794960022,
+   1.5972000360488892,
+   0.13500000536441803
+  ]
+ ],
+ "source": "assets/room/oitava.webp silhouette, a soft volume (build_room.py)"
+}
