@@ -439,7 +439,16 @@ body.onblack.overwalk:not(.menu-open) .top,body.onblack.overwalk .top .lettering
 .macro{padding:30px 48px 80px}
 .macro .strip{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(260px,1fr);gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px}
 .macro .mc{margin:0;scroll-snap-align:start}
-.scene{background:var(--paper,#efe8dc);color:var(--pink,#2b1d1d);padding:90px 48px}
+.scene{background:#0b0b0b;color:#e9e0cf;padding:90px 48px}   /* David, 14 Nov: "agreed, dark": the house lights go down */
+.scene .eyebrow,.scene .sn .eyebrow{color:var(--gold);opacity:1}
+.scene .more-link{color:var(--gold)}
+.scene h2,.scene .sn h3{color:#f1e9da}
+.scene .story p{color:#e9e0cf}.scene .sn ol,.scene .sn .close{color:#d9cfbd}
+.scene .cap{color:#bfb39d;opacity:1}
+.scene .slot{background:#141210;outline:0}
+.scene .slot.waiting .ph{background:radial-gradient(80% 70% at 50% 45%,#1b1814,#0e0d0b);outline:0}
+.scene .slot.waiting .phl{color:#8f8573;opacity:.8}
+.scene .tag{color:#8f8573}
 .scene h2{margin:0 0 34px}
 .scene-in{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:64px;max-width:1180px}
 .scene .story p{font-size:20px;line-height:1.65;margin:0 0 18px;max-width:34em}
