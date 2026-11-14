@@ -311,28 +311,9 @@ def piece_page(p, prev, nxt):
                            f'<span class="txt"><span class="lab">{E(n["l"])}</span><span class="val">{E(n["v"])}</span>{mk}</span></div>')
     sizes = ''.join(f'<button type="button" class="sz">{s}</button>' for s in p['sizes'])
     price_html = (f'<p class="price"><span class="nw">{E(price)}</span>' + (f' <span class="pre">pre-sale <span class="nw">{E(presale)}</span></span>' if presale else '') + '</p>') if price else '<p class="price">PRICE ON REQUEST</p>'
-    enq = p.get('enquire')
-    if enq:   # no price and no buy button: one quiet line, and a private form behind "Enquire" (assets/js/enquire.js)
-        price_html = f'''<div class="enq" data-piece="{p['id']}" data-tag="{E(enq['tag'])}">
-    <p class="enq-line">{E(enq['line'])} <button type="button" class="enq-open" aria-expanded="false" aria-controls="enq-form">{E(enq['button'])}</button></p>
-    <form class="enq-form" id="enq-form" hidden novalidate>
-     <p class="eyebrow">An enquiry for {E(p['name'])}</p>
-     <label class="fld"><span>Name</span><input name="name" type="text" maxlength="60" autocomplete="name" required></label>
-     <label class="fld"><span>Email</span><input name="email" type="email" maxlength="120" autocomplete="email" autocapitalize="off" spellcheck="false" required></label>
-     <label class="fld"><span>Country</span><input name="country" type="text" maxlength="60" autocomplete="country-name" required></label>
-     <fieldset class="fld via"><legend>Preferred contact</legend><div class="sizes">
-      <label class="sz"><input type="radio" name="contact" value="email" checked><span>Email</span></label>
-      <label class="sz"><input type="radio" name="contact" value="phone"><span>Phone</span></label>
-      <label class="sz"><input type="radio" name="contact" value="whatsapp"><span>WhatsApp</span></label></div></fieldset>
-     <label class="fld tel" hidden><span>Number</span><input name="phone" type="tel" maxlength="30" autocomplete="tel"></label>
-     <label class="fld"><span>A note <em>(optional)</em></span><textarea name="note" rows="3" maxlength="1000"></textarea></label>
-     <input name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
-     <button type="submit" class="cta">Send</button>
-     <p class="enq-err" role="status"></p>
-    </form>
-    <p class="enq-done" hidden role="status">{E(enq['thanks'])}</p>
-    <p class="enq-small" hidden>{E(enq['small'])}</p>
-   </div>'''
+    enq = p.get('nosale')
+    if enq:   # a house piece, not for sale: no price, no buying words at all
+        price_html = ''
     specs = ''.join(f'<dt>{E(a)}</dt><dd>{E(b)}</dd>' for a, b in p['specs'])
     if p['sizes']:
         specs += f'<dt>SIZE</dt><dd>{" · ".join(p["sizes"])}</dd>'
@@ -372,7 +353,7 @@ def piece_page(p, prev, nxt):
    {'' if enq else '<p class="cta-note">The register sees the pre-sale first.</p>'}
    <details class="more"><summary>Details</summary><dl>
     {'' if enq else f'<dt>Pre-sale</dt><dd>{E(C.POLICY_PRESALE)}</dd>'}
-    <dt>Returns</dt><dd>{E(policy)}</dd>
+    {'' if enq else f'<dt>Returns</dt><dd>{E(policy)}</dd>'}
     <dt>Care</dt><dd>{E(C.CARE[p['care']])} <a href="care.html">Care</a></dd>
     <dt>Size</dt><dd><a href="sizes.html">The measurements</a></dd>
    </dl></details>
@@ -389,7 +370,7 @@ def piece_page(p, prev, nxt):
  <section class="pack"><p class="eyebrow">The packaging</p><p class="lede">The house lights go down. Black board, cream tissue the colour of the screen, and one gold disc between you and the first scene.</p><div class="grid g3">{pkg}</div></section>
  <nav class="pn"><a href="{prev['page']}.html"><span>Before</span>{fa(prev['name'], 'span')}</a><a href="line.html" class="all">The line</a><a href="{nxt['page']}.html"><span>Next</span>{fa(nxt['name'], 'span')}</a></nav>
 </main>'''
-    page(f"{p['page']}.html", f"{p['name']}, {p['plain'].lower()}", p['about'], body, theme='light', scripts=['assets/js/walk.js'] + (['assets/js/enquire.js'] if enq else []), here='line.html', bodycls='piecepage' + (' onblack' if onblack else ''))
+    page(f"{p['page']}.html", f"{p['name']}, {p['plain'].lower()}", p['about'], body, theme='light', scripts=['assets/js/walk.js'], here='line.html', bodycls='piecepage' + (' onblack' if onblack else ''))
     return views
 
 
@@ -439,9 +420,9 @@ def line_page(fronts):
         cards = ''
         for p in [p for p in C.PIECES if p['cat'] == k]:
             price, presale = price_of(p['id'])
-            pr = E(p['enquire']['line'].rstrip('.')) if p.get('enquire') else E(price) if price else 'Price on request'
+            pr = None if p.get('nosale') else E(price) if price else 'Price on request'
             cards += (f'<a class="card" href="{p["page"]}.html">{fronts[p["id"]].img(sizes="(min-width: 821px) 24vw, 46vw")}'
-                      f'{fa(p["name"], "span", "nm")}<span class="pl">{E(p["plain"])}</span><span class="pr">{pr}</span></a>')
+                      f'{fa(p["name"], "span", "nm")}<span class="pl">{E(p["plain"])}</span>' + (f'<span class="pr">{pr}</span>' if pr else '') + '</a>')
         out += f'<section class="cat-sec" id="{k}"><p class="eyebrow">{E(t)}</p><div class="cards">{cards}</div></section>'
     body = f'<main class="line"><header class="ph-head"><p class="eyebrow">Chapter I</p>{fa("the line", "h1")}<p class="lede">Knitwear, leather and silk, in black, cream and gold. Made to order on pre-sale.</p></header>{out}</main>'
     page('line.html', 'The line', 'PHAÖRA Chapter I: the line.', body, here='line.html')

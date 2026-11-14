@@ -245,31 +245,6 @@ body.onblack.overwalk:not(.menu-open) .top,body.onblack.overwalk .top .lettering
 .price{margin:26px 0 0;font-size:20px;letter-spacing:.06em}
 .price .pre{font-size:15px;opacity:.7;margin-left:14px}
 .cta-note{margin:10px 0 0;font:italic 400 15px var(--serif);opacity:.6}
-/* a piece with no price: one quiet line, "Enquire", and a short private form */
-.enq{margin:26px 0 0}
-.enq-line{margin:0;font-size:20px;letter-spacing:.06em}
-.enq-open{border-bottom:1px solid currentColor;padding:0 0 1px;margin-left:4px;letter-spacing:.06em}
-.enq-open[aria-expanded=true]{opacity:.55}.enq-open:disabled{opacity:.45;cursor:default}
-.enq-form{margin:26px 0 0;padding-top:22px;border-top:1px solid rgba(20,22,27,.14);display:grid;gap:18px;max-width:460px}
-.enq-form[hidden],.enq [hidden]{display:none}
-.enq-form .eyebrow{margin:0}
-.fld{display:grid;gap:6px;margin:0;padding:0;border:0;min-width:0}
-.fld>span,.fld legend{font:500 11.5px/1.6 var(--serif);letter-spacing:.24em;text-transform:uppercase;opacity:.62;padding:0}
-.fld em{font-style:italic;text-transform:none;letter-spacing:.04em}
-.fld input,.fld textarea{font:400 18px/1.4 var(--serif);color:var(--ink);background:transparent;border:0;border-bottom:1px solid rgba(20,22,27,.3);
-  border-radius:0;padding:6px 0 7px;width:100%;-webkit-appearance:none;appearance:none}
-.fld textarea{resize:vertical;min-height:84px}
-.fld input:focus,.fld textarea:focus{outline:0;border-bottom-color:var(--ink)}
-.fld.via .sizes{margin:4px 0 0}
-.fld.via .sz{display:inline-flex;align-items:center;cursor:pointer}
-.fld.via .sz input{position:absolute;opacity:0;width:1px;height:1px}
-.fld.via .sz:focus-within{outline:1px solid var(--ink);outline-offset:2px}
-.enq-form .cta{justify-self:start;margin-top:6px;cursor:pointer}
-.enq-form .cta:disabled{opacity:.6}
-.enq-form .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
-.enq-err{margin:0;min-height:1.4em;font:italic 400 15px var(--serif);opacity:.7}
-.enq-done{margin:22px 0 0;font:italic 400 20px/1.5 var(--serif)}
-.enq-small{margin:18px 0 0;font:italic 400 15px/1.5 var(--serif);opacity:.6;max-width:460px}
 .more{margin-top:30px;border-top:1px solid rgba(20,22,27,.14);padding-top:6px}
 .more summary{cursor:pointer;list-style:none;font:500 12.5px/1 var(--serif);letter-spacing:.26em;text-transform:uppercase;padding:14px 0}
 .more summary::-webkit-details-marker{display:none}

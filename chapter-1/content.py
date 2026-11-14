@@ -243,10 +243,8 @@ PIECES = [
    dict(v='back', f=(.5, .5), z=1.1, n=[((.5, .96), 'METAL', 'SOLID 18K YELLOW GOLD', 'Polished throughout.')]),
   ]),
  dict(id='lustre', page='lustre', name='Lustre', plain='Necklace', cat='accessories', care='gold', policy='made', ratio='16:9',
-  # David, 14 Nov: Lustre "loses its price, we leave it for looks and attention calling": no price, no buy button, an enquiry
-  enquire=dict(line='Made to order.', button='Enquire', tag='lustre-enquiry',
-               thanks='Thank you. David will reply personally within 48 hours.',
-               small='Each Lustre is made to order and numbered. A 50% deposit begins the piece.'),
+  # David, 14 Nov: the house's "Mona Lisa piece, nobody expects to sell". "Nothing at all": no price, no buy, no enquiry
+  nosale=True,
   about="Named for the chandelier. Thirty-seven crystals of faceted rock crystal, largest at the centre, strung on 18k gold, and below them a gold disc with the Ö raised on it.",
   specs=[('CRYSTALS', 'FACETED ROCK CRYSTAL, 37'), ('GOLD', '18K, POLISHED'), ('DISC', '20.8 MM, THE Ö RAISED'), ('LENGTH', 'ABOUT 420 MM')],
   sizes=[],
