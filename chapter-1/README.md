@@ -18,8 +18,8 @@ David approved the structure; nothing goes to main or live until he has seen the
 - Each piece's page, top to bottom: its world (the director's signature shot), its views beside the name, specs, price,
   made to order and sizes; close-ups at 100%; its scene from the book with its short; the pieces in the same scene; the
   rest of the line.
-- `line.html` is the catalogue (image and name, by category); `book.html` sets each spread with the story on the left and
-  the plate and maker's notes on the right; `film.html` opens on Short 2 (the Reel down the aisle), then the film.
+- `line.html` is the catalogue (image and name, by category); `book.html` is the book's home (the cover, the chapters),
+  each chapter its own page set as verse from `POEM.md` (the book as a poem, phaora-ops ee289bad), with its plate; `film.html` opens on Short 2 (the Reel down the aisle), then the film.
 - The register stays phaora.com's own (`/`).
 
 ## Pages (26)

@@ -530,11 +530,39 @@ def film_page():
     page('film.html', 'The film', 'A Seat Is Kept for You: the PHAÖRA Chapter I film.', body, theme='dark', scripts=['assets/js/film.js'], here='film.html')
 
 
+
+def poem_sections():
+    """POEM.md (phaora-ops marketing/story/POEM.md, ee289bad, copied here as it is): {chapter key: [stanza: [line]]}."""
+    keys = {'prologue': 'prologue', 'coda': 'coda'}
+    out, cur = {}, None
+    for line in (HERE / 'POEM.md').read_text().splitlines():
+        m = re.fullmatch(r'\*\*(.+?)\*\*', line.strip())
+        if m:
+            t = m.group(1).strip(); k = t.split('.')[0].strip().lower()
+            cur = keys.get(k, k); out[cur] = [[]]; continue
+        if cur is None or line.strip() == '---':
+            continue
+        if not line.strip():
+            if out[cur][-1]: out[cur].append([])
+            continue
+        out[cur][-1].append(line.strip())
+    return {k: [st for st in v if st] for k, v in out.items()}
+
+
+def verse(stanzas):
+    """Stanzas as verse: each line its own (unbroken on a computer; on a phone a long line wraps with a hanging indent);
+    the poem's *italics* kept."""
+    em = lambda t: re.sub(r'\*(.+?)\*', r'<em>\1</em>', E(t))
+    return '<div class="verse">' + ''.join('<p class="st">' + ''.join(f'<span class="l">{em(l)}</span>' for l in st) + '</p>' for st in stanzas) + '</div>'
+
+
 def book_page():
     """The book's own home (David, 14 Nov: "No book in the product page. We need a dedicated place for it"):
     book.html opens on the cover, then lists the chapters; each chapter is its own page (book-<key>.html) with its plate,
     its text from BOOK.md and the maker's notes of the pieces that enter. On the cinema's black, cream type, gold
     numerals. No dates."""
+    global POEM
+    POEM = poem_sections()   # the book is the poem now (David, 14 Nov: "put it on the site")
     chs = [dict(key=c['key'], title=c['title'], reel=c['reel'], text=c['text'], plate=c['plate'], enter=c['enter']) for c in C.BOOK]
     chs.append(dict(key='coda', title='Coda', reel=None, text=C.BOOK_CODA['text'], plate=C.BOOK_CODA['plate'], enter=[]))
 
@@ -570,12 +598,11 @@ def book_page():
         n, t = split(c['title'])
         s = BOOK_PLATES[c['key']]
         d, kept = c['plate'][0], c['plate'][1]
-        notes = ''
-        for pid in c['enter']:
-            h, lines, close = C.BOOK_NOTES[pid]
-            p = PIECE[pid]
-            notes += (f'<div class="bn"><p class="bnh">{E(h.upper())} · ENTERS</p><ol>' + ''.join(f'<li>{E(x)}</li>' for x in lines) +
-                      f'</ol><p class="close">{E(close)}</p><a class="more-link" href="{p["page"]}.html">The piece · {E(p["name"])}</a></div>')
+        stanzas = POEM.get(c['key'], [])
+        said = ' '.join(' '.join(st) for st in stanzas)
+        named = [q for q in C.PIECES if re.search(r'(?<!\w)' + re.escape(q['name']) + r'(?!\w)', said)]   # the pieces this section names
+        named.sort(key=lambda q: said.index(q['name']))
+        links = ''.join(f'<a class="more-link" href="{q["page"]}.html">The piece · {E(q["name"])}</a>' for q in named)
         prev = chs[i - 1] if i else None
         nxt = chs[i + 1] if i + 1 < len(chs) else None
         pn = (f'<nav class="bpn">' + (f'<a href="{fn(prev)}"><span>Before</span>{fa(split(prev["title"])[1], "span")}</a>' if prev else '<span></span>') +
@@ -583,17 +610,15 @@ def book_page():
               (f'<a href="{fn(nxt)}"><span>Next</span>{fa(split(nxt["title"])[1], "span")}</a>' if nxt else '<span></span>') + '</nav>')
         last = ''
         if c['key'] == 'coda':
-            last = (f'<section class="blast"><p>{E(C.BOOK_LAST)}</p><p class="fa big">thank you for the pleasure of your company.</p>'
-                    f'<a class="card-link" href="{REGISTER}"><span class="k fa">kept for</span><span class="blank"></span></a></section>')
+            last = (f'<section class="blast"><a class="card-link" href="{REGISTER}"><span class="k fa">kept for</span><span class="blank"></span></a></section>')   # the poem's last line, then the card
         reel = f'<p class="breel fa">{E(c["reel"].lower())}</p>' if c['reel'] else ''
         body = f'''
 <main class="bchapter" id="{c['key']}">
  <header class="bhead">{reel}<p class="eyebrow">A seat is kept for you</p><h1>{numeral(n)}{fa(t, 'span', 'bt')}</h1></header>
  <section class="bspread">
-  <div class="btext">{''.join(f'<p>{E(x)}</p>' for x in c['text'])}</div>
+  <div class="btext">{verse(stanzas)}{f'<p class="blinks">{links}</p>' if links else ''}</div>
   <figure class="bplate">{s.img(sizes="(min-width: 821px) 40vw, 92vw", cls="plate")}<figcaption>{E(d)}<br><em>Kept: {E(kept)}</em></figcaption></figure>
  </section>
- {f'<section class="bnotes"><p class="eyebrow">The maker’s notes</p>{notes}</section>' if notes else ''}
  {last}
  {pn}
 </main>'''

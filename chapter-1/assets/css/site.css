@@ -536,3 +536,11 @@ body.bookdark{background:#0b0b0b;color:#e9e0cf}
 .walk.band .stage.endplate .wcap::before{content:'';position:absolute;left:-48px;right:-60px;top:-40px;bottom:-48px;z-index:-1;background:linear-gradient(90deg,rgba(11,11,11,.72),rgba(11,11,11,.45) 70%,rgba(11,11,11,0));filter:blur(8px)}
 @media (max-width:820px){.walk.band .stage.endplate .worldbg,.walk.band .stage.endplate .worldbg.soft{background-size:contain;background-repeat:no-repeat;background-position:50% 38%;background-color:#0b0b0b}
   .walk.band .stage.endplate .wcap{left:20px;right:20px;bottom:56px}.walk.band .stage.endplate .wcap::before{left:-20px;right:-20px;top:-28px;bottom:-40px;background:linear-gradient(0deg,rgba(11,11,11,.9),rgba(11,11,11,.5) 70%,rgba(11,11,11,0))}}
+
+/* the book as a poem: stanzas, each line its own; on a phone a long line wraps with a hanging indent */
+.verse .st{margin:0 0 1.35em;font-size:21px;line-height:1.62;color:#e9e0cf}
+.verse .l{display:block;padding-left:1.6em;text-indent:-1.6em}
+.verse em{font-style:italic;color:#f1e9da}
+@media (min-width:821px){.verse .l{white-space:nowrap}}
+@media (max-width:820px){.verse .st{font-size:18.5px}}
+.blinks{display:flex;flex-wrap:wrap;gap:6px 26px;margin-top:30px}.blinks .more-link{color:var(--gold);margin:0}.blinks .more-link+.more-link{margin-left:0}
