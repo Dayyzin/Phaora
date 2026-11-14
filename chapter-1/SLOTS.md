@@ -1,6 +1,6 @@
 # SLOTS: every image and film on the Chapter I site
 
-Built by `build.py`. 145 slots: **5 final**, **117 holding a stand-in** (the best approved
+Built by `build.py`. 146 slots: **5 final**, **118 holding a stand-in** (the best approved
 render or still we have, at 144p or 1600), **23 waiting** (a quiet placeholder of the right ratio, labelled
 with what it waits for).
 
@@ -26,6 +26,7 @@ path. On phaora.com the labels never show.
 | film | `media/film/vertical/` | the 15 s vertical (9:16, 2160 × 3840 MP4) | stand-in: departments/apparel/marketing/ads/veil-coat-film/preview/veil-coat-film_15s_9x16_144p.mp4 |
 | film | `img/film/poster/` | clip 8: the row from behind and above, the kept seat on the left third (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/stills/b2_the-front-row-and-the-kept-seat_256x144.png (256 × 144) |
 | film | `media/film/next-reel/` | the next reel: the leader, II in red (16:9, 3840 × 2160 MP4) | stand-in: departments/apparel/marketing/ads/next-reel/preview/next_reel_3_leader_II_144p_red.mp4 |
+| film | `media/film/short-02/` | Short 2, the Reel down the aisle into the clasp and the end card, the 4K master (16:9, 3840 × 2160 MP4) | stand-in: departments/apparel/marketing/ads/shorts/preview/02_the-reel_cinema-aisle-long_16x9_144p.mp4 |
 | film | `img/film/short-c1/` | C1, Heliodora: the coming attraction (until it lands, its last frame) (16:9, 3840 × 2160 MP4 or 8K still) | stand-in: departments/apparel/marketing/story/stills/ca-01-the-muse_108x144.png (108 × 144) |
 | film | `img/film/short-c3/` | C3, Ritornelo: the coming attraction (until it lands, its last frame) (16:9, 3840 × 2160 MP4 or 8K still) | stand-in: departments/apparel/marketing/story/stills/ca-03-the-opera-gloves_108x144.png (108 × 144) |
 | film | `img/film/short-c4/` | C4, Cordel: the coming attraction (until it lands, its last frame) (16:9, 3840 × 2160 MP4 or 8K still) | stand-in: departments/apparel/marketing/story/stills/ca-04-the-silk-scarf_108x144.png (108 × 144) |

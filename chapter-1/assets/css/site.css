@@ -319,7 +319,8 @@ body.onblack.overwalk:not(.menu-open) .top,body.onblack.overwalk .top .lettering
 .leaf .plate{background:#e3dacb}
 .leaf .plate img{object-fit:cover}
 .leaf .cap{font-size:15px;line-height:1.5;opacity:.75;margin:14px 0 0}
-.leaf.notes{grid-column:1/-1;margin-top:28px;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:36px 48px}
+.leaf.mnotes{display:flex;flex-direction:column;gap:36px;justify-content:flex-start}
+.leaf.mnotes .pl8 .plate{max-width:min(100%,380px)}.leaf.mnotes .pl8 .slot[style*='--r:16/9']{max-width:100%}
 .bn .bnh{font:500 11.5px/1.5 var(--serif);letter-spacing:.24em;margin:0 0 12px}
 .bn ol{margin:0;padding-left:1.3em;font-size:16.5px;line-height:1.55}
 .bn li{margin-bottom:4px}
@@ -335,7 +336,7 @@ body.onblack.overwalk:not(.menu-open) .top,body.onblack.overwalk .top .lettering
   box-shadow:0 18px 40px -16px rgba(40,30,20,.5);color:var(--pink)}
 .card-link .k{font-size:17px}.card-link .blank{width:70%;border-bottom:1px solid rgba(60,50,40,.35);height:38px}
 @media (max-width:820px){.spread{grid-template-columns:1fr;padding:30px 14px}.leaf{padding:30px 24px}.leaf.l{border-right:0;border-bottom:1px solid rgba(60,50,40,.12)}
-  .leaf.l p{font-size:18.5px}.leaf.notes{grid-template-columns:1fr}}
+  .leaf.l p{font-size:18.5px}.leaf.mnotes{gap:28px}}
 
 /* ---------------------------------------------------------------- the register: the kept seat */
 .regpage{overflow:hidden;height:100svh}
@@ -469,3 +470,8 @@ body.onblack.overwalk:not(.menu-open) .top,body.onblack.overwalk .top .lettering
   .same{padding:50px 20px}.same .sgrid{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.sc .nm{font-size:18px}.sc .pl{display:none}
   .restline{padding:30px 20px}.restline .rgrid{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px 8px}.rl .nm{font-size:13px}
 }
+
+/* the film page: Short 2 first, then the film, each with its caption under it */
+.film .caption-row{padding:26px 48px 70px;max-width:900px}
+.film .caption-row h2{margin:6px 0 10px}
+@media (max-width:820px){.film .caption-row{padding:18px 20px 44px}}

@@ -451,12 +451,10 @@ def line_page(fronts):
     for k, t in C.CATS:
         cards = ''
         for p in [p for p in C.PIECES if p['cat'] == k]:
-            price, presale = price_of(p['id'])
-            pr = None if p.get('nosale') else E(price) if price else 'Price on request'
-            cards += (f'<a class="card" href="{p["page"]}.html">{fronts[p["id"]].img(sizes="(min-width: 821px) 24vw, 46vw")}'
-                      f'{fa(p["name"], "span", "nm")}<span class="pl">{E(p["plain"])}</span>' + (f'<span class="pr">{pr}</span>' if pr else '') + '</a>')
+            cards += (f'<a class="card" href="{p["page"]}.html">{fronts[p["id"]].img(sizes="(min-width: 821px) 24vw, 46vw")}'   # the catalogue: image and name
+                      f'{fa(p["name"], "span", "nm")}<span class="pl">{E(p["plain"])}</span></a>')
         out += f'<section class="cat-sec" id="{k}"><p class="eyebrow">{E(t)}</p><div class="cards">{cards}</div></section>'
-    body = f'<main class="line"><header class="ph-head"><p class="eyebrow">Chapter I</p>{fa("the line", "h1")}<p class="lede">Knitwear, leather and silk, in black, cream and gold. Made to order on pre-sale.</p></header>{out}</main>'
+    body = f'<main class="line"><header class="ph-head"><p class="eyebrow">Chapter I</p>{fa("the line", "h1")}<p class="lede">Knitwear, leather and silk, in black, cream and gold. Every piece of Chapter I, by category.</p></header>{out}</main>'
     page('line.html', 'The line', 'PHAÖRA Chapter I: the line.', body, here='line.html')
 
 
@@ -469,7 +467,10 @@ def film_page():
     body = f'''
 <main class="film">
  <header class="ph-head"><p class="eyebrow">The film · Chapter I</p>{fa('a seat is kept for you', 'h1')}<p class="lede">There is a cinema that runs one last show on Christmas Eve. One coat comes in out of the snow, and one seat in the front row is kept.</p></header>
+ <section class="screen first">{SHORT02.img(sizes="100vw", cls="filmslot")}<button class="play" type="button">Play</button></section>
+ <section class="caption-row"><p class="eyebrow">Short 2 · The Reel</p>{fa('down the aisle', 'h2')}<p class="small">The Reel rolls on its edge down the whole cinema aisle, step by step, slows, rocks and stands still; then one move into the gold clasp, whose engraved Ö becomes the Ö of the lettering on black.</p></section>
  <section class="screen">{FILM.img(sizes="100vw", cls="filmslot")}<button class="play" type="button">Play</button></section>
+ <section class="caption-row"><p class="eyebrow">The film</p>{fa('a seat is kept for you', 'h2')}</section>
  <section class="vert"><div>{FILM_V.img(sizes="(min-width: 821px) 26vw, 70vw")}</div><div><p class="eyebrow">Fifteen seconds</p>{fa('the night, in seven beats', 'h2')}<p class="small">The net on the shoulder in the snow. The door opening by itself. The row and the kept seat. The sit. The lights up on the box. The coat on its rail in the morning. The lettering.</p></div></section>
  <section class="attractions"><p class="eyebrow">Coming attractions</p>{fa('the picture is tomorrow', 'h2')}<p class="lede">What plays on the screen: each piece in the place it is going, with one place kept for someone. Reel One is the night out; Reel Two, the suite from day to the next morning.</p><div class="shorts">{shorts}</div></section>
  <section class="coda">{NEXT_REEL.img(sizes="(min-width: 821px) 60vw, 100vw")}<p class="eyebrow">The next reel</p><p class="lede">Up in the booth, the first reel came off the projector and another went on.</p></section>
@@ -486,11 +487,15 @@ def book_page():
             h, lines, close = C.BOOK_NOTES[pid]
             p = PIECE[pid]
             notes += (f'<div class="bn"><p class="bnh">{E(h.upper())} · ENTERS · {E(ch["title"].split(".")[0].upper())}</p><ol>'
-                      + ''.join(f'<li>{E(x)}</li>' for x in lines) + f'</ol><p class="close">{E(close)}</p><a class="more-link" href="{p["page"]}.html">Walk around {E(p["name"])}</a></div>')
+                      + ''.join(f'<li>{E(x)}</li>' for x in lines) + f'</ol><p class="close">{E(close)}</p><a class="more-link" href="{p["page"]}.html">The piece · {E(p["name"])}</a></div>')
         reel = f'<p class="reel fa">{E(ch["reel"].lower())}</p>' if ch['reel'] else ''
         plate_cap = f'<p class="cap">{E(ch["plate"][0])}<br><em>Kept: {E(ch["plate"][1])}</em></p>'
-        sp += f'''<section class="spread" id="{ch['key']}">{reel}<div class="leaf l">{fa(ch['title'].lower(), 'h2')}{''.join(f'<p>{E(t)}</p>' for t in ch['text'])}</div>
-<div class="leaf r">{s.img(sizes="(min-width: 821px) 42vw, 92vw", cls="plate")}{plate_cap}</div>{f'<div class="leaf notes">{notes}</div>' if notes else ''}</section>'''
+        story = f"<div class=\"leaf l\">{fa(ch['title'].lower(), 'h2')}{''.join(f'<p>{E(t)}</p>' for t in ch['text'])}</div>"
+        if notes:   # the story on the left page; on the right, the plate and the maker's notes
+            sp += (f'<section class="spread" id="{ch["key"]}">{reel}{story}'
+                   f'<div class="leaf r mnotes"><div class="pl8">{s.img(sizes="(min-width: 821px) 36vw, 92vw", cls="plate")}{plate_cap}</div>{notes}</div></section>')
+        else:       # a spread no piece enters: its right page is the plate alone (BOOK.md)
+            sp += f'<section class="spread" id="{ch["key"]}">{reel}{story}<div class="leaf r">{s.img(sizes="(min-width: 821px) 42vw, 92vw", cls="plate")}{plate_cap}</div></section>'
     coda = BOOK_PLATES['coda']
     body = f'''
 <main class="book">
@@ -639,6 +644,11 @@ def main():
                        [ST + 'b2_the-front-row-and-the-kept-seat_256x144.png'])
     NEXT_REEL = Slot('film', 'next-reel', 'the next reel: the leader, II in red', '16:9, 3840 × 2160 MP4', '16:9', 'The next reel',
                      ['git:departments/apparel/marketing/ads/next-reel/preview/next_reel_3_leader_II_144p_red.mp4'], kind='video')
+    global SHORT02
+    # Short 2, the long one (marketing/ads/shorts/02_the-reel_cinema-aisle_long.py): the Reel's roll down the aisle into the
+    # clasp and David's end card. First on the film page (David, 14 Nov); its 144p preview stands in
+    SHORT02 = Slot('film', 'short-02', 'Short 2, the Reel down the aisle into the clasp and the end card, the 4K master', '16:9, 3840 × 2160 MP4', '16:9',
+                   'Short 2: the Reel, down the aisle', ['departments/apparel/marketing/ads/shorts/preview/02_the-reel_cinema-aisle-long_16x9_144p.mp4'], kind='video')
     SHORT_SLOTS = {}
     for code, pid, still, prev in SHORTS:
         p = PIECE[pid]

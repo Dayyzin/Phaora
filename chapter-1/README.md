@@ -7,6 +7,21 @@ To add a photo: drop it in its slot's folder as `master.<ext>` and run `python3 
 
 Open it through any static server from this folder. Nothing here goes to phaora.com.
 
+## The site rebuild (claude/site-rebuild, 14 Nov)
+David approved the structure; nothing goes to main or live until he has seen the screenshots (`review/site-rebuild/`).
+- `index.html`: the intro, then the pin room as the catalogue's front door: chapter2's `assets/room.js` (WebGL, with
+  `three.module.js`), its scene, light, pin walls, pin waves and dissolve unchanged (three small changes, each marked
+  "Chapter I site:"). Heliodora first, Gelosia second, then the line; one piece a gesture; a tap opens the piece's page;
+  after the last piece the room opens into the catalogue. Built from `room_page.html` by `build.py`; the pieces' room
+  inputs (cut-outs, pin art, shadow casters) by `build_room.py`. `nogl_room.js` and `assets/pv/` are copied from chapter2
+  but not used (they hold chapter2's two pieces only).
+- Each piece's page, top to bottom: its world (the director's signature shot), its views beside the name, specs, price,
+  made to order and sizes; close-ups at 100%; its scene from the book with its short; the pieces in the same scene; the
+  rest of the line.
+- `line.html` is the catalogue (image and name, by category); `book.html` sets each spread with the story on the left and
+  the plate and maker's notes on the right; `film.html` opens on Short 2 (the Reel down the aisle), then the film.
+- The register stays phaora.com's own (`/`).
+
 ## Pages (26)
 - `index.html`: the opening (the Veil Coat's shadow, one turn, 9 s, frames from the shadows branch d22dd59f), the
   live register's intro film, then the house: the lettering, the line, and the turning room (Gelosia, Heliodora, Ödara).
