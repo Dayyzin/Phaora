@@ -27,6 +27,7 @@ if (/^#catalogue(=[\w-]+)?$/.test(location.hash)) document.documentElement.class
 window.PIECES = {{PIECES}};
 window.CASTER_FIT_EXTRA = {{FITS}};
 window.INTRO_LINES_SITE = ['A seat is kept for you.'];
+window.NAME_CLEAR = 50;   // David, 14 Nov: the name and its line clear of the piece (the hood, the coat's collar)
 const q = new URLSearchParams(location.search);
 if (q.has('capture')) { window.CAPTURE = true; window.CAPTURE_T = 0; }
 </script>

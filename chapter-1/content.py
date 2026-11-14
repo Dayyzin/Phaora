@@ -583,3 +583,15 @@ MORE_DETAILS = {
 # "In the same scene": the pieces it is in a scene with in the book. By default, the others that enter in its chapter;
 # where it enters alone, the scene it shares (the coat comes down the aisle past Ödara and Ritornelo, III)
 SAME = {'veil_coat': ['muse_bomber', 'opera_gloves']}
+
+
+# ---------------------------------------------------------------- prices (David, 14 Nov: "real prices on every piece
+# except Lustre", from pricing/CHAPTER-I-PRICING.md, Öitava at USD 3,800). (launch, pre-sale) as that file's summaries have
+# them; Heliodora and Cantilena are David's earlier approved pairs. Lustre has none: a house piece, not for sale.
+PRICES = {
+ 'muse_allover': ('USD 400', 'USD 345'), 'cantilena': ('USD 595', 'USD 495'),
+ 'veil_coat': ('USD 5,400', 'USD 4,600'), 'muse_bomber': ('USD 3,200', 'USD 2,700'), 'silk_slip': ('USD 950', 'USD 800'),
+ 'the_reel': ('USD 2,200', 'USD 1,850'), 'po_tophandle': ('USD 2,900', 'USD 2,450'), 'matinee': ('USD 2,600', 'USD 2,200'),
+ 'sunglasses': ('USD 495', 'USD 420'), 'oitava': ('USD 3,800', 'USD 3,250'), 'silk_scarf': ('USD 395', 'USD 335'),
+ 'card_holder': ('USD 295', 'USD 250'), 'opera_gloves': ('USD 1,050', 'USD 900'), 'disc_belt': ('USD 550', 'USD 470'),
+}

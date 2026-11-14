@@ -2,7 +2,8 @@
 // pin walls, pin waves and dissolve unchanged. Only these, each marked "Chapter I site:" where it is:
 //   - CASTER_FIT takes the fits of the casters build_room.py makes (window.CASTER_FIT_EXTRA), for the rest of the line;
 //   - the links under the specs are the piece's own (PIECES[i].links), not chapter2's cart and pre-sale;
-//   - the intro writes the page's own line (window.INTRO_LINES_SITE), one line centred where the three were.
+//   - the intro writes the page's own line (window.INTRO_LINES_SITE), one line centred where the three were;
+//   - on a computer the name and its line sit window.NAME_CLEAR frame px higher, clear of the piece.
 // The room: the browsing page of Chapter I, one piece per scroll.
 // Ported from ../studio-mock/concepts/room-preview/index.html (David's approved preview). The scene, the light, the
 // mirrored pin walls, the pin waves and the dissolve are that file's code, unchanged; what is new here is only:
@@ -1366,7 +1367,7 @@ function layout() {
     // phone (David, refs/room-phone-name-position.jpg: "The muse goes in the place circle suggests"): centred at 20% of
     // the screen's height, with clear air above the hood
     // when the composition moves up (phoneFit) the name moves with it, its gap to the hood scaled with the room
-    nameEl.style.top = Math.round(phone ? (nameGapK === 1 ? 0.20 * cssH - hgt / 2 - nameShift : top - nameGapK * nameGap0(cssH, hgt) - hgt) : top - 15 - hgt) + 'px'; }
+    nameEl.style.top = Math.round(phone ? (nameGapK === 1 ? 0.20 * cssH - hgt / 2 - nameShift : top - nameGapK * nameGap0(cssH, hgt) - hgt) : top - 15 - hgt - (window.NAME_CLEAR || 0)) + 'px'; }   // Chapter I site: on a computer, NAME_CLEAR more air between the name and the piece
   // phone: ADD TO CART / BUY NOW right under the specs; desktop keeps them on the right, as in the preview
   { const btn = document.getElementById('btn');
     if (phone) { const v = covePt(0, thAt(SPEC_Y_PH[4]), 0).project(cam); btn.style.top = Math.round((1 - v.y) / 2 * cssH + 20 + 60 + PH_STEP) + 'px'; }

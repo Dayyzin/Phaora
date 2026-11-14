@@ -40,8 +40,8 @@ them on their parts. After the last stop the camera pulls back and the piece's w
 - The lettering is fetched from `assets/brand/` and inlined on each page by `site.js` (as the register prototype does),
   not pasted into every page: each file is 800 KB. The mark is David's 10 Nov drawing, its light made the ink or kept
   cream; it is not redrawn. No panda anywhere. No typed logo.
-- Prices: only David's approved ones show (Heliodora 400 / 345, Cantilena 595 / 495); every other piece reads
-  PRICE ON REQUEST, as COPY-DRAFT.md asks. The pricing file's proposals stay off the site.
+- Prices (David, 14 Nov: "real prices on every piece except Lustre"): `content.PRICES`, from pricing/CHAPTER-I-PRICING.md
+  (Öitava at USD 3,800). Lustre shows none. Nothing reads PRICE ON REQUEST.
 - No date anywhere: the register's "opens Christmas Eve" lines are left out. The book's story keeps its Christmas Eve.
 - The register sends nothing except on phaora.com (canon's route); here it plays the reward and stores nothing.
 - Buy buttons lead to the register ("Keep a seat"), as REGISTER.md has it before the pre-sale opens.

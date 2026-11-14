@@ -237,6 +237,8 @@ def fa(text, tag='h2', cls=''):
 
 
 def price_of(pid):
+    if pid in C.PRICES:   # David, 14 Nov: the Chapter I prices (content.PRICES)
+        return C.PRICES[pid]
     pr = json.loads((HERE / 'prices.json').read_text())['prices'].get(pid, {})
     if pr and not pr.get('draft') and pr.get('approved') and pr.get('price'):
         return pr['price'], pr.get('presale')
@@ -306,8 +308,8 @@ def piece_page(p, prev, nxt):
     if enq:
         buy = ''
     else:
-        pr = (f'<span class="nw">{E(price)}</span>' + (f' <span class="pre">pre-sale <span class="nw">{E(presale)}</span></span>' if presale else '')) if price else 'PRICE ON REQUEST'
-        buy = (f'{f"<div class=sizes role=group aria-label=Size>{sizes}</div>" if sizes else ""}<p class="price">{pr}</p><p class="mto">Made to order.</p>'
+        pr = (f'<span class="nw">{E(price)}</span>' + (f' <span class="pre">pre-sale <span class="nw">{E(presale)}</span></span>' if presale else '')) if price else ''
+        buy = (f'{f"<div class=sizes role=group aria-label=Size>{sizes}</div>" if sizes else ""}{f"<p class=price>{pr}</p>" if pr else ""}<p class="mto">Made to order.</p>'
                f'<a class="cta" href="{REGISTER}">Keep a seat</a><p class="cta-note">The register sees the pre-sale first.</p>')
     policy = C.POLICY_KNIT if p['policy'] == 'knit' else C.POLICY_MADE
     more = ('' if enq else f'<dt>Pre-sale</dt><dd>{E(C.POLICY_PRESALE)}</dd><dt>Returns</dt><dd>{E(policy)}</dd>') + \
@@ -384,7 +386,8 @@ def room_home():
     for pid in C.ROOM:
         p = PIECE[pid]; r = p['room']
         w, h = Image.open(HERE / 'assets' / 'room' / f'{pid}.webp').size
-        links = [['The piece', f"{p['page']}.html"]] + ([] if p.get('nosale') else [['Keep a seat', REGISTER]])
+        price = price_of(pid)[0]
+        links = [['The piece', f"{p['page']}.html"]] + ([] if p.get('nosale') else [[f'Keep a seat · {price}' if price else 'Keep a seat', REGISTER]])
         d = dict(id=pid, name=p['name'].upper(), sub=f"{E(p['plain'].upper())} &nbsp;·&nbsp; CHAPTER I", img=f'assets/room/{pid}.webp',
                  aspect=round(w / h, 5), page=f"{p['page']}.html", caster=r.get('caster') or pid,
                  pinsL=f"assets/h_{pins.get(pid, pid)}_L.png", pinsR=f"assets/h_{pins.get(pid, pid)}_R.png", links=links)
