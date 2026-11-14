@@ -1,6 +1,6 @@
 {
  "source": "departments/apparel/new-pieces-2026-11/build/lustre/catalogue144/lustre_detail_256x144.png",
- "sig": "lustre_detail_256x144.png:59212",
+ "sig": "lustre_detail_256x144.png:61156",
  "final": false,
  "files": [
   "w256.webp"
@@ -10,8 +10,8 @@
  "bbox": [
   0.0,
   0.0,
-  0.9688,
+  1.0,
   1.0
  ],
- "ground": "#464744"
+ "ground": "#7c7b78"
 }
