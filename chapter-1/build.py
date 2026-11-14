@@ -318,28 +318,23 @@ def piece_page(p, prev, nxt):
     gal = ''.join(f'<div class="gv{" first" if i == 0 else ""}">{s.img(sizes="(min-width: 821px) 50vw, 100vw", loading="eager" if i == 0 else "lazy")}<p class="cap">{E(v.replace("-", " "))}</p></div>' for i, (v, s) in enumerate(vlist))
     # (c) close-ups
     strip = ''.join(f'<div class="mc">{s.img(sizes="(min-width: 821px) 25vw, 80vw")}<p class="cap">{E(s.label)}</p></div>' for s in details[:4])
-    # (d) its scene: the chapter it enters in, the maker's note, and its short (the Veil Coat's is the film itself)
+    # (d) the dark band: the piece in its world (its short; the Veil Coat's is the film) and how it is made. No book here
+    # (David, 14 Nov: "No book in the product page"): the story, its plate and its link live in book.html
     ch = next((c for c in C.BOOK if p['id'] in c['enter']), None)
-    scene = ''
-    if ch:
-        plate = BOOK_PLATES[ch['key']]
-        code = next((c for c, pid, _, _ in SHORTS if pid == p['id']), None)
-        short = FILM if p['id'] == 'veil_coat' else SHORT_SLOTS.get(code) if code else None
-        nb = C.BOOK_NOTES.get(p['id'])
-        notes = ''
-        if nb:
-            h, lines, close = nb
-            notes = (f'<div class="sn"><p class="eyebrow">The maker’s notes</p>{fa(h, "h3")}<ol>' + ''.join(f'<li>{E(x)}</li>' for x in lines) +
-                     f'</ol><p class="close">{E(close)}</p></div>')
-        sh = ''
-        if short:
-            lab = 'The film' if short is FILM else f'{code}, the coming attraction'
-            sh = f'<div class="short">{short.img(sizes="(min-width: 821px) 60vw, 100vw", cls="playin")}<p class="cap">{E(lab)}</p></div>'
-        scene = f'''<section class="scene" id="scene">
-  <p class="eyebrow">Its scene · {E(ch['title'])}</p>{fa('a seat is kept for you', 'h2')}
-  <div class="scene-in"><div class="story">{''.join(f'<p>{E(t)}</p>' for t in ch['text'])}<a class="more-link" href="book.html#{ch['key']}">Read the book</a></div>{notes}</div>
-  <div class="scene-media">{sh}<div class="splate">{plate.img(sizes="(min-width: 821px) 34vw, 100vw")}<p class="cap">{E(ch['plate'][0])}</p></div></div>
- </section>'''
+    code = next((c for c, pid, _, _ in SHORTS if pid == p['id']), None)
+    short = FILM if p['id'] == 'veil_coat' else SHORT_SLOTS.get(code) if code else None
+    nb = C.BOOK_NOTES.get(p['id'])
+    notes = ''
+    if nb:
+        h, lines, close = nb
+        notes = (f'<div class="sn"><p class="eyebrow">How it is made</p><ol>' + ''.join(f'<li>{E(x)}</li>' for x in lines) +
+                 f'</ol><p class="close">{E(close)}</p></div>')
+    sh = ''
+    if short:
+        lab = 'The film' if short is FILM else f'{code}, the coming attraction'
+        sh = f'<div class="short">{short.img(sizes="(min-width: 821px) 60vw, 100vw", cls="playin")}<p class="cap">{E(lab)}</p></div>'
+    scene = (f'<section class="scene" id="scene"><p class="eyebrow">In the world</p><div class="scene-in">{sh}{notes}</div></section>'
+             if (sh or notes) else '')
     # (e) in the same scene
     same = C.SAME.get(p['id']) or ([x for x in ch['enter'] if x != p['id']] if ch else [])
     same = [x for x in same if x in PIECE][:3]
@@ -482,35 +477,73 @@ def film_page():
 
 
 def book_page():
-    sp = ''
-    for i, ch in enumerate(C.BOOK):
-        s = BOOK_PLATES[ch['key']]
+    """The book's own home (David, 14 Nov: "No book in the product page. We need a dedicated place for it"):
+    book.html opens on the cover, then lists the chapters; each chapter is its own page (book-<key>.html) with its plate,
+    its text from BOOK.md and the maker's notes of the pieces that enter. On the cinema's black, cream type, gold
+    numerals. No dates."""
+    chs = [dict(key=c['key'], title=c['title'], reel=c['reel'], text=c['text'], plate=c['plate'], enter=c['enter']) for c in C.BOOK]
+    chs.append(dict(key='coda', title='Coda', reel=None, text=C.BOOK_CODA['text'], plate=C.BOOK_CODA['plate'], enter=[]))
+
+    def split(title):   # 'I. Snow' -> ('I', 'snow'); 'Prologue' -> ('', 'prologue')
+        if '. ' in title:
+            n, t = title.split('. ', 1)
+            return n, t.lower()
+        return '', title.lower()
+
+    def numeral(n):
+        return f'<span class="bnum">{E(n)}</span>' if n else ''
+
+    def fn(c):
+        return f"book-{c['key']}.html"
+
+    items = ''
+    for c in chs:
+        n, t = split(c['title'])
+        reel = f'<li class="breel fa">{E(c["reel"].lower())}</li>' if c['reel'] else ''
+        items += f'{reel}<li><a href="{fn(c)}">{numeral(n)}{fa(t, "span", "bt")}</a></li>'
+    cover = BOOK_PLATES['v']
+    body = f'''
+<main class="bookhome">
+ <section class="bcover">
+  <div class="bcover-plate">{cover.img(sizes="(min-width: 821px) 34vw, 80vw", cls="plate", loading="eager")}</div>
+  <div class="bcover-txt"><div class="lettering offwhite" data-lettering="offwhite" role="img" aria-label="PHAÖRA"></div>{fa('a seat is kept for you', 'h1')}<p class="eyebrow">Chapter I · the book</p></div>
+ </section>
+ <nav class="bchapters" aria-label="The chapters"><ol>{items}</ol></nav>
+</main>'''
+    page('book.html', 'The book', 'A Seat Is Kept for You: the book of PHAÖRA Chapter I, in two reels.', body, theme='dark', here='book.html', bodycls='bookdark')
+
+    for i, c in enumerate(chs):
+        n, t = split(c['title'])
+        s = BOOK_PLATES[c['key']]
+        d, kept = c['plate'][0], c['plate'][1]
         notes = ''
-        for pid in ch['enter']:
+        for pid in c['enter']:
             h, lines, close = C.BOOK_NOTES[pid]
             p = PIECE[pid]
-            notes += (f'<div class="bn"><p class="bnh">{E(h.upper())} · ENTERS · {E(ch["title"].split(".")[0].upper())}</p><ol>'
-                      + ''.join(f'<li>{E(x)}</li>' for x in lines) + f'</ol><p class="close">{E(close)}</p><a class="more-link" href="{p["page"]}.html">The piece · {E(p["name"])}</a></div>')
-        reel = f'<p class="reel fa">{E(ch["reel"].lower())}</p>' if ch['reel'] else ''
-        plate_cap = f'<p class="cap">{E(ch["plate"][0])}<br><em>Kept: {E(ch["plate"][1])}</em></p>'
-        story = f"<div class=\"leaf l\">{fa(ch['title'].lower(), 'h2')}{''.join(f'<p>{E(t)}</p>' for t in ch['text'])}</div>"
-        if notes:   # the story on the left page; on the right, the plate and the maker's notes
-            sp += (f'<section class="spread" id="{ch["key"]}">{reel}{story}'
-                   f'<div class="leaf r mnotes"><div class="pl8">{s.img(sizes="(min-width: 821px) 36vw, 92vw", cls="plate")}{plate_cap}</div>{notes}</div></section>')
-        else:       # a spread no piece enters: its right page is the plate alone (BOOK.md)
-            sp += f'<section class="spread" id="{ch["key"]}">{reel}{story}<div class="leaf r">{s.img(sizes="(min-width: 821px) 42vw, 92vw", cls="plate")}{plate_cap}</div></section>'
-    coda = BOOK_PLATES['coda']
-    body = f'''
-<main class="book">
- <section class="title-page"><div class="lettering ink" data-lettering="ink" role="img" aria-label="PHAÖRA"></div>{fa('a seat is kept for you', 'h1')}<p class="eyebrow">Chapter I</p>
-  <nav class="toc">{''.join(f'<a href="#{c["key"]}">{E(c["title"])}</a>' for c in C.BOOK)}<a href="#coda">Coda</a></nav></section>
- {sp}
- <section class="chapter-black"><div class="lettering offwhite" data-lettering="offwhite" role="img" aria-label="PHAÖRA"></div><p class="fa">chapter i</p></section>
- <section class="spread" id="coda"><div class="leaf l">{fa('coda', 'h2')}{''.join(f'<p>{E(t)}</p>' for t in C.BOOK_CODA['text'])}</div><div class="leaf r">{coda.img(sizes="(min-width: 821px) 42vw, 92vw", cls="plate")}<p class="cap">{E(C.BOOK_CODA['plate'][0])}<br><em>Kept: {E(C.BOOK_CODA['plate'][1])}</em></p></div></section>
- <section class="last"><p>{E(C.BOOK_LAST)}</p></section>
- <section class="end"><p class="fa big">thank you for the pleasure of your company.</p><a class="card-link" href="{REGISTER}"><span class="k fa">kept for</span><span class="blank"></span></a></section>
+            notes += (f'<div class="bn"><p class="bnh">{E(h.upper())} · ENTERS</p><ol>' + ''.join(f'<li>{E(x)}</li>' for x in lines) +
+                      f'</ol><p class="close">{E(close)}</p><a class="more-link" href="{p["page"]}.html">The piece · {E(p["name"])}</a></div>')
+        prev = chs[i - 1] if i else None
+        nxt = chs[i + 1] if i + 1 < len(chs) else None
+        pn = (f'<nav class="bpn">' + (f'<a href="{fn(prev)}"><span>Before</span>{fa(split(prev["title"])[1], "span")}</a>' if prev else '<span></span>') +
+              '<a href="book.html" class="all">The chapters</a>' +
+              (f'<a href="{fn(nxt)}"><span>Next</span>{fa(split(nxt["title"])[1], "span")}</a>' if nxt else '<span></span>') + '</nav>')
+        last = ''
+        if c['key'] == 'coda':
+            last = (f'<section class="blast"><p>{E(C.BOOK_LAST)}</p><p class="fa big">thank you for the pleasure of your company.</p>'
+                    f'<a class="card-link" href="{REGISTER}"><span class="k fa">kept for</span><span class="blank"></span></a></section>')
+        reel = f'<p class="breel fa">{E(c["reel"].lower())}</p>' if c['reel'] else ''
+        body = f'''
+<main class="bchapter" id="{c['key']}">
+ <header class="bhead">{reel}<p class="eyebrow">A seat is kept for you</p><h1>{numeral(n)}{fa(t, 'span', 'bt')}</h1></header>
+ <section class="bspread">
+  <div class="btext">{''.join(f'<p>{E(x)}</p>' for x in c['text'])}</div>
+  <figure class="bplate">{s.img(sizes="(min-width: 821px) 40vw, 92vw", cls="plate")}<figcaption>{E(d)}<br><em>Kept: {E(kept)}</em></figcaption></figure>
+ </section>
+ {f'<section class="bnotes"><p class="eyebrow">The maker’s notes</p>{notes}</section>' if notes else ''}
+ {last}
+ {pn}
 </main>'''
-    page('book.html', 'The book', 'A Seat Is Kept for You: the book of PHAÖRA Chapter I, in two reels.', body, theme='paper', here='book.html')
+        page(fn(c), f"The book · {c['title']}", f"A Seat Is Kept for You, {c['title']}.", body, theme='dark', here='book.html', bodycls='bookdark')
 
 
 def register_page():
