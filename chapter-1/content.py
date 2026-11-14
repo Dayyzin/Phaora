@@ -245,8 +245,8 @@ PIECES = [
  dict(id='lustre', page='lustre', name='Lustre', plain='Necklace', cat='accessories', care='gold', policy='made', ratio='16:9',
   # David, 14 Nov: the house's "Mona Lisa piece, nobody expects to sell". "Nothing at all": no price, no buy, no enquiry
   nosale=True,
-  about="Named for the chandelier. Thirty-seven crystals of faceted rock crystal, largest at the centre, strung on 18k gold, and below them a gold disc with the Ö raised on it.",
-  specs=[('CRYSTALS', 'FACETED ROCK CRYSTAL, 37'), ('GOLD', '18K, POLISHED'), ('DISC', '20.8 MM, THE Ö RAISED'), ('LENGTH', 'ABOUT 420 MM')],
+  about="Named for the chandelier. Thirty-seven crystals of faceted rock crystal, largest at the centre, strung on 18k gold, and below them a gold disc with the Ö raised on it, a lab diamond at its centre.",
+  specs=[('CRYSTALS', 'FACETED ROCK CRYSTAL, 37'), ('GOLD', '18K, POLISHED'), ('DISC', '20.8 MM, THE Ö RAISED, A LAB DIAMOND'), ('LENGTH', 'ABOUT 420 MM')],
   sizes=[],
   views={'front': [LU+'catalogue144/lustre_front_256x144.png'], 'three-quarter': [LU+'catalogue144/lustre_threequarter_256x144.png'], 'back': [LU+'catalogue144/lustre_back_256x144.png']},
   wants={'front': 'the front, 16K render, once David passes its 1600 preview (stand-in: catalogue144 lustre_front_256x144.png; phones: lustre_front_108x144.png)',

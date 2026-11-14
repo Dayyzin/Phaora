@@ -182,7 +182,7 @@ table.sz td{width:9%;white-space:nowrap}
   -webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent),linear-gradient(transparent,#000 9%,#000 91%,transparent);mask-composite:intersect}
 .view .slot.waiting .ph{background:linear-gradient(160deg,rgba(20,22,27,.06),rgba(20,22,27,.02))}
 .vtags .vtag{display:none}
-.preview .vtags .vtag.on{display:block;position:absolute;left:48px;right:48px;top:96px;z-index:4}
+.preview .vtags .vtag.on{display:block;position:absolute;left:48px;right:auto;max-width:min(420px,28vw);top:96px;z-index:4}
 .preview .vtags .tag{position:static}
 .notes{position:absolute;inset:0;pointer-events:none}
 /* the engraving: small capitals cut into the ground, lit from above */
@@ -224,7 +224,7 @@ body.onblack.overwalk:not(.menu-open) .top,body.onblack.overwalk .top .lettering
   .hud .eyebrow{margin-bottom:6px}
   .where{right:20px;bottom:44px;font-size:13px}
   .wcap{left:20px;right:20px;bottom:70px}
-  .preview .vtags .vtag.on{left:20px;right:20px;top:auto;bottom:14px}
+  .preview .vtags .vtag.on{left:20px;right:20px;max-width:none;top:auto;bottom:14px}
   .note .txt{max-width:46vw}
   .note .mk{font-size:13.5px;max-width:46vw}
   .note .val{font-size:11.5px;letter-spacing:.14em}
