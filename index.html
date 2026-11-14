@@ -37,6 +37,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 /* 1. the doors, in the snow */
 #doors{position:absolute;inset:0;z-index:5;overflow:hidden;transition:opacity 1.3s ease}
 #doors.gone{opacity:0;pointer-events:none}
+#pane{position:absolute;inset:0;overflow:hidden}
 #cam{position:absolute;transform-origin:50% 53.1%;transition:transform 2.5s cubic-bezier(.6,0,.3,1)}
 #doors.in #cam{transform:scale(3.3)}
 #cam .still{position:absolute;inset:0;background:url(assets/register/doors.jpg) 0 0/100% 100%}
@@ -130,6 +131,45 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 
 #foot{position:absolute;left:0;right:0;bottom:4px;display:flex;justify-content:space-between;align-items:center;padding:0 22px;z-index:9;font:italic 400 13px 'Cormorant Garamond',serif;color:rgba(239,230,214,.42);pointer-events:none}
 #foot button{pointer-events:auto;padding:10px 0 10px 16px;font:inherit;color:inherit}
+
+/* a computer: the same story laid out for a landscape screen. Nothing above this changes on a phone. */
+@media (min-width:901px) and (orientation:landscape){
+  #frame{width:100vw}
+  .logo{left:44px;top:36px;height:20px}.logo svg,.logo img{height:20px}
+  /* 1. the doors: the night's still stands at its own proportions, the words beside it, the snow over the whole street */
+  #pane{inset:0 auto 0 calc(50% - 56.25vh - 3vw);width:56.25vh;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%)}
+  #doors{cursor:pointer}
+  #doors .dim{background:linear-gradient(#050404b3 0,#05040400 18%,#05040400 70%,#050404cc 100%)}
+  #doors .txt{left:calc(50% + 4vw);right:6vw;top:50%;bottom:auto;transform:translateY(-50%);text-align:left;padding:0;max-width:560px}
+  #doors .ey{font-size:24px}
+  #doors .line{font-size:54px;line-height:1.1;margin-top:22px}
+  #doors .sub{font-size:22px;margin-top:16px}
+  /* 2. the row, across the whole screen */
+  #house .foot{padding-bottom:64px;gap:22px}
+  #hint{font-size:19px;max-width:440px}
+  .slip{font-size:22px;padding:13px 32px 11px}
+  /* a seat's page comes in from the side away from the seat */
+  #piece{left:auto;right:0;top:0;bottom:0;width:min(460px,34vw);transform:translateX(102%);display:flex;flex-direction:column;justify-content:center;
+    padding:40px 48px;box-shadow:-20px 0 60px rgba(0,0,0,.55)}
+  #piece.lft{right:auto;left:0;transform:translateX(-102%);box-shadow:20px 0 60px rgba(0,0,0,.55)}
+  #piece.on,#piece.lft.on{transform:none}
+  #piece img{width:78%}
+  #piece .nm{font-size:34px;margin:14px 0 20px}
+  #piece ol{max-width:340px}
+  #piece li{font-size:18.5px}
+  #piece .x{right:18px;top:14px}
+  /* the card, held up in the middle of the dark */
+  #cardsheet{justify-content:center;padding:0 24px 4vh}
+  #cardsheet .x{right:26px;top:22px}
+  .flip{zoom:1.65}
+  #keep{margin-top:40px}
+  #err{font-size:18px}
+  #terms,#after p{font-size:19px;max-width:440px}
+  #after .ty{font-size:34px;margin:6px 0 16px}
+  #after.on{max-height:420px}
+  #foot{padding:0 44px;bottom:10px;font-size:14px}
+}
 </style><!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -154,7 +194,7 @@ src="https://www.facebook.com/tr?id=1079296041748995&ev=PageView&noscript=1"
   <a class="logo" id="logo" href="/" aria-label="PHAÖRA"><img src="assets/register/lettering-offwhite.svg" alt=""></a>
 
   <section id="doors" aria-label="The doors">
-    <div id="cam">
+    <div id="pane"><div id="cam">
       <div class="still"></div>
       <div id="way">
         <div class="lobby"></div>
@@ -165,13 +205,13 @@ src="https://www.facebook.com/tr?id=1079296041748995&ev=PageView&noscript=1"
         <div class="cut leaf hr" data-x="566,678"></div>
       </div>
       <div id="spill"></div>
-    </div>
+    </div></div>
     <canvas id="snow"></canvas><div class="dim"></div><div class="veil"></div>
     <div class="txt"><div class="ey fa">Chapter I · opens Christmas Eve</div><p class="line fa">A seat is kept for you.</p><p class="sub">The doors open by themselves.</p></div>
   </section>
 
   <section id="house" aria-label="The front row">
-    <div id="row" aria-label="The front row, seen from above: six seats, one kept"><img class="bef" src="assets/register/row_before.webp" srcset="assets/register/row_before.webp 1x, assets/register/row_before@2x.webp 2x" alt=""><img class="aft" src="assets/register/row_after.webp" srcset="assets/register/row_after.webp 1x, assets/register/row_after@2x.webp 2x" alt=""><div class="warm" id="warm"></div></div>
+    <div id="row" aria-label="The front row, seen from above: six seats, one kept"><picture><source media="(min-width:901px) and (orientation:landscape)" srcset="assets/register/row_wide_before.webp 1920w, assets/register/row_wide_before@2x.webp 3200w" sizes="100vw"><img class="bef" src="assets/register/row_before.webp" srcset="assets/register/row_before.webp 1x, assets/register/row_before@2x.webp 2x" alt=""></picture><picture><source media="(min-width:901px) and (orientation:landscape)" srcset="assets/register/row_wide_after.webp 1920w, assets/register/row_wide_after@2x.webp 3200w" sizes="100vw"><img class="aft" src="assets/register/row_after.webp" srcset="assets/register/row_after.webp 1x, assets/register/row_after@2x.webp 2x" alt=""></picture><div class="warm" id="warm"></div></div>
     <div class="sr"><p>The front row</p><p>Tonight it is full but for one.</p></div>
     <div class="foot"><p id="hint"></p><button class="slip fa" id="turn" type="button">Turn the card</button></div>
   </section>
@@ -204,7 +244,9 @@ src="https://www.facebook.com/tr?id=1079296041748995&ev=PageView&noscript=1"
 
 <script>
 (() => {
-  const $ = s => document.querySelector(s), frame = $('#frame');
+  const $ = s => document.querySelector(s), frame = $('#frame'), pane = $('#pane');
+  // a computer gets the landscape layout (the CSS's own query); a phone is untouched
+  const WIDE = matchMedia('(min-width:901px) and (orientation:landscape)');
   const doors = $('#doors'), cam = $('#cam'), way = $('#way'), spill = $('#spill'), house = $('#house'), scrim = $('#scrim'), piece = $('#piece'),
         card = $('#cardsheet'), flip = $('#flip'), nm = $('#nm'), em = $('#em'), keep = $('#keep'), err = $('#err'), after = $('#after'),
         hint = $('#hint'), turn = $('#turn');
@@ -216,7 +258,7 @@ src="https://www.facebook.com/tr?id=1079296041748995&ev=PageView&noscript=1"
   // leaves can be cut out of it where they stand: x 222-334-446 | 456-566-678, y 666-1034, the mullion between.
   const IW = 900, IH = 1600, WAY = { x: 222, y: 666, w: 456, h: 368 };
   function layCam() {
-    const fw = frame.clientWidth, fh = frame.clientHeight, s = Math.max(fw / IW, fh / IH), w = IW * s, h = IH * s, px = v => v * s + 'px';
+    const fw = pane.clientWidth, fh = pane.clientHeight, s = Math.max(fw / IW, fh / IH), w = IW * s, h = IH * s, px = v => v * s + 'px';
     Object.assign(cam.style, { width: w + 'px', height: h + 'px', left: (fw - w) * .5 + 'px', top: (fh - h) * .4 + 'px' });
     Object.assign(way.style, { left: px(WAY.x), top: px(WAY.y), width: px(WAY.w), height: px(WAY.h) });
     Object.assign(spill.style, { left: px(WAY.x - 40), top: px(WAY.y + WAY.h), width: px(WAY.w + 80), height: px(170) });
@@ -238,20 +280,26 @@ src="https://www.facebook.com/tr?id=1079296041748995&ev=PageView&noscript=1"
   // the row as photographed from the rigging (seats/row_above.py): where each seat's cushion and the aisle-end arm land in
   // the picture, as fractions of its width and height; each is a touch target laid over the seat itself, nothing drawn
   const POS = /*POS*/{"points": {"L2": {"x": 0.1139, "y": 0.4998, "w": 0.0423, "h": 0.0529}, "L1": {"x": 0.2097, "y": 0.4999, "w": 0.0557, "h": 0.0537}, "L0": {"x": 0.3081, "y": 0.4996, "w": 0.0665, "h": 0.053}, "R0": {"x": 0.6917, "y": 0.4996, "w": 0.1099, "h": 0.0529}, "R1": {"x": 0.7904, "y": 0.4994, "w": 0.1196, "h": 0.0521}, "R2": {"x": 0.8857, "y": 0.4995, "w": 0.1317, "h": 0.0529}, "arm": {"x": 0.6311, "y": 0.4938}, "card": {"x": 0.124, "y": 0.4895}}}/*POS*/;
-  // the picture is 390 x 844 (the phone); on any other frame it covers it, centred, as the doors' still does
-  function layRow() { const fw = frame.clientWidth, fh = frame.clientHeight, s = Math.max(fw / 390, fh / 844), w = 390 * s, h = 844 * s;
-    Object.assign($('#row').style, { width: w + 'px', height: h + 'px', left: (fw - w) / 2 + 'px', top: (fh - h) / 2 + 'px' }); }
+  // the picture is 390 x 844 (the phone); on any other frame it covers it, centred, as the doors' still does. On a computer
+  // it is the same 8K render cut wide (masters8k/row_full_*_3549x7680.png, rows 2304 to 4762): the stage's edge, the words
+  // in the floor, the row and the rows behind it, at its own resolution, held a little high (40%); POS is carried in by y0 and yh
+  const WROW = { w: 3549, h: 2458, y0: 2304 / 7680, yh: 2458 / 7680, ay: .4 };
+  const rv = () => WIDE.matches ? WROW : { w: 390, h: 844, y0: 0, yh: 1, ay: .5 };
+  function layRow() { const V = rv(), fw = frame.clientWidth, fh = frame.clientHeight, s = Math.max(fw / V.w, fh / V.h), w = V.w * s, h = V.h * s;
+    Object.assign($('#row').style, { width: w + 'px', height: h + 'px', left: (fw - w) / 2 + 'px', top: (fh - h) * V.ay + 'px' }); }
   function row() {
     const r = $('#row'); r.querySelectorAll('.hit').forEach(e => e.remove());
+    const V = rv(), Y = y => (y - V.y0) / V.yh;
     const add = (p, w, h, label, go) => { const b = document.createElement('button'); b.className = 'hit'; b.type = 'button'; b.setAttribute('aria-label', label);
-      Object.assign(b.style, { left: p.x * 100 + '%', top: p.y * 100 + '%', width: w * 100 + '%', height: h * 100 + '%' }); b.addEventListener('click', go); r.appendChild(b); };
-    const P = POS.points || {}, sw = P.R0 && P.R1 ? Math.abs(P.R1.x - P.R0.x) * .96 : .12, sh = .045;
-    ROW.forEach(d => { const p = P[d.code]; if (!p) return; add(p, sw, sh, d.kept ? 'The kept seat' : d.name, () => d.kept ? showCard() : showPiece(d)); });
-    if (P.arm) add(P.arm, sw * .55, sh, ARM.name, () => showPiece(ARM));
-    const c = P.card || P.L2; if (c) Object.assign($('#warm').style, { left: c.x * 100 + '%', top: c.y * 100 + '%' });
+      Object.assign(b.style, { left: p.x * 100 + '%', top: Y(p.y) * 100 + '%', width: w * 100 + '%', height: h * 100 + '%' }); b.addEventListener('click', e => go(p, e)); r.appendChild(b); };
+    const P = POS.points || {}, sw = P.R0 && P.R1 ? Math.abs(P.R1.x - P.R0.x) * .96 : .12, sh = .045 / V.yh;
+    ROW.forEach(d => { const p = P[d.code]; if (!p) return; add(p, sw, sh, d.kept ? 'The kept seat' : d.name, q => d.kept ? showCard() : showPiece(d, q)); });
+    if (P.arm) add(P.arm, sw * .55, sh, ARM.name, q => showPiece(ARM, q));
+    const c = P.card || P.L2; if (c) Object.assign($('#warm').style, { left: c.x * 100 + '%', top: Y(c.y) * 100 + '%' });
   }
 
-  function showPiece(d) {
+  function showPiece(d, q) {
+    piece.classList.toggle('lft', !!(q && q.x > .5));
     $('#pimg').srcset = `assets/register/${d.img}.webp 1x, assets/register/${d.img}@2x.webp 2x`; $('#pimg').src = `assets/register/${d.img}.webp`; $('#pimg').alt = d.name; $('#pname').textContent = d.name;
     $('#pnotes').innerHTML = d.notes.map(n => `<li><span>${n}</span></li>`).join('');
     card.classList.remove('on'); scrim.classList.remove('on', 'deep'); piece.classList.add('on');
@@ -333,6 +381,7 @@ src="https://www.facebook.com/tr?id=1079296041748995&ev=PageView&noscript=1"
   }
   fetch('assets/register/lettering-offwhite.svg').then(r => r.ok ? r.text() : Promise.reject()).then(t => { $('#logo').innerHTML = t; }).catch(() => {});
   addEventListener('resize', () => { layRow(); layCam(); laySnow(); });
+  WIDE.addEventListener('change', () => { row(); layRow(); layCam(); laySnow(); });
   doors.addEventListener('click', open); $('#replay').addEventListener('click', start);
   start();
 })();
