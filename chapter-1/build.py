@@ -318,7 +318,7 @@ def walk_band(p, views, world):
                       f'<span class="txt"><span class="lab">{E(n["l"])}</span><span class="val">{E(n["v"])}</span>{mk}</span></div>')
     wplace, wkept, _, _ = p['world']
     return f'''<section class="walk band" aria-label="A walk around {E(p['name'])}">
-  <div class="stage onblack lit">
+  <div class="stage onblack lit{' endplate' if world.state != 'waiting' else ''}">
    <div class="floor"></div>{wbg}
    <div class="cam">{vhtml}</div><div class="vtags">{vtags}</div>
    <div class="wcap"><p class="eyebrow">Where it is going</p>{fa(wplace, 'p', 'wplace')}<p class="kept">{E(wkept)}</p></div>

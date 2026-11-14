@@ -44,6 +44,7 @@
 
   var tags = {}; root.querySelectorAll('.vtag').forEach(function (el) { tags[el.dataset.v] = el; });
   var wcap = root.querySelector('.wcap');
+  var END_PLATE = stage.classList.contains('endplate');
   function frame() {
     // the walk runs over N stops; one more segment past the last pulls back into the piece's world
     var P = Math.max(0, Math.min(N, (scrollY - top0) / (H * .85))), p = Math.min(N - 1, P), wv = ease(P - (N - 1));
@@ -57,8 +58,10 @@
     if (a.v === b.v || t === 0 || t === 1) {
       var st = t === 1 ? b : a, z = a.v === b.v ? Math.exp(lerp(Math.log(a.z), Math.log(b.z), t)) : st.z;
       var f = a.v === b.v ? [lerp(a.f[0], b.f[0], t), lerp(a.f[1], b.f[1], t)] : st.f;
-      if (wv > 0) { z = lerp(z, .62, wv); f = [lerp(f[0], .5, wv), lerp(f[1], .5, wv)]; }
-      var c = cam(st.v, f, z); if (wv > 0) c.tx += W * (phone ? 0 : .18) * wv, c.ty += H * (phone ? -.08 : 0) * wv;
+      // the end (David, 14 Nov: never the cut-out floating over a blurred room): on the world plate itself, the piece in
+      // it (.endplate: the cut-out fades as the plate comes up whole), or else on the front, full, with where it is going
+      if (wv > 0) { z = lerp(z, END_PLATE ? .62 : .9, wv); f = [lerp(f[0], .5, wv), lerp(f[1], END_PLATE ? .5 : .46, wv)]; }
+      var c = cam(st.v, f, z); if (wv > 0 && END_PLATE) c.tx += W * (phone ? 0 : .18) * wv, c.ty += H * (phone ? -.08 : 0) * wv;
       place(V[st.v], c); cams[st.v] = c; shown = st.v;
     } else {   // round the piece: the one view turns away edge-on, the next turns in
       var sw = W * (phone ? .1 : .14);
@@ -67,7 +70,8 @@
       yawBg = (t < .5 ? t : t - 1) * 2;
     }
     Object.keys(tags).forEach(function (v) { tags[v].classList.toggle('on', v === shown && wv < .5); });
-    if (bg) { bg.style.opacity = wv; bg.style.transform = 'scale(' + (1.12 - .08 * wv) + ')'; }
+    if (bg) { bg.style.opacity = END_PLATE ? wv : 0; bg.style.transform = 'scale(' + (1.12 - .08 * wv) + ')'; }
+    if (END_PLATE && shown) V[shown].style.opacity = 1 - Math.min(1, wv * 1.6);
     if (wcap) wcap.style.opacity = Math.max(0, wv * 1.4 - .4);
     if (hud) hud.style.opacity = Math.max(0, 1 - P * (phone ? 3 : 2.2));
     if (bar) bar.style.transform = 'scaleX(' + (P / N) + ')';

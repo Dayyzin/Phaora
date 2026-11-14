@@ -197,15 +197,15 @@ PIECES = [
   sizes=[],
   views={'front': [L+'matinee/matinee-front.webp'], 'open': []},
   wants={'front': B+'weekender/site/matinee_front_16k.png'},
-  details=[('closeup', 'The pressed row', ['git:'+B+'weekender/site/preview_16k_closeup.png'], False), ('charm', 'The charm', [], False), ('lining', 'The couple on the suede', [], False)],
+  details=[('closeup', 'The pressed row', ['git:'+B+'weekender/site/preview_16k_closeup.png'], False), ('lining', 'The couple on the suede', [], False)],
   world=('The suite’s bench, morning', 'The door ajar, the rail by the window empty.', 'C14', ['departments/apparel/marketing/story/preview/60_the-matinee_suite-bench_last_256x144.png', ST+'ca-14-the-matinee_108x144.png']),
   stops=[
    dict(v='front', f=(.5, .5), z=1, n=[((.5, .95), 'DIMENSIONS', '25 × 11 × 11.5 CM', 'One panel of black calfskin, 2 mm thick, wrapped round a flat base and closed by two piped ends.')]),
    dict(v='front', f=(.55, .2), z=2.2, n=[((.55, .12), 'HANDLES', 'TWO SHORT ROLLED', 'On gold rings, or a strap 20 mm wide and 3.5 mm thick.')]),
-   dict(v='front', f=(.55, .35), z=2.4, n=[((.6, .33), 'ZIP', 'GOLD, TWO SLIDERS', '')]),
    dict(v='front', f=(.45, .62), z=2.0, n=[((.4, .6), 'LEATHER', 'BLACK CALFSKIN', 'One row of squares pressed round the body, 0.45 mm deep, each 43 by 45 mm.'),
                                          ((.15, .9), 'FEET', 'FOUR, GOLD', '')]),
-   dict(v='front', f=(.85, .4), z=2.4, n=[((.86, .42), 'CHARM', '23 × 38 MM', 'Hung from the front handle’s ring with a 12.5 mm gold plate. Inside: cream suede, printed with a couple in black halftone.')]),
+   # David, 14 Nov: the charm is retired; the zip's pulls close up in its place
+   dict(v='front', f=(.56, .33), z=3.2, n=[((.6, .31), 'THE PULLS', 'GOLD, TWO SLIDERS', 'It closes on a gold zip with two sliders.')]),
   ]),
  dict(id='sunglasses', page='ofusca', name='Öfusca', plain='Sunglasses', cat='accessories', care='gold', policy='made', ratio='16:9',
   about="For the walk from the car to the lobby. Glossy black cat-eyes, gradient lenses, a gold Ö at each temple, and a black leather case for when the lights go down.",

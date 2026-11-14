@@ -1,7 +1,7 @@
 # SLOTS: every image and film on the Chapter I site
 
-Built by `build.py`. 146 slots: **5 final**, **118 holding a stand-in** (the best approved
-render or still we have, at 144p or 1600), **23 waiting** (a quiet placeholder of the right ratio, labelled
+Built by `build.py`. 145 slots: **5 final**, **118 holding a stand-in** (the best approved
+render or still we have, at 144p or 1600), **22 waiting** (a quiet placeholder of the right ratio, labelled
 with what it waits for).
 
 **To add a photo:** put the file in the slot's folder as `master.png` (or `.jpg`, `.webp`, `.tif`; a film: `master.mp4`),
@@ -114,7 +114,6 @@ path. On phaora.com the labels never show.
 | coema | `img/coema/front/` | departments/apparel/new-pieces-2026-11/build/weekender/site/matinee_front_16k.png (16K, 15360 × 8640) | stand-in: departments/apparel/website/chapter2/assets/line/matinee/matinee-front.webp (1274 × 1021) |
 | coema | `img/coema/open/` | open view, 8K (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
 | coema | `img/coema/detail-closeup/` | the pressed row, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/new-pieces-2026-11/build/weekender/site/preview_16k_closeup.png (1600 × 900) |
-| coema | `img/coema/detail-charm/` | the charm, 8K close-up (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
 | coema | `img/coema/detail-lining/` | the couple on the suede, 8K close-up (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
 | coema | `img/coema/world/` | C14: the last frame, the world plate (the suite’s bench, morning) (8K, 5760 × 7680) | stand-in: departments/apparel/marketing/story/preview/60_the-matinee_suite-bench_last_256x144.png (256 × 144) |
 | coema | `img/coema/hero/` | the director’s signature shot: Open from above, the kiss inside (story/product-stills/DIRECTOR-SHOTS.md; its 144p preview stands in) (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/product-stills/coema_ref11_256x144.png (256 × 144) |
