@@ -8,6 +8,8 @@ B = 'departments/apparel/new-pieces-2026-11/build/'
 L = 'departments/apparel/website/chapter2/assets/line/'
 ST = 'departments/apparel/marketing/story/stills/'
 CH2 = 'departments/apparel/website/chapter2/'
+OI = B + 'oitava/'
+LU = B + 'lustre/'
 
 POLICY_PRESALE = "Made to order. We email your delivery date once production is confirmed. Cancel for a full refund any time before production starts."
 POLICY_KNIT = "Size exchanges within 14 days of delivery, unworn and with tags."
@@ -20,7 +22,7 @@ CARE = {
     'gold': "Keep it in its pouch, apart from other pieces. Wipe with a soft dry cloth.",
 }
 
-# One entry per piece page, in line.json order (Öitava, Lustre and the crystal Ö get no page yet).
+# One entry per piece page, in line.json order (the crystal Ö is a gift and gets no page).
 # views: the walk's views, front first (its slot is the 16K front; the others are 8K).
 #   src: the best file we have now, newest approved first (repo paths; a 'git:' path is read from the commit).
 # world: SHORTS.md's coming attraction for the piece: the place and the kept place, and its still.
@@ -219,6 +221,46 @@ PIECES = [
    dict(v='front', f=(.9, .25), z=2.4, n=[((.93, .25), 'PLATES', 'GOLD, THE Ö ENGRAVED', 'A round gold plate, 8 mm, on the outside of each temple, the mark 5.9 mm tall.')]),
    dict(v='flat', f=(.5, .5), z=1.2, n=[((.15, .3), 'TEMPLES', '130 MM', 'On five-barrel steel hinges, a flat steel core in each.'),
                                        ((.8, .8), 'CASE', 'BLACK LEATHER', '164 by 60 by 52 mm, under a 22 mm gold disc. Inside the case: cream suede.')]),
+  ]),
+ dict(id='oitava', page='oitava', name='Öitava', plain='Pendant', cat='accessories', care='gold', policy='made', ratio='16:9',
+  about="Named for the unit Minas weighed its gold in. The Ö in solid 18k gold: two crescents open at top and foot, a fine spindle with its four-point star, two balls above, on a fine gold chain.",
+  specs=[('METAL', 'SOLID 18K YELLOW GOLD, POLISHED'), ('SIZE', '30.0 × 23.9 MM'), ('CHAIN', 'FINE 18K CABLE CHAIN')],
+  sizes=[],
+  views={'front': [OI+'catalogue144/oitava_front_256x144.png'], 'three-quarter': [OI+'catalogue144/oitava_threequarter_256x144.png'], 'back': [OI+'catalogue144/oitava_back_256x144.png']},
+  wants={'front': 'the front, 16K render, once David passes its 1600 preview (stand-in: catalogue144 oitava_front_256x144.png; phones: oitava_front_108x144.png)',
+         'three-quarter': 'three-quarter view, 8K (stand-in: catalogue144 oitava_threequarter_256x144.png; phones: _108x144)',
+         'back': 'back view, 8K (stand-in: catalogue144 oitava_back_256x144.png; phones: _108x144)'},
+  details=[('detail', 'The balls, the bail and the star', [OI+'catalogue144/oitava_detail_256x144.png'], False),
+           ('shadow', 'Its shadow in the projector’s beam', [OI+'stills/oitava_shadow_256x144.png'], False)],
+  world=('The wall', 'Hung on its chain, one hard shadow beside it.', 'the still', [OI+'stills/oitava_wall_108x144.png']),
+  stops=[
+   dict(v='front', f=(.5, .5), z=1, n=[((.5, .98), 'SIZE', '30.0 × 23.9 MM', 'From the bail’s top to the foot, and across the crescents.')]),
+   dict(v='front', f=(.5, .2), z=2.4, n=[((.66, .2), 'BALLS', '3.1 MM', 'Two, 4.7 mm apart centre to centre, either side of the bail.'),
+                                        ((.5, .06), 'BAIL', 'A TAPERED LOOP', '5.4 mm tall, 1.9 mm across at its top and 0.9 mm at its foot, edge-on to the front.')]),
+   dict(v='front', f=(.5, .6), z=2.2, n=[((.5, .6), 'THE SPINDLE', 'A FOUR-POINT STAR', 'A fine needle, rounded in section, its sharp star at the middle.')]),
+   dict(v='front', f=(.25, .65), z=2.2, n=[((.12, .65), 'CRESCENTS', '4.1 MM AT THE MIDDLE', 'Open at top and foot, each drawn to a sharp point, up to 2.8 mm proud at the front and 1.0 mm at the back.')]),
+   dict(v='three-quarter', f=(.5, .5), z=1.1, n=[((.5, .04), 'CHAIN', 'FINE 18K CABLE', '1.1 mm links of 0.22 mm wire.')]),
+   dict(v='back', f=(.5, .5), z=1.1, n=[((.5, .96), 'METAL', 'SOLID 18K YELLOW GOLD', 'Polished throughout.')]),
+  ]),
+ dict(id='lustre', page='lustre', name='Lustre', plain='Necklace', cat='accessories', care='gold', policy='made', ratio='16:9',
+  about="Named for the chandelier. Thirty-seven crystals of faceted rock crystal, largest at the centre, strung on 18k gold, and below them a gold disc with the Ö raised on it.",
+  specs=[('CRYSTALS', 'FACETED ROCK CRYSTAL, 37'), ('GOLD', '18K, POLISHED'), ('DISC', '20.8 MM, THE Ö RAISED'), ('LENGTH', 'ABOUT 420 MM')],
+  sizes=[],
+  views={'front': [LU+'catalogue144/lustre_front_256x144.png'], 'three-quarter': [LU+'catalogue144/lustre_threequarter_256x144.png'], 'back': [LU+'catalogue144/lustre_back_256x144.png']},
+  wants={'front': 'the front, 16K render, once David passes its 1600 preview (stand-in: catalogue144 lustre_front_256x144.png; phones: lustre_front_108x144.png)',
+         'three-quarter': 'three-quarter view, 8K (stand-in: catalogue144 lustre_threequarter_256x144.png; phones: _108x144)',
+         'back': 'back view, 8K (stand-in: catalogue144 lustre_back_256x144.png; phones: _108x144)'},
+  details=[('detail', 'The disc and the centre crystals', [LU+'catalogue144/lustre_detail_256x144.png'], False),
+           ('shadow', 'Its shadow in the projector’s beam', [LU+'stills/lustre_shadow_256x144.png'], False)],
+  world=('The vanity', 'The mirrored tray, the compact’s lid closing.', 'the still', [LU+'stills/lustre_tray_108x144.png']),
+  stops=[
+   dict(v='front', f=(.5, .5), z=1, n=[((.5, .01), 'LENGTH', 'ABOUT 420 MM', 'Clasp to clasp. Laid flat, it closes in a teardrop.')]),
+   dict(v='front', f=(.5, .72), z=2.0, n=[((.5, .62), 'CRYSTALS', 'FACETED ROCK CRYSTAL', 'Water-clear, each a faceted round, drilled 1.0 mm: 16.0 mm at the centre, falling to 5.2 mm, then 5.0 mm behind the neck.'),
+                                         ((.85, .7), 'GOLD', '18K, POLISHED', 'Between the larger crystals, two domed rondelles and a knife-edge washer; between the smaller, one rondelle. An 18k wire, 0.3 mm, through every bore.')]),
+   dict(v='front', f=(.5, .9), z=2.6, n=[((.62, .9), 'DISC', '20.8 MM', 'A satin field. The mark raised 0.35 mm and polished, a 1.6 mm princess diamond set on point at its middle, in four fine claws.')]),
+   dict(v='front', f=(.5, .16), z=2.2, n=[((.5, .03), 'CLASP', '18K BOX CLASP', '9 by 5 by 4 mm.')]),
+   dict(v='three-quarter', f=(.5, .5), z=1.1, n=[]),
+   dict(v='back', f=(.5, .85), z=1.8, n=[((.62, .86), 'BAIL', 'A TUBE BAIL', '2.4 mm wide, on a 2.5 mm jump ring.')]),
   ]),
  dict(id='silk_scarf', page='cordel', name='Cordel', plain='Silk scarf', cat='accessories', care='silk', policy='made', ratio='16:9',
   about="Chapter I in four frames. A film strip running down a 90 cm square of silk twill, the Ö in one corner like the studio's mark.",

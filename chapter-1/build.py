@@ -299,6 +299,8 @@ def piece_page(p, prev, nxt):
     vhtml = ''.join(f'<div class="view" data-v="{v}">{s.img(sizes="(min-width: 821px) 180vw, 320vw", loading="eager" if v == first else "lazy")}</div>' for v, s in views.items())
     vtags = ''.join(f'<div class="vtag" data-v="{v}">{s.tag()}</div>' for v, s in views.items())
     ground = views[first].ground if views[first].state != 'waiting' else None
+    # a render on a black ground (the jewellery's velvet) takes the cream ink over the walk
+    onblack = bool(ground) and sum(int(ground[k:k + 2], 16) for k in (1, 3, 5)) < 3 * 60
     # the world, where the walk ends: its still (a 144p still is only ever shown soft)
     wbg = (f'<div class="worldbg{" soft" if world.w < 900 else ""}" style="background-image:url({world.src(1600)})"></div>' if world.state != 'waiting' else '<div class="worldbg none"></div>')
     notes_html = ''
@@ -325,7 +327,7 @@ def piece_page(p, prev, nxt):
     body = f'''
 <main class="piece" data-id="{p['id']}">
  <section class="walk" aria-label="A walk around {E(p['name'])}">
-  <div class="stage"{f' style="--ground:{ground}"' if ground else ''}>
+  <div class="stage{' onblack' if onblack else ''}"{f' style="--ground:{ground}"' if ground else ''}>
    <div class="floor"></div>{wbg}
    <div class="cam">{vhtml}</div><div class="vtags">{vtags}</div>
    <div class="wcap"><p class="eyebrow">Where it is going</p>{fa(wplace, 'p', 'wplace')}<p class="kept">{E(wkept)}</p></div>
@@ -365,7 +367,7 @@ def piece_page(p, prev, nxt):
  <section class="pack"><p class="eyebrow">The packaging</p><p class="lede">The house lights go down. Black board, cream tissue the colour of the screen, and one gold disc between you and the first scene.</p><div class="grid g3">{pkg}</div></section>
  <nav class="pn"><a href="{prev['page']}.html"><span>Before</span>{fa(prev['name'], 'span')}</a><a href="line.html" class="all">The line</a><a href="{nxt['page']}.html"><span>Next</span>{fa(nxt['name'], 'span')}</a></nav>
 </main>'''
-    page(f"{p['page']}.html", f"{p['name']}, {p['plain'].lower()}", p['about'], body, theme='light', scripts=['assets/js/walk.js'], here='line.html', bodycls='piecepage')
+    page(f"{p['page']}.html", f"{p['name']}, {p['plain'].lower()}", p['about'], body, theme='light', scripts=['assets/js/walk.js'], here='line.html', bodycls='piecepage' + (' onblack' if onblack else ''))
     return views
 
 
@@ -570,6 +572,8 @@ NAMES = [
  ('Öbolo', 'The card holder', 'The small coin paid for passage.'),
  ('Cordel', 'The silk scarf', 'Brazil’s string literature: black-and-cream woodcut booklets hung in a row on a cord, like the scarf’s frames.'),
  ('Öfusca', 'The sunglasses', '“She dazzles”, and also “she darkens”.'),
+ ('Öitava', 'The Ö pendant', 'The unit Minas weighed its gold in, about 3.6 g.'),
+ ('Lustre', 'The Marquee necklace', 'The Portuguese word for a chandelier.'),
 ]
 
 ST = C.ST

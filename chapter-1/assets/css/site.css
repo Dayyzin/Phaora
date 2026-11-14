@@ -208,6 +208,16 @@ table.sz td{width:9%;white-space:nowrap}
 .prog i{position:absolute;left:0;top:0;height:1px;width:100%;transform-origin:0 0;transform:scaleX(0);background:rgba(20,22,27,.7)}
 .hint{position:absolute;left:0;right:0;bottom:40px;text-align:center;margin:0;font:italic 400 14px var(--serif);opacity:.55;transition:opacity .5s}
 .walk.moved .hint{opacity:0}
+/* a render on a black ground (the jewellery's velvet): the same engraving, in cream */
+body.onblack.overwalk:not(.menu-open) .top,body.onblack.overwalk .top .lettering.ink{color:var(--cream)}
+.stage.onblack .hud,.stage.onblack .where,.stage.onblack .hint{color:var(--cream)}
+.stage.onblack .prog{background:rgba(239,230,214,.18)}.stage.onblack .prog i{background:rgba(239,230,214,.75)}
+.stage.onblack .note .pin{border-color:var(--cream);background:rgba(0,0,0,.45);box-shadow:none}
+.stage.onblack .note .lead{background:rgba(239,230,214,.55);box-shadow:none}
+.stage.onblack .note .lab{color:#b9ad97;text-shadow:none}
+.stage.onblack .note .val{color:var(--cream);text-shadow:0 1px 0 rgba(0,0,0,.6)}
+.stage.onblack .note .mk{color:#d8ccb7;text-shadow:none}
+.stage.onblack .note.plaque .txt{background:rgba(12,10,8,.78);box-shadow:0 10px 30px -14px rgba(0,0,0,.8)}
 @media (max-width:820px){
   .hud{left:20px;bottom:auto;top:76px}
   .hud .pname{font-size:38px}

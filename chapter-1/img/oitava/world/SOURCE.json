@@ -1,0 +1,17 @@
+{
+ "source": "departments/apparel/new-pieces-2026-11/build/oitava/stills/oitava_wall_108x144.png",
+ "sig": "oitava_wall_108x144.png:25297",
+ "final": false,
+ "files": [
+  "w108.webp"
+ ],
+ "w": 108,
+ "h": 144,
+ "bbox": [
+  0.2222,
+  0.2778,
+  0.8148,
+  0.7778
+ ],
+ "ground": "#aaa297"
+}

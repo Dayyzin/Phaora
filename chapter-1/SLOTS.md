@@ -1,6 +1,6 @@
 # SLOTS: every image and film on the Chapter I site
 
-Built by `build.py`. 118 slots: **5 final**, **90 holding a stand-in** (the best approved
+Built by `build.py`. 130 slots: **5 final**, **102 holding a stand-in** (the best approved
 render or still we have, at 144p or 1600), **23 waiting** (a quiet placeholder of the right ratio, labelled
 with what it waits for).
 
@@ -111,6 +111,18 @@ path. On phaora.com the labels never show.
 | ofusca | `img/ofusca/detail-plate/` | the gold plate, 8K close-up (8K, 7680 × 4320) | FINAL: departments/apparel/new-pieces-2026-11/build/sunglasses/site/sunglasses_plate_8k.jpg (7680 × 4320) |
 | ofusca | `img/ofusca/detail-case/` | the case, 8K close-up (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
 | ofusca | `img/ofusca/world/` | C6: the last frame, the world plate (the car, at night) (8K, 5760 × 7680) | stand-in: departments/apparel/marketing/story/stills/ca-06-star-in-shades_108x144.png (108 × 144) |
+| oitava | `img/oitava/front/` | the front, 16K render, once David passes its 1600 preview (stand-in: catalogue144 oitava_front_256x144.png; phones: oitava_front_108x144.png) (16K, 15360 × 8640) | stand-in: departments/apparel/new-pieces-2026-11/build/oitava/catalogue144/oitava_front_256x144.png (256 × 144) |
+| oitava | `img/oitava/three-quarter/` | three-quarter view, 8K (stand-in: catalogue144 oitava_threequarter_256x144.png; phones: _108x144) (8K, 7680 × 4320) | stand-in: departments/apparel/new-pieces-2026-11/build/oitava/catalogue144/oitava_threequarter_256x144.png (256 × 144) |
+| oitava | `img/oitava/back/` | back view, 8K (stand-in: catalogue144 oitava_back_256x144.png; phones: _108x144) (8K, 7680 × 4320) | stand-in: departments/apparel/new-pieces-2026-11/build/oitava/catalogue144/oitava_back_256x144.png (256 × 144) |
+| oitava | `img/oitava/detail-detail/` | the balls, the bail and the star, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/new-pieces-2026-11/build/oitava/catalogue144/oitava_detail_256x144.png (256 × 144) |
+| oitava | `img/oitava/detail-shadow/` | its shadow in the projector’s beam, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/new-pieces-2026-11/build/oitava/stills/oitava_shadow_256x144.png (256 × 144) |
+| oitava | `img/oitava/world/` | the still: the last frame, the world plate (the wall) (8K, 5760 × 7680) | stand-in: departments/apparel/new-pieces-2026-11/build/oitava/stills/oitava_wall_108x144.png (108 × 144) |
+| lustre | `img/lustre/front/` | the front, 16K render, once David passes its 1600 preview (stand-in: catalogue144 lustre_front_256x144.png; phones: lustre_front_108x144.png) (16K, 15360 × 8640) | stand-in: departments/apparel/new-pieces-2026-11/build/lustre/catalogue144/lustre_front_256x144.png (256 × 144) |
+| lustre | `img/lustre/three-quarter/` | three-quarter view, 8K (stand-in: catalogue144 lustre_threequarter_256x144.png; phones: _108x144) (8K, 7680 × 4320) | stand-in: departments/apparel/new-pieces-2026-11/build/lustre/catalogue144/lustre_threequarter_256x144.png (256 × 144) |
+| lustre | `img/lustre/back/` | back view, 8K (stand-in: catalogue144 lustre_back_256x144.png; phones: _108x144) (8K, 7680 × 4320) | stand-in: departments/apparel/new-pieces-2026-11/build/lustre/catalogue144/lustre_back_256x144.png (256 × 144) |
+| lustre | `img/lustre/detail-detail/` | the disc and the centre crystals, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/new-pieces-2026-11/build/lustre/catalogue144/lustre_detail_256x144.png (256 × 144) |
+| lustre | `img/lustre/detail-shadow/` | its shadow in the projector’s beam, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/new-pieces-2026-11/build/lustre/stills/lustre_shadow_256x144.png (256 × 144) |
+| lustre | `img/lustre/world/` | the still: the last frame, the world plate (the vanity) (8K, 5760 × 7680) | stand-in: departments/apparel/new-pieces-2026-11/build/lustre/stills/lustre_tray_108x144.png (108 × 144) |
 | cordel | `img/cordel/front/` | departments/apparel/new-pieces-2026-11/build/silk-scarf/site/silk_scarf_front_16k.png (16K, 15360 × 8640) | stand-in: departments/apparel/website/chapter2/assets/line/silk_scarf/silk-scarf-front.webp (1597 × 1335) |
 | cordel | `img/cordel/knot/` | knot view, 8K (8K, 7680 × 4320) | stand-in: departments/apparel/website/chapter2/assets/line/silk_scarf/silk-scarf-knot.webp (839 × 1455) |
 | cordel | `img/cordel/detail-print/` | the print, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/website/chapter2/assets/line/silk_scarf/silk-scarf-closeup-print.webp (1600 × 1600) |

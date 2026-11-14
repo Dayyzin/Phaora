@@ -1,0 +1,17 @@
+{
+ "source": "departments/apparel/new-pieces-2026-11/build/oitava/stills/oitava_shadow_256x144.png",
+ "sig": "oitava_shadow_256x144.png:48862",
+ "final": false,
+ "files": [
+  "w256.webp"
+ ],
+ "w": 256,
+ "h": 144,
+ "bbox": [
+  0.0,
+  0.0,
+  1.0,
+  1.0
+ ],
+ "ground": "#b6b4b1"
+}

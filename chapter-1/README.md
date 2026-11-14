@@ -7,10 +7,10 @@ To add a photo: drop it in its slot's folder as `master.<ext>` and run `python3 
 
 Open it through any static server from this folder. Nothing here goes to phaora.com.
 
-## Pages (27)
+## Pages (26)
 - `index.html`: the opening (the Veil Coat's shadow, one turn, 9 s, frames from the shadows branch d22dd59f), the
   live register's intro film, then the house: the lettering, the line, and the turning room (Gelosia, Heliodora, Ödara).
-- `line.html` and the 15 piece pages (line.json; Öitava, Lustre and the crystal Ö get no page yet).
+- `line.html` and the 15 piece pages (line.json; the crystal Ö is a gift and gets no page).
 - `film.html`, `book.html` (BOOK.md, two reels, with its plates), `register.html` (the kept seat and its reward).
 - `house.html`, `care.html`, `sizes.html`, `returns.html`, `contact.html`, `privacy.html`, `terms.html`.
 
