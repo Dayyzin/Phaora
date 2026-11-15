@@ -52,7 +52,7 @@
   // the box the piece fills in the room: centre stage, the text either side (beneath, on a phone)
   const box = (w, h) => {
     const W = innerWidth, H = innerHeight, p = phone();
-    const bw = p ? W * .98 : W * .46, bh = p ? H * .52 : H * .8, cy = p ? H * .44 : H * .52;
+    const bw = p ? W * .98 : W * .4, bh = p ? H * .52 : H * .8, cy = p ? H * .44 : H * .52;
     const k = Math.min(bw / w, bh / h); return { w: w * k, h: h * k, x: (W - w * k) / 2, y: cy - h * k / 2 };
   };
   const rectOf = el => { // the visible picture inside an object-fit:contain img
@@ -79,11 +79,11 @@
     const iw = small.naturalWidth, ih = small.naturalHeight, to = box(iw, ih); place(to);
     if (push) { history.pushState({ piece: it.id }, '', '?piece=' + it.id); pushed = true; }
     document.title = it.querySelector('.t').textContent + ' · ' + title0;
-    document.documentElement.classList.add('viewing'); it.classList.add('chosen'); pv.setAttribute('aria-hidden', 'false');
+    document.documentElement.classList.add('viewing'); it.classList.add('chosen', 'hid'); pv.setAttribute('aria-hidden', 'false');
     pv.classList.add('open');
     load(it.dataset.full).then(src => { if (cur === it && !fig.classList.contains('turned')) img.src = src; });
     if (still) { pv.classList.add('shown'); busy = false; return; }
-    const a = rectOf(small); small.style.visibility = 'hidden';
+    const a = rectOf(small);
     const lift = { x: a.x - a.w * .02, y: a.y - a.h * .06, w: a.w * 1.04, h: a.h * 1.04 };
     await fig.animate([{ transform: from(a, to) }, { transform: from(lift, to), offset: .14 }, { transform: 'none' }],
       { duration: T, easing: EASE }).finished;
@@ -97,7 +97,7 @@
     if (onScreen) await fig.animate([{ transform: 'none' }, { transform: from(a, { x: to.left, y: to.top, w: to.width, h: to.height }) }],
       { duration: T * .8, easing: EASE, fill: 'forwards' }).finished;
     else await fig.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 500, fill: 'forwards' }).finished;
-    small.style.visibility = ''; pv.classList.remove('open'); pv.setAttribute('aria-hidden', 'true');
+    it.classList.remove('hid'); pv.classList.remove('open'); pv.setAttribute('aria-hidden', 'true');
     fig.getAnimations().forEach(x => x.cancel()); it.classList.remove('chosen'); cur = null; busy = false;
     document.title = title0;
   }
