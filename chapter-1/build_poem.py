@@ -178,7 +178,7 @@ def build_chapter(ch, dev, roomcap, pmap):
         if f.shape[1] / f.shape[0] > fa + 0.01:   # the frame is narrower than the scene: its middle, toward the push-in's centre
             cw = int(round(f.shape[0] * fa)); cx = int(np.clip(f.shape[1] * centre[0] - cw / 2, 0, f.shape[1] - cw)); f = f[:, cx:cx + cw]
         elif f.shape[1] / f.shape[0] < fa - 0.01:   # wider than the scene: its middle band, toward the push-in's centre
-            ch = int(round(f.shape[1] / fa)); cy = int(np.clip(f.shape[0] * centre[1] - ch / 2, 0, f.shape[0] - ch)); f = f[cy:cy + ch]
+            bh = int(round(f.shape[1] / fa)); cy = int(np.clip(f.shape[0] * centre[1] - bh / 2, 0, f.shape[0] - bh)); f = f[cy:cy + bh]
         h, w = f.shape[:2]; A = pushed(f, i, n, centre)
         mx = (A[0, 0] * u * w + A[0, 2]).astype(np.float32); my = (A[1, 1] * v * h + A[1, 2]).astype(np.float32)
         s = cv2.remap(f, mx, my, cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT).astype(np.float32) / 255
