@@ -679,7 +679,10 @@ def catalogue_home():
         Cc = (piece[..., :3] * piece[..., 3:] + out[..., :3] * out[..., 3:] * (1 - piece[..., 3:])) / np.maximum(A, 1e-6)
         res = Image.fromarray((np.dstack([Cc, A]) * 255).clip(0, 255).astype(np.uint8), 'RGBA')
         bb = res.getchannel('A').point(lambda v: 255 if v > 6 else 0).getbbox()   # the piece and its shadow only: no empty margin to shrink it
-        if bb: res = res.crop(bb)
+        if bb:   # but the piece stays at the image's centre, its shadow hanging to the right (David: "aren't centered together")
+            pb_ = Image.fromarray((piece[..., 3] * 255).astype(np.uint8)).point(lambda v: 255 if v > 24 else 0).getbbox()
+            cx = (pb_[0] + pb_[2]) / 2; half = max(cx - bb[0], bb[2] - cx)
+            res = res.crop((round(cx - half), bb[1], round(cx + half), bb[3]))
         dst = 'assets/catalogue/shadowed/' + os.path.basename(src)
         res.save(HERE / dst, 'WEBP', quality=90, alpha_quality=100, method=6)
         return dst
