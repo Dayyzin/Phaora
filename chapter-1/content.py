@@ -601,3 +601,9 @@ PRICES = {
 WALK = {'veil_coat', 'oitava', 'muse_bomber', 'po_tophandle', 'matinee', 'the_reel', 'lustre'}
 # the pieces whose in-world image David has passed (the full-size <page>_world.jpg comes into its slot)
 WORLD_PASSED = {'veil_coat', 'silk_scarf', 'sunglasses', 'lustre', 'oitava', 'muse_bomber'}
+
+# the cut-outs' enclosed backdrop keyed (build.clean_cutout): the pieces with gaps (sleeves, handles, straps, temples).
+# Not the knits, the slip, the scarf or the jewellery: their own neutral whites (a print, a satin, a crystal) would go too.
+KEY_GAPS = {'veil_coat', 'muse_bomber', 'po_tophandle', 'matinee', 'the_reel', 'card_holder', 'sunglasses', 'opera_gloves', 'disc_belt'}
+SLIVERS = {'veil_coat', 'muse_bomber'}   # a garment's thin gaps too (a cuff against the skirt)
+CUT_OPTS = {'disc_belt': dict(bright=140, smooth=3)}   # Coaraci: the grey floor seen inside its coil, and its stepped outline

@@ -182,7 +182,7 @@ def main():
             ca[..., 3] *= 1 - ndimage.gaussian_filter(pale.astype(np.float32), 1.2)
             cut = Image.fromarray(ca.astype(np.uint8), 'RGBA')
         fr = frame(cut)
-        fr.save(os.path.join(A, 'room', f'{pid}.webp'), 'WEBP', quality=90, alpha_quality=100, method=6)
+        fr.save(os.path.join(A, 'room', 'raw', f'{pid}.webp'), 'WEBP', quality=90, alpha_quality=100, method=6)
         if not r.get('pins'): pins(pid)
         if not r.get('caster'):
             pillow(pid, fr); fits[pid] = dict(PILLOW_FIT, geo=f'caster-{pid}')
@@ -190,13 +190,14 @@ def main():
     json.dump(fits, open(os.path.join(A, 'room', 'fits.json'), 'w'), indent=1)
     walk_cuts(piece)
     walk_mattes()
+    room_finals()
 
 
 def walk_cuts(piece):
     """The walk-around's other views on the product page's dark band: each stand-in view cut clean of its light ground
     shadow (assets/walk/<id>_<view>.webp), as the front's room cut-out is. A view's own master, once it lands, is used as
     it is."""
-    os.makedirs(os.path.join(A, 'walk'), exist_ok=True)
+    os.makedirs(os.path.join(A, 'walk', 'raw'), exist_ok=True)
     for pid in C.ROOM:
         p = piece[pid]; r = p['room']
         for v in list(p['views'])[1:]:
@@ -220,69 +221,36 @@ def walk_cuts(piece):
             a = np.asarray(cut); ys, xs = np.nonzero(a[..., 3] > 5); pad = 4
             cut = cut.crop((max(0, xs.min() - pad), max(0, ys.min() - pad), xs.max() + pad + 1, ys.max() + pad + 1))
             if cut.height > 1600: cut = cut.resize((round(cut.width * 1600 / cut.height), 1600), Image.LANCZOS)
-            cut.save(os.path.join(A, 'walk', f'{pid}_{v}.webp'), 'WEBP', quality=90, alpha_quality=100, method=6)
+            cut.save(os.path.join(A, 'walk', 'raw', f'{pid}_{v}.webp'), 'WEBP', quality=90, alpha_quality=100, method=6)
             print(pid, v, cut.size)
 
-
-if __name__ == '__main__':
-    main()
-
-
-def key_backdrop(im, min_area=250, slivers=False):
-    """A cut-out's enclosed studio backdrop keyed out (David, 15 Nov: the light sliver between the coat's sleeve and its
-    body on the dark band): every neutral light region of any real size goes, wherever it is, then a light fringe round
-    it. Cream (the linings, the silk behind the net) is warm, so it stays."""
-    a = np.asarray(im.convert('RGBA')).astype(np.float32); al = a[..., 3] / 255
-    lum = a[..., :3].mean(-1); ch = a[..., :3].max(-1) - a[..., :3].min(-1)
-    m = (al > 0.02) & (ch < 16) & (lum > 140)
-    m = ndimage.binary_opening(m, iterations=1)
-    lab, n = ndimage.label(m)
-    if not n:
-        return im.convert('RGBA'), 0
-    sz = ndimage.sum(m, lab, range(1, n + 1)); ml = ndimage.mean(lum, lab, range(1, n + 1))
-    # the backdrop is bright (a lit studio ground, 220-245); a leather sheen or a strap's inside is mid grey and stays
-    gone = np.isin(lab, 1 + np.nonzero((sz >= min_area) & (ml >= 190))[0])
-    # a thin sliver of any size (between a cuff and the skirt): a light neutral region that touches the outside of the
-    # piece or a gap already keyed. A lit perforation is surrounded by leather, so it touches neither and stays.
-    outside = ndimage.binary_dilation((al < 0.3) | gone, iterations=2)
-    sl = (al > 0.02) & (ch < 18) & (lum > 165)
-    slab, sn = ndimage.label(sl)
-    if sn and slivers:   # garments only (sleeve, cuff and skirt gaps); a bag's rim sheen also touches its edge and stays
-        touch = ndimage.maximum(outside, slab, range(1, sn + 1)); smean = ndimage.mean(lum, slab, range(1, sn + 1))
-        objs = ndimage.find_objects(slab)
-        upright = np.array([(o[0].stop - o[0].start) >= 2 * (o[1].stop - o[1].start) for o in objs])   # a gap runs down the body;
-        gone |= np.isin(slab, 1 + np.nonzero((np.asarray(touch) > 0) & (np.asarray(smean) >= 180) & upright)[0])   # a rib stripe runs across
-        # an enclosed sliver (the backdrop seen between a cuff and the skirt): long and thin, where a perforation is a dot
-        for i, sl_ in enumerate(ndimage.find_objects(slab), 1):
-            r = slab[sl_] == i; n_ = int(r.sum()); hh = sl_[0].stop - sl_[0].start; ww = sl_[1].stop - sl_[1].start
-            if n_ >= 20 and hh >= 3 * max(1, ww) and smean[i - 1] >= 195:
-                g = gone[sl_]; g[r] = True
-    if not gone.any():
-        return im.convert('RGBA'), 0
-    ring = ndimage.binary_dilation(gone, iterations=4) & ~gone
-    fringe = ring & (lum > 120) & (ch < 22)                       # the light fringe left round each gap
-    cut = ndimage.binary_dilation(gone | fringe, iterations=1)
-    keep = 1 - ndimage.gaussian_filter(cut.astype(np.float32), 0.8)
-    a[..., 3] = np.clip(al * np.where(cut, 0, keep), 0, 1) * 255
-    return Image.fromarray(a.astype(np.uint8), 'RGBA'), int(gone.sum())
 
 
 WALK_PIECES = ('veil_coat', 'oitava', 'muse_bomber', 'po_tophandle', 'matinee', 'the_reel', 'lustre')
 
 
 def walk_mattes():
-    """The walk-around's dark-band images keyed clean: the front as assets/walk/<id>_front.webp (from the room cut-out,
-    which the room keeps as approved) and every other view in place. The jewellery is cut from black, so it is checked,
-    not keyed (its crystals are grey)."""
-    os.makedirs(os.path.join(A, 'walk'), exist_ok=True)
+    """The walk-around's dark-band images, from the raw cut-outs (assets/room/raw, assets/walk/raw) through
+    build.clean_cutout: the enclosed backdrop keyed where the piece has gaps, the edge feathered and decontaminated."""
+    from build import clean_cutout
+    import glob
     for pid in WALK_PIECES:
-        srcs = [(os.path.join(A, 'room', f'{pid}.webp'), os.path.join(A, 'walk', f'{pid}_front.webp'))]
-        srcs += [(f, f) for f in sorted(__import__('glob').glob(os.path.join(A, 'walk', f'{pid}_*.webp'))) if not f.endswith('_front.webp')]
+        srcs = [(os.path.join(A, 'room', 'raw', f'{pid}.webp'), os.path.join(A, 'walk', f'{pid}_front.webp'))]
+        srcs += [(f, os.path.join(A, 'walk', os.path.basename(f))) for f in sorted(glob.glob(os.path.join(A, 'walk', 'raw', f'{pid}_*.webp')))]
         for src, dst in srcs:
-            im = Image.open(src)
-            if pid in ('lustre', 'oitava'):
-                out, n = im.convert('RGBA'), 0
-            else:
-                out, n = key_backdrop(im, slivers=pid in ('veil_coat', 'muse_bomber'))
+            out = clean_cutout(Image.open(src), key=pid in C.KEY_GAPS, slivers=pid in C.SLIVERS, **C.CUT_OPTS.get(pid, {}))
             out.save(dst, 'WEBP', quality=90, alpha_quality=100, method=6)
-            print(os.path.basename(dst), n)
+            print(os.path.basename(dst))
+
+
+def room_finals():
+    """The room's cut-outs (and the catalogue's, the same scene's and the rest of the line's) from their raw ones."""
+    from build import clean_cutout
+    for pid in C.ROOM:
+        src = os.path.join(A, 'room', 'raw', f'{pid}.webp')
+        clean_cutout(Image.open(src), key=pid in C.KEY_GAPS, slivers=pid in C.SLIVERS, **C.CUT_OPTS.get(pid, {})).save(
+            os.path.join(A, 'room', f'{pid}.webp'), 'WEBP', quality=90, alpha_quality=100, method=6)
+
+
+if __name__ == '__main__':
+    main()

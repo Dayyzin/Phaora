@@ -13,5 +13,6 @@
   1.0,
   1.0
  ],
- "ground": "#f6f7f3"
+ "ground": "#f6f7f3",
+ "edge": 2
 }

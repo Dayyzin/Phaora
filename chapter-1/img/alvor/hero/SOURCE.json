@@ -13,5 +13,6 @@
   0.5312,
   0.8889
  ],
- "ground": "#efefed"
+ "ground": "#efefed",
+ "edge": 2
 }

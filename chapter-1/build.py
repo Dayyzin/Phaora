@@ -10,6 +10,8 @@ WebP) and the srcset, and the page picks it up. Nothing else changes.
 import hashlib, html, json, os, re, shutil, subprocess, sys
 from pathlib import Path
 from PIL import Image, ImageChops
+import numpy as np
+from scipy import ndimage
 
 Image.MAX_IMAGE_PIXELS = None
 HERE = Path(__file__).resolve().parent
@@ -21,6 +23,7 @@ sys.path.insert(0, str(HERE))
 import content as C
 
 WIDTHS = [480, 960, 1600, 2560, 3840, 7680]
+EDGE = 2   # clean_cutout's version: a slot built before it is cleaned once (Slot.edge_stored)
 CACHE = HERE / '.cache'
 SLOTS = []          # every slot, for SLOTS.md
 SITE_TITLE = 'PHAÖRA'
@@ -70,6 +73,80 @@ def bbox_of(im):
     return [round(b[0] / w, 4), round(b[1] / h, 4), round(b[2] / w, 4), round(b[3] / h, 4)]
 
 
+# ---------------------------------------------------------------- cut-outs
+def key_gaps(im, min_area=250, slivers=False, bright=190):
+    """A cut-out's enclosed studio backdrop keyed out (David, 15 Nov: the light sliver between the coat's sleeve and its
+    body on the dark band): every neutral light region of any real size goes, wherever it is, then a light fringe round
+    it. Cream (the linings, the silk behind the net) is warm, so it stays."""
+    a = np.asarray(im.convert('RGBA')).astype(np.float32); al = a[..., 3] / 255
+    lum = a[..., :3].mean(-1); ch = a[..., :3].max(-1) - a[..., :3].min(-1)
+    m = (al > 0.02) & (ch < 16) & (lum > min(140, bright - 10))
+    m = ndimage.binary_opening(m, iterations=1)
+    lab, n = ndimage.label(m)
+    if not n:
+        return im.convert('RGBA'), 0
+    sz = ndimage.sum(m, lab, range(1, n + 1)); ml = ndimage.mean(lum, lab, range(1, n + 1))
+    # the backdrop is bright (a lit studio ground, 220-245); a leather sheen or a strap's inside is mid grey and stays
+    gone = np.isin(lab, 1 + np.nonzero((sz >= min_area) & (ml >= bright))[0])
+    # a thin sliver of any size (between a cuff and the skirt): a light neutral region that touches the outside of the
+    # piece or a gap already keyed. A lit perforation is surrounded by leather, so it touches neither and stays.
+    outside = ndimage.binary_dilation((al < 0.3) | gone, iterations=2)
+    sl = (al > 0.02) & (ch < 18) & (lum > 165)
+    slab, sn = ndimage.label(sl)
+    if sn and slivers:   # garments only (sleeve, cuff and skirt gaps); a bag's rim sheen also touches its edge and stays
+        touch = ndimage.maximum(outside, slab, range(1, sn + 1)); smean = ndimage.mean(lum, slab, range(1, sn + 1))
+        objs = ndimage.find_objects(slab)
+        upright = np.array([(o[0].stop - o[0].start) >= 2 * (o[1].stop - o[1].start) for o in objs])   # a gap runs down the body;
+        gone |= np.isin(slab, 1 + np.nonzero((np.asarray(touch) > 0) & (np.asarray(smean) >= 180) & upright)[0])   # a rib stripe runs across
+        # an enclosed sliver (the backdrop seen between a cuff and the skirt): long and thin, where a perforation is a dot
+        for i, sl_ in enumerate(ndimage.find_objects(slab), 1):
+            r = slab[sl_] == i; n_ = int(r.sum()); hh = sl_[0].stop - sl_[0].start; ww = sl_[1].stop - sl_[1].start
+            if n_ >= 20 and hh >= 3 * max(1, ww) and smean[i - 1] >= 195:
+                g = gone[sl_]; g[r] = True
+    if not gone.any():
+        return im.convert('RGBA'), 0
+    ring = ndimage.binary_dilation(gone, iterations=4) & ~gone
+    fringe = ring & (lum > 120) & (ch < 22)                       # the light fringe left round each gap
+    cut = ndimage.binary_dilation(gone | fringe, iterations=1)
+    keep = 1 - ndimage.gaussian_filter(cut.astype(np.float32), 0.8)
+    a[..., 3] = np.clip(al * np.where(cut, 0, keep), 0, 1) * 255
+    return Image.fromarray(a.astype(np.uint8), 'RGBA'), int(gone.sum())
+
+
+
+def clean_cutout(im, key=False, slivers=False, sigma=0.8, bright=190, smooth=0):
+    """Every cut-out on the site goes through this (David, 15 Nov: "Can we do that to ALL pieces?"). An image with no
+    real transparency (a full-frame render, a world picture) comes back untouched. Otherwise:
+    - key=True: the enclosed studio backdrop keyed out as well (key_gaps; slivers=True for a garment's thin gaps);
+    - the alpha EDGE only feathered, about 0.8 px at the size the file is served (a Gaussian on the alpha, used only in
+      a thin band at the silhouette; the interior keeps its alpha);
+    - the edge colour decontaminated: every part-transparent pixel at the silhouette takes the colour of the nearest
+      solid pixel of the piece, so no backdrop grey, white fringe or dark ring is left.
+    The image itself is never blurred: perforations, stitching and buttons stay as rendered."""
+    im = im.convert('RGBA') if im.mode != 'RGBA' else im
+    if np.asarray(im)[..., 3].min() >= 250:
+        return im
+    if key:
+        im, _ = key_gaps(im, slivers=slivers, bright=bright)
+    a = np.asarray(im).astype(np.float32); al = a[..., 3] / 255
+    solid = al > 0.95
+    solid0 = solid.copy()
+    if smooth:   # a stand-in cut with a stair-stepped outline (Coaraci): the contour itself rounded, never on thin wires
+        rs = ndimage.gaussian_filter(ndimage.binary_closing(al > 0.5, iterations=int(smooth)).astype(np.float32), smooth) > 0.5   # cracks closed, then rounded
+        ring = ndimage.binary_dilation(solid, iterations=3 + int(smooth)) & ~ndimage.binary_erosion(solid, iterations=3 + int(smooth))
+        al = np.where(ring, rs.astype(np.float32), al); solid = al > 0.95
+    if not solid.any():
+        return im
+    band = ndimage.binary_dilation(solid, iterations=2) & ~ndimage.binary_erosion(solid, iterations=2)   # the silhouette
+    al2 = np.where(band, ndimage.gaussian_filter(al, sigma), al)
+    part = band & (al2 < 0.98)   # the soft edge
+    if smooth:
+        part |= ring & (al2 > 0.05) & ~solid0   # and the pixels the smoothing made solid (only there: a floor shadow keeps its colour)
+    _, (iy, ix) = ndimage.distance_transform_edt(~solid0, return_indices=True)
+    rgb = a[..., :3].copy(); rgb[part] = a[..., :3][iy[part], ix[part]]
+    return Image.fromarray(np.dstack([rgb, np.clip(al2, 0, 1) * 255]).astype(np.uint8), 'RGBA')
+
+
 # ---------------------------------------------------------------- slots
 class Slot:
     def __init__(self, page, name, wants, size, ratio, label, sources=(), final=False, kind='image', alt='', alias=None):
@@ -79,6 +156,9 @@ class Slot:
         self.dir = HERE / ('media' if kind == 'video' else 'img') / page / name
         self.rel = self.dir.relative_to(HERE).as_posix()
         self.state, self.now, self.files, self.w, self.h, self.bbox, self.ground = 'waiting', '', [], 0, 0, [0, 0, 1, 1], None
+        pid = next((q['id'] for q in C.PIECES if q['page'] == page), None)   # a piece's own view is keyed; its close-ups only edged
+        view = pid and not (name in ('hero', 'world', 'world-full') or name.startswith('detail'))
+        self.clean = dict(key=bool(view and pid in C.KEY_GAPS), slivers=bool(view and pid in C.SLIVERS), **C.CUT_OPTS.get(pid, {}))
         self.process()
         SLOTS.append(self)
 
@@ -105,6 +185,7 @@ class Slot:
             # its source not reachable from here (phaora-ops absent, or a checkout without it): keep the stand-in already built
             self.files = old.get('files') or ['video.mp4']
             self.w, self.h, self.bbox, self.ground = old.get('w', 0), old.get('h', 0), old.get('bbox', [0, 0, 1, 1]), old.get('ground')
+            self.edge_stored(old)
             self.state = 'final' if old.get('final') else 'stand-in'
             self.now = old['source'] + ('' if self.kind == 'video' else f' ({self.w} × {self.h})')
             return
@@ -126,6 +207,7 @@ class Slot:
         else:
             if old.get('sig') == s and all((self.dir / f).exists() for f in old.get('files', [])) and old.get('files'):
                 self.files, self.w, self.h, self.bbox, self.ground = old['files'], old['w'], old['h'], old['bbox'], old.get('ground')
+                self.edge_stored(old)
             else:
                 for f in self.dir.glob('w*.webp'):
                     f.unlink()
@@ -135,6 +217,8 @@ class Slot:
                     im = im.convert('RGBA' if 'A' in im.getbands() else 'RGB')
                 if im.mode == 'RGBA' and im.getchannel('A').getextrema()[0] == 255:
                     im = im.convert('RGB')
+                if im.mode == 'RGBA':   # a cut-out: its edge cleaned (and its enclosed backdrop keyed), every size alike
+                    im = clean_cutout(im, **self.clean)
                 self.w, self.h = im.size
                 self.bbox = bbox_of(im)
                 self.ground = None if im.mode == 'RGBA' else '#%02x%02x%02x' % im.convert('RGB').resize((64, 64)).getpixel((1, 1))
@@ -148,10 +232,22 @@ class Slot:
                     r.save(self.dir / fn, 'WEBP', quality=84 if w <= 3840 else 80, method=4)
                     files.append(fn)
                 self.files = files
-                meta.write_text(json.dumps({'source': srcname, 'sig': s, 'final': final, 'files': files,
+                meta.write_text(json.dumps({'source': srcname, 'sig': s, 'final': final, 'files': files, 'edge': EDGE,
                                             'w': self.w, 'h': self.h, 'bbox': self.bbox, 'ground': self.ground}, indent=1))
         self.state = 'final' if final else 'stand-in'
         self.now = srcname + ('' if self.kind == 'video' else f' ({self.w} × {self.h})')
+
+    def edge_stored(self, old):
+        """Sizes built before clean_cutout existed (their source not reachable from here): each file cleaned once."""
+        if self.kind == 'video' or old.get('edge') == EDGE:
+            return
+        for f in self.files:
+            fp = self.dir / f
+            im = Image.open(fp); im.load()
+            if im.mode == 'RGBA' and np.asarray(im)[..., 3].min() < 250:
+                clean_cutout(im, **self.clean).save(fp, 'WEBP', quality=84 if self.w <= 3840 else 80, method=4)
+        old['edge'] = EDGE
+        (self.dir / 'SOURCE.json').write_text(json.dumps(old, indent=1))
 
     # -- html
     def srcset(self):
