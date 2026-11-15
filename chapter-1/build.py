@@ -650,24 +650,28 @@ def catalogue_home():
     # piece with its soft cast shadow up and to the right, baked with it into one transparent image; and one band across
     # each row for THE PIECE / KEEP A SEAT.
     os.makedirs(HERE / 'assets' / 'catalogue' / 'shadowed', exist_ok=True)
-    def shadowed(src):
+    def shadowed(src, pid):
         from scipy import ndimage
         im = Image.open(HERE / src).convert('RGBA'); W, H = im.size
         a = np.asarray(im).astype(np.float32) / 255; al = a[..., 3]
         S = max(H, 0.62 * W)   # the shadow's scale: a tall piece's height, a wide one's footprint
-        dx, dy, sig = round(0.12 * S), round(-0.05 * S), 0.04 * S
+        # cast from the piece's true alpha, every opening kept (no fill, no hull): a loop's inside stays wall. One light for
+        # the room (up and to the right); a piece lying close to the wall (a necklace) throws it shorter, softer, lighter
+        # (David, 15 Nov: "Lustre shadow needs fixing").
+        d = C.SHADOW_DEPTH.get(pid, 1.0)
+        dx, dy, sig = round(0.12 * S * d), round(-0.05 * S * d), 0.04 * S * (0.35 + 0.65 * d)
         pl, pr, pt = round(0.3 * S), round(0.3 * S), round(0.2 * S)   # room enough that the soft edge never meets the canvas
         CW, CH = W + pl + pr, H + pt
         sh = np.zeros((CH, CW), np.float32); sh[pt + dy:pt + dy + H, pl + dx:pl + dx + W] = al   # the silhouette, cast up and right
-        sh = ndimage.gaussian_filter(sh, sig) * 0.27
+        sh = ndimage.gaussian_filter(sh, sig) * 0.27 * (0.55 + 0.45 * d)
         ct = np.zeros((CH, CW), np.float32); ct[pt:pt + H, pl:pl + W] = al
         ct = ndimage.gaussian_filter(ct, 0.006 * S) * 0.10   # a little contact darkness close round the piece
         sh = 1 - (1 - sh) * (1 - ct)
         out = np.zeros((CH, CW, 4), np.float32); out[..., :3] = np.array([40, 36, 30]) / 255; out[..., 3] = sh
         piece = np.zeros((CH, CW, 4), np.float32); piece[pt:pt + H, pl:pl + W] = a
         A = piece[..., 3:] + out[..., 3:] * (1 - piece[..., 3:])
-        C = (piece[..., :3] * piece[..., 3:] + out[..., :3] * out[..., 3:] * (1 - piece[..., 3:])) / np.maximum(A, 1e-6)
-        res = Image.fromarray((np.dstack([C, A]) * 255).clip(0, 255).astype(np.uint8), 'RGBA')
+        Cc = (piece[..., :3] * piece[..., 3:] + out[..., :3] * out[..., 3:] * (1 - piece[..., 3:])) / np.maximum(A, 1e-6)
+        res = Image.fromarray((np.dstack([Cc, A]) * 255).clip(0, 255).astype(np.uint8), 'RGBA')
         dst = 'assets/catalogue/shadowed/' + os.path.basename(src)
         res.save(HERE / dst, 'WEBP', quality=90, alpha_quality=100, method=6)
         return dst
@@ -689,11 +693,11 @@ def catalogue_home():
                 one, two = imgs[pid]
                 alt = f'{E(q["name"])}, {E(q["plain"].lower())}'
                 if two:
-                    ph = (f'<a class="ph two" href="{q["page"]}.html"><img class="a" src="{shadowed(one)}" alt="{alt}" decoding="async">'
-                          f'<img class="b" src="{shadowed(two)}" alt="" decoding="async"></a>')
+                    ph = (f'<a class="ph two" href="{q["page"]}.html"><img class="a" src="{shadowed(one, pid)}" alt="{alt}" decoding="async">'
+                          f'<img class="b" src="{shadowed(two, pid)}" alt="" decoding="async"></a>')
                 else:
                     sc = f' style="height:{C.CAT_SCALE[pid] * 100:.0f}%"' if pid in C.CAT_SCALE else ''
-                    ph = f'<a class="ph" href="{q["page"]}.html"><img{sc} src="{shadowed(one)}" alt="{alt}" decoding="async"></a>'
+                    ph = f'<a class="ph" href="{q["page"]}.html"><img{sc} src="{shadowed(one, pid)}" alt="{alt}" decoding="async"></a>'
                 cells += (f'<article class="col" id="{q["page"]}"><h2 class="t cut">{E(q["name"].upper())}</h2>'
                           f'<p class="s cut">{E(q["plain"].upper())} &nbsp;·&nbsp; CHAPTER&nbsp;I</p>{ph}'
                           f'<ul class="specs cut">{specs_html(specs)}</ul></article>')

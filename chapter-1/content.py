@@ -90,7 +90,7 @@ PIECES = [
   about="The quiet that follows the hoodie down. A relaxed straight leg in the house knit, its dots rising from the hem and fading at the knee, the waist tied with a black cord tipped in gold.",
   specs=[('KNIT', '28-GAUGE DOUBLE JACQUARD'), ('YARN', 'MATTE AND MERCERISED BLACK COTTON'), ('LEG', 'RELAXED, STRAIGHT'), ('COLOURWAY', 'BLACK / BLACK')],
   sizes=['XS', 'S', 'M', 'L', 'XL'],
-  views={'front': [B+'quiet-black-trousers/real/gate720/quiet_black_trousers_front_720.png', L+'quiet_black_trousers/quiet-black-trousers-front.webp'], 'three-quarter': [L+'quiet_black_trousers/quiet-black-trousers-three-quarter.webp'], 'back': [L+'quiet_black_trousers/quiet-black-trousers-back.webp']},
+  views={'front': ['departments/apparel/marketing/story/site480/carbonado/carbonado_trousers_front_720.png', B+'quiet-black-trousers/real/gate720/quiet_black_trousers_front_720.png', L+'quiet_black_trousers/quiet-black-trousers-front.webp'], 'three-quarter': [L+'quiet_black_trousers/quiet-black-trousers-three-quarter.webp'], 'back': [L+'quiet_black_trousers/quiet-black-trousers-back.webp']},
   wants={'front': B+'quiet-black-trousers/site/quiet_black_trousers_front_16k.png'},
   details=[('fade', 'The fade at the knee', [L+'quiet_black_trousers/quiet-black-trousers-closeup-fade.webp'], False),
            ('waistband', 'The waistband', [L+'quiet_black_trousers/quiet-black-trousers-closeup-waistband.webp'], False)],
@@ -657,6 +657,8 @@ DETAILS480 = {
 
 # the catalogue: the small pieces carry two angles in their column, sharing one floor (David, 15 Nov). (second view)
 CAT_SECOND = {'disc_belt': 'straight', 'sunglasses': 'side', 'card_holder': 'back'}   # Öfusca: front and side, the gold Ö on the temple (David, 15 Nov)   # Ritornelo reads better as its pair alone
+# how far each piece stands off the wall, for its cast shadow (1: a garment on its form; a necklace lies close)
+SHADOW_DEPTH = {'lustre': 0.3, 'oitava': 0.3, 'sunglasses': 0.5, 'card_holder': 0.45, 'disc_belt': 0.45, 'opera_gloves': 0.5, 'silk_scarf': 0.4}
 CAT_WALL = True   # the catalogue as the room's frame on one continuous wall (David, 15 Nov: "this exact look ... mostly shadows", "seamlessly integrated")
 CAT_SCALE = {'oitava': 0.5}   # the catalogue image's share of its box (David, 15 Nov, Öitava: "more delicate, smaller")
 # a catalogue image of its own (Alvor's new silk: 108x144 cut out at 4x), at full box height like the Veil Coat (David, 15 Nov: "Same as veil coat size pls")

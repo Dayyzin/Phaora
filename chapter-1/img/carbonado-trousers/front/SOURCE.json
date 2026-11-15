@@ -1,0 +1,18 @@
+{
+ "source": "departments/apparel/marketing/story/site480/carbonado/carbonado_trousers_front_720.png",
+ "sig": "carbonado_trousers_front_720.png:274656",
+ "final": false,
+ "files": [
+  "w480.webp"
+ ],
+ "edge": 2,
+ "w": 480,
+ "h": 720,
+ "bbox": [
+  0.2333,
+  0.0222,
+  1.0,
+  0.9889
+ ],
+ "ground": "#f2f2f3"
+}

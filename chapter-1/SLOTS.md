@@ -1,7 +1,7 @@
 # SLOTS: every image and film on the Chapter I site
 
-Built by `build.py`. 201 slots: **5 final**, **158 holding a stand-in** (the best approved
-render or still we have, at 144p or 1600), **38 waiting** (a quiet placeholder of the right ratio, labelled
+Built by `build.py`. 201 slots: **5 final**, **159 holding a stand-in** (the best approved
+render or still we have, at 144p or 1600), **37 waiting** (a quiet placeholder of the right ratio, labelled
 with what it waits for).
 
 **To add a photo:** put the file in the slot's folder as `master.png` (or `.jpg`, `.webp`, `.tif`; a film: `master.mp4`),
@@ -73,7 +73,7 @@ path. On phaora.com the labels never show.
 | cantilena | `img/cantilena/world/` | C9: the last frame, the world plate (the suite, by day) (8K, 5760 × 7680) | WAITING: a placeholder of the right ratio |
 | cantilena | `img/cantilena/hero/` | the director’s signature shot: The echo: the cream one hangs where the black one’s shadow should be (story/product-stills/DIRECTOR-SHOTS.md; its 144p preview stands in) (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/product-stills/cantilena_echo_256x144.png (256 × 144) |
 | cantilena | `img/cantilena/world-full/` | cantilena_world.jpg, the piece in its world, full size (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
-| carbonado-trousers | `img/carbonado-trousers/front/` | departments/apparel/new-pieces-2026-11/build/quiet-black-trousers/site/quiet_black_trousers_front_16k.png (16K, 8640 × 15360) | WAITING: a placeholder of the right ratio |
+| carbonado-trousers | `img/carbonado-trousers/front/` | departments/apparel/new-pieces-2026-11/build/quiet-black-trousers/site/quiet_black_trousers_front_16k.png (16K, 8640 × 15360) | stand-in: departments/apparel/marketing/story/site480/carbonado/carbonado_trousers_front_720.png (480 × 720) |
 | carbonado-trousers | `img/carbonado-trousers/three-quarter/` | three-quarter view, 8K (8K, 4320 × 7680) | WAITING: a placeholder of the right ratio |
 | carbonado-trousers | `img/carbonado-trousers/back/` | back view, 8K (8K, 4320 × 7680) | WAITING: a placeholder of the right ratio |
 | carbonado-trousers | `img/carbonado-trousers/detail-fade/` | the fade at the knee, 8K close-up (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
