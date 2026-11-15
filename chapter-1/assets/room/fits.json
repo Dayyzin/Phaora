@@ -106,5 +106,14 @@
   "tilt": 0.0,
   "widthFactor": 1.005,
   "geo": "caster-disc_belt"
+ },
+ "quiet_black_trousers": {
+  "scale": 2.82,
+  "x": 0.0001,
+  "y": 1.6847,
+  "z": 0.9,
+  "tilt": 0.0,
+  "widthFactor": 1.005,
+  "geo": "caster-quiet_black_trousers"
  }
 }

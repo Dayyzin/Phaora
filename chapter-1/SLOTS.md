@@ -1,7 +1,7 @@
 # SLOTS: every image and film on the Chapter I site
 
-Built by `build.py`. 192 slots: **5 final**, **158 holding a stand-in** (the best approved
-render or still we have, at 144p or 1600), **29 waiting** (a quiet placeholder of the right ratio, labelled
+Built by `build.py`. 201 slots: **5 final**, **158 holding a stand-in** (the best approved
+render or still we have, at 144p or 1600), **38 waiting** (a quiet placeholder of the right ratio, labelled
 with what it waits for).
 
 **To add a photo:** put the file in the slot's folder as `master.png` (or `.jpg`, `.webp`, `.tif`; a film: `master.mp4`),
@@ -28,6 +28,7 @@ path. On phaora.com the labels never show.
 | film | `media/film/next-reel/` | the next reel: the leader, II in red (16:9, 3840 × 2160 MP4) | stand-in: departments/apparel/marketing/ads/next-reel/preview/next_reel_3_leader_II_144p_red.mp4 |
 | film | `media/film/short-02/` | Short 2, the Reel down the aisle into the clasp and the end card, the 4K master (16:9, 3840 × 2160 MP4) | stand-in: departments/apparel/marketing/ads/shorts/preview/02_the-reel_cinema-aisle-long_16x9_144p.mp4 |
 | film | `img/film/short-c1/` | C1, Heliodora: the coming attraction (until it lands, its last frame) (16:9, 3840 × 2160 MP4 or 8K still) | stand-in: departments/apparel/marketing/story/stills/ca-01-the-muse_108x144.png (108 × 144) |
+| film | `img/film/short-c2/` | C2, Carbonado: the coming attraction (until it lands, its last frame) (16:9, 3840 × 2160 MP4 or 8K still) | WAITING: a placeholder of the right ratio |
 | film | `img/film/short-c3/` | C3, Ritornelo: the coming attraction (until it lands, its last frame) (16:9, 3840 × 2160 MP4 or 8K still) | stand-in: departments/apparel/marketing/story/stills/ca-03-the-opera-gloves_108x144.png (108 × 144) |
 | film | `img/film/short-c4/` | C4, Cordel: the coming attraction (until it lands, its last frame) (16:9, 3840 × 2160 MP4 or 8K still) | stand-in: departments/apparel/marketing/story/stills/ca-04-the-silk-scarf_108x144.png (108 × 144) |
 | film | `img/film/short-c5/` | C5, Öbolo: the coming attraction (until it lands, its last frame) (16:9, 3840 × 2160 MP4 or 8K still) | stand-in: departments/apparel/marketing/story/stills/ca-05-the-card-holder_108x144.png (108 × 144) |
@@ -72,6 +73,14 @@ path. On phaora.com the labels never show.
 | cantilena | `img/cantilena/world/` | C9: the last frame, the world plate (the suite, by day) (8K, 5760 × 7680) | WAITING: a placeholder of the right ratio |
 | cantilena | `img/cantilena/hero/` | the director’s signature shot: The echo: the cream one hangs where the black one’s shadow should be (story/product-stills/DIRECTOR-SHOTS.md; its 144p preview stands in) (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/product-stills/cantilena_echo_256x144.png (256 × 144) |
 | cantilena | `img/cantilena/world-full/` | cantilena_world.jpg, the piece in its world, full size (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
+| carbonado-trousers | `img/carbonado-trousers/front/` | departments/apparel/new-pieces-2026-11/build/quiet-black-trousers/site/quiet_black_trousers_front_16k.png (16K, 8640 × 15360) | WAITING: a placeholder of the right ratio |
+| carbonado-trousers | `img/carbonado-trousers/three-quarter/` | three-quarter view, 8K (8K, 4320 × 7680) | WAITING: a placeholder of the right ratio |
+| carbonado-trousers | `img/carbonado-trousers/back/` | back view, 8K (8K, 4320 × 7680) | WAITING: a placeholder of the right ratio |
+| carbonado-trousers | `img/carbonado-trousers/detail-fade/` | the fade at the knee, 8K close-up (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
+| carbonado-trousers | `img/carbonado-trousers/detail-waistband/` | the waistband, 8K close-up (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
+| carbonado-trousers | `img/carbonado-trousers/world/` | C2: the last frame, the world plate (the lobby, far end) (8K, 5760 × 7680) | WAITING: a placeholder of the right ratio |
+| carbonado-trousers | `img/carbonado-trousers/hero/` | the director’s signature shot: The lobby, far end (story/product-stills/DIRECTOR-SHOTS.md; its 144p preview stands in) (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
+| carbonado-trousers | `img/carbonado-trousers/world-full/` | carbonado-trousers_world.jpg, the piece in its world, full size (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
 | odara | `img/odara/front/` | departments/apparel/new-pieces-2026-11/build/muse-bomber/site/muse_bomber_front_16k.png (16K, 8640 × 15360) | stand-in: departments/apparel/website/chapter2/assets/line/muse_bomber/muse-bomber-front.webp (1350 × 1380) |
 | odara | `img/odara/three-quarter/` | three-quarter view, 8K (8K, 4320 × 7680) | stand-in: departments/apparel/website/chapter2/assets/line/muse_bomber/muse-bomber-three-quarter.webp (1355 × 1392) |
 | odara | `img/odara/back/` | back view, 8K (8K, 4320 × 7680) | stand-in: departments/apparel/website/chapter2/assets/line/muse_bomber/muse-bomber-back.webp (1372 × 1383) |

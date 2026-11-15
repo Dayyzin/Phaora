@@ -470,9 +470,9 @@ def piece_page(p, prev, nxt):
         have = {d.name: d for d in details}
         details = [have[f'detail-{k}'] if have.get(f'detail-{k}') and have[f'detail-{k}'].state == 'final' else
                    Slot(pg, f'detail-{k}', f'{lab.lower()}, 8K close-up', '8K, 7680 × 4320', '16:9', lab, [C.S480 + f]) for k, lab, f in C.DETAILS480[p['id']]]
-    hf, idea = C.HERO[p['id']]
+    hf, idea = C.HERO.get(p['id'], (None, p['world'][0]))   # no director's shot yet (Carbonado's trousers): its world still
     hero = Slot(pg, 'hero', f'the director’s signature shot: {idea} (story/product-stills/DIRECTOR-SHOTS.md; its 144p preview stands in)',
-                '8K, 7680 × 4320', '16:9', f'{p["name"]}: {idea}', ([C.S480 + C.HERO480[p['id']]] if p['id'] in C.HERO480 else []) + [C.PS + hf + '_256x144.png'], alt=f'{p["name"]}, {p["plain"].lower()}: {idea}')
+                '8K, 7680 × 4320', '16:9', f'{p["name"]}: {idea}', ([C.S480 + C.HERO480[p['id']]] if p['id'] in C.HERO480 else []) + ([C.PS + hf + '_256x144.png'] if hf else p['world'][3]), alt=f'{p["name"]}, {p["plain"].lower()}: {idea}')
     price, presale = price_of(p['id'])
     enq = p.get('nosale')
     # (b) the buy block

@@ -86,11 +86,11 @@ PIECES = [
    dict(v='front', f=(.45, .3), z=2.2, n=[((.43, .38), 'CORDS', 'GOLD EYELETS, GOLD TIPS', 'Toward the top, whole dots drop out one by one; none shrinks to a speck.')]),
    dict(v='back', f=(.5, .5), z=1.1, n=[((.5, .1), 'WEIGHT', '300 GSM', 'The hood and the rib, plain matte black.')]),
   ]),
- dict(id='quiet_black_trousers', page='carbonado-trousers', name='Carbonado', plain='Knit trousers', cat='knitwear', care='knit', policy='knit', ratio='9:16',
+ dict(id='quiet_black_trousers', page='carbonado-trousers', name='Carbonado', plain='Trousers', cat='knitwear', care='knit', policy='knit', ratio='9:16',
   about="The quiet that follows the hoodie down. A relaxed straight leg in the house knit, its dots rising from the hem and fading at the knee, the waist tied with a black cord tipped in gold.",
   specs=[('KNIT', '28-GAUGE DOUBLE JACQUARD'), ('YARN', 'MATTE AND MERCERISED BLACK COTTON'), ('LEG', 'RELAXED, STRAIGHT'), ('COLOURWAY', 'BLACK / BLACK')],
-  sizes=['S', 'M', 'L', 'XL', 'XXL'],
-  views={'front': [L+'quiet_black_trousers/quiet-black-trousers-front.webp'], 'three-quarter': [L+'quiet_black_trousers/quiet-black-trousers-three-quarter.webp'], 'back': [L+'quiet_black_trousers/quiet-black-trousers-back.webp']},
+  sizes=['XS', 'S', 'M', 'L', 'XL'],
+  views={'front': [B+'quiet-black-trousers/real/gate720/quiet_black_trousers_front_720.png', L+'quiet_black_trousers/quiet-black-trousers-front.webp'], 'three-quarter': [L+'quiet_black_trousers/quiet-black-trousers-three-quarter.webp'], 'back': [L+'quiet_black_trousers/quiet-black-trousers-back.webp']},
   wants={'front': B+'quiet-black-trousers/site/quiet_black_trousers_front_16k.png'},
   details=[('fade', 'The fade at the knee', [L+'quiet_black_trousers/quiet-black-trousers-closeup-fade.webp'], False),
            ('waistband', 'The waistband', [L+'quiet_black_trousers/quiet-black-trousers-closeup-waistband.webp'], False)],
@@ -518,7 +518,7 @@ ROW = [
 
 # David, 13 Nov: Carbonado (the Quiet Black hoodie and trousers) is out of Chapter I. Its entries above are kept for the
 # record; this takes it off every page, slot and list.
-OUT = {'quiet_black', 'quiet_black_trousers'}
+OUT = {'quiet_black'}   # the trousers back in Chapter I, the hoodie out (David, 15 Nov: "Yes trousers yes. Not the hoodie.")
 PIECES = [p for p in PIECES if p['id'] not in OUT]
 for _ch in BOOK:
     _ch['enter'] = [pid for pid in _ch['enter'] if pid not in OUT]
@@ -548,6 +548,7 @@ ROOM_SET = {
  'card_holder': dict(cut='dark', specs=['BLACK CALFSKIN', 'FINE MATTE PEBBLE', 'THREE SLOTS A SIDE', 'A GOLD DISC, THE Ö']),
  'opera_gloves': dict(drop_white=True, specs=['BLACK LAMBSKIN', 'CREAM SILK INSIDE', 'ABOVE THE ELBOW', 'A GOLD SNAP, THE Ö', 'SIZE  S · M · L']),
  'disc_belt': dict(drop_white=True, specs=['BLACK CALFSKIN, 3 CM', 'A GOLD DISC, 40 MM', 'THE Ö ENGRAVED']),
+ 'quiet_black_trousers': dict(specs=['BLACK KNIT', 'HIGH WAIST, WIDE LEG', 'WORN LONG', 'GOLD DRAWCORD TIPS', 'SIZE  XS · S · M · L · XL']),
 }
 ROOM = list(ROOM_SET)
 for _p in PIECES:
@@ -595,6 +596,7 @@ PRICES = {
  'the_reel': ('USD 2,200', 'USD 1,850'), 'po_tophandle': ('USD 2,900', 'USD 2,450'), 'matinee': ('USD 2,600', 'USD 2,200'),
  'sunglasses': ('USD 495', 'USD 420'), 'oitava': ('USD 3,800', 'USD 3,250'), 'silk_scarf': ('USD 395', 'USD 335'),
  'card_holder': ('USD 295', 'USD 250'), 'opera_gloves': ('USD 1,050', 'USD 900'), 'disc_belt': ('USD 550', 'USD 470'),
+ 'quiet_black_trousers': ('USD 325', None),   # pricing second pass (phaora-ops 51fb67d2)
 }
 
 
