@@ -80,8 +80,8 @@ a{color:inherit;text-decoration:none}
    them, sized to the bay. Neighbouring bays meet wall to wall, their edges softened into each other. */
 body.bays{background:#efeff1}
 .bays .cat{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;padding:0;overflow:hidden}
-.bay{position:relative;line-height:0;container-type:inline-size;margin:0 -1.2%}
-.bay img{display:block;width:100%;height:auto;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
+.bay{position:relative;line-height:0;container-type:inline-size}
+.bay img{display:block;width:100%;height:auto}
 .bay .bn{position:absolute;left:0;right:0;top:7.4%;text-align:center;line-height:1.2}
 .bay .bn .t{font:500 6.15cqw/1.15 'Cormorant Garamond','DejaVu Serif',serif;letter-spacing:.32em;padding-left:.32em;margin:0}
 .bay .bn .t.long{font-size:4.4cqw;letter-spacing:.24em;padding-left:.24em}
