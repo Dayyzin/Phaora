@@ -624,9 +624,9 @@ def catalogue_home():
         two = trimmed(HERE / 'assets' / 'walk' / 'raw' / f'{pid}_{v}.webp', f'{pid}_{v}.webp',
                       dict(key=pid in C.KEY_GAPS, slivers=pid in C.SLIVERS, **C.CUT_OPTS.get(pid, {}))) if v else None
         imgs[pid] = (one, two)
-    # Coaraci (David, 15 Nov, his split): side by side, the leather long on one half, the belt long with its buckle on the other.
-    # Both from its laid-straight cut-out, stood upright (the disc down); the first is the same render up to the buckle.
-    duo = {'disc_belt': ('assets/catalogue/disc_belt_long-leather.webp', 'assets/catalogue/disc_belt_long-buckle.webp')}
+    # Coaraci (David, 15 Nov, his split, then "show a zoomed in version instead of full"): side by side, close in, the leather
+    # and its holes on one half, the gold disc on the other (crops of its 480 close-ups, walk/coaraci_stop3 and _stop4).
+    duo = {'disc_belt': ('assets/catalogue/disc_belt_zoom-leather.webp', 'assets/catalogue/disc_belt_zoom-disc.webp')}
     order = sorted(C.PIECES, key=lambda q: -usd(price_of(q['id'])[0]))
     cols = ''
     for q in order:
@@ -636,7 +636,7 @@ def catalogue_home():
         cols += (f'<article class="col" id="{q["page"]}"><h2 class="t cut">{E(q["name"].upper())}</h2>'
                  f'<p class="s cut{" long" if len(q["plain"]) > 16 else ""}">{E(q["plain"].upper())} &nbsp;·&nbsp; CHAPTER I</p>'
                  + (f'<a class="ph duo" href="{q["page"]}.html"><img class="a" src="{duo[q["id"]][0]}" alt="{E(q["name"])}, {E(q["plain"].lower())}: the leather" loading="eager" decoding="async">'
-                    f'<img class="b" src="{duo[q["id"]][1]}" alt="{E(q["name"])}: its buckle" loading="eager" decoding="async"></a>' if q['id'] in duo else
+                    f'<img class="b" src="{duo[q["id"]][1]}" alt="{E(q["name"])}: the gold disc" loading="eager" decoding="async"></a>' if q['id'] in duo else
                     f'<a class="ph two" href="{q["page"]}.html"><img class="a" src="{imgs[q["id"]][0]}" alt="{E(q["name"])}, {E(q["plain"].lower())}" loading="eager" decoding="async">'
                     f'<img class="b" src="{imgs[q["id"]][1]}" alt="" loading="eager" decoding="async"></a>' if imgs[q['id']][1] else
                     f'<a class="ph{" wide" if Image.open(HERE / imgs[q["id"]][0]).width > 1.15 * Image.open(HERE / imgs[q["id"]][0]).height else ""}" href="{q["page"]}.html"><img{f' style="height:{C.CAT_SCALE[q["id"]] * 100:.0f}%"' if q["id"] in C.CAT_SCALE else ""} src="{imgs[q["id"]][0]}" alt="{E(q["name"])}, {E(q["plain"].lower())}" loading="eager" decoding="async"></a>') +
