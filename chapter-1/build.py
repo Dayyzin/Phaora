@@ -643,6 +643,21 @@ def catalogue_home():
                     f'<img class="b" src="{imgs[q["id"]][1]}" alt="" loading="eager" decoding="async"></a>' if imgs[q['id']][1] else
                     f'<a class="ph{" wide" if Image.open(HERE / imgs[q["id"]][0]).width > 1.15 * Image.open(HERE / imgs[q["id"]][0]).height else ""}" href="{q["page"]}.html"><img{f' style="height:{C.CAT_SCALE[q["id"]] * 100:.0f}%"' if q["id"] in C.CAT_SCALE else f' style="height:{C.CAT_IMG[q["id"]][1]}px"' if C.CAT_IMG.get(q["id"], (0, None))[1] else ""} src="{imgs[q["id"]][0]}" alt="{E(q["name"])}, {E(q["plain"].lower())}" loading="eager" decoding="async"></a>') +
                  f'<ul class="specs cut">' + ''.join(f'<li>{E(x)}</li>' for x in specs) + f'</ul><p class="links cut">{links}</p></article>')
+    # David, 15 Nov: "I meant for the catalogue to carry this exact look. No different. Shadows, the top nav written as it
+    # suggests ... but mostly shadows": each piece is its frame of the room on a phone (the room's own render: the wall's
+    # Ö pins, the piece's cast shadow up and to the right, the carved specs, its nav strip and its price band), captured by
+    # review/site-rebuild/one-page/panels.js into assets/catalogue/panel/<id>.webp. Links lie over the frame's own words.
+    panel = lambda q: HERE / 'assets' / 'catalogue' / 'panel' / f'{q["id"]}.webp'
+    panelled = getattr(C, 'CAT_PANELS', False) and all(panel(q).exists() for q in order)
+    if panelled:
+        cols = ''
+        for i, q in enumerate(order):
+            price = price_of(q['id'])[0]
+            seat = (f'<a class="seat" href="{REGISTER}" aria-label="Keep a seat, {E(price)}"></a>' if price and not q.get('nosale') else '')
+            cols += (f'<article class="panel" id="{q["page"]}"><img src="assets/catalogue/panel/{q["id"]}.webp" width="780" height="1688" '
+                     f'alt="{E(q["name"])}, {E(q["plain"].lower())}{f", {E(price)}" if price and not q.get("nosale") else ""}: '
+                     f'{E(" / ".join(C.ROOM_SET.get(q["id"], {}).get("specs") or default))}" loading="{"eager" if i < 3 else "lazy"}" decoding="async">'
+                     f'<a class="reg" href="{REGISTER}" aria-label="Register"></a><a class="pc" href="{q["page"]}.html" aria-label="The piece, {E(q["name"])}"></a>{seat}</article>')
     doc = f'''<!doctype html>
 <html lang="en" id="top"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -654,14 +669,12 @@ def catalogue_home():
 <link rel="icon" type="image/png" href="assets/brand/mark-180.png"><link rel="apple-touch-icon" href="assets/brand/mark-180.png">
 <link rel="stylesheet" href="assets/css/catalogue.css">
 </head>
-<body>
-<div class="top"></div>
-<a id="logo" href="#top" aria-label="PHAÖRA"></a>
-<nav id="sitenav"><a href="#top">The line</a><a href="{REGISTER}">Register</a></nav>
+<body{' class="panelled"' if panelled else ''}>
+{'' if panelled else f'<div class="top"></div><a id="logo" href="#top" aria-label="PHAÖRA"></a><nav id="sitenav"><a href="#top">The line</a><a href="{REGISTER}">Register</a></nav>'}
 <main class="cat">{cols}</main>
 <script>
 // David's lettering with the solo Ö, inlined in the room's dark ink, as room.js does (never typed)
-fetch('assets/lettering-solo-offwhite.svg').then(r => r.text()).then(t => {{ document.getElementById('logo').innerHTML =
+if (document.getElementById('logo')) fetch('assets/lettering-solo-offwhite.svg').then(r => r.text()).then(t => {{ document.getElementById('logo').innerHTML =
   t.replace(/<!--[\\s\\S]*?-->/g, '').replace(/fill="#E2DDD2"/g, 'fill="currentColor"').replace(/\\s(width|height)="[^"]*"/, '').replace(/\\s(width|height)="[^"]*"/, ''); }});
 </script>
 </body></html>

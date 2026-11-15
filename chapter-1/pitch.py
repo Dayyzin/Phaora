@@ -15,6 +15,7 @@ s = (HERE / 'index.html').read_text()
 s = s.replace('href="/"', f'href="{LIVE}"')
 s = re.sub(r'<a (class="ph[^"]*") href="[a-z]+\.html">(.*?)</a>', r'<div \1>\2</div>', s, flags=re.S)
 s = re.sub(r'<a href="[a-z]+\.html">The piece</a>', '', s)
+s = re.sub(r'<a class="pc" href="[a-z]+\.html"[^>]*></a>', '', s)   # the room frames: no link over THE PIECE here
 s = s.replace('<meta name="robots" content="noindex">', '<meta name="robots" content="noindex, nofollow">')
 # the first row (four pieces) loads at once and first; the rest when near the screen
 n = 0
@@ -28,7 +29,8 @@ s = re.sub(r'<img [^>]*>', lazy, s)
 if OUT.exists(): shutil.rmtree(OUT)
 (OUT / 'assets/catalogue').mkdir(parents=True); (OUT / 'assets/css').mkdir(); (OUT / 'assets/brand').mkdir()
 for src in sorted(set(re.findall(r'src="(assets/catalogue/[^"]+)"', s))):
-    im = Image.open(HERE / src); k = min(1, MAXW / im.width, MAXH / im.height)
+    im = Image.open(HERE / src); k = 1 if '/panel/' in src else min(1, MAXW / im.width, MAXH / im.height)
+    (OUT / src).parent.mkdir(parents=True, exist_ok=True)
     if k < 1: im = im.resize((round(im.width * k), round(im.height * k)), Image.LANCZOS)
     im.save(OUT / src, quality=86, method=6)
 css = (HERE / 'assets/css/catalogue.css').read_text()
