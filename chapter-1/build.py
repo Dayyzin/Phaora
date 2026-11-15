@@ -725,7 +725,7 @@ def catalogue_home():
 <link rel="stylesheet" href="assets/css/stage.css">
 </head>
 <body class="stage">
-<div class="room" aria-hidden="true"></div>
+<div class="room" aria-hidden="true"></div><div class="veil" aria-hidden="true"></div>
 <header class="navband"><a class="logo" href="#top" aria-label="PHAÖRA"></a><nav class="nl">{nav}</nav></header>
 <main class="sets" id="sets">{items}</main>
 <script src="assets/js/stage.js"></script>

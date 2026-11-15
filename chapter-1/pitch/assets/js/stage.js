@@ -3,10 +3,12 @@
 (() => {
   const main = document.getElementById('sets'); if (!main) return;
   const items = [...main.querySelectorAll('.it')];
-  let per = 0, sets = [];
+  let per = 0, sets = [], gt = 0;
+  // the pinned wall fades back once a set has come together in the middle, and returns while the next set moves
+  const gather = () => { document.body.classList.remove('gathered'); clearTimeout(gt); gt = setTimeout(() => document.body.classList.add('gathered'), 450); };
   const io = new IntersectionObserver(es => es.forEach(e => {
     const s = e.target;
-    if (e.isIntersecting && e.intersectionRatio > 0.55) { s.classList.add('on'); s.classList.remove('past'); }
+    if (e.isIntersecting && e.intersectionRatio > 0.55) { s.classList.add('on'); s.classList.remove('past'); gather(); }
     else if (!e.isIntersecting || e.intersectionRatio < 0.45) { s.classList.remove('on'); s.classList.toggle('past', e.boundingClientRect.top < 0); }
   }), { threshold: [0, 0.45, 0.55, 1] });
   const group = () => {   // sets of 8 (4 x 2), or 6 on a phone (2 x 3); each piece a little after the one before
@@ -17,7 +19,7 @@
       items.slice(i, i + n).forEach((it, j) => { it.style.transitionDelay = (j * 0.06) + 's'; s.appendChild(it); });
       main.appendChild(s); sets.push(s); io.observe(s);
     }
-    if (sets[0]) sets[0].classList.add('on');
+    if (sets[0]) { sets[0].classList.add('on'); gather(); }
   };
   group(); addEventListener('resize', group);
   addEventListener('scroll', () => document.body.classList.toggle('scrolled', scrollY > 8), { passive: true });
