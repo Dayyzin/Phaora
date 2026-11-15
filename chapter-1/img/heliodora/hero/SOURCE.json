@@ -1,18 +1,19 @@
 {
- "source": "departments/apparel/marketing/story/product-stills/heliodora_mirror_256x144.png",
- "sig": "heliodora_mirror_256x144.png:45470",
+ "source": "departments/apparel/marketing/story/site480/hero/heliodora_hero.png",
+ "sig": "heliodora_hero.png:480267",
  "final": false,
  "files": [
-  "w256.webp"
+  "w480.webp",
+  "w854.webp"
  ],
- "w": 256,
- "h": 144,
+ "edge": 2,
+ "w": 854,
+ "h": 480,
  "bbox": [
+  0.0094,
   0.0,
-  0.0,
-  1.0,
+  0.993,
   1.0
  ],
- "ground": "#c8a885",
- "edge": 2
+ "ground": "#a18465"
 }

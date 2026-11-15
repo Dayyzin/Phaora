@@ -1,18 +1,18 @@
 {
- "source": "departments/apparel/marketing/story/product-stills/odara_coatcheck_256x144.png",
- "sig": "odara_coatcheck_256x144.png:45653",
+ "source": "departments/apparel/marketing/story/site480/hero/odara_hero.png",
+ "sig": "odara_hero.png:424605",
  "final": false,
  "files": [
-  "w256.webp"
+  "w480.webp"
  ],
- "w": 256,
- "h": 144,
+ "edge": 2,
+ "w": 480,
+ "h": 854,
  "bbox": [
-  0.0938,
+  0.0,
   0.0,
   1.0,
-  1.0
+  0.993
  ],
- "ground": "#dcd5bf",
- "edge": 2
+ "ground": "#153254"
 }

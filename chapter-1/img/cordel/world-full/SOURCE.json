@@ -1,0 +1,19 @@
+{
+ "source": "departments/apparel/marketing/story/site480/world/cordel_world.png",
+ "sig": "cordel_world.png:441428",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w854.webp"
+ ],
+ "edge": 2,
+ "w": 854,
+ "h": 480,
+ "bbox": [
+  0.0,
+  0.0,
+  0.993,
+  1.0
+ ],
+ "ground": "#f4ddb5"
+}

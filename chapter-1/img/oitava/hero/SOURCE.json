@@ -1,18 +1,19 @@
 {
- "source": "departments/apparel/marketing/story/product-stills/oitava_35_256x144.png",
- "sig": "oitava_35_256x144.png:32855",
+ "source": "departments/apparel/marketing/story/site480/hero/oitava_hero.png",
+ "sig": "oitava_hero.png:1628664",
  "final": false,
  "files": [
-  "w256.webp"
+  "w480.webp",
+  "w854.webp"
  ],
- "w": 256,
- "h": 144,
+ "edge": 2,
+ "w": 854,
+ "h": 480,
  "bbox": [
-  0.0938,
   0.0,
-  0.8125,
+  0.0,
+  0.993,
   1.0
  ],
- "ground": "#12100e",
- "edge": 2
+ "ground": "#b6b5b1"
 }

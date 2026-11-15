@@ -1,0 +1,19 @@
+{
+ "source": "departments/apparel/marketing/story/site480/walk/obolo_stitches.png",
+ "sig": "obolo_stitches.png:408692",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w854.webp"
+ ],
+ "edge": 2,
+ "w": 854,
+ "h": 480,
+ "bbox": [
+  0.1499,
+  0.0,
+  0.993,
+  1.0
+ ],
+ "ground": "#939394"
+}

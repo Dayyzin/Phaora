@@ -1,0 +1,19 @@
+{
+ "source": "departments/apparel/marketing/story/site480/walk/oitava_size.png",
+ "sig": "oitava_size.png:338063",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w854.webp"
+ ],
+ "edge": 2,
+ "w": 854,
+ "h": 480,
+ "bbox": [
+  0.3372,
+  0.0,
+  0.6557,
+  0.8667
+ ],
+ "ground": "#000000"
+}

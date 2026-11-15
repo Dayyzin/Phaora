@@ -607,3 +607,44 @@ WORLD_PASSED = {'veil_coat', 'silk_scarf', 'sunglasses', 'lustre', 'oitava', 'mu
 KEY_GAPS = {'veil_coat', 'muse_bomber', 'po_tophandle', 'matinee', 'the_reel', 'card_holder', 'sunglasses', 'opera_gloves', 'disc_belt'}
 SLIVERS = {'veil_coat', 'muse_bomber'}   # a garment's thin gaps too (a cuff against the skirt)
 CUT_OPTS = {'disc_belt': dict(bright=140, smooth=3)}   # Coaraci: the grey floor seen inside its coil, and its stepped outline
+
+
+# ---------------------------------------------------------------- the passed 480s (phaora-ops 0da36dd, story/site480/)
+# Interim: 854 x 480 renders that passed the 100% check replace the 144p stand-ins; full-size renders replace them later.
+S480 = 'departments/apparel/marketing/story/site480/'
+HERO480 = {'muse_allover': 'hero/heliodora_hero.png', 'oitava': 'hero/oitava_hero.png', 'muse_bomber': 'hero/odara_hero.png'}
+WORLD480 = {'veil_coat': 'world/gelosia_world.png', 'silk_scarf': 'world/cordel_world.png', 'sunglasses': 'world/ofusca_world.png',
+            'muse_bomber': 'world/odara_world.png', 'oitava': 'world/oitava_world.png'}
+# the walk as frames: each passed stop its own rendered shot, with its note (the stops that failed are left out)
+WALK_FRAMES = {
+ 'oitava': [('walk/oitava_size.png', 'SIZE', '30.0 × 23.9 MM', 'From the bail’s top to the foot, and across the crescents.'),
+            ('walk/oitava_spindle.png', 'THE SPINDLE', 'A FOUR-POINT STAR', 'A fine needle, rounded in section, its sharp star at the middle.'),
+            ('walk/oitava_crescents.png', 'CRESCENTS', '4.1 MM AT THE MIDDLE', 'Open at top and foot, each drawn to a sharp point, up to 2.8 mm proud at the front and 1.0 mm at the back.'),
+            ('walk/oitava_chain.png', 'CHAIN', 'FINE 18K CABLE', '1.1 mm links of 0.22 mm wire.')],
+ 'muse_bomber': [('walk/odara_stop3.png', 'THE PORTRAIT', 'ROUND HOLES ON A 5 MM SCREEN', 'Her tone sets each hole’s size: none over 4 mm or under 0.7 mm, none within 15 mm of a seam.'),
+                 ('walk/odara_stop4.png', 'THE MARK', '39.5 MM', 'Cut whole on her cheek, with 2.5 mm of solid leather round it.'),
+                 ('walk/odara_stop5.png', 'RIB', 'KNITTED JACQUARD', 'Collar, cuffs and hem are the house 1x1 rib, two 5 mm cream stripes 5 mm apart.'),
+                 ('walk/odara_stop6.png', 'ZIP', 'GOLD, THE Ö PULL', 'Teeth at 3.2 mm, its pull a 24 mm disc engraved with the mark.')],
+ 'po_tophandle': [('walk/itaoca_stop2.png', 'THE FLAP', '7 × 2 SQUARES', 'Pressed 0.55 mm deep, with 8 mm of plain leather round it. The flap alone carries the monogram.'),
+                  ('walk/itaoca_stop3.png', 'CLASP', 'GOLD, THE Ö ENGRAVED', 'The house disc, 24 mm, the mark engraved 16 mm tall.'),
+                  ('walk/itaoca_stop4.png', 'HANDLE', 'ROLLED, 18 × 16 MM', 'It rises 11 cm above the top on two 22 mm gold rings.'),
+                  ('walk/itaoca_stop5.png', 'THE DISC', '24 MM', 'The mark engraved 16 mm tall.')],
+ 'matinee': [('walk/coema_stop2.png', 'DIMENSIONS', '25 × 11 × 11.5 CM', 'One panel of black calfskin, 2 mm thick, wrapped round a flat base and closed by two piped ends.'),
+             ('walk/coema_stop1.png', 'HANDLES', 'TWO SHORT ROLLED', 'On gold rings, or a strap 20 mm wide and 3.5 mm thick.'),
+             ('walk/coema_stop3.png', 'LEATHER', 'BLACK CALFSKIN', 'One row of squares pressed round the body, 0.45 mm deep, each 43 by 45 mm.'),
+             ('walk/coema_stop5.png', 'FEET', 'FOUR, GOLD', 'It stands on four gold feet.')],
+ 'the_reel': [('walk/voluta_stop2.png', 'LEATHER', 'BLACK CALFSKIN', 'Sixteen squares are pressed round the side band, 0.4 mm deep, each 43.2 by 44.9 mm.'),
+              ('walk/voluta_stop4.png', 'CLASP', 'GOLD, 24 MM', 'It closes at the front on a round gold disc.'),
+              ('walk/voluta_stop5.png', 'STRAP', '12 MM', 'The strap folds through a gold ring on each side.')],
+}
+# close-ups at 100% from the passed 480s (key, caption, file); a piece listed here shows these and only these
+DETAILS480 = {
+ 'muse_allover': [('kiss', 'The kiss on the back', 'walk/heliodora_kiss.png'), ('material', 'The knit at stitch scale', 'walk/heliodora_knit.png'),
+                  ('hood', 'The hood, its eyelets and cords', 'walk/heliodora_hood.png')],   # the cuff and hem close-up is dropped
+ 'card_holder': [('whole', 'The holder, a card in it', 'walk/obolo_whole.png'), ('disc', 'The disc', 'walk/obolo_disc.png'),
+                 ('slots', 'The slots', 'walk/obolo_slots.png'), ('edge', 'The painted edge', 'walk/obolo_edge.png'),
+                 ('stitches', 'The stitching', 'walk/obolo_stitches.png'), ('material', 'The pebble', 'walk/obolo_grain.png')],
+ 'disc_belt': [('whole', 'The belt, coiled', 'walk/coaraci_stop1.png'), ('disc', 'The disc', 'walk/coaraci_stop4.png'),
+               ('edge', 'The painted edge', 'walk/coaraci_stop2.png'), ('holes', 'The holes', 'walk/coaraci_stop3.png'),
+               ('coil', 'Laid out', 'walk/coaraci_stop5.png')],
+}

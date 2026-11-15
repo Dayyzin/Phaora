@@ -1,18 +1,19 @@
 {
- "source": "departments/apparel/website/chapter2/assets/line/card_holder/card-holder-closeup-disc.webp",
- "sig": "card-holder-closeup-disc.webp:29586",
+ "source": "departments/apparel/marketing/story/site480/walk/obolo_disc.png",
+ "sig": "obolo_disc.png:375083",
  "final": false,
  "files": [
   "w480.webp",
-  "w800.webp"
+  "w854.webp"
  ],
- "w": 800,
- "h": 600,
+ "edge": 2,
+ "w": 854,
+ "h": 480,
  "bbox": [
-  0.16,
-  0.0133,
-  0.98,
-  0.64
+  0.0,
+  0.1833,
+  0.993,
+  1.0
  ],
- "edge": 2
+ "ground": "#3b3b3b"
 }

@@ -1,0 +1,19 @@
+{
+ "source": "departments/apparel/marketing/story/site480/walk/odara_stop3.png",
+ "sig": "odara_stop3.png:588890",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w854.webp"
+ ],
+ "edge": 2,
+ "w": 854,
+ "h": 480,
+ "bbox": [
+  0.0,
+  0.0,
+  0.8993,
+  0.9
+ ],
+ "ground": "#0b0d10"
+}

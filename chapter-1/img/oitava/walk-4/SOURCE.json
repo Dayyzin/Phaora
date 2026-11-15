@@ -1,0 +1,19 @@
+{
+ "source": "departments/apparel/marketing/story/site480/walk/oitava_chain.png",
+ "sig": "oitava_chain.png:373960",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w854.webp"
+ ],
+ "edge": 2,
+ "w": 854,
+ "h": 480,
+ "bbox": [
+  0.103,
+  0.0,
+  0.8899,
+  1.0
+ ],
+ "ground": "#000000"
+}

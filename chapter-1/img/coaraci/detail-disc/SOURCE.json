@@ -1,18 +1,19 @@
 {
- "source": "departments/apparel/website/chapter2/assets/line/disc_belt/disc-belt-closeup-disc.webp",
- "sig": "disc-belt-closeup-disc.webp:20234",
+ "source": "departments/apparel/marketing/story/site480/walk/coaraci_stop4.png",
+ "sig": "coaraci_stop4.png:411003",
  "final": false,
  "files": [
   "w480.webp",
-  "w800.webp"
+  "w854.webp"
  ],
- "w": 800,
- "h": 600,
+ "edge": 2,
+ "w": 854,
+ "h": 480,
  "bbox": [
   0.0,
-  0.0,
-  1.0,
+  0.05,
+  0.993,
   1.0
  ],
- "edge": 2
+ "ground": "#88887e"
 }

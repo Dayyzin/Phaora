@@ -1,0 +1,19 @@
+{
+ "source": "departments/apparel/marketing/story/site480/walk/voluta_stop5.png",
+ "sig": "voluta_stop5.png:416590",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w854.webp"
+ ],
+ "edge": 2,
+ "w": 854,
+ "h": 480,
+ "bbox": [
+  0.0,
+  0.0,
+  0.993,
+  1.0
+ ],
+ "ground": "#9c998a"
+}

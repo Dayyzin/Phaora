@@ -384,6 +384,26 @@ def piece_slots(p):
     return views, details, world
 
 
+def walk_frames(p):
+    """The walk-around from its passed rendered stops (story/site480/walk): each stop its own shot, full bleed on the
+    dark band; scrolling crossfades from stop to stop with a slow push in, the stop's note engraved over it. A stop
+    that failed its check is left out (content.WALK_FRAMES lists only the passed)."""
+    pg = p['page']; fr = C.WALK_FRAMES[p['id']]
+    frames, notes = '', ''
+    for i, (f, lab, val, mk) in enumerate(fr):
+        sl = Slot(pg, f'walk-{i + 1}', f'walk stop {i + 1}: {lab.lower()}, the full-size render', '8K, 7680 × 4320', '16:9', f'{p["name"]}: {lab.lower()}',
+                  [C.S480 + f], alt=f'{p["name"]}, {p["plain"].lower()}: {lab.lower()}')
+        frames += f'<div class="wf" data-i="{i}">{sl.img(sizes="100vw", loading="eager" if i == 0 else "lazy")}</div>'
+        notes += (f'<div class="wfn" data-i="{i}"><span class="lab">{E(lab)}</span><span class="val">{E(val)}</span>'
+                  + (f'<span class="mk">{E(mk)}</span>' if mk else '') + '</div>')
+    return f'''<section class="walk band frames" aria-label="A walk around {E(p['name'])}" style="--n:{len(fr)}">
+  <div class="fstage"><div class="fframes">{frames}</div><div class="fnotes">{notes}</div>
+   <div class="hud"><p class="eyebrow">In the world</p>{fa(p['name'], 'p', 'pname')}<p class="plain">{E(p['plain'])}</p></div>
+   <div class="prog"><i></i></div><p class="hint">Scroll to walk around it</p></div>
+  <div class="ftrack"></div>
+ </section>'''
+
+
 def walk_band(p, views, world):
     """The dark band as the walk-around (David, 14 Nov: "a walkaround the whole piece and zooms into the details and a
     description is written in 2.5D"): scroll moves the camera round the piece and pushes in to each part; the specs are
@@ -446,9 +466,13 @@ def piece_page(p, prev, nxt):
     pg = p['page']
     views, details, world = piece_slots(p)
     details = details + [Slot(pg, k, f'{lab.lower()}, 8K close-up', '8K, 7680 × 4320', '16:9', lab, [src]) for k, lab, src in C.MORE_DETAILS.get(p['id'], [])]
+    if p['id'] in C.DETAILS480:   # the passed 480s (an 8K final already in place is kept)
+        have = {d.name: d for d in details}
+        details = [have[f'detail-{k}'] if have.get(f'detail-{k}') and have[f'detail-{k}'].state == 'final' else
+                   Slot(pg, f'detail-{k}', f'{lab.lower()}, 8K close-up', '8K, 7680 × 4320', '16:9', lab, [C.S480 + f]) for k, lab, f in C.DETAILS480[p['id']]]
     hf, idea = C.HERO[p['id']]
     hero = Slot(pg, 'hero', f'the director’s signature shot: {idea} (story/product-stills/DIRECTOR-SHOTS.md; its 144p preview stands in)',
-                '8K, 7680 × 4320', '16:9', f'{p["name"]}: {idea}', [C.PS + hf + '_256x144.png'], alt=f'{p["name"]}, {p["plain"].lower()}: {idea}')
+                '8K, 7680 × 4320', '16:9', f'{p["name"]}: {idea}', ([C.S480 + C.HERO480[p['id']]] if p['id'] in C.HERO480 else []) + [C.PS + hf + '_256x144.png'], alt=f'{p["name"]}, {p["plain"].lower()}: {idea}')
     price, presale = price_of(p['id'])
     enq = p.get('nosale')
     # (b) the buy block
@@ -468,7 +492,7 @@ def piece_page(p, prev, nxt):
     vlist = [(v, s) for v, s in views.items()]
     gal = ''.join(f'<div class="gv{" first" if i == 0 else ""}">{s.img(sizes="(min-width: 821px) 50vw, 100vw", loading="eager" if i == 0 else "lazy")}<p class="cap">{E(v.replace("-", " "))}</p></div>' for i, (v, s) in enumerate(vlist))
     # (c) close-ups
-    strip = ''.join(f'<div class="mc">{s.img(sizes="(min-width: 821px) 25vw, 80vw")}<p class="cap">{E(s.label)}</p></div>' for s in details[:4])
+    strip = ''.join(f'<div class="mc">{s.img(sizes="(min-width: 821px) 25vw, 80vw")}<p class="cap">{E(s.label)}</p></div>' for s in details[:6])
     # (d) the dark band: the piece in its world (its short; the Veil Coat's is the film) and how it is made. No book here
     # (David, 14 Nov: "No book in the product page"): the story, its plate and its link live in book.html
     ch = next((c for c in C.BOOK if p['id'] in c['enter']), None)
@@ -486,14 +510,16 @@ def piece_page(p, prev, nxt):
         sh = f'<div class="short">{short.img(sizes="(min-width: 821px) 60vw, 100vw", cls="playin")}<p class="cap">{E(lab)}</p></div>'
     scene = (f'<section class="scene" id="scene"><p class="eyebrow">In the world</p><div class="scene-in">{sh}{notes}</div></section>'
              if (sh or notes) else '')
-    if p['id'] in C.WALK:   # the band as the walk-around: the specs as its engraved notes
+    if p['id'] in C.WALK_FRAMES:   # the walk as its passed rendered stops, one frame a stop
+        scene = walk_frames(p)
+    elif p['id'] in C.WALK:   # the band as the walk-around: the specs as its engraved notes
         scene = walk_band(p, views, world)
     else:                   # David, 15 Nov: "just for expensive stuff you get a walkaround"; the rest is the simple page
         scene = ''
     # the piece in its world: full bleed, the specs set over it in 2.5D. Its file comes as <page>_world.jpg into the slot
     passed = p['id'] in C.WORLD_PASSED
     wslot = Slot(pg, 'world-full', f"{pg}_world.jpg, the piece in its world, full size" + (" (passed by David; the full-size file to come)" if passed else ""),
-                 '8K, 7680 × 4320', '16:9', f"{p['name']} in its world", [], alias=f'{pg}_world', alt=f"{p['name']}, {p['plain'].lower()}, in its world")
+                 '8K, 7680 × 4320', '16:9', f"{p['name']} in its world", [C.S480 + C.WORLD480[p['id']]] if p['id'] in C.WORLD480 else [], alias=f'{pg}_world', alt=f"{p['name']}, {p['plain'].lower()}, in its world")
     wslot.dir.mkdir(parents=True, exist_ok=True)
     (wslot.dir / 'README.txt').write_text(f"{p['name']} in its world: put the full-size image here as {pg}_world.jpg (or master.jpg) and run build.py.\n")
     wspecs = ''.join(f'<span class="ws"><span class="lab">{E(a)}</span><span class="val">{E(b)}</span></span>' for a, b in p['specs'])
@@ -534,7 +560,7 @@ def piece_page(p, prev, nxt):
  <nav class="restline" aria-label="The rest of the line"><p class="eyebrow">The rest of the line</p><div class="rgrid">{rest}</div>
   <div class="pn"><a href="{prev['page']}.html"><span>Before</span>{fa(prev['name'], 'span')}</a><a href="index.html#catalogue" class="all">The catalogue</a><a href="{nxt['page']}.html"><span>Next</span>{fa(nxt['name'], 'span')}</a></div></nav>
 </main>'''
-    page(f"{pg}.html", f"{p['name']}, {p['plain'].lower()}", p['about'], body, theme='light', scripts=['assets/js/piece.js'] + (['assets/js/walk.js'] if p['id'] in C.WALK else []), here='line.html', bodycls='piecepage pp-page' + (' onblack' if p['id'] in C.WALK else ''))
+    page(f"{pg}.html", f"{p['name']}, {p['plain'].lower()}", p['about'], body, theme='light', scripts=['assets/js/piece.js'] + (['assets/js/walkframes.js'] if p['id'] in C.WALK_FRAMES else ['assets/js/walk.js'] if p['id'] in C.WALK else []), here='line.html', bodycls='piecepage pp-page' + (' onblack' if p['id'] in C.WALK else ''))
     return views
 
 

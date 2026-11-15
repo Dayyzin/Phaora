@@ -1,0 +1,19 @@
+{
+ "source": "departments/apparel/marketing/story/site480/world/oitava_world.png",
+ "sig": "oitava_world.png:2104331",
+ "final": false,
+ "files": [
+  "w480.webp",
+  "w854.webp"
+ ],
+ "edge": 2,
+ "w": 854,
+ "h": 480,
+ "bbox": [
+  0.3841,
+  0.0,
+  0.6464,
+  0.7833
+ ],
+ "ground": "#aba297"
+}
