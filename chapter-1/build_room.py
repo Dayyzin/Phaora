@@ -189,6 +189,7 @@ def main():
         print(pid, fr.size)
     json.dump(fits, open(os.path.join(A, 'room', 'fits.json'), 'w'), indent=1)
     walk_cuts(piece)
+    walk_mattes()
 
 
 def walk_cuts(piece):
@@ -225,3 +226,48 @@ def walk_cuts(piece):
 
 if __name__ == '__main__':
     main()
+
+
+def key_backdrop(im, min_area=250):
+    """A cut-out's enclosed studio backdrop keyed out (David, 15 Nov: the light sliver between the coat's sleeve and its
+    body on the dark band): every neutral light region of any real size goes, wherever it is, then a light fringe round
+    it. Cream (the linings, the silk behind the net) is warm, so it stays."""
+    a = np.asarray(im.convert('RGBA')).astype(np.float32); al = a[..., 3] / 255
+    lum = a[..., :3].mean(-1); ch = a[..., :3].max(-1) - a[..., :3].min(-1)
+    m = (al > 0.02) & (ch < 16) & (lum > 140)
+    m = ndimage.binary_opening(m, iterations=1)
+    lab, n = ndimage.label(m)
+    if not n:
+        return im.convert('RGBA'), 0
+    sz = ndimage.sum(m, lab, range(1, n + 1)); ml = ndimage.mean(lum, lab, range(1, n + 1))
+    # the backdrop is bright (a lit studio ground, 220-245); a leather sheen or a strap's inside is mid grey and stays
+    gone = np.isin(lab, 1 + np.nonzero((sz >= min_area) & (ml >= 190))[0])
+    if not gone.any():
+        return im.convert('RGBA'), 0
+    ring = ndimage.binary_dilation(gone, iterations=4) & ~gone
+    fringe = ring & (lum > 120) & (ch < 22)                       # the light fringe left round each gap
+    cut = ndimage.binary_dilation(gone | fringe, iterations=1)
+    keep = 1 - ndimage.gaussian_filter(cut.astype(np.float32), 0.8)
+    a[..., 3] = np.clip(al * np.where(cut, 0, keep), 0, 1) * 255
+    return Image.fromarray(a.astype(np.uint8), 'RGBA'), int(gone.sum())
+
+
+WALK_PIECES = ('veil_coat', 'oitava', 'muse_bomber', 'po_tophandle', 'matinee', 'the_reel', 'lustre')
+
+
+def walk_mattes():
+    """The walk-around's dark-band images keyed clean: the front as assets/walk/<id>_front.webp (from the room cut-out,
+    which the room keeps as approved) and every other view in place. The jewellery is cut from black, so it is checked,
+    not keyed (its crystals are grey)."""
+    os.makedirs(os.path.join(A, 'walk'), exist_ok=True)
+    for pid in WALK_PIECES:
+        srcs = [(os.path.join(A, 'room', f'{pid}.webp'), os.path.join(A, 'walk', f'{pid}_front.webp'))]
+        srcs += [(f, f) for f in sorted(__import__('glob').glob(os.path.join(A, 'walk', f'{pid}_*.webp'))) if not f.endswith('_front.webp')]
+        for src, dst in srcs:
+            im = Image.open(src)
+            if pid in ('lustre', 'oitava'):
+                out, n = im.convert('RGBA'), 0
+            else:
+                out, n = key_backdrop(im)
+            out.save(dst, 'WEBP', quality=90, alpha_quality=100, method=6)
+            print(os.path.basename(dst), n)

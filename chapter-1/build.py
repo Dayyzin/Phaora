@@ -299,7 +299,9 @@ def walk_band(p, views, world):
     # the other views likewise walk on their clean cut-outs (assets/walk/<id>_<view>.webp, build_room.py walk_cuts)
     cutviews = {}
     for v, sl in views.items():
-        cut = HERE / 'assets' / ('room' if v == first else 'walk') / (f"{p['id']}.webp" if v == first else f"{p['id']}_{v}.webp")
+        cut = HERE / 'assets' / 'walk' / (f"{p['id']}_front.webp" if v == first else f"{p['id']}_{v}.webp")   # keyed clean (build_room.walk_mattes)
+        if v == first and not cut.exists():
+            cut = HERE / 'assets' / 'room' / f"{p['id']}.webp"
         if not cut.exists():
             continue
         if sl.state == 'final' and sl.files and Image.open(sl.dir / sl.files[0]).mode == 'RGBA':   # a final cut-out walks as it is;
