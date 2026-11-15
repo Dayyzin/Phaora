@@ -18,7 +18,7 @@ a{color:inherit;text-decoration:none}
 .col{display:flex;flex-direction:column;align-items:center;text-align:center;padding:56px 2vw 34px;min-width:0}
 .col .t{font:500 30px/1.1 'Cormorant Garamond','DejaVu Serif',serif;letter-spacing:.32em;padding-left:.32em;margin:0}
 .col .s{font:300 10.5px/1.5 'Jost','DejaVu Sans',sans-serif;letter-spacing:.42em;padding-left:.42em;margin:14px 0 0}
-.col .ph{position:relative;width:100%;height:clamp(340px,38vw,600px);margin:44px 0 22px;display:flex;align-items:flex-end;justify-content:center}
+.col .ph{position:relative;width:100%;height:clamp(340px,38vw,600px);margin:6px 0 22px;display:flex;align-items:flex-end;justify-content:center}
 .col .ph img{display:block;height:100%;width:auto;max-width:100%;object-fit:contain;object-position:50% 100%}
 /* a wide piece (a bag, the bomber) fills about two thirds of its column, standing on the floor */
 .col .ph.wide img{height:auto;width:78%;max-height:100%}
@@ -41,7 +41,7 @@ a{color:inherit;text-decoration:none}
   .col{padding:26px 1.2vw 16px}
   .col .t{font-size:13px;letter-spacing:.2em;padding-left:.2em}
   .col .s{font-size:6.5px;line-height:1.5;letter-spacing:.16em;padding-left:.16em;margin-top:5px}
-  .col .ph{height:44vw;max-height:340px;margin:24px 0 10px}
+  .col .ph{height:44vw;max-height:340px;margin:4px 0 10px}
   .col .specs{font-size:7.5px;line-height:1.6;letter-spacing:.08em}
   .band{padding:14px 0 18px;margin-bottom:10px}
   .links{font-size:7.5px;line-height:1.6;letter-spacing:.14em;padding-left:.14em;gap:2px}
