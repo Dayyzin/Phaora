@@ -688,12 +688,32 @@ def catalogue_home():
             lean = k in (2, 4) or w[0] == 'SIZE'
             out += f'<li>{f"<i>{E(w[0])}</i>" + (" " + E(w[1]) if len(w) > 1 else "") if lean else E(x)}</li>'
         return out
+    # David, 15 Nov: "The catalogue IS the room. Same room as room.html, not a flat grid": one bay per piece, side by side,
+    # each the room's own render with the page's text on it (assets/catalogue/bay/<id>.webp: room.html rendered bare, its
+    # interface hidden: the pinned walls curving in, the rounded cove, the light, the piece and its shadow, the carved
+    # specs). The name, the type and THE PIECE / KEEP A SEAT are the page's own text, where the room sets them.
+    bay = lambda q: HERE / 'assets' / 'catalogue' / 'bay' / f'{q["id"]}.webp'
+    bayed = getattr(C, 'CAT_BAYS', False) and all(bay(q).exists() for q in order)
+    if bayed:
+        cols = ''
+        for i, q in enumerate(order):
+            price = price_of(q['id'])[0]
+            specs = C.ROOM_SET.get(q['id'], {}).get('specs') or default
+            cols += (f'<article class="bay" id="{q["page"]}"><img src="assets/catalogue/bay/{q["id"]}.webp" width="780" height="1688" '
+                     f'alt="{E(q["name"])}, {E(q["plain"].lower())}: {E(" / ".join(specs))}" loading="{"eager" if i < 4 else "lazy"}" decoding="async">'
+                     f'<div class="bn"><h2 class="t cut{" long" if len(q["name"]) > 11 else ""}">{E(q["name"].upper())}</h2>'
+                     f'<p class="s cut">{E(q["plain"].upper())} &nbsp;·&nbsp; CHAPTER&nbsp;I</p></div>'
+                     f'<a class="pcimg" href="{q["page"]}.html" aria-label="The piece, {E(q["name"])}"></a>'
+                     f'<p class="bl cut"><a href="{q["page"]}.html">The piece</a>' +
+                     (f'<a href="{REGISTER}">Keep a seat · {E(price)}</a>' if price and not q.get('nosale') else '') + '</p></article>')
     # David, 15 Nov, on the room's frames side by side: "THIS EXACTLY AS IS BRO". Each piece is its phone frame of the room
     # (room.html's own render: the wall's Ö pins, the cast shadow, the carved specs, its nav strip and its price band),
     # butted edge to edge, no gaps; links lie over the frame's own words.
     panel = lambda q: HERE / 'assets' / 'catalogue' / 'panel' / f'{q["id"]}.webp'
     panelled = getattr(C, 'CAT_PANELS', False) and all(panel(q).exists() for q in order)
-    if panelled:
+    if bayed:
+        pass
+    elif panelled:
         cols = ''
         for i, q in enumerate(order):
             price = price_of(q['id'])[0]
@@ -735,8 +755,8 @@ def catalogue_home():
 <link rel="icon" type="image/png" href="assets/brand/mark-180.png"><link rel="apple-touch-icon" href="assets/brand/mark-180.png">
 <link rel="stylesheet" href="assets/css/catalogue.css">
 </head>
-<body class="{'panelled' if panelled else 'wall'}">
-{'' if panelled else '<header class="navband"><a class="logo" href="#top" aria-label="PHAÖRA"></a><nav class="nl">' + ''.join(f'<a href="{h}">{t}</a>' for t, h in [('The line', '#top'), ('The film', 'film.html'), ('The book', 'book.html'), ('The room', 'room.html'), ('The house', 'house.html'), ('Register', REGISTER)]) + '</nav></header>'}
+<body class="{'bays' if bayed else 'panelled' if panelled else 'wall'}">
+{'' if panelled and not bayed else '<header class="navband"><a class="logo" href="#top" aria-label="PHAÖRA"></a><nav class="nl">' + ''.join(f'<a href="{h}">{t}</a>' for t, h in [('The line', '#top'), ('The film', 'film.html'), ('The book', 'book.html'), ('The room', 'room.html'), ('The house', 'house.html'), ('Register', REGISTER)]) + '</nav></header>'}
 <main class="cat">{cols}</main>
 <script>
 // David's lettering with the solo Ö, inlined in the room's dark ink, as room.js does (never typed)
