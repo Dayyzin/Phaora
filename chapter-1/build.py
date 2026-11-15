@@ -72,7 +72,8 @@ def bbox_of(im):
 
 # ---------------------------------------------------------------- slots
 class Slot:
-    def __init__(self, page, name, wants, size, ratio, label, sources=(), final=False, kind='image', alt=''):
+    def __init__(self, page, name, wants, size, ratio, label, sources=(), final=False, kind='image', alt='', alias=None):
+        self.alias = alias   # a second name its master may have (gelosia_world.jpg), as delivered
         self.page, self.name, self.wants, self.size, self.ratio, self.label = page, name, wants, size, ratio, label
         self.sources, self.final_src, self.kind, self.alt = list(sources), final, kind, alt
         self.dir = HERE / ('media' if kind == 'video' else 'img') / page / name
@@ -83,7 +84,7 @@ class Slot:
 
     def master(self):
         if self.dir.exists():
-            for f in sorted(self.dir.glob('master.*')):
+            for f in sorted(self.dir.glob('master.*')) + (sorted(self.dir.glob(self.alias + '.*')) if self.alias else []):
                 return f
         return None
 
@@ -389,6 +390,17 @@ def piece_page(p, prev, nxt):
              if (sh or notes) else '')
     if p['id'] in C.WALK:   # the band as the walk-around: the specs as its engraved notes
         scene = walk_band(p, views, world)
+    else:                   # David, 15 Nov: "just for expensive stuff you get a walkaround"; the rest is the simple page
+        scene = ''
+    # the piece in its world: full bleed, the specs set over it in 2.5D. Its file comes as <page>_world.jpg into the slot
+    passed = p['id'] in C.WORLD_PASSED
+    wslot = Slot(pg, 'world-full', f"{pg}_world.jpg, the piece in its world, full size" + (" (passed by David; the full-size file to come)" if passed else ""),
+                 '8K, 7680 × 4320', '16:9', f"{p['name']} in its world", [], alias=f'{pg}_world', alt=f"{p['name']}, {p['plain'].lower()}, in its world")
+    wslot.dir.mkdir(parents=True, exist_ok=True)
+    (wslot.dir / 'README.txt').write_text(f"{p['name']} in its world: put the full-size image here as {pg}_world.jpg (or master.jpg) and run build.py.\n")
+    wspecs = ''.join(f'<span class="ws"><span class="lab">{E(a)}</span><span class="val">{E(b)}</span></span>' for a, b in p['specs'])
+    inworld = (f'<section class="inworld" aria-label="{E(p["name"])} in its world">{wslot.img(sizes="100vw", cls="wfull")}'
+               f'<div class="wspecs" aria-label="Specifications"><p class="eyebrow">In its world</p>{fa(p["name"], "p", "wname")}{wspecs}</div></section>')
     # (e) in the same scene
     same = C.SAME.get(p['id']) or ([x for x in ch['enter'] if x != p['id']] if ch else [])
     same = [x for x in same if x in PIECE][:3]
@@ -414,8 +426,12 @@ def piece_page(p, prev, nxt):
    <details class="more"><summary>Details</summary><dl>{more}</dl></details>
   </div>
  </section>
- <section class="macro"><p class="eyebrow">Close, at 100%</p><div class="strip">{strip}</div></section>
+{f'''
+ {inworld}
  {scene}
+ <section class="macro"><p class="eyebrow">Close, at 100%</p><div class="strip">{strip}</div></section>''' if p['id'] in C.WALK else f'''
+ <section class="macro"><p class="eyebrow">Close, at 100%</p><div class="strip">{strip}</div></section>
+ {inworld}'''}
  {samehtml}
  <nav class="restline" aria-label="The rest of the line"><p class="eyebrow">The rest of the line</p><div class="rgrid">{rest}</div>
   <div class="pn"><a href="{prev['page']}.html"><span>Before</span>{fa(prev['name'], 'span')}</a><a href="index.html#catalogue" class="all">The catalogue</a><a href="{nxt['page']}.html"><span>Next</span>{fa(nxt['name'], 'span')}</a></div></nav>

@@ -1,7 +1,7 @@
 # SLOTS: every image and film on the Chapter I site
 
-Built by `build.py`. 145 slots: **5 final**, **118 holding a stand-in** (the best approved
-render or still we have, at 144p or 1600), **22 waiting** (a quiet placeholder of the right ratio, labelled
+Built by `build.py`. 160 slots: **5 final**, **118 holding a stand-in** (the best approved
+render or still we have, at 144p or 1600), **37 waiting** (a quiet placeholder of the right ratio, labelled
 with what it waits for).
 
 **To add a photo:** put the file in the slot's folder as `master.png` (or `.jpg`, `.webp`, `.tif`; a film: `master.mp4`),
@@ -60,6 +60,7 @@ path. On phaora.com the labels never show.
 | heliodora | `img/heliodora/detail-cuff/` | the cuff, where her hair thins to single dots, 8K close-up (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
 | heliodora | `img/heliodora/world/` | C1: the last frame, the world plate (the lobby) (8K, 5760 × 7680) | stand-in: departments/apparel/marketing/story/stills/8k/ca-01-the-muse_5760x7680.png (5760 × 7680) |
 | heliodora | `img/heliodora/hero/` | the director’s signature shot: Her printed face where the reflection would be, ringed by the mirror’s bulbs (story/product-stills/DIRECTOR-SHOTS.md; its 144p preview stands in) (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/product-stills/heliodora_mirror_256x144.png (256 × 144) |
+| heliodora | `img/heliodora/world-full/` | heliodora_world.jpg, the piece in its world, full size (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
 | cantilena | `img/cantilena/front/` | departments/apparel/new-pieces-2026-11/build/cantilena/site/cantilena_front_16k.png (16K, 8640 × 15360) | stand-in: departments/apparel/new-pieces-2026-11/build/cantilena/real/cantilena_front_1600_black_cream.png (1600 × 1600) |
 | cantilena | `img/cantilena/three-quarter/` | three-quarter view, 8K (8K, 4320 × 7680) | WAITING: a placeholder of the right ratio |
 | cantilena | `img/cantilena/back/` | back view, 8K (8K, 4320 × 7680) | WAITING: a placeholder of the right ratio |
@@ -68,6 +69,7 @@ path. On phaora.com the labels never show.
 | cantilena | `img/cantilena/detail-eyelet/` | the gold eyelet and tip, 8K close-up (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
 | cantilena | `img/cantilena/world/` | C9: the last frame, the world plate (the suite, by day) (8K, 5760 × 7680) | WAITING: a placeholder of the right ratio |
 | cantilena | `img/cantilena/hero/` | the director’s signature shot: The echo: the cream one hangs where the black one’s shadow should be (story/product-stills/DIRECTOR-SHOTS.md; its 144p preview stands in) (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/product-stills/cantilena_echo_256x144.png (256 × 144) |
+| cantilena | `img/cantilena/world-full/` | cantilena_world.jpg, the piece in its world, full size (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
 | odara | `img/odara/front/` | departments/apparel/new-pieces-2026-11/build/muse-bomber/site/muse_bomber_front_16k.png (16K, 8640 × 15360) | stand-in: departments/apparel/website/chapter2/assets/line/muse_bomber/muse-bomber-front.webp (1350 × 1380) |
 | odara | `img/odara/three-quarter/` | three-quarter view, 8K (8K, 4320 × 7680) | stand-in: departments/apparel/website/chapter2/assets/line/muse_bomber/muse-bomber-three-quarter.webp (1355 × 1392) |
 | odara | `img/odara/back/` | back view, 8K (8K, 4320 × 7680) | stand-in: departments/apparel/website/chapter2/assets/line/muse_bomber/muse-bomber-back.webp (1372 × 1383) |
@@ -77,6 +79,7 @@ path. On phaora.com the labels never show.
 | odara | `img/odara/detail-pull/` | the gold pull, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/new-pieces-2026-11/build/muse-bomber/site/check/front16k_100_gold_pull.png (801 × 799) |
 | odara | `img/odara/world/` | C10: the last frame, the world plate (the suite, at dusk) (8K, 5760 × 7680) | stand-in: departments/apparel/marketing/story/stills/ca-10-the-muse-bomber_108x144.png (108 × 144) |
 | odara | `img/odara/hero/` | the director’s signature shot: Coat check: one hook, one brass token, her back to us (story/product-stills/DIRECTOR-SHOTS.md; its 144p preview stands in) (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/product-stills/odara_coatcheck_256x144.png (256 × 144) |
+| odara | `img/odara/world-full/` | odara_world.jpg, the piece in its world, full size (passed by David; the full-size file to come) (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
 | gelosia | `img/gelosia/front/` | departments/apparel/new-pieces-2026-11/build/veil-coat/site/veil_coat_front_16k.png (16K, 8640 × 15360) | stand-in: departments/apparel/website/chapter2/assets/line/veil_coat/veil-coat-front.webp (658 × 1261) |
 | gelosia | `img/gelosia/three-quarter/` | three-quarter view, 8K (8K, 4320 × 7680) | stand-in: departments/apparel/website/chapter2/assets/line/veil_coat/veil-coat-three-quarter.webp (563 × 1283) |
 | gelosia | `img/gelosia/back/` | back view, 8K (8K, 4320 × 7680) | stand-in: departments/apparel/website/chapter2/assets/line/veil_coat/veil-coat-back.webp (641 × 1241) |
@@ -86,6 +89,7 @@ path. On phaora.com the labels never show.
 | gelosia | `img/gelosia/world/` | the film: the last frame, the world plate (the doors, in the snow) (8K, 5760 × 7680) | stand-in: departments/apparel/marketing/story/stills/b1_the-doors-in-the-snow_108x144.png (108 × 144) |
 | gelosia | `img/gelosia/detail-site/` | the net, close, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/product-stills/site-views/gelosia_detail_256x144.png (256 × 144) |
 | gelosia | `img/gelosia/hero/` | the director’s signature shot: The net: one raking light finds the cream in every hole (story/product-stills/DIRECTOR-SHOTS.md; its 144p preview stands in) (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/product-stills/gelosia_net_256x144.png (256 × 144) |
+| gelosia | `img/gelosia/world-full/` | gelosia_world.jpg, the piece in its world, full size (passed by David; the full-size file to come) (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
 | alvor | `img/alvor/front/` | departments/apparel/new-pieces-2026-11/build/silk-slip/site/silk_slip_front_16k.png (16K, 8640 × 15360) | stand-in: departments/apparel/website/chapter2/assets/line/silk_slip/silk-slip-front.webp (487 × 1180) |
 | alvor | `img/alvor/three-quarter/` | three-quarter view, 8K (8K, 4320 × 7680) | WAITING: a placeholder of the right ratio |
 | alvor | `img/alvor/back/` | back view, 8K (8K, 4320 × 7680) | WAITING: a placeholder of the right ratio |
@@ -93,6 +97,7 @@ path. On phaora.com the labels never show.
 | alvor | `img/alvor/detail-strap/` | a strap, 8K close-up (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
 | alvor | `img/alvor/world/` | C11: the last frame, the world plate (the suite, at midnight) (8K, 5760 × 7680) | stand-in: departments/apparel/marketing/story/stills/ca-11-the-silk-slip_108x144.png (108 × 144) |
 | alvor | `img/alvor/hero/` | the director’s signature shot: First light: hung in the window, the dawn coming through the silk (story/product-stills/DIRECTOR-SHOTS.md; its 144p preview stands in) (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/product-stills/alvor_first-light_256x144.png (256 × 144) |
+| alvor | `img/alvor/world-full/` | alvor_world.jpg, the piece in its world, full size (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
 | voluta | `img/voluta/front/` | departments/apparel/new-pieces-2026-11/build/the-reel/site/reel_front_16k.png (16K, 15360 × 8640) | FINAL: departments/apparel/new-pieces-2026-11/build/the-reel/site/reel_front_16k.png (8640 × 15360) |
 | voluta | `img/voluta/three-quarter/` | three-quarter view, 8K (8K, 7680 × 4320) | stand-in: departments/apparel/new-pieces-2026-11/build/the-reel/site/reel_threequarter_cream_1600.png (1600 × 1600) |
 | voluta | `img/voluta/open/` | open view, 8K (8K, 7680 × 4320) | stand-in: departments/apparel/website/chapter2/assets/line/the_reel/reel-open.webp (998 × 1311) |
@@ -102,6 +107,7 @@ path. On phaora.com the labels never show.
 | voluta | `img/voluta/world/` | C13: the last frame, the world plate (the suite’s vanity, morning) (8K, 5760 × 7680) | stand-in: departments/apparel/marketing/story/stills/ca-13-the-reel_108x144.png (108 × 144) |
 | voluta | `img/voluta/detail-site/` | the clasp and the band, close, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/product-stills/voluta_detail_256x144.png (256 × 144) |
 | voluta | `img/voluta/hero/` | the director’s signature shot: The top can: the bag on a stack of wider film-reel cans (story/product-stills/DIRECTOR-SHOTS.md; its 144p preview stands in) (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/product-stills/voluta_cans_256x144.png (256 × 144) |
+| voluta | `img/voluta/world-full/` | voluta_world.jpg, the piece in its world, full size (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
 | itaoca | `img/itaoca/front/` | departments/apparel/new-pieces-2026-11/build/po-tophandle/site/po_tophandle_front_16k.png (16K, 15360 × 8640) | stand-in: departments/apparel/new-pieces-2026-11/build/po-tophandle/site/preview_1600/po_tophandle_front.png (1600 × 1600) |
 | itaoca | `img/itaoca/three-quarter/` | three-quarter view, 8K (8K, 7680 × 4320) | stand-in: departments/apparel/new-pieces-2026-11/build/po-tophandle/site/preview_1600/po_tophandle_threequarter.png (1600 × 1600) |
 | itaoca | `img/itaoca/open/` | open view, 8K (8K, 7680 × 4320) | stand-in: departments/apparel/new-pieces-2026-11/build/po-tophandle/site/preview_1600/po_tophandle_open.png (1600 × 1600) |
@@ -111,18 +117,21 @@ path. On phaora.com the labels never show.
 | itaoca | `img/itaoca/world/` | C8: the last frame, the world plate (the dressing table) (8K, 5760 × 7680) | stand-in: departments/apparel/marketing/story/stills/ca-08-the-po-top-handle_108x144.png (108 × 144) |
 | itaoca | `img/itaoca/detail-site/` | the flap and the disc, close, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/product-stills/itaoca_detail_256x144.png (256 × 144) |
 | itaoca | `img/itaoca/hero/` | the director’s signature shot: House of stone: alone on fresh snow, one long shadow (story/product-stills/DIRECTOR-SHOTS.md; its 144p preview stands in) (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/product-stills/itaoca_snow_256x144.png (256 × 144) |
+| itaoca | `img/itaoca/world-full/` | itaoca_world.jpg, the piece in its world, full size (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
 | coema | `img/coema/front/` | departments/apparel/new-pieces-2026-11/build/weekender/site/matinee_front_16k.png (16K, 15360 × 8640) | stand-in: departments/apparel/website/chapter2/assets/line/matinee/matinee-front.webp (1274 × 1021) |
 | coema | `img/coema/open/` | open view, 8K (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
 | coema | `img/coema/detail-closeup/` | the pressed row, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/new-pieces-2026-11/build/weekender/site/preview_16k_closeup.png (1600 × 900) |
 | coema | `img/coema/detail-lining/` | the couple on the suede, 8K close-up (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
 | coema | `img/coema/world/` | C14: the last frame, the world plate (the suite’s bench, morning) (8K, 5760 × 7680) | stand-in: departments/apparel/marketing/story/preview/60_the-matinee_suite-bench_last_256x144.png (256 × 144) |
 | coema | `img/coema/hero/` | the director’s signature shot: Open from above, the kiss inside (story/product-stills/DIRECTOR-SHOTS.md; its 144p preview stands in) (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/product-stills/coema_ref11_256x144.png (256 × 144) |
+| coema | `img/coema/world-full/` | coema_world.jpg, the piece in its world, full size (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
 | ofusca | `img/ofusca/front/` | departments/apparel/new-pieces-2026-11/build/sunglasses/site/sunglasses_front_16k.png (16K, 15360 × 8640) | stand-in: departments/apparel/website/chapter2/assets/line/sunglasses/star-in-shades-sunglasses-front.webp (1332 × 638) |
 | ofusca | `img/ofusca/flat/` | flat view, 8K (8K, 7680 × 4320) | stand-in: departments/apparel/website/chapter2/assets/line/sunglasses/star-in-shades-sunglasses-flat.webp (1467 × 596) |
 | ofusca | `img/ofusca/detail-plate/` | the gold plate, 8K close-up (8K, 7680 × 4320) | FINAL: departments/apparel/new-pieces-2026-11/build/sunglasses/site/sunglasses_plate_8k.jpg (7680 × 4320) |
 | ofusca | `img/ofusca/detail-case/` | the case, 8K close-up (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
 | ofusca | `img/ofusca/world/` | C6: the last frame, the world plate (the car, at night) (8K, 5760 × 7680) | stand-in: departments/apparel/marketing/story/stills/ca-06-star-in-shades_108x144.png (108 × 144) |
 | ofusca | `img/ofusca/hero/` | the director’s signature shot: The top of one bounce over the car’s back seat (story/product-stills/DIRECTOR-SHOTS.md; its 144p preview stands in) (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/product-stills/ofusca_ref09-seat_256x144.png (256 × 144) |
+| ofusca | `img/ofusca/world-full/` | ofusca_world.jpg, the piece in its world, full size (passed by David; the full-size file to come) (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
 | oitava | `img/oitava/front/` | the front, 16K render, once David passes its 1600 preview (stand-in: catalogue144 oitava_front_256x144.png; phones: oitava_front_108x144.png) (16K, 15360 × 8640) | stand-in: departments/apparel/new-pieces-2026-11/build/oitava/catalogue144/oitava_front_256x144.png (256 × 144) |
 | oitava | `img/oitava/three-quarter/` | three-quarter view, 8K (stand-in: catalogue144 oitava_threequarter_256x144.png; phones: _108x144) (8K, 7680 × 4320) | stand-in: departments/apparel/new-pieces-2026-11/build/oitava/catalogue144/oitava_threequarter_256x144.png (256 × 144) |
 | oitava | `img/oitava/back/` | back view, 8K (stand-in: catalogue144 oitava_back_256x144.png; phones: _108x144) (8K, 7680 × 4320) | stand-in: departments/apparel/new-pieces-2026-11/build/oitava/catalogue144/oitava_back_256x144.png (256 × 144) |
@@ -130,6 +139,7 @@ path. On phaora.com the labels never show.
 | oitava | `img/oitava/detail-shadow/` | its shadow in the projector’s beam, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/new-pieces-2026-11/build/oitava/stills/oitava_shadow_256x144.png (256 × 144) |
 | oitava | `img/oitava/world/` | the still: the last frame, the world plate (the wall) (8K, 5760 × 7680) | stand-in: departments/apparel/new-pieces-2026-11/build/oitava/stills/oitava_wall_108x144.png (108 × 144) |
 | oitava | `img/oitava/hero/` | the director’s signature shot: Beside its own giant shadow on the screen (story/product-stills/DIRECTOR-SHOTS.md; its 144p preview stands in) (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/product-stills/oitava_35_256x144.png (256 × 144) |
+| oitava | `img/oitava/world-full/` | oitava_world.jpg, the piece in its world, full size (passed by David; the full-size file to come) (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
 | lustre | `img/lustre/front/` | the front, 16K render, once David passes its 1600 preview (stand-in: catalogue144 lustre_front_256x144.png; phones: lustre_front_108x144.png) (16K, 15360 × 8640) | stand-in: departments/apparel/new-pieces-2026-11/build/lustre/catalogue144/lustre_front_256x144.png (256 × 144) |
 | lustre | `img/lustre/three-quarter/` | three-quarter view, 8K (stand-in: catalogue144 lustre_threequarter_256x144.png; phones: _108x144) (8K, 7680 × 4320) | stand-in: departments/apparel/new-pieces-2026-11/build/lustre/catalogue144/lustre_threequarter_256x144.png (256 × 144) |
 | lustre | `img/lustre/back/` | back view, 8K (stand-in: catalogue144 lustre_back_256x144.png; phones: _108x144) (8K, 7680 × 4320) | stand-in: departments/apparel/new-pieces-2026-11/build/lustre/catalogue144/lustre_back_256x144.png (256 × 144) |
@@ -137,12 +147,14 @@ path. On phaora.com the labels never show.
 | lustre | `img/lustre/detail-shadow/` | its shadow in the projector’s beam, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/new-pieces-2026-11/build/lustre/stills/lustre_shadow_256x144.png (256 × 144) |
 | lustre | `img/lustre/world/` | the still: the last frame, the world plate (the vanity) (8K, 5760 × 7680) | stand-in: departments/apparel/new-pieces-2026-11/build/lustre/stills/lustre_tray_108x144.png (108 × 144) |
 | lustre | `img/lustre/hero/` | the director’s signature shot: On the black-glass tray beside the gold compact (story/product-stills/DIRECTOR-SHOTS.md; its 144p preview stands in) (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/product-stills/lustre_49_256x144.png (256 × 144) |
+| lustre | `img/lustre/world-full/` | lustre_world.jpg, the piece in its world, full size (passed by David; the full-size file to come) (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
 | cordel | `img/cordel/front/` | departments/apparel/new-pieces-2026-11/build/silk-scarf/site/silk_scarf_front_16k.png (16K, 15360 × 8640) | stand-in: departments/apparel/website/chapter2/assets/line/silk_scarf/silk-scarf-front.webp (1597 × 1335) |
 | cordel | `img/cordel/knot/` | knot view, 8K (8K, 7680 × 4320) | stand-in: departments/apparel/website/chapter2/assets/line/silk_scarf/silk-scarf-knot.webp (839 × 1455) |
 | cordel | `img/cordel/detail-print/` | the print, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/website/chapter2/assets/line/silk_scarf/silk-scarf-closeup-print.webp (1600 × 1600) |
 | cordel | `img/cordel/detail-hem/` | the rolled hem, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/website/chapter2/assets/line/silk_scarf/silk-scarf-closeup-hem.webp (1600 × 1600) |
 | cordel | `img/cordel/world/` | C4: the last frame, the world plate (the café) (8K, 5760 × 7680) | stand-in: departments/apparel/marketing/story/stills/ca-04-the-silk-scarf_108x144.png (108 × 144) |
 | cordel | `img/cordel/hero/` | the director’s signature shot: Pegged flat on a cord, like the booklets it is named for (story/product-stills/DIRECTOR-SHOTS.md; its 144p preview stands in) (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/product-stills/cordel_cord_256x144.png (256 × 144) |
+| cordel | `img/cordel/world-full/` | cordel_world.jpg, the piece in its world, full size (passed by David; the full-size file to come) (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
 | obolo | `img/obolo/front/` | departments/apparel/new-pieces-2026-11/build/card-holder/site/card_holder_front_16k.png (16K, 15360 × 8640) | stand-in: departments/apparel/website/chapter2/assets/line/card_holder/card-holder-front.webp (1786 × 830) |
 | obolo | `img/obolo/back/` | back view, 8K (8K, 7680 × 4320) | stand-in: departments/apparel/website/chapter2/assets/line/card_holder/card-holder-back.webp (1383 × 578) |
 | obolo | `img/obolo/detail-edge/` | the painted edge, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/website/chapter2/assets/line/card_holder/card-holder-closeup-edge.webp (1600 × 1200) |
@@ -150,15 +162,18 @@ path. On phaora.com the labels never show.
 | obolo | `img/obolo/detail-material/` | the pebble, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/new-pieces-2026-11/build/card-holder/site/preview_16k_card_holder_material.png (1600 × 900) |
 | obolo | `img/obolo/world/` | C5: the last frame, the world plate (the box office) (8K, 5760 × 7680) | stand-in: departments/apparel/marketing/story/stills/ca-05-the-card-holder_108x144.png (108 × 144) |
 | obolo | `img/obolo/hero/` | the director’s signature shot: The fare: lying in the brass ticket scoop (story/product-stills/DIRECTOR-SHOTS.md; its 144p preview stands in) (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/product-stills/obolo_scoop_256x144.png (256 × 144) |
+| obolo | `img/obolo/world-full/` | obolo_world.jpg, the piece in its world, full size (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
 | ritornelo | `img/ritornelo/front/` | departments/apparel/new-pieces-2026-11/build/opera-gloves/site/opera_gloves_front_16k.png (16K, 15360 × 8640) | stand-in: departments/apparel/website/chapter2/assets/line/opera_gloves/opera-gloves-front.webp (1375 × 1164) |
 | ritornelo | `img/ritornelo/three-quarter/` | three-quarter view, 8K (8K, 7680 × 4320) | stand-in: departments/apparel/website/chapter2/assets/line/opera_gloves/opera-gloves-three-quarter.webp (389 × 1480) |
 | ritornelo | `img/ritornelo/detail-net/` | the net opening up the arm, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/new-pieces-2026-11/build/opera-gloves/site/preview_16k_net.png (1600 × 900) |
 | ritornelo | `img/ritornelo/detail-snap/` | the snap, 8K close-up (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
 | ritornelo | `img/ritornelo/world/` | C3: the last frame, the world plate (the café) (8K, 5760 × 7680) | stand-in: departments/apparel/marketing/story/stills/8k/ca-03-the-opera-gloves_5760x7680.png (5760 × 7680) |
 | ritornelo | `img/ritornelo/hero/` | the director’s signature shot: The kept seat: the pair laid on the one red velvet seat (story/product-stills/DIRECTOR-SHOTS.md; its 144p preview stands in) (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/product-stills/ritornelo_ref28_256x144.png (256 × 144) |
+| ritornelo | `img/ritornelo/world-full/` | ritornelo_world.jpg, the piece in its world, full size (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
 | coaraci | `img/coaraci/front/` | departments/apparel/new-pieces-2026-11/build/disc-belt/site/disc_belt_front_16k.png (16K, 15360 × 8640) | stand-in: departments/apparel/website/chapter2/assets/line/disc_belt/disc-belt-front.webp (1375 × 751) |
 | coaraci | `img/coaraci/straight/` | straight view, 8K (8K, 7680 × 4320) | stand-in: departments/apparel/website/chapter2/assets/line/disc_belt/disc-belt-straight.webp (1563 × 1084) |
 | coaraci | `img/coaraci/detail-disc/` | the disc, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/website/chapter2/assets/line/disc_belt/disc-belt-closeup-disc.webp (800 × 600) |
 | coaraci | `img/coaraci/detail-edge/` | the painted edge, 8K close-up (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
 | coaraci | `img/coaraci/world/` | C12: the last frame, the world plate (the suite, at first light) (8K, 5760 × 7680) | stand-in: departments/apparel/marketing/story/stills/ca-12-the-disc-belt_108x144.png (108 × 144) |
 | coaraci | `img/coaraci/hero/` | the director’s signature shot: The sundial: rolled, the gold disc up, one low sun (story/product-stills/DIRECTOR-SHOTS.md; its 144p preview stands in) (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/product-stills/coaraci_sundial_256x144.png (256 × 144) |
+| coaraci | `img/coaraci/world-full/` | coaraci_world.jpg, the piece in its world, full size (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |

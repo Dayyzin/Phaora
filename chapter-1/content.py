@@ -597,4 +597,7 @@ PRICES = {
 
 
 # the product page's dark band as the walk-around (David, 14 Nov). Coema first, its stops the furthest along; the rest follow
-WALK = {p['id'] for p in PIECES}   # every piece (David, 14 Nov): the stand-ins and the stops there are, until the real stops land
+# David, 15 Nov: "just for expensive stuff you get a walkaround": the walk-around only on these; the rest is the simple page
+WALK = {'veil_coat', 'oitava', 'muse_bomber', 'po_tophandle', 'matinee', 'the_reel', 'lustre'}
+# the pieces whose in-world image David has passed (the full-size <page>_world.jpg comes into its slot)
+WORLD_PASSED = {'veil_coat', 'silk_scarf', 'sunglasses', 'lustre', 'oitava', 'muse_bomber'}
