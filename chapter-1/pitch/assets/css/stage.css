@@ -69,7 +69,7 @@ html.viewing .navband{opacity:0;transform:translateY(-24px);pointer-events:none}
 html.viewing .veil{opacity:1}
 html.viewing .set .it:not(.chosen){opacity:0;transform:translateY(46px) scale(.96);transition-duration:1s;transition-delay:0s!important}
 .it>:not(.ph){transition:opacity .6s ease}
-.it.hid .ph{opacity:0!important}   /* the cell's own picture goes while the piece stands in the centre */
+.it.hid .ph{opacity:0!important;pointer-events:none}   /* the cell's own picture goes while the piece stands in the centre */
 html.viewing .it.chosen>:not(.ph){opacity:0}
 .pv{position:fixed;inset:0;z-index:4;visibility:hidden;pointer-events:none}
 .pv.open{visibility:visible;pointer-events:auto}
@@ -105,7 +105,7 @@ html.viewing .it.chosen>:not(.ph){opacity:0}
   .pv-head .s{font-size:7px;letter-spacing:.2em;margin-top:5px}
   .pv-turn{top:calc(69vh + 8px);bottom:auto}
   .pv-specs{left:0;right:0;top:auto;bottom:calc(10vh + 34px);max-width:none;text-align:center;font-size:7px;line-height:1.75;letter-spacing:.12em}
-  .pv-buy{left:0;right:0;top:auto;bottom:calc(4vh + env(safe-area-inset-bottom));text-align:center}
+  .pv-buy{left:0;right:0;max-width:none;top:auto;bottom:calc(4vh + env(safe-area-inset-bottom));text-align:center}
   .pv-buy .links{font-size:7.5px}
   .pv-buy .price{font-size:13px;margin-top:3px}
   .pv-x{top:10px;right:3vw}
