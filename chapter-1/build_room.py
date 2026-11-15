@@ -228,7 +228,7 @@ if __name__ == '__main__':
     main()
 
 
-def key_backdrop(im, min_area=250):
+def key_backdrop(im, min_area=250, slivers=False):
     """A cut-out's enclosed studio backdrop keyed out (David, 15 Nov: the light sliver between the coat's sleeve and its
     body on the dark band): every neutral light region of any real size goes, wherever it is, then a light fringe round
     it. Cream (the linings, the silk behind the net) is warm, so it stays."""
@@ -242,6 +242,21 @@ def key_backdrop(im, min_area=250):
     sz = ndimage.sum(m, lab, range(1, n + 1)); ml = ndimage.mean(lum, lab, range(1, n + 1))
     # the backdrop is bright (a lit studio ground, 220-245); a leather sheen or a strap's inside is mid grey and stays
     gone = np.isin(lab, 1 + np.nonzero((sz >= min_area) & (ml >= 190))[0])
+    # a thin sliver of any size (between a cuff and the skirt): a light neutral region that touches the outside of the
+    # piece or a gap already keyed. A lit perforation is surrounded by leather, so it touches neither and stays.
+    outside = ndimage.binary_dilation((al < 0.3) | gone, iterations=2)
+    sl = (al > 0.02) & (ch < 18) & (lum > 165)
+    slab, sn = ndimage.label(sl)
+    if sn and slivers:   # garments only (sleeve, cuff and skirt gaps); a bag's rim sheen also touches its edge and stays
+        touch = ndimage.maximum(outside, slab, range(1, sn + 1)); smean = ndimage.mean(lum, slab, range(1, sn + 1))
+        objs = ndimage.find_objects(slab)
+        upright = np.array([(o[0].stop - o[0].start) >= 2 * (o[1].stop - o[1].start) for o in objs])   # a gap runs down the body;
+        gone |= np.isin(slab, 1 + np.nonzero((np.asarray(touch) > 0) & (np.asarray(smean) >= 180) & upright)[0])   # a rib stripe runs across
+        # an enclosed sliver (the backdrop seen between a cuff and the skirt): long and thin, where a perforation is a dot
+        for i, sl_ in enumerate(ndimage.find_objects(slab), 1):
+            r = slab[sl_] == i; n_ = int(r.sum()); hh = sl_[0].stop - sl_[0].start; ww = sl_[1].stop - sl_[1].start
+            if n_ >= 20 and hh >= 3 * max(1, ww) and smean[i - 1] >= 195:
+                g = gone[sl_]; g[r] = True
     if not gone.any():
         return im.convert('RGBA'), 0
     ring = ndimage.binary_dilation(gone, iterations=4) & ~gone
@@ -268,6 +283,6 @@ def walk_mattes():
             if pid in ('lustre', 'oitava'):
                 out, n = im.convert('RGBA'), 0
             else:
-                out, n = key_backdrop(im)
+                out, n = key_backdrop(im, slivers=pid in ('veil_coat', 'muse_bomber'))
             out.save(dst, 'WEBP', quality=90, alpha_quality=100, method=6)
             print(os.path.basename(dst), n)
