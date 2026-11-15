@@ -658,7 +658,7 @@ DETAILS480 = {
 # the catalogue: the small pieces carry two angles in their column, sharing one floor (David, 15 Nov). (second view)
 CAT_SECOND = {'disc_belt': 'straight', 'sunglasses': 'side', 'card_holder': 'back'}   # Öfusca: front and side, the gold Ö on the temple (David, 15 Nov)   # Ritornelo reads better as its pair alone
 # how far each piece stands off the wall, for its cast shadow (1: a garment on its form; a necklace lies close)
-SHADOW_DEPTH = {'lustre': 0.8, 'oitava': 1.0, 'sunglasses': 0.5, 'card_holder': 0.45, 'disc_belt': 0.45, 'opera_gloves': 0.5, 'silk_scarf': 0.4}
+SHADOW_DEPTH = {'oitava': 1.0, 'sunglasses': 0.5, 'card_holder': 0.45, 'disc_belt': 0.45, 'opera_gloves': 0.5, 'silk_scarf': 0.4}
 CAT_NEUTRAL = {'po_tophandle'}   # Itaoca's base read brown: its blacks neutral (B−R within ±2)
 CAT_STAGE = True   # the catalogue inside the room, sets of 8 rising out (David, 15 Nov)
 CAT_BAYS = True   # the catalogue IS the room: one bay a piece, the room's own render (David, 15 Nov)
@@ -667,4 +667,5 @@ CAT_PANELS = False   # the room's frames side by side (855a879b), kept off   # t
 CAT_SCALE = {'oitava': 0.8}   # the catalogue image's share of its box (David, 15 Nov, Öitava: "more delicate, smaller")
 # a catalogue image of its own (Alvor's new silk: 108x144 cut out at 4x), at full box height like the Veil Coat (David, 15 Nov: "Same as veil coat size pls")
 CAT_IMG = {'silk_slip': ('assets/catalogue/silk_slip_144.webp', None),
-           'oitava': ('assets/catalogue/oitava_2048.webp', None)}   # Öitava from its passed 16K (site480/oitava, 2048 cut)
+           'oitava': ('assets/catalogue/oitava_2048.webp', None),
+           'lustre': ('assets/catalogue/lustre_pad.webp', None)}   # David, 15 Nov: "Add Lustre with black pad": the pad and necklace cut out as one (site480/lustre)   # Öitava from its passed 16K (site480/oitava, 2048 cut)

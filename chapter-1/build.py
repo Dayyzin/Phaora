@@ -716,7 +716,7 @@ def catalogue_home():
             im = (f'<img class="a" src="{shadowed(one, pid)}" alt="{alt}" decoding="async"><img class="b" src="{shadowed(two, pid)}" alt="" decoding="async">'
                   if two else f'<img{" class=small" if pid in C.CAT_SCALE else ""} src="{shadowed(one, pid)}" alt="{alt}" decoding="async">')
             # the piece view (David, 15 Nov): the full picture and the views it turns through (the walk's clean cut-outs)
-            views = [f'assets/walk/{pid}_{v}.webp' for v in ('three-quarter', 'back') if (HERE / f'assets/walk/{pid}_{v}.webp').exists()]
+            views = [f'assets/walk/{pid}_{v}.webp' for v in ('three-quarter', 'back') if (HERE / f'assets/walk/{pid}_{v}.webp').exists() and pid != 'lustre']
             views += [shadowed(two, pid)] if two else []
             items += (f'<article class="it" id="{q["page"]}" data-full="{shadowed(one, pid)}"' + (f' data-views="{",".join(views)}"' if views else '') + f'><h2 class="t cut">{E(q["name"].upper())}</h2>'
                       f'<p class="s cut">{E(q["plain"].upper())} &nbsp;·&nbsp; CHAPTER&nbsp;I</p>'

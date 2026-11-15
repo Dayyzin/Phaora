@@ -62,3 +62,51 @@ body.scrolled .navband{opacity:0;transform:translateY(-24px);pointer-events:none
   .it .links{font-size:6.5px;letter-spacing:.12em;margin-top:2px}
 }
 @media (prefers-reduced-motion:reduce){.it{transition:none}}
+/* The piece view, in the same room (David, 15 Nov): the piece grows to the centre, the others sink and fade, the light
+   lowers a little round it with the piece spotlit, and its words fade in either side (beneath it, on a phone). */
+html.viewing{overflow:hidden}
+html.viewing .navband{opacity:0;transform:translateY(-24px);pointer-events:none}
+html.viewing .veil{opacity:1}
+html.viewing .set .it:not(.chosen){opacity:0;transform:translateY(46px) scale(.96);transition-duration:1s;transition-delay:0s!important}
+.it>:not(.ph){transition:opacity .6s ease}
+html.viewing .it.chosen>:not(.ph){opacity:0}
+.pv{position:fixed;inset:0;z-index:4;visibility:hidden;pointer-events:none}
+.pv.open{visibility:visible;pointer-events:auto}
+.pv-light{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease;
+  background:radial-gradient(ellipse 34% 48% at 50% 52%,rgba(255,255,255,.42),rgba(255,255,255,0) 70%),
+             radial-gradient(ellipse 80% 90% at 50% 52%,rgba(40,36,32,0) 40%,rgba(40,36,32,.16) 100%)}
+.pv.open .pv-light{opacity:1}
+.pv-fig{position:absolute;margin:0;transform-origin:0 0;will-change:transform;perspective:1400px;touch-action:pan-y;cursor:grab}
+.pv-fig img{display:block;width:100%;height:100%;object-fit:contain;backface-visibility:hidden}
+.pv-txt{position:absolute;opacity:0;transform:translateY(10px);transition:opacity .9s ease,transform .9s ease}
+.pv.shown .pv-txt{opacity:1;transform:none}
+.pv.shown .pv-specs{transition-delay:.12s}.pv.shown .pv-buy{transition-delay:.24s}.pv.shown .pv-turn{transition-delay:.36s}
+.pv-head{left:9vw;top:34%;max-width:21vw}
+.pv-head .t{font:500 26px/1.15 'Cormorant Garamond','DejaVu Serif',serif;letter-spacing:.3em;margin:0}
+.pv-head .s{font:300 9px/1.5 'Jost','DejaVu Sans',sans-serif;letter-spacing:.3em;margin:8px 0 0}
+.pv-specs{left:9vw;top:calc(34% + 74px);max-width:21vw;list-style:none;margin:0;padding:0;font:300 9px/1.9 'Jost','DejaVu Sans',sans-serif;letter-spacing:.16em;color:#4c4c50}
+.pv-specs i{font-style:italic}
+.pv-buy{right:9vw;top:44%;text-align:right}
+.pv-buy .links{margin:0;font:500 9px/1.5 'Cormorant Garamond','DejaVu Serif',serif;letter-spacing:.24em;text-transform:uppercase;white-space:nowrap}
+.pv-buy .links .dot{margin:0 .6em;opacity:.7}
+.pv-buy .price{display:block;margin-top:6px;font:500 16px/1.3 'Cormorant Garamond','DejaVu Serif',serif;letter-spacing:.22em;color:#2a2622}
+.pv-turn{left:0;right:0;bottom:5vh;display:flex;justify-content:center;align-items:center;gap:10px}
+.pv-turn button{width:6px;height:6px;padding:0;border:1px solid #5a5a5e;border-radius:50%;background:none;cursor:pointer}
+.pv-turn button.on{background:#5a5a5e}
+.pv-turn span{margin-left:6px;font:500 8px/1 'Cormorant Garamond','DejaVu Serif',serif;letter-spacing:.3em;text-transform:uppercase}
+.pv-x{position:absolute;top:18px;right:2.4vw;width:30px;height:30px;padding:0;border:0;background:none;cursor:pointer;opacity:0;transition:opacity .6s ease}
+.pv.shown .pv-x{opacity:.8}
+.pv-x i{position:absolute;left:4px;right:4px;top:50%;height:1px;background:#2a2622;transform:rotate(45deg)}
+.pv-x i+i{transform:rotate(-45deg)}
+@media (max-width:820px){
+  .pv-head{left:0;right:0;top:calc(7vh + env(safe-area-inset-top));max-width:none;text-align:center}
+  .pv-head .t{font-size:18px;letter-spacing:.24em;padding-left:.24em}
+  .pv-head .s{font-size:7px;letter-spacing:.2em;margin-top:5px}
+  .pv-turn{top:calc(69vh + 8px);bottom:auto}
+  .pv-specs{left:0;right:0;top:auto;bottom:calc(10vh + 34px);max-width:none;text-align:center;font-size:7px;line-height:1.75;letter-spacing:.12em}
+  .pv-buy{left:0;right:0;top:auto;bottom:calc(4vh + env(safe-area-inset-bottom));text-align:center}
+  .pv-buy .links{font-size:7.5px}
+  .pv-buy .price{font-size:13px;margin-top:3px}
+  .pv-x{top:10px;right:3vw}
+}
+@media (prefers-reduced-motion:reduce){.pv-txt,.pv-light{transition:none}}
