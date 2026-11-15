@@ -52,7 +52,7 @@
   // the box the piece fills in the room: centre stage, the text either side (beneath, on a phone)
   const box = (w, h) => {
     const W = innerWidth, H = innerHeight, p = phone();
-    const bw = p ? W * .86 : W * .46, bh = p ? H * .5 : H * .8, cy = p ? H * .44 : H * .52;
+    const bw = p ? W * .98 : W * .46, bh = p ? H * .52 : H * .8, cy = p ? H * .44 : H * .52;
     const k = Math.min(bw / w, bh / h); return { w: w * k, h: h * k, x: (W - w * k) / 2, y: cy - h * k / 2 };
   };
   const rectOf = el => { // the visible picture inside an object-fit:contain img
