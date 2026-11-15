@@ -615,6 +615,11 @@ def catalogue_home():
         b = im.getchannel('A').point(lambda v: 255 if v > 24 else 0).getbbox()
         if b:
             im = im.crop((max(0, b[0] - 2), max(0, b[1] - 2), min(im.width, b[2] + 2), min(im.height, b[3] + 2)))
+        if dst.split('.')[0] in getattr(C, 'CAT_NEUTRAL', ()):   # black leather read warm: the dark tones to neutral black, the gold kept
+            ar = np.asarray(im).astype(np.float32); rgb = ar[..., :3]; mx = rgb.max(-1)
+            w = np.clip((130 - mx) / 40, 0, 1)[..., None]
+            ar[..., :3] = rgb * (1 - w) + rgb.mean(-1, keepdims=True) * w
+            im = Image.fromarray(ar.clip(0, 255).astype(np.uint8), 'RGBA')
         im.save(HERE / 'assets' / 'catalogue' / dst, 'WEBP', quality=90, alpha_quality=100, method=6)
         return f'assets/catalogue/{dst}'
     imgs = {}
@@ -683,7 +688,21 @@ def catalogue_home():
             lean = k in (2, 4) or w[0] == 'SIZE'
             out += f'<li>{f"<i>{E(w[0])}</i>" + (" " + E(w[1]) if len(w) > 1 else "") if lean else E(x)}</li>'
         return out
-    if getattr(C, 'CAT_WALL', False):
+    # David, 15 Nov, on the room's frames side by side: "THIS EXACTLY AS IS BRO". Each piece is its phone frame of the room
+    # (room.html's own render: the wall's Ö pins, the cast shadow, the carved specs, its nav strip and its price band),
+    # butted edge to edge, no gaps; links lie over the frame's own words.
+    panel = lambda q: HERE / 'assets' / 'catalogue' / 'panel' / f'{q["id"]}.webp'
+    panelled = getattr(C, 'CAT_PANELS', False) and all(panel(q).exists() for q in order)
+    if panelled:
+        cols = ''
+        for i, q in enumerate(order):
+            price = price_of(q['id'])[0]
+            seat = (f'<a class="seat" href="{REGISTER}" aria-label="Keep a seat, {E(price)}"></a>' if price and not q.get('nosale') else '')
+            cols += (f'<article class="panel" id="{q["page"]}"><img src="assets/catalogue/panel/{q["id"]}.webp" width="780" height="1688" '
+                     f'alt="{E(q["name"])}, {E(q["plain"].lower())}{f", {E(price)}" if price and not q.get("nosale") else ""}: '
+                     f'{E(" / ".join(C.ROOM_SET.get(q["id"], {}).get("specs") or default))}" loading="{"eager" if i < 4 else "lazy"}" decoding="async">'
+                     f'<a class="reg" href="{REGISTER}" aria-label="Register"></a><a class="pc" href="{q["page"]}.html" aria-label="The piece, {E(q["name"])}"></a>{seat}</article>')
+    elif getattr(C, 'CAT_WALL', False):
         cols = ''
         for r0 in range(0, len(order), 3):
             row = order[r0:r0 + 3]
@@ -705,7 +724,8 @@ def catalogue_home():
                           f'<ul class="specs cut">{specs_html(specs)}</ul></article>')
                 band += (f'<p class="links cut"><a href="{q["page"]}.html">The piece</a>' +
                          (f'<a href="{REGISTER}">Keep a seat · {E(price)}</a>' if price and not q.get('nosale') else '') + '</p>')
-            cols += f'<section class="row">{cells}<div class="band">{band}</div></section>'
+            seams = ''.join(f'<i class="seam" style="left:{x}%"></i>' for x in ('0', '33.3333', '66.6667', '100'))   # the room's pins and their shading on every column line
+            cols += f'<section class="row">{seams}{cells}<div class="band">{band}</div></section>'
     doc = f'''<!doctype html>
 <html lang="en" id="top"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -717,8 +737,8 @@ def catalogue_home():
 <link rel="icon" type="image/png" href="assets/brand/mark-180.png"><link rel="apple-touch-icon" href="assets/brand/mark-180.png">
 <link rel="stylesheet" href="assets/css/catalogue.css">
 </head>
-<body class="wall">
-<header class="navband">{''.join(f'<nav class="slot"><a class="logo" href="#top" aria-label="PHAÖRA"></a><span class="nl">' + ''.join(f'<a href="{h}">{t}</a>' for t, h in links) + '</span></nav>' for links in [[('The line', '#top'), ('Register', REGISTER)], [('The film', 'film.html'), ('The book', 'book.html')], [('The room', 'room.html'), ('Chapter I', '#top')]])}</header>
+<body class="{'panelled' if panelled else 'wall'}">
+{'' if panelled else '<header class="navband">' + ''.join(f'<nav class="slot"><a class="logo" href="#top" aria-label="PHAÖRA"></a><span class="nl">' + ''.join(f'<a href="{h}">{t}</a>' for t, h in links) + '</span></nav>' for links in [[('The line', '#top'), ('Register', REGISTER)], [('The film', 'film.html'), ('The book', 'book.html')], [('The room', 'room.html'), ('Chapter I', '#top')]]) + '</header>'}
 <main class="cat">{cols}</main>
 <script>
 // David's lettering with the solo Ö, inlined in the room's dark ink, as room.js does (never typed)
