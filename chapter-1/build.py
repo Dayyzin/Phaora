@@ -636,7 +636,7 @@ def catalogue_home():
         specs = (C.ROOM_SET.get(q['id'], {}).get('specs') or default)
         links = f'<a href="{q["page"]}.html">The piece</a>' + (f'<a href="{REGISTER}">Keep a seat · {E(price)}</a>' if price and not q.get('nosale') else '')
         cols += (f'<article class="col" id="{q["page"]}"><h2 class="t cut">{E(q["name"].upper())}</h2>'
-                 f'<p class="s cut{" long" if len(q["plain"]) > 16 else ""}">{E(q["plain"].upper())} &nbsp;·&nbsp; CHAPTER I</p>'
+                 f'<p class="s cut{" long" if len(q["plain"]) > 16 else ""}">{E(q["plain"].upper())} &nbsp;·&nbsp; CHAPTER&nbsp;I</p>'
                  + (f'<a class="ph duo" href="{q["page"]}.html"><img class="a" src="{duo[q["id"]][0]}" alt="{E(q["name"])}, {E(q["plain"].lower())}: the leather" loading="eager" decoding="async">'
                     f'<img class="b" src="{duo[q["id"]][1]}" alt="{E(q["name"])}: the gold disc" loading="eager" decoding="async"></a>' if q['id'] in duo else
                     f'<a class="ph two" href="{q["page"]}.html"><img class="a" src="{imgs[q["id"]][0]}" alt="{E(q["name"])}, {E(q["plain"].lower())}" loading="eager" decoding="async">'
