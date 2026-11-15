@@ -768,6 +768,7 @@ def catalogue_home():
                     if fr and (HERE / fr).exists(): st['frame'] = fr   # a rendered stop, dropped in by its file name
                     walk.append(st)
                 A['views'], A['walk'] = views, walk
+                if J.get('world'): A['world'] = J['world']
             price, presale = price_of(pid)
             det = [('Size', ' · '.join(q['sizes']))] if q['sizes'] else []
             if not q.get('nosale'): det += [('Pre-sale', C.POLICY_PRESALE), ('Returns', C.POLICY_KNIT if q['policy'] == 'knit' else C.POLICY_MADE)]

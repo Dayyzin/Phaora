@@ -1,13 +1,145 @@
 {
-  "_": "Gelosia's piece view, the template every piece copies (David, 15 Nov: 'finish one page, the veil, to then be replicated'). views: the clean cut-outs the walk goes round. walk: one scroll step a stop: v = view, f = the point the camera looks at and z = how far in (both on the piece's own box, 0..1; the camera never goes past the render's own pixels), notes = the maker's notes, each at the point of the part it describes. A rendered stop frame dropped in as frames/<n>.webp (n from 1, the stop's place in the walk) is shown in place of that stop's camera move, feathered into the room. Brass, not gold (gold is for Öitava and Lustre).",
-  "views": {"front": "assets/walk/veil_coat_front.webp", "three-quarter": "assets/walk/veil_coat_three-quarter.webp", "back": "assets/walk/veil_coat_back.webp"},
-  "frames": "assets/walk/frames/gelosia/{n}.webp",
-  "walk": [
-    {"v": "front", "f": [0.3, 0.14], "z": 2.6, "notes": [{"at": [0.24, 0.13], "l": "LEATHER", "v": "1.0 TO 1.2 MM", "m": "Black lambskin, cut as panels on a flat bed. A net of diamonds 7.0 by 9.0 mm apart, the narrowest strand 2.7 mm."}]},
-    {"v": "front", "f": [0.45, 0.3], "z": 2.4, "notes": [{"at": [0.42, 0.28], "l": "BUTTONS", "v": "EIGHT, BRASS", "m": "It closes with eight buttons, a belt and a strap at each cuff."}, {"at": [0.5, 0.37], "l": "BELT", "v": "BRASS BUCKLE", "m": ""}]},
-    {"v": "front", "f": [0.1, 0.48], "z": 2.6, "notes": [{"at": [0.05, 0.48], "l": "CUFF", "v": "A STRAP, BRASS", "m": "Every seam and edge keeps 4.5 mm of solid leather."}]},
-    {"v": "front", "f": [0.5, 0.85], "z": 1.7, "notes": [{"at": [0.5, 0.9], "l": "LENGTH", "v": "MID-CALF", "m": "The net closes to solid leather above the knee."}]},
-    {"v": "three-quarter", "f": [0.5, 0.45], "z": 1.0, "notes": [{"at": [0.5, 0.2], "l": "THE NET", "v": "OPEN AT THE SHOULDER", "m": "Open at the collar and shoulders, closing to solid black leather by the hem."}]},
-    {"v": "back", "f": [0.5, 0.62], "z": 2.0, "notes": [{"at": [0.5, 0.65], "l": "THE MARK", "v": "40.0 MM", "m": "Cut at the centre back, 29 cm above the hem."}, {"at": [0.3, 0.4], "l": "LINING", "v": "CREAM SILK, OPAQUE", "m": "Bonded to the leather, 1.6 mm back from the face. Only cream shows through."}]}
-  ]
+ "_": "Gelosia's piece view, the template every piece copies (David, 15 Nov: 'finish one page, the veil, to then be replicated'). views: the clean cut-outs the walk goes round. walk: one scroll step a stop: v = view, f = the point the camera looks at and z = how far in (both on the piece's own box, 0..1; the camera never goes past the render's own pixels), notes = the maker's notes, each at the point of the part it describes. A rendered stop frame dropped in as frames/<n>.webp (n from 1, the stop's place in the walk) is shown in place of that stop's camera move, feathered into the room. Brass, not gold (gold is for Öitava and Lustre).",
+ "views": {
+  "front": "assets/walk/veil_coat_front.webp",
+  "three-quarter": "assets/walk/veil_coat_three-quarter.webp",
+  "back": "assets/walk/veil_coat_back.webp"
+ },
+ "frames": "assets/walk/frames/gelosia/{n}.webp",
+ "walk": [
+  {
+   "v": "front",
+   "f": [
+    0.3,
+    0.14
+   ],
+   "z": 2.6,
+   "notes": [
+    {
+     "at": [
+      0.24,
+      0.13
+     ],
+     "l": "LEATHER",
+     "v": "1.0 TO 1.2 MM",
+     "m": "Black lambskin, cut as panels on a flat bed. A net of diamonds 7.0 by 9.0 mm apart, the narrowest strand 2.7 mm."
+    }
+   ]
+  },
+  {
+   "v": "front",
+   "f": [
+    0.45,
+    0.3
+   ],
+   "z": 2.4,
+   "notes": [
+    {
+     "at": [
+      0.42,
+      0.28
+     ],
+     "l": "BUTTONS",
+     "v": "EIGHT, BRASS",
+     "m": "It closes with eight buttons, a belt and a strap at each cuff."
+    },
+    {
+     "at": [
+      0.5,
+      0.37
+     ],
+     "l": "BELT",
+     "v": "BRASS BUCKLE",
+     "m": ""
+    }
+   ]
+  },
+  {
+   "v": "front",
+   "f": [
+    0.1,
+    0.48
+   ],
+   "z": 2.6,
+   "notes": [
+    {
+     "at": [
+      0.05,
+      0.48
+     ],
+     "l": "CUFF",
+     "v": "A STRAP, BRASS",
+     "m": "Every seam and edge keeps 4.5 mm of solid leather."
+    }
+   ]
+  },
+  {
+   "v": "front",
+   "f": [
+    0.5,
+    0.85
+   ],
+   "z": 1.7,
+   "notes": [
+    {
+     "at": [
+      0.5,
+      0.9
+     ],
+     "l": "LENGTH",
+     "v": "MID-CALF",
+     "m": "The net closes to solid leather above the knee."
+    }
+   ]
+  },
+  {
+   "v": "three-quarter",
+   "f": [
+    0.5,
+    0.45
+   ],
+   "z": 1.0,
+   "notes": [
+    {
+     "at": [
+      0.5,
+      0.2
+     ],
+     "l": "THE NET",
+     "v": "OPEN AT THE SHOULDER",
+     "m": "Open at the collar and shoulders, closing to solid black leather by the hem."
+    }
+   ]
+  },
+  {
+   "v": "back",
+   "f": [
+    0.5,
+    0.62
+   ],
+   "z": 2.0,
+   "notes": [
+    {
+     "at": [
+      0.5,
+      0.65
+     ],
+     "l": "THE MARK",
+     "v": "40.0 MM",
+     "m": "Cut at the centre back, 29 cm above the hem."
+    },
+    {
+     "at": [
+      0.3,
+      0.4
+     ],
+     "l": "LINING",
+     "v": "CREAM SILK, OPAQUE",
+     "m": "Bonded to the leather, 1.6 mm back from the face. Only cream shows through."
+    }
+   ]
+  }
+ ],
+ "world": "assets/world/gelosia/walk.json",
+ "_world": "The walk around it in its world (David's walk, chapter2/review/walk-around-veil-coat, 13 Nov): the room fades to the world, the scroll walks it stop to stop with each maker's note on its plane, then fades back to the room. When world is set it replaces the cut-out walk."
 }

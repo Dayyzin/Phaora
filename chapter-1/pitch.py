@@ -53,6 +53,9 @@ s = re.sub(r'data-views="([^"]+)"', views, s)
 # the acts' pictures (close-up plates, the scene stills) come too, kept to their own size
 for src in sorted(set(re.findall(r'"((?:img|assets)/[^"]+\.(?:webp|png|jpg))"', s[s.find('id="acts"'):]))):
     (OUT / src).parent.mkdir(parents=True, exist_ok=True); shutil.copy(HERE / src, OUT / src)
+for w in sorted(set(re.findall(r'"(assets/world/[^"]+)/walk\.json"', s))):   # a piece's world walk: its frames and data, whole
+    if (OUT / w).exists(): shutil.rmtree(OUT / w)
+    shutil.copytree(HERE / w, OUT / w)
 # the house's pages are not in this folder: the floor keeps only the links that go somewhere from here
 s = re.sub(r'<a href="(?!https?:)([a-z-]+\.html)">([^<]*)</a>', lambda m: m.group(0) if (OUT / m.group(1)).exists() else '', s)
 sheets = re.findall(r'href="(assets/css/[^"]+\.css)"', s)   # the page's own sheet(s) and script(s), and what they point at

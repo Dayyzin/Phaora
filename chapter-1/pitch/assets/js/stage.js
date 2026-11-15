@@ -43,7 +43,7 @@
   let cur = null, busy = false, pushed = false, steps = [], step = 0, R = null; const title0 = document.title, html = document.documentElement;
   const pv = document.createElement('div'); pv.className = 'pv'; pv.setAttribute('aria-hidden', 'true');
   pv.innerHTML = '<div class="pv-light"></div><div class="pv-dim"></div><div class="pv-wall"><img alt=""></div>' +
-    '<div class="pv-walk"><div class="wl"><img alt=""></div><div class="wl"><img alt=""></div></div><figure class="pv-fig"><img alt=""></figure><div class="pv-plate"><img alt=""></div>' +
+    '<div class="pv-world"><canvas aria-hidden="true"></canvas><div class="wn"></div></div><div class="pv-walk"><div class="wl"><img alt=""></div><div class="wl"><img alt=""></div></div><figure class="pv-fig"><img alt=""></figure><div class="pv-plate"><img alt=""></div>' +
     '<svg class="pv-lines" aria-hidden="true"></svg><div class="pv-notes"></div><ol class="pv-made cut"></ol>' +
     '<div class="pv-txt pv-head"><h1 class="t cut"></h1><p class="s cut"></p></div>' +
     '<ul class="pv-txt pv-specs cut"></ul><div class="pv-txt pv-buy"><p class="links cut"></p><a class="price"></a></div>' +
@@ -84,7 +84,8 @@
     fig.dataset.i = 0; fig._views = views; views.slice(1).forEach(load);
     // the acts this piece has, in order; an act with nothing real to show is skipped
     steps = [{ a: 'arrival' }]; lastK = -1;
-    if (A.walk) A.walk.forEach((w, k) => steps.push({ a: 'walk', k }));
+    if (A.world) { const K = 7; for (let k = 0; k < K; k++) steps.push({ a: 'world', k }); worldLoad(A); }
+    else if (A.walk) A.walk.forEach((w, k) => steps.push({ a: 'walk', k }));
     else { (A.close || []).forEach((c, k) => steps.push({ a: 'close', k })); if (A.notes || A.made) steps.push({ a: 'notes' }); }
     if (A.views) Object.values(A.views).forEach(v => load(v.img)); (A.walk || []).forEach(w => w.frame && load(w.frame));
     pv.querySelectorAll('.pv-walk .wl').forEach(l => { l.className = 'wl'; l.querySelector('img').removeAttribute('src'); l._v = null; });
@@ -111,11 +112,12 @@
   const ptIn = (g, f) => { const b = pbox(); return [g.x + (b[0] + f[0] * (b[2] - b[0])) * g.w, g.y + (b[1] + f[1] * (b[3] - b[1])) * g.h]; };
   function layout() {
     if (!cur) return; const s = steps[step], A = ACTS[cur.id] || {}, W = innerWidth, H = innerHeight, p = phone();
-    pv.dataset.act = s.a; html.classList.toggle('dim', s.a === 'scene' || s.a === 'same');
+    pv.dataset.act = s.a; html.classList.toggle('dim', s.a === 'scene' || s.a === 'same' || s.a === 'world');
     let g = { t: 'none' };
-    lines.innerHTML = ''; pv.classList.remove('plated'); pv.classList.toggle('walking', s.a === 'walk');
+    lines.innerHTML = ''; pv.classList.remove('plated'); pv.classList.toggle('walking', s.a === 'walk'); pv.classList.toggle('inworld', s.a === 'world');
     if (s.a !== 'walk') pv.querySelectorAll('.pv-walk .wl').forEach(l => l.classList.remove('on'));
-    if (s.a === 'walk') walkTo(A, s.k);
+    if (s.a === 'world') worldTo(s.k);
+    else if (s.a === 'walk') walkTo(A, s.k);
     else if (s.a === 'close') {
       const c = A.close[s.k]; $('.pv-cap').textContent = c.cap;
       if (c.plate) {   // a passed close-up render, crossfaded over the piece
@@ -129,6 +131,61 @@
     } else if (s.a === 'scene') g = p ? at(.42, W / 2, H * .7) : at(.5, W * .72, H * .66);
     else if (s.a === 'same') g = p ? at(.4, W / 2, H * .33) : at(.56, W * .36, H * .55);
     fig.style.transform = g.t;
+  }
+  // the walk in its world (David's walk round Gelosia, chapter2/review/walk-around-veil-coat): the room gives way to the
+  // world; each scroll step walks the frames on to the next stop, its maker's note on its own plane in the room (2.5D, with
+  // the lens's blur); after the last stop the world gives way to the room again.
+  const wv = $('.pv-world'), cv = wv.querySelector('canvas'), ctx = cv.getContext('2d'), wn = wv.querySelector('.wn');
+  let WD = null, WS = null, wkind = '', wimgs = [], wf = 0, wraf = 0;
+  function worldLoad(A) {
+    WD = null; wkind = ''; wn.innerHTML = ''; wf = 0;
+    fetch(A.world).then(r => r.json()).then(d => { WD = d; wpick(); });
+  }
+  function wpick() {
+    if (!WD) return; const k = innerWidth / innerHeight < 1 ? 'phone' : 'desk'; if (k === wkind) return; wkind = k; WS = WD[k];
+    wimgs = WS.src.map((src, i) => { const im = new Image(); im.decoding = 'async'; im.src = src; im.onload = () => { if (i === Math.round(wf)) wdraw(i); }; return im; });
+    wn.innerHTML = WD.notes.map((t, i) => `<div class="note ${WS.ink[i]}${k === 'phone' ? ' ph' : ''}" style="width:${WS.box[0]}px;height:${WS.box[1]}px"><p>${E(t)}</p></div>`).join('');
+  }
+  function solve(A, b) {
+    const n = 8;
+    for (let c = 0; c < n; c++) {
+      let p = c; for (let r = c + 1; r < n; r++) if (Math.abs(A[r][c]) > Math.abs(A[p][c])) p = r;
+      [A[c], A[p]] = [A[p], A[c]]; [b[c], b[p]] = [b[p], b[c]];
+      for (let r = c + 1; r < n; r++) { const f = A[r][c] / A[c][c]; for (let k = c; k < n; k++) A[r][k] -= f * A[c][k]; b[r] -= f * b[c]; }
+    }
+    const x = new Array(n).fill(0);
+    for (let r = n - 1; r >= 0; r--) { let t = b[r]; for (let k = r + 1; k < n; k++) t -= A[r][k] * x[k]; x[r] = t / A[r][r]; }
+    return x;
+  }
+  function homography(w, h, Q) {   // a note's own rectangle onto its plane's four corners on the screen
+    const src = [[0, 0], [w, 0], [w, h], [0, h]], A = [], b = [];
+    for (let i = 0; i < 4; i++) { const [x, y] = src[i], [X, Y] = Q[i]; A.push([x, y, 1, 0, 0, 0, -x * X, -y * X]); b.push(X); A.push([0, 0, 0, x, y, 1, -x * Y, -y * Y]); b.push(Y); }
+    const [a, b2, c, d, e, f, g, hh] = solve(A, b);
+    return `matrix3d(${a},${d},0,${g},${b2},${e},0,${hh},0,0,1,0,${c},${f},0,1)`;
+  }
+  function wdraw(i) {
+    if (!WS) return; const im = wimgs[i]; if (!im || !im.complete || !im.naturalWidth) return;
+    const dpr = Math.min(devicePixelRatio || 1, 2), Wd = innerWidth, Hd = innerHeight;
+    if (cv.width !== Math.round(Wd * dpr) || cv.height !== Math.round(Hd * dpr)) { cv.width = Math.round(Wd * dpr); cv.height = Math.round(Hd * dpr); }
+    const sc = Math.max(Wd / WS.w, Hd / WS.h), ox = (Wd - WS.w * sc) / 2, oy = (Hd - WS.h * sc) / 2;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
+    ctx.drawImage(im, ox, oy, WS.w * sc, WS.h * sc);
+    [...wn.children].forEach((n, k) => {
+      const a = WS.a[i][k]; if (!(a > 0.001)) { n.style.visibility = 'hidden'; return; }
+      const Q = WS.q[i][k].map(([u, v]) => [ox + u * WS.w * sc, oy + v * WS.h * sc]);
+      n.style.transform = homography(WS.box[0], WS.box[1], Q);
+      const s2 = Math.hypot(Q[1][0] - Q[0][0], Q[1][1] - Q[0][1]) / WS.box[0], bl = WS.blur[i][k] * WS.w * sc * .5 / Math.max(s2, .05);
+      n.style.filter = bl > .35 ? `blur(${bl.toFixed(2)}px)` : 'none'; n.style.opacity = a.toFixed(3); n.style.visibility = 'visible';
+    });
+  }
+  function worldTo(k) {   // walk the frames on to stop k (about 1.1 s), eased like a step
+    const go = () => { if (!WS) return setTimeout(go, 80); wpick();
+      const to = WS.stations[k], from = wf, t0 = performance.now(), D = Math.min(1400, 500 + Math.abs(to - from) * 40);
+      cancelAnimationFrame(wraf);
+      const tick = now => { const t = Math.min(1, (now - t0) / D), e = t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+        wf = from + (to - from) * e; wdraw(Math.round(wf)); if (t < 1) wraf = requestAnimationFrame(tick); };
+      wraf = requestAnimationFrame(tick); };
+    go();
   }
   // the walk-around (David: "a walk around the piece ... each maker's note engraved small beside the part it describes"):
   // a camera on the piece's own cut-outs, panning and pushing between stops on one view and turning round it between views;
@@ -283,7 +340,7 @@
   addEventListener('wheel', e => { if (!cur) return; e.preventDefault(); if (pv.classList.contains('drawer')) return;
     const now = Date.now(); if (Math.abs(e.deltaY) < 8 || now - wl < 1000) return; wl = now; go(e.deltaY > 0 ? 1 : -1); }, { passive: false });
   addEventListener('touchmove', e => { if (cur && !e.target.closest('.pv-drawer')) e.preventDefault(); }, { passive: false });
-  addEventListener('resize', () => { if (cur && !busy) { const s = srcOf(cur); fig.style.transition = 'none'; place(box(s.naturalWidth, s.naturalHeight)); layout(); requestAnimationFrame(() => { fig.style.transition = ''; }); } });
+  addEventListener('resize', () => { if (cur) { wpick(); wdraw(Math.round(wf)); } if (cur && !busy) { const s = srcOf(cur); fig.style.transition = 'none'; place(box(s.naturalWidth, s.naturalHeight)); layout(); requestAnimationFrame(() => { fig.style.transition = ''; }); } });
   // a piece's own URL opens straight onto it (?act=<n> for a given act)
   const q = new URLSearchParams(location.search), id = q.get('piece');
   if (id && byId[id]) { const it = byId[id]; history.replaceState({ piece: id }, '');
