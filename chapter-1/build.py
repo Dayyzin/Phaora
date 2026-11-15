@@ -678,6 +678,8 @@ def catalogue_home():
         A = piece[..., 3:] + out[..., 3:] * (1 - piece[..., 3:])
         Cc = (piece[..., :3] * piece[..., 3:] + out[..., :3] * out[..., 3:] * (1 - piece[..., 3:])) / np.maximum(A, 1e-6)
         res = Image.fromarray((np.dstack([Cc, A]) * 255).clip(0, 255).astype(np.uint8), 'RGBA')
+        bb = res.getchannel('A').point(lambda v: 255 if v > 6 else 0).getbbox()   # the piece and its shadow only: no empty margin to shrink it
+        if bb: res = res.crop(bb)
         dst = 'assets/catalogue/shadowed/' + os.path.basename(src)
         res.save(HERE / dst, 'WEBP', quality=90, alpha_quality=100, method=6)
         return dst
@@ -696,6 +698,11 @@ def catalogue_home():
     # upwards and the new 8 come from the bottom up"; the room never leaves the frame, its walls pinned with the Muse
     # ("Change the pinned wall to musa"). The room is a fixed still of room.html, empty (?empty=1), desktop and phone;
     # the pieces stand in it in sets (8 on a computer, 6 on a phone), one set a screen, snapping, rising out the top.
+    def short_specs(lines):   # at most three lines on a short screen: the size goes first, then the lining, then the last
+        keep = list(lines)
+        for drop in (lambda x: x.startswith('SIZE'), lambda x: 'LINING' in x or 'INSIDE' in x):
+            while len(keep) > 3 and any(drop(x) for x in keep): keep.remove(next(x for x in keep if drop(x)))
+        return keep[:3]
     if getattr(C, 'CAT_STAGE', False):
         items = ''
         for q in order:
@@ -708,9 +715,10 @@ def catalogue_home():
             items += (f'<article class="it" id="{q["page"]}"><h2 class="t cut">{E(q["name"].upper())}</h2>'
                       f'<p class="s cut">{E(q["plain"].upper())} &nbsp;·&nbsp; CHAPTER&nbsp;I</p>'
                       f'<a class="ph{" two" if two else ""}" href="{q["page"]}.html">{im}</a>'
-                      f'<ul class="specs cut">{specs_html(specs)}</ul>'
-                      f'<p class="links cut"><a href="{q["page"]}.html">The piece</a>' +
-                      (f'<a href="{REGISTER}">Keep a seat · {E(price)}</a>' if price and not q.get('nosale') else '') + '</p></article>')
+                      f'<ul class="specs cut full">{specs_html(specs)}</ul><ul class="specs cut short">{specs_html(short_specs(specs))}</ul>'
+                      f'<p class="links cut"><a href="{q["page"]}.html">The piece</a>' +   # one line (David, 15 Nov)
+                      (f'<span class="dot">·</span><a href="{REGISTER}">Keep a seat</a>' if price and not q.get('nosale') else '') + '</p>' +
+                      (f'<a class="price" href="{REGISTER}">{E(price)}</a>' if price and not q.get('nosale') else '') + '</article>')   # David: "bigger price"
         nav = ''.join(f'<a href="{h}">{t}</a>' for t, h in [('The line', '#top'), ('The film', 'film.html'), ('The book', 'book.html'), ('The room', 'room.html'), ('The house', 'house.html'), ('Register', REGISTER)])
         doc = f'''<!doctype html>
 <html lang="en" id="top" class="stage"><head><meta charset="utf-8">
