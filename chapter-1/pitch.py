@@ -1,0 +1,44 @@
+"""The catalogue on its own, for a private link (the equity pitch, 15 Nov): index.html as built, with everything it uses in
+one folder, pitch/. Run after build.py. The register links go to the live register (phaora.com); the pieces' own pages
+are not in this folder, so a piece is not a link here. Images are kept to twice their largest shown size; the first row
+loads first, the rest as they near the screen."""
+import re, shutil
+from pathlib import Path
+from PIL import Image
+
+HERE = Path(__file__).parent
+OUT = HERE / 'pitch'
+LIVE = 'https://www.phaora.com/'
+MAXW, MAXH = 760, 900   # twice the catalogue's largest box (about 360 x 420 CSS px at 1440)
+
+s = (HERE / 'index.html').read_text()
+s = s.replace('href="/"', f'href="{LIVE}"')
+s = re.sub(r'<a (class="ph[^"]*") href="[a-z]+\.html">(.*?)</a>', r'<div \1>\2</div>', s, flags=re.S)
+s = re.sub(r'<a href="[a-z]+\.html">The piece</a>', '', s)
+s = s.replace('<meta name="robots" content="noindex">', '<meta name="robots" content="noindex, nofollow">')
+# the first row (four pieces) loads at once and first; the rest when near the screen
+n = 0
+def lazy(m):
+    global n
+    n += 1
+    tag = m.group(0)
+    return tag.replace('loading="eager"', 'loading="eager" fetchpriority="high"') if n <= 5 else tag.replace('loading="eager"', 'loading="lazy"')
+s = re.sub(r'<img [^>]*>', lazy, s)
+
+if OUT.exists(): shutil.rmtree(OUT)
+(OUT / 'assets/catalogue').mkdir(parents=True); (OUT / 'assets/css').mkdir(); (OUT / 'assets/brand').mkdir()
+for src in sorted(set(re.findall(r'src="(assets/catalogue/[^"]+)"', s))):
+    im = Image.open(HERE / src); k = min(1, MAXW / im.width, MAXH / im.height)
+    if k < 1: im = im.resize((round(im.width * k), round(im.height * k)), Image.LANCZOS)
+    im.save(OUT / src, quality=86, method=6)
+css = (HERE / 'assets/css/catalogue.css').read_text()
+for f in ['assets/css/catalogue.css', 'assets/brand/mark-180.png', 'assets/lettering-solo-offwhite.svg'] + \
+        ['assets/css/' + u for u in re.findall(r'url\(["\']?([^"\')]+)', css) if ':' not in u]:
+    (OUT / f).parent.mkdir(parents=True, exist_ok=True); shutil.copy((HERE / f).resolve(), OUT / f)
+(OUT / 'index.html').write_text(s)
+left = [u for u in re.findall(r'(?:src|href)="([^"#:]+)"', s) if not (OUT / u).exists()]
+assert not left, left
+left = [u for u in re.findall(r'url\(["\']?([^"\')]+)', css) if ':' not in u and not (OUT / 'assets/css' / u).resolve().exists()]
+assert not left, left
+files = [p for p in OUT.rglob('*') if p.is_file()]
+print(len(files), 'files,', round(sum(p.stat().st_size for p in files) / 1024), 'KB')
