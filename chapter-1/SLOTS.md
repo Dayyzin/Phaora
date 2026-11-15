@@ -1,7 +1,7 @@
 # SLOTS: every image and film on the Chapter I site
 
-Built by `build.py`. 192 slots: **5 final**, **156 holding a stand-in** (the best approved
-render or still we have, at 144p or 1600), **31 waiting** (a quiet placeholder of the right ratio, labelled
+Built by `build.py`. 192 slots: **5 final**, **158 holding a stand-in** (the best approved
+render or still we have, at 144p or 1600), **29 waiting** (a quiet placeholder of the right ratio, labelled
 with what it waits for).
 
 **To add a photo:** put the file in the slot's folder as `master.png` (or `.jpg`, `.webp`, `.tif`; a film: `master.mp4`),
@@ -96,10 +96,10 @@ path. On phaora.com the labels never show.
 | gelosia | `img/gelosia/detail-site/` | the net, close, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/product-stills/site-views/gelosia_detail_256x144.png (256 × 144) |
 | gelosia | `img/gelosia/hero/` | the director’s signature shot: The net: one raking light finds the cream in every hole (story/product-stills/DIRECTOR-SHOTS.md; its 144p preview stands in) (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/product-stills/gelosia_net_256x144.png (256 × 144) |
 | gelosia | `img/gelosia/world-full/` | gelosia_world.jpg, the piece in its world, full size (passed by David; the full-size file to come) (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/site480/world/gelosia_world.png (854 × 480) |
-| alvor | `img/alvor/front/` | departments/apparel/new-pieces-2026-11/build/silk-slip/site/silk_slip_front_16k.png (16K, 8640 × 15360) | stand-in: departments/apparel/website/chapter2/assets/line/silk_slip/silk-slip-front.webp (487 × 1180) |
-| alvor | `img/alvor/three-quarter/` | three-quarter view, 8K (8K, 4320 × 7680) | WAITING: a placeholder of the right ratio |
-| alvor | `img/alvor/back/` | back view, 8K (8K, 4320 × 7680) | WAITING: a placeholder of the right ratio |
-| alvor | `img/alvor/detail-sheen/` | the sheen, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/website/chapter2/assets/line/silk_slip/silk-slip-closeup-sheen.webp (1600 × 1600) |
+| alvor | `img/alvor/front/` | departments/apparel/new-pieces-2026-11/build/silk-slip/site/silk_slip_front_16k.png (16K, 8640 × 15360) | stand-in: departments/apparel/marketing/story/site480/alvor/alvor_front_256x144.png (256 × 144) |
+| alvor | `img/alvor/three-quarter/` | three-quarter view, 8K (8K, 4320 × 7680) | stand-in: departments/apparel/marketing/story/site480/alvor/alvor_threequarter_256x144.png (256 × 144) |
+| alvor | `img/alvor/back/` | back view, 8K (8K, 4320 × 7680) | stand-in: departments/apparel/marketing/story/site480/alvor/alvor_back_256x144.png (256 × 144) |
+| alvor | `img/alvor/detail-sheen/` | the sheen, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/site480/alvor/alvor_detail_256x144.png (256 × 144) |
 | alvor | `img/alvor/detail-strap/` | a strap, 8K close-up (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
 | alvor | `img/alvor/world/` | C11: the last frame, the world plate (the suite, at midnight) (8K, 5760 × 7680) | stand-in: departments/apparel/marketing/story/stills/ca-11-the-silk-slip_108x144.png (108 × 144) |
 | alvor | `img/alvor/hero/` | the director’s signature shot: First light: hung in the window, the dawn coming through the silk (story/product-stills/DIRECTOR-SHOTS.md; its 144p preview stands in) (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/product-stills/alvor_first-light_256x144.png (256 × 144) |
