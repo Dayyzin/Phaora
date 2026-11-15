@@ -39,7 +39,7 @@ body.scrolled .navband{opacity:0;transform:translateY(-24px);pointer-events:none
 .chap.on{opacity:1}
 .chap .n{margin-right:1.2em;color:rgba(245,234,212,.86)}
 .sub{display:grid}
-.sub .st{grid-area:1/1;margin:0;transition:opacity .7s ease;align-self:end}
+.sub .st{grid-area:1/1;margin:0;transition:opacity .7s ease;align-self:start}
 .sub .st.gone{opacity:0}
 .sub .l{display:block;font:400 clamp(18px,1.72vw,26px)/1.45 'Cormorant Garamond','DejaVu Serif',serif;letter-spacing:.035em;color:#f6eddc;
   text-shadow:0 0 14px rgba(255,236,200,.38),0 0 2px rgba(255,240,214,.5),0 1px 0 rgba(0,0,0,.55);

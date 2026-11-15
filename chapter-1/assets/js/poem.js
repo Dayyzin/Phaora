@@ -31,12 +31,10 @@
     const [W, H] = D.size[DEV], r = D.rect[DEV], vw = innerWidth, vh = innerHeight, s = Math.max(vw / W, vh / H);
     const ox = (vw - W * s) / 2, oy = (vh - H * s) / 2, X = x => ox + x * W * s, Y = y => oy + y * H * s;
     const x0 = X(r[0]), x1 = X(r[2]), y0 = Y(r[1]), y1 = Y(r[3]);
-    // the lines sit as subtitles do: centred on the picture, their last line just above its lower edge (on a phone,
-    // where the picture is small, just under it)
-    const tw = Math.min(DEV === 'phone' ? vw * 0.9 : (x1 - x0) * 0.8, 760);
+    // the lines sit under the picture, centred on it, on the cove (David, 15 Nov: below the projection, overlapping it a bit)
+    const tw = Math.min(DEV === 'phone' ? vw * 0.9 : (x1 - x0) * 0.6, 640);
     text.style.setProperty('--tx', ((vw - tw) / 2) + 'px'); text.style.setProperty('--tw', tw + 'px');
-    if (DEV === 'phone') { text.style.setProperty('--ty', (y1 + 16) + 'px'); text.style.setProperty('--tb', 'auto'); }
-    else { text.style.setProperty('--ty', 'auto'); text.style.setProperty('--tb', (vh - (y0 + (y1 - y0) * 0.93)) + 'px'); }
+    text.style.setProperty('--ty', (y1 - (DEV === 'phone' ? 30 : 46)) + 'px');   // the name and first line over the picture's lower edge (David: "overlap a bit") text.style.setProperty('--tb', 'auto');
     beam.style.setProperty('--b0', (-0.15 * vw) + 'px'); beam.style.setProperty('--b1', (1.15 * vw) + 'px');
     beam.style.setProperty('--r0', x0 + 'px'); beam.style.setProperty('--r2', x1 + 'px'); beam.style.setProperty('--rb', y1 + 'px');
     DUST.box = { x0, x1, y0, y1, vw, vh };

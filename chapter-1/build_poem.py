@@ -31,7 +31,7 @@ SIZE = {'desktop': (1440, 900), 'phone': (780, 1688)}
 DPR = {'desktop': 1, 'phone': 2}
 # the projector: behind and above the viewer (the camera is at 0, 1.45, 5.4), its frame laid on the plane of the back wall
 PROJ = np.array([0.0, 3.6, 8.4])
-FRAME = {'desktop': (-1.9, 1.9, 0.30, 2.44), 'phone': (-1.22, 1.22, 0.15, 1.98)}   # the phone's frame is 4:3, taken from the middle of the scene   # x0, x1, y0 (low), y1 on z = 0
+FRAME = {'desktop': (-2.15, 2.15, 0.68, 2.72), 'phone': (-1.22, 1.22, 0.15, 1.98)}   # the phone's frame is 4:3, taken from the middle of the scene   # x0, x1, y0 (low), y1 on z = 0
 AMB = 0.05     # the room's own light in the poem, linear (the stage is ~0.85 at its whitest): near-cinema
 MORPH_LIFT = 1.6   # while the pins ripple, the room's light rises this much (x AMB) and falls back, so the ripple reads
 HARD = 1.8     # the dim room's light is harder than the studio's: its tones are taken to this power (pins and their shadows read)
@@ -159,6 +159,8 @@ def build_chapter(ch, dev, roomcap, pmap):
         x0, x1, y0, y1 = FRAME[dev]; fa = (x1 - x0) / (y1 - y0)
         if f.shape[1] / f.shape[0] > fa + 0.01:   # the frame is narrower than the scene: its middle, toward the push-in's centre
             cw = int(round(f.shape[0] * fa)); cx = int(np.clip(f.shape[1] * centre[0] - cw / 2, 0, f.shape[1] - cw)); f = f[:, cx:cx + cw]
+        elif f.shape[1] / f.shape[0] < fa - 0.01:   # wider than the scene: its middle band, toward the push-in's centre
+            ch = int(round(f.shape[1] / fa)); cy = int(np.clip(f.shape[0] * centre[1] - ch / 2, 0, f.shape[0] - ch)); f = f[cy:cy + ch]
         h, w = f.shape[:2]; A = pushed(f, i, n, centre)
         mx = (A[0, 0] * u * w + A[0, 2]).astype(np.float32); my = (A[1, 1] * v * h + A[1, 2]).astype(np.float32)
         s = cv2.remap(f, mx, my, cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT).astype(np.float32) / 255
