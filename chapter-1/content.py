@@ -648,3 +648,6 @@ DETAILS480 = {
                ('edge', 'The painted edge', 'walk/coaraci_stop2.png'), ('holes', 'The holes', 'walk/coaraci_stop3.png'),
                ('coil', 'Laid out', 'walk/coaraci_stop5.png')],
 }
+
+# the catalogue: the small pieces carry two angles in their column, sharing one floor (David, 15 Nov). (second view)
+CAT_SECOND = {'disc_belt': 'straight', 'sunglasses': 'flat', 'card_holder': 'back'}   # Ritornelo reads better as its pair alone

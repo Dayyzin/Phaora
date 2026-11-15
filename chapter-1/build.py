@@ -606,6 +606,24 @@ def catalogue_home():
     a piece with no price (Lustre) last. Four to a row on a computer, one on a phone. The other pages stay, unlinked."""
     default = ['28-GAUGE DOUBLE JACQUARD', '300 GSM', '30S COMBED COTTON', 'BLACK / CREAM', 'SIZE  S · M · L · XL · XXL']   # room.js SPEC_LINES
     usd = lambda pr: int(re.sub(r'\D', '', pr)) if pr else -1
+    # every catalogue image trimmed to the piece (so each fills its box and stands on the row's floor), through clean_cutout
+    os.makedirs(HERE / 'assets' / 'catalogue', exist_ok=True)
+    def trimmed(src, dst, clean=None):
+        im = Image.open(src).convert('RGBA')
+        if clean is not None:
+            im = clean_cutout(im, **clean)
+        b = im.getchannel('A').point(lambda v: 255 if v > 24 else 0).getbbox()
+        if b:
+            im = im.crop((max(0, b[0] - 2), max(0, b[1] - 2), min(im.width, b[2] + 2), min(im.height, b[3] + 2)))
+        im.save(HERE / 'assets' / 'catalogue' / dst, 'WEBP', quality=90, alpha_quality=100, method=6)
+        return f'assets/catalogue/{dst}'
+    imgs = {}
+    for q in C.PIECES:
+        pid = q['id']; one = trimmed(HERE / 'assets' / 'room' / f'{pid}.webp', f'{pid}.webp')
+        v = C.CAT_SECOND.get(pid)
+        two = trimmed(HERE / 'assets' / 'walk' / 'raw' / f'{pid}_{v}.webp', f'{pid}_{v}.webp',
+                      dict(key=pid in C.KEY_GAPS, slivers=pid in C.SLIVERS, **C.CUT_OPTS.get(pid, {}))) if v else None
+        imgs[pid] = (one, two)
     order = sorted(C.PIECES, key=lambda q: -usd(price_of(q['id'])[0]))
     cols = ''
     for q in order:
@@ -614,7 +632,9 @@ def catalogue_home():
         links = f'<a href="{q["page"]}.html">The piece</a>' + (f'<a href="{REGISTER}">Keep a seat · {E(price)}</a>' if price and not q.get('nosale') else '')
         cols += (f'<article class="col" id="{q["page"]}"><h2 class="t cut">{E(q["name"].upper())}</h2>'
                  f'<p class="s cut{" long" if len(q["plain"]) > 16 else ""}">{E(q["plain"].upper())} &nbsp;·&nbsp; CHAPTER I</p>'
-                 f'<a class="ph" href="{q["page"]}.html"><img src="assets/room/{q["id"]}.webp" alt="{E(q["name"])}, {E(q["plain"].lower())}" loading="lazy" decoding="async"></a>'
+                 + (f'<a class="ph two" href="{q["page"]}.html"><img class="a" src="{imgs[q["id"]][0]}" alt="{E(q["name"])}, {E(q["plain"].lower())}" loading="lazy" decoding="async">'
+                    f'<img class="b" src="{imgs[q["id"]][1]}" alt="" loading="lazy" decoding="async"></a>' if imgs[q['id']][1] else
+                    f'<a class="ph{" wide" if Image.open(HERE / imgs[q["id"]][0]).width > 1.15 * Image.open(HERE / imgs[q["id"]][0]).height else ""}" href="{q["page"]}.html"><img src="{imgs[q["id"]][0]}" alt="{E(q["name"])}, {E(q["plain"].lower())}" loading="lazy" decoding="async"></a>') +
                  f'<ul class="specs cut">' + ''.join(f'<li>{E(x)}</li>' for x in specs) + f'</ul><p class="links cut">{links}</p></article>')
     doc = f'''<!doctype html>
 <html lang="en" id="top"><head><meta charset="utf-8">
