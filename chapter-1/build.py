@@ -659,11 +659,12 @@ def catalogue_home():
         # the room (up and to the right); a piece lying close to the wall (a necklace) throws it shorter, softer, lighter
         # (David, 15 Nov: "Lustre shadow needs fixing").
         d = C.SHADOW_DEPTH.get(pid, 1.0)
-        dx, dy, sig = round(0.12 * S * d), round(-0.05 * S * d), 0.04 * S * (0.35 + 0.65 * d)
-        pl, pr, pt = round(0.3 * S), round(0.3 * S), round(0.2 * S)   # room enough that the soft edge never meets the canvas
-        CW, CH = W + pl + pr, H + pt
-        sh = np.zeros((CH, CW), np.float32); sh[pt + dy:pt + dy + H, pl + dx:pl + dx + W] = al   # the silhouette, cast up and right
-        sh = ndimage.gaussian_filter(sh, sig) * 0.27 * (0.55 + 0.45 * d)
+        # matched to the room's frames (1b9ee77e): a clear mid-grey cast, offset up and right by about 9% of the piece
+        dx, dy, sig = round(0.10 * S * d), round(-0.075 * S * d), 0.022 * S * (0.4 + 0.6 * d)
+        pl = pr = round(0.10 * S * d + 3 * sig + 4); pt = round(0.075 * S * d + 3 * sig + 4); pb = round(1.5 * sig + 4)
+        CW, CH = W + pl + pr, H + pt + pb
+        sh = np.zeros((CH, CW), np.float32); sh[pt + dy:pt + dy + H, pl + dx:pl + dx + W] = al   # the true alpha, cast up and right
+        sh = ndimage.gaussian_filter(sh, sig) * 0.40 * (0.6 + 0.4 * d)
         ct = np.zeros((CH, CW), np.float32); ct[pt:pt + H, pl:pl + W] = al
         ct = ndimage.gaussian_filter(ct, 0.006 * S) * 0.10   # a little contact darkness close round the piece
         sh = 1 - (1 - sh) * (1 - ct)
@@ -697,7 +698,8 @@ def catalogue_home():
                           f'<img class="b" src="{shadowed(two, pid)}" alt="" decoding="async"></a>')
                 else:
                     sc = f' style="height:{C.CAT_SCALE[pid] * 100:.0f}%"' if pid in C.CAT_SCALE else ''
-                    ph = f'<a class="ph" href="{q["page"]}.html"><img{sc} src="{shadowed(one, pid)}" alt="{alt}" decoding="async"></a>'
+                    sp = shadowed(one, pid); w_, h_ = Image.open(HERE / sp).size
+                    ph = f'<a class="ph{" wide" if w_ > 1.05 * h_ else ""}" href="{q["page"]}.html"><img{sc} src="{sp}" alt="{alt}" decoding="async"></a>'
                 cells += (f'<article class="col" id="{q["page"]}"><h2 class="t cut">{E(q["name"].upper())}</h2>'
                           f'<p class="s cut">{E(q["plain"].upper())} &nbsp;·&nbsp; CHAPTER&nbsp;I</p>{ph}'
                           f'<ul class="specs cut">{specs_html(specs)}</ul></article>')

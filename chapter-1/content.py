@@ -660,6 +660,7 @@ CAT_SECOND = {'disc_belt': 'straight', 'sunglasses': 'side', 'card_holder': 'bac
 # how far each piece stands off the wall, for its cast shadow (1: a garment on its form; a necklace lies close)
 SHADOW_DEPTH = {'lustre': 0.3, 'oitava': 0.3, 'sunglasses': 0.5, 'card_holder': 0.45, 'disc_belt': 0.45, 'opera_gloves': 0.5, 'silk_scarf': 0.4}
 CAT_WALL = True   # the catalogue as the room's frame on one continuous wall (David, 15 Nov: "this exact look ... mostly shadows", "seamlessly integrated")
-CAT_SCALE = {'oitava': 0.5}   # the catalogue image's share of its box (David, 15 Nov, Öitava: "more delicate, smaller")
+CAT_SCALE = {'oitava': 0.8}   # the catalogue image's share of its box (David, 15 Nov, Öitava: "more delicate, smaller")
 # a catalogue image of its own (Alvor's new silk: 108x144 cut out at 4x), at full box height like the Veil Coat (David, 15 Nov: "Same as veil coat size pls")
-CAT_IMG = {'silk_slip': ('assets/catalogue/silk_slip_144.webp', None)}
+CAT_IMG = {'silk_slip': ('assets/catalogue/silk_slip_144.webp', None),
+           'oitava': ('assets/catalogue/oitava_2048.webp', None)}   # Öitava from its passed 16K (site480/oitava, 2048 cut)
