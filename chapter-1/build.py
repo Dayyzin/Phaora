@@ -725,6 +725,42 @@ def catalogue_home():
                       f'<p class="links cut"><a href="{q["page"]}.html">The piece</a>' +   # one line (David, 15 Nov)
                       (f'<span class="dot">·</span><a href="{REGISTER}">Keep a seat</a>' if price and not q.get('nosale') else '') + '</p>' +
                       (f'<a class="price" href="{REGISTER}">{E(price)}</a>' if price and not q.get('nosale') else '') + '</article>')   # David: "bigger price"
+        # the piece view's acts (David, 15 Nov: "YES" to the product-page acts): everything each act needs, from the piece's
+        # own page data. Only real render pixels: a close stop is a push into the piece's own picture at 100% (its walk
+        # stops on the front), or a passed close-up render at 960 px or more; a piece with neither skips the act.
+        acts = {}
+        def alpha_box(path, thr=230):
+            a = np.asarray(Image.open(HERE / path).convert('RGBA'))[..., 3]; ys, xs = np.nonzero(a > thr)
+            return [round(xs.min() / a.shape[1], 4), round(ys.min() / a.shape[0], 4), round((xs.max() + 1) / a.shape[1], 4), round((ys.max() + 1) / a.shape[0], 4)]
+        for i, q in enumerate(order):
+            pid, pg = q['id'], q['page']; one = imgs[pid][0]; full = shadowed(one, pid)
+            A = dict(pbox=alpha_box(full))
+            front = [st for st in q.get('stops', []) if st['v'] == 'front']
+            caps = C.CLOSE_CAPS.get(pid, [])
+            close = [dict(f=list(st['f']), cap=(caps[k] if k < len(caps) else st['n'][0][1].capitalize() + ', ' + st['n'][0][2].lower()))
+                     for k, st in enumerate([st for st in front if st['z'] > 1][:len(caps) or 4])]
+            for d in sorted((HERE / 'img' / pg).glob('detail-*')):
+                big = max(d.glob('w*.webp'), key=lambda f: int(f.stem[1:]), default=None)
+                if big and int(big.stem[1:]) >= 960:
+                    lab = next((lab for k, lab, _ in C.MORE_DETAILS.get(pid, []) if f'detail-{k}' == d.name), None) or C.CLOSE_PLATES.get(f'{pg}/{d.name}')
+                    if lab: close.append(dict(plate=f'img/{pg}/{d.name}/{big.name}', cap=lab))
+            if close: A['close'] = close[:4]
+            notes = [dict(at=list(a), n=f'{l} · {v}', m=m) for st in front for a, l, v, m in st['n'] if l != 'SIZE']
+            if notes: A['notes'] = notes
+            elif C.BOOK_NOTES.get(pid): A['made'] = C.BOOK_NOTES[pid][1]
+            wl = HERE / 'img' / pg / 'world-full'
+            wimg = max(wl.glob('w*.webp'), key=lambda f: int(f.stem[1:]), default=None) if wl.exists() else None
+            if wimg: A['scene'] = dict(img=f'img/{pg}/world-full/{wimg.name}', place=q['world'][0], kept=q['world'][1])
+            ch = next((c for c in C.BOOK if pid in c['enter']), None)
+            same = [x for x in (C.SAME.get(pid) or ([x for x in ch['enter'] if x != pid] if ch else [])) if x in PIECE][:3]
+            if same: A['same'] = [PIECE[x]['page'] for x in same]
+            price, presale = price_of(pid)
+            det = [('Size', ' · '.join(q['sizes']))] if q['sizes'] else []
+            if not q.get('nosale'): det += [('Pre-sale', C.POLICY_PRESALE), ('Returns', C.POLICY_KNIT if q['policy'] == 'knit' else C.POLICY_MADE)]
+            A['details'] = det + [('Care', C.CARE[q['care']])]
+            A['prev'], A['next'] = order[i - 1]['page'], order[(i + 1) % len(order)]['page']
+            acts[pg] = A
+        foot = ''.join(f'<a href="{h}">{E(t)}</a>' for h, t in [(REGISTER, 'Register')] + FOOT)
         nav = ''.join(f'<a href="{h}">{t}</a>' for t, h in [('The line', '#top'), ('The film', 'film.html'), ('The book', 'book.html'), ('The room', 'room.html'), ('The house', 'house.html'), ('Register', REGISTER)])
         doc = f'''<!doctype html>
 <html lang="en" id="top" class="stage"><head><meta charset="utf-8">
@@ -742,6 +778,8 @@ def catalogue_home():
 <div class="room" aria-hidden="true"></div><div class="veil" aria-hidden="true"></div>
 <header class="navband"><a class="logo" href="#top" aria-label="PHAÖRA"></a><nav class="nl">{nav}</nav></header>
 <main class="sets" id="sets">{items}</main>
+<script type="application/json" id="acts">{json.dumps(acts, ensure_ascii=False)}</script>
+<nav class="floor" aria-label="The house">{foot}</nav>
 <script src="assets/js/stage.js"></script>
 </body></html>
 '''

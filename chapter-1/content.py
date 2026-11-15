@@ -669,3 +669,8 @@ CAT_SCALE = {'oitava': 0.8}   # the catalogue image's share of its box (David, 1
 CAT_IMG = {'silk_slip': ('assets/catalogue/silk_slip_144.webp', None),
            'oitava': ('assets/catalogue/oitava_2048.webp', None),
            'lustre': ('assets/catalogue/lustre_pad.webp', None)}   # David, 15 Nov: "Add Lustre with black pad": the pad and necklace cut out as one (site480/lustre)   # Öitava from its passed 16K (site480/oitava, 2048 cut)
+
+# the piece view's close act (David, 15 Nov): one small caption per stop, in the order of the piece's walk stops on its front
+CLOSE_CAPS = {'veil_coat': ['The net, open at the shoulder', 'A button and the belt', 'The cuff strap']}
+# a passed close-up render shown as a stop of its own, by its slot (only at 960 px or more)
+CLOSE_PLATES = {'gelosia/detail-net': 'The net closing to solid leather'}

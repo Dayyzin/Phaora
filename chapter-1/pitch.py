@@ -50,6 +50,11 @@ def views(m):
         dst = src.replace('assets/catalogue/shadowed/', 'assets/catalogue/full/'); big(src, dst); out.append(dst)
     return f'data-views="{",".join(out)}"'
 s = re.sub(r'data-views="([^"]+)"', views, s)
+# the acts' pictures (close-up plates, the scene stills) come too, kept to their own size
+for src in sorted(set(re.findall(r'"((?:img|assets)/[^"]+\.(?:webp|png|jpg))"', s[s.find('id="acts"'):]))):
+    (OUT / src).parent.mkdir(parents=True, exist_ok=True); shutil.copy(HERE / src, OUT / src)
+# the house's pages are not in this folder: the floor keeps only the links that go somewhere from here
+s = re.sub(r'<a href="(?!https?:)([a-z-]+\.html)">([^<]*)</a>', lambda m: m.group(0) if (OUT / m.group(1)).exists() else '', s)
 sheets = re.findall(r'href="(assets/css/[^"]+\.css)"', s)   # the page's own sheet(s) and script(s), and what they point at
 css = ''.join((HERE / c).read_text() for c in sheets)
 for f in sheets + re.findall(r'src="(assets/js/[^"]+)"', s) + ['assets/brand/mark-180.png', 'assets/lettering-solo-offwhite.svg'] + \
