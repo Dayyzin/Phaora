@@ -1,18 +1,18 @@
 {
- "source": "departments/apparel/website/chapter2/assets/line/silk_slip/silk-slip-front.webp",
- "sig": "silk-slip-front.webp:48938",
+ "source": "departments/apparel/marketing/story/site480/alvor/alvor_front_256x144.png",
+ "sig": "alvor_front_256x144.png:24015",
  "final": false,
  "files": [
-  "w480.webp",
-  "w487.webp"
+  "w256.webp"
  ],
- "w": 487,
- "h": 1180,
+ "edge": 2,
+ "w": 256,
+ "h": 144,
  "bbox": [
-  0.0431,
-  0.1178,
-  0.9548,
-  0.9814
+  0.4375,
+  0.0,
+  1.0,
+  1.0
  ],
- "edge": 2
+ "ground": "#faf3e9"
 }

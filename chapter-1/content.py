@@ -6,6 +6,7 @@
 
 B = 'departments/apparel/new-pieces-2026-11/build/'
 L = 'departments/apparel/website/chapter2/assets/line/'
+S480A = 'departments/apparel/marketing/story/site480/alvor/'   # Alvor's new silk at 144p (phaora-ops 9e29a244f)
 ST = 'departments/apparel/marketing/story/stills/'
 CH2 = 'departments/apparel/website/chapter2/'
 OI = B + 'oitava/'
@@ -145,9 +146,10 @@ PIECES = [
   about="Cream silk satin cut on the bias, falling to mid-calf on two thin black straps.",
   specs=[('SILK', 'CREAM SATIN, BIAS CUT'), ('STRAPS', 'BLACK SILK'), ('LENGTH', 'MID-CALF')],
   sizes=['XS', 'S', 'M', 'L', 'XL'],
-  views={'front': [L+'silk_slip/silk-slip-front.webp'], 'three-quarter': [], 'back': []},
+  views={'front': [S480A+'alvor_front_256x144.png', L+'silk_slip/silk-slip-front.webp'], 'three-quarter': [S480A+'alvor_threequarter_256x144.png'],
+         'back': [S480A+'alvor_back_256x144.png']},   # the new silk, interim at 144p (David, 15 Nov: "Send that to chapter 1 site")
   wants={'front': B+'silk-slip/site/silk_slip_front_16k.png'},
-  details=[('sheen', 'The sheen', [L+'silk_slip/silk-slip-closeup-sheen.webp'], False), ('strap', 'A strap', [], False)],
+  details=[('sheen', 'The sheen', [S480A+'alvor_detail_256x144.png', L+'silk_slip/silk-slip-closeup-sheen.webp'], False), ('strap', 'A strap', [], False)],
   world=('The suite, at midnight', 'The lamp left on, the bed turned down on one side.', 'C11', [ST+'ca-11-the-silk-slip_108x144.png']),
   stops=[
    dict(v='front', f=(.5, .5), z=1, n=[((.5, .01), 'SIZE', 'XS · S · M · L · XL', 'Projected sizes.')]),
@@ -654,3 +656,5 @@ DETAILS480 = {
 # the catalogue: the small pieces carry two angles in their column, sharing one floor (David, 15 Nov). (second view)
 CAT_SECOND = {'disc_belt': 'straight', 'sunglasses': 'side', 'card_holder': 'back'}   # Öfusca: front and side, the gold Ö on the temple (David, 15 Nov)   # Ritornelo reads better as its pair alone
 CAT_SCALE = {'oitava': 0.5}   # the catalogue image's share of its box (David, 15 Nov, Öitava: "more delicate, smaller")
+# a catalogue image of its own, shown at a fixed height in CSS px (Alvor's new silk: 108x144 cut out, kept at 2x, no more)
+CAT_IMG = {'silk_slip': ('assets/catalogue/silk_slip_144.webp', 211)}

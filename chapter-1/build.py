@@ -627,6 +627,7 @@ def catalogue_home():
     # Coaraci (David, 15 Nov, after the split: "Just do the right side zoomed in instead"): one image, its laid-straight
     # cut-out stood upright, cropped close to the buckle end; the crop's top fades out.
     imgs['disc_belt'] = ('assets/catalogue/disc_belt_zoom.webp', None)
+    for k, (f, _) in C.CAT_IMG.items(): imgs[k] = (f, None)
     duo = {}
     order = sorted(C.PIECES, key=lambda q: -usd(price_of(q['id'])[0]))
     cols = ''
@@ -640,7 +641,7 @@ def catalogue_home():
                     f'<img class="b" src="{duo[q["id"]][1]}" alt="{E(q["name"])}: the gold disc" loading="eager" decoding="async"></a>' if q['id'] in duo else
                     f'<a class="ph two" href="{q["page"]}.html"><img class="a" src="{imgs[q["id"]][0]}" alt="{E(q["name"])}, {E(q["plain"].lower())}" loading="eager" decoding="async">'
                     f'<img class="b" src="{imgs[q["id"]][1]}" alt="" loading="eager" decoding="async"></a>' if imgs[q['id']][1] else
-                    f'<a class="ph{" wide" if Image.open(HERE / imgs[q["id"]][0]).width > 1.15 * Image.open(HERE / imgs[q["id"]][0]).height else ""}" href="{q["page"]}.html"><img{f' style="height:{C.CAT_SCALE[q["id"]] * 100:.0f}%"' if q["id"] in C.CAT_SCALE else ""} src="{imgs[q["id"]][0]}" alt="{E(q["name"])}, {E(q["plain"].lower())}" loading="eager" decoding="async"></a>') +
+                    f'<a class="ph{" wide" if Image.open(HERE / imgs[q["id"]][0]).width > 1.15 * Image.open(HERE / imgs[q["id"]][0]).height else ""}" href="{q["page"]}.html"><img{f' style="height:{C.CAT_SCALE[q["id"]] * 100:.0f}%"' if q["id"] in C.CAT_SCALE else f' style="height:{C.CAT_IMG[q["id"]][1]}px"' if q["id"] in C.CAT_IMG else ""} src="{imgs[q["id"]][0]}" alt="{E(q["name"])}, {E(q["plain"].lower())}" loading="eager" decoding="async"></a>') +
                  f'<ul class="specs cut">' + ''.join(f'<li>{E(x)}</li>' for x in specs) + f'</ul><p class="links cut">{links}</p></article>')
     doc = f'''<!doctype html>
 <html lang="en" id="top"><head><meta charset="utf-8">

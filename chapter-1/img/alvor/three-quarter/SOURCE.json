@@ -1,0 +1,18 @@
+{
+ "source": "departments/apparel/marketing/story/site480/alvor/alvor_threequarter_256x144.png",
+ "sig": "alvor_threequarter_256x144.png:23676",
+ "final": false,
+ "files": [
+  "w256.webp"
+ ],
+ "edge": 2,
+ "w": 256,
+ "h": 144,
+ "bbox": [
+  0.4688,
+  0.0,
+  1.0,
+  1.0
+ ],
+ "ground": "#faf3e9"
+}

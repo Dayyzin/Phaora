@@ -1,19 +1,18 @@
 {
- "source": "departments/apparel/website/chapter2/assets/line/silk_slip/silk-slip-closeup-sheen.webp",
- "sig": "silk-slip-closeup-sheen.webp:43236",
+ "source": "departments/apparel/marketing/story/site480/alvor/alvor_detail_256x144.png",
+ "sig": "alvor_detail_256x144.png:27934",
  "final": false,
  "files": [
-  "w480.webp",
-  "w960.webp",
-  "w1600.webp"
+  "w256.webp"
  ],
- "w": 1600,
- "h": 1600,
+ "edge": 2,
+ "w": 256,
+ "h": 144,
  "bbox": [
+  0.2188,
   0.0,
-  0.0,
-  1.0,
+  0.7812,
   1.0
  ],
- "edge": 2
+ "ground": "#f6eee3"
 }
