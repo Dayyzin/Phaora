@@ -658,7 +658,7 @@ DETAILS480 = {
 # the catalogue: the small pieces carry two angles in their column, sharing one floor (David, 15 Nov). (second view)
 CAT_SECOND = {'disc_belt': 'straight', 'sunglasses': 'side', 'card_holder': 'back'}   # Öfusca: front and side, the gold Ö on the temple (David, 15 Nov)   # Ritornelo reads better as its pair alone
 # how far each piece stands off the wall, for its cast shadow (1: a garment on its form; a necklace lies close)
-SHADOW_DEPTH = {'lustre': 0.3, 'oitava': 0.3, 'sunglasses': 0.5, 'card_holder': 0.45, 'disc_belt': 0.45, 'opera_gloves': 0.5, 'silk_scarf': 0.4}
+SHADOW_DEPTH = {'lustre': 0.8, 'oitava': 1.0, 'sunglasses': 0.5, 'card_holder': 0.45, 'disc_belt': 0.45, 'opera_gloves': 0.5, 'silk_scarf': 0.4}
 CAT_NEUTRAL = {'po_tophandle'}   # Itaoca's base read brown: its blacks neutral (B−R within ±2)
 CAT_WALL = True   # one real page on one wall (David, 15 Nov: "TURN IT INTO A SITE NOT CROPS OF 16 SITES TOGETHER IN A PAGE")
 CAT_PANELS = False   # the room's frames side by side (855a879b), kept off   # the catalogue as the room's frame on one continuous wall (David, 15 Nov: "this exact look ... mostly shadows", "seamlessly integrated")
