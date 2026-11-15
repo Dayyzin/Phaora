@@ -715,7 +715,10 @@ def catalogue_home():
             alt = f'{E(q["name"])}, {E(q["plain"].lower())}'
             im = (f'<img class="a" src="{shadowed(one, pid)}" alt="{alt}" decoding="async"><img class="b" src="{shadowed(two, pid)}" alt="" decoding="async">'
                   if two else f'<img{" class=small" if pid in C.CAT_SCALE else ""} src="{shadowed(one, pid)}" alt="{alt}" decoding="async">')
-            items += (f'<article class="it" id="{q["page"]}"><h2 class="t cut">{E(q["name"].upper())}</h2>'
+            # the piece view (David, 15 Nov): the full picture and the views it turns through (the walk's clean cut-outs)
+            views = [f'assets/walk/{pid}_{v}.webp' for v in ('three-quarter', 'back') if (HERE / f'assets/walk/{pid}_{v}.webp').exists()]
+            views += [shadowed(two, pid)] if two else []
+            items += (f'<article class="it" id="{q["page"]}" data-full="{shadowed(one, pid)}"' + (f' data-views="{",".join(views)}"' if views else '') + f'><h2 class="t cut">{E(q["name"].upper())}</h2>'
                       f'<p class="s cut">{E(q["plain"].upper())} &nbsp;·&nbsp; CHAPTER&nbsp;I</p>'
                       f'<a class="ph{" two" if two else ""}" href="{q["page"]}.html">{im}</a>'
                       f'<ul class="specs cut full">{specs_html(specs)}</ul><ul class="specs cut short">{specs_html(short_specs(specs))}</ul>'

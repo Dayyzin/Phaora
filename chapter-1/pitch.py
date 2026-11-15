@@ -35,6 +35,21 @@ for src in sorted(set(re.findall(r'src="(assets/catalogue/[^"]+)"', s))):
     (OUT / src).parent.mkdir(parents=True, exist_ok=True)
     if k < 1: im = im.resize((round(im.width * k), round(im.height * k)), Image.LANCZOS)
     im.save(OUT / src, quality=86, method=6)
+# the piece view's full picture and its turn (twice the largest it is shown: about 80 vh)
+FULL = 1600
+def big(src, dst):
+    im = Image.open(HERE / src); k = min(1, FULL / im.width, FULL / im.height)
+    if k < 1: im = im.resize((round(im.width * k), round(im.height * k)), Image.LANCZOS)
+    (OUT / dst).parent.mkdir(parents=True, exist_ok=True); im.save(OUT / dst, quality=84, method=6)
+def full(m):
+    src = m.group(1); dst = src.replace('assets/catalogue/shadowed/', 'assets/catalogue/full/'); big(src, dst); return f'data-full="{dst}"'
+s = re.sub(r'data-full="([^"]+)"', full, s)
+def views(m):
+    out = []
+    for src in m.group(1).split(','):
+        dst = src.replace('assets/catalogue/shadowed/', 'assets/catalogue/full/'); big(src, dst); out.append(dst)
+    return f'data-views="{",".join(out)}"'
+s = re.sub(r'data-views="([^"]+)"', views, s)
 sheets = re.findall(r'href="(assets/css/[^"]+\.css)"', s)   # the page's own sheet(s) and script(s), and what they point at
 css = ''.join((HERE / c).read_text() for c in sheets)
 for f in sheets + re.findall(r'src="(assets/js/[^"]+)"', s) + ['assets/brand/mark-180.png', 'assets/lettering-solo-offwhite.svg'] + \
