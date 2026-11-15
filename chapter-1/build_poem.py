@@ -31,7 +31,7 @@ SIZE = {'desktop': (1440, 900), 'phone': (780, 1688)}
 DPR = {'desktop': 1, 'phone': 2}
 # the projector: behind and above the viewer (the camera is at 0, 1.45, 5.4), its frame laid on the plane of the back wall
 PROJ = np.array([0.0, 3.6, 8.4])
-FRAME = {'desktop': (-1.9, 1.9, -0.05, 2.09), 'phone': (-1.22, 1.22, -0.12, 1.71)}   # the phone's frame is 4:3, taken from the middle of the scene   # x0, x1, y0 (low), y1 on z = 0
+FRAME = {'desktop': (-1.9, 1.9, 0.30, 2.44), 'phone': (-1.22, 1.22, 0.15, 1.98)}   # the phone's frame is 4:3, taken from the middle of the scene   # x0, x1, y0 (low), y1 on z = 0
 AMB = 0.05     # the room's own light in the poem, linear (the stage is ~0.85 at its whitest): near-cinema
 MORPH_LIFT = 1.6   # while the pins ripple, the room's light rises this much (x AMB) and falls back, so the ripple reads
 HARD = 1.8     # the dim room's light is harder than the studio's: its tones are taken to this power (pins and their shadows read)

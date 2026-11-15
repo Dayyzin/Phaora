@@ -22,16 +22,21 @@
   C.forEach((c, ci) => { steps.push({ ci, si: -1, li: -1 }); c.stanzas.forEach((st, si) => st.forEach((_, li) => steps.push({ ci, si, li }))); });
   const firstStep = ci => steps.findIndex(s => s.ci === ci);
   let STEP = 0;
-  const size = () => { STEP = Math.round(innerHeight * (DEV === 'phone' ? 0.3 : 0.36)); track.style.height = (steps.length - 1) * STEP + innerHeight + 'px'; };
+  const size = () => { STEP = Math.round(innerHeight * 0.5); track.style.paddingBottom = Math.max(0, innerHeight - STEP) + 'px';
+    if (track.children.length !== steps.length) { track.innerHTML = ''; steps.forEach(() => { const d = document.createElement('div'); d.className = 'snap'; track.appendChild(d); }); }
+    [...track.children].forEach(d => { d.style.height = STEP + 'px'; }); };
 
   // ---- where the projection falls on this screen (the room is drawn to cover the window, as the stage is)
   function place() {
     const [W, H] = D.size[DEV], r = D.rect[DEV], vw = innerWidth, vh = innerHeight, s = Math.max(vw / W, vh / H);
     const ox = (vw - W * s) / 2, oy = (vh - H * s) / 2, X = x => ox + x * W * s, Y = y => oy + y * H * s;
     const x0 = X(r[0]), x1 = X(r[2]), y0 = Y(r[1]), y1 = Y(r[3]);
-    const pw = x1 - x0, ph = DEV === 'phone' ? 0 : 0.7;
-    const tw = Math.min(DEV === 'phone' ? vw * 0.9 : pw * 0.8, 760), ty = DEV === 'phone' ? y1 - (y1 - y0) * 0.08 : y0 + (y1 - y0) * ph;
-    text.style.setProperty('--tx', ((vw - tw) / 2) + 'px'); text.style.setProperty('--tw', tw + 'px'); text.style.setProperty('--ty', ty + 'px');
+    // the lines sit as subtitles do: centred on the picture, their last line just above its lower edge (on a phone,
+    // where the picture is small, just under it)
+    const tw = Math.min(DEV === 'phone' ? vw * 0.9 : (x1 - x0) * 0.8, 760);
+    text.style.setProperty('--tx', ((vw - tw) / 2) + 'px'); text.style.setProperty('--tw', tw + 'px');
+    if (DEV === 'phone') { text.style.setProperty('--ty', (y1 + 16) + 'px'); text.style.setProperty('--tb', 'auto'); }
+    else { text.style.setProperty('--ty', 'auto'); text.style.setProperty('--tb', (vh - (y0 + (y1 - y0) * 0.93)) + 'px'); }
     beam.style.setProperty('--b0', (-0.15 * vw) + 'px'); beam.style.setProperty('--b1', (1.15 * vw) + 'px');
     beam.style.setProperty('--r0', x0 + 'px'); beam.style.setProperty('--r2', x1 + 'px'); beam.style.setProperty('--rb', y1 + 'px');
     DUST.box = { x0, x1, y0, y1, vw, vh };
