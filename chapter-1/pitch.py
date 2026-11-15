@@ -16,6 +16,7 @@ s = s.replace('href="/"', f'href="{LIVE}"')
 s = re.sub(r'<a (class="ph[^"]*") href="[a-z-]+\.html">(.*?)</a>', r'<div \1>\2</div>', s, flags=re.S)
 s = re.sub(r'<a href="[a-z-]+\.html">The piece</a>', '', s)
 s = re.sub(r'<a class="pc" href="[a-z-]+\.html"[^>]*></a>', '', s)   # the room frames: no link over THE PIECE here
+s = re.sub(r'href="(film|book|room)\.html"', 'href="#top"', s)   # the nav's other rooms are not in this folder: back to the top
 s = s.replace('<meta name="robots" content="noindex">', '<meta name="robots" content="noindex, nofollow">')
 # the first row (four pieces) loads at once and first; the rest when near the screen
 n = 0

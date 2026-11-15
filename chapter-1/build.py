@@ -644,20 +644,62 @@ def catalogue_home():
                     f'<a class="ph{" wide" if Image.open(HERE / imgs[q["id"]][0]).width > 1.15 * Image.open(HERE / imgs[q["id"]][0]).height else ""}" href="{q["page"]}.html"><img{f' style="height:{C.CAT_SCALE[q["id"]] * 100:.0f}%"' if q["id"] in C.CAT_SCALE else f' style="height:{C.CAT_IMG[q["id"]][1]}px"' if C.CAT_IMG.get(q["id"], (0, None))[1] else ""} src="{imgs[q["id"]][0]}" alt="{E(q["name"])}, {E(q["plain"].lower())}" loading="eager" decoding="async"></a>') +
                  f'<ul class="specs cut">' + ''.join(f'<li>{E(x)}</li>' for x in specs) + f'</ul><p class="links cut">{links}</p></article>')
     # David, 15 Nov: "I meant for the catalogue to carry this exact look. No different. Shadows, the top nav written as it
-    # suggests ... but mostly shadows": each piece is its frame of the room on a phone (the room's own render: the wall's
-    # Ö pins, the piece's cast shadow up and to the right, the carved specs, its nav strip and its price band), captured by
-    # review/site-rebuild/one-page/panels.js into assets/catalogue/panel/<id>.webp. Links lie over the frame's own words.
-    panel = lambda q: HERE / 'assets' / 'catalogue' / 'panel' / f'{q["id"]}.webp'
-    panelled = getattr(C, 'CAT_PANELS', False) and all(panel(q).exists() for q in order)
-    if panelled:
+    # suggests ... but mostly shadows", then "obviously they need to be seamlessly integrated into the site" and "The top
+    # nav you need to create to fill it too": the room's frame as one continuous wall. No cards: the columns butt edge to
+    # edge on one pale ground with the faint Ö in it; a nav slot over each column; the name, type and specs as text; each
+    # piece with its soft cast shadow up and to the right, baked with it into one transparent image; and one band across
+    # each row for THE PIECE / KEEP A SEAT.
+    os.makedirs(HERE / 'assets' / 'catalogue' / 'shadowed', exist_ok=True)
+    def shadowed(src):
+        from scipy import ndimage
+        im = Image.open(HERE / src).convert('RGBA'); W, H = im.size
+        a = np.asarray(im).astype(np.float32) / 255; al = a[..., 3]
+        S = max(H, 0.62 * W)   # the shadow's scale: a tall piece's height, a wide one's footprint
+        dx, dy, sig = round(0.12 * S), round(-0.05 * S), 0.04 * S
+        pl, pr, pt = round(0.3 * S), round(0.3 * S), round(0.2 * S)   # room enough that the soft edge never meets the canvas
+        CW, CH = W + pl + pr, H + pt
+        sh = np.zeros((CH, CW), np.float32); sh[pt + dy:pt + dy + H, pl + dx:pl + dx + W] = al   # the silhouette, cast up and right
+        sh = ndimage.gaussian_filter(sh, sig) * 0.27
+        ct = np.zeros((CH, CW), np.float32); ct[pt:pt + H, pl:pl + W] = al
+        ct = ndimage.gaussian_filter(ct, 0.006 * S) * 0.10   # a little contact darkness close round the piece
+        sh = 1 - (1 - sh) * (1 - ct)
+        out = np.zeros((CH, CW, 4), np.float32); out[..., :3] = np.array([40, 36, 30]) / 255; out[..., 3] = sh
+        piece = np.zeros((CH, CW, 4), np.float32); piece[pt:pt + H, pl:pl + W] = a
+        A = piece[..., 3:] + out[..., 3:] * (1 - piece[..., 3:])
+        C = (piece[..., :3] * piece[..., 3:] + out[..., :3] * out[..., 3:] * (1 - piece[..., 3:])) / np.maximum(A, 1e-6)
+        res = Image.fromarray((np.dstack([C, A]) * 255).clip(0, 255).astype(np.uint8), 'RGBA')
+        dst = 'assets/catalogue/shadowed/' + os.path.basename(src)
+        res.save(HERE / dst, 'WEBP', quality=90, alpha_quality=100, method=6)
+        return dst
+    def specs_html(lines):   # the cove's carve leans some words: the first word of the third and fifth lines, and SIZE
+        out = ''
+        for k, x in enumerate(lines):
+            w = x.split(' ', 1)
+            lean = k in (2, 4) or w[0] == 'SIZE'
+            out += f'<li>{f"<i>{E(w[0])}</i>" + (" " + E(w[1]) if len(w) > 1 else "") if lean else E(x)}</li>'
+        return out
+    if getattr(C, 'CAT_WALL', False):
         cols = ''
-        for i, q in enumerate(order):
-            price = price_of(q['id'])[0]
-            seat = (f'<a class="seat" href="{REGISTER}" aria-label="Keep a seat, {E(price)}"></a>' if price and not q.get('nosale') else '')
-            cols += (f'<article class="panel" id="{q["page"]}"><img src="assets/catalogue/panel/{q["id"]}.webp" width="780" height="1688" '
-                     f'alt="{E(q["name"])}, {E(q["plain"].lower())}{f", {E(price)}" if price and not q.get("nosale") else ""}: '
-                     f'{E(" / ".join(C.ROOM_SET.get(q["id"], {}).get("specs") or default))}" loading="{"eager" if i < 3 else "lazy"}" decoding="async">'
-                     f'<a class="reg" href="{REGISTER}" aria-label="Register"></a><a class="pc" href="{q["page"]}.html" aria-label="The piece, {E(q["name"])}"></a>{seat}</article>')
+        for r0 in range(0, len(order), 3):
+            row = order[r0:r0 + 3]
+            cells = band = ''
+            for q in row:
+                pid = q['id']; price = price_of(pid)[0]
+                specs = (C.ROOM_SET.get(pid, {}).get('specs') or default)
+                one, two = imgs[pid]
+                alt = f'{E(q["name"])}, {E(q["plain"].lower())}'
+                if two:
+                    ph = (f'<a class="ph two" href="{q["page"]}.html"><img class="a" src="{shadowed(one)}" alt="{alt}" decoding="async">'
+                          f'<img class="b" src="{shadowed(two)}" alt="" decoding="async"></a>')
+                else:
+                    sc = f' style="height:{C.CAT_SCALE[pid] * 100:.0f}%"' if pid in C.CAT_SCALE else ''
+                    ph = f'<a class="ph" href="{q["page"]}.html"><img{sc} src="{shadowed(one)}" alt="{alt}" decoding="async"></a>'
+                cells += (f'<article class="col" id="{q["page"]}"><h2 class="t cut">{E(q["name"].upper())}</h2>'
+                          f'<p class="s cut">{E(q["plain"].upper())} &nbsp;·&nbsp; CHAPTER&nbsp;I</p>{ph}'
+                          f'<ul class="specs cut">{specs_html(specs)}</ul></article>')
+                band += (f'<p class="links cut"><a href="{q["page"]}.html">The piece</a>' +
+                         (f'<a href="{REGISTER}">Keep a seat · {E(price)}</a>' if price and not q.get('nosale') else '') + '</p>')
+            cols += f'<section class="row">{cells}<div class="band">{band}</div></section>'
     doc = f'''<!doctype html>
 <html lang="en" id="top"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -669,13 +711,14 @@ def catalogue_home():
 <link rel="icon" type="image/png" href="assets/brand/mark-180.png"><link rel="apple-touch-icon" href="assets/brand/mark-180.png">
 <link rel="stylesheet" href="assets/css/catalogue.css">
 </head>
-<body{' class="panelled"' if panelled else ''}>
-{'' if panelled else f'<div class="top"></div><a id="logo" href="#top" aria-label="PHAÖRA"></a><nav id="sitenav"><a href="#top">The line</a><a href="{REGISTER}">Register</a></nav>'}
+<body class="wall">
+<header class="navband">{''.join(f'<nav class="slot"><a class="logo" href="#top" aria-label="PHAÖRA"></a><span class="nl">' + ''.join(f'<a href="{h}">{t}</a>' for t, h in links) + '</span></nav>' for links in [[('The line', '#top'), ('Register', REGISTER)], [('The film', 'film.html'), ('The book', 'book.html')], [('The room', 'room.html'), ('Chapter I', '#top')]])}</header>
 <main class="cat">{cols}</main>
 <script>
 // David's lettering with the solo Ö, inlined in the room's dark ink, as room.js does (never typed)
-if (document.getElementById('logo')) fetch('assets/lettering-solo-offwhite.svg').then(r => r.text()).then(t => {{ document.getElementById('logo').innerHTML =
-  t.replace(/<!--[\\s\\S]*?-->/g, '').replace(/fill="#E2DDD2"/g, 'fill="currentColor"').replace(/\\s(width|height)="[^"]*"/, '').replace(/\\s(width|height)="[^"]*"/, ''); }});
+fetch('assets/lettering-solo-offwhite.svg').then(r => r.text()).then(t => {{ const svg =
+  t.replace(/<!--[\\s\\S]*?-->/g, '').replace(/fill="#E2DDD2"/g, 'fill="currentColor"').replace(/\\s(width|height)="[^"]*"/, '').replace(/\\s(width|height)="[^"]*"/, '');
+  document.querySelectorAll('.logo').forEach(l => {{ l.innerHTML = svg; }}); }});
 </script>
 </body></html>
 '''
