@@ -24,7 +24,7 @@ import numpy as np, cv2
 from PIL import Image
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-OUT = os.path.join(HERE, 'media', 'poem')
+OUT = os.environ.get('POEM_OUT') or os.path.join(HERE, 'media', 'poem')   # POEM_OUT: build elsewhere, copy in when done
 FILM = os.path.join(HERE, 'media', 'film', 'film', 'video.mp4')
 PLATE_VI = os.path.join(HERE, 'img', 'book', 'plate-vi', 'w5760.webp')
 SIZE = {'desktop': (1440, 900), 'phone': (780, 1688)}
