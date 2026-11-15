@@ -754,6 +754,20 @@ def catalogue_home():
             ch = next((c for c in C.BOOK if pid in c['enter']), None)
             same = [x for x in (C.SAME.get(pid) or ([x for x in ch['enter'] if x != pid] if ch else [])) if x in PIECE][:3]
             if same: A['same'] = [PIECE[x]['page'] for x in same]
+            # the template (pieces/<page>.json): a walk-around in place of the close and the notes (David, 15 Nov)
+            pj = HERE / 'pieces' / f'{pg}.json'
+            if pj.exists():
+                J = json.loads(pj.read_text()); A.pop('close', None); A.pop('notes', None); A.pop('made', None)
+                views = {}
+                for v, f in J['views'].items():
+                    im = Image.open(HERE / f); bb = im.getchannel('A').getbbox()
+                    views[v] = dict(img=f, w=im.width, h=im.height, bbox=[round(bb[0] / im.width, 4), round(bb[1] / im.height, 4), round(bb[2] / im.width, 4), round(bb[3] / im.height, 4)])
+                walk = []
+                for n, st in enumerate(J['walk'], 1):
+                    st = dict(st); fr = J.get('frames', '').replace('{n}', str(n))
+                    if fr and (HERE / fr).exists(): st['frame'] = fr   # a rendered stop, dropped in by its file name
+                    walk.append(st)
+                A['views'], A['walk'] = views, walk
             price, presale = price_of(pid)
             det = [('Size', ' · '.join(q['sizes']))] if q['sizes'] else []
             if not q.get('nosale'): det += [('Pre-sale', C.POLICY_PRESALE), ('Returns', C.POLICY_KNIT if q['policy'] == 'knit' else C.POLICY_MADE)]

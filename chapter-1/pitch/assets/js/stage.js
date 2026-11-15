@@ -43,7 +43,7 @@
   let cur = null, busy = false, pushed = false, steps = [], step = 0, R = null; const title0 = document.title, html = document.documentElement;
   const pv = document.createElement('div'); pv.className = 'pv'; pv.setAttribute('aria-hidden', 'true');
   pv.innerHTML = '<div class="pv-light"></div><div class="pv-dim"></div><div class="pv-wall"><img alt=""></div>' +
-    '<figure class="pv-fig"><img alt=""></figure><div class="pv-plate"><img alt=""></div>' +
+    '<div class="pv-walk"><div class="wl"><img alt=""></div><div class="wl"><img alt=""></div></div><figure class="pv-fig"><img alt=""></figure><div class="pv-plate"><img alt=""></div>' +
     '<svg class="pv-lines" aria-hidden="true"></svg><div class="pv-notes"></div><ol class="pv-made cut"></ol>' +
     '<div class="pv-txt pv-head"><h1 class="t cut"></h1><p class="s cut"></p></div>' +
     '<ul class="pv-txt pv-specs cut"></ul><div class="pv-txt pv-buy"><p class="links cut"></p><a class="price"></a></div>' +
@@ -83,9 +83,11 @@
     $('.pv-turn').innerHTML = views.length > 1 ? views.map((v, i) => `<button data-i="${i}"${i ? '' : ' class="on"'} aria-label="${['Front', 'Three-quarter', 'Back', 'Side'][i] || 'View'}"></button>`).join('') + '<span class="cut">Turn</span>' : '';
     fig.dataset.i = 0; fig._views = views; views.slice(1).forEach(load);
     // the acts this piece has, in order; an act with nothing real to show is skipped
-    steps = [{ a: 'arrival' }];
-    (A.close || []).forEach((c, k) => steps.push({ a: 'close', k }));
-    if (A.notes || A.made) steps.push({ a: 'notes' });
+    steps = [{ a: 'arrival' }]; lastK = -1;
+    if (A.walk) A.walk.forEach((w, k) => steps.push({ a: 'walk', k }));
+    else { (A.close || []).forEach((c, k) => steps.push({ a: 'close', k })); if (A.notes || A.made) steps.push({ a: 'notes' }); }
+    if (A.views) Object.values(A.views).forEach(v => load(v.img)); (A.walk || []).forEach(w => w.frame && load(w.frame));
+    pv.querySelectorAll('.pv-walk .wl').forEach(l => { l.className = 'wl'; l.querySelector('img').removeAttribute('src'); l._v = null; });
     if (A.scene) steps.push({ a: 'scene' });
     if (A.same) steps.push({ a: 'same' });
     steps.push({ a: 'back' }); step = 0; pv.dataset.act = 'arrival';
@@ -111,8 +113,10 @@
     if (!cur) return; const s = steps[step], A = ACTS[cur.id] || {}, W = innerWidth, H = innerHeight, p = phone();
     pv.dataset.act = s.a; html.classList.toggle('dim', s.a === 'scene' || s.a === 'same');
     let g = { t: 'none' };
-    lines.innerHTML = ''; pv.classList.remove('plated');
-    if (s.a === 'close') {
+    lines.innerHTML = ''; pv.classList.remove('plated'); pv.classList.toggle('walking', s.a === 'walk');
+    if (s.a !== 'walk') pv.querySelectorAll('.pv-walk .wl').forEach(l => l.classList.remove('on'));
+    if (s.a === 'walk') walkTo(A, s.k);
+    else if (s.a === 'close') {
       const c = A.close[s.k]; $('.pv-cap').textContent = c.cap;
       if (c.plate) {   // a passed close-up render, crossfaded over the piece
         $('.pv-plate img').src = c.plate; pv.classList.add('plated');
@@ -125,6 +129,52 @@
     } else if (s.a === 'scene') g = p ? at(.42, W / 2, H * .7) : at(.5, W * .72, H * .66);
     else if (s.a === 'same') g = p ? at(.4, W / 2, H * .33) : at(.56, W * .36, H * .55);
     fig.style.transform = g.t;
+  }
+  // the walk-around (David: "a walk around the piece ... each maker's note engraved small beside the part it describes"):
+  // a camera on the piece's own cut-outs, panning and pushing between stops on one view and turning round it between views;
+  // never past the render's own pixels. A rendered stop frame, where one has landed, fills the room's centre, feathered.
+  let lastK = -1;
+  function cam(A, st) {
+    const V = A.views[st.v], W = innerWidth, H = innerHeight, p = phone(), b = V.bbox;
+    const pw = (b[2] - b[0]) * V.w, ph = (b[3] - b[1]) * V.h, bw = p ? W * .9 : W * .4, bh = p ? H * .5 : H * .74;
+    const s0 = Math.min(bw / pw, bh / ph), z = Math.max(1, Math.min(st.z || 1, 1 / s0)), S = s0 * z;
+    const fx = (b[0] + st.f[0] * (b[2] - b[0])) * V.w, fy = (b[1] + st.f[1] * (b[3] - b[1])) * V.h;
+    const cx = W / 2, cy = p ? H * .4 : H * .51;
+    const tx = cx - fx * S, ty = cy - fy * S;
+    const pt = a => [tx + (b[0] + a[0] * (b[2] - b[0])) * V.w * S, ty + (b[1] + a[1] * (b[3] - b[1])) * V.h * S];
+    return { V, S, tx, ty, pt, mid: pt([.5, .5]), t: (dx = 0, k = 1) => `translate(${tx + dx + (1 - k) * fx * S}px,${ty + (1 - k) * fy * S}px) scale(${S * k})` };
+  }
+  function walkTo(A, k) {
+    const st = A.walk[k], [l1, l2] = pv.querySelectorAll('.pv-walk .wl'), on = l1.classList.contains('on') ? l1 : l2.classList.contains('on') ? l2 : null;
+    const dir = k >= lastK ? 1 : -1; lastK = k;
+    const src = st.frame || A.views[st.v].img, c = st.frame ? null : cam(A, st);
+    const set = (l, t, inst) => { if (inst) { l.style.transition = 'none'; l.style.transform = t; l.offsetWidth; l.style.transition = ''; } else { l.style.transform = t; l._final = t; } };
+    if (on && on._v === src && !st.frame) set(on, c.t());   // the same view: the camera pans and pushes
+    else {   // another view: the walk goes round; the new view turns in as the old one turns away
+      const nx = on === l1 ? l2 : l1, im = nx.querySelector('img');
+      im.src = src; nx._v = src; nx.classList.toggle('frame', !!st.frame);
+      if (st.frame) { nx.style.width = nx.style.height = ''; nx._final = 'none'; set(nx, `scale(${1.04})`, true); requestAnimationFrame(() => set(nx, nx._final)); }
+      else { Object.assign(nx.style, { width: c.V.w + 'px', height: c.V.h + 'px' }); nx._final = c.t(); set(nx, c.t(70 * dir, .97), true); requestAnimationFrame(() => set(nx, nx._final)); }
+      nx.classList.add('on');
+      if (on) { on.classList.remove('on'); if (!on.classList.contains('frame') && on.style.transform) on.style.transform += ` translateX(${-90 * dir}px)`; }
+    }
+    // the notes: each beside its part, on a hairline, on the side away from the piece
+    const N = st.notes || [], W = innerWidth, H = innerHeight, p = phone();
+    const box = $('.pv-notes'); box.innerHTML = N.map(n => `<div class="nt"><span class="l">${E(n.l)}</span><span class="v">${E(n.v)}</span>${n.m ? `<span class="m">${E(n.m)}</span>` : ''}</div>`).join('') + N.map(() => '<i class="pin"></i>').join('');
+    [box, lines].forEach(x => { x.classList.remove('fresh'); void x.offsetWidth; x.classList.add('fresh'); });
+    if (!c) { lines.innerHTML = ''; return; }
+    const els = [...box.querySelectorAll('.nt')], pins = [...box.querySelectorAll('.pin')];
+    let svg = '', yl = { l: H * .16, r: H * .16 }, yp = H * .74;
+    N.forEach((n, i) => {
+      const a = c.pt(n.at), e = els[i]; pins[i].style.transform = `translate(${a[0] - 3}px,${a[1] - 3}px)`;
+      if (p) { e.style.transform = `translate(${W * .08}px,${yp}px)`; e.style.width = W * .84 + 'px'; const ty = yp - 4; yp += e.offsetHeight + 10;
+        svg += `<line x1="${a[0]}" y1="${a[1]}" x2="${a[0]}" y2="${ty}"/>`; return; }
+      const sd = c.mid[0] > a[0] + 20 ? 'l' : c.mid[0] < a[0] - 20 ? 'r' : (a[0] < W / 2 ? 'l' : 'r'), w = Math.min(260, W * .19);
+      const tl = c.pt([0, 0]), br = c.pt([1, 1]), x = sd === 'l' ? Math.max(W * .04, Math.min(W * .2 - w * .35, tl[0] - 40 - w)) : Math.min(W * .96 - w, Math.max(W * .8 - w * .65, br[0] + 40)), y = Math.min(H * .8, Math.max(yl[sd], a[1] - 10)); yl[sd] = y + e.offsetHeight + 18;
+      e.style.width = w + 'px'; e.style.transform = `translate(${x}px,${y}px)`; e.classList.toggle('r', sd === 'l');
+      const ex = sd === 'l' ? x + w + 10 : x - 10; svg += `<line x1="${a[0]}" y1="${a[1]}" x2="${ex}" y2="${y + 8}"/>`;
+    });
+    lines.setAttribute('viewBox', `0 0 ${W} ${H}`); lines.innerHTML = svg;
   }
   function push(f) {   // the view pushes into the part at 100%: one pixel of the render to one pixel of the screen
     const nat = img.naturalWidth || R.w, z = Math.max(1.35, Math.min(3.2, nat / R.w)), W = innerWidth, H = innerHeight;
@@ -153,7 +203,7 @@
     if (!cur || busy) return; const to = step + n; if (to < 0 || to >= steps.length) return;
     if (steps[to].a === 'back') return pv.querySelector('.pv-x').click();
     if (+fig.dataset.i) { const v = fig._views[0]; img.src = v; fig.dataset.i = 0; fig.classList.remove('turned'); pv.querySelectorAll('.pv-turn button').forEach((b, i) => b.classList.toggle('on', !i)); }
-    step = to; busy = true; layout(); setTimeout(() => { busy = false; }, 900);
+    step = to; busy = true; layout(); setTimeout(() => { busy = false; }, 700);
   }
   async function open(it, push, still) {
     if (busy || cur === it) return; busy = true; cur = it; fill(it);
