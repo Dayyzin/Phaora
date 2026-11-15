@@ -656,5 +656,5 @@ DETAILS480 = {
 # the catalogue: the small pieces carry two angles in their column, sharing one floor (David, 15 Nov). (second view)
 CAT_SECOND = {'disc_belt': 'straight', 'sunglasses': 'side', 'card_holder': 'back'}   # Öfusca: front and side, the gold Ö on the temple (David, 15 Nov)   # Ritornelo reads better as its pair alone
 CAT_SCALE = {'oitava': 0.5}   # the catalogue image's share of its box (David, 15 Nov, Öitava: "more delicate, smaller")
-# a catalogue image of its own, shown at a fixed height in CSS px (Alvor's new silk: 108x144 cut out, kept at 2x, no more)
-CAT_IMG = {'silk_slip': ('assets/catalogue/silk_slip_144.webp', 211)}
+# a catalogue image of its own (Alvor's new silk: 108x144 cut out at 4x), at full box height like the Veil Coat (David, 15 Nov: "Same as veil coat size pls")
+CAT_IMG = {'silk_slip': ('assets/catalogue/silk_slip_144.webp', None)}
