@@ -594,6 +594,51 @@ def room_home():
     tpl = (HERE / 'room_page.html').read_text()
     doc = (tpl.replace('{{TITLE}}', f'{SITE_TITLE} · Chapter I').replace('{{NAV}}', nav).replace('{{PIECES}}', J(room))
            .replace('{{FITS}}', J(fits)).replace('{{CATALOGUE}}', J(cat)).replace('{{CATS}}', J(C.CATS)))
+    (HERE / 'room.html').write_text(doc)   # the room, kept unlinked (David, 15 Nov: one page, the catalogue)
+    PAGES.append('room.html')
+
+
+# ---------------------------------------------------------------- the one page (index.html)
+def catalogue_home():
+    """The site's one page (David, 15 Nov: "One site, one page, that catalogue"): every piece as a column of the room,
+    still: the name in spaced capitals, what it is, the cut-out on the room's wall with its soft cast shadow and the faint Ö
+    behind, the carved spec lines, then THE PIECE and KEEP A SEAT · price (to the live register). By price, high to low;
+    a piece with no price (Lustre) last. Four to a row on a computer, one on a phone. The other pages stay, unlinked."""
+    default = ['28-GAUGE DOUBLE JACQUARD', '300 GSM', '30S COMBED COTTON', 'BLACK / CREAM', 'SIZE  S · M · L · XL · XXL']   # room.js SPEC_LINES
+    usd = lambda pr: int(re.sub(r'\D', '', pr)) if pr else -1
+    order = sorted(C.PIECES, key=lambda q: -usd(price_of(q['id'])[0]))
+    cols = ''
+    for q in order:
+        price = price_of(q['id'])[0]
+        specs = (C.ROOM_SET.get(q['id'], {}).get('specs') or default)
+        links = f'<a href="{q["page"]}.html">The piece</a>' + (f'<a href="{REGISTER}">Keep a seat · {E(price)}</a>' if price and not q.get('nosale') else '')
+        cols += (f'<article class="col" id="{q["page"]}"><h2 class="t cut">{E(q["name"].upper())}</h2>'
+                 f'<p class="s cut">{E(q["plain"].upper())} &nbsp;·&nbsp; CHAPTER I</p>'
+                 f'<a class="ph" href="{q["page"]}.html"><img src="assets/room/{q["id"]}.webp" alt="{E(q["name"])}, {E(q["plain"].lower())}" loading="lazy" decoding="async"></a>'
+                 f'<ul class="specs cut">' + ''.join(f'<li>{E(x)}</li>' for x in specs) + f'</ul><p class="links cut">{links}</p></article>')
+    doc = f'''<!doctype html>
+<html lang="en" id="top"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{SITE_TITLE} · Chapter I</title>
+<meta name="description" content="A cinema in knit, leather and silk. PHAÖRA Chapter I, made to order on pre-sale.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="assets/brand/mark-180.png"><link rel="apple-touch-icon" href="assets/brand/mark-180.png">
+<link rel="stylesheet" href="assets/css/catalogue.css">
+</head>
+<body>
+<div class="top"></div>
+<a id="logo" href="#top" aria-label="PHAÖRA"></a>
+<nav id="sitenav"><a href="#top">The line</a><a href="{REGISTER}">Register</a></nav>
+<main class="cat">{cols}</main>
+<script>
+// David's lettering with the solo Ö, inlined in the room's dark ink, as room.js does (never typed)
+fetch('assets/lettering-solo-offwhite.svg').then(r => r.text()).then(t => {{ document.getElementById('logo').innerHTML =
+  t.replace(/<!--[\\s\\S]*?-->/g, '').replace(/fill="#E2DDD2"/g, 'fill="currentColor"').replace(/\\s(width|height)="[^"]*"/, '').replace(/\\s(width|height)="[^"]*"/, ''); }});
+</script>
+</body></html>
+'''
     (HERE / 'index.html').write_text(doc)
     PAGES.append('index.html')
 
@@ -929,6 +974,7 @@ def main():
         fronts[p['id']] = next(iter(vs.values()))
     ROW_IMG = {pid: fronts[pid].src(960) for _, pid, _ in C.ROW}
     room_home()
+    catalogue_home()
     line_page(fronts)
     film_page()
     book_page()

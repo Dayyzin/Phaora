@@ -1,7 +1,7 @@
 # SLOTS: every image and film on the Chapter I site
 
-Built by `build.py`. 192 slots: **5 final**, **155 holding a stand-in** (the best approved
-render or still we have, at 144p or 1600), **32 waiting** (a quiet placeholder of the right ratio, labelled
+Built by `build.py`. 192 slots: **5 final**, **156 holding a stand-in** (the best approved
+render or still we have, at 144p or 1600), **31 waiting** (a quiet placeholder of the right ratio, labelled
 with what it waits for).
 
 **To add a photo:** put the file in the slot's folder as `master.png` (or `.jpg`, `.webp`, `.tif`; a film: `master.mp4`),
@@ -56,7 +56,7 @@ path. On phaora.com the labels never show.
 | heliodora | `img/heliodora/three-quarter/` | three-quarter view, 8K (8K, 4320 × 7680) | stand-in: departments/apparel/website/chapter2/assets/line/muse_allover/muse-three-quarter.webp (972 × 1186) |
 | heliodora | `img/heliodora/back/` | back view, 8K (8K, 4320 × 7680) | stand-in: departments/apparel/website/chapter2/assets/line/muse_allover/muse-back.webp (1104 × 1135) |
 | heliodora | `img/heliodora/detail-kiss/` | the kiss on the back, 8K close-up (8K, 7680 × 4320) | FINAL: departments/apparel/new-pieces-2026-11/build/muse-allover/site/muse_kiss_8k.png (7680 × 4320) |
-| heliodora | `img/heliodora/detail-material/` | the knit at stitch scale, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/new-pieces-2026-11/build/muse-allover/site/preview_16k_material.png (1600 × 900) |
+| heliodora | `img/heliodora/detail-material/` | the knit at stitch scale, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/site480/walk/heliodora_knit.png (854 × 480) |
 | heliodora | `img/heliodora/detail-cuff/` | the cuff, where her hair thins to single dots, 8K close-up (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
 | heliodora | `img/heliodora/world/` | C1: the last frame, the world plate (the lobby) (8K, 5760 × 7680) | stand-in: departments/apparel/marketing/story/stills/8k/ca-01-the-muse_5760x7680.png (5760 × 7680) |
 | heliodora | `img/heliodora/detail-material/` | the knit at stitch scale, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/site480/walk/heliodora_knit.png (854 × 480) |
@@ -178,9 +178,9 @@ path. On phaora.com the labels never show.
 | cordel | `img/cordel/world-full/` | cordel_world.jpg, the piece in its world, full size (passed by David; the full-size file to come) (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/site480/world/cordel_world.png (854 × 480) |
 | obolo | `img/obolo/front/` | departments/apparel/new-pieces-2026-11/build/card-holder/site/card_holder_front_16k.png (16K, 15360 × 8640) | stand-in: departments/apparel/website/chapter2/assets/line/card_holder/card-holder-front.webp (1786 × 830) |
 | obolo | `img/obolo/back/` | back view, 8K (8K, 7680 × 4320) | stand-in: departments/apparel/website/chapter2/assets/line/card_holder/card-holder-back.webp (1383 × 578) |
-| obolo | `img/obolo/detail-edge/` | the painted edge, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/website/chapter2/assets/line/card_holder/card-holder-closeup-edge.webp (1600 × 1200) |
-| obolo | `img/obolo/detail-disc/` | the disc, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/website/chapter2/assets/line/card_holder/card-holder-closeup-disc.webp (800 × 600) |
-| obolo | `img/obolo/detail-material/` | the pebble, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/new-pieces-2026-11/build/card-holder/site/preview_16k_card_holder_material.png (1600 × 900) |
+| obolo | `img/obolo/detail-edge/` | the painted edge, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/site480/walk/obolo_edge.png (854 × 480) |
+| obolo | `img/obolo/detail-disc/` | the disc, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/site480/walk/obolo_disc.png (854 × 480) |
+| obolo | `img/obolo/detail-material/` | the pebble, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/site480/walk/obolo_grain.png (854 × 480) |
 | obolo | `img/obolo/world/` | C5: the last frame, the world plate (the box office) (8K, 5760 × 7680) | stand-in: departments/apparel/marketing/story/stills/ca-05-the-card-holder_108x144.png (108 × 144) |
 | obolo | `img/obolo/detail-whole/` | the holder, a card in it, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/site480/walk/obolo_whole.png (854 × 480) |
 | obolo | `img/obolo/detail-disc/` | the disc, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/site480/walk/obolo_disc.png (854 × 480) |
@@ -199,8 +199,8 @@ path. On phaora.com the labels never show.
 | ritornelo | `img/ritornelo/world-full/` | ritornelo_world.jpg, the piece in its world, full size (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
 | coaraci | `img/coaraci/front/` | departments/apparel/new-pieces-2026-11/build/disc-belt/site/disc_belt_front_16k.png (16K, 15360 × 8640) | stand-in: departments/apparel/website/chapter2/assets/line/disc_belt/disc-belt-front.webp (1375 × 751) |
 | coaraci | `img/coaraci/straight/` | straight view, 8K (8K, 7680 × 4320) | stand-in: departments/apparel/website/chapter2/assets/line/disc_belt/disc-belt-straight.webp (1563 × 1084) |
-| coaraci | `img/coaraci/detail-disc/` | the disc, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/website/chapter2/assets/line/disc_belt/disc-belt-closeup-disc.webp (800 × 600) |
-| coaraci | `img/coaraci/detail-edge/` | the painted edge, 8K close-up (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
+| coaraci | `img/coaraci/detail-disc/` | the disc, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/site480/walk/coaraci_stop4.png (854 × 480) |
+| coaraci | `img/coaraci/detail-edge/` | the painted edge, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/site480/walk/coaraci_stop2.png (854 × 480) |
 | coaraci | `img/coaraci/world/` | C12: the last frame, the world plate (the suite, at first light) (8K, 5760 × 7680) | stand-in: departments/apparel/marketing/story/stills/ca-12-the-disc-belt_108x144.png (108 × 144) |
 | coaraci | `img/coaraci/detail-whole/` | the belt, coiled, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/site480/walk/coaraci_stop1.png (854 × 480) |
 | coaraci | `img/coaraci/detail-disc/` | the disc, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/site480/walk/coaraci_stop4.png (854 × 480) |
