@@ -632,9 +632,9 @@ def catalogue_home():
         links = f'<a href="{q["page"]}.html">The piece</a>' + (f'<a href="{REGISTER}">Keep a seat · {E(price)}</a>' if price and not q.get('nosale') else '')
         cols += (f'<article class="col" id="{q["page"]}"><h2 class="t cut">{E(q["name"].upper())}</h2>'
                  f'<p class="s cut{" long" if len(q["plain"]) > 16 else ""}">{E(q["plain"].upper())} &nbsp;·&nbsp; CHAPTER I</p>'
-                 + (f'<a class="ph two" href="{q["page"]}.html"><img class="a" src="{imgs[q["id"]][0]}" alt="{E(q["name"])}, {E(q["plain"].lower())}" loading="lazy" decoding="async">'
-                    f'<img class="b" src="{imgs[q["id"]][1]}" alt="" loading="lazy" decoding="async"></a>' if imgs[q['id']][1] else
-                    f'<a class="ph{" wide" if Image.open(HERE / imgs[q["id"]][0]).width > 1.15 * Image.open(HERE / imgs[q["id"]][0]).height else ""}" href="{q["page"]}.html"><img src="{imgs[q["id"]][0]}" alt="{E(q["name"])}, {E(q["plain"].lower())}" loading="lazy" decoding="async"></a>') +
+                 + (f'<a class="ph two" href="{q["page"]}.html"><img class="a" src="{imgs[q["id"]][0]}" alt="{E(q["name"])}, {E(q["plain"].lower())}" loading="eager" decoding="async">'
+                    f'<img class="b" src="{imgs[q["id"]][1]}" alt="" loading="eager" decoding="async"></a>' if imgs[q['id']][1] else
+                    f'<a class="ph{" wide" if Image.open(HERE / imgs[q["id"]][0]).width > 1.15 * Image.open(HERE / imgs[q["id"]][0]).height else ""}" href="{q["page"]}.html"><img src="{imgs[q["id"]][0]}" alt="{E(q["name"])}, {E(q["plain"].lower())}" loading="eager" decoding="async"></a>') +
                  f'<ul class="specs cut">' + ''.join(f'<li>{E(x)}</li>' for x in specs) + f'</ul><p class="links cut">{links}</p></article>')
     doc = f'''<!doctype html>
 <html lang="en" id="top"><head><meta charset="utf-8">

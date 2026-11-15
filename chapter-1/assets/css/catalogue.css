@@ -23,8 +23,9 @@ a{color:inherit;text-decoration:none}
 .col .ph.wide img{max-width:96%}
 .col .ph.two{display:block}
 .col .ph.two img{position:absolute;left:50%;transform:translateX(-50%);object-fit:contain;object-position:50% 100%}
-.col .ph.two .a{bottom:30%;height:62%;max-width:84%}
-.col .ph.two .b{bottom:0;height:44%;max-width:90%}
+/* David, 15 Nov: "Divide them as I split it. Not on top of each other": the box in two halves, one angle in each */
+.col .ph.two .a{top:0;height:46%;max-width:90%;object-position:50% 50%}
+.col .ph.two .b{bottom:0;height:46%;max-width:90%;object-position:50% 50%}
 .col .specs{list-style:none;margin:0;padding:0;font:400 13px/2 'Jost','DejaVu Sans',sans-serif;letter-spacing:.14em;color:#48484c}   /* one step up and a touch darker (David, 15 Nov) */
 .col .links{margin-top:28px;display:flex;flex-direction:column;gap:2px;font:500 12px/1.75 'Cormorant Garamond','DejaVu Serif',serif;letter-spacing:.26em;padding-left:.26em;text-transform:uppercase}
 @media (max-width:1100px){.col .t{font-size:24px;letter-spacing:.26em}}

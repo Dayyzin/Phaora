@@ -652,4 +652,4 @@ DETAILS480 = {
 }
 
 # the catalogue: the small pieces carry two angles in their column, sharing one floor (David, 15 Nov). (second view)
-CAT_SECOND = {'disc_belt': 'straight', 'sunglasses': 'flat', 'card_holder': 'back'}   # Ritornelo reads better as its pair alone
+CAT_SECOND = {'disc_belt': 'straight', 'sunglasses': 'side', 'card_holder': 'back'}   # Öfusca: front and side, the gold Ö on the temple (David, 15 Nov)   # Ritornelo reads better as its pair alone
