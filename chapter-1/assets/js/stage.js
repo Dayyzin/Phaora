@@ -84,7 +84,7 @@
     fig.dataset.i = 0; fig._views = views; views.slice(1).forEach(load);
     // the acts this piece has, in order; an act with nothing real to show is skipped
     steps = [{ a: 'arrival' }]; lastK = -1;
-    if (A.world) { const K = 7; for (let k = 0; k < K; k++) steps.push({ a: 'world', k }); worldLoad(A); }
+    if (A.world) { steps.push({ a: 'world' }); worldLoad(A); }
     else if (A.walk) A.walk.forEach((w, k) => steps.push({ a: 'walk', k }));
     else { (A.close || []).forEach((c, k) => steps.push({ a: 'close', k })); if (A.notes || A.made) steps.push({ a: 'notes' }); }
     if (A.views) Object.values(A.views).forEach(v => load(v.img)); (A.walk || []).forEach(w => w.frame && load(w.frame));
@@ -112,11 +112,11 @@
   const ptIn = (g, f) => { const b = pbox(); return [g.x + (b[0] + f[0] * (b[2] - b[0])) * g.w, g.y + (b[1] + f[1] * (b[3] - b[1])) * g.h]; };
   function layout() {
     if (!cur) return; const s = steps[step], A = ACTS[cur.id] || {}, W = innerWidth, H = innerHeight, p = phone();
-    pv.dataset.act = s.a; html.classList.toggle('dim', s.a === 'scene' || s.a === 'same' || s.a === 'world');
+    pv.dataset.act = s.a; html.classList.toggle('dim', s.a === 'scene' || s.a === 'same');
     let g = { t: 'none' };
     lines.innerHTML = ''; pv.classList.remove('plated'); pv.classList.toggle('walking', s.a === 'walk'); pv.classList.toggle('inworld', s.a === 'world');
     if (s.a !== 'walk') pv.querySelectorAll('.pv-walk .wl').forEach(l => l.classList.remove('on'));
-    if (s.a === 'world') worldTo(s.k);
+    if (s.a === 'world') { if (!wmode) wenter(wtarget > 0 ? wtarget : innerHeight); }
     else if (s.a === 'walk') walkTo(A, s.k);
     else if (s.a === 'close') {
       const c = A.close[s.k]; $('.pv-cap').textContent = c.cap;
@@ -178,6 +178,29 @@
       n.style.filter = bl > .35 ? `blur(${bl.toFixed(2)}px)` : 'none'; n.style.opacity = a.toFixed(3); n.style.visibility = 'visible';
     });
   }
+  // the scroll carries you into the world: it rises over the room as the page scrolls, the scroll then walks the frames
+  // (pinned, scrubbed, like David's page), and the world scrolls off the top into the room again
+  let wmode = false, wpos = 0, wtarget = 0, wloop = 0;
+  const wlen = () => { const H = innerHeight; return { H, R: H * 7, end: H + H * 7 }; };
+  function wenter(pos, aim) {
+    wmode = true; pv.classList.add('wmode'); wpos = pos; wtarget = aim == null ? pos : aim; fig.style.transition = 'none'; wrender(); cancelAnimationFrame(wloop);
+    const loop = () => { wpos += (wtarget - wpos) * .16; if (Math.abs(wtarget - wpos) < .5) wpos = wtarget; wrender(); if (wmode) wloop = requestAnimationFrame(loop); };
+    wloop = requestAnimationFrame(loop);
+  }
+  function wleave(to) {   // out of the world: to the arrival (back up) or to the scene (on down)
+    wmode = false; cancelAnimationFrame(wloop); pv.classList.remove('wmode'); wv.style.transform = ''; fig.style.transform = 'none';
+    pv.querySelectorAll('.pv-txt').forEach(t => t.style.opacity = '');
+    requestAnimationFrame(() => { fig.style.transition = ''; }); step = to; layout();
+  }
+  function wrender() {
+    const { H, R, end } = wlen(), p = wpos;
+    wv.style.transform = `translate3d(0,${p < H ? H - p : p > end ? -(p - end) : 0}px,0)`;
+    if (p < H) { fig.style.transform = `translate3d(0,${-p * .45}px,0)`; pv.querySelectorAll('.pv-txt').forEach(t => t.style.opacity = String(Math.max(0, 1 - p / (H * .4)))); }
+    if (WS) { wpick(); const f = Math.max(0, Math.min(1, (p - H) / R)) * (WS.n - 1); wf = f; wdraw(Math.round(f)); }
+    if (wtarget <= 0 && p <= 1) wleave(0);
+    else if (wtarget >= end + H && p >= end + H - 1) wleave(steps.findIndex(x => x.a === 'world') + 1);
+  }
+  const wpush = d => { const { H, end } = wlen(); wtarget = Math.max(0, Math.min(end + H, wtarget + d)); };
   function worldTo(k) {   // walk the frames on to stop k (about 1.1 s), eased like a step
     const go = () => { if (!WS) return setTimeout(go, 80); wpick();
       const to = WS.stations[k], from = wf, t0 = performance.now(), D = Math.min(1400, 500 + Math.abs(to - from) * 40);
@@ -259,6 +282,8 @@
   async function go(n) {   // one act on (or back)
     if (!cur || busy) return; const to = step + n; if (to < 0 || to >= steps.length) return;
     if (steps[to].a === 'back') return pv.querySelector('.pv-x').click();
+    if (steps[to].a === 'world' && !wmode) { const { H, end } = wlen(); step = to; pv.dataset.act = 'world';
+      return n > 0 ? wenter(0, H * .35) : (layout(), wenter(end + H, end + H * .65)); }
     if (+fig.dataset.i) { const v = fig._views[0]; img.src = v; fig.dataset.i = 0; fig.classList.remove('turned'); pv.querySelectorAll('.pv-turn button').forEach((b, i) => b.classList.toggle('on', !i)); }
     step = to; busy = true; layout(); setTimeout(() => { busy = false; }, 700);
   }
@@ -281,6 +306,7 @@
   }
   async function close() {
     if (!cur || busy) return; busy = true; const it = cur; pushed = false;
+    if (wmode) { wmode = false; cancelAnimationFrame(wloop); pv.classList.remove('wmode'); wv.style.transform = ''; pv.querySelectorAll('.pv-txt').forEach(t => t.style.opacity = ''); fig.style.transition = ''; }
     if (step) { step = 0; layout(); await new Promise(r => setTimeout(r, 1000)); }
     pv.classList.remove('shown', 'drawer'); html.classList.remove('viewing', 'dim');
     const small = srcOf(it), a = rectOf(small), to = fig.getBoundingClientRect();
@@ -321,7 +347,7 @@
   addEventListener('pointerup', e => {
     if (sx === null || !cur) return; const dx = e.clientX - sx, dy = e.clientY - sy; sx = null;
     if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) { if (onFig && !step) turnTo(+fig.dataset.i + (dx < 0 ? 1 : -1)); else if (phone()) nb(dx < 0 ? 1 : -1); }
-    else if (Math.abs(dy) > 50 && e.pointerType !== 'mouse') go(dy < 0 ? 1 : -1);
+    else if (Math.abs(dy) > 50 && e.pointerType !== 'mouse' && !wmode) go(dy < 0 ? 1 : -1);
   });
   main.addEventListener('click', e => {
     const it = e.target.closest('.it'); if (!it || e.target.closest('a[href]:not([href$=".html"])')) return;
@@ -333,13 +359,18 @@
   addEventListener('keydown', e => { if (!cur) return;
     if (e.key === 'Escape') $('.pv-x').click();
     if (e.key === 'ArrowRight') step ? nb(1) : turnTo(+fig.dataset.i + 1); if (e.key === 'ArrowLeft') step ? nb(-1) : turnTo(+fig.dataset.i - 1);
+    if (wmode) { if (['ArrowDown', 'PageDown', ' '].includes(e.key)) { e.preventDefault(); wpush(innerHeight * .6); } if (['ArrowUp', 'PageUp'].includes(e.key)) { e.preventDefault(); wpush(-innerHeight * .6); } return; }
     if (['ArrowDown', 'PageDown', ' '].includes(e.key)) { e.preventDefault(); go(1); } if (['ArrowUp', 'PageUp'].includes(e.key)) { e.preventDefault(); go(-1); } });
   addEventListener('popstate', () => { const id = new URLSearchParams(location.search).get('piece');
     if (id && byId[id]) { if (cur && cur !== byId[id]) { pushed = false; swap(byId[id]); } else open(byId[id]); } else close(); });
   let wl = 0;
   addEventListener('wheel', e => { if (!cur) return; e.preventDefault(); if (pv.classList.contains('drawer')) return;
+    if (wmode) return wpush(e.deltaMode ? e.deltaY * 40 : e.deltaY);
     const now = Date.now(); if (Math.abs(e.deltaY) < 8 || now - wl < 1000) return; wl = now; go(e.deltaY > 0 ? 1 : -1); }, { passive: false });
-  addEventListener('touchmove', e => { if (cur && !e.target.closest('.pv-drawer')) e.preventDefault(); }, { passive: false });
+  let ty = null;
+  addEventListener('touchstart', e => { ty = e.touches[0].clientY; }, { passive: true });
+  addEventListener('touchmove', e => { if (cur && !e.target.closest('.pv-drawer')) e.preventDefault();
+    if (wmode && ty !== null) { const y = e.touches[0].clientY; wpush((ty - y) * 1.6); ty = y; } }, { passive: false });
   addEventListener('resize', () => { if (cur) { wpick(); wdraw(Math.round(wf)); } if (cur && !busy) { const s = srcOf(cur); fig.style.transition = 'none'; place(box(s.naturalWidth, s.naturalHeight)); layout(); requestAnimationFrame(() => { fig.style.transition = ''; }); } });
   // a piece's own URL opens straight onto it (?act=<n> for a given act)
   const q = new URLSearchParams(location.search), id = q.get('piece');

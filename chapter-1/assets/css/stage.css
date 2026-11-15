@@ -188,10 +188,10 @@ html.dim .pv-x i{border:0}
 .pv[data-act=walk] .pv-notes .pin{width:6px;height:6px;font-size:0;border:0;background:#f4f3f0;box-shadow:0 0 0 1px #3c3c40}
 .pv[data-act=walk] .pv-lines line{stroke:#3c3c40;stroke-width:.7}
 /* the walk in its world: the room gives way to it, and comes back after */
-.pv-world{position:absolute;inset:0;z-index:3;background:#1a1916;opacity:0;pointer-events:none;transition:opacity 1.2s ease}
-.pv.inworld .pv-world{opacity:1}
-.pv.inworld .pv-fig{opacity:0}
-.pv.shown[data-act=world] .pv-head{opacity:0!important}
+.pv-world{position:absolute;inset:0;z-index:3;background:#1a1916;pointer-events:none;transform:translate3d(0,100%,0);visibility:hidden;will-change:transform}
+.pv.wmode .pv-world{visibility:visible}
+.pv.wmode .pv-drawer,.pv.wmode .pv-arrow{opacity:0;pointer-events:none}
+
 .pv-world canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 .pv-world .note{position:absolute;left:0;top:0;transform-origin:0 0;box-sizing:border-box;display:flex;align-items:center;justify-content:flex-start;
   pointer-events:none;visibility:hidden;will-change:transform,opacity,filter}
