@@ -2,7 +2,7 @@
 one folder, pitch/. Run after build.py. The register links go to the live register (phaora.com); the pieces' own pages
 are not in this folder, so a piece is not a link here. Images are kept to twice their largest shown size; the first row
 loads first, the rest as they near the screen."""
-import os, re, shutil
+import os, re, shutil, sys
 from pathlib import Path
 from PIL import Image
 
@@ -18,7 +18,7 @@ s = re.sub(r'<a href="[a-z-]+\.html">The piece</a>', '<span>The piece</span>', s
 s = re.sub(r'<a class="ph( two)?" href="[a-z-]+\.html">(.*?)</a>', r'<div class="ph\1">\2</div>', s, flags=re.S)   # the words stay (the band as the room has it)
 s = re.sub(r'<a class="pc(?:img)?" href="[a-z-]+\.html"[^>]*></a>', '', s)   # the room frames: no link over THE PIECE here
 s = re.sub(r'href="(film|book|room|house)\.html"', 'href="#top"', s)   # the nav's other rooms are not in this folder: back to the top
-s = s.replace('<meta name="robots" content="noindex">', '<meta name="robots" content="noindex, nofollow">')
+s = s.replace('<meta name="robots" content="noindex">', '<meta name="robots" content="noindex, nofollow, noarchive">')
 # the first row (four pieces) loads at once and first; the rest when near the screen
 n = 0
 def lazy(m):
@@ -48,3 +48,10 @@ left = [u for u in re.findall(r'url\(["\']?([^"\')]+)', css) if ':' not in u and
 assert not left, left
 files = [p for p in OUT.rglob('*') if p.is_file()]
 print(len(files), 'files,', round(sum(p.stat().st_size for p in files) / 1024), 'KB')
+
+# python3 pitch.py --salon <main checkout>: the same folder as the hidden page phaora.com/salon/r0r7lx/ (linked from
+# nowhere, not in robots.txt or the sitemap). Copies only; committing to main is a separate, deliberate step.
+if '--salon' in sys.argv:
+    dst = Path(sys.argv[sys.argv.index('--salon') + 1]) / 'salon' / 'r0r7lx'
+    if dst.exists(): shutil.rmtree(dst)
+    shutil.copytree(OUT, dst); print('salon ->', dst)
