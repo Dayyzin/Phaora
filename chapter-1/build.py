@@ -665,8 +665,8 @@ def catalogue_home():
         # (David, 15 Nov: "Lustre shadow needs fixing").
         d = C.SHADOW_DEPTH.get(pid, 1.0)
         # matched to the room's frames (1b9ee77e): a clear mid-grey cast, offset up and right by about 9% of the piece
-        dx, dy, sig = round(0.24 * S * d), round(-0.09 * S * d), 0.03 * S * (0.4 + 0.6 * d)   # long enough to fall on the wall's pins (David, 15 Nov)
-        pl = pr = round(0.24 * S * d + 3 * sig + 4); pt = round(0.09 * S * d + 3 * sig + 4); pb = round(1.5 * sig + 4)
+        dx, dy, sig = round(0.24 * S * d), round(0.07 * S * d), 0.03 * S * (0.4 + 0.6 * d)   # right and down, long enough to fall on the wall's pins (David, 15 Nov: "going up instead of down")
+        pl = pr = round(0.24 * S * d + 3 * sig + 4); pt = round(3 * sig + 4); pb = round(0.07 * S * d + 3 * sig + 4)
         CW, CH = W + pl + pr, H + pt + pb
         sh = np.zeros((CH, CW), np.float32); sh[pt + dy:pt + dy + H, pl + dx:pl + dx + W] = al   # the true alpha, cast up and right
         sh = ndimage.gaussian_filter(sh, sig) * 0.40 * (0.6 + 0.4 * d)
@@ -736,7 +736,7 @@ def catalogue_home():
 <link rel="stylesheet" href="assets/css/catalogue.css">
 </head>
 <body class="{'panelled' if panelled else 'wall'}">
-{'' if panelled else '<header class="navband">' + ''.join(f'<nav class="slot"><a class="logo" href="#top" aria-label="PHAÖRA"></a><span class="nl">' + ''.join(f'<a href="{h}">{t}</a>' for t, h in links) + '</span></nav>' for links in [[('The line', '#top'), ('Register', REGISTER)], [('The film', 'film.html'), ('The book', 'book.html')], [('The room', 'room.html'), ('Chapter I', '#top')], [('The house', 'house.html'), ('Register', REGISTER)]]) + '</header>'}
+{'' if panelled else '<header class="navband"><a class="logo" href="#top" aria-label="PHAÖRA"></a><nav class="nl">' + ''.join(f'<a href="{h}">{t}</a>' for t, h in [('The line', '#top'), ('The film', 'film.html'), ('The book', 'book.html'), ('The room', 'room.html'), ('The house', 'house.html'), ('Register', REGISTER)]) + '</nav></header>'}
 <main class="cat">{cols}</main>
 <script>
 // David's lettering with the solo Ö, inlined in the room's dark ink, as room.js does (never typed)
