@@ -639,7 +639,7 @@ def catalogue_home():
                     f'<img class="b" src="{duo[q["id"]][1]}" alt="{E(q["name"])}: its buckle" loading="eager" decoding="async"></a>' if q['id'] in duo else
                     f'<a class="ph two" href="{q["page"]}.html"><img class="a" src="{imgs[q["id"]][0]}" alt="{E(q["name"])}, {E(q["plain"].lower())}" loading="eager" decoding="async">'
                     f'<img class="b" src="{imgs[q["id"]][1]}" alt="" loading="eager" decoding="async"></a>' if imgs[q['id']][1] else
-                    f'<a class="ph{" wide" if Image.open(HERE / imgs[q["id"]][0]).width > 1.15 * Image.open(HERE / imgs[q["id"]][0]).height else ""}" href="{q["page"]}.html"><img src="{imgs[q["id"]][0]}" alt="{E(q["name"])}, {E(q["plain"].lower())}" loading="eager" decoding="async"></a>') +
+                    f'<a class="ph{" wide" if Image.open(HERE / imgs[q["id"]][0]).width > 1.15 * Image.open(HERE / imgs[q["id"]][0]).height else ""}" href="{q["page"]}.html"><img{f' style="height:{C.CAT_SCALE[q["id"]] * 100:.0f}%"' if q["id"] in C.CAT_SCALE else ""} src="{imgs[q["id"]][0]}" alt="{E(q["name"])}, {E(q["plain"].lower())}" loading="eager" decoding="async"></a>') +
                  f'<ul class="specs cut">' + ''.join(f'<li>{E(x)}</li>' for x in specs) + f'</ul><p class="links cut">{links}</p></article>')
     doc = f'''<!doctype html>
 <html lang="en" id="top"><head><meta charset="utf-8">
