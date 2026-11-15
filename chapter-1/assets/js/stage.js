@@ -12,12 +12,11 @@
     else if (!e.isIntersecting || e.intersectionRatio < 0.45) { s.classList.remove('on'); s.classList.toggle('past', e.boundingClientRect.top < 0); }
   }), { threshold: [0, 0.45, 0.55, 1] });
   const group = () => {   // sets of 8 (4 x 2), or 6 on a phone (2 x 3); each piece a little after the one before
-    const phone = matchMedia('(max-width: 820px)').matches, five = phone && new URLSearchParams(location.search).get('set') === '5';
-    const n = five ? 5 : 6; if (n === per) return; per = n;   // 3 x 2 on a computer, 2 x 3 on a phone; ?set=5: 2 / 1 / 2
+    const n = 6; if (n === per) return; per = n;   // 3 x 2 on a computer, 2 x 3 on a phone (David, 15 Nov: 6 per scroll)
     sets.forEach(s => io.unobserve(s)); main.innerHTML = ''; sets = [];
     for (let i = 0; i < items.length; i += n) {
-      const s = document.createElement('section'); s.className = 'set' + (n === 5 ? ' five' : '');
-      items.slice(i, i + n).forEach((it, j) => { it.style.transitionDelay = (j * 0.06) + 's'; it.classList.toggle('mid', n === 5 && j === 2); s.appendChild(it); });
+      const s = document.createElement('section'); s.className = 'set';
+      items.slice(i, i + n).forEach((it, j) => { it.style.transitionDelay = (j * 0.06) + 's'; s.appendChild(it); });
       main.appendChild(s); sets.push(s); io.observe(s);
     }
     if (sets[0]) { sets[0].classList.add('on'); gather(); }

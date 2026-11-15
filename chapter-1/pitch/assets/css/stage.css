@@ -48,8 +48,6 @@ body.scrolled .navband{opacity:0;transform:translateY(-24px);pointer-events:none
   .it .s{margin-top:3px}
   .it .ph{margin:8px 0 6px}
   .it .links{margin-top:4px}
-  /* ?set=5 (David, 15 Nov: "5 per scroll"): two, then one centred and a little larger, then two */
-  .set.five .it.mid{grid-column:1/-1;justify-self:center;width:62%}
   .it .t{font-size:12px;letter-spacing:.2em;padding-left:.2em}
   .it .s{font-size:5.5px;letter-spacing:.16em;padding-left:.16em}
   .it .specs{font-size:5.5px;letter-spacing:.06em;line-height:1.45}
