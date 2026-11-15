@@ -704,7 +704,7 @@ def catalogue_home():
             one, two = imgs[pid]
             alt = f'{E(q["name"])}, {E(q["plain"].lower())}'
             im = (f'<img class="a" src="{shadowed(one, pid)}" alt="{alt}" decoding="async"><img class="b" src="{shadowed(two, pid)}" alt="" decoding="async">'
-                  if two else f'<img src="{shadowed(one, pid)}" alt="{alt}" decoding="async">')
+                  if two else f'<img{" class=small" if pid in C.CAT_SCALE else ""} src="{shadowed(one, pid)}" alt="{alt}" decoding="async">')
             items += (f'<article class="it" id="{q["page"]}"><h2 class="t cut">{E(q["name"].upper())}</h2>'
                       f'<p class="s cut">{E(q["plain"].upper())} &nbsp;·&nbsp; CHAPTER&nbsp;I</p>'
                       f'<a class="ph{" two" if two else ""}" href="{q["page"]}.html">{im}</a>'
