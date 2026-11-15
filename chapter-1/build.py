@@ -613,7 +613,7 @@ def catalogue_home():
         specs = (C.ROOM_SET.get(q['id'], {}).get('specs') or default)
         links = f'<a href="{q["page"]}.html">The piece</a>' + (f'<a href="{REGISTER}">Keep a seat · {E(price)}</a>' if price and not q.get('nosale') else '')
         cols += (f'<article class="col" id="{q["page"]}"><h2 class="t cut">{E(q["name"].upper())}</h2>'
-                 f'<p class="s cut">{E(q["plain"].upper())} &nbsp;·&nbsp; CHAPTER I</p>'
+                 f'<p class="s cut{" long" if len(q["plain"]) > 16 else ""}">{E(q["plain"].upper())} &nbsp;·&nbsp; CHAPTER I</p>'
                  f'<a class="ph" href="{q["page"]}.html"><img src="assets/room/{q["id"]}.webp" alt="{E(q["name"])}, {E(q["plain"].lower())}" loading="lazy" decoding="async"></a>'
                  f'<ul class="specs cut">' + ''.join(f'<li>{E(x)}</li>' for x in specs) + f'</ul><p class="links cut">{links}</p></article>')
     doc = f'''<!doctype html>
