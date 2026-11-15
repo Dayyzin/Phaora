@@ -84,6 +84,14 @@
   ],
   "rewrites": [
     {
+      "source": "/chapter-1/book",
+      "destination": "/chapter-1/book.html"
+    },
+    {
+      "source": "/chapter-1/book-:chapter",
+      "destination": "/chapter-1/book-:chapter.html"
+    },
+    {
       "source": "/blog",
       "destination": "https://crm.phaora.com/blog"
     },

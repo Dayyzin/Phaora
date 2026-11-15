@@ -183,7 +183,7 @@ class Slot:
 
 
 # ---------------------------------------------------------------- page frame
-NAV = [('line.html', 'The line'), ('film.html', 'The film'), ('book.html', 'The book'), ('house.html', 'The house'), (REGISTER, 'Register')]
+NAV = [('line.html', 'The line'), ('film.html', 'The film'), ('book', 'The book'), ('house.html', 'The house'), (REGISTER, 'Register')]
 FOOT = [('care.html', 'Care'), ('sizes.html', 'Sizes'), ('returns.html', 'Returns'), ('contact.html', 'Contact'), ('privacy.html', 'Privacy'), ('terms.html', 'Terms')]
 
 
@@ -575,8 +575,8 @@ def book_page():
     def numeral(n):
         return f'<span class="bnum">{E(n)}</span>' if n else ''
 
-    def fn(c):
-        return f"book-{c['key']}.html"
+    def fn(c):   # its clean address (vercel.json rewrites /chapter-1/book-<chapter> to the file)
+        return f"book-{c['key']}"
 
     items = ''
     for c in chs:
@@ -592,7 +592,7 @@ def book_page():
  </section>
  <nav class="bchapters" aria-label="The chapters"><ol>{items}</ol></nav>
 </main>'''
-    page('book.html', 'The book', 'A Seat Is Kept for You: the book of PHAÖRA Chapter I, in two reels.', body, theme='dark', here='book.html', bodycls='bookdark')
+    page('book.html', 'The book', 'A Seat Is Kept for You: the book of PHAÖRA Chapter I, in two reels.', body, theme='dark', here='book', bodycls='bookdark')
 
     for i, c in enumerate(chs):
         n, t = split(c['title'])
@@ -606,7 +606,7 @@ def book_page():
         prev = chs[i - 1] if i else None
         nxt = chs[i + 1] if i + 1 < len(chs) else None
         pn = (f'<nav class="bpn">' + (f'<a href="{fn(prev)}"><span>Before</span>{fa(split(prev["title"])[1], "span")}</a>' if prev else '<span></span>') +
-              '<a href="book.html" class="all">The chapters</a>' +
+              '<a href="book" class="all">The chapters</a>' +
               (f'<a href="{fn(nxt)}"><span>Next</span>{fa(split(nxt["title"])[1], "span")}</a>' if nxt else '<span></span>') + '</nav>')
         last = ''
         if c['key'] == 'coda':
@@ -622,7 +622,7 @@ def book_page():
  {last}
  {pn}
 </main>'''
-        page(fn(c), f"The book · {c['title']}", f"A Seat Is Kept for You, {c['title']}.", body, theme='dark', here='book.html', bodycls='bookdark')
+        page(fn(c) + '.html', f"The book · {c['title']}", f"A Seat Is Kept for You, {c['title']}.", body, theme='dark', here='book', bodycls='bookdark')
 
 
 def register_page():
@@ -680,7 +680,7 @@ def other_pages():
                       'An O, two dots above it, a line drawn through. It is on the card that keeps the seat, on every clasp and disc, and inside every piece.']),
         ('The names', ['Each piece is named from Minas Gerais and Brazil: its gold, its baroque, its old words.', f'<ul class="names">{names}</ul>']),
         ('The story', ['One night, told the same way everywhere: the film, the book, the shorts and the register tell one story, "A Seat Is Kept for You".',
-                       '<p><a class="more-link" href="book.html">The book</a> <a class="more-link" href="film.html">The film</a></p>']),
+                       '<p><a class="more-link" href="book">The book</a> <a class="more-link" href="film.html">The film</a></p>']),
     ], 'PHAÖRA, a house of knitwear, leather and silk.')
     text_page('care.html', 'Care', 'Chapter I', [
         ('The knit', [C.CARE['knit'], '<p class="tag">UNCONFIRMED · the knitter confirms it</p>']),
