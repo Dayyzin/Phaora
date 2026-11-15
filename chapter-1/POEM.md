@@ -59,7 +59,7 @@ black lamb in five, a face (don't greet it,
 it's made of holes) in cream, complete.
 
 Ritornelo lay along the arm,
-two long black gloves, one seam, gold snap,
+two long black gloves, one seam, brass snap,
 left fingers-together, calm,
 the way you'd say, *I'm coming back.*
 
@@ -68,7 +68,7 @@ the way you'd say, *I'm coming back.*
 The front row: every seat was taken,
 though nobody had bought a chair.
 Coema, handles down, unshaken,
-black calf, gold zip, sat quiet there.
+black calf, brass zip, sat quiet there.
 
 Voluta, round as any reel,
 at twenty-two by seven deep,
@@ -76,7 +76,7 @@ wore sixteen squares around its wheel,
 the kind of tin a film would keep.
 
 Across the aisle, Itaoca sat,
-one handle lowered, gold disc bright;
+one handle lowered, brass disc bright;
 then Coaraci, coiled up flat,
 its disc turned, like a face, to light.
 
@@ -169,7 +169,7 @@ But where the coat had sat, a new
 small thing sat waiting in its stead:
 
 no card. A box, black, square, and on
-its lid, a disc of gold, round as the one
+its lid, a disc of brass, round as the one
 the screen would never say. And gone
 the coat, as if the night were done.
 

@@ -69,7 +69,7 @@ path. On phaora.com the labels never show.
 | cantilena | `img/cantilena/back/` | back view, 8K (8K, 4320 × 7680) | WAITING: a placeholder of the right ratio |
 | cantilena | `img/cantilena/detail-material/` | the checker at stitch scale, 8K close-up (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
 | cantilena | `img/cantilena/detail-cream/` | cream on cream, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/new-pieces-2026-11/build/cantilena/real/cantilena_front_144_cream.png (144 × 144) |
-| cantilena | `img/cantilena/detail-eyelet/` | the gold eyelet and tip, 8K close-up (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
+| cantilena | `img/cantilena/detail-eyelet/` | the brass eyelet and tip, 8K close-up (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
 | cantilena | `img/cantilena/world/` | C9: the last frame, the world plate (the suite, by day) (8K, 5760 × 7680) | WAITING: a placeholder of the right ratio |
 | cantilena | `img/cantilena/hero/` | the director’s signature shot: The echo: the cream one hangs where the black one’s shadow should be (story/product-stills/DIRECTOR-SHOTS.md; its 144p preview stands in) (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/product-stills/cantilena_echo_256x144.png (256 × 144) |
 | cantilena | `img/cantilena/world-full/` | cantilena_world.jpg, the piece in its world, full size (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
@@ -87,7 +87,7 @@ path. On phaora.com the labels never show.
 | odara | `img/odara/open/` | the open view, 8K, the lining and the kiss, after the satin pass (open8k, 19c6ef39, is a stand-in: its satin is being redone) (8K, 4320 × 7680) | stand-in: departments/apparel/new-pieces-2026-11/build/muse-bomber/renders/open8k/muse_bomber_open_8k.jpg (7680 × 4320) |
 | odara | `img/odara/detail-holes/` | the holes and the silk, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/new-pieces-2026-11/build/muse-bomber/site/check/closeup16k_100_holes_silk.png (799 × 801) |
 | odara | `img/odara/detail-mark/` | the mark on her cheek, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/new-pieces-2026-11/build/muse-bomber/site/check/closeup16k_100_cut_o_holes_silk.png (799 × 801) |
-| odara | `img/odara/detail-pull/` | the gold pull, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/new-pieces-2026-11/build/muse-bomber/site/check/front16k_100_gold_pull.png (801 × 799) |
+| odara | `img/odara/detail-pull/` | the brass pull, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/new-pieces-2026-11/build/muse-bomber/site/check/front16k_100_gold_pull.png (801 × 799) |
 | odara | `img/odara/world/` | C10: the last frame, the world plate (the suite, at dusk) (8K, 5760 × 7680) | stand-in: departments/apparel/marketing/story/stills/ca-10-the-muse-bomber_108x144.png (108 × 144) |
 | odara | `img/odara/hero/` | the director’s signature shot: Coat check: one hook, one brass token, her back to us (story/product-stills/DIRECTOR-SHOTS.md; its 144p preview stands in) (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/site480/hero/odara_hero.png (480 × 854) |
 | odara | `img/odara/walk-1/` | walk stop 1: the portrait, the full-size render (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/site480/walk/odara_stop3.png (854 × 480) |
@@ -153,7 +153,7 @@ path. On phaora.com the labels never show.
 | coema | `img/coema/world-full/` | coema_world.jpg, the piece in its world, full size (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
 | ofusca | `img/ofusca/front/` | departments/apparel/new-pieces-2026-11/build/sunglasses/site/sunglasses_front_16k.png (16K, 15360 × 8640) | stand-in: departments/apparel/website/chapter2/assets/line/sunglasses/star-in-shades-sunglasses-front.webp (1332 × 638) |
 | ofusca | `img/ofusca/flat/` | flat view, 8K (8K, 7680 × 4320) | stand-in: departments/apparel/website/chapter2/assets/line/sunglasses/star-in-shades-sunglasses-flat.webp (1467 × 596) |
-| ofusca | `img/ofusca/detail-plate/` | the gold plate, 8K close-up (8K, 7680 × 4320) | FINAL: departments/apparel/new-pieces-2026-11/build/sunglasses/site/sunglasses_plate_8k.jpg (7680 × 4320) |
+| ofusca | `img/ofusca/detail-plate/` | the brass plate, 8K close-up (8K, 7680 × 4320) | FINAL: departments/apparel/new-pieces-2026-11/build/sunglasses/site/sunglasses_plate_8k.jpg (7680 × 4320) |
 | ofusca | `img/ofusca/detail-case/` | the case, 8K close-up (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |
 | ofusca | `img/ofusca/world/` | C6: the last frame, the world plate (the car, at night) (8K, 5760 × 7680) | stand-in: departments/apparel/marketing/story/stills/ca-06-star-in-shades_108x144.png (108 × 144) |
 | ofusca | `img/ofusca/hero/` | the director’s signature shot: The top of one bounce over the car’s back seat (story/product-stills/DIRECTOR-SHOTS.md; its 144p preview stands in) (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/product-stills/ofusca_ref09-seat_256x144.png (256 × 144) |
@@ -216,5 +216,5 @@ path. On phaora.com the labels never show.
 | coaraci | `img/coaraci/detail-edge/` | the painted edge, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/site480/walk/coaraci_stop2.png (854 × 480) |
 | coaraci | `img/coaraci/detail-holes/` | the holes, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/site480/walk/coaraci_stop3.png (854 × 480) |
 | coaraci | `img/coaraci/detail-coil/` | laid out, 8K close-up (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/site480/walk/coaraci_stop5.png (854 × 480) |
-| coaraci | `img/coaraci/hero/` | the director’s signature shot: The sundial: rolled, the gold disc up, one low sun (story/product-stills/DIRECTOR-SHOTS.md; its 144p preview stands in) (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/product-stills/coaraci_sundial_256x144.png (256 × 144) |
+| coaraci | `img/coaraci/hero/` | the director’s signature shot: The sundial: rolled, the brass disc up, one low sun (story/product-stills/DIRECTOR-SHOTS.md; its 144p preview stands in) (8K, 7680 × 4320) | stand-in: departments/apparel/marketing/story/product-stills/coaraci_sundial_256x144.png (256 × 144) |
 | coaraci | `img/coaraci/world-full/` | coaraci_world.jpg, the piece in its world, full size (8K, 7680 × 4320) | WAITING: a placeholder of the right ratio |

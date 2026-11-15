@@ -615,7 +615,7 @@ def catalogue_home():
         b = im.getchannel('A').point(lambda v: 255 if v > 24 else 0).getbbox()
         if b:
             im = im.crop((max(0, b[0] - 2), max(0, b[1] - 2), min(im.width, b[2] + 2), min(im.height, b[3] + 2)))
-        if dst.split('.')[0] in getattr(C, 'CAT_NEUTRAL', ()):   # black leather read warm: the dark tones to neutral black, the gold kept
+        if dst.split('.')[0] in getattr(C, 'CAT_NEUTRAL', ()):   # black leather read warm: the dark tones to neutral black, the brass kept
             ar = np.asarray(im).astype(np.float32); rgb = ar[..., :3]; mx = rgb.max(-1)
             w = np.clip((130 - mx) / 40, 0, 1)[..., None]
             ar[..., :3] = rgb * (1 - w) + rgb.mean(-1, keepdims=True) * w
@@ -643,7 +643,7 @@ def catalogue_home():
         cols += (f'<article class="col" id="{q["page"]}"><h2 class="t cut">{E(q["name"].upper())}</h2>'
                  f'<p class="s cut{" long" if len(q["plain"]) > 16 else ""}">{E(q["plain"].upper())} &nbsp;·&nbsp; CHAPTER&nbsp;I</p>'
                  + (f'<a class="ph duo" href="{q["page"]}.html"><img class="a" src="{duo[q["id"]][0]}" alt="{E(q["name"])}, {E(q["plain"].lower())}: the leather" loading="eager" decoding="async">'
-                    f'<img class="b" src="{duo[q["id"]][1]}" alt="{E(q["name"])}: the gold disc" loading="eager" decoding="async"></a>' if q['id'] in duo else
+                    f'<img class="b" src="{duo[q["id"]][1]}" alt="{E(q["name"])}: the brass disc" loading="eager" decoding="async"></a>' if q['id'] in duo else
                     f'<a class="ph two" href="{q["page"]}.html"><img class="a" src="{imgs[q["id"]][0]}" alt="{E(q["name"])}, {E(q["plain"].lower())}" loading="eager" decoding="async">'
                     f'<img class="b" src="{imgs[q["id"]][1]}" alt="" loading="eager" decoding="async"></a>' if imgs[q['id']][1] else
                     f'<a class="ph{" wide" if Image.open(HERE / imgs[q["id"]][0]).width > 1.15 * Image.open(HERE / imgs[q["id"]][0]).height else ""}" href="{q["page"]}.html"><img{f' style="height:{C.CAT_SCALE[q["id"]] * 100:.0f}%"' if q["id"] in C.CAT_SCALE else f' style="height:{C.CAT_IMG[q["id"]][1]}px"' if C.CAT_IMG.get(q["id"], (0, None))[1] else ""} src="{imgs[q["id"]][0]}" alt="{E(q["name"])}, {E(q["plain"].lower())}" loading="eager" decoding="async"></a>') +
@@ -894,7 +894,7 @@ def home(fronts):
   <p class="scrollcue">The room</p>
  </section>
  <div class="room">{''.join(room)}</div>
- <section class="cats"><p class="eyebrow">The line</p>{fa('fifteen pieces in black, cream and gold', 'h2')}<div class="catgrid">{cats}</div><a class="more-link" href="line.html">See the whole line</a></section>
+ <section class="cats"><p class="eyebrow">The line</p>{fa('fifteen pieces in black, cream and brass', 'h2')}<div class="catgrid">{cats}</div><a class="more-link" href="line.html">See the whole line</a></section>
  <section class="duo">
   <a class="tile" href="film.html">{FILM_POSTER.img(sizes="(min-width: 821px) 48vw, 100vw")}<span class="eyebrow">The film</span>{fa('a seat is kept for you', 'span', 'big')}</a>
   <a class="tile" href="book.html">{BOOK_COVER.img(sizes="(min-width: 821px) 48vw, 100vw")}<span class="eyebrow">The book</span>{fa('two reels, nine chapters', 'span', 'big')}</a>
@@ -912,7 +912,7 @@ def line_page(fronts):
             cards += (f'<a class="card" href="{p["page"]}.html">{fronts[p["id"]].img(sizes="(min-width: 821px) 24vw, 46vw")}'   # the catalogue: image and name
                       f'{fa(p["name"], "span", "nm")}<span class="pl">{E(p["plain"])}</span></a>')
         out += f'<section class="cat-sec" id="{k}"><p class="eyebrow">{E(t)}</p><div class="cards">{cards}</div></section>'
-    body = f'<main class="line"><header class="ph-head"><p class="eyebrow">Chapter I</p>{fa("the line", "h1")}<p class="lede">Knitwear, leather and silk, in black, cream and gold. Every piece of Chapter I, by category.</p></header>{out}</main>'
+    body = f'<main class="line"><header class="ph-head"><p class="eyebrow">Chapter I</p>{fa("the line", "h1")}<p class="lede">Knitwear, leather and silk, in black, cream and brass. Every piece of Chapter I, by category.</p></header>{out}</main>'
     page('line.html', 'The line', 'PHAÖRA Chapter I: the line.', body, here='line.html')
 
 
@@ -926,7 +926,7 @@ def film_page():
 <main class="film">
  <header class="ph-head"><p class="eyebrow">The film · Chapter I</p>{fa('a seat is kept for you', 'h1')}<p class="lede">There is a cinema that runs one last show on Christmas Eve. One coat comes in out of the snow, and one seat in the front row is kept.</p></header>
  <section class="screen first">{SHORT02.img(sizes="100vw", cls="filmslot")}<button class="play" type="button">Play</button></section>
- <section class="caption-row"><p class="eyebrow">Short 2 · The Reel</p>{fa('down the aisle', 'h2')}<p class="small">The Reel rolls on its edge down the whole cinema aisle, step by step, slows, rocks and stands still; then one move into the gold clasp, whose engraved Ö becomes the Ö of the lettering on black.</p></section>
+ <section class="caption-row"><p class="eyebrow">Short 2 · The Reel</p>{fa('down the aisle', 'h2')}<p class="small">The Reel rolls on its edge down the whole cinema aisle, step by step, slows, rocks and stands still; then one move into the brass clasp, whose engraved Ö becomes the Ö of the lettering on black.</p></section>
  <section class="screen">{FILM.img(sizes="100vw", cls="filmslot")}<button class="play" type="button">Play</button></section>
  <section class="caption-row"><p class="eyebrow">The film</p>{fa('a seat is kept for you', 'h2')}</section>
  <section class="vert"><div>{FILM_V.img(sizes="(min-width: 821px) 26vw, 70vw")}</div><div><p class="eyebrow">Fifteen seconds</p>{fa('the night, in seven beats', 'h2')}<p class="small">The net on the shoulder in the snow. The door opening by itself. The row and the kept seat. The sit. The lights up on the box. The coat on its rail in the morning. The lettering.</p></div></section>
@@ -965,7 +965,7 @@ def verse(stanzas):
 def book_page():
     """The book's own home (David, 14 Nov: "No book in the product page. We need a dedicated place for it"):
     book.html opens on the cover, then lists the chapters; each chapter is its own page (book-<key>.html) with its plate,
-    its text from BOOK.md and the maker's notes of the pieces that enter. On the cinema's black, cream type, gold
+    its text from BOOK.md and the maker's notes of the pieces that enter. On the cinema's black, cream type, brass
     numerals. No dates."""
     global POEM
     POEM = poem_sections()   # the book is the poem now (David, 14 Nov: "put it on the site")
@@ -1084,7 +1084,7 @@ def other_pages():
         ('', [C.BOOK_LAST]),
         ('The mark', [f'<figure class="markfig"><img src="assets/brand/mark-ink.png" alt="The Ö, David’s drawn mark" width="512" height="512"></figure>',
                       'An O, two dots above it, a line drawn through. It is on the card that keeps the seat, on every clasp and disc, and inside every piece.']),
-        ('The names', ['Each piece is named from Minas Gerais and Brazil: its gold, its baroque, its old words.', f'<ul class="names">{names}</ul>']),
+        ('The names', ['Each piece is named from Minas Gerais and Brazil: its mines, its baroque, its old words.', f'<ul class="names">{names}</ul>']),
         ('The story', ['One night, told the same way everywhere: the film, the book, the shorts and the register tell one story, "A Seat Is Kept for You".',
                        '<p><a class="more-link" href="book">The book</a> <a class="more-link" href="film.html">The film</a></p>']),
     ], 'PHAÖRA, a house of knitwear, leather and silk.')
@@ -1092,7 +1092,7 @@ def other_pages():
         ('The knit', [C.CARE['knit'], '<p class="tag">UNCONFIRMED · the knitter confirms it</p>']),
         ('The silk', [C.CARE['silk'], '<p class="tag">UNCONFIRMED · the silk maker confirms it</p>']),
         ('The leather', [C.CARE['leather'], '<p class="tag">UNCONFIRMED · the leather workshop confirms it</p>']),
-        ('The gold', [C.CARE['gold'], for_david('the care line for the gold hardware and the sunglasses, once the maker states the metal')]),
+        ('The brass', [C.CARE['brass'], for_david('the care line for the brass hardware and the sunglasses, once the maker states the metal')]),
     ], 'PHAÖRA Chapter I: care for the knit, the silk and the leather.')
     rows = lambda rr: '<table class="sz"><thead><tr><th></th><th>S</th><th>M</th><th>L</th><th>XL</th><th>XXL</th></tr></thead><tbody>' + ''.join(
         f'<tr><th>{E(a)}</th><td>·</td><td>{E(b)}</td><td>·</td><td>·</td><td>·</td></tr>' for a, b in rr) + '</tbody></table><p class="small">M is the block. S, L, XL and XXL follow when it is graded.</p>'
@@ -1123,7 +1123,7 @@ NAMES = [
  ('Gelosia', 'The Veil Coat', 'The carved lattice screen on colonial houses, which a woman could see through without being seen. The coat’s net is that lattice.'),
  ('Ödara', 'The Muse Bomber', '“Beautiful, at peace”: a Yoruba word that passed into Brazilian speech.'),
  ('Alvor', 'The silk slip', 'A literary word for the first whiteness of dawn.'),
- ('Heliodora', 'The Muse', 'Bárbara Heliodora, the poet-heroine of the 1789 Minas conspiracy; also heliodor, the golden gem of Minas.'),
+ ('Heliodora', 'The Muse', 'Bárbara Heliodora, the poet-heroine of the 1789 Minas conspiracy; also heliodor, the yellow gem of Minas.'),
  ('Cantilena', 'The PÖ hoodie', 'A song that keeps returning to the same few notes: the PÖ said again and again.'),
  ('Voluta', 'The Reel', 'The spiral scroll carved on the baroque churches of Minas, and a coil like a reel of film.'),
  ('Coema', 'The Matinee', 'Old Tupi for morning.'),
@@ -1156,8 +1156,8 @@ def main():
     brand()
     pk = C.CH2 + 'assets/packaging/'
     PACKAGING = [Slot('shared', 'pack-' + k, f'packaging/chapter1/renders: {k} (the approved final, 3840 px)', '8K, 7680 × 4320', '4:3', lab, [pk + f'{k}-1920.webp'])
-                 for k, lab in (('closed', 'The closed box, its band and the gold disc'), ('open', 'The open box, the piece folded in cream tissue'),
-                                ('disc', 'The gold disc on the band'), ('shopping', 'The shopping bag with cream tissue'), ('trims', 'The hang tag, the card and the sealed envelope'))]
+                 for k, lab in (('closed', 'The closed box, its band and the brass disc'), ('open', 'The open box, the piece folded in cream tissue'),
+                                ('disc', 'The brass disc on the band'), ('shopping', 'The shopping bag with cream tissue'), ('trims', 'The hang tag, the card and the sealed envelope'))]
     va = 'departments/apparel/marketing/ads/veil-coat-film/preview/'
     FILM = Slot('film', 'film', 'the film, "A Seat Is Kept for You", the final cut', '16:9, 3840 × 2160 MP4', '16:9', 'The film', ['git:' + va + 'veil-coat-film_christmas_16x9_144p.mp4'], kind='video')
     FILM_V = Slot('film', 'vertical', 'the 15 s vertical', '9:16, 2160 × 3840 MP4', '9:16', 'The film, fifteen seconds', ['git:' + va + 'veil-coat-film_15s_9x16_144p.mp4'], kind='video')
