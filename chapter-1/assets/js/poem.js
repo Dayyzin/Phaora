@@ -11,7 +11,28 @@
   const track = document.querySelector('.track');
   const devOf = () => (innerWidth / innerHeight < 1 ? 'phone' : 'desktop');
   let DEV = devOf();
-  const src = (i, k) => k === 'dark' ? `media/poem/${C[i].id}-${DEV}.webp` : k === 'morph' ? `media/poem/morph-${C[i].id}-${C[i + 1].id}-${DEV}.mp4`
+  // a computer runs the room itself (room.js, live: its pins morph from one chapter's motif to the next as on the home
+  // page) and lays only the projector's light on it; a phone, or a computer without WebGL, plays the baked room
+  const glOK = (() => { try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch (e) { return false; } })();
+  let LIVE = DEV === 'desktop' && glOK && !(navigator.maxTouchPoints > 0) && !/[?&]baked=1/.test(location.search);
+  let live = null, liveReady = false;
+  if (LIVE) {
+    live = document.createElement('iframe'); live.className = 'live'; live.setAttribute('aria-hidden', 'true'); live.tabIndex = -1;
+    live.src = 'poem-room.html?empty=1&intro=0&dissolve=1';   // dissolve=1: no turntable to fetch (the room is empty)
+    room.insertBefore(live, room.firstChild); room.classList.add('is-live');
+    const t0 = Date.now(), wait = setInterval(() => {
+      let ok = false; try { ok = live.contentWindow.ready === true; } catch (e) {}
+      if (ok) { clearInterval(wait); liveReady = true; room.classList.add('live-on'); }
+      else if (Date.now() - t0 > 15000) { clearInterval(wait); toBaked(); }
+    }, 120);
+  }
+  function toBaked() {   // the live room could not start: the baked one, from where we are
+    LIVE = false; if (live) live.remove(); room.classList.remove('is-live', 'live-on');
+    if (cur >= 0) { dark.src = src(cur, 'dark'); const v = vids[front]; v.src = src(cur, 'scene'); v.load(); v.play().catch(() => {}); }
+    back().removeAttribute('src');
+  }
+  const liveStep = (from, to) => { try { const w = live.contentWindow, d = to > from ? 1 : -1; for (let k = from; k !== to; k += d) w.step(d); return true; } catch (e) { return false; } };
+  const src = (i, k) => k === 'scene' && LIVE ? `media/poem/${C[i].id}-${DEV}-light.mp4` : k === 'dark' ? `media/poem/${C[i].id}-${DEV}.webp` : k === 'morph' ? `media/poem/morph-${C[i].id}-${C[i + 1].id}-${DEV}.mp4`
     : `media/poem/${C[i].id}-${DEV}.mp4`;
   const sleep = ms => new Promise(r => setTimeout(r, ms));
   const ready = v => new Promise(r => { if (v.readyState >= 3) return r(); const f = () => { v.removeEventListener('canplay', f); r(); }; v.addEventListener('canplay', f); setTimeout(r, 4000); });
@@ -118,7 +139,10 @@
       click();   // the cut to dark: the picture is gone in one frame
       const v = vids[front]; v.classList.add('cut'); v.classList.remove('on'); v.pause(); room.classList.remove('lit'); hideText();
       await sleep(260);
-      if (to === from + 1 && C[from].morph) {   // the pins ripple out of this chapter's figure and re-form as the next
+      if (LIVE && liveReady) {   // the room's own pins: they travel out of this chapter's motif and settle as the next
+        room.classList.add('lift'); liveStep(from, to);
+        await sleep(3300 + Math.max(0, Math.abs(to - from) - 1) * 2400); room.classList.remove('lift'); await sleep(350);
+      } else if (to === from + 1 && C[from].morph) {   // the pins ripple out of this chapter's figure and re-form as the next
         const m = src(from, 'morph'); if (!morph.src.endsWith(m)) { morph.src = m; morph.load(); }
         await ready(morph); try { morph.currentTime = 0; } catch (e) {}
         morph.playbackRate = 1.25; morph.classList.add('on');
@@ -157,6 +181,7 @@
   size(); place();
   const h = location.hash.slice(1), hc = C.findIndex(c => c.id === h);
   if (hc > 0) scrollTo(0, firstStep(hc) * STEP);
+  if (LIVE && hc > 0) { const go0 = setInterval(() => { if (liveReady) { clearInterval(go0); liveStep(0, hc); } }, 150); }
   dark.src = src(hc > 0 ? hc : 0, 'dark');
   onScroll();
 })();

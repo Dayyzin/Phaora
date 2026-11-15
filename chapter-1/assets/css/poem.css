@@ -7,6 +7,14 @@ html.poem,body.poem{margin:0;background:#070707;color:#efe6d4;-webkit-font-smoot
 .room{position:fixed;inset:0;z-index:0;overflow:hidden;background:#070707}
 .room>img,.room>video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .room .morph{opacity:0}
+/* the live room (a computer): room.js itself, dimmed to the poem's light; while its pins travel the light lifts a little
+   so the ripple reads, then settles back. The projector's light is laid on it (screen); the room is never redrawn here. */
+.room .live{position:absolute;inset:0;width:100%;height:100%;border:0;pointer-events:none;opacity:0;transition:opacity .6s ease,filter 1.1s ease;
+  filter:brightness(.37) contrast(1.22)}
+.room.live-on .live{opacity:1}
+.room.live-on .dark{opacity:0}
+.room.lift .live{filter:brightness(.56) contrast(1.15)}
+.room.is-live .scene{mix-blend-mode:screen}
 .room .morph.on{opacity:1}
 .room .scene{opacity:0;transition:opacity .9s cubic-bezier(.3,.1,.3,1)}
 .room .scene.on{opacity:1}

@@ -32,7 +32,7 @@ DPR = {'desktop': 1, 'phone': 2}
 # the projector: behind and above the viewer (the camera is at 0, 1.45, 5.4), its frame laid on the plane of the back wall
 PROJ = np.array([0.0, 3.6, 8.4])
 FRAME = {'desktop': (-2.15, 2.15, 0.68, 2.72), 'phone': (-1.22, 1.22, 0.15, 1.98)}   # the phone's frame is 4:3, taken from the middle of the scene   # x0, x1, y0 (low), y1 on z = 0
-AMB = 0.05     # the room's own light in the poem, linear (the stage is ~0.85 at its whitest): near-cinema
+AMB = 0.065    # the room's own light in the poem, linear (the stage is ~0.85 at its whitest): near-cinema
 MORPH_LIFT = 1.6   # while the pins ripple, the room's light rises this much (x AMB) and falls back, so the ripple reads
 HARD = 1.8     # the dim room's light is harder than the studio's: its tones are taken to this power (pins and their shadows read)
 GAIN = 2.6     # the projector, linear: the film is a night film, mostly black; its bulbs, snow and screen carry the light
@@ -54,24 +54,40 @@ SCENES = {
     'coda':     ('film', 87.5, 10.5, 0.0, (0.5, 0.5)),
 }
 ORDER = list(SCENES)
-# the pins' figure per chapter (84 x 100, white = a pin standing out; the right wall the left's mirror, as room.js reads
-# them): the house's own pin art where the chapter is a piece's (the solo Ö, the Muse's two prints), otherwise the
-# chapter's own scene, one frame of it sampled into the pin grid as the Muse's pins are sampled from its print.
-PINS = {'prologue': 31.0, 'i': 2.0, 'ii': 'assets/h_logo_L.png', 'iii': 'assets/h_muse_bomber_L.png', 'iv': 37.5,
-        'v': 66.0, 'vi': 'assets/h_muse_allover_L.png', 'vii': 71.5, 'viii': 75.0, 'ix': 80.0, 'coda': 95.0}
+# the pins' motif per chapter (SCENES.md "Pins", approved by David 15 Nov; 84 x 100, white = a pin standing out, the right
+# wall the left's mirror, as room.js reads them). Each is one real frame of the chapter's scene, or its render, sampled
+# into the pin grid as the Muse's pins are sampled from its print: (film second, crop centre) or (image, crop box, invert).
+PINS = {'prologue': (31.0, 0.5), 'i': (12.0, 0.0), 'ii': (22.5, 0.55), 'iii': (40.0, 0.5), 'iv': (36.0, 0.5),
+        'v': ('img/book/plate-v/w960.webp', None, False), 'vi': ('assets/h_muse_allover_L.png', 'pins', False),
+        'vii': ('assets/poem/src/oitava_catalogue_2048.png', (0.06, 0.22, 0.94, 0.90), True),   # phaora-ops site480/oitava
+        'viii': (75.0, 0.5), 'ix': (80.0, 0.62), 'coda': (95.0, 0.5)}
 
 def build_pins():
     d = os.path.join(HERE, 'assets', 'poem'); os.makedirs(d, exist_ok=True)
-    for ch, src in PINS.items():
-        if isinstance(src, str): im = Image.open(os.path.join(HERE, src)).convert('L')
+    norm = lambda g: np.clip((g - np.percentile(g, 2)) / (np.percentile(g, 99.5) - np.percentile(g, 2) + 1e-6), 0, 1)
+    for ch, spec in PINS.items():
+        if isinstance(spec[0], str):
+            path, box, inv = spec; im = Image.open(os.path.join(HERE, path)).convert('L')
+            if box == 'pins': out = im   # the piece's own pin art, as it is
+            else:
+                if box: W, H = im.size; im = im.crop((int(box[0] * W), int(box[1] * H), int(box[2] * W), int(box[3] * H)))
+                W, H = im.size; a = 0.84   # the pin grid's shape, from the middle
+                if W / H > a: cw = int(H * a); im = im.crop(((W - cw) // 2, 0, (W - cw) // 2 + cw, H))
+                else: chh = int(W / a); im = im.crop((0, (H - chh) // 2, W, (H - chh) // 2 + chh))
+                g = norm(np.asarray(im.resize((84, 100), Image.LANCZOS), np.float32))
+                out = Image.fromarray(((1 - g if inv else g) * 255).astype(np.uint8))
         else:
-            raw = subprocess.run(['ffmpeg', '-v', 'error', '-ss', str(src), '-i', FILM, '-frames:v', '1', '-f', 'rawvideo', '-pix_fmt', 'gray', '-'],
+            t, cx = spec
+            raw = subprocess.run(['ffmpeg', '-v', 'error', '-ss', str(t), '-i', FILM, '-frames:v', '1', '-f', 'rawvideo', '-pix_fmt', 'gray', '-'],
                                  capture_output=True, check=True).stdout
-            g = np.frombuffer(raw, np.uint8).reshape(144, 256).astype(np.float32); x0 = (256 - 121) // 2; g = g[:, x0:x0 + 121]
-            lo, hi = np.percentile(g, 2), np.percentile(g, 99.5); g = np.clip((g - lo) / (hi - lo + 1e-6), 0, 1)
-            im = Image.fromarray((g * 255).astype(np.uint8)).resize((84, 100), Image.LANCZOS)
-        im.save(f'{d}/h_{ch}_L.png'); im.transpose(Image.FLIP_LEFT_RIGHT).save(f'{d}/h_{ch}_R.png')
+            g = np.frombuffer(raw, np.uint8).reshape(144, 256).astype(np.float32); x0 = int(round((256 - 121) * cx)); g = norm(g[:, x0:x0 + 121])
+            out = Image.fromarray((g * 255).astype(np.uint8)).resize((84, 100), Image.LANCZOS)
+        out.save(f'{d}/h_{ch}_L.png'); out.transpose(Image.FLIP_LEFT_RIGHT).save(f'{d}/h_{ch}_R.png')
     print('pins', len(PINS))
+
+TITLES = {'prologue': ('', 'prologue'), 'i': ('I', 'snow'), 'ii': ('II', 'the doors'), 'iii': ('III', 'the aisle'),
+          'iv': ('IV', 'the front row'), 'v': ('V', 'the kept seat'), 'vi': ('VI', 'reel one'), 'vii': ('VII', 'reel two'),
+          'viii': ('VIII', 'house lights'), 'ix': ('IX', 'the morning'), 'coda': ('', 'coda')}
 
 def srgb2lin(a): return np.where(a <= 0.04045, a / 12.92, ((a + 0.055) / 1.055) ** 2.4)
 def lin2srgb(a): a = np.clip(a, 0, 1); return np.where(a <= 0.0031308, a * 12.92, 1.055 * a ** (1 / 2.4) - 0.055)
@@ -153,6 +169,8 @@ def build_chapter(ch, dev, roomcap, pmap):
     frames = film_frames(start, length) if kind == 'film' else plate_frames(length)
     frames += [frames[-1]] * int(round(hold * FPS))
     n = len(frames); enc = encoder(f'{OUT}/{ch}-{dev}.mp4', W, H)
+    # a computer runs the room live (room.js) and lays only the projector's light over it: <ch>-desktop-light.mp4
+    enc2 = encoder(f'{OUT}/{ch}-{dev}-light.mp4', W, H) if dev == 'desktop' else None
     base = (amb * AMB).astype(np.float32); lit = (albedo * mask[..., None] * GAIN).astype(np.float32)
     for i, f in enumerate(frames):
         if f.shape[1] < 1024: f = cv2.resize(f, (1024, 576), interpolation=cv2.INTER_LANCZOS4)
@@ -164,9 +182,11 @@ def build_chapter(ch, dev, roomcap, pmap):
         h, w = f.shape[:2]; A = pushed(f, i, n, centre)
         mx = (A[0, 0] * u * w + A[0, 2]).astype(np.float32); my = (A[1, 1] * v * h + A[1, 2]).astype(np.float32)
         s = cv2.remap(f, mx, my, cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT).astype(np.float32) / 255
-        out = lin2srgb(base + lit * srgb2lin(s))
+        light = lit * srgb2lin(s); out = lin2srgb(base + light)
         enc.stdin.write((out * 255 + 0.5).astype(np.uint8).tobytes())
+        if enc2: enc2.stdin.write((lin2srgb(light) * 255 + 0.5).astype(np.uint8).tobytes())
     enc.stdin.close(); enc.wait()
+    if enc2: enc2.stdin.close(); enc2.wait()
     print('scene', ch, dev, n, 'frames', flush=True)
 
 def build_morph(a, b, dev, roomcap):
@@ -209,9 +229,25 @@ def build_page():
         ys, xs = np.nonzero(m > 0.3)
         rect[dev] = [round(xs.min() / W, 4), round(ys.min() / H, 4), round(xs.max() / W, 4), round(ys.max() / H, 4)]
     data = {'chapters': chapters, 'rect': rect, 'size': SIZE}
+    build_room_page()
     t = open(os.path.join(HERE, 'poem_page.html'), encoding='utf-8').read()
     open(os.path.join(HERE, 'poem.html'), 'w', encoding='utf-8').write(t.replace('/*POEM*/{}', json.dumps(data, ensure_ascii=False)))
     print('poem.html', rect)
+
+def build_room_page():
+    """poem-room.html: the room as room.html runs it, live (room.js), empty, its pins the chapters' motifs in order, no
+    intro, no catalogue, no words; loaded as poem-room.html?empty=1. The poem page holds it behind the projection on a computer and steps it a chapter."""
+    import re
+    src = open(os.path.join(HERE, 'room.html'), encoding='utf-8').read()
+    pieces = json.loads(re.search(r'window\.PIECES = (\[.*?\]);\n', src).group(1))
+    base = next(q for q in pieces if q['id'] == 'card_holder')
+    poem = [{**base, 'id': 'poem_' + ch, 'name': '', 'sub': '', 'links': [], 'pinsL': f'assets/poem/h_{ch}_L.png', 'pinsR': f'assets/poem/h_{ch}_R.png'} for ch in ORDER]
+    src = re.sub(r'window\.PIECES = \[.*?\];\n', lambda m: 'window.PIECES = ' + json.dumps(poem) + ';\n', src, count=1)
+    src = src.replace('window.CATALOGUE_ON = true;', 'window.CATALOGUE_ON = false;')
+    src = re.sub(r'window\.INTRO_ON = \(\(\) => \{.*?\}\)\(\);', 'window.INTRO_ON = false;', src, count=1, flags=re.S)
+    src = src.replace('<title>PHAÖRA · Chapter I</title>', '<title>The room · the poem</title>')
+    src = src.replace('<body>', '<body class="poemroom"><style>#logo,#sitenav,#ui,#cat,#intro{display:none!important}html,body{background:#0b0b0b}</style>', 1)
+    open(os.path.join(HERE, 'poem-room.html'), 'w', encoding='utf-8').write(src)
 
 if __name__ == '__main__':
     args = sys.argv[1:]; roomcap = args.pop(0)
