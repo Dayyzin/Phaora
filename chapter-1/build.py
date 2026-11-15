@@ -692,6 +692,48 @@ def catalogue_home():
     # each the room's own render with the page's text on it (assets/catalogue/bay/<id>.webp: room.html rendered bare, its
     # interface hidden: the pinned walls curving in, the rounded cove, the light, the piece and its shadow, the carved
     # specs). The name, the type and THE PIECE / KEEP A SEAT are the page's own text, where the room sets them.
+    # David, 15 Nov: "build the catalogue into this room. And the room as it scrolls, loses the top nav and the 8 vanish
+    # upwards and the new 8 come from the bottom up"; the room never leaves the frame, its walls pinned with the Muse
+    # ("Change the pinned wall to musa"). The room is a fixed still of room.html, empty (?empty=1), desktop and phone;
+    # the pieces stand in it in sets (8 on a computer, 6 on a phone), one set a screen, snapping, rising out the top.
+    if getattr(C, 'CAT_STAGE', False):
+        items = ''
+        for q in order:
+            pid = q['id']; price = price_of(pid)[0]
+            specs = C.ROOM_SET.get(pid, {}).get('specs') or default
+            one, two = imgs[pid]
+            alt = f'{E(q["name"])}, {E(q["plain"].lower())}'
+            im = (f'<img class="a" src="{shadowed(one, pid)}" alt="{alt}" decoding="async"><img class="b" src="{shadowed(two, pid)}" alt="" decoding="async">'
+                  if two else f'<img src="{shadowed(one, pid)}" alt="{alt}" decoding="async">')
+            items += (f'<article class="it" id="{q["page"]}"><h2 class="t cut">{E(q["name"].upper())}</h2>'
+                      f'<p class="s cut">{E(q["plain"].upper())} &nbsp;·&nbsp; CHAPTER&nbsp;I</p>'
+                      f'<a class="ph{" two" if two else ""}" href="{q["page"]}.html">{im}</a>'
+                      f'<ul class="specs cut">{specs_html(specs)}</ul>'
+                      f'<p class="links cut"><a href="{q["page"]}.html">The piece</a>' +
+                      (f'<a href="{REGISTER}">Keep a seat · {E(price)}</a>' if price and not q.get('nosale') else '') + '</p></article>')
+        nav = ''.join(f'<a href="{h}">{t}</a>' for t, h in [('The line', '#top'), ('The film', 'film.html'), ('The book', 'book.html'), ('The room', 'room.html'), ('The house', 'house.html'), ('Register', REGISTER)])
+        doc = f'''<!doctype html>
+<html lang="en" id="top" class="stage"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{SITE_TITLE} · Chapter I</title>
+<meta name="description" content="A cinema in knit, leather and silk. PHAÖRA Chapter I, made to order on pre-sale.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="assets/brand/mark-180.png"><link rel="apple-touch-icon" href="assets/brand/mark-180.png">
+<link rel="preload" as="image" href="assets/room/stage-desktop.webp" media="(min-width: 821px)"><link rel="preload" as="image" href="assets/room/stage-phone.webp" media="(max-width: 820px)">
+<link rel="stylesheet" href="assets/css/stage.css">
+</head>
+<body class="stage">
+<div class="room" aria-hidden="true"></div>
+<header class="navband"><a class="logo" href="#top" aria-label="PHAÖRA"></a><nav class="nl">{nav}</nav></header>
+<main class="sets" id="sets">{items}</main>
+<script src="assets/js/stage.js"></script>
+</body></html>
+'''
+        (HERE / 'index.html').write_text(doc)
+        PAGES.append('index.html')
+        return
     bay = lambda q: HERE / 'assets' / 'catalogue' / 'bay' / f'{q["id"]}.webp'
     bayed = getattr(C, 'CAT_BAYS', False) and all(bay(q).exists() for q in order)
     if bayed:

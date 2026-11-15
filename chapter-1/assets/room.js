@@ -26,6 +26,7 @@ const WHITE = TEST || QS.get('white') === '1';   // the side walls' lit ground w
 // turn. A pair takes the spin by itself as its sets land. ?dissolve=1 keeps the approved grain dissolve (and no spin).
 const SPIN = QS.get('dissolve') !== '1';
 const SOFT = QS.get('dissolve') !== '1';
+const BARE = QS.get('empty') === '1';   // the room alone, no piece, its shadow or its carved lines (the catalogue's stage)
 // the switch while it turns (David: "Back to soft fade", C at 345a105): the piece fades into the next over 60-220 degrees.
 // C exactly as approved: one smooth eased crossfade, both frames mixed in one opaque pass (its midpoint is the two
 // garments' colours mixed; David: "Back to soft fade", C over B)
@@ -1249,7 +1250,7 @@ function draw(run, t) {
   CASTERS.forEach(c => { c.rotation.order = 'YXZ'; c.rotation.y = 0; }); if (sp) { cA.rotation.y = -THREE.MathUtils.degToRad(spinD); if (cB) cB.rotation.y = cA.rotation.y; }
   const cwN = sp ? spinS : dMat.uniforms.p.value; compMat.uniforms.cw.value = cwN > 0 && cwN < 1 ? cwN : 0;
   CASTERS.forEach(c => { c.visible = false; }); renderer.setRenderTarget(rtA0); renderer.clear(); renderer.render(scene, cam);   // the room (and its depth)
-  svUpdate([cA, cwN > 0 && cwN < 1 ? cB : null]);   // the garment's shadow from the softbox
+  svUpdate(BARE ? [null, null] : [cA, cwN > 0 && cwN < 1 ? cB : null]);   // the garment's shadow from the softbox
   // the intro: no garment shadow before the Muse is there, then hers just behind her (D1)
   compMat.uniforms.gS.value = run.intro ? (t < T_FLUSH1 ? 0 : smooth(T_FLUSH1 + 0.3, T_FLUSH1 + 0.85, t)) : 1;
   // the carving is cut, not faded (the preview at a4cc8f6; David: "Can you carve the wall in, instead of just fading it
@@ -1257,7 +1258,7 @@ function draw(run, t) {
   // on the spin (the preview at 487d217): the old writing fills flush over the first half of the turn, the new one cuts
   // in from the 270-degree swap as the new piece comes round to face front (turn by turn in a fast scroll)
   const tl = sp ? t - seg * TSD : 0, cutSpin = tl < TS0 + TSD * 2 / 3 ? 1 - smooth(TS0, TS0 + TSD / 2, tl) : smooth(TS0 + TSD * 2 / 3, TS0 + TSD, tl);
-  const cutS = run.open ? cutK : run.intro ? smooth(T_SPECS0, T_SPECS1, t) : sp ? cutSpin : uiA;   // the intro: the specs stay flush until the room's camera is back, then cut in
+  const cutS = BARE ? 0 : run.open ? cutK : run.intro ? smooth(T_SPECS0, T_SPECS1, t) : sp ? cutSpin : uiA;   // the intro: the specs stay flush until the room's camera is back, then cut in
   SPC.U.hMap.value = specTexFor(PIECES[sp ? spinI : run.open || run.intro || t < mid ? run.path[0] : run.path[n]]);   // this piece's own lines
   if (cutS > 0.001) {   // the carving, in the window around the lines: the same room and lights, uncut then cut
     renderer.shadowMap.autoUpdate = false; ROOM.visible = false; SPC.mesh.visible = true;
@@ -1278,7 +1279,7 @@ function draw(run, t) {
   compMat.uniforms.eK2.value = cutI > 0.001 ? 1 : 0;   // the same fade as the other writing; opening: no fade, the cut rises
   setLeftWall(t, 1, run); renderer.setRenderTarget(rtB); renderer.clear(); renderer.render(scene, cam);
   renderer.setRenderTarget(null); renderer.autoClear = false; renderer.clear();
-  renderer.render(compScene, compCam); renderer.render(overlay, cam); renderer.autoClear = true;
+  renderer.render(compScene, compCam); if (!BARE) renderer.render(overlay, cam); renderer.autoClear = true;
   const pc = PIECES[sp ? spinI : run.open || run.intro || t < mid ? run.path[0] : run.path[n]];
   if (catEl) catalogue(run, t);
   if (nmEl.textContent !== pc.name) { nmEl.textContent = pc.name; subEl.innerHTML = pc.sub; nmEl.classList.toggle('long', pc.name.length > 10); }
