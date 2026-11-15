@@ -19,9 +19,9 @@ body.scrolled .navband{opacity:0;transform:translateY(-24px);pointer-events:none
 .sets{position:relative;z-index:1}
 /* one set a screen, spread evenly over the whole height (David, 15 Nov: "Needs better distribution of space"): equal
    margins top and bottom, equal gaps between rows, the piece boxes taking what is left; set 1 starts under the nav */
-.set{height:100vh;height:100svh;scroll-snap-align:start;box-sizing:border-box;padding:calc(24px + env(safe-area-inset-top)) 8vw calc(24px + env(safe-area-inset-bottom));
-  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));column-gap:1.5vw;row-gap:40px}
-.set:first-child{padding-top:calc(96px + env(safe-area-inset-top))}
+.set{height:100vh;height:100svh;scroll-snap-align:start;box-sizing:border-box;padding:calc(24px + env(safe-area-inset-top)) 14vw calc(24px + env(safe-area-inset-bottom));
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));column-gap:3vw;row-gap:28px}   /* 3 across (David, 15 Nov: "Too cramped, 3 per row") */
+.set:first-child{padding-top:calc(84px + env(safe-area-inset-top))}
 .it{display:flex;flex-direction:column;align-items:center;text-align:center;min-height:0;opacity:0;transform:translateY(70px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
 .set.on .it{opacity:1;transform:none}
 .set.past .it{opacity:0;transform:translateY(-70px)}
@@ -41,12 +41,15 @@ body.scrolled .navband{opacity:0;transform:translateY(-24px);pointer-events:none
   .room{background-image:url(../room/stage-phone.webp)}
   .navband{padding:18px 5vw}
   .navband .logo{width:72px}
-  .navband .nl{gap:1.1em;font-size:7.5px;letter-spacing:.16em;flex-wrap:wrap;justify-content:flex-end;max-width:62%;row-gap:6px}
+  .navband{flex-direction:column;gap:10px;padding:16px 5vw 0}
+  .navband .nl{gap:1.2em;font-size:7.5px;letter-spacing:.16em}
   .set{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr));padding-left:13vw;padding-right:13vw;column-gap:4vw;row-gap:28px}
-  .set:first-child{padding-top:calc(64px + env(safe-area-inset-top))}
+  .set:first-child{padding-top:calc(78px + env(safe-area-inset-top))}
   .it .s{margin-top:3px}
   .it .ph{margin:8px 0 6px}
   .it .links{margin-top:4px}
+  /* ?set=5 (David, 15 Nov: "5 per scroll"): two, then one centred and a little larger, then two */
+  .set.five .it.mid{grid-column:1/-1;justify-self:center;width:62%}
   .it .t{font-size:12px;letter-spacing:.2em;padding-left:.2em}
   .it .s{font-size:5.5px;letter-spacing:.16em;padding-left:.16em}
   .it .specs{font-size:5.5px;letter-spacing:.06em;line-height:1.45}

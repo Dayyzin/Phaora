@@ -1,4 +1,4 @@
-// The catalogue in the room (David, 15 Nov): the pieces in sets (8 on a computer, 6 on a phone), one set a screen,
+// The catalogue in the room (David, 15 Nov): the pieces in sets of 6 (3 x 2 on a computer, 2 x 3 on a phone), one set a screen,
 // rising out of the top as the next set comes up from the floor; the nav goes on the first scroll.
 (() => {
   const main = document.getElementById('sets'); if (!main) return;
@@ -12,11 +12,12 @@
     else if (!e.isIntersecting || e.intersectionRatio < 0.45) { s.classList.remove('on'); s.classList.toggle('past', e.boundingClientRect.top < 0); }
   }), { threshold: [0, 0.45, 0.55, 1] });
   const group = () => {   // sets of 8 (4 x 2), or 6 on a phone (2 x 3); each piece a little after the one before
-    const n = matchMedia('(max-width: 820px)').matches ? 6 : 8; if (n === per) return; per = n;
+    const phone = matchMedia('(max-width: 820px)').matches, five = phone && new URLSearchParams(location.search).get('set') === '5';
+    const n = five ? 5 : 6; if (n === per) return; per = n;   // 3 x 2 on a computer, 2 x 3 on a phone; ?set=5: 2 / 1 / 2
     sets.forEach(s => io.unobserve(s)); main.innerHTML = ''; sets = [];
     for (let i = 0; i < items.length; i += n) {
-      const s = document.createElement('section'); s.className = 'set';
-      items.slice(i, i + n).forEach((it, j) => { it.style.transitionDelay = (j * 0.06) + 's'; s.appendChild(it); });
+      const s = document.createElement('section'); s.className = 'set' + (n === 5 ? ' five' : '');
+      items.slice(i, i + n).forEach((it, j) => { it.style.transitionDelay = (j * 0.06) + 's'; it.classList.toggle('mid', n === 5 && j === 2); s.appendChild(it); });
       main.appendChild(s); sets.push(s); io.observe(s);
     }
     if (sets[0]) { sets[0].classList.add('on'); gather(); }
