@@ -624,8 +624,9 @@ def catalogue_home():
         two = trimmed(HERE / 'assets' / 'walk' / 'raw' / f'{pid}_{v}.webp', f'{pid}_{v}.webp',
                       dict(key=pid in C.KEY_GAPS, slivers=pid in C.SLIVERS, **C.CUT_OPTS.get(pid, {}))) if v else None
         imgs[pid] = (one, two)
-    # Coaraci (David, 15 Nov, his split, then "show a zoomed in version instead of full"): side by side, close in, the leather
-    # and its holes on one half, the gold disc on the other (crops of its 480 close-ups, walk/coaraci_stop3 and _stop4).
+    # Coaraci (David, 15 Nov, his split, then "show a zoomed in version instead of full"): side by side, close in, then "grab these
+    # photos and crop them"): its laid-straight cut-out stood upright, cropped to the near end (no spike), the leather on one
+    # half, the buckle on the other; the crop's top fades out.
     duo = {'disc_belt': ('assets/catalogue/disc_belt_zoom-leather.webp', 'assets/catalogue/disc_belt_zoom-disc.webp')}
     order = sorted(C.PIECES, key=lambda q: -usd(price_of(q['id'])[0]))
     cols = ''
