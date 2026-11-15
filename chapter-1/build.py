@@ -759,15 +759,15 @@ def catalogue_home():
             if pj.exists():
                 J = json.loads(pj.read_text()); A.pop('close', None); A.pop('notes', None); A.pop('made', None)
                 views = {}
-                for v, f in J['views'].items():
+                for v, f in J.get('views', {}).items():
                     im = Image.open(HERE / f); bb = im.getchannel('A').getbbox()
                     views[v] = dict(img=f, w=im.width, h=im.height, bbox=[round(bb[0] / im.width, 4), round(bb[1] / im.height, 4), round(bb[2] / im.width, 4), round(bb[3] / im.height, 4)])
                 walk = []
-                for n, st in enumerate(J['walk'], 1):
+                for n, st in enumerate(J.get('walk', []), 1):
                     st = dict(st); fr = J.get('frames', '').replace('{n}', str(n))
                     if fr and (HERE / fr).exists(): st['frame'] = fr   # a rendered stop, dropped in by its file name
                     walk.append(st)
-                A['views'], A['walk'] = views, walk
+                if walk: A['views'], A['walk'] = views, walk
                 if J.get('world'): A['world'] = J['world']
             price, presale = price_of(pid)
             det = [('Size', ' · '.join(q['sizes']))] if q['sizes'] else []
