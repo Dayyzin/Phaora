@@ -665,8 +665,8 @@ def catalogue_home():
         # (David, 15 Nov: "Lustre shadow needs fixing").
         d = C.SHADOW_DEPTH.get(pid, 1.0)
         # matched to the room's frames (1b9ee77e): a clear mid-grey cast, offset up and right by about 9% of the piece
-        dx, dy, sig = round(0.10 * S * d), round(-0.075 * S * d), 0.022 * S * (0.4 + 0.6 * d)
-        pl = pr = round(0.10 * S * d + 3 * sig + 4); pt = round(0.075 * S * d + 3 * sig + 4); pb = round(1.5 * sig + 4)
+        dx, dy, sig = round(0.24 * S * d), round(-0.09 * S * d), 0.03 * S * (0.4 + 0.6 * d)   # long enough to fall on the wall's pins (David, 15 Nov)
+        pl = pr = round(0.24 * S * d + 3 * sig + 4); pt = round(0.09 * S * d + 3 * sig + 4); pb = round(1.5 * sig + 4)
         CW, CH = W + pl + pr, H + pt + pb
         sh = np.zeros((CH, CW), np.float32); sh[pt + dy:pt + dy + H, pl + dx:pl + dx + W] = al   # the true alpha, cast up and right
         sh = ndimage.gaussian_filter(sh, sig) * 0.40 * (0.6 + 0.4 * d)
@@ -704,28 +704,26 @@ def catalogue_home():
                      f'<a class="reg" href="{REGISTER}" aria-label="Register"></a><a class="pc" href="{q["page"]}.html" aria-label="The piece, {E(q["name"])}"></a>{seat}</article>')
     elif getattr(C, 'CAT_WALL', False):
         cols = ''
-        for r0 in range(0, len(order), 3):
-            row = order[r0:r0 + 3]
-            cells = band = ''
-            for q in row:
-                pid = q['id']; price = price_of(pid)[0]
-                specs = (C.ROOM_SET.get(pid, {}).get('specs') or default)
-                one, two = imgs[pid]
-                alt = f'{E(q["name"])}, {E(q["plain"].lower())}'
-                if two:
-                    ph = (f'<a class="ph two" href="{q["page"]}.html"><img class="a" src="{shadowed(one, pid)}" alt="{alt}" decoding="async">'
-                          f'<img class="b" src="{shadowed(two, pid)}" alt="" decoding="async"></a>')
-                else:
-                    sc = f' style="height:{C.CAT_SCALE[pid] * 100:.0f}%"' if pid in C.CAT_SCALE else ''
-                    sp = shadowed(one, pid); w_, h_ = Image.open(HERE / sp).size
-                    ph = f'<a class="ph{" wide" if w_ > 1.05 * h_ else ""}" href="{q["page"]}.html"><img{sc} src="{sp}" alt="{alt}" decoding="async"></a>'
-                cells += (f'<article class="col" id="{q["page"]}"><h2 class="t cut">{E(q["name"].upper())}</h2>'
-                          f'<p class="s cut">{E(q["plain"].upper())} &nbsp;·&nbsp; CHAPTER&nbsp;I</p>{ph}'
-                          f'<ul class="specs cut">{specs_html(specs)}</ul></article>')
-                band += (f'<p class="links cut"><a href="{q["page"]}.html">The piece</a>' +
-                         (f'<a href="{REGISTER}">Keep a seat · {E(price)}</a>' if price and not q.get('nosale') else '') + '</p>')
-            seams = ''.join(f'<i class="seam" style="left:{x}%"></i>' for x in ('0', '33.3333', '66.6667', '100'))   # the room's pins and their shading on every column line
-            cols += f'<section class="row">{seams}{cells}<div class="band">{band}</div></section>'
+        # David, 15 Nov: "TURN IT INTO A SITE NOT CROPS OF 16 SITES TOGETHER IN A PAGE": one grid of columns on one wall;
+        # each column closes on its own stretch of the raised band, and the columns of a row share a height, so the
+        # stretches meet as one band across the row (four across on a computer, three on a phone, by CSS alone)
+        for q in order:
+            pid = q['id']; price = price_of(pid)[0]
+            specs = (C.ROOM_SET.get(pid, {}).get('specs') or default)
+            one, two = imgs[pid]
+            alt = f'{E(q["name"])}, {E(q["plain"].lower())}'
+            if two:
+                ph = (f'<a class="ph two" href="{q["page"]}.html"><img class="a" src="{shadowed(one, pid)}" alt="{alt}" decoding="async">'
+                      f'<img class="b" src="{shadowed(two, pid)}" alt="" decoding="async"></a>')
+            else:
+                sc = f' style="height:{C.CAT_SCALE[pid] * 100:.0f}%"' if pid in C.CAT_SCALE else ''
+                sp = shadowed(one, pid); w_, h_ = Image.open(HERE / sp).size
+                ph = f'<a class="ph{" wide" if w_ > 1.05 * h_ else ""}" href="{q["page"]}.html"><img{sc} src="{sp}" alt="{alt}" decoding="async"></a>'
+            cols += (f'<article class="col" id="{q["page"]}"><h2 class="t cut">{E(q["name"].upper())}</h2>'
+                     f'<p class="s cut">{E(q["plain"].upper())} &nbsp;·&nbsp; CHAPTER&nbsp;I</p>{ph}'
+                     f'<ul class="specs cut">{specs_html(specs)}</ul>'
+                     f'<p class="links cut"><a href="{q["page"]}.html">The piece</a>' +   # David, 15 Nov: inside its card, the elevation kept below
+                     (f'<a href="{REGISTER}">Keep a seat · {E(price)}</a>' if price and not q.get('nosale') else '') + '</p><div class="band"></div></article>')
     doc = f'''<!doctype html>
 <html lang="en" id="top"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -738,7 +736,7 @@ def catalogue_home():
 <link rel="stylesheet" href="assets/css/catalogue.css">
 </head>
 <body class="{'panelled' if panelled else 'wall'}">
-{'' if panelled else '<header class="navband">' + ''.join(f'<nav class="slot"><a class="logo" href="#top" aria-label="PHAÖRA"></a><span class="nl">' + ''.join(f'<a href="{h}">{t}</a>' for t, h in links) + '</span></nav>' for links in [[('The line', '#top'), ('Register', REGISTER)], [('The film', 'film.html'), ('The book', 'book.html')], [('The room', 'room.html'), ('Chapter I', '#top')]]) + '</header>'}
+{'' if panelled else '<header class="navband">' + ''.join(f'<nav class="slot"><a class="logo" href="#top" aria-label="PHAÖRA"></a><span class="nl">' + ''.join(f'<a href="{h}">{t}</a>' for t, h in links) + '</span></nav>' for links in [[('The line', '#top'), ('Register', REGISTER)], [('The film', 'film.html'), ('The book', 'book.html')], [('The room', 'room.html'), ('Chapter I', '#top')], [('The house', 'house.html'), ('Register', REGISTER)]]) + '</header>'}
 <main class="cat">{cols}</main>
 <script>
 // David's lettering with the solo Ö, inlined in the room's dark ink, as room.js does (never typed)
