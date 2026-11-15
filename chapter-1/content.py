@@ -604,9 +604,11 @@ WORLD_PASSED = {'veil_coat', 'silk_scarf', 'sunglasses', 'lustre', 'oitava', 'mu
 
 # the cut-outs' enclosed backdrop keyed (build.clean_cutout): the pieces with gaps (sleeves, handles, straps, temples).
 # Not the knits, the slip, the scarf or the jewellery: their own neutral whites (a print, a satin, a crystal) would go too.
-KEY_GAPS = {'veil_coat', 'muse_bomber', 'po_tophandle', 'matinee', 'the_reel', 'card_holder', 'sunglasses', 'opera_gloves', 'disc_belt'}
-SLIVERS = {'veil_coat', 'muse_bomber'}   # a garment's thin gaps too (a cuff against the skirt)
-CUT_OPTS = {'disc_belt': dict(bright=140, smooth=3)}   # Coaraci: the grey floor seen inside its coil, and its stepped outline
+# 15 Nov, checked raw against cleaned at 100%: Ödara (its collar stripe, a shoulder), Öfusca (a lens) and Ritornelo were bitten,
+# and Coaraci's coil is already open in its cut, so these four take the edge feather only
+KEY_GAPS = {'veil_coat', 'po_tophandle', 'matinee', 'the_reel', 'card_holder'}
+SLIVERS = {'veil_coat'}   # a garment's thin gaps too (a cuff against the skirt)
+CUT_OPTS = {}   # per-piece options for clean_cutout (Coaraci's darker key and rounding removed, 15 Nov: they bit into the leather)
 
 
 # ---------------------------------------------------------------- the passed 480s (phaora-ops 0da36dd, story/site480/)
