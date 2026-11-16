@@ -165,9 +165,45 @@
     const idx = Math.max(0, Math.min(steps.length - 1, Math.round(scrollY / STEP))), s = steps[idx];
     if (s.ci !== cur) { go(s.ci); return; }
     if (busy) return;
-    if (idx !== lastIdx) { lastIdx = idx; showText(s); }
+    if (idx !== lastIdx) { lastIdx = idx; showText(s); plan(idx); }
   }
   addEventListener('scroll', () => requestAnimationFrame(onScroll), { passive: true });
+
+  // ---- the projector runs by itself (David, 16 Nov: "I like how you can scroll too"): one line at reading pace, a breath
+  // at the end of a stanza, a hold at the end of a chapter, then the next. A scroll, swipe or key takes the lead; the
+  // projector waits, and carries on by itself after a few seconds of nothing. Pause / play in the corner.
+  const IDLE = 6000;
+  let nextAt = 0, userAt = -1e9, paused = matchMedia('(prefers-reduced-motion: reduce)').matches, autoTo = -1;
+  const plain = h => h.replace(/<[^>]+>/g, '').replace(/&[^;]+;/g, 'x');
+  function plan(idx) {   // how long step idx stays before the next comes
+    const s = steps[idx], c = C[s.ci]; let ms;
+    if (s.li < 0) ms = 2600;   // the picture up and the chapter's name
+    else {
+      const st = c.stanzas[s.si]; ms = Math.min(4800, Math.max(2200, 1500 + plain(st[s.li]).length * 42));
+      if (s.li === st.length - 1) ms += 1500;                                  // a stanza ends
+      if (s.li === st.length - 1 && s.si === c.stanzas.length - 1) ms += 3000;  // the chapter ends: hold
+    }
+    nextAt = performance.now() + ms;
+  }
+  const user = () => { userAt = performance.now(); };
+  ['wheel', 'touchstart', 'keydown', 'pointerdown'].forEach(e => addEventListener(e, ev => { if (!ev.target.closest || !ev.target.closest('.auto')) user(); }, { passive: true }));
+  function auto() {
+    const now = performance.now();
+    if (!paused && !busy && !document.hidden && now - userAt > IDLE && nextAt && now >= nextAt && cur >= 0) {
+      const idx = Math.round(scrollY / STEP);
+      if (idx < steps.length - 1) { nextAt = 0; autoTo = idx + 1; scrollTo({ top: autoTo * STEP, behavior: 'smooth' }); }
+      else { paused = true; autoBtn.classList.add('paused'); autoBtn.setAttribute('aria-label', 'Play'); }
+    }
+    // a hand that scrolled and let go: the projector picks up from the line it is on
+    if (!nextAt && !busy && now - userAt > IDLE && lastIdx >= 0 && Math.abs(scrollY - lastIdx * STEP) < 4) plan(lastIdx);
+    setTimeout(auto, 200);
+  }
+  const autoBtn = document.createElement('button'); autoBtn.className = 'auto' + (paused ? ' paused' : ''); autoBtn.type = 'button';
+  autoBtn.setAttribute('aria-label', paused ? 'Play' : 'Pause'); autoBtn.innerHTML = '<i></i><i></i>';
+  autoBtn.addEventListener('click', () => { paused = !paused; autoBtn.classList.toggle('paused', paused); autoBtn.setAttribute('aria-label', paused ? 'Play' : 'Pause');
+    if (!paused) { userAt = -1e9; if (!nextAt) nextAt = performance.now() + 900; } });
+  document.body.appendChild(autoBtn);
+  setTimeout(auto, 200);
   addEventListener('resize', () => { const d = devOf(); size(); place();
     if (d !== DEV) { DEV = d; if (cur >= 0) { dark.src = src(cur, 'dark'); const v = vids[front]; v.src = src(cur, 'scene'); v.load(); v.play().catch(() => {}); back().removeAttribute('src'); } }
     onScroll(); });
