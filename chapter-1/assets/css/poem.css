@@ -23,7 +23,7 @@ html.poem,body.poem{margin:0;background:#070707;color:#efe6d4;-webkit-font-smoot
   background:linear-gradient(180deg,rgba(255,244,222,.11),rgba(255,244,222,.035) 40%,rgba(255,244,222,0) 78%);
   clip-path:polygon(var(--b0) 0,var(--b1) 0,var(--r2) var(--rb),var(--r0) var(--rb))}
 .room.lit .beam{opacity:1}
-.dust{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;mix-blend-mode:screen}
+.dust,.snow{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;mix-blend-mode:screen}
 /* the projector's click: the picture is gone in one frame, the room shudders the way a gate does */
 .room.click{animation:gate .16s linear}
 @keyframes gate{0%{transform:translateY(0)}35%{transform:translateY(1.5px)}70%{transform:translateY(-1px)}100%{transform:none}}
