@@ -33,6 +33,7 @@ DPR = {'desktop': 1, 'phone': 2}
 PROJ = np.array([0.0, 3.6, 8.4])
 FRAME = {'desktop': (-2.15, 2.15, 0.68, 2.72), 'phone': (-1.22, 1.22, 0.15, 1.98)}   # the phone's frame is 4:3, taken from the middle of the scene   # x0, x1, y0 (low), y1 on z = 0
 AMB = 0.065    # the room's own light in the poem, linear (the stage is ~0.85 at its whitest): near-cinema
+AMB_DEV = {'desktop': AMB, 'phone': 0.011}   # the phone's room render is a near-white wash: its own, much lower light, so the film leads (David, 17 Nov)
 MORPH_LIFT = 1.6   # while the pins ripple, the room's light rises this much (x AMB) and falls back, so the ripple reads
 HARD = 1.8     # the dim room's light is harder than the studio's: its tones are taken to this power (pins and their shadows read)
 GAIN = 2.6     # the projector, linear: the film is a night film, mostly black; its bulbs, snow and screen carry the light
@@ -308,7 +309,7 @@ def build_film(dev, roomcap, pmap):
         else: lift = 1
         s_ = cv2.remap(f, mx, my, cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT).astype(np.float32) / 255
         light = lit_of(room) * srgb2lin(s_)
-        out = light if light_only else (room ** HARD * 0.85) * AMB * lift + light
+        out = light if light_only else (room ** HARD * 0.85) * AMB_DEV[dev] * lift + light
         enc.stdin.write((lin2srgb(out) * 255 + 0.5).astype(np.uint8).tobytes())
         if i % 240 == 0: print('film', dev, f'{t:.0f}s', flush=True)
     enc.stdin.close(); enc.wait()
@@ -323,6 +324,14 @@ if __name__ == '__main__':
     if '--device' in args: i = args.index('--device'); devs = [args[i + 1]]; del args[i:i + 2]
     if '--pins' in args: build_pins(); sys.exit(0)
     if '--page' in args: build_page(); sys.exit(0)
+    if '--darks' in args:   # the dark rooms (projector off) per chapter, at each device's own light
+        os.makedirs(OUT, exist_ok=True)
+        for dev in devs:
+            W, H = SIZE[dev]
+            for ch, _, _ in SECTIONS:
+                room = np.clip(srgb2lin(np.asarray(Image.open(f'{roomcap}/{dev}/still-{ch}.png').convert('RGB').resize((W, H), Image.LANCZOS), np.float32) / 255) / 0.85, 0, 1.1)
+                Image.fromarray((lin2srgb(room ** HARD * 0.85 * AMB_DEV[dev]) * 255 + 0.5).astype(np.uint8)).save(f'{OUT}/{ch}-{dev}.webp', quality=88)
+        sys.exit(0)
     if '--film' in args:   # the film with its voice, projected (build_film)
         os.makedirs(OUT, exist_ok=True)
         for dev in devs: build_film(dev, roomcap, projection_map(dev))

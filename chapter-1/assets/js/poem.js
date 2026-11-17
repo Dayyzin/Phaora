@@ -109,7 +109,7 @@
       // lit where the beam crosses it: inside the wedge from the top edge down to the picture, brightest near the picture
       const wl = -0.15 * b.vw + (b.x0 + 0.15 * b.vw) * Math.min(1, y / b.y1), wr = 1.15 * b.vw + (b.x1 - 1.15 * b.vw) * Math.min(1, y / b.y1);
       const inBeam = y <= b.y1 && x >= wl && x <= wr ? 0.55 + 0.45 * (y / b.y1) : 0;
-      const a = snowK * (0.22 + 0.75 * inBeam) * (0.6 + 0.4 * (1 - f.z));
+      const a = snowK * (0.22 + 0.75 * inBeam) * (0.6 + 0.4 * (1 - f.z)) * (DEV === 'phone' ? 0.7 : 1);   // the phone's darker room: quieter snow
       const r = f.s * k * (1 + (1 - f.z) * 0.25);
       sx.globalAlpha = Math.min(1, a); sx.drawImage(sprite, x * k - r, y * k - r, r * 2, r * 2);
     }
