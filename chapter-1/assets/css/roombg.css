@@ -1,0 +1,18 @@
+/* The room on every page (David, 15 Nov, task 3): the catalogue's room, its walls pinned with the Muse, fixed behind
+   every page as one light shared layer. Only its light changes with the page, lowering as the mood deepens: the
+   catalogue, the register and the house full; a piece slightly lower with the piece spotlit; the book (the poem) dimmer;
+   the film darkest. It eases in over about 1.2 s. */
+.roombg{position:fixed;inset:0;z-index:-1;pointer-events:none;background:#efeff1 url(../room/stage-desktop.webp) center/cover no-repeat}
+.roombg::before{content:"";position:absolute;inset:0;   /* the centre veil: the pins recede behind the words */
+  background:radial-gradient(ellipse 62% 70% at 50% 52%,rgba(242,242,244,.9),rgba(242,242,244,.74) 58%,rgba(242,242,244,0) 100%)}
+.roombg i{position:absolute;inset:0;background:#14120f;opacity:0;animation:roomlight 1.2s ease .1s forwards}
+.roombg i::after{content:"";position:absolute;inset:0;opacity:0}
+@keyframes roomlight{from{opacity:0}to{opacity:var(--dim,0)}}
+body[data-light=full] .roombg i{--dim:0}
+body[data-light=piece] .roombg i{--dim:.14;background:radial-gradient(ellipse 34% 52% at 50% 46%,rgba(20,18,15,0),#14120f 78%)}
+body[data-light=poem] .roombg i{--dim:.62}
+body[data-light=film] .roombg i{--dim:.86}
+body:has(.roombg){background:transparent}
+body.dark:has(.roombg),body.bookdark:has(.roombg){background:transparent}
+@media (max-width:820px){.roombg{background-image:url(../room/stage-phone.webp)}}
+@media (prefers-reduced-motion:reduce){.roombg i{animation:none;opacity:var(--dim,0)}}

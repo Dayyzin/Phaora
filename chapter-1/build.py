@@ -302,6 +302,8 @@ def footer(theme):
 def page(fn, title, desc, body, theme='light', scripts=(), head='', here=None, bodycls=''):
     t = f'{title} · Chapter I · {SITE_TITLE}' if title else f'{SITE_TITLE} · Chapter I'
     sc = ''.join(f'<script src="{s}" defer></script>' for s in scripts)
+    # the room's light for this page (task 3): the film darkest, the book dimmer, a piece a little lower, the rest full
+    light = 'film' if fn.startswith('film') else 'poem' if fn.startswith('book') else 'piece' if 'piecepage' in bodycls else 'full'
     doc = f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -312,9 +314,10 @@ def page(fn, title, desc, body, theme='light', scripts=(), head='', here=None, b
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="preload" href="assets/fonts/PhaoraFable-Lower-candidate.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/site.css">{head}
+<link rel="stylesheet" href="assets/css/site.css"><link rel="stylesheet" href="assets/css/roombg.css">{head}
 </head>
-<body class="{theme} {bodycls}">
+<body class="{theme} {bodycls}" data-light="{light}">
+<div class="roombg" aria-hidden="true"><i></i></div>
 {header(theme, here or fn)}
 {body}
 {footer(theme)}
