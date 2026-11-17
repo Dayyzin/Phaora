@@ -75,6 +75,7 @@ const scene = new THREE.Scene();
 scene.background = new THREE.Color('#e2e2e4');
 const cam = new THREE.PerspectiveCamera(40, FW / FH, 0.1, 50);
 cam.position.set(0, 1.45, 5.4); cam.lookAt(0, 1.45, 0);
+window.__roomCam = cam;   // Projector poem: the camera, read by poem_room_capture.js to bake the projection's warp
 const refCam = cam.clone();   // the preview's camera, fixed: the specs are placed with it, whatever the window
 
 const RW = 2.2, DEPTH = 3.2, TOP = 4.2;
