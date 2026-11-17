@@ -10,6 +10,7 @@
   const beam = room.querySelector('.beam'), dust = room.querySelector('.dust');
   const text = document.querySelector('.poemtext'), chapEl = text.querySelector('.chap'), sub = text.querySelector('.sub');
   const track = document.querySelector('.track');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const devOf = () => (innerWidth / innerHeight < 1 ? 'phone' : 'desktop');
   let DEV = devOf();
   const filmSrc = () => DEV === 'desktop' ? 'media/poem/film-desktop-light.mp4' : 'media/poem/film-phone.mp4';
@@ -60,6 +61,7 @@
     beam.style.setProperty('--r0', x0 + 'px'); beam.style.setProperty('--r2', x1 + 'px'); beam.style.setProperty('--rb', y1 + 'px');
     DUST.box = { x0, x1, y0, y1, vw, vh };
     dust.width = Math.round(vw * Math.min(2, devicePixelRatio || 1)); dust.height = Math.round(vh * Math.min(2, devicePixelRatio || 1));
+    snow.width = dust.width; snow.height = dust.height;
   }
 
   // ---- dust in the beam, only while the projector runs
@@ -77,6 +79,39 @@
       const x = wl + (wr - wl) * p.u, tw = 0.5 + 0.5 * Math.sin(t * 0.0012 * p.w + p.a);
       dx.globalAlpha = lit * 0.32 * tw * (1 - 0.6 * p.v); dx.fillStyle = '#fff3dc';
       dx.beginPath(); dx.arc(x * k, y * k, p.s * k, 0, 6.283); dx.fill();
+    }
+  }
+
+  // ---- the room snows while the film does (David, 17 Nov: "Where it snows on the film, snows in the room"): from the
+  // street to the brass doors (film 0-24 s), flakes fall through the room between you and the wall, faint in the dark,
+  // bright where they cross the projector's beam; near ones large and soft, far ones small. The film's clock sets it:
+  // paused, they hang; scrolled away, they go.
+  const snow = room.querySelector('.snow'), sx = snow.getContext('2d');
+  const SNOW = [[0, 24.0]];   // when it snows in the film (s)
+  const smooth = (a, b, x) => { const t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
+  const snowAt = t => Math.max(0, ...SNOW.map(([a, b]) => (a <= 0 ? 1 : smooth(a - 0.5, a + 1.2, t)) * (1 - smooth(b - 1.5, b + 1.0, t))));
+  const sprite = (() => { const c = document.createElement('canvas'); c.width = c.height = 64; const g = c.getContext('2d'), r = g.createRadialGradient(32, 32, 0, 32, 32, 32);
+    r.addColorStop(0, 'rgba(255,252,246,1)'); r.addColorStop(0.35, 'rgba(255,250,242,.75)'); r.addColorStop(1, 'rgba(255,248,238,0)'); g.fillStyle = r; g.fillRect(0, 0, 64, 64); return c; })();
+  const FL = []; const NF = () => (DEV === 'phone' ? 220 : 420);
+  const flake = (top) => { const z = Math.pow(Math.random(), 0.7); return { x: Math.random(), y: top ? -0.05 - Math.random() * 0.1 : Math.random(), z,
+    s: 0.55 + (1 - z) * (1 - z) * 2.1, v: 0.14 + (1 - z) * 0.38, w: 0.6 + Math.random() * 1.2, ph: Math.random() * 6.28, sw: 0.002 + (1 - z) * 0.004 }; };   // fine and fast (David, 17 Nov)
+  let snowLast = 0, snowK = 0;
+  function drawSnow(ts) {
+    const dt = Math.min(0.05, (ts - (snowLast || ts)) / 1000); snowLast = ts;
+    const want = snowAt(film.currentTime || 0); snowK += (want - snowK) * Math.min(1, dt * 3);
+    const W = snow.width, H = snow.height, b = DUST.box; sx.clearRect(0, 0, W, H);
+    if (snowK < 0.005 || !b) return;
+    while (FL.length < NF()) FL.push(flake(false));
+    const run = !film.paused, k = W / b.vw;
+    for (const f of FL) {
+      if (run) { f.y += f.v * dt; f.ph += f.w * dt; if (f.y > 1.05) Object.assign(f, flake(true)); }
+      const x = (f.x + Math.sin(f.ph) * f.sw) * b.vw, y = f.y * b.vh;
+      // lit where the beam crosses it: inside the wedge from the top edge down to the picture, brightest near the picture
+      const wl = -0.15 * b.vw + (b.x0 + 0.15 * b.vw) * Math.min(1, y / b.y1), wr = 1.15 * b.vw + (b.x1 - 1.15 * b.vw) * Math.min(1, y / b.y1);
+      const inBeam = y <= b.y1 && x >= wl && x <= wr ? 0.55 + 0.45 * (y / b.y1) : 0;
+      const a = snowK * (0.22 + 0.75 * inBeam) * (0.6 + 0.4 * (1 - f.z));
+      const r = f.s * k * (1 + (1 - f.z) * 0.25);
+      sx.globalAlpha = Math.min(1, a); sx.drawImage(sprite, x * k - r, y * k - r, r * 2, r * 2);
     }
   }
 
@@ -111,7 +146,7 @@
       const y = c * STEP; if (Math.abs(scrollY - y) > 2 && !autoScroll) { autoScroll = true; scrollTo({ top: y, behavior: 'smooth' }); setTimeout(() => { autoScroll = false; }, 900); }
     }
     room.classList.toggle('lit', !film.paused);
-    drawDust(ts); requestAnimationFrame(frame);
+    drawDust(ts); if (!reduce) drawSnow(ts); requestAnimationFrame(frame);
   }
   let settle = 0;
   addEventListener('scroll', () => {
