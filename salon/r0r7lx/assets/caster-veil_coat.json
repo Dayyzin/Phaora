@@ -1,0 +1,18 @@
+{
+ "vertices": 15164,
+ "triangles": 29456,
+ "index": "u16",
+ "bounds": [
+  [
+   -0.15870000422000885,
+   0.9624000191688538,
+   -0.13500000536441803
+  ],
+  [
+   0.15410000085830688,
+   1.5925999879837036,
+   0.13500000536441803
+  ]
+ ],
+ "source": "assets/room/veil_coat.webp silhouette, a soft volume (build_room.py)"
+}

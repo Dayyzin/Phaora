@@ -1,0 +1,18 @@
+{
+ "vertices": 26930,
+ "triangles": 52432,
+ "index": "u16",
+ "bounds": [
+  [
+   -0.2874999940395355,
+   0.9624000191688538,
+   -0.13500000536441803
+  ],
+  [
+   0.28290000557899475,
+   1.5925999879837036,
+   0.13500000536441803
+  ]
+ ],
+ "source": "assets/room/muse_bomber.webp silhouette, a soft volume (build_room.py)"
+}
