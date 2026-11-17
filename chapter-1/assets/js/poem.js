@@ -98,10 +98,14 @@
   let sec = 0, userAt = -1e9, seeking = false, autoScroll = false;
   const user = () => { userAt = performance.now(); };
   ['wheel', 'touchstart', 'keydown'].forEach(e => addEventListener(e, ev => { if (!(ev.target.closest && ev.target.closest('.ctl'))) user(); }, { passive: true }));
-  function frame(ts) {
-    const t = film.currentTime || 0, k = sectionAt(t), c = cueAt(t);
+  function sync() {   // the words, the chapter and the pins, from the film's time (also on its own time events, so a busy
+    const t = film.currentTime || 0, k = sectionAt(t), c = cueAt(t);   // page never lets the words fall behind the voice)
     if (k !== sec) { sec = k; roomTo(k); }
-    showSec(k); showCue(c);
+    showSec(k); showCue(c); return c;
+  }
+  ['timeupdate', 'seeked'].forEach(e => film.addEventListener(e, sync));
+  function frame(ts) {
+    const c = sync();
     // the page follows the film, unless a hand is on it
     if (c >= 0 && performance.now() - userAt > 1500 && !seeking) {
       const y = c * STEP; if (Math.abs(scrollY - y) > 2 && !autoScroll) { autoScroll = true; scrollTo({ top: y, behavior: 'smooth' }); setTimeout(() => { autoScroll = false; }, 900); }
