@@ -1,7 +1,7 @@
 // Chapter I site (David, 14 Nov: the pin room is the catalogue's front door): chapter2's room.js, its scene, light, mirrored
 // pin walls, pin waves and dissolve unchanged. Only these, each marked "Chapter I site:" where it is:
 //   - CASTER_FIT takes the fits of the casters build_room.py makes (window.CASTER_FIT_EXTRA), for the rest of the line;
-//   - the links under the specs are the piece's own (PIECES[i].links), not chapter2's cart and pre-sale;
+//   - the links under the specs are the piece's own (PIECES[i].links), not chapter2's cart and pre-order;
 //   - the intro writes the page's own line (window.INTRO_LINES_SITE), one line centred where the three were;
 //   - on a computer the name and its line sit window.NAME_CLEAR frame px higher, clear of the piece.
 // The room: the browsing page of Chapter I, one piece per scroll.
@@ -148,7 +148,7 @@ ${LIFT.white ? `
         float nearDim = 1.0 - 0.3 * smoothstep(1.0, 4.5, vLW.z);
         outgoingLight = mix(outgoingLight, max(outgoingLight, nearDim * liftG * diffuseColor.rgb / diffuseColor.g), fl);
         if (dropZ > 0.0 && fl > 0.5) {   // the phone's step down (David: "Use this one"): a lit lip, its short face in soft shade,
-          // the lower floor a touch darker and easing back; ADD TO CART and PRE-SALE are cut into the lower floor under it
+          // the lower floor a touch darker and easing back; ADD TO CART and PRE-ORDER are cut into the lower floor under it
           float dz = vLW.z - dropZ;
           float lip = smoothstep(-0.004, 0.0, dz) * (1.0 - smoothstep(0.004, 0.008, dz));
           float riser = smoothstep(0.006, 0.01, dz) * (1.0 - smoothstep(0.10, 0.12, dz));
@@ -1374,7 +1374,7 @@ function layout() {
   { const btn = document.getElementById('btn');
     if (phone) { const v = covePt(0, thAt(SPEC_Y_PH[4]), 0).project(cam); btn.style.top = Math.round((1 - v.y) / 2 * cssH + 20 + 60 + PH_STEP) + 'px'; }
     else btn.style.top = ''; }
-  // the step: 25 px under where the buttons sat; ADD TO CART and PRE-SALE under it, where David drew them; phone only
+  // the step: 25 px under where the buttons sat; ADD TO CART and PRE-ORDER under it, where David drew them; phone only
   if (phone) { const b = document.getElementById('btn');
     const zAt = (yPx) => { const d = new THREE.Vector3(0, 1 - 2 * yPx / cssH, 0.5).unproject(cam).sub(cam.position).normalize(); return cam.position.z + d.z * (-cam.position.y / d.y); };
     DROPZ.value = zAt(b.offsetTop - 25); } else DROPZ.value = -1;   // the lip 25 px over ADD TO CART (David's lines)
