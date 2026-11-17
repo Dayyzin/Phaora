@@ -44,7 +44,7 @@ them on their parts. After the last stop the camera pulls back and the piece's w
   (Öitava at USD 3,800). Lustre shows none. Nothing reads PRICE ON REQUEST.
 - No date anywhere: the register's "opens Christmas Eve" lines are left out. The book's story keeps its Christmas Eve.
 - The register sends nothing except on phaora.com (canon's route); here it plays the reward and stores nothing.
-- Buy buttons lead to the register ("Keep a seat"), as REGISTER.md has it before the pre-sale opens.
+- Buy buttons lead to the register ("Keep a seat"), as REGISTER.md has it before the pre-order opens.
 - Itaoca's views are the 1600 previews with the PÖ on the flap only (the older line picture had it all over).
 - The site serves images up to 7680 wide; the 16K master stays in its slot as the source.
 - Unconfirmed care lines and legal pages carry a preview-only label or a "For David" line; no legal terms invented.

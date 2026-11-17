@@ -589,7 +589,7 @@ SAME = {'veil_coat': ['muse_bomber', 'opera_gloves']}
 
 
 # ---------------------------------------------------------------- prices (David, 14 Nov: "real prices on every piece
-# except Lustre", from pricing/CHAPTER-I-PRICING.md, Öitava at USD 3,800). (launch, pre-sale) as that file's summaries have
+# except Lustre", from pricing/CHAPTER-I-PRICING.md, Öitava at USD 3,800). (launch, pre-order) as that file's summaries have
 # them; Heliodora and Cantilena are David's earlier approved pairs. Lustre has none: a house piece, not for sale.
 PRICES = {
  'muse_allover': ('USD 400', 'USD 345'), 'cantilena': ('USD 595', 'USD 495'),

@@ -1,11 +1,11 @@
 {
- "about": "Every new piece's price, from new-pieces-2026-11/BRIEF.md. Each is a draft until its quote is in and David says so; approved ones carry \"approved\" (the Muse all-over, 11 Nov). presale null: none set (the PRE-SALE button shows the price). price null: from its quote only (shown as a dash).",
+ "about": "Every new piece's price, from new-pieces-2026-11/BRIEF.md. Each is a draft until its quote is in and David says so; approved ones carry \"approved\" (the Muse all-over, 11 Nov). presale null: none set (the PRE-ORDER button shows the price). price null: from its quote only (shown as a dash).",
  "prices": {
   "muse_allover": {
    "price": "USD 400",
    "presale": "USD 345",
    "draft": false,
-   "source": "BRIEF: 'USD 400, pre-sale USD 345 (proposed)'",
+   "source": "BRIEF: 'USD 400, pre-order USD 345 (proposed)'",
    "approved": "David, 11 Nov (583af4d6)"
   },
   "cantilena": {
@@ -73,7 +73,7 @@
    "price": "USD 450",
    "presale": null,
    "draft": true,
-   "source": "BRIEF: about USD 450, from the maker's quote; a pre-sale has to reach the run"
+   "source": "BRIEF: about USD 450, from the maker's quote; a pre-order has to reach the run"
   },
   "pendant": {
    "price": "USD 350",

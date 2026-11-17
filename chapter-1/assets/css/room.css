@@ -65,10 +65,10 @@ body.phone #cat .nm.long{font-size:9px;letter-spacing:.04em;white-space:nowrap} 
 body.phone #name .t{font-size:24px}
 body.phone #name .t.long{font-size:17px;letter-spacing:.24em;padding-left:.24em}   /* a long name (THE STAR IN SHADES) inside a phone's width */
 body.phone #btn{left:0;right:0;text-align:center;padding-left:.3em;line-height:30px}
-/* phone: ADD TO CART and PRE-SALE cut into the step's face (room.js draws the step round them) */
+/* phone: ADD TO CART and PRE-ORDER cut into the step's face (room.js draws the step round them) */
 body.phone #btn{color:#56565a}body.phone #btn a{text-shadow:0 1px 0 rgba(255,255,255,.8),0 -1px 0 rgba(60,52,40,.32)}
-/* the sizes PRE-SALE and ADD TO CART open (S M L XL XXL, CONFIRM), engraved like the buttons (David: "engrave them too") */
-/* phone: the three rows on the step's face, packed as David traced them: ADD TO CART, PRE-SALE, the sizes */
+/* the sizes PRE-ORDER and ADD TO CART open (S M L XL XXL, CONFIRM), engraved like the buttons (David: "engrave them too") */
+/* phone: the three rows on the step's face, packed as David traced them: ADD TO CART, PRE-ORDER, the sizes */
 body.phone #btn{line-height:20px}body.phone #btn .sizepop.below{margin-top:-8px}
 #btn .sizepop{color:#56565a}#btn .sizepop button,#btn .sizepop i{text-shadow:0 1px 0 rgba(255,255,255,.8),0 -1px 0 rgba(60,52,40,.32)}
 

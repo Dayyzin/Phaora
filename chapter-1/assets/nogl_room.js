@@ -142,7 +142,7 @@
     if (!phone) { S = Math.max(vw / FW, vh / FH); offY = (vh - FH * S) * 0.5; }
     else {   // the room's phone fit (room.js phoneFit): the frame is captured at its tightest (390x694, the room scaled to
       // K.pscale) and scaled up as far as the room itself would be, while the name stays clear of the logo and ADD TO CART,
-      // PRE-SALE and the size row under them end 120 px above the visible bottom. The name and buttons keep their own size.
+      // PRE-ORDER and the size row under them end 120 px above the visible bottom. The name and buttons keep their own size.
       const vis = visibleH(), nF = parseFloat(K.nameTop), bF = parseFloat(K.btnTop) - 100, nH = 52, BLK = 60 + 38;   // bF: where the buttons sat before the step (room.js fits against it; the step's rows lie under it, as David placed them)
       const Sc = Math.max(vw / FW, vh / FH), St = (vw / FW) / (K.pscale || 1), Smax = (vis - PH_CLEAR - PH_NAME_MIN - BLK - nH) / (bF - nF - nH);
       S = Math.max(Sc, Math.min(St, Smax));
@@ -178,8 +178,8 @@
     if (nmEl.textContent !== pc.name) { nmEl.textContent = pc.name; subEl.innerHTML = pc.sub; nmEl.classList.toggle('long', pc.name.length > 10); }
     if (stage.dataset.piece !== pc.id) { stage.dataset.piece = pc.id; document.querySelectorAll('#btn a').forEach(a => { a.dataset.piece = pc.id;
       // David: "Add to cart and next to it the price, bottom you leave presale all centered"
-      a.textContent = a.dataset.act === 'presale' ? 'PRE-SALE · ' + (pc.presale || pc.price) : 'ADD TO CART · ' + pc.price;
-      // no pre-sale price of its own (presale is the price): one line, the pre-sale (the orchestrator, 11 Nov)
+      a.textContent = a.dataset.act === 'presale' ? 'PRE-ORDER · ' + (pc.presale || pc.price) : 'ADD TO CART · ' + pc.price;
+      // no pre-order price of its own (presale is the price): one line, the pre-order (the orchestrator, 11 Nov)
       if (a.dataset.act === 'cart') a.style.display = pc.presale && pc.presale !== pc.price ? '' : 'none'; }); } }   // the piece's own prices (capture.html PIECES)
   function showRest(i, a) { restEl.forEach((g, q) => op(g, q === i ? (a === undefined ? 1 : a) : 0)); }
   // the turn's first frames, decoded while the piece stands, for either way it may turn

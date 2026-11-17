@@ -483,11 +483,11 @@ def piece_page(p, prev, nxt):
     if enq:
         buy = ''
     else:
-        pr = (f'<span class="nw">{E(price)}</span>' + (f' <span class="pre">pre-sale <span class="nw">{E(presale)}</span></span>' if presale else '')) if price else ''
+        pr = (f'<span class="nw">{E(price)}</span>' + (f' <span class="pre">pre-order <span class="nw">{E(presale)}</span></span>' if presale else '')) if price else ''
         buy = (f'{f"<div class=sizes role=group aria-label=Size>{sizes}</div>" if sizes else ""}{f"<p class=price>{pr}</p>" if pr else ""}<p class="mto">Made to order.</p>'
-               f'<a class="cta" href="{REGISTER}">Keep a seat</a><p class="cta-note">The register sees the pre-sale first.</p>')
+               f'<a class="cta" href="{REGISTER}">Keep a seat</a><p class="cta-note">The register sees the pre-order first.</p>')
     policy = C.POLICY_KNIT if p['policy'] == 'knit' else C.POLICY_MADE
-    more = ('' if enq else f'<dt>Pre-sale</dt><dd>{E(C.POLICY_PRESALE)}</dd><dt>Returns</dt><dd>{E(policy)}</dd>') + \
+    more = ('' if enq else f'<dt>Pre-order</dt><dd>{E(C.POLICY_PRESALE)}</dd><dt>Returns</dt><dd>{E(policy)}</dd>') + \
         f'<dt>Care</dt><dd>{E(C.CARE[p["care"]])} <a href="care.html">Care</a></dd><dt>Size</dt><dd><a href="sizes.html">The measurements</a></dd>'
     vlist = [(v, s) for v, s in views.items()]
     gal = ''.join(f'<div class="gv{" first" if i == 0 else ""}">{s.img(sizes="(min-width: 821px) 50vw, 100vw", loading="eager" if i == 0 else "lazy")}<p class="cap">{E(v.replace("-", " "))}</p></div>' for i, (v, s) in enumerate(vlist))
@@ -771,7 +771,7 @@ def catalogue_home():
                 if J.get('world'): A['world'] = J['world']
             price, presale = price_of(pid)
             det = [('Size', ' · '.join(q['sizes']))] if q['sizes'] else []
-            if not q.get('nosale'): det += [('Pre-sale', C.POLICY_PRESALE), ('Returns', C.POLICY_KNIT if q['policy'] == 'knit' else C.POLICY_MADE)]
+            if not q.get('nosale'): det += [('Pre-order', C.POLICY_PRESALE), ('Returns', C.POLICY_KNIT if q['policy'] == 'knit' else C.POLICY_MADE)]
             A['details'] = det + [('Care', C.CARE[q['care']])]
             A['prev'], A['next'] = order[i - 1]['page'], order[(i + 1) % len(order)]['page']
             acts[pg] = A
@@ -781,7 +781,7 @@ def catalogue_home():
 <html lang="en" id="top" class="stage"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{SITE_TITLE} · Chapter I</title>
-<meta name="description" content="A cinema in knit, leather and silk. PHAÖRA Chapter I, made to order on pre-sale.">
+<meta name="description" content="A cinema in knit, leather and silk. PHAÖRA Chapter I, made to order, available to pre-order.">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Jost:wght@300;400&display=swap" rel="stylesheet">
@@ -857,7 +857,7 @@ def catalogue_home():
 <html lang="en" id="top"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{SITE_TITLE} · Chapter I</title>
-<meta name="description" content="A cinema in knit, leather and silk. PHAÖRA Chapter I, made to order on pre-sale.">
+<meta name="description" content="A cinema in knit, leather and silk. PHAÖRA Chapter I, made to order, available to pre-order.">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Jost:wght@300;400&display=swap" rel="stylesheet">
@@ -916,7 +916,7 @@ def home(fronts):
  </section>
  <section class="keep"><p class="eyebrow">The register</p>{fa('tonight the front row is full but for one.', 'h2')}<a class="cta" href="{REGISTER}">Keep your seat</a></section>
 </main>'''
-    page('index.html', '', 'A cinema in knit, leather and silk. PHAÖRA Chapter I, made to order on pre-sale.', body, theme='dark', scripts=['assets/js/opening.js', 'assets/js/turn.js'], here='index.html', bodycls='homepage')
+    page('index.html', '', 'A cinema in knit, leather and silk. PHAÖRA Chapter I, made to order, available to pre-order.', body, theme='dark', scripts=['assets/js/opening.js', 'assets/js/turn.js'], here='index.html', bodycls='homepage')
 
 
 def line_page(fronts):
@@ -1118,12 +1118,12 @@ def other_pages():
         ('Outerwear and silk', ['Gelosia, Ödara and Alvor come in XS, S, M, L and XL.', for_david('their measurements, once the patterns are graded')]),
         ('The gloves', ['Ritornelo comes in S, M and L.', for_david('the hand measurements for each size')]),
     ], 'PHAÖRA Chapter I: measurements for the knitwear.', lede='Measured flat, in centimetres. The block is cut at size M; the other sizes follow when the block is graded.')
-    text_page('returns.html', 'Pre-sale and returns', 'Chapter I', [
-        ('The pre-sale', [C.POLICY_PRESALE]),
+    text_page('returns.html', 'Pre-order and returns', 'Chapter I', [
+        ('The pre-order', [C.POLICY_PRESALE]),
         ('The knitwear', [C.POLICY_KNIT]),
         ('Every other piece', [C.POLICY_MADE]),
         ('Shipping', [for_david('the stated ship window for every pre-order, and the countries shipped to (counsel to confirm the wording)')]),
-    ], 'PHAÖRA Chapter I: the pre-sale, exchanges and shipping.')
+    ], 'PHAÖRA Chapter I: the pre-order, exchanges and shipping.')
     text_page('contact.html', 'Contact', 'PHAÖRA', [
         ('Write to the house', [for_david('the address the house answers from'), 'For an order, a size, or a piece you would like to see closer.']),
         ('Press', [for_david('the press contact')]),
