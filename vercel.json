@@ -2,6 +2,11 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
     {
+      "source": "/salon/r0r7lx/poem.html",
+      "destination": "/salon/r0r7lx/poem",
+      "permanent": false
+    },
+    {
       "source": "/drop",
       "destination": "/",
       "permanent": true
@@ -78,6 +83,10 @@
     }
   ],
   "rewrites": [
+    {
+      "source": "/salon/r0r7lx/poem",
+      "destination": "/salon/r0r7lx/poem.html"
+    },
     {
       "source": "/blog",
       "destination": "https://crm.phaora.com/blog"
