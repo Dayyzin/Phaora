@@ -1,223 +1,155 @@
-// The poem in the room (SCENES.md). The room is the stage's own (room.js, captured per chapter with that chapter's pins),
-// dimmed to near-cinema. Each chapter's scene plays as a projection on its back wall and cove (baked by build_poem.py,
-// the curve in it). Scroll: a chapter's first step brings its picture up and its name; each step after reveals one line,
-// carved in light over the lower part of the picture. Between chapters: the projector clicks, the picture cuts to dark,
-// the pins ripple and re-form into the next chapter's figure (the room's own morph), and the next scene fades up.
+// The poem in the room (SCENES.md). The projector plays the film with its voice (David, 17 Nov: "Put this instead.
+// Match the poem writing with the dialogue"); the words on the wall are the lines the voice reads, each up while it is
+// spoken. The film is the clock: its time sets the line, the chapter's name and the pins, which re-form into each
+// chapter's motif as the film crosses into it. It plays by itself; a scroll takes the lead (the film goes to that line
+// and plays on from there). A computer runs the room itself (room.js, live) under the projector's light; a phone plays
+// the room baked into the film.
 (() => {
-  const D = JSON.parse(document.getElementById('poem').textContent), C = D.chapters;
-  const room = document.querySelector('.room'), dark = room.querySelector('.dark'), morph = room.querySelector('.morph');
-  const vids = [...room.querySelectorAll('.scene')], beam = room.querySelector('.beam'), dust = room.querySelector('.dust');
+  const D = JSON.parse(document.getElementById('poem').textContent), S = D.sections, Q = D.cues;
+  const room = document.querySelector('.room'), dark = room.querySelector('.dark'), film = room.querySelector('.film');
+  const beam = room.querySelector('.beam'), dust = room.querySelector('.dust');
   const text = document.querySelector('.poemtext'), chapEl = text.querySelector('.chap'), sub = text.querySelector('.sub');
   const track = document.querySelector('.track');
   const devOf = () => (innerWidth / innerHeight < 1 ? 'phone' : 'desktop');
   let DEV = devOf();
-  // a computer runs the room itself (room.js, live: its pins morph from one chapter's motif to the next as on the home
-  // page) and lays only the projector's light on it; a phone, or a computer without WebGL, plays the baked room
+  const filmSrc = () => DEV === 'desktop' ? 'media/poem/film-desktop-light.mp4' : 'media/poem/film-phone.mp4';
+  const darkSrc = k => `media/poem/${S[k].id}-${DEV}.webp`;
+  const sectionAt = t => { let k = 0; S.forEach((s, i) => { if (t >= s.from) k = i; }); return k; };
+  const cueAt = t => { for (let i = Q.length - 1; i >= 0; i--) { const q = Q[i], next = Q[i + 1]; if (t >= q.from - 0.15 && t < Math.min(q.to + 1.4, next ? next.from - 0.15 : 1e9)) return i; } return -1; };
+
+  // ---- the live room (a computer with WebGL): room.js itself, dimmed; its pins step a chapter as the film turns one
   const glOK = (() => { try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch (e) { return false; } })();
   let LIVE = DEV === 'desktop' && glOK && !(navigator.maxTouchPoints > 0) && !/[?&]baked=1/.test(location.search);
-  let live = null, liveReady = false;
+  let live = null, liveReady = false, liveAt = 0;
   if (LIVE) {
     live = document.createElement('iframe'); live.className = 'live'; live.setAttribute('aria-hidden', 'true'); live.tabIndex = -1;
     live.src = 'poem-room.html?empty=1&intro=0&dissolve=1';   // dissolve=1: no turntable to fetch (the room is empty)
     room.insertBefore(live, room.firstChild); room.classList.add('is-live');
     const t0 = Date.now(), wait = setInterval(() => {
       let ok = false; try { ok = live.contentWindow.ready === true; } catch (e) {}
-      if (ok) { clearInterval(wait); liveReady = true; room.classList.add('live-on'); }
-      else if (Date.now() - t0 > 15000) { clearInterval(wait); toBaked(); }
+      if (ok) { clearInterval(wait); liveReady = true; room.classList.add('live-on'); roomTo(sec, true); }
+      else if (Date.now() - t0 > 15000) { clearInterval(wait); LIVE = false; live.remove(); room.classList.remove('is-live'); }
     }, 120);
   }
-  function toBaked() {   // the live room could not start: the baked one, from where we are
-    LIVE = false; if (live) live.remove(); room.classList.remove('is-live', 'live-on');
-    if (cur >= 0) { dark.src = src(cur, 'dark'); const v = vids[front]; v.src = src(cur, 'scene'); v.load(); v.play().catch(() => {}); }
-    back().removeAttribute('src');
+  let liftT = 0;
+  function roomTo(k, quiet) {   // the pins (or the baked room's still) to chapter k
+    if (DEV === 'desktop') {
+      if (LIVE && liveReady) {
+        if (k === liveAt) return;
+        try { const w = live.contentWindow, d = k > liveAt ? 1 : -1; for (let j = liveAt; j !== k; j += d) w.step(d); } catch (e) {}
+        liveAt = k; if (!quiet) { room.classList.add('lift'); clearTimeout(liftT); liftT = setTimeout(() => room.classList.remove('lift'), 3300); }
+      } else dark.src = darkSrc(k);
+    }
   }
-  const liveStep = (from, to) => { try { const w = live.contentWindow, d = to > from ? 1 : -1; for (let k = from; k !== to; k += d) w.step(d); return true; } catch (e) { return false; } };
-  const src = (i, k) => k === 'scene' && LIVE ? `media/poem/${C[i].id}-${DEV}-light.mp4` : k === 'dark' ? `media/poem/${C[i].id}-${DEV}.webp` : k === 'morph' ? `media/poem/morph-${C[i].id}-${C[i + 1].id}-${DEV}.mp4`
-    : `media/poem/${C[i].id}-${DEV}.mp4`;
-  const sleep = ms => new Promise(r => setTimeout(r, ms));
-  const ready = v => new Promise(r => { if (v.readyState >= 3) return r(); const f = () => { v.removeEventListener('canplay', f); r(); }; v.addEventListener('canplay', f); setTimeout(r, 4000); });
-  const imgReady = (s) => new Promise(r => { const i = new Image(); i.onload = i.onerror = () => r(); i.src = s; });
 
-  // ---- the steps: per chapter, its name (the picture comes up), then one line a step
-  const steps = [];
-  C.forEach((c, ci) => { steps.push({ ci, si: -1, li: -1 }); c.stanzas.forEach((st, si) => st.forEach((_, li) => steps.push({ ci, si, li }))); });
-  const firstStep = ci => steps.findIndex(s => s.ci === ci);
+  // ---- the steps: one a line of the voice; scrolling to one takes the film there
   let STEP = 0;
   const size = () => { STEP = Math.round(innerHeight * 0.5); track.style.paddingBottom = Math.max(0, innerHeight - STEP) + 'px';
-    if (track.children.length !== steps.length) { track.innerHTML = ''; steps.forEach(() => { const d = document.createElement('div'); d.className = 'snap'; track.appendChild(d); }); }
+    if (track.children.length !== Q.length) { track.innerHTML = ''; Q.forEach(() => { const d = document.createElement('div'); d.className = 'snap'; track.appendChild(d); }); }
     [...track.children].forEach(d => { d.style.height = STEP + 'px'; }); };
 
-  // ---- where the projection falls on this screen (the room is drawn to cover the window, as the stage is)
+  // ---- where the picture falls on this screen: the words under it, overlapping its lower edge a little
   function place() {
     const [W, H] = D.size[DEV], r = D.rect[DEV], vw = innerWidth, vh = innerHeight, s = Math.max(vw / W, vh / H);
     const ox = (vw - W * s) / 2, oy = (vh - H * s) / 2, X = x => ox + x * W * s, Y = y => oy + y * H * s;
     const x0 = X(r[0]), x1 = X(r[2]), y0 = Y(r[1]), y1 = Y(r[3]);
-    // the lines sit under the picture, centred on it, on the cove (David, 15 Nov: below the projection, overlapping it a bit)
     const tw = Math.min(DEV === 'phone' ? vw * 0.9 : (x1 - x0) * 0.6, 640);
     text.style.setProperty('--tx', ((vw - tw) / 2) + 'px'); text.style.setProperty('--tw', tw + 'px');
-    text.style.setProperty('--ty', (y1 - (DEV === 'phone' ? 30 : 46)) + 'px');   // the name and first line over the picture's lower edge (David: "overlap a bit") text.style.setProperty('--tb', 'auto');
+    text.style.setProperty('--ty', (y1 - (DEV === 'phone' ? 30 : 46)) + 'px'); text.style.setProperty('--tb', 'auto');
     beam.style.setProperty('--b0', (-0.15 * vw) + 'px'); beam.style.setProperty('--b1', (1.15 * vw) + 'px');
     beam.style.setProperty('--r0', x0 + 'px'); beam.style.setProperty('--r2', x1 + 'px'); beam.style.setProperty('--rb', y1 + 'px');
     DUST.box = { x0, x1, y0, y1, vw, vh };
     dust.width = Math.round(vw * Math.min(2, devicePixelRatio || 1)); dust.height = Math.round(vh * Math.min(2, devicePixelRatio || 1));
   }
 
-  // ---- dust in the beam: a few motes drifting through the light, only while the projector runs
+  // ---- dust in the beam, only while the projector runs
   const DUST = { box: null, p: [] };
   for (let i = 0; i < 70; i++) DUST.p.push({ u: Math.random(), v: Math.random(), s: 0.4 + Math.random() * 1.1, a: Math.random() * 6.28, w: 0.3 + Math.random() * 0.9,
     du: (Math.random() - 0.5) * 0.004, dv: (Math.random() - 0.3) * 0.003 });
-  const dx = dust.getContext('2d');
-  let lit = 0, litT = 0;
+  const dx = dust.getContext('2d'); let lit = 0;
   function drawDust(t) {
     const b = DUST.box; if (!b) return;
     lit += ((room.classList.contains('lit') ? 1 : 0) - lit) * 0.06;
     const k = dust.width / b.vw; dx.clearRect(0, 0, dust.width, dust.height); if (lit < 0.01) return;
     for (const p of DUST.p) {
       p.u += p.du / 60; p.v += p.dv / 60; if (p.u < 0) p.u += 1; if (p.u > 1) p.u -= 1; if (p.v < 0) p.v += 1; if (p.v > 1) p.v -= 1;
-      // a mote at depth v: high and wide near you, closing in on the picture as it goes
       const y = b.y1 * p.v * 0.98, wl = -0.15 * b.vw + (b.x0 + 0.15 * b.vw) * (y / b.y1), wr = 1.15 * b.vw + (b.x1 - 1.15 * b.vw) * (y / b.y1);
       const x = wl + (wr - wl) * p.u, tw = 0.5 + 0.5 * Math.sin(t * 0.0012 * p.w + p.a);
       dx.globalAlpha = lit * 0.32 * tw * (1 - 0.6 * p.v); dx.fillStyle = '#fff3dc';
       dx.beginPath(); dx.arc(x * k, y * k, p.s * k, 0, 6.283); dx.fill();
     }
   }
-  const loop = t => { drawDust(t); requestAnimationFrame(loop); }; requestAnimationFrame(loop);
 
-  // ---- the click: a projector's gate, heard once a gesture has let the page make a sound
-  let AC = null;
-  const wake = () => { if (AC) return; try { AC = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) {} };
-  ['pointerdown', 'keydown', 'touchend'].forEach(e => addEventListener(e, wake, { once: true, passive: true }));
-  function click() {
-    room.classList.remove('click'); void room.offsetWidth; room.classList.add('click');
-    if (!AC) return; const t = AC.currentTime, n = Math.round(AC.sampleRate * 0.035), buf = AC.createBuffer(1, n, AC.sampleRate), d = buf.getChannelData(0);
-    for (let i = 0; i < n; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / n, 3);
-    const s = AC.createBufferSource(), f = AC.createBiquadFilter(), g = AC.createGain(); s.buffer = buf; f.type = 'bandpass'; f.frequency.value = 2400; f.Q.value = 1.4;
-    g.gain.setValueAtTime(0.22, t); s.connect(f).connect(g).connect(AC.destination); s.start(t);
+  // ---- the words: one cue up at a time, the chapter's name above it
+  const lines = Q.map((q, i) => { const p = document.createElement('p'); p.className = 'st gone'; p.dataset.i = i;
+    p.innerHTML = q.lines.map(l => `<span class="l">${l}</span>`).join(''); sub.appendChild(p); return p; });
+  let shownCue = -2, shownSec = -1;
+  function showCue(i) {
+    if (i === shownCue) return; shownCue = i;
+    lines.forEach((p, j) => { const on = j === i; p.classList.toggle('gone', !on); [...p.children].forEach(l => l.classList.toggle('on', on)); });
   }
-
-  // ---- the lines
-  let textCh = -1, textSt = -2;
-  function showText(s) {
-    const c = C[s.ci];
-    if (textCh !== s.ci) {
-      textCh = s.ci; textSt = -2; sub.innerHTML = '';
-      chapEl.querySelector('.n').textContent = c.num; chapEl.querySelector('.t').textContent = c.title;
-      c.stanzas.forEach((st, si) => { const p = document.createElement('p'); p.className = 'st gone'; p.dataset.si = si;
-        p.innerHTML = st.map(l => `<span class="l">${l}</span>`).join(''); sub.appendChild(p); });
-    }
-    chapEl.classList.add('on');
-    [...sub.children].forEach(p => { const si = +p.dataset.si; p.classList.toggle('gone', si !== s.si);
-      [...p.children].forEach((l, li) => l.classList.toggle('on', si === s.si && li <= s.li)); });
-  }
-  function hideText() { chapEl.classList.remove('on'); [...sub.children].forEach(p => p.classList.add('gone')); }
-
-  // ---- the projector
-  let cur = -1, busy = false, want = null, front = 0, first = true;
-  const back = () => vids[1 - front];
-  function preload(i) {   // the next chapter's picture and its dark room, ready before it is asked for
-    if (i < 0 || i >= C.length) return; const v = back(), s = src(i, 'scene');
-    if (!v.src.endsWith(s)) { v.src = s; v.load(); }
-    imgReady(src(i, 'dark'));
-    if (i - 1 >= 0 && C[i - 1].morph && !morph.src.endsWith(src(i - 1, 'morph'))) { morph.src = src(i - 1, 'morph'); morph.load(); }
-  }
-  async function up(i) {   // the scene fades up (the first one flickers on: the projector starting)
-    let v = back(); const s = src(i, 'scene');
-    if (!v.src.endsWith(s)) { v.src = s; v.load(); }
-    await ready(v); try { v.currentTime = 0; } catch (e) {}
-    v.play().catch(() => {});
-    vids[front].classList.remove('on'); vids[front].classList.add('cut'); vids[front].pause();
-    front = 1 - front; v.classList.remove('cut');
-    if (first) { first = false; v.classList.add('flick', 'on'); setTimeout(() => v.classList.remove('flick'), 700); }
-    else v.classList.add('on');
-    room.classList.add('lit');
-  }
-  async function go(to) {
-    if (busy) { want = to; return; }
-    busy = true; want = null;
-    const from = cur;
-    if (from >= 0) {
-      click();   // the cut to dark: the picture is gone in one frame
-      const v = vids[front]; v.classList.add('cut'); v.classList.remove('on'); v.pause(); room.classList.remove('lit'); hideText();
-      await sleep(260);
-      if (LIVE && liveReady) {   // the room's own pins: they travel out of this chapter's motif and settle as the next
-        room.classList.add('lift'); liveStep(from, to);
-        await sleep(3300 + Math.max(0, Math.abs(to - from) - 1) * 2400); room.classList.remove('lift'); await sleep(350);
-      } else if (to === from + 1 && C[from].morph) {   // the pins ripple out of this chapter's figure and re-form as the next
-        const m = src(from, 'morph'); if (!morph.src.endsWith(m)) { morph.src = m; morph.load(); }
-        await ready(morph); try { morph.currentTime = 0; } catch (e) {}
-        morph.playbackRate = 1.25; morph.classList.add('on');
-        await Promise.race([morph.play().then(() => new Promise(r => morph.addEventListener('ended', r, { once: true }))).catch(() => {}), sleep(4200)]);
-        await imgReady(src(to, 'dark')); dark.src = src(to, 'dark'); await sleep(40); morph.classList.remove('on');
-      } else { await imgReady(src(to, 'dark')); dark.src = src(to, 'dark'); await sleep(220); }
-    } else { await imgReady(src(to, 'dark')); dark.src = src(to, 'dark'); }
-    cur = to;
-    await up(to);
-    busy = false;
-    preload(to + 1);
-    onScroll();
-    if (want !== null && want !== cur) go(want);
+  function showSec(k) {
+    if (k === shownSec) return; shownSec = k;
+    chapEl.classList.remove('on');
+    setTimeout(() => { chapEl.querySelector('.n').textContent = S[k].num; chapEl.querySelector('.t').textContent = S[k].title; chapEl.classList.add('on'); }, 350);
   }
 
-  // ---- scroll
-  let lastIdx = -1;
-  function onScroll() {
-    document.body.classList.toggle('scrolled', scrollY > 8);
-    const idx = Math.max(0, Math.min(steps.length - 1, Math.round(scrollY / STEP))), s = steps[idx];
-    if (s.ci !== cur) { go(s.ci); return; }
-    if (busy) return;
-    if (idx !== lastIdx) { lastIdx = idx; showText(s); plan(idx); }
-  }
-  addEventListener('scroll', () => requestAnimationFrame(onScroll), { passive: true });
-
-  // ---- the projector runs by itself (David, 16 Nov: "I like how you can scroll too"): one line at reading pace, a breath
-  // at the end of a stanza, a hold at the end of a chapter, then the next. A scroll, swipe or key takes the lead; the
-  // projector waits, and carries on by itself after a few seconds of nothing. Pause / play in the corner.
-  const IDLE = 6000;
-  let nextAt = 0, userAt = -1e9, paused = matchMedia('(prefers-reduced-motion: reduce)').matches, autoTo = -1;
-  const plain = h => h.replace(/<[^>]+>/g, '').replace(/&[^;]+;/g, 'x');
-  function plan(idx) {   // how long step idx stays before the next comes
-    const s = steps[idx], c = C[s.ci]; let ms;
-    if (s.li < 0) ms = 2600;   // the picture up and the chapter's name
-    else {
-      const st = c.stanzas[s.si]; ms = Math.min(4800, Math.max(2200, 1500 + plain(st[s.li]).length * 42));
-      if (s.li === st.length - 1) ms += 1500;                                  // a stanza ends
-      if (s.li === st.length - 1 && s.si === c.stanzas.length - 1) ms += 3000;  // the chapter ends: hold
-    }
-    nextAt = performance.now() + ms;
-  }
+  // ---- the film is the clock; a hand on the scroll takes the lead
+  let sec = 0, userAt = -1e9, seeking = false, autoScroll = false;
   const user = () => { userAt = performance.now(); };
-  ['wheel', 'touchstart', 'keydown', 'pointerdown'].forEach(e => addEventListener(e, ev => { if (!ev.target.closest || !ev.target.closest('.auto')) user(); }, { passive: true }));
-  function auto() {
-    const now = performance.now();
-    if (!paused && !busy && !document.hidden && now - userAt > IDLE && nextAt && now >= nextAt && cur >= 0) {
-      const idx = Math.round(scrollY / STEP);
-      if (idx < steps.length - 1) { nextAt = 0; autoTo = idx + 1; scrollTo({ top: autoTo * STEP, behavior: 'smooth' }); }
-      else { paused = true; autoBtn.classList.add('paused'); autoBtn.setAttribute('aria-label', 'Play'); }
+  ['wheel', 'touchstart', 'keydown'].forEach(e => addEventListener(e, ev => { if (!(ev.target.closest && ev.target.closest('.ctl'))) user(); }, { passive: true }));
+  function frame(ts) {
+    const t = film.currentTime || 0, k = sectionAt(t), c = cueAt(t);
+    if (k !== sec) { sec = k; roomTo(k); }
+    showSec(k); showCue(c);
+    // the page follows the film, unless a hand is on it
+    if (c >= 0 && performance.now() - userAt > 1500 && !seeking) {
+      const y = c * STEP; if (Math.abs(scrollY - y) > 2 && !autoScroll) { autoScroll = true; scrollTo({ top: y, behavior: 'smooth' }); setTimeout(() => { autoScroll = false; }, 900); }
     }
-    // a hand that scrolled and let go: the projector picks up from the line it is on
-    if (!nextAt && !busy && now - userAt > IDLE && lastIdx >= 0 && Math.abs(scrollY - lastIdx * STEP) < 4) plan(lastIdx);
-    setTimeout(auto, 200);
+    room.classList.toggle('lit', !film.paused);
+    drawDust(ts); requestAnimationFrame(frame);
   }
-  const autoBtn = document.createElement('button'); autoBtn.className = 'auto' + (paused ? ' paused' : ''); autoBtn.type = 'button';
-  autoBtn.setAttribute('aria-label', paused ? 'Play' : 'Pause'); autoBtn.innerHTML = '<i></i><i></i>';
-  autoBtn.addEventListener('click', () => { paused = !paused; autoBtn.classList.toggle('paused', paused); autoBtn.setAttribute('aria-label', paused ? 'Play' : 'Pause');
-    if (!paused) { userAt = -1e9; if (!nextAt) nextAt = performance.now() + 900; } });
-  document.body.appendChild(autoBtn);
-  setTimeout(auto, 200);
-  addEventListener('resize', () => { const d = devOf(); size(); place();
-    if (d !== DEV) { DEV = d; if (cur >= 0) { dark.src = src(cur, 'dark'); const v = vids[front]; v.src = src(cur, 'scene'); v.load(); v.play().catch(() => {}); back().removeAttribute('src'); } }
-    onScroll(); });
-  document.addEventListener('visibilitychange', () => { const v = vids[front]; if (document.hidden) v.pause(); else if (v.classList.contains('on')) v.play().catch(() => {}); });
+  let settle = 0;
+  addEventListener('scroll', () => {
+    document.body.classList.toggle('scrolled', scrollY > 8);
+    if (performance.now() - userAt > 1200) return;   // the page moved for the film, not for a hand
+    clearTimeout(settle); settle = setTimeout(() => {   // the hand let go: the film goes to that line and plays on
+      const i = Math.max(0, Math.min(Q.length - 1, Math.round(scrollY / STEP)));
+      seeking = true; film.currentTime = Math.max(0, Q[i].from - 0.35);
+      if (!userPaused) film.play().catch(() => {});
+      setTimeout(() => { seeking = false; }, 400);
+    }, 220);
+  }, { passive: true });
+
+  // ---- pause / play, and the sound (a browser starts a film silent until it is asked)
+  let userPaused = false;
+  const ctl = document.createElement('div'); ctl.className = 'ctl';
+  ctl.innerHTML = '<button class="snd" type="button" aria-label="Sound on"><span>Sound</span></button><button class="auto" type="button" aria-label="Pause"><i></i><i></i></button>';
+  document.body.appendChild(ctl);
+  const snd = ctl.querySelector('.snd'), pp = ctl.querySelector('.auto');
+  const syncCtl = () => { snd.classList.toggle('on', !film.muted); snd.setAttribute('aria-label', film.muted ? 'Sound on' : 'Sound off');
+    pp.classList.toggle('paused', film.paused); pp.setAttribute('aria-label', film.paused ? 'Play' : 'Pause'); };
+  snd.addEventListener('click', () => { film.muted = !film.muted; if (film.paused && !userPaused) film.play().catch(() => {}); syncCtl(); });
+  pp.addEventListener('click', () => { if (film.paused) { userPaused = false; if (film.ended) film.currentTime = 0; film.play().catch(() => {}); } else { userPaused = true; film.pause(); } syncCtl(); });
+  ['play', 'pause', 'volumechange', 'ended'].forEach(e => film.addEventListener(e, syncCtl));
+  document.addEventListener('visibilitychange', () => { if (document.hidden) film.pause(); else if (!userPaused) film.play().catch(() => {}); });
 
   // ---- the lettering (never typed): David's off-white file, inlined
   fetch('assets/brand/lettering-offwhite.svg').then(r => r.text()).then(t => { const svg = t.replace(/<!--[\s\S]*?-->/g, '')
     .replace(/\s(width|height)="[^"]*"/, '').replace(/\s(width|height)="[^"]*"/, '');
     document.querySelectorAll('.navband .logo').forEach(l => { l.innerHTML = svg; }); }).catch(() => {});
 
+  addEventListener('resize', () => { const d = devOf(); size(); place();
+    if (d !== DEV) { const t = film.currentTime; DEV = d; film.src = filmSrc(); film.currentTime = t; film.play().catch(() => {}); dark.src = darkSrc(sec); } });
+
+  // ---- start: the dark room, then the projector strikes (one flicker), the film running from its first frame
   size(); place();
-  const h = location.hash.slice(1), hc = C.findIndex(c => c.id === h);
-  if (hc > 0) scrollTo(0, firstStep(hc) * STEP);
-  if (LIVE && hc > 0) { const go0 = setInterval(() => { if (liveReady) { clearInterval(go0); liveStep(0, hc); } }, 150); }
-  dark.src = src(hc > 0 ? hc : 0, 'dark');
-  onScroll();
+  room.classList.toggle('baked', DEV === 'phone');
+  dark.src = darkSrc(0);
+  film.muted = true; film.src = filmSrc();
+  const h = location.hash.slice(1), hk = S.findIndex(s => s.id === h);
+  film.addEventListener('loadedmetadata', () => { if (hk > 0) film.currentTime = S[hk].from; }, { once: true });
+  film.addEventListener('playing', () => { if (!film.dataset.struck) { film.dataset.struck = '1'; film.classList.add('flick'); setTimeout(() => film.classList.remove('flick'), 700); } });
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) film.play().catch(() => {}); else { userPaused = true; }
+  syncCtl(); requestAnimationFrame(frame);
 })();

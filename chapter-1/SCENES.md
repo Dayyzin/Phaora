@@ -3,7 +3,31 @@
 `poem.html`: the poem in the room, each chapter's scene thrown onto the back wall and the cove by a projector behind
 the viewer. Every scene is cut from real render pixels already in the house; nothing is painted, patched or generated.
 
-## Chapter → scene → why
+## Now: the film with its voice (David, 17 Nov)
+
+David: "Put this instead. Match the poem writing with the dialogue." The projector plays
+`veil-coat-film_103s_musicVO_v5_sfx.mp4` (here `media/film/film-vo/video.mp4`, 854 x 480, 103.5 s, music, voice, sound)
+through, with its sound, in place of the per-chapter clips below. The words on the wall are the nineteen lines the voice
+reads, in the poem's own spelling, each up while it is spoken (`build_poem.py` CUES, timed off the track). Its chapters,
+by where the voice turns (it reads nothing from III or VII):
+
+| Film | Chapter | The voice reads |
+|---|---|---|
+| 0.0-6.4 | Prologue | There is a cinema in snow / that plays one reel on Christmas Eve. |
+| 6.4-19.7 | I. Snow | when down it came ... tonight. Eight buttons ... mid-calf, black; |
+| 19.7-30.7 | II. The doors | A single mark ... began to glow; the coat walked up ... without a key. |
+| 30.7-38.9 | IV. The front row | The front row's full ... upon its seat: no name, one mark, and waiting there |
+| 38.9-53.5 | V. The kept seat | The count went three ... say the one, The coat sat down ... settled right. |
+| 53.5-69.7 | VI. Reel one | Then on the screen ... happened yet: the screen's light ... the night had met. |
+| 69.7-76.0 | VIII. House lights | The house lights rose, too soon, as they do. |
+| 76.0-87.5 | IX. The morning | the coat hung on the rail ... The coat was kept, all along, for you. |
+| 87.5-103.5 | Coda | Up in the booth ... where there'd been one. Thank you for the pleasure of your company. |
+
+As the film crosses into a chapter, the pins re-form into its motif (the Pins column below) while the picture runs on.
+It plays by itself, silent until Sound is tapped (a browser starts a film without sound); a scroll takes the film to
+that line. The picture is the film's own, so it is no longer 144p: 854 x 480 until the 4K lands.
+
+## Before: chapter → scene → why (the per-chapter clips, replaced by the film above)
 
 `film` is the Chapter I film, "A seat is kept for you" (phaora-ops `marketing/ads/veil-coat-film`,
 `veil-coat-film_christmas_16x9_144p.mp4`, here `media/film/film/video.mp4`); seconds are its own clock. The poem

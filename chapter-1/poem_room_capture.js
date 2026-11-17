@@ -33,8 +33,11 @@ const RUN_END = 4.1;   // room.js: TM1 + 0.35 (the morph's window and the walls 
   const dir = `${out}/${device}`; fs.mkdirSync(dir, { recursive: true });
   const shot = async (path, a, bb, t) => { await p.evaluate(([a, bb, t]) => window.renderRun([a, bb], 1, 1, t), [a, bb, t]); await p.screenshot({ path }); };
   for (const [c, id] of CH) { const f = `${dir}/still-${c}.png`; if (!fs.existsSync(f)) await shot(f, ix(id), ix(id), 0); console.log('still', c); }
-  for (let k = 0; k + 1 < CH.length; k++) {
-    const [ca, a] = CH[k], [cb, bb] = CH[k + 1], d = `${dir}/${ca}-${cb}`; fs.mkdirSync(d, { recursive: true });
+  // POEM_PAIRS=ii-iv,vi-viii captures only those morphs (the film's order skips the chapters it has no voice for)
+  const PAIRS = (process.env.POEM_PAIRS || '').split(',').filter(Boolean).map(x => x.split('-'));
+  const plan = PAIRS.length ? PAIRS.map(([a, b]) => [CH.find(c => c[0] === a), CH.find(c => c[0] === b)]) : CH.slice(0, -1).map((c, k) => [c, CH[k + 1]]);
+  for (const [[ca, a], [cb, bb]] of plan) {
+    const d = `${dir}/${ca}-${cb}`; fs.mkdirSync(d, { recursive: true });
     const n = Math.round(RUN_END * FPS);
     for (let i = 0; i <= n; i++) { const f = `${d}/f${String(i).padStart(4, '0')}.png`; if (!fs.existsSync(f)) await shot(f, ix(a), ix(bb), i / FPS); }
     console.log('morph', ca, cb);

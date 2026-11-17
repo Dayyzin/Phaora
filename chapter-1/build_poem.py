@@ -228,7 +228,9 @@ def build_page():
         u, v, m = projection_map(dev); W, H = SIZE[dev]
         ys, xs = np.nonzero(m > 0.3)
         rect[dev] = [round(xs.min() / W, 4), round(ys.min() / H, 4), round(xs.max() / W, 4), round(ys.max() / H, 4)]
-    data = {'chapters': chapters, 'rect': rect, 'size': SIZE}
+    data = {'rect': rect, 'size': SIZE, 'len': FILM_LEN,
+            'sections': [{'id': ch, 'num': TITLES[ch][0], 'title': TITLES[ch][1], 'from': a, 'to': b} for ch, a, b in SECTIONS],
+            'cues': [{'from': a, 'to': b, 'lines': ls} for a, b, ls in CUES]}
     build_room_page()
     t = open(os.path.join(HERE, 'poem_page.html'), encoding='utf-8').read()
     open(os.path.join(HERE, 'poem.html'), 'w', encoding='utf-8').write(t.replace('/*POEM*/{}', json.dumps(data, ensure_ascii=False)))
@@ -241,7 +243,7 @@ def build_room_page():
     src = open(os.path.join(HERE, 'room.html'), encoding='utf-8').read()
     pieces = json.loads(re.search(r'window\.PIECES = (\[.*?\]);\n', src).group(1))
     base = next(q for q in pieces if q['id'] == 'card_holder')
-    poem = [{**base, 'id': 'poem_' + ch, 'name': '', 'sub': '', 'links': [], 'pinsL': f'assets/poem/h_{ch}_L.png', 'pinsR': f'assets/poem/h_{ch}_R.png'} for ch in ORDER]
+    poem = [{**base, 'id': 'poem_' + ch, 'name': '', 'sub': '', 'links': [], 'pinsL': f'assets/poem/h_{ch}_L.png', 'pinsR': f'assets/poem/h_{ch}_R.png'} for ch in [x[0] for x in SECTIONS]]   # the film's chapters, in its order
     src = re.sub(r'window\.PIECES = \[.*?\];\n', lambda m: 'window.PIECES = ' + json.dumps(poem) + ';\n', src, count=1)
     src = src.replace('window.CATALOGUE_ON = true;', 'window.CATALOGUE_ON = false;')
     src = re.sub(r'window\.INTRO_ON = \(\(\) => \{.*?\}\)\(\);', 'window.INTRO_ON = false;', src, count=1, flags=re.S)
@@ -249,12 +251,82 @@ def build_room_page():
     src = src.replace('<body>', '<body class="poemroom"><style>#logo,#sitenav,#ui,#cat,#intro{display:none!important}html,body{background:#0b0b0b}</style>', 1)
     open(os.path.join(HERE, 'poem-room.html'), 'w', encoding='utf-8').write(src)
 
+# ---- the film with its voice (David, 17 Nov: "Put this instead. Match the poem writing with the dialogue") ----
+# veil-coat-film_103s_musicVO_v5_sfx.mp4: the same picture as the film, 103.5 s, with music, sound and a voice reading
+# nineteen of the poem's lines. The projector plays it through, with its sound; the words on the wall are the lines the
+# voice reads, in the poem's own spelling (book-*.html), each up while it is spoken. Times are the voice's own, read off
+# the track (whisper small.en, word timestamps), checked against POEM.md.
+FILM_VO = os.path.join(HERE, 'media', 'film', 'film-vo', 'video.mp4')
+FILM_LEN = 103.5
+# the film's chapters, by where the voice turns (the film has no voice for III and VII): (chapter, from s, to s)
+SECTIONS = [('prologue', 0.0, 6.4), ('i', 6.4, 19.7), ('ii', 19.7, 30.65), ('iv', 30.65, 38.9), ('v', 38.9, 53.5),
+            ('vi', 53.5, 69.7), ('viii', 69.7, 76.0), ('ix', 76.0, 87.45), ('coda', 87.45, FILM_LEN)]
+CUES = [  # (from s, to s, the lines as the poem writes them)
+    (0.88, 5.12, ['There is a cinema in snow', 'that plays one reel on Christmas Eve.']),
+    (7.60, 12.28, ['when down it came, ignoring cold,', 'a coat that took its time tonight.']),
+    (13.24, 19.32, ['Eight buttons, belt, a strap each cuff,', 'a hem that swung to mid-calf, black;']),
+    (20.10, 24.54, ['A single mark, cut through to cream,', 'low on its back began to glow']),
+    (25.34, 30.24, ['the coat walked up, and then the door', 'swung open wide without a key.']),
+    (31.06, 35.10, ['The front row&#x27;s full but for a chair,', 'a little card upon its seat:']),
+    (35.78, 38.52, ['no name, one mark, and waiting there']),
+    (39.24, 44.84, ['The count went three, then two, then stopped.', 'The screen would never say the one,']),
+    (47.10, 52.16, ['The coat sat down, the way coats do,', 'all at once, then settled right.']),
+    (54.76, 61.12, ['Then on the screen, a picture, new,', 'so new it hadn&#x27;t happened yet:']),
+    (63.12, 67.66, ['the screen&#x27;s light found the silk below,', 'the warmest thing the night had met.']),
+    (71.84, 75.38, ['The house lights rose, too soon, as they do.']),
+    (76.70, 81.34, ['the coat hung on the rail, complete,', 'a small fir green beside the door.']),
+    (81.34, 84.20, ['The seat was kept for the coat, it&#x27;s true.']),
+    (84.70, 87.20, ['The coat was kept, all along, for you.']),
+    (87.72, 92.42, ['Up in the booth, reel one came free,', 'another threaded, wound and spun;']),
+    (93.02, 98.12, ['and on the screen, for none to see,', 'in red, a II, where there&#x27;d been one.']),
+    (99.16, 102.26, ['<em>Thank you for the pleasure of your company.</em>']),
+]
+MORPH_S = 4.1   # the room's morph (poem_room_capture.js RUN_END), played as the film crosses into a chapter
+
+def build_film(dev, roomcap, pmap):
+    """film-<dev>.mp4: the whole film projected on the room with its sound. A computer gets the projector's light alone
+    (film-desktop-light.mp4, laid over the live room); a phone gets the room baked under it, its pins re-forming at each
+    chapter's turn (the room's own captured morph) while the picture runs on."""
+    u, v, mask = pmap; W, H = SIZE[dev]; light_only = dev == 'desktop'
+    load = lambda f: np.clip(srgb2lin(np.asarray(Image.open(f).convert('RGB').resize((W, H), Image.LANCZOS), np.float32) / 255) / 0.85, 0, 1.1)
+    stills = {ch: load(f'{roomcap}/{dev}/still-{ch}.png') for ch, _, _ in SECTIONS}
+    lit_of = lambda alb: (alb * mask[..., None] * GAIN).astype(np.float32)
+    raw = subprocess.run(['ffmpeg', '-v', 'error', '-i', FILM_VO, '-f', 'rawvideo', '-pix_fmt', 'rgb24', '-r', str(FPS), '-'], capture_output=True, check=True).stdout
+    fw, fh = 854, 480; frames = np.frombuffer(raw, np.uint8).reshape(-1, fh, fw, 3)
+    x0, x1, y0, y1 = FRAME[dev]; fa = (x1 - x0) / (y1 - y0)
+    if fw / fh > fa: cw = int(round(fh * fa)); cx = (fw - cw) // 2; crop = (cx, 0, cw, fh)
+    else: bh = int(round(fw / fa)); cy = (fh - bh) // 2; crop = (0, cy, fw, bh)
+    mx = (crop[0] + u * crop[2]).astype(np.float32); my = (crop[1] + v * crop[3]).astype(np.float32)
+    tmp = f'{OUT}/.film-{dev}.mp4'; enc = encoder(tmp, W, H, crf=22)
+    for i, f in enumerate(frames):
+        t = i / FPS; k = max(j for j, (_, a, _) in enumerate(SECTIONS) if t >= a); ch, a, _ = SECTIONS[k]
+        room = stills[ch]
+        if k > 0 and t - a < MORPH_S:   # the pins travel from the last chapter's motif to this one's
+            prev = SECTIONS[k - 1][0]; d = f'{roomcap}/{dev}/{prev}-{ch}'; fs = sorted(x for x in os.listdir(d) if x.endswith('.png'))
+            j = min(len(fs) - 1, int((t - a) * 12)); room = load(f'{d}/{fs[j]}')
+            lift = 1 + 0.8 * np.sin(np.pi * (t - a) / MORPH_S) ** 2
+        else: lift = 1
+        s_ = cv2.remap(f, mx, my, cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT).astype(np.float32) / 255
+        light = lit_of(room) * srgb2lin(s_)
+        out = light if light_only else (room ** HARD * 0.85) * AMB * lift + light
+        enc.stdin.write((lin2srgb(out) * 255 + 0.5).astype(np.uint8).tobytes())
+        if i % 240 == 0: print('film', dev, f'{t:.0f}s', flush=True)
+    enc.stdin.close(); enc.wait()
+    name = f'{OUT}/film-{dev}' + ('-light' if light_only else '') + '.mp4'
+    subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', tmp, '-i', FILM_VO, '-map', '0:v', '-map', '1:a', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '160k',
+                    '-ar', '48000', '-movflags', '+faststart', '-shortest', name], check=True)
+    os.remove(tmp); print('film', dev, 'done', flush=True)
+
 if __name__ == '__main__':
     args = sys.argv[1:]; roomcap = args.pop(0)
     devs = ['desktop', 'phone']
     if '--device' in args: i = args.index('--device'); devs = [args[i + 1]]; del args[i:i + 2]
     if '--pins' in args: build_pins(); sys.exit(0)
     if '--page' in args: build_page(); sys.exit(0)
+    if '--film' in args:   # the film with its voice, projected (build_film)
+        os.makedirs(OUT, exist_ok=True)
+        for dev in devs: build_film(dev, roomcap, projection_map(dev))
+        sys.exit(0)
     only = '--only-morphs' in args; morphs = only or '--morphs' in args; args = [a for a in args if a not in ('--morphs', '--only-morphs')]
     chs = args or ORDER
     os.makedirs(OUT, exist_ok=True)
