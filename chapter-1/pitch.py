@@ -56,6 +56,22 @@ for src in sorted(set(re.findall(r'"((?:img|assets)/[^"]+\.(?:webp|png|jpg))"', 
 for w in sorted(set(re.findall(r'"(assets/world/[^"]+)/walk\.json"', s))):   # a piece's world walk: its frames and data, whole
     if (OUT / w).exists(): shutil.rmtree(OUT / w)
     shutil.copytree(HERE / w, OUT / w)
+# the house's own pages come too (the floor's links: care, sizes, returns, contact, privacy, terms), with what they use;
+# their links to pages not in this folder go to the catalogue, the register to the live one
+HOUSE = ['care', 'sizes', 'returns']   # contact, privacy and terms wait on their text (an address, counsel)
+for pg in HOUSE:
+    h = (HERE / f'{pg}.html').read_text()
+    for f in set(re.findall(r'(?:src|href)="(assets/[^"#:]+)"', h)):
+        (OUT / f).parent.mkdir(parents=True, exist_ok=True); shutil.copy(HERE / f, OUT / f)
+    for u in re.findall(r'url\(["\']?([^"\')]+)', (HERE / 'assets/css/site.css').read_text()):
+        src = (HERE / 'assets/css' / u).resolve()
+        if src.exists(): dst = OUT / 'assets/css' / u; dst.resolve().parent.mkdir(parents=True, exist_ok=True); shutil.copy(src, dst.resolve())
+    for f in ('assets/brand/lettering-ink.svg', 'assets/brand/lettering-offwhite.svg'): shutil.copy(HERE / f, OUT / f)   # site.js inlines them
+    h = h.replace('href="/"', f'href="{LIVE}"')
+    h = re.sub(r'href="(?!https?:|#)([^"]+)"', lambda m: m.group(0) if m.group(1).startswith('assets/') or m.group(1).split('#')[0] in [x + '.html' for x in HOUSE] else 'href="index.html"', h)
+    h = re.sub(r'<p class="(?:fordavid|tag)">.*?</p>', '', h, flags=re.S)   # notes to David and UNCONFIRMED tags never go out
+    h = h.replace('<meta name="robots" content="noindex">', '<meta name="robots" content="noindex, nofollow, noarchive">')
+    (OUT / f'{pg}.html').write_text(h)
 # the house's pages are not in this folder: the floor keeps only the links that go somewhere from here
 s = re.sub(r'<a href="(?!https?:)([a-z-]+\.html)">([^<]*)</a>', lambda m: m.group(0) if (OUT / m.group(1)).exists() else '', s)
 sheets = re.findall(r'href="(assets/css/[^"]+\.css)"', s)   # the page's own sheet(s) and script(s), and what they point at

@@ -87,7 +87,7 @@
     if (A.world) { steps.push({ a: 'world' }); worldLoad(A); }
     else if (A.walk) A.walk.forEach((w, k) => steps.push({ a: 'walk', k }));
     else { (A.close || []).forEach((c, k) => steps.push({ a: 'close', k })); if (A.notes || A.made) steps.push({ a: 'notes' }); }
-    if (A.views) Object.values(A.views).forEach(v => load(v.img)); (A.walk || []).forEach(w => w.frame && load(w.frame));
+    if (A.views && !A.world) Object.values(A.views).forEach(v => load(v.img)); (A.walk || []).forEach(w => w.frame && load(w.frame));
     pv.querySelectorAll('.pv-walk .wl').forEach(l => { l.className = 'wl'; l.querySelector('img').removeAttribute('src'); l._v = null; });
     if (A.scene) steps.push({ a: 'scene' });
     if (A.same) steps.push({ a: 'same' });
@@ -143,9 +143,12 @@
   }
   function wpick() {
     if (!WD) return; const k = innerWidth / innerHeight < 1 ? 'phone' : 'desk'; if (k === wkind) return; wkind = k; WS = WD[k];
-    wimgs = WS.src.map((src, i) => { const im = new Image(); im.decoding = 'async'; im.src = src; im.onload = () => { if (i === Math.round(wf)) wdraw(i); }; return im; });
+    wimgs = WS.src.map((src, i) => { const im = new Image(); im.decoding = 'async'; im._src = src; im.onload = () => { if (i === Math.round(wf)) wdraw(i); }; return im; });
+    if (wmode) wfetch(0);
     wn.innerHTML = WD.notes.map((t, i) => `<div class="note ${WS.ink[i]}${k === 'phone' ? ' ph' : ''}" style="width:${WS.box[0]}px;height:${WS.box[1]}px"><p>${E(t)}</p></div>`).join('');
   }
+  // the frames load only once the scroll heads into the world: the first ones first, the rest in order
+  function wfetch(from) { wimgs.forEach((im, i) => { if (!im.src && i >= from - 2) im.src = im._src; }); }
   function solve(A, b) {
     const n = 8;
     for (let c = 0; c < n; c++) {
@@ -164,7 +167,7 @@
     return `matrix3d(${a},${d},0,${g},${b2},${e},0,${hh},0,0,1,0,${c},${f},0,1)`;
   }
   function wdraw(i) {
-    if (!WS) return; const im = wimgs[i]; if (!im || !im.complete || !im.naturalWidth) return;
+    if (!WS) return; const im = wimgs[i]; if (im && !im.src) { im.src = im._src; return; } if (!im || !im.complete || !im.naturalWidth) return;
     const dpr = Math.min(devicePixelRatio || 1, 2), Wd = innerWidth, Hd = innerHeight;
     if (cv.width !== Math.round(Wd * dpr) || cv.height !== Math.round(Hd * dpr)) { cv.width = Math.round(Wd * dpr); cv.height = Math.round(Hd * dpr); }
     const sc = Math.max(Wd / WS.w, Hd / WS.h), ox = (Wd - WS.w * sc) / 2, oy = (Hd - WS.h * sc) / 2;
@@ -183,7 +186,7 @@
   let wmode = false, wpos = 0, wtarget = 0, wloop = 0;
   const wlen = () => { const H = innerHeight; return { H, R: H * 7, end: H + H * 7 }; };
   function wenter(pos, aim) {
-    wmode = true; pv.classList.add('wmode'); wpos = pos; wtarget = aim == null ? pos : aim; fig.style.transition = 'none'; wrender(); cancelAnimationFrame(wloop);
+    wmode = true; pv.classList.add('wmode'); if (WS) wfetch(0); wpos = pos; wtarget = aim == null ? pos : aim; fig.style.transition = 'none'; wrender(); cancelAnimationFrame(wloop);
     const loop = () => { wpos += (wtarget - wpos) * .16; if (Math.abs(wtarget - wpos) < .5) wpos = wtarget; wrender(); if (wmode) wloop = requestAnimationFrame(loop); };
     wloop = requestAnimationFrame(loop);
   }
