@@ -92,9 +92,9 @@
   const snowAt = t => Math.max(0, ...SNOW.map(([a, b]) => (a <= 0 ? 1 : smooth(a - 0.5, a + 1.2, t)) * (1 - smooth(b - 1.5, b + 1.0, t))));
   const sprite = (() => { const c = document.createElement('canvas'); c.width = c.height = 64; const g = c.getContext('2d'), r = g.createRadialGradient(32, 32, 0, 32, 32, 32);
     r.addColorStop(0, 'rgba(255,252,246,1)'); r.addColorStop(0.35, 'rgba(255,250,242,.75)'); r.addColorStop(1, 'rgba(255,248,238,0)'); g.fillStyle = r; g.fillRect(0, 0, 64, 64); return c; })();
-  const FL = []; const NF = () => (DEV === 'phone' ? 120 : 230);
+  const FL = []; const NF = () => (DEV === 'phone' ? 220 : 420);
   const flake = (top) => { const z = Math.pow(Math.random(), 0.7); return { x: Math.random(), y: top ? -0.05 - Math.random() * 0.1 : Math.random(), z,
-    s: 1.2 + (1 - z) * (1 - z) * 7, v: 0.035 + (1 - z) * 0.11, w: 0.3 + Math.random() * 0.8, ph: Math.random() * 6.28, sw: 0.004 + (1 - z) * 0.01 }; };
+    s: 0.55 + (1 - z) * (1 - z) * 2.1, v: 0.14 + (1 - z) * 0.38, w: 0.6 + Math.random() * 1.2, ph: Math.random() * 6.28, sw: 0.002 + (1 - z) * 0.004 }; };   // fine and fast (David, 17 Nov)
   let snowLast = 0, snowK = 0;
   function drawSnow(ts) {
     const dt = Math.min(0.05, (ts - (snowLast || ts)) / 1000); snowLast = ts;
@@ -109,8 +109,8 @@
       // lit where the beam crosses it: inside the wedge from the top edge down to the picture, brightest near the picture
       const wl = -0.15 * b.vw + (b.x0 + 0.15 * b.vw) * Math.min(1, y / b.y1), wr = 1.15 * b.vw + (b.x1 - 1.15 * b.vw) * Math.min(1, y / b.y1);
       const inBeam = y <= b.y1 && x >= wl && x <= wr ? 0.55 + 0.45 * (y / b.y1) : 0;
-      const a = snowK * (0.16 + 0.7 * inBeam) * (0.55 + 0.45 * (1 - f.z));
-      const r = f.s * k * (1 + (1 - f.z) * 0.6);
+      const a = snowK * (0.22 + 0.75 * inBeam) * (0.6 + 0.4 * (1 - f.z));
+      const r = f.s * k * (1 + (1 - f.z) * 0.25);
       sx.globalAlpha = Math.min(1, a); sx.drawImage(sprite, x * k - r, y * k - r, r * 2, r * 2);
     }
   }
