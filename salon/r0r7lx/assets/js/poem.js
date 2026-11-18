@@ -197,6 +197,7 @@
     else if (m === 'pause') { want = false; film.pause(); }
     else if (m === 'sound') { film.muted = !film.muted; want = true; if (film.paused) film.play().catch(() => {}); }
     try { parent.postMessage({ film: true, muted: film.muted }, '*'); } catch (x) {} });
+  if (EMBED) film.addEventListener('ended', () => { want = false; try { parent.postMessage({ film: true, ended: true, muted: film.muted }, '*'); } catch (x) {} });
   if (EMBED) {} else if (!matchMedia('(prefers-reduced-motion: reduce)').matches) film.play().catch(() => {}); else { userPaused = true; }
   syncCtl(); requestAnimationFrame(frame);
 })();

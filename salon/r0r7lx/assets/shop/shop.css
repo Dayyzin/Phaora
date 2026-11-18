@@ -538,3 +538,5 @@ body.dim .wrap>.mn{transform:translateX(-100%);opacity:0;pointer-events:none}
   .fm{transition:margin-left .9s cubic-bezier(.4,0,.2,1),width .9s cubic-bezier(.4,0,.2,1)}
   body.dim .fm{margin-left:calc(-1 * var(--menu));width:calc(100% + var(--menu))}
 }
+/* the lights come up bright when the film ends */
+body.lights::after{background:#fff;opacity:.85!important;transition:opacity 1.4s ease}
