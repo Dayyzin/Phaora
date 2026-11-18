@@ -5,8 +5,8 @@
 //   ./?piece=<id>           the piece: the walkaround first where it has one and is priced at WALKAROUND_MIN_USD or
 //                           more, then its pictures stacked on the left, the details sticky on the right
 var WALKAROUND_MIN_USD = 0;   // David, 18 Nov: "Walkaround needs to be ADDED" - every piece that has one
-var V = '?v=1118e';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
-var WALKAROUND_ENABLED = true;   // David, 18 Nov: "Walkaround comes back, it's too strong and worked on to throw away"
+var V = '?v=1118f';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
+var WALKAROUND_ENABLED = false;   // David, 18 Nov: "Sharp yes" - every piece walks around on its own sharp views, never the 144p world walk   // David, 18 Nov: "Walkaround comes back, it's too strong and worked on to throw away"
 (function () {
   var app = document.getElementById('app'); if (!app) return;
   var q = new URLSearchParams(location.search), side = q.get('side'), cat = q.get('cat'), pid = q.get('piece');
