@@ -173,8 +173,8 @@
   ['play', 'pause', 'volumechange', 'ended'].forEach(e => film.addEventListener(e, syncCtl));
   document.addEventListener('visibilitychange', () => { if (document.hidden) film.pause(); else if (!userPaused) film.play().catch(() => {}); });
 
-  // ---- the lettering (never typed): David's off-white file, inlined
-  fetch('assets/brand/lettering-offwhite.svg').then(r => r.text()).then(t => { const svg = t.replace(/<!--[\s\S]*?-->/g, '')
+  // ---- the logo (never typed): David's casino wordmark, its light file, inlined
+  fetch('assets/logo/wordmark-light.svg').then(r => r.text()).then(t => { const svg = t.replace(/<!--[\s\S]*?-->/g, '')
     .replace(/\s(width|height)="[^"]*"/, '').replace(/\s(width|height)="[^"]*"/, '');
     document.querySelectorAll('.navband .logo').forEach(l => { l.innerHTML = svg; }); }).catch(() => {});
 

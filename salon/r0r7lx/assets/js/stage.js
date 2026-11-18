@@ -23,9 +23,9 @@
   };
   group(); addEventListener('resize', group);
   addEventListener('scroll', () => document.body.classList.toggle('scrolled', scrollY > 8), { passive: true });
-  // David's lettering with the solo Ö, inlined in the room's dark ink (never typed)
-  fetch('assets/lettering-solo-offwhite.svg').then(r => r.text()).then(t => { const svg = t.replace(/<!--[\s\S]*?-->/g, '')
-    .replace(/fill="#E2DDD2"/g, 'fill="currentColor"').replace(/\s(width|height)="[^"]*"/, '').replace(/\s(width|height)="[^"]*"/, '');
+  // the logo: David's casino wordmark (assets/logo, one file per colour), inlined in the room's dark ink (never typed)
+  fetch('assets/logo/wordmark-dark.svg').then(r => r.text()).then(t => { const svg = t.replace(/<!--[\s\S]*?-->/g, '')
+    .replace(/fill="#000000"/g, 'fill="currentColor"').replace(/\s(width|height)="[^"]*"/, '').replace(/\s(width|height)="[^"]*"/, '');
     document.querySelectorAll('.logo').forEach(l => { l.innerHTML = svg; }); });
 })();
 // The piece view, in the same room (David, 15 Nov): a tap lifts the piece from its cell and it grows slowly to full
