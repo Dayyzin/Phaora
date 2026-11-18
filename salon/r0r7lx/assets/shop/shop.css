@@ -509,3 +509,9 @@ html,body{overflow-x:clip!important;overflow-y:visible}
 /* the menu bolder (David, 18 Nov) */
 .mn{font-weight:600!important;letter-spacing:.07em!important}
 .mn a{color:#14161b}
+/* the grid as celine.com: name then a bold price under the picture, no button; a big bold Pre-order only under You may also like */
+.grid:not(.also) .tl .cap .nm{display:block!important}
+.tl .cap{padding:10px 16px 26px!important}
+.tl .cap .nm{font-weight:400;letter-spacing:.06em}
+.also .btn.po{display:block;margin-top:14px;padding:16px 10px;background:#14161b;color:#fff;text-align:center;text-decoration:none;font:600 12px/1 'Jost','DejaVu Sans',sans-serif;letter-spacing:.22em;text-transform:uppercase}
+.also .btn.po:hover{background:#000}

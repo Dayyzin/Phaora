@@ -5,7 +5,7 @@
 //   ./?piece=<id>           the piece: the walkaround first where it has one and is priced at WALKAROUND_MIN_USD or
 //                           more, then its pictures stacked on the left, the details sticky on the right
 var WALKAROUND_MIN_USD = 0;   // David, 18 Nov: "Walkaround needs to be ADDED" - every piece that has one
-var V = '?v=1118zr';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
+var V = '?v=1118zs';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
 var WALKAROUND_ENABLED = true;   // David, 18 Nov 14:39: "THE WALKAROUND STILL ISNT THERE" - the world walk on every piece that has one;   // David, 18 Nov: "Sharp yes" - every piece walks around on its own sharp views, never the 144p world walk   // David, 18 Nov: "Walkaround comes back, it's too strong and worked on to throw away"
 (function () {
   var app = document.getElementById('app'); if (!app) return;
@@ -27,11 +27,11 @@ var WALKAROUND_ENABLED = true;   // David, 18 Nov 14:39: "THE WALKAROUND STILL I
     return '<a class="' + cls + '" href="' + E(p.href) + '">Pre-order</a>';
   };
   var tile = function (p, k) {
-    return '<li class="tl">' + (k === 'gift' ? '' : '<a class="tn2" href="' + HOME + '?piece=' + encodeURIComponent(p.id) + '">' + E(p.name) + '</a>') + '<a class="im" data-cy="' + E(JSON.stringify(p.stack.filter(function (x) { return x.w >= 600 && / view$/i.test(x.label) && x.blend !== false; }).map(function (x) { return x.src + V; }))) + '" href="' + HOME + '?piece=' + encodeURIComponent(p.id) + '">' +
+    return '<li class="tl"><a class="im" data-cy="' + E(JSON.stringify(p.stack.filter(function (x) { return x.w >= 600 && / view$/i.test(x.label) && x.blend !== false; }).map(function (x) { return x.src + V; }))) + '" href="' + HOME + '?piece=' + encodeURIComponent(p.id) + '">' +
       img(p.tile, p.name + ', ' + p.type.toLowerCase(), '(max-width: 820px) 45vw, 20vw', k > 2) + '</a>' +
       '<div class="cap"><a href="' + HOME + '?piece=' + encodeURIComponent(p.id) + '"><span class="nm">' + E(p.name) + '</span>' +
       (p.price ? '<span class="pr">' + E(p.price) + '</span>' : '') + '</a>' +
-      cta(p, 'btn ol') + '</div></li>';
+      '</div></li>';   // celine.com: the name and price under the picture, no button on the grid (David, 18 Nov)
   };
   fetch('assets/shop/catalogue.json' + V).then(function (r) { return r.json(); }).then(function (C) {
     var byId = {}; C.forEach(function (p) { byId[p.id] = p; });
@@ -152,7 +152,7 @@ var WALKAROUND_ENABLED = true;   // David, 18 Nov 14:39: "THE WALKAROUND STILL I
       '</article>' +
       (!walk && views.length > 1 ? '<section class="vw" aria-label="' + E(p.name) + ', walk around">' + views.map(function (v, k) { return '<img class="' + (k ? '' : 'on') + '" src="' + E(v.src + V) + '" alt="' + E(p.name + ', ' + v.label) + '"' + (k ? ' loading="lazy"' : '') + '>'; }).join('') + '<p class="sc">' + E(p.name) + '</p></section>' : '') +
       (walk ? '<section class="wa" data-src="' + E(p.walkaround) + '" aria-label="' + E(p.name) + ', the walkaround"><div class="wa-in"><canvas aria-hidden="true"></canvas><div class="wn"></div><p class="wa-nm sc">' + E(p.name) + '</p></div></section>' : '') +
-      '<section class="ml"><div class="mlside"><nav class="mn mlmn" aria-label="Menu"></nav></div><div class="mlmain"><h2>You may also like</h2><ul class="grid also">' + also.map(function (x) { return '<li class="tl"><a class="im" href="' + HOME + '?piece=' + encodeURIComponent(x.id) + '">' + img(x.tile, x.name, '(max-width: 820px) 45vw, 22vw', true) + '</a><div class="cap"><a href="' + HOME + '?piece=' + encodeURIComponent(x.id) + '"><span class="nm">' + E(x.name) + '</span>' + (x.price ? '<span class="pr">' + E(x.price) + '</span>' : '') + '</a></div></li>'; }).join('') + '</ul></div></section>' +
+      '<section class="ml"><div class="mlside"><nav class="mn mlmn" aria-label="Menu"></nav></div><div class="mlmain"><h2>You may also like</h2><ul class="grid also">' + also.map(function (x) { return '<li class="tl"><a class="im" href="' + HOME + '?piece=' + encodeURIComponent(x.id) + '">' + img(x.tile, x.name, '(max-width: 820px) 45vw, 22vw', true) + '</a><div class="cap"><a href="' + HOME + '?piece=' + encodeURIComponent(x.id) + '"><span class="nm">' + E(x.name) + '</span>' + (x.price ? '<span class="pr">' + E(x.price) + '</span>' : '') + '</a>' + cta(x, 'btn po') + '</div></li>'; }).join('') + '</ul></div></section>' +
       '<div class="bar">' + '<span class="pr">' + E(p.price || '') + '</span>' + buy + '</div>';
     document.body.classList.add('has-bar');
     // the folding rows: one open at a time, closed by default
