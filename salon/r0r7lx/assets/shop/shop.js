@@ -5,7 +5,7 @@
 //   ./?piece=<id>           the piece: the walkaround first where it has one and is priced at WALKAROUND_MIN_USD or
 //                           more, then its pictures stacked on the left, the details sticky on the right
 var WALKAROUND_MIN_USD = 0;   // David, 18 Nov: "Walkaround needs to be ADDED" - every piece that has one
-var V = '?v=1118zl';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
+var V = '?v=1118zm';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
 var WALKAROUND_ENABLED = true;   // David, 18 Nov 14:39: "THE WALKAROUND STILL ISNT THERE" - the world walk on every piece that has one;   // David, 18 Nov: "Sharp yes" - every piece walks around on its own sharp views, never the 144p world walk   // David, 18 Nov: "Walkaround comes back, it's too strong and worked on to throw away"
 (function () {
   var app = document.getElementById('app'); if (!app) return;
@@ -72,7 +72,8 @@ var WALKAROUND_ENABLED = true;   // David, 18 Nov 14:39: "THE WALKAROUND STILL I
       '<section class="strip" aria-label="Itaoca">' + (function () {   // the bag whole between two of its details (David, 18 Nov)
         var c = function (lab, cls) { var d = find('itaoca', lab); return d ? '<a class="cl ' + (cls || '') + '" href="' + HOME + '?piece=itaoca"><img src="' + E(d.v.src + V) + '" alt="Itaoca, ' + E(lab.toLowerCase()) + '" loading="lazy"></a>' : ''; };
         return c('The PÖ on the flap') + c('three quarter view', 'whole') + c('The clasp') + '<span class="lb">Itaoca</span>'; })() + '</section>' +
-      '<ul class="grid">' + C.slice(8, 12).map(tile).join('') + '</ul>' +
+      '<section class="split"><ul class="grid g2x2">' + C.slice(8, 12).map(tile).join('') + '</ul>' +   // celine.com: four pieces left, one picture right (David, 18 Nov)
+        '<a class="sp" href="' + HOME + '?piece=ritornelo"><img src="assets/shop/img/world_ritornelo.webp' + V + '" srcset="assets/shop/1200/world_ritornelo.webp' + V + ' 1600w, assets/shop/img/world_ritornelo.webp' + V + ' 2560w" sizes="(max-width: 820px) 100vw, 50vw" alt="Ritornelo on a café table, snow at the window" loading="lazy"><span class="lb">Ritornelo</span></a></section>' +
       '<section class="fm" aria-label="The film"><iframe src="film.html?embed=1&baked=1" title="A seat is kept for you, the film" loading="lazy" tabindex="-1"></iframe>' +
         '<button class="snd sc" type="button" aria-pressed="false">Sound</button></section>' +
       '<ul class="grid">' + C.slice(12).map(tile).join('') + '</ul>' +
