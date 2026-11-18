@@ -167,13 +167,6 @@
     "blend": false,
     "s1200": "assets/shop/1200/odara_back_2k.webp",
     "label": "back view"
-   },
-   {
-    "src": "assets/shop/img/pieces__odara__03.webp",
-    "w": 846,
-    "h": 818,
-    "blend": false,
-    "label": "open view"
    }
   ],
   "side": "both",
