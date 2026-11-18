@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>PHAÖRA · Chapter I</title>
+<meta name="description" content="PHAÖRA. A house told in chapters. Register for Chapter I.">
+<link rel="canonical" href="https://phaora.com/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="PHAÖRA"><meta property="og:title" content="PHAÖRA · Chapter I">
+<meta property="og:description" content="A house told in chapters. Register for Chapter I."><meta property="og:url" content="https://phaora.com/">
+<meta property="og:image" content="https://phaora.com/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="PHAÖRA · Chapter I"><meta name="twitter:image" content="https://phaora.com/og.png">
+<meta name="theme-color" content="#000000">
+<link rel="icon" type="image/png" href="favicon.png"><link rel="apple-touch-icon" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+/* David's own face (Phaora repo, assets/register/fonts/PhaoraFable-Lower.woff2): a to z, unicase. The card is set in it. */
+@font-face{font-family:'Phaora Fable Text';src:url(assets/register/PhaoraFable-Lower-candidate.woff2) format('woff2');font-weight:100 900;font-style:normal;font-display:swap}
+*{box-sizing:border-box}
+/* words: his face (Phaora Fable Text, lowercase) for the page's own short lines; the book's text face for sentences; what his
+   face does not have yet (capitals, figures, marks) falls to the book's face, as the site does */
+:root{--ink:#241f1b;--cream:#efe6d6;--warm:#d8c3a0;--dim:#a99c86}
+html,body{margin:0;height:100%;background:#050404;color:var(--cream);font:400 17px/1.5 'Cormorant Garamond',Georgia,serif;-webkit-font-smoothing:antialiased;overflow:hidden}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.fa{font-family:'Phaora Fable Text','Cormorant Garamond',serif;font-weight:400;text-transform:lowercase;letter-spacing:0}
+#stage{position:fixed;inset:0;display:grid;place-items:center}
+#frame{position:relative;width:min(100vw,480px);height:100vh;height:100dvh;overflow:hidden;background:#070605}
+#frame.noanim *{transition:none!important}
+.logo{position:absolute;left:22px;top:20px;height:16px;z-index:6;pointer-events:none}
+.logo svg,.logo img{height:16px;width:auto;display:block}
+/* the page's small lines: in his hand, not in spaced capitals */
+.ey{font-size:19px;line-height:1.15;color:#ead8b6}
+/* an action is a slip of the card's paper with his words on it, not an outlined box */
+.slip{display:inline-block;min-height:46px;padding:12px 26px 10px;background:#e9e1d2 url(assets/register/paper.jpg) center/420px;color:var(--ink);font-size:20px;line-height:1.2;
+  border-radius:1px;box-shadow:0 1px 0 rgba(255,255,255,.25) inset,0 14px 30px -8px rgba(0,0,0,.75);transition:transform .25s ease,box-shadow .25s ease}
+.slip:active{transform:translateY(1px);box-shadow:0 1px 0 rgba(255,255,255,.25) inset,0 6px 16px -6px rgba(0,0,0,.75)}
+
+/* 1. the doors, in the snow */
+#doors{position:absolute;inset:0;z-index:5;overflow:hidden;transition:opacity 1.3s ease}
+#doors.gone{opacity:0;pointer-events:none}
+#pane{position:absolute;inset:0;overflow:hidden}
+#cam{position:absolute;transform-origin:50% 53.1%;transition:transform 2.5s cubic-bezier(.6,0,.3,1)}
+#doors.in #cam{transform:scale(3.3)}
+#cam .still{position:absolute;inset:0;background:url(assets/register/doors.jpg) 0 0/100% 100%}
+#way{position:absolute;perspective:700px}
+#way .lobby{position:absolute;inset:0;opacity:0;transition:opacity .25s linear;background:
+  linear-gradient(180deg,rgba(52,24,12,0) 0,rgba(52,24,12,0) 76%,rgba(52,24,12,.94) 76.5%,rgba(26,11,6,.97) 100%),
+  linear-gradient(90deg,rgba(112,64,22,.6) 0,rgba(112,64,22,0) 20%,rgba(112,64,22,0) 80%,rgba(112,64,22,.6) 100%),
+  linear-gradient(180deg,#fff3d6 0,#f6d79b 34%,#d9a65c 62%,#a8743a 76%)}
+#doors.open #way .lobby{opacity:1}
+.cut{position:absolute;top:0;bottom:0;background-image:url(assets/register/doors.jpg);background-repeat:no-repeat}
+.leaf{transition:transform 1.9s cubic-bezier(.5,0,.2,1),filter 1.9s ease}
+.leaf.hl{transform-origin:0 50%}.leaf.hr{transform-origin:100% 50%}
+#doors.open .leaf{filter:brightness(1.7)}
+#doors.open .leaf.hl{transform:rotateY(82deg)}
+#doors.open .leaf.hr{transform:rotateY(-82deg)}
+#spill{position:absolute;background:linear-gradient(180deg,rgba(255,212,140,.52),rgba(255,212,140,0));clip-path:polygon(7.5% 0,92.5% 0,100% 100%,0 100%);mix-blend-mode:screen;opacity:0;transition:opacity 1.9s ease}
+#doors.open #spill{opacity:1}
+#snow{position:absolute;inset:0;pointer-events:none}
+#doors .dim{position:absolute;inset:0;pointer-events:none;background:linear-gradient(#050404cc 0,#05040400 20%,#05040400 60%,#050404e6 86%);transition:opacity 1.2s ease}
+#doors.in .dim{opacity:0}
+#doors .veil{position:absolute;inset:0;pointer-events:none;background:#fff0d0;opacity:0}
+#doors.in .veil{opacity:1;transition:opacity 1.3s ease .9s}
+#doors .txt{position:absolute;left:0;right:0;bottom:11%;text-align:center;padding:0 34px;transition:opacity .8s ease}
+#doors.open .txt{opacity:0}
+#doors .line{font-size:32px;line-height:1.2;margin:16px 0 0}
+#doors .sub{font:italic 400 18px/1.4 'Cormorant Garamond',serif;color:var(--warm);margin:10px 0 0}
+
+/* 2. the house and the front row */
+#house{position:absolute;inset:0;display:flex;flex-direction:column;opacity:0;transition:opacity 1.4s ease}
+#house.on{opacity:1}
+/* the house, full frame: the row photographed from the rigging, its words let into the floor and lit by the room;
+   the picture is laid over the frame as "cover" would lay it (layRow), so the touch targets stay on their seats */
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+#row{position:absolute;background:#030202}
+#row img{position:absolute;inset:0;width:100%;height:100%;display:block;transition:opacity 1.6s ease}
+#row .aft{opacity:0}#house.done #row .aft{opacity:1}
+#row .warm{position:absolute;width:9%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;mix-blend-mode:screen;
+  background:radial-gradient(closest-side,rgba(255,214,150,.55),rgba(255,200,130,.18) 45%,rgba(255,200,130,0));opacity:0;animation:warm 4.8s ease-in-out infinite}
+@keyframes warm{0%,100%{opacity:.08}50%{opacity:.62}}
+#house.done #row .warm{animation:none;opacity:.22;transition:opacity 2s ease}
+#row .hit{position:absolute;transform:translate(-50%,-50%);cursor:pointer}
+#house .foot{position:absolute;left:0;right:0;bottom:0;display:flex;flex-direction:column;align-items:center;gap:20px;padding:0 30px 56px;text-align:center}
+#hint{font:400 17px/1.45 'Cormorant Garamond',serif;color:var(--dim);margin:0;max-width:300px}
+
+/* a seat's piece: a page of the book */
+.scrim{position:absolute;inset:0;background:rgba(0,0,0,.42);opacity:0;pointer-events:none;transition:opacity .4s ease,background .4s ease;z-index:7}
+.scrim.on{opacity:1;pointer-events:auto}.scrim.deep{background:rgba(3,2,2,.95);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+#piece{position:absolute;left:10px;right:10px;bottom:0;z-index:8;transform:translateY(102%);transition:transform .6s cubic-bezier(.2,.7,.2,1);
+  background:radial-gradient(120% 80% at 50% 0,#17120f 0,#0e0b09 55%,#0b0908 100%);color:var(--cream);padding:22px 30px 40px;text-align:center;
+  box-shadow:0 0 0 1px rgba(216,195,160,.07),0 -20px 50px rgba(0,0,0,.7)}
+#piece.on{transform:none}
+/* a seat's page is dark (David, 14 Nov: "Needs stronger one"); the piece is its own photograph, a plate on the dark, no mask */
+#piece img{width:62%;display:block;margin:10px auto 0;border-radius:1px;box-shadow:0 0 0 1px rgba(216,195,160,.14),0 18px 40px -10px rgba(0,0,0,.9)}
+#piece .nm{font-size:27px;line-height:1.15;margin:16px 0 14px;color:#efe6d6}
+#piece ol{list-style:none;margin:0 auto;padding:0;max-width:300px;text-align:left;counter-reset:n}
+#piece li{counter-increment:n;display:grid;grid-template-columns:26px 1fr;font:400 16.5px/1.42 'Cormorant Garamond',serif;margin:0 0 6px;color:#e4d9c6}
+#piece li::before{content:counter(n,lower-roman);font:italic 400 15px/1.55 'Cormorant Garamond',serif;color:#b9a684}
+.x{position:absolute;right:8px;top:2px;font-size:18px;padding:12px 14px;min-height:44px}
+#piece .x{color:#d8c3a0}
+
+/* the card */
+#cardsheet{position:absolute;inset:0;z-index:8;display:flex;flex-direction:column;align-items:center;padding:15vh 24px 0;text-align:center;opacity:0;pointer-events:none;transition:opacity .5s ease}
+#cardsheet.on{opacity:1;pointer-events:auto}
+#cardsheet .x{color:var(--dim);top:10px}
+.flip{width:268px;height:172px;flex:none;perspective:900px;transform:translateY(34px) scale(.92);transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+#cardsheet.on .flip{transform:none}
+.flip .in{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.3,.1,.2,1)}
+.flip.back .in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:2px;box-shadow:0 18px 50px rgba(0,0,0,.6)}
+.face.f{background:#000;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 1px rgba(240,225,195,.08),0 18px 50px rgba(0,0,0,.6)}
+.face.f img{width:96px;height:96px;display:block}
+.face.b{transform:rotateY(180deg);background:#efe9de url(assets/register/paper.jpg) center/cover;color:var(--ink);padding:16px 18px 12px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.face.b{font-family:'Phaora Fable Text','Cormorant Garamond',serif;font-weight:300}
+.face.b .k{font-size:16px;line-height:1;color:#3f372f}
+.face.b input{width:100%;background:none;border:0;border-bottom:1px solid rgba(60,50,40,.35);outline:0;border-radius:0;text-align:center;color:var(--ink);-webkit-appearance:none;appearance:none}
+#nm{font:300 30px/1.15 'Phaora Fable Text','Cormorant Garamond',serif;text-transform:lowercase;padding:5px 0 3px;margin-top:5px}
+#em{font:400 17px/1.2 'Cormorant Garamond',serif;letter-spacing:.03em;padding:8px 0 6px;margin-top:6px}
+.face.b input::placeholder{color:rgba(60,50,40,.45);font:300 17px 'Phaora Fable Text','Cormorant Garamond',serif;text-transform:lowercase}
+.face.b .no{font-size:14.5px;line-height:1.5;color:#2e2823;margin-top:10px;display:none}
+.face.b .no span{display:block}
+#cardsheet.kept-card .face.b input{border-bottom-color:transparent}
+#cardsheet.kept-card #em{display:none}
+#cardsheet.kept-card .face.b .no{display:block}
+#keep{margin-top:26px;flex:none;transition:opacity .4s ease}
+#err{font:italic 400 16px 'Cormorant Garamond',serif;color:#e0bd92;min-height:1.5em;margin-top:12px}
+#terms{font:400 17px/1.45 'Cormorant Garamond',serif;color:var(--dim);margin:2px auto 0;max-width:300px;transition:opacity .4s ease}
+#cardsheet.kept-card #terms{display:none}
+#after{max-height:0;overflow:hidden;opacity:0;transition:opacity 1.2s ease .5s}
+#after.on{max-height:340px;opacity:1}
+#after .ty{font-size:27px;line-height:1.2;margin:4px 0 12px;color:#f2ead9}
+#after p{font:400 17px/1.45 'Cormorant Garamond',serif;color:var(--dim);margin:0 auto;max-width:300px}
+
+#foot{position:absolute;left:0;right:0;bottom:4px;display:flex;justify-content:space-between;align-items:center;padding:0 22px;z-index:9;font:italic 400 13px 'Cormorant Garamond',serif;color:rgba(239,230,214,.42);pointer-events:none}
+#foot button{pointer-events:auto;padding:10px 0 10px 16px;font:inherit;color:inherit}
+
+/* a computer: the same story laid out for a landscape screen. Nothing above this changes on a phone. */
+@media (min-width:901px) and (orientation:landscape){
+  #frame{width:100vw}
+  .logo{left:44px;top:36px;height:20px}.logo svg,.logo img{height:20px}
+  /* 1. the doors: the night's still stands at its own proportions, the words beside it, the snow over the whole street */
+  #pane{inset:0 auto 0 calc(50% - 56.25vh - 3vw);width:56.25vh;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%)}
+  #doors{cursor:pointer}
+  #doors .dim{background:linear-gradient(#050404b3 0,#05040400 18%,#05040400 70%,#050404cc 100%)}
+  #doors .txt{left:calc(50% + 4vw);right:6vw;top:50%;bottom:auto;transform:translateY(-50%);text-align:left;padding:0;max-width:560px}
+  #doors .ey{font-size:24px}
+  #doors .line{font-size:54px;line-height:1.1;margin-top:22px}
+  #doors .sub{font-size:22px;margin-top:16px}
+  /* 2. the row, across the whole screen */
+  #house .foot{padding-bottom:64px;gap:22px}
+  #hint{font-size:19px;max-width:440px}
+  .slip{font-size:22px;padding:13px 32px 11px}
+  /* a seat's page comes in from the side away from the seat */
+  #piece{left:auto;right:0;top:0;bottom:0;width:min(460px,34vw);transform:translateX(102%);display:flex;flex-direction:column;justify-content:center;
+    padding:40px 48px;box-shadow:-20px 0 60px rgba(0,0,0,.55)}
+  #piece.lft{right:auto;left:0;transform:translateX(-102%);box-shadow:20px 0 60px rgba(0,0,0,.55)}
+  #piece.on,#piece.lft.on{transform:none}
+  #piece img{width:74%}
+  #piece .nm{font-size:34px;margin:14px 0 20px}
+  #piece ol{max-width:340px}
+  #piece li{font-size:18.5px}
+  #piece .x{right:18px;top:14px}
+  /* the card, held up in the middle of the dark */
+  #cardsheet{justify-content:center;padding:0 24px 4vh}
+  #cardsheet .x{right:26px;top:22px}
+  .flip{zoom:1.65}
+  #keep{margin-top:40px}
+  #err{font-size:18px}
+  #terms,#after p{font-size:19px;max-width:440px}
+  #after .ty{font-size:34px;margin:6px 0 16px}
+  #after.on{max-height:420px}
+  #foot{padding:0 44px;bottom:10px;font-size:14px}
+}
+</style><!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1079296041748995');
+fbq('track', 'PageView');
+fbq('track', 'ViewContent', { content_name: 'chapter-1 register' }, { eventID: 'vc-' + Date.now().toString(36) + Math.random().toString(36).slice(2, 8) });
+</script>
+<noscript><img height="1" width="1" style="display:none" alt=""
+src="https://www.facebook.com/tr?id=1079296041748995&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+<body>
+<div id="stage"><div id="frame">
+  <a class="logo" id="logo" href="/" aria-label="PHAÖRA"><img src="assets/register/lettering-offwhite.svg" alt=""></a>
+
+  <section id="doors" aria-label="The doors">
+    <div id="pane"><div id="cam">
+      <div class="still"></div>
+      <div id="way">
+        <div class="lobby"></div>
+        <div class="cut" data-x="446,456"></div>
+        <div class="cut leaf hl" data-x="222,334"></div>
+        <div class="cut leaf hr" data-x="334,446"></div>
+        <div class="cut leaf hl" data-x="456,566"></div>
+        <div class="cut leaf hr" data-x="566,678"></div>
+      </div>
+      <div id="spill"></div>
+    </div></div>
+    <canvas id="snow"></canvas><div class="dim"></div><div class="veil"></div>
+    <div class="txt"><div class="ey fa">Chapter I · opens Christmas Eve</div><p class="line fa">A seat is kept for you.</p><p class="sub">The doors open by themselves.</p></div>
+  </section>
+
+  <section id="house" aria-label="The front row">
+    <div id="row" aria-label="The front row, seen from above: six seats, one kept"><picture><source media="(min-width:901px) and (orientation:landscape)" srcset="assets/register/row_wide_before.webp 1920w, assets/register/row_wide_before@2x.webp 3200w" sizes="100vw"><img class="bef" src="assets/register/row_before.webp" srcset="assets/register/row_before.webp 1x, assets/register/row_before@2x.webp 2x" alt=""></picture><picture><source media="(min-width:901px) and (orientation:landscape)" srcset="assets/register/row_wide_after.webp 1920w, assets/register/row_wide_after@2x.webp 3200w" sizes="100vw"><img class="aft" src="assets/register/row_after.webp" srcset="assets/register/row_after.webp 1x, assets/register/row_after@2x.webp 2x" alt=""></picture><div class="warm" id="warm"></div></div>
+    <div class="sr"><p>The front row</p><p>Tonight it is full but for one.</p></div>
+    <div class="foot"><p id="hint"></p><button class="slip fa" id="turn" type="button">Turn the card</button></div>
+  </section>
+
+  <div class="scrim" id="scrim"></div>
+  <aside id="piece" aria-live="polite">
+    <button class="x fa" id="px" type="button">Close</button>
+    <img id="pimg" alt=""><div class="nm fa" id="pname"></div><ol id="pnotes"></ol>
+  </aside>
+  <aside id="cardsheet">
+    <button class="x fa" id="cx" type="button">Close</button>
+    <div class="flip" id="flip"><div class="in">
+      <div class="face f"><img src="assets/register/mark-o-640.webp" alt="The card"></div>
+      <form class="face b" id="form" novalidate>
+        <div class="k">kept for</div>
+        <input id="nm" type="text" maxlength="22" autocomplete="given-name" autocapitalize="characters" spellcheck="false" placeholder="your name" aria-label="Your name" enterkeyhint="next">
+        <input id="em" type="email" maxlength="80" autocomplete="email" autocapitalize="off" spellcheck="false" placeholder="your email" aria-label="Your email" enterkeyhint="done">
+        <input id="hp" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+        <div class="no"><span>chapter one &nbsp; opening night</span><span>the twenty fourth of december</span></div>
+      </form>
+    </div></div>
+    <button class="slip fa" id="keep" type="button">Keep my seat</button>
+    <div id="err" role="status"></div>
+    <p id="terms">Opening night is Christmas Eve.<br>This card opens the pre-order on Christmas morning, a week before it opens to anyone else.</p>
+    <div id="after"><p class="ty fa">Your seat is kept.</p><p>Your name is on the register. From the thirteenth of December, a chapter a night.</p><p style="margin-top:10px">Opening night is Christmas Eve. On Christmas morning the pre-order opens to your card, a week before it opens to anyone else.</p></div>
+  </aside>
+
+  <div id="foot"><span></span><button id="replay" type="button">Replay</button></div>
+</div></div>
+
+<script>
+(() => {
+  const $ = s => document.querySelector(s), frame = $('#frame'), pane = $('#pane');
+  // a computer gets the landscape layout (the CSS's own query); a phone is untouched
+  const WIDE = matchMedia('(min-width:901px) and (orientation:landscape)');
+  const doors = $('#doors'), cam = $('#cam'), way = $('#way'), spill = $('#spill'), house = $('#house'), scrim = $('#scrim'), piece = $('#piece'),
+        card = $('#cardsheet'), flip = $('#flip'), nm = $('#nm'), em = $('#em'), keep = $('#keep'), err = $('#err'), after = $('#after'),
+        hint = $('#hint'), turn = $('#turn');
+  let T = [], kept = false, raf = 0;
+  const later = (f, ms) => { const id = setTimeout(f, ms); T.push(id); return id; };
+  const HINT = 'Touch a seat to see who is in it.<br>The card is on yours.';
+
+  // The still is 900 x 1600. It is laid over the frame as "cover" would lay it (anchored 50% / 40%) so the four door
+  // leaves can be cut out of it where they stand: x 222-334-446 | 456-566-678, y 666-1034, the mullion between.
+  const IW = 900, IH = 1600, WAY = { x: 222, y: 666, w: 456, h: 368 };
+  function layCam() {
+    const fw = pane.clientWidth, fh = pane.clientHeight, s = Math.max(fw / IW, fh / IH), w = IW * s, h = IH * s, px = v => v * s + 'px';
+    Object.assign(cam.style, { width: w + 'px', height: h + 'px', left: (fw - w) * .5 + 'px', top: (fh - h) * .4 + 'px' });
+    Object.assign(way.style, { left: px(WAY.x), top: px(WAY.y), width: px(WAY.w), height: px(WAY.h) });
+    Object.assign(spill.style, { left: px(WAY.x - 40), top: px(WAY.y + WAY.h), width: px(WAY.w + 80), height: px(170) });
+    way.querySelectorAll('.cut').forEach(el => { const [a, b] = el.dataset.x.split(',').map(Number);
+      Object.assign(el.style, { left: px(a - WAY.x), width: px(b - a), backgroundSize: `${w}px ${h}px`, backgroundPosition: `${-a * s}px ${-WAY.y * s}px` }); });
+  }
+
+  // the row, as marketing/SEATING.md seats it; the notes are the book draft's own lines
+  const ROW = [
+    { code: 'L2', kept: true },
+    { code: 'L1', name: 'Coema', img: 'matinee', notes: ['It begins as one panel of black calfskin, 2 mm thick, wrapped round a flat base.', 'It closes on a gold zip with two sliders.', 'Inside it: cream suede.'] },
+    { code: 'L0', name: 'Voluta', img: 'the_reel', notes: ['It begins as a circle of black calfskin: 22 cm across, 7 cm deep.', 'Sixteen squares are pressed round its band.', 'Inside it: cream suede.'] },
+    { code: 'R0', name: 'Itaoca', img: 'po_tophandle', notes: ['It begins as black calfskin on a trapezoid: 31 cm at the base, 19.8 cm tall.', 'It closes on the house disc, 24 mm.', 'Inside it: cream suede.'] },
+    { code: 'R1', name: 'Coaraci', img: 'disc_belt', notes: ['It begins as two layers of black calfskin, 30 mm wide.', 'Five holes are punched, 25 mm apart.', 'It closes on a gold disc, 40 mm.'] },
+    { code: 'R2', name: 'Ödara', img: 'muse_bomber', notes: ['It begins as five pieces of black lambskin.', 'Her portrait is cut through the back as round holes.', 'Inside it: cream silk.'] },
+  ];
+  const ARM = { code: 'THE AISLE ARM', name: 'Ritornelo', img: 'opera_gloves', notes: ['Each begins as black lambskin, with one long seam.', 'It runs 53 cm from fingertip to top edge.', 'It closes on a 10 mm gold snap.'] };
+
+  // the row as photographed from the rigging (seats/row_above.py): where each seat's cushion and the aisle-end arm land in
+  // the picture, as fractions of its width and height; each is a touch target laid over the seat itself, nothing drawn
+  const POS = /*POS*/{"points": {"L2": {"x": 0.1139, "y": 0.4998, "w": 0.0423, "h": 0.0529}, "L1": {"x": 0.2097, "y": 0.4999, "w": 0.0557, "h": 0.0537}, "L0": {"x": 0.3081, "y": 0.4996, "w": 0.0665, "h": 0.053}, "R0": {"x": 0.6917, "y": 0.4996, "w": 0.1099, "h": 0.0529}, "R1": {"x": 0.7904, "y": 0.4994, "w": 0.1196, "h": 0.0521}, "R2": {"x": 0.8857, "y": 0.4995, "w": 0.1317, "h": 0.0529}, "arm": {"x": 0.6311, "y": 0.4938}, "card": {"x": 0.124, "y": 0.4895}}}/*POS*/;
+  // the picture is 390 x 844 (the phone); on any other frame it covers it, centred, as the doors' still does. On a computer
+  // it is the same 8K render cut wide (masters8k/row_full_*_3549x7680.png, rows 2304 to 4762): the stage's edge, the words
+  // in the floor, the row and the rows behind it, at its own resolution, held a little high (40%); POS is carried in by y0 and yh
+  const WROW = { w: 3549, h: 2458, y0: 2304 / 7680, yh: 2458 / 7680, ay: .4 };
+  const rv = () => WIDE.matches ? WROW : { w: 390, h: 844, y0: 0, yh: 1, ay: .5 };
+  function layRow() { const V = rv(), fw = frame.clientWidth, fh = frame.clientHeight, s = Math.max(fw / V.w, fh / V.h), w = V.w * s, h = V.h * s;
+    Object.assign($('#row').style, { width: w + 'px', height: h + 'px', left: (fw - w) / 2 + 'px', top: (fh - h) * V.ay + 'px' }); }
+  function row() {
+    const r = $('#row'); r.querySelectorAll('.hit').forEach(e => e.remove());
+    const V = rv(), Y = y => (y - V.y0) / V.yh;
+    const add = (p, w, h, label, go) => { const b = document.createElement('button'); b.className = 'hit'; b.type = 'button'; b.setAttribute('aria-label', label);
+      Object.assign(b.style, { left: p.x * 100 + '%', top: Y(p.y) * 100 + '%', width: w * 100 + '%', height: h * 100 + '%' }); b.addEventListener('click', e => go(p, e)); r.appendChild(b); };
+    const P = POS.points || {}, sw = P.R0 && P.R1 ? Math.abs(P.R1.x - P.R0.x) * .96 : .12, sh = .045 / V.yh;
+    ROW.forEach(d => { const p = P[d.code]; if (!p) return; add(p, sw, sh, d.kept ? 'The kept seat' : d.name, q => d.kept ? showCard() : showPiece(d, q)); });
+    if (P.arm) add(P.arm, sw * .55, sh, ARM.name, q => showPiece(ARM, q));
+    const c = P.card || P.L2; if (c) Object.assign($('#warm').style, { left: c.x * 100 + '%', top: Y(c.y) * 100 + '%' });
+  }
+
+  function showPiece(d, q) {
+    piece.classList.toggle('lft', !!(q && q.x > .5));
+    $('#pimg').srcset = `assets/register/${d.img}.webp 1x, assets/register/${d.img}@2x.webp 2x`; $('#pimg').src = `assets/register/${d.img}.webp`; $('#pimg').alt = d.name; $('#pname').textContent = d.name;
+    $('#pnotes').innerHTML = d.notes.map(n => `<li><span>${n}</span></li>`).join('');
+    card.classList.remove('on'); scrim.classList.remove('on', 'deep'); piece.classList.add('on');
+  }
+  function showCard() {
+    piece.classList.remove('on');
+    card.classList.add('on'); scrim.classList.add('on', 'deep');
+    if (!kept) later(() => { flip.classList.add('back'); later(() => nm.focus({ preventScroll: true }), 750); }, 900);
+  }
+  function closeSheets() {
+    nm.blur(); em.blur(); piece.classList.remove('on'); card.classList.remove('on'); scrim.classList.remove('on', 'deep');
+    if (!kept) later(() => flip.classList.remove('back'), 500);
+  }
+  scrim.addEventListener('click', closeSheets); $('#px').addEventListener('click', closeSheets); $('#cx').addEventListener('click', closeSheets);
+  card.addEventListener('click', e => { if (e.target === card) closeSheets(); });
+  turn.addEventListener('click', showCard);
+  house.addEventListener('click', e => { if (piece.classList.contains('on') && !e.target.closest('.hit')) closeSheets(); });
+
+  // the card: a name and an address go on the register (the drop 1 contract, list chapter-1). phaora.com takes them;
+  // anywhere else this is the preview and nothing is sent.
+  const LIVE = /(^|\.)phaora\.com$/.test(location.hostname);
+  let ref = '', sending = false;
+  try { const r = new URLSearchParams(location.search).get('ref') || ''; if (/^[a-z0-9-]{1,40}$/.test(r)) ref = r; } catch (x) {}
+  async function keepSeat() {
+    if (kept) return closeSheets();
+    if (sending) return;
+    const n = nm.value.trim(), e = em.value.trim();
+    if (!flip.classList.contains('back')) return;
+    if (!n) { err.textContent = 'The card needs a name.'; nm.focus(); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e)) { err.textContent = 'And an address to send word to.'; em.focus(); return; }
+    if (!LIVE) { err.textContent = 'This is the preview. The register keeps seats on phaora.com.'; return; }
+    sending = true; keep.disabled = true; err.textContent = 'Keeping your seat…';
+    const body = { email: e, name: n, list: 'chapter-1', website: $('#hp').value || '' };
+    if (ref) body.ref = ref;
+    let ok = false;
+    try {
+      const r = await fetch('https://crm.phaora.com/api/public/waitlist', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+      const j = await r.json().catch(() => null);
+      ok = !!(j && j.ok);
+      if (!ok) err.textContent = (j && j.error) || "That address didn't take. Try it once more.";
+    } catch (x) { err.textContent = "The register didn't answer. Try it once more."; }
+    sending = false; keep.disabled = false;
+    if (!ok) return;
+    if (window.fbq) fbq('track', 'Lead', { content_name: 'chapter-1' }, { eventID: 'lead-' + Date.now().toString(36) + Math.random().toString(36).slice(2, 8) });
+    err.textContent = ''; kept = true; nm.value = n; nm.readOnly = em.readOnly = true; nm.blur(); em.blur();
+    card.classList.add('kept-card'); keep.textContent = 'Return to the row'; after.classList.add('on'); house.classList.add('done');
+    hint.innerHTML = 'Your seat is kept.<br>Touch the others to see who sits beside you.'; turn.textContent = 'See your card';
+  }
+  function fitName() { let fs = 30; nm.style.fontSize = fs + 'px'; while (nm.scrollWidth > nm.clientWidth + 1 && fs > 15) nm.style.fontSize = (--fs) + 'px'; }
+  nm.addEventListener('input', fitName);
+  keep.addEventListener('click', keepSeat);
+  $('#form').addEventListener('submit', ev => { ev.preventDefault(); keepSeat(); });
+  [nm, em].forEach(i => i.addEventListener('keydown', ev => { if (ev.key === 'Enter') { ev.preventDefault(); i === nm ? em.focus() : keepSeat(); } }));
+  [nm, em].forEach(i => i.addEventListener('input', () => { err.textContent = ''; }));
+
+  // snow over the doors
+  let P = [], SW = 0, SH = 0;
+  function laySnow() { const c = $('#snow'); SW = c.width = frame.clientWidth; SH = c.height = frame.clientHeight;
+    P = Array.from({ length: Math.round(SW * SH / 5200) }, () => ({ x: Math.random() * SW, y: Math.random() * SH, r: .6 + Math.random() * 1.9, v: 14 + Math.random() * 30, d: (Math.random() - .5) * 10, a: .35 + Math.random() * .55 })); }
+  function snow() { const x = $('#snow').getContext('2d'); let t0 = performance.now();
+    const step = t => { const dt = Math.min(.05, (t - t0) / 1000); t0 = t; x.clearRect(0, 0, SW, SH);
+      for (const p of P) { p.y += p.v * dt; p.x += p.d * dt; if (p.y > SH + 4) { p.y = -4; p.x = Math.random() * SW; }
+        x.globalAlpha = p.a; x.fillStyle = '#fff6e6'; x.beginPath(); x.arc(p.x, p.y, p.r, 0, 6.283); x.fill(); }
+      if (!doors.classList.contains('gone')) raf = requestAnimationFrame(step); };
+    raf = requestAnimationFrame(step); }
+
+  // the doors open by themselves, the camera goes in through the light, and the house comes up out of it
+  function open() { if (doors.classList.contains('open')) return; T.forEach(clearTimeout); T = [];
+    doors.classList.add('open'); later(() => doors.classList.add('in'), 900);
+    later(() => { house.classList.add('on'); doors.classList.add('gone'); }, 3150); }
+  function start() {
+    T.forEach(clearTimeout); T = []; cancelAnimationFrame(raf); kept = false;
+    frame.classList.add('noanim');
+    doors.classList.remove('open', 'in', 'gone'); house.classList.remove('on', 'done'); piece.classList.remove('on'); card.classList.remove('on', 'kept-card');
+    scrim.classList.remove('on', 'deep'); flip.classList.remove('back'); after.classList.remove('on');
+    nm.value = ''; em.value = ''; nm.style.fontSize = ''; nm.readOnly = em.readOnly = false; keep.textContent = 'Keep my seat'; turn.textContent = 'Turn the card'; err.textContent = ''; hint.innerHTML = HINT;
+    row(); layRow(); layCam(); laySnow(); void frame.offsetWidth; frame.classList.remove('noanim');
+    snow(); later(open, 4200);
+  }
+  fetch('assets/register/lettering-offwhite.svg').then(r => r.ok ? r.text() : Promise.reject()).then(t => { $('#logo').innerHTML = t; }).catch(() => {});
+  addEventListener('resize', () => { layRow(); layCam(); laySnow(); });
+  WIDE.addEventListener('change', () => { row(); layRow(); layCam(); laySnow(); });
+  doors.addEventListener('click', open); $('#replay').addEventListener('click', start);
+  start();
+})();
+</script>
+</body></html>

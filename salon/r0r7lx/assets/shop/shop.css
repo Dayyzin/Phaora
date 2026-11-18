@@ -506,3 +506,6 @@ html,body{overflow-x:clip!important;overflow-y:visible}
 .dets.end,.strip{margin-bottom:18px!important}
 .dets.end .one .lb{font-size:14px!important;letter-spacing:.08em!important}
 @media (max-width:820px){.dets.three,.dets.end,.sh,.strip{margin-top:10px!important}.dets.end,.strip{margin-bottom:10px!important}.dets.end .one .lb{font-size:12px!important}}
+/* the menu bolder (David, 18 Nov) */
+.mn{font-weight:600!important;letter-spacing:.07em!important}
+.mn a{color:#14161b}

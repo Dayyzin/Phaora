@@ -476,6 +476,14 @@
     "blend": false,
     "s1200": "assets/shop/1200/alvor_front_2k.webp",
     "label": "front view"
+   },
+   {
+    "src": "assets/shop/img/alvor_back_2k.webp",
+    "w": 625,
+    "h": 1808,
+    "s1200": "assets/shop/1200/alvor_back_2k.webp",
+    "blend": false,
+    "label": "back view"
    }
   ],
   "side": "women",
@@ -1062,8 +1070,8 @@
    "A LAB DIAMOND",
    "ABOUT 420 MM"
   ],
-  "price": "",
-  "href": "https://www.phaora.com/",
+  "price": "USD 33,000",
+  "href": "",
   "tile": {
    "src": "assets/shop/img/lustre_2k.webp",
    "w": 1536,

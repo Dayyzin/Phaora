@@ -5,7 +5,7 @@
 //   ./?piece=<id>           the piece: the walkaround first where it has one and is priced at WALKAROUND_MIN_USD or
 //                           more, then its pictures stacked on the left, the details sticky on the right
 var WALKAROUND_MIN_USD = 0;   // David, 18 Nov: "Walkaround needs to be ADDED" - every piece that has one
-var V = '?v=1118zq';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
+var V = '?v=1118zr';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
 var WALKAROUND_ENABLED = true;   // David, 18 Nov 14:39: "THE WALKAROUND STILL ISNT THERE" - the world walk on every piece that has one;   // David, 18 Nov: "Sharp yes" - every piece walks around on its own sharp views, never the 144p world walk   // David, 18 Nov: "Walkaround comes back, it's too strong and worked on to throw away"
 (function () {
   var app = document.getElementById('app'); if (!app) return;
@@ -23,7 +23,7 @@ var WALKAROUND_ENABLED = true;   // David, 18 Nov 14:39: "THE WALKAROUND STILL I
   };
   // a piece without a price (Lustre): one Request button, a letter to the house (David, 18 Nov)
   var cta = function (p, cls) {
-    if (!p.price) return '<a class="' + cls + '" href="mailto:hello@phaora.com?subject=' + encodeURIComponent('Request: ' + p.name) + '">Request</a>';
+    if (!p.price || !p.href) return '<a class="' + cls + '" href="mailto:hello@phaora.com?subject=' + encodeURIComponent('Request: ' + p.name) + '">Request</a>';
     return '<a class="' + cls + '" href="' + E(p.href) + '">Pre-order</a>';
   };
   var tile = function (p, k) {
@@ -39,7 +39,7 @@ var WALKAROUND_ENABLED = true;   // David, 18 Nov 14:39: "THE WALKAROUND STILL I
     if (p) return piecePage(p, C);
     var list = C, head = '';
     var gift = q.get('gift');   // gifts for her / for him (David, 18 Nov): her side's pieces, the gifts first
-    if (gift === 'her' || gift === 'him') { side = gift === 'her' ? 'women' : 'men'; var G0 = ['oitava', 'lustre', 'cordel', 'obolo', 'coaraci', 'ofusca', 'ritornelo'];
+    if (gift === 'her' || gift === 'him') { side = gift === 'her' ? 'women' : 'men'; var G0 = ['oitava', 'cordel', 'obolo', 'coaraci', 'ofusca', 'ritornelo'];
       list = C.filter(function (x) { return sides(x).indexOf(side) >= 0; }).sort(function (a, b) { var i = G0.indexOf(a.id), j = G0.indexOf(b.id); return (i < 0 ? 99 : i) - (j < 0 ? 99 : j); });
       head = 'Gifts for ' + gift; }
     else if (side === 'women' || side === 'men') { list = C.filter(function (x) { return sides(x).indexOf(side) >= 0; }); head = side; }
@@ -53,7 +53,7 @@ var WALKAROUND_ENABLED = true;   // David, 18 Nov 14:39: "THE WALKAROUND STILL I
     var det = function (d, cls, lab, cat) { if (!d) return ''; var href = cat ? HOME + '?cat=' + encodeURIComponent(cat) : HOME + '?piece=' + encodeURIComponent(d.p.id);
       return '<a class="dl ' + cls + '" href="' + href + '">' + img(d.v, d.p.name + ', ' + d.v.label.toLowerCase(), cls === 'one' ? '100vw' : '(max-width: 820px) 34vw, 33vw', true) + '<span class="lb">' + E(lab || d.p.name) + '</span></a>'; };
     var big = find('itaoca', 'The PÖ on the flap');
-    var GIFTS = ['oitava', 'lustre', 'cordel', 'obolo'];   // the gift suggestions, first, before the catalogue (David, 18 Nov)
+    var GIFTS = ['oitava', 'cordel', 'obolo', 'coaraci'];   // the gift suggestions, first, before the catalogue (David, 18 Nov)
     var three = [[find('gelosia', 'The belt and its holes'), 'Outerwear', 'outerwear'], [find('coema', 'The charm'), 'Bags', 'bags'], [find('ofusca', 'The brass plate'), 'Eyewear', 'eyewear']];
     var last = find('heliodora', 'The kiss on the back');   // the page ends on one landscape, edge to edge (David, 18 Nov)
     var phone = matchMedia('(max-width: 820px)').matches;
@@ -136,8 +136,6 @@ var WALKAROUND_ENABLED = true;   // David, 18 Nov 14:39: "THE WALKAROUND STILL I
       '<a class="ln" href="service.html#delivery"><span class="sc">Delivery</span><i aria-hidden="true">&gt;</i></a>' +
       '<a class="ln" href="service.html#returns"><span class="sc">Returns</span><i aria-hidden="true">&gt;</i></a></div>';
     app.innerHTML =
-      (!walk && views.length > 1 ? '<section class="vw" aria-label="' + E(p.name) + ', walk around">' + views.map(function (v, k) { return '<img class="' + (k ? '' : 'on') + '" src="' + E(v.src + V) + '" alt="' + E(p.name + ', ' + v.label) + '"' + (k ? ' loading="lazy"' : '') + '>'; }).join('') + '<p class="sc">' + E(p.name) + '</p></section>' : '') +
-      (walk ? '<section class="wa" data-src="' + E(p.walkaround) + '" aria-label="' + E(p.name) + ', the walkaround"><div class="wa-in"><canvas aria-hidden="true"></canvas><div class="wn"></div><p class="wa-nm sc">' + E(p.name) + '</p></div></section>' : '') +
       '<article class="pc">' +
         (function () {   // the pictures; a piece in more than one colour has one list per colour (David, 18 Nov: Cantilena in cream)
           var list = function (L, ci) { return '<ul class="st"' + (ci ? ' data-c="' + ci + '" hidden' : ' data-c="0"') + '>' + L.map(function (v, k) {
@@ -152,6 +150,8 @@ var WALKAROUND_ENABLED = true;   // David, 18 Nov 14:39: "THE WALKAROUND STILL I
           buy + rows +
         '</div>' +
       '</article>' +
+      (!walk && views.length > 1 ? '<section class="vw" aria-label="' + E(p.name) + ', walk around">' + views.map(function (v, k) { return '<img class="' + (k ? '' : 'on') + '" src="' + E(v.src + V) + '" alt="' + E(p.name + ', ' + v.label) + '"' + (k ? ' loading="lazy"' : '') + '>'; }).join('') + '<p class="sc">' + E(p.name) + '</p></section>' : '') +
+      (walk ? '<section class="wa" data-src="' + E(p.walkaround) + '" aria-label="' + E(p.name) + ', the walkaround"><div class="wa-in"><canvas aria-hidden="true"></canvas><div class="wn"></div><p class="wa-nm sc">' + E(p.name) + '</p></div></section>' : '') +
       '<section class="ml"><div class="mlside"><nav class="mn mlmn" aria-label="Menu"></nav></div><div class="mlmain"><h2>You may also like</h2><ul class="grid also">' + also.map(function (x) { return '<li class="tl"><a class="im" href="' + HOME + '?piece=' + encodeURIComponent(x.id) + '">' + img(x.tile, x.name, '(max-width: 820px) 45vw, 22vw', true) + '</a><div class="cap"><a href="' + HOME + '?piece=' + encodeURIComponent(x.id) + '"><span class="nm">' + E(x.name) + '</span>' + (x.price ? '<span class="pr">' + E(x.price) + '</span>' : '') + '</a></div></li>'; }).join('') + '</ul></div></section>' +
       '<div class="bar">' + '<span class="pr">' + E(p.price || '') + '</span>' + buy + '</div>';
     document.body.classList.add('has-bar');
