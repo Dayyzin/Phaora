@@ -5,7 +5,7 @@
 //   ./?piece=<id>           the piece: the walkaround first where it has one and is priced at WALKAROUND_MIN_USD or
 //                           more, then its pictures stacked on the left, the details sticky on the right
 var WALKAROUND_MIN_USD = 0;   // David, 18 Nov: "Walkaround needs to be ADDED" - every piece that has one
-var V = '?v=1119a';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
+var V = '?v=1119c';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
 var WALKAROUND_ENABLED = true;   // David, 18 Nov 14:39: "THE WALKAROUND STILL ISNT THERE" - the world walk on every piece that has one;   // David, 18 Nov: "Sharp yes" - every piece walks around on its own sharp views, never the 144p world walk   // David, 18 Nov: "Walkaround comes back, it's too strong and worked on to throw away"
 (function () {
   var app = document.getElementById('app'); if (!app) return;
@@ -183,10 +183,13 @@ var WALKAROUND_ENABLED = true;   // David, 18 Nov 14:39: "THE WALKAROUND STILL I
     var timer = null, cur = null;
     function play(a) {
       if (cur === a) return; stop(); var L; try { L = JSON.parse(a.getAttribute('data-cy') || '[]'); } catch (e) { L = []; }
-      var im = a.querySelector('img'); if (!im || L.length < 2) return; cur = a; var first = im.getAttribute('src'), ss = im.getAttribute('srcset'), i = 0;
-      a._reset = function () { im.setAttribute('src', first); if (ss) im.setAttribute('srcset', ss); };
-      im.removeAttribute('srcset');
-      timer = setInterval(function () { i = (i + 1) % L.length; im.setAttribute('src', L[i]); }, 900);
+      var im = a.querySelector('img'); if (!im || L.length < 2) return; cur = a; var i = 0;
+      // a gentle crossfade, slow (David, 18 Nov): the next view fades in over the last, then takes its place
+      var top = document.createElement('img'); top.className = 'xf'; top.alt = ''; a.appendChild(top);
+      im.classList.add('base'); a._reset = function () { top.remove(); im.classList.remove('base', 'off'); };
+      timer = setInterval(function () { i = (i + 1) % L.length; var u = L[i];
+        var pre = new Image(); pre.onload = function () { if (cur !== a) return; top.classList.remove('on'); top.src = u; requestAnimationFrame(function () { requestAnimationFrame(function () { top.classList.add('on'); im.classList.add('off'); }); }); }; pre.src = u;
+        if (i === 0) { top.classList.remove('on'); im.classList.remove('off'); } }, 2200);
     }
     function stop() { if (timer) clearInterval(timer); timer = null; if (cur && cur._reset) cur._reset(); cur = null; }
     document.addEventListener('mouseover', function (e) { var a = e.target.closest('.tl .im[data-cy]'); if (a) play(a); else if (cur && !e.target.closest('.tl')) stop(); });

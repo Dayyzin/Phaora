@@ -540,3 +540,14 @@ body.dim .wrap>.mn{transform:translateX(-100%);opacity:0;pointer-events:none}
 }
 /* the lights come up bright when the film ends */
 body.lights::after{background:#fff;opacity:.85!important;transition:opacity 1.4s ease}
+/* the hover views crossfade slowly over the still */
+.tl .im img.xf{opacity:0;transition:opacity 1.1s ease!important;pointer-events:none}
+.tl .im img.xf.on{opacity:1}
+.tl .im img.base{transition:opacity 1.1s ease!important}
+.tl .im img.base.off{opacity:0}
+/* the walkaround's words bolder and rounder (David, 18 Nov): Jost, the house sans */
+.wa .note p{font-family:'Jost','DejaVu Sans',sans-serif!important;font-weight:600!important;font-size:28px!important;letter-spacing:.01em!important;line-height:1.3!important}
+.wa .note.ph p{font-size:21px!important;font-weight:600!important}
+/* a deeper green behind Itaoca in the opening */
+.op2 .pic{background:radial-gradient(ellipse at 50% 55%,#16281f 0%,#122119 60%,#0f1c15 100%)}
+.op2 .pic{align-self:stretch}
