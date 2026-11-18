@@ -1081,6 +1081,14 @@
   },
   "stack": [
    {
+    "src": "assets/shop/img/lustre_hero.webp",
+    "w": 3072,
+    "h": 2048,
+    "s1200": "assets/shop/1200/lustre_hero.webp",
+    "blend": false,
+    "label": "The three heads"
+   },
+   {
     "src": "assets/shop/img/lustre_head.webp",
     "w": 1536,
     "h": 2048,
@@ -1095,6 +1103,20 @@
     "s1200": "assets/shop/1200/lustre_head_close.webp",
     "blend": false,
     "label": "worn, close"
+   },
+   {
+    "src": "assets/shop/img/lustre_tq_close.webp",
+    "w": 860,
+    "h": 1147,
+    "blend": false,
+    "label": "worn, three quarter"
+   },
+   {
+    "src": "assets/shop/img/lustre_side_close.webp",
+    "w": 860,
+    "h": 1147,
+    "blend": false,
+    "label": "worn, side"
    },
    {
     "src": "assets/shop/img/lustre_2k.webp",
