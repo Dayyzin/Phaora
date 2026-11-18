@@ -84,5 +84,5 @@ body.scrolled .hint{opacity:0}
 html.embed,html.embed body{overflow:hidden;scroll-snap-type:none}
 html.embed .navband,html.embed .hint,html.embed .ctl,html.embed .track{display:none}
 /* on the front page the projector brighter (David, 18 Nov: "too dim") */
-html.embed .room .film{mix-blend-mode:normal!important;filter:brightness(1.6) contrast(1.05) saturate(1.05)}
-html.embed .room .dark{opacity:0}
+html.embed .room .film{filter:brightness(1.5) contrast(1.05)}
+html.embed .room .dark{filter:brightness(2.1) contrast(1.05)}

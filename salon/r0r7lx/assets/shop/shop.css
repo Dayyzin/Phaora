@@ -551,3 +551,6 @@ body.lights::after{background:#fff;opacity:.85!important;transition:opacity 1.4s
 /* a deeper green behind Itaoca in the opening */
 .op2 .pic{background:radial-gradient(ellipse at 50% 55%,#16281f 0%,#122119 60%,#0f1c15 100%)}
 .op2 .pic{align-self:stretch}
+/* the price smaller and tight under the name (David, 18 Nov) */
+.tl .cap .pr{font-size:11.5px!important;margin-top:0!important;line-height:1.25!important;letter-spacing:.05em!important}
+.tl .cap .nm{line-height:1.25!important;margin-bottom:1px}
