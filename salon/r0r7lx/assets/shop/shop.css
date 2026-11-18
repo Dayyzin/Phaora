@@ -621,3 +621,4 @@ body.lights::after{background:#fff;opacity:.85!important;transition:opacity 1.4s
 @media (max-width:820px){.op2 .pic{padding:5vh 0 3vh!important}.op2 .pic img{width:78%!important;max-width:78%!important}}
 @media (max-width:820px){.strip .whole img{transform:none!important;object-fit:contain!important;padding:3% 2% 16%!important;box-sizing:border-box}}
 @media (max-width:820px){.split .sp{aspect-ratio:auto!important;height:auto!important}.split .sp img{aspect-ratio:1/1!important;height:auto!important;object-position:50% 72%}}
+@media (max-width:820px){.split .sp img{aspect-ratio:16/9!important;object-position:50% 68%}}
