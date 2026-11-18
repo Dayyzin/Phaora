@@ -231,3 +231,23 @@ html.dim .pv-drawer .tab{color:#ecebe8;text-shadow:none}
 @media (prefers-reduced-motion:reduce){.pv-txt,.pv-light,.pv-fig{transition:none}}
 .pv[data-act=walk] .pv-notes .nt{text-shadow:0 0 6px #f2f2f4,0 0 12px #f2f2f4}   /* the words lit off the wall, no box */
 .pv.shown[data-act=walk] .pv-head{opacity:0!important}
+
+/* the buy button (David, 18 Nov, "Go"): a real button with its price, dark ink on the room's light, no fill; one quiet
+   line under it. The same in the catalogue's cells and the piece view. */
+.buy{display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;min-height:34px;padding:2px 16px 0;margin-top:6px;
+  border:1px solid #2a2622;color:#2a2622;background:rgba(242,242,244,.35);font:500 13px/1.2 'Cormorant Garamond','DejaVu Serif',serif;
+  letter-spacing:.22em;text-transform:uppercase;white-space:nowrap;transition:background .3s ease,color .3s ease}
+.buy:hover,.buy:focus-visible{background:#2a2622;color:#f2f2f4}
+.it .mto,.pv-buy .mto{margin:5px 0 0;font:italic 400 10px/1.35 'Cormorant Garamond','DejaVu Serif',serif;color:#4c4c50}
+.pv-buy .buy{min-height:44px;font-size:14px;padding:2px 22px 0;margin-top:0}
+.pv-buy .mto{font-size:12px;margin-top:8px}
+@media (max-width:820px){
+  .it .buy{min-height:44px;width:100%;font-size:12px;letter-spacing:.06em;padding:2px 4px 0;white-space:normal;text-align:center;margin-top:4px}
+  .it .mto{font-size:7.5px;margin-top:3px}
+  .pv-buy .buy{min-height:48px;font-size:13px;letter-spacing:.2em}
+  .pv-buy .mto{font-size:11px}
+}
+.it:has(.buy) .links{display:none}   /* the button opens the way; the picture and the name open the piece */
+.it .buy{min-height:30px}
+.it .mto{font-size:9px;margin-top:3px}
+@media (max-width:820px){.it .buy{min-height:44px}.it .mto{display:none}}   /* on a phone the line lives in the piece view, under its button */

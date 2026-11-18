@@ -18,6 +18,7 @@ HERE = Path(__file__).resolve().parent
 # The stand-ins' sources live in phaora-ops. On phaora.com's repo (this folder is /chapter-1/) point PHAORA_OPS at a
 # phaora-ops checkout to refresh them; without it every slot keeps what it already built, and masters still work.
 REPO = Path(os.environ.get('PHAORA_OPS') or (HERE.parents[4] if len(HERE.parents) > 4 and (HERE.parents[4] / 'departments').exists() else HERE.parent.parent / 'phaora-ops'))
+MTO = 'Made to order. Delivery date confirmed by email.'   # under every buy button (David, 18 Nov)
 REGISTER = '/'   # the live register (phaora.com's own page); this site's copy of it is dropped
 sys.path.insert(0, str(HERE))
 import content as C
@@ -486,9 +487,8 @@ def piece_page(p, prev, nxt):
     if enq:
         buy = ''
     else:
-        pr = (f'<span class="nw">{E(price)}</span>' + (f' <span class="pre">pre-order <span class="nw">{E(presale)}</span></span>' if presale else '')) if price else ''
-        buy = (f'{f"<div class=sizes role=group aria-label=Size>{sizes}</div>" if sizes else ""}{f"<p class=price>{pr}</p>" if pr else ""}<p class="mto">Made to order.</p>'
-               f'<a class="cta" href="{REGISTER}">Keep a seat</a><p class="cta-note">The register sees the pre-order first.</p>')
+        buy = (f'{f"<div class=sizes role=group aria-label=Size>{sizes}</div>" if sizes else ""}' +
+               (f'<a class="buy" href="{REGISTER}">Reserve · {E(price)}</a><p class="mto">{MTO}</p>' if price else ''))   # David, 18 Nov: one price, one button
     policy = C.POLICY_KNIT if p['policy'] == 'knit' else C.POLICY_MADE
     more = ('' if enq else f'<dt>Pre-order</dt><dd>{E(C.POLICY_PRESALE)}</dd><dt>Returns</dt><dd>{E(policy)}</dd>') + \
         f'<dt>Care</dt><dd>{E(C.CARE[p["care"]])} <a href="care.html">Care</a></dd><dt>Size</dt><dd><a href="sizes.html">The measurements</a></dd>'
@@ -725,9 +725,9 @@ def catalogue_home():
                       f'<p class="s cut">{E(q["plain"].upper())} &nbsp;·&nbsp; CHAPTER&nbsp;I</p>'
                       f'<a class="ph{" two" if two else ""}" href="{q["page"]}.html">{im}</a>'
                       f'<ul class="specs cut full">{specs_html(specs)}</ul><ul class="specs cut short">{specs_html(short_specs(specs))}</ul>'
-                      f'<p class="links cut"><a href="{q["page"]}.html">The piece</a>' +   # one line (David, 15 Nov)
-                      (f'<span class="dot">·</span><a href="{REGISTER}">Keep a seat</a>' if price and not q.get('nosale') else '') + '</p>' +
-                      (f'<a class="price" href="{REGISTER}">{E(price)}</a>' if price and not q.get('nosale') else '') + '</article>')   # David: "bigger price"
+                      f'<p class="links cut"><a href="{q["page"]}.html">The piece</a></p>' +
+                      # David, 18 Nov ("Go"): a real button, the way the houses do it; one price; one quiet line under it
+                      (f'<a class="buy" href="{REGISTER}">Reserve · {E(price)}</a><p class="mto">{MTO}</p>' if price and not q.get('nosale') else '') + '</article>')
         # the piece view's acts (David, 15 Nov: "YES" to the product-page acts): everything each act needs, from the piece's
         # own page data. Only real render pixels: a close stop is a push into the piece's own picture at 100% (its walk
         # stops on the front), or a passed close-up render at 960 px or more; a piece with neither skips the act.

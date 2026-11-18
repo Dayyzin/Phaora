@@ -46,7 +46,7 @@
     '<div class="pv-world"><canvas aria-hidden="true"></canvas><div class="wn"></div></div><div class="pv-walk"><div class="wl"><img alt=""></div><div class="wl"><img alt=""></div></div><figure class="pv-fig"><img alt=""></figure><div class="pv-plate"><img alt=""></div>' +
     '<svg class="pv-lines" aria-hidden="true"></svg><div class="pv-notes"></div><ol class="pv-made cut"></ol>' +
     '<div class="pv-txt pv-head"><h1 class="t cut"></h1><p class="s cut"></p></div>' +
-    '<ul class="pv-txt pv-specs cut"></ul><div class="pv-txt pv-buy"><p class="links cut"></p><a class="price"></a></div>' +
+    '<ul class="pv-txt pv-specs cut"></ul><div class="pv-txt pv-buy"></div>' +
     '<div class="pv-txt pv-turn"></div><p class="pv-cap cut"></p>' +
     '<div class="pv-scene"><p class="e cut">Where it is going</p><p class="pl cut"></p><p class="kp cut"></p></div>' +
     '<div class="pv-same"><p class="e cut">In the same scene</p><div class="row"></div></div>' +
@@ -76,9 +76,8 @@
     $('h1').textContent = it.querySelector('.t').textContent;
     $('.pv-head .s').innerHTML = it.querySelector('.s').innerHTML;
     $('.pv-specs').innerHTML = it.querySelector('.specs.short').innerHTML;
-    const pr = it.querySelector('.price'), pa = $('.price'), keep = it.querySelector('.links a:not([href$=".html"])');
-    $('.pv-buy .links').innerHTML = keep ? `<a href="${keep.getAttribute('href')}">Keep a seat</a>` : '';
-    pa.textContent = pr ? pr.textContent : ''; pa.href = pr ? pr.getAttribute('href') : '#'; pa.hidden = !pr;
+    const bb = it.querySelector('.buy'), mt = it.querySelector('.mto');   // the cell's own button and its line, as they are
+    $('.pv-buy').innerHTML = bb ? bb.outerHTML + (mt ? mt.outerHTML : '') : '';
     const views = [it.dataset.full].concat((it.dataset.views || '').split(',').filter(Boolean));
     $('.pv-turn').innerHTML = views.length > 1 ? views.map((v, i) => `<button data-i="${i}"${i ? '' : ' class="on"'} aria-label="${['Front', 'Three-quarter', 'Back', 'Side'][i] || 'View'}"></button>`).join('') + '<span class="cut">Turn</span>' : '';
     fig.dataset.i = 0; fig._views = views; views.slice(1).forEach(load);

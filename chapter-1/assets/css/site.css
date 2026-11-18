@@ -589,3 +589,13 @@ body.bookdark{background:#0b0b0b;color:#e9e0cf}
   .walk.frames .hud{left:20px;bottom:auto;top:76px}.walk.frames .hud .pname{font-size:32px}
 }
 .walk.frames .wfn{background:rgba(11,11,11,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);padding:14px 16px 16px;box-shadow:0 12px 34px -14px rgba(0,0,0,.8)}
+/* the buy button (David, 18 Nov, "Go"): one price on a real button, the house's quiet look: dark ink on light, a thin
+   cream border on dark, no fill colour; one line of running text under it */
+.buy{display:inline-flex;align-items:center;justify-content:center;min-height:46px;margin-top:26px;padding:0 30px;box-sizing:border-box;
+  border:1px solid currentColor;background:transparent;color:var(--ink);font:500 14px/1.2 var(--serif);letter-spacing:.26em;text-transform:uppercase;
+  text-decoration:none;transition:background .3s ease,color .3s ease}
+.buy:hover,.buy:focus-visible{background:var(--ink);color:var(--wall)}
+.dark .buy{color:var(--cream);border-color:rgba(239,230,214,.7)}
+.dark .buy:hover{background:var(--cream);color:var(--black)}
+.buy+.mto{margin:10px 0 0;font:italic 400 15px/1.4 var(--serif);opacity:.72}
+@media (max-width:820px){.buy{min-height:48px;font-size:13px;letter-spacing:.2em;padding:0 22px;width:100%}}
