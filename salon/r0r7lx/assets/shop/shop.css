@@ -1,0 +1,162 @@
+/* The salon as a house shop (David, 18 Nov): an edge-to-edge grid (dior.com), the piece page as a stack of pictures
+   beside a sticky column (dior.com), a plain stacked menu (celine.com), a quiet footer (maison margiela), a sign-up panel
+   from the right (celine.com). The salon's own type and colours: Cormorant Garamond and Jost, ink #2a2622 on #efeff1. */
+:root{--ink:#2a2622;--grey:#6b6a6e;--ground:#ffffff;--tile:#ffffff;--line:#d9d8dc;--menu:184px;--head:64px}
+*{box-sizing:border-box}
+html,body{margin:0;background:#fff;color:var(--ink);-webkit-font-smoothing:antialiased}
+body{font:400 15px/1.55 'Cormorant Garamond','DejaVu Serif',serif}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit}
+.sc{font:400 10px/1.5 'Jost','DejaVu Sans',sans-serif;letter-spacing:.18em;text-transform:uppercase}   /* small capitals */
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* the header: the logo centred (the lettering, inlined, never typed) */
+.hd{position:sticky;top:0;z-index:30;height:var(--head);display:flex;align-items:center;justify-content:center;background:#fff}
+.hd .logo{display:block;width:92px;line-height:0;color:var(--ink)}
+.hd .logo svg{display:block;width:100%;height:auto}
+.hd .burger{position:absolute;left:16px;top:50%;transform:translateY(-50%);display:none;width:40px;height:40px;padding:0;border:0;background:none;cursor:pointer;font-size:20px;line-height:40px;text-align:left}
+
+/* the menu (celine.com): small capitals, stacked, in groups with space between them */
+.mn{font:400 11px/1 'Jost','DejaVu Sans',sans-serif;letter-spacing:.2em;text-transform:uppercase}
+.mn ul{list-style:none;margin:0;padding:0}
+.mn ul+ul{margin-top:26px}
+.mn li+li{margin-top:12px}
+.mn a{display:inline-block;padding:2px 0;border-bottom:1px solid transparent}
+.mn a:hover,.mn a[aria-current=page]{border-bottom-color:currentColor}
+.mn .x{display:none}
+.wrap{display:grid;grid-template-columns:var(--menu) minmax(0,1fr);align-items:start}
+.wrap>.mn{position:sticky;top:var(--head);padding:18px 0 0 24px}
+.wrap.full{display:block}                      /* the piece page: the pictures run to the left edge; the menu from the ☰ */
+.wrap.full>.mn{display:none}
+.hd.burgered .burger{display:block}
+
+/* the grid: really big pictures (David, 18 Nov), 3 across on a desk, 1 on a phone; seamless, one white ground (the
+   renders' own ground is #ffffff and the cut-outs are transparent: measured, AUDIT.md), the pieces on a common baseline */
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin:0;padding:0;list-style:none;background:var(--ground)}
+.tl{min-width:0}
+.tl .im{position:relative;display:flex;align-items:flex-end;justify-content:center;height:max(85vh,560px);padding:5vh 10% 4vh;background:var(--ground)}
+.tl .im img{display:block;width:auto;height:auto;object-fit:contain;transition:transform .6s ease}
+.tl .im:hover img{transform:scale(1.02)}
+.tl .cap{display:block;padding:10px 16px 34px;text-align:left}
+.tl .nm{display:block;font:400 10px/1.4 'Jost','DejaVu Sans',sans-serif;letter-spacing:.2em;text-transform:uppercase}
+.tl .pr{display:block;margin-top:2px;font:400 14px/1.4 'Cormorant Garamond','DejaVu Serif',serif;letter-spacing:.06em;color:var(--grey)}
+.gh{padding:18px 16px 6px;margin:0;font:400 10px/1.4 'Jost','DejaVu Sans',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--grey)}
+.btn.ol{display:inline-block;width:180px;margin-top:12px;padding:11px 10px;background:none;color:var(--ink);border:1px solid var(--ink);font-size:9px}
+.btn.ol:hover{background:var(--ink);color:#fff}
+
+/* the piece page: the walkaround first (pieces at WALKAROUND_MIN_USD and up), then the pictures stacked down the left
+   (up to 66%), each a full screen tall; the details sticky on the right */
+.wa{position:relative;height:800vh;background:#1a1916}
+.wa-in{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;z-index:31}
+.wa canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.wa .wn{position:absolute;inset:0;pointer-events:none}
+.wa .note{position:absolute;left:0;top:0;transform-origin:0 0;box-sizing:border-box;display:flex;align-items:center;justify-content:flex-start;pointer-events:none;visibility:hidden;will-change:transform,opacity,filter}
+.wa .note p{margin:0;font-family:'Cormorant Garamond','DejaVu Serif',serif;font-weight:500;font-size:34px;line-height:1.28;letter-spacing:.01em;max-width:100%;font-feature-settings:'kern','liga','lnum';text-wrap:pretty}
+.wa .note.ink-dark p{color:#14120d;text-shadow:0 0 1px rgba(255,252,244,.9),0 0 6px rgba(255,252,244,.85),0 0 16px rgba(255,252,244,.7)}
+.wa .note.ink-light p{color:#fbf7ee;text-shadow:0 0 1px rgba(8,7,5,.9),0 0 6px rgba(8,7,5,.75),0 1px 16px rgba(8,7,5,.7)}
+.wa .note.ph p{font-size:27px;font-weight:400;letter-spacing:.02em;line-height:1.32;max-width:86%}
+.wa .wa-nm{position:absolute;left:16px;bottom:14px;margin:0;color:#fbf7ee;opacity:.8}
+.pc{display:grid;grid-template-columns:66% 34%;align-items:start;background:var(--ground)}
+.pc .st{display:flex;flex-direction:column;gap:0;margin:0;padding:0;list-style:none}
+.pc .st li{display:flex;align-items:center;justify-content:center;min-height:100vh;min-height:100svh;padding:4vh 4%;background:var(--ground)}
+.pc .st li img{display:block;width:auto;height:auto;max-height:92vh!important;object-fit:contain}
+.pc .st li.cu{min-height:0;padding:0}
+.pc .st li.cu img{width:100%;max-height:none!important}
+.pc .dt{position:sticky;top:var(--head);padding:48px clamp(24px,3.4vw,56px) 40px;max-height:calc(100vh - var(--head));overflow-y:auto}
+.dt .ty{margin:0 0 10px;color:var(--grey)}
+.dt h1{margin:0;font:400 28px/1.15 'Cormorant Garamond','DejaVu Serif',serif;letter-spacing:.2em;text-transform:uppercase}
+.dt .pr{margin:10px 0 0;font:400 18px/1.3 'Cormorant Garamond','DejaVu Serif',serif;letter-spacing:.06em}
+.dt .po{margin:22px 0 0}
+.dt .po b{font-weight:400;display:block;color:var(--grey)}
+.dt .po span{display:block;margin-top:4px;font:italic 400 15px/1.4 'Cormorant Garamond','DejaVu Serif',serif}
+.btn{display:block;width:100%;margin-top:18px;padding:16px 12px;border:1px solid var(--ink);border-radius:0;background:var(--ink);color:#fff;text-align:center;cursor:pointer;font:400 10px/1.2 'Jost','DejaVu Sans',sans-serif;letter-spacing:.24em;text-transform:uppercase}
+.btn:hover{background:#000}
+.btn[disabled]{background:#c9c8cc;border-color:#c9c8cc;cursor:default}
+/* the folding rows (celine.com): a thin rule above each, + turning to −; then two plain links with > */
+.rows{margin-top:30px}
+.fd>button,.rows .ln{display:flex;width:100%;align-items:center;justify-content:space-between;padding:15px 0;border:0;border-top:1px solid var(--line);background:none;cursor:pointer;text-align:left}
+.rows .ln:last-child{border-bottom:1px solid var(--line)}
+.fd>button i,.rows .ln i{font:300 15px/1 'Jost','DejaVu Sans',sans-serif;font-style:normal;color:var(--grey)}
+.fb{padding:2px 0 18px;font:400 15px/1.55 'Cormorant Garamond','DejaVu Serif',serif;color:#3d3a37}
+.fb p{margin:0 0 8px}
+.fb .sp{list-style:none;margin:0;padding:0;font:400 10px/1.9 'Jost','DejaVu Sans',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#4c4b50}
+.fb .sz{color:var(--ink)}
+.fb table{width:100%;border-collapse:collapse;margin:6px 0 10px;font-size:14px}
+.fb td,.fb th{padding:5px 0;border-bottom:1px solid var(--line);text-align:left;font-weight:400}
+.fb td+td,.fb th+th{text-align:right;white-space:nowrap}
+.bar{display:none}
+
+/* you may also like (celine.com): the grid's big tiles, 3 across, a lone tile left-aligned */
+.ml{padding:56px 0 0;background:var(--ground)}
+.ml h2{margin:0;padding:0 16px 18px;font:400 11px/1.4 'Jost','DejaVu Sans',sans-serif;letter-spacing:.22em;text-transform:uppercase;text-align:left}
+
+/* the footer (maison margiela): quiet columns, small headings, a lot of space */
+.ft{margin-top:96px;padding:64px clamp(16px,4vw,56px) 28px;border-top:1px solid var(--line);background:#fff;font:400 14px/1.6 'Cormorant Garamond','DejaVu Serif',serif}
+.ft .cols{display:grid;grid-template-columns:repeat(3,minmax(0,220px));gap:48px clamp(32px,6vw,96px);justify-content:start}
+.ft h2{margin:0 0 16px;font:400 10px/1.4 'Jost','DejaVu Sans',sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--grey)}
+.ft ul{list-style:none;margin:0;padding:0}
+.ft li+li{margin-top:8px}
+.ft a::before,.ft .lk::before{content:'▸';display:inline-block;margin-right:.55em;font-size:.7em;transform:translateY(-.1em)}
+.ft .lk{background:none;border:0;padding:0;cursor:pointer;font:inherit;text-align:left}
+.ft p{margin:0 0 8px;color:#4c4b50}
+.ft .bt{display:flex;flex-wrap:wrap;gap:8px 28px;align-items:center;margin-top:72px;padding-top:20px;border-top:1px solid var(--line);font:400 10px/1.4 'Jost','DejaVu Sans',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--grey)}
+.ft .bt a::before{display:none}
+.ft .bt a:hover{color:var(--ink)}
+
+/* the sign-up panel (celine.com): from the right, full height, the page visible beside it */
+.nl{position:fixed;top:0;right:0;bottom:0;z-index:50;width:40vw;max-width:620px;min-width:380px;background:#fff;box-shadow:-1px 0 0 var(--line),-24px 0 60px rgba(0,0,0,.06);
+  padding:22px clamp(24px,3.4vw,52px) 40px;transform:translateX(100%);transition:transform .5s cubic-bezier(.2,.7,.2,1),visibility 0s .5s;visibility:hidden;overflow-y:auto}
+.nl.on{transform:none;visibility:visible;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.nl .cl{display:block;margin-left:auto;padding:6px 0;border:0;background:none;cursor:pointer;font:400 10px/1 'Jost','DejaVu Sans',sans-serif;letter-spacing:.22em;text-transform:uppercase}
+.nl h2{margin:26vh 0 0;font:400 12px/1.6 'Jost','DejaVu Sans',sans-serif;letter-spacing:.2em;text-transform:uppercase}
+.nl label{display:block;margin-top:40px;font:400 10px/1.4 'Jost','DejaVu Sans',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--grey)}
+.nl input{display:block;width:100%;margin-top:8px;padding:10px 0;border:0;border-bottom:1px solid var(--ink);border-radius:0;background:none;font:400 17px/1.3 'Cormorant Garamond','DejaVu Serif',serif;color:var(--ink);outline:none}
+.nl .btn{margin-top:28px}
+.nl .msg{min-height:1.4em;margin:12px 0 0;font:italic 400 14px/1.4 'Cormorant Garamond','DejaVu Serif',serif;color:var(--grey)}
+.nl .ty{margin:40px 0 0;font:400 12px/1.6 'Jost','DejaVu Sans',sans-serif;letter-spacing:.2em;text-transform:uppercase}
+.nl .pv{margin:18px 0 0;font:400 9px/1.6 'Jost','DejaVu Sans',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--grey)}
+.nl .pv a{text-decoration:underline;text-underline-offset:2px}
+
+/* the house pages (support, privacy, terms): one narrow column */
+.hp{max-width:640px;padding:40px 24px 0}
+.hp section{padding-top:24px;scroll-margin-top:calc(var(--head) + 8px)}
+.hp section+section{margin-top:40px;border-top:1px solid var(--line)}
+.hp h1{margin:0;font:400 11px/1.4 'Jost','DejaVu Sans',sans-serif;letter-spacing:.24em;text-transform:uppercase}
+.hp h2{margin:0 0 14px;font:400 11px/1.4 'Jost','DejaVu Sans',sans-serif;letter-spacing:.22em;text-transform:uppercase}
+.hp h3{margin:22px 0 4px;font:400 10px/1.4 'Jost','DejaVu Sans',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--grey)}
+.hp p{margin:0 0 10px;font-size:17px;line-height:1.6}
+.hp .for{margin-top:-4px;font:italic 400 14px/1.5 'Cormorant Garamond','DejaVu Serif',serif;color:var(--grey)}
+.hp a{text-decoration:underline;text-underline-offset:3px}
+
+@media (max-width:820px){
+  :root{--head:56px}
+  .hd .logo{width:62px}
+  .hd .burger{display:block}
+  .wrap{display:block}
+  .wrap>.mn{display:none}
+  .grid{grid-template-columns:1fr}
+  .tl .im{height:80vh;height:80svh;padding:4vh 10% 3vh}
+  .pc{display:block}
+  .pc .st li{min-height:100svh;padding:3vh 0}
+  .pc .st li img{max-width:100%!important}
+  .pc .dt{position:static;max-height:none;overflow:visible;padding:28px 16px 8px}
+  .dt h1{font-size:22px}
+  .bar{position:fixed;left:0;right:0;bottom:0;z-index:25;display:flex;align-items:center;gap:12px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:#fff;box-shadow:0 -1px 0 var(--line)}
+  .bar .pr{flex:1;font:400 16px/1.2 'Cormorant Garamond','DejaVu Serif',serif;letter-spacing:.06em}
+  .bar .btn{width:auto;margin:0;padding:14px 22px}
+  body.has-bar{padding-bottom:72px}
+  .ft{margin-top:64px;padding:48px 16px 24px}
+  .ft .cols{grid-template-columns:1fr;gap:40px}
+  .ft .bt{margin-top:48px}
+  .nl{width:100vw;max-width:none;min-width:0}
+  .nl h2{margin-top:18vh}
+  .hp{padding:28px 16px 0}
+}
+/* the menu, full screen from the ☰ (a phone; the piece page on a desk) */
+.mn.open{display:block!important;position:fixed;inset:0;z-index:40;background:#fff;padding:calc(var(--head) + 24px) 24px 24px;overflow-y:auto}
+.mn.open .x{display:block;position:fixed;top:0;left:16px;height:var(--head);padding:0;border:0;background:none;cursor:pointer;font:400 10px/1 'Jost','DejaVu Sans',sans-serif;letter-spacing:.22em;text-transform:uppercase}
+.mn.open{font-size:13px}
+.mn.open li+li{margin-top:18px}
+.mn.open ul+ul{margin-top:36px}
+html.lock,html.lock body{overflow:hidden}
+

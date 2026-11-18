@@ -1,0 +1,1010 @@
+[
+ {
+  "id": "gelosia",
+  "name": "GELOSIA",
+  "type": "BLACK LEATHER COAT",
+  "specs": [
+   "BLACK LEATHER",
+   "CREAM SILK LINING",
+   "BELTED, DOUBLE-BREASTED",
+   "MID-CALF"
+  ],
+  "price": "USD 5,400",
+  "href": "https://www.phaora.com/",
+  "tile": {
+   "src": "assets/catalogue/full/veil_coat.webp",
+   "w": 1419,
+   "h": 1346,
+   "s1200": "assets/shop/1200/catalogue__full__veil_coat.webp"
+  },
+  "stack": [
+   {
+    "src": "assets/catalogue/full/veil_coat.webp",
+    "w": 1419,
+    "h": 1346,
+    "s1200": "assets/shop/1200/catalogue__full__veil_coat.webp",
+    "label": "front view"
+   },
+   {
+    "src": "assets/walk/veil_coat_three-quarter.webp",
+    "w": 526,
+    "h": 1244,
+    "label": "three quarter view"
+   },
+   {
+    "src": "assets/walk/veil_coat_back.webp",
+    "w": 597,
+    "h": 1202,
+    "label": "back view"
+   },
+   {
+    "src": "assets/pieces/gelosia/01.webp",
+    "w": 1600,
+    "h": 900,
+    "s1200": "assets/shop/1200/pieces__gelosia__01.webp",
+    "label": "The net closing to solid leather"
+   },
+   {
+    "src": "assets/pieces/gelosia/02.webp",
+    "w": 1600,
+    "h": 900,
+    "s1200": "assets/shop/1200/pieces__gelosia__02.webp",
+    "label": "A button and the belt"
+   },
+   {
+    "src": "assets/pieces/gelosia/03.webp",
+    "w": 1600,
+    "h": 900,
+    "s1200": "assets/shop/1200/pieces__gelosia__03.webp",
+    "label": "The cuff strap"
+   }
+  ],
+  "side": "women",
+  "category": "outerwear",
+  "details": {
+   "Delivery": "We email your delivery date once production is confirmed. Cancel for a full refund any time before production starts.",
+   "Returns": "Exchanges within 14 days of delivery, unused and with tags.",
+   "Care": "Wipe with a soft dry cloth. Keep from rain and heat; if it gets wet, let it dry slowly away from a radiator. Store in its dust bag, stuffed with tissue, out of the light. Leather cleaning by a specialist only."
+  },
+  "fit": {
+   "p": [
+    "Gelosia, Ödara and Alvor come in XS, S, M, L and XL.",
+    "Each is made to order, so its measurements are sent to you before it is cut. Between two sizes, write to hello@phaora.com with your chest, waist and height, and the house will answer with the size to choose."
+   ],
+   "sizes": "XS · S · M · L · XL"
+  },
+  "walkaround": "assets/world/gelosia/walk.json"
+ },
+ {
+  "id": "oitava",
+  "name": "ÖITAVA",
+  "type": "PENDANT",
+  "specs": [
+   "SOLID 18K YELLOW GOLD",
+   "30.0 × 23.9 MM",
+   "FINE 18K CABLE CHAIN"
+  ],
+  "price": "USD 3,800",
+  "href": "https://www.phaora.com/",
+  "tile": {
+   "src": "assets/catalogue/full/oitava_2048.webp",
+   "w": 1600,
+   "h": 1343,
+   "s1200": "assets/shop/1200/catalogue__full__oitava_2048.webp"
+  },
+  "stack": [
+   {
+    "src": "assets/catalogue/full/oitava_2048.webp",
+    "w": 1600,
+    "h": 1343,
+    "s1200": "assets/shop/1200/catalogue__full__oitava_2048.webp",
+    "label": "front view"
+   },
+   {
+    "src": "assets/walk/oitava_three-quarter.webp",
+    "w": 280,
+    "h": 484,
+    "label": "three quarter view"
+   },
+   {
+    "src": "assets/walk/oitava_back.webp",
+    "w": 336,
+    "h": 488,
+    "label": "back view"
+   }
+  ],
+  "side": "both",
+  "category": "jewellery",
+  "details": {
+   "Delivery": "We email your delivery date once production is confirmed. Cancel for a full refund any time before production starts.",
+   "Returns": "Exchanges within 14 days of delivery, unused and with tags.",
+   "Care": "Keep it in its pouch, apart from other pieces. Wipe with a soft dry cloth."
+  },
+  "fit": null,
+  "walkaround": ""
+ },
+ {
+  "id": "odara",
+  "name": "ÖDARA",
+  "type": "LEATHER BOMBER",
+  "specs": [
+   "BLACK LAMBSKIN",
+   "CREAM SILK LINING",
+   "KNITTED JACQUARD RIB",
+   "BRASS ZIP, THE Ö PULL"
+  ],
+  "price": "USD 3,200",
+  "href": "https://www.phaora.com/",
+  "tile": {
+   "src": "assets/catalogue/full/muse_bomber.webp",
+   "w": 1600,
+   "h": 1126,
+   "s1200": "assets/shop/1200/catalogue__full__muse_bomber.webp"
+  },
+  "stack": [
+   {
+    "src": "assets/pieces/odara/00.webp",
+    "w": 1350,
+    "h": 1380,
+    "s1200": "assets/shop/1200/pieces__odara__00.webp",
+    "label": "front view"
+   },
+   {
+    "src": "assets/pieces/odara/01.webp",
+    "w": 1355,
+    "h": 1392,
+    "s1200": "assets/shop/1200/pieces__odara__01.webp",
+    "label": "three quarter view"
+   },
+   {
+    "src": "assets/pieces/odara/02.webp",
+    "w": 1372,
+    "h": 1383,
+    "s1200": "assets/shop/1200/pieces__odara__02.webp",
+    "label": "back view"
+   },
+   {
+    "src": "assets/pieces/odara/03.webp",
+    "w": 1600,
+    "h": 900,
+    "s1200": "assets/shop/1200/pieces__odara__03.webp",
+    "label": "open view"
+   }
+  ],
+  "side": "both",
+  "category": "outerwear",
+  "details": {
+   "Delivery": "We email your delivery date once production is confirmed. Cancel for a full refund any time before production starts.",
+   "Returns": "Exchanges within 14 days of delivery, unused and with tags.",
+   "Care": "Wipe with a soft dry cloth. Keep from rain and heat; if it gets wet, let it dry slowly away from a radiator. Store in its dust bag, stuffed with tissue, out of the light. Leather cleaning by a specialist only."
+  },
+  "fit": {
+   "p": [
+    "Gelosia, Ödara and Alvor come in XS, S, M, L and XL.",
+    "Each is made to order, so its measurements are sent to you before it is cut. Between two sizes, write to hello@phaora.com with your chest, waist and height, and the house will answer with the size to choose."
+   ],
+   "sizes": "XS · S · M · L · XL"
+  },
+  "walkaround": "assets/world/odara/walk.json"
+ },
+ {
+  "id": "itaoca",
+  "name": "ITAOCA",
+  "type": "TOP-HANDLE BAG",
+  "specs": [
+   "BLACK CALFSKIN",
+   "THE PÖ ON THE FLAP",
+   "A ROLLED HANDLE",
+   "THE HOUSE DISC, 24 MM",
+   "CREAM SUEDE INSIDE"
+  ],
+  "price": "USD 2,900",
+  "href": "https://www.phaora.com/",
+  "tile": {
+   "src": "assets/catalogue/full/po_tophandle.webp",
+   "w": 1540,
+   "h": 965,
+   "s1200": "assets/shop/1200/catalogue__full__po_tophandle.webp"
+  },
+  "stack": [
+   {
+    "src": "assets/pieces/itaoca/00.webp",
+    "w": 1600,
+    "h": 1600,
+    "s1200": "assets/shop/1200/pieces__itaoca__00.webp",
+    "label": "front view"
+   },
+   {
+    "src": "assets/pieces/itaoca/01.webp",
+    "w": 1600,
+    "h": 1600,
+    "s1200": "assets/shop/1200/pieces__itaoca__01.webp",
+    "label": "three quarter view"
+   },
+   {
+    "src": "assets/pieces/itaoca/02.webp",
+    "w": 1600,
+    "h": 1600,
+    "s1200": "assets/shop/1200/pieces__itaoca__02.webp",
+    "label": "open view"
+   },
+   {
+    "src": "assets/pieces/itaoca/03.webp",
+    "w": 1600,
+    "h": 900,
+    "s1200": "assets/shop/1200/pieces__itaoca__03.webp",
+    "label": "The PÖ on the flap"
+   },
+   {
+    "src": "assets/pieces/itaoca/04.webp",
+    "w": 1600,
+    "h": 900,
+    "s1200": "assets/shop/1200/pieces__itaoca__04.webp",
+    "label": "The clasp"
+   },
+   {
+    "src": "assets/pieces/itaoca/05.webp",
+    "w": 1600,
+    "h": 900,
+    "s1200": "assets/shop/1200/pieces__itaoca__05.webp",
+    "label": "The rolled handle"
+   }
+  ],
+  "side": "women",
+  "category": "bags",
+  "details": {
+   "Delivery": "We email your delivery date once production is confirmed. Cancel for a full refund any time before production starts.",
+   "Returns": "Exchanges within 14 days of delivery, unused and with tags.",
+   "Care": "Wipe with a soft dry cloth. Keep from rain and heat; if it gets wet, let it dry slowly away from a radiator. Store in its dust bag, stuffed with tissue, out of the light. Leather cleaning by a specialist only."
+  },
+  "fit": null,
+  "walkaround": "assets/world/itaoca/walk.json"
+ },
+ {
+  "id": "coema",
+  "name": "COEMA",
+  "type": "MINI DUFFEL",
+  "specs": [
+   "BLACK CALFSKIN",
+   "25 × 11 × 11.5 CM",
+   "BRASS ZIP, BRASS FEET",
+   "CREAM SUEDE INSIDE"
+  ],
+  "price": "USD 2,600",
+  "href": "https://www.phaora.com/",
+  "tile": {
+   "src": "assets/catalogue/full/matinee.webp",
+   "w": 1600,
+   "h": 892,
+   "s1200": "assets/shop/1200/catalogue__full__matinee.webp"
+  },
+  "stack": [
+   {
+    "src": "assets/pieces/coema/00.webp",
+    "w": 1274,
+    "h": 1021,
+    "label": "front view"
+   },
+   {
+    "src": "assets/pieces/coema/01.webp",
+    "w": 1600,
+    "h": 900,
+    "s1200": "assets/shop/1200/pieces__coema__01.webp",
+    "label": "open view"
+   },
+   {
+    "src": "assets/pieces/coema/02.webp",
+    "w": 1600,
+    "h": 900,
+    "s1200": "assets/shop/1200/pieces__coema__02.webp",
+    "label": "The pressed row"
+   },
+   {
+    "src": "assets/pieces/coema/03.webp",
+    "w": 1600,
+    "h": 900,
+    "s1200": "assets/shop/1200/pieces__coema__03.webp",
+    "label": "The charm"
+   },
+   {
+    "src": "assets/pieces/coema/04.webp",
+    "w": 1600,
+    "h": 900,
+    "s1200": "assets/shop/1200/pieces__coema__04.webp",
+    "label": "The couple on the suede"
+   }
+  ],
+  "side": "both",
+  "category": "bags",
+  "details": {
+   "Delivery": "We email your delivery date once production is confirmed. Cancel for a full refund any time before production starts.",
+   "Returns": "Exchanges within 14 days of delivery, unused and with tags.",
+   "Care": "Wipe with a soft dry cloth. Keep from rain and heat; if it gets wet, let it dry slowly away from a radiator. Store in its dust bag, stuffed with tissue, out of the light. Leather cleaning by a specialist only."
+  },
+  "fit": null,
+  "walkaround": "assets/world/coema/walk.json"
+ },
+ {
+  "id": "voluta",
+  "name": "VOLUTA",
+  "type": "ROUND BAG",
+  "specs": [
+   "BLACK CALFSKIN",
+   "22 CM ACROSS, 7 CM DEEP",
+   "A BRASS DISC, 24 MM",
+   "CREAM SUEDE INSIDE"
+  ],
+  "price": "USD 2,200",
+  "href": "https://www.phaora.com/",
+  "tile": {
+   "src": "assets/catalogue/full/the_reel.webp",
+   "w": 1334,
+   "h": 1074,
+   "s1200": "assets/shop/1200/catalogue__full__the_reel.webp"
+  },
+  "stack": [
+   {
+    "src": "assets/pieces/voluta/00.webp",
+    "w": 1600,
+    "h": 2845,
+    "s1200": "assets/shop/1200/pieces__voluta__00.webp",
+    "label": "front view"
+   },
+   {
+    "src": "assets/pieces/voluta/01.webp",
+    "w": 1600,
+    "h": 1600,
+    "s1200": "assets/shop/1200/pieces__voluta__01.webp",
+    "label": "three quarter view"
+   },
+   {
+    "src": "assets/pieces/voluta/02.webp",
+    "w": 1600,
+    "h": 900,
+    "s1200": "assets/shop/1200/pieces__voluta__02.webp",
+    "label": "The calfskin"
+   }
+  ],
+  "side": "women",
+  "category": "bags",
+  "details": {
+   "Delivery": "We email your delivery date once production is confirmed. Cancel for a full refund any time before production starts.",
+   "Returns": "Exchanges within 14 days of delivery, unused and with tags.",
+   "Care": "Wipe with a soft dry cloth. Keep from rain and heat; if it gets wet, let it dry slowly away from a radiator. Store in its dust bag, stuffed with tissue, out of the light. Leather cleaning by a specialist only."
+  },
+  "fit": null,
+  "walkaround": "assets/world/voluta/walk.json"
+ },
+ {
+  "id": "ritornelo",
+  "name": "RITORNELO",
+  "type": "OPERA GLOVES",
+  "specs": [
+   "BLACK LAMBSKIN",
+   "CREAM SILK INSIDE",
+   "ABOVE THE ELBOW",
+   "A BRASS SNAP, THE Ö"
+  ],
+  "price": "USD 1,050",
+  "href": "https://www.phaora.com/",
+  "tile": {
+   "src": "assets/catalogue/full/opera_gloves.webp",
+   "w": 1600,
+   "h": 1096,
+   "s1200": "assets/shop/1200/catalogue__full__opera_gloves.webp"
+  },
+  "stack": [
+   {
+    "src": "assets/pieces/ritornelo/00.webp",
+    "w": 1375,
+    "h": 1164,
+    "s1200": "assets/shop/1200/pieces__ritornelo__00.webp",
+    "label": "front view"
+   },
+   {
+    "src": "assets/walk/opera_gloves_three-quarter.webp",
+    "w": 352,
+    "h": 1433,
+    "label": "three quarter view"
+   },
+   {
+    "src": "assets/pieces/ritornelo/01.webp",
+    "w": 1600,
+    "h": 900,
+    "s1200": "assets/shop/1200/pieces__ritornelo__01.webp",
+    "label": "The net opening up the arm"
+   },
+   {
+    "src": "assets/pieces/ritornelo/02.webp",
+    "w": 1600,
+    "h": 900,
+    "s1200": "assets/shop/1200/pieces__ritornelo__02.webp",
+    "label": "The snap"
+   }
+  ],
+  "side": "women",
+  "category": "gloves",
+  "details": {
+   "Delivery": "We email your delivery date once production is confirmed. Cancel for a full refund any time before production starts.",
+   "Returns": "Exchanges within 14 days of delivery, unused and with tags.",
+   "Care": "Wipe with a soft dry cloth. Keep from rain and heat; if it gets wet, let it dry slowly away from a radiator. Store in its dust bag, stuffed with tissue, out of the light. Leather cleaning by a specialist only."
+  },
+  "fit": {
+   "p": [
+    "Ritornelo comes in S, M and L.",
+    "Measure round your hand at its widest, just below the knuckles, without the thumb. Write the measurement to hello@phaora.com, and the house will answer with your size."
+   ],
+   "sizes": "S · M · L"
+  },
+  "walkaround": ""
+ },
+ {
+  "id": "alvor",
+  "name": "ALVOR",
+  "type": "SILK SLIP",
+  "specs": [
+   "CREAM SILK SATIN",
+   "CUT ON THE BIAS",
+   "BLACK SILK STRAPS",
+   "MID-CALF"
+  ],
+  "price": "USD 950",
+  "href": "https://www.phaora.com/",
+  "tile": {
+   "src": "assets/catalogue/full/silk_slip.webp",
+   "w": 1209,
+   "h": 2576
+  },
+  "stack": [
+   {
+    "src": "assets/pieces/alvor/00.webp",
+    "w": 1600,
+    "h": 2845,
+    "s1200": "assets/shop/1200/pieces__alvor__00.webp",
+    "label": "front view"
+   }
+  ],
+  "side": "women",
+  "category": "dresses",
+  "details": {
+   "Delivery": "We email your delivery date once production is confirmed. Cancel for a full refund any time before production starts.",
+   "Returns": "Exchanges within 14 days of delivery, unused and with tags.",
+   "Care": "Dry clean. Steam on low from the inside; no direct iron on the satin. Keep out of strong light."
+  },
+  "fit": {
+   "p": [
+    "Gelosia, Ödara and Alvor come in XS, S, M, L and XL.",
+    "Each is made to order, so its measurements are sent to you before it is cut. Between two sizes, write to hello@phaora.com with your chest, waist and height, and the house will answer with the size to choose."
+   ],
+   "sizes": "XS · S · M · L · XL"
+  },
+  "walkaround": ""
+ },
+ {
+  "id": "cantilena",
+  "name": "CANTILENA",
+  "type": "MONOGRAM KNIT HOODIE",
+  "specs": [
+   "28-GAUGE DOUBLE JACQUARD",
+   "THE PÖ CHECKER",
+   "30S COMBED COTTON",
+   "CREAM / BLACK AND CREAM"
+  ],
+  "price": "USD 595",
+  "href": "https://www.phaora.com/",
+  "tile": {
+   "src": "assets/catalogue/full/cantilena.webp",
+   "w": 1578,
+   "h": 1068,
+   "s1200": "assets/shop/1200/catalogue__full__cantilena.webp"
+  },
+  "stack": [
+   {
+    "src": "assets/pieces/cantilena/00.webp",
+    "w": 1600,
+    "h": 1600,
+    "s1200": "assets/shop/1200/pieces__cantilena__00.webp",
+    "label": "front view"
+   },
+   {
+    "src": "assets/pieces/cantilena/01.webp",
+    "w": 1600,
+    "h": 2845,
+    "s1200": "assets/shop/1200/pieces__cantilena__01.webp",
+    "label": "back view"
+   },
+   {
+    "src": "assets/pieces/cantilena/02.webp",
+    "w": 1600,
+    "h": 900,
+    "s1200": "assets/shop/1200/pieces__cantilena__02.webp",
+    "label": "The checker at stitch scale"
+   },
+   {
+    "src": "assets/pieces/cantilena/03.webp",
+    "w": 1600,
+    "h": 900,
+    "s1200": "assets/shop/1200/pieces__cantilena__03.webp",
+    "label": "Cream on cream"
+   },
+   {
+    "src": "assets/pieces/cantilena/04.webp",
+    "w": 1600,
+    "h": 900,
+    "s1200": "assets/shop/1200/pieces__cantilena__04.webp",
+    "label": "The brass eyelet and tip"
+   }
+  ],
+  "side": "both",
+  "category": "knit",
+  "details": {
+   "Delivery": "We email your delivery date once production is confirmed. Cancel for a full refund any time before production starts.",
+   "Returns": "Size exchanges within 14 days of delivery, unworn and with tags.",
+   "Care": "Wash cold, inside out, on a gentle cycle. Dry flat. No tumble dryer, no bleach."
+  },
+  "fit": {
+   "p": [
+    "Measured flat, in centimetres. The block is cut at size M; the other sizes follow when the block is graded."
+   ],
+   "m": [
+    [
+     "Body length, shoulder to hem",
+     "72 cm"
+    ],
+    [
+     "Front, knitted width",
+     "65.6 cm"
+    ],
+    [
+     "Front, knitted length",
+     "64.4 cm"
+    ],
+    [
+     "Back, knitted width",
+     "65.3 cm"
+    ],
+    [
+     "Shoulder, seam to seam",
+     "71.5 cm"
+    ],
+    [
+     "Shoulder drop",
+     "16.3 cm"
+    ],
+    [
+     "Sleeve length",
+     "55.4 cm"
+    ],
+    [
+     "Hem band, flat",
+     "51.5 cm"
+    ]
+   ],
+   "e": "M is the block. S, L, XL and XXL follow when it is graded.",
+   "sizes": "S · M · L · XL · XXL"
+  },
+  "walkaround": ""
+ },
+ {
+  "id": "coaraci",
+  "name": "COARACI",
+  "type": "BELT",
+  "specs": [
+   "BLACK CALFSKIN, 3 CM",
+   "A BRASS DISC, 40 MM",
+   "THE Ö ENGRAVED"
+  ],
+  "price": "USD 550",
+  "href": "https://www.phaora.com/",
+  "tile": {
+   "src": "assets/pieces/coaraci/00.webp",
+   "w": 1375,
+   "h": 751,
+   "s1200": "assets/shop/1200/pieces__coaraci__00.webp"
+  },
+  "stack": [
+   {
+    "src": "assets/pieces/coaraci/00.webp",
+    "w": 1375,
+    "h": 751,
+    "s1200": "assets/shop/1200/pieces__coaraci__00.webp",
+    "label": "front view"
+   },
+   {
+    "src": "assets/pieces/coaraci/01.webp",
+    "w": 1563,
+    "h": 1084,
+    "s1200": "assets/shop/1200/pieces__coaraci__01.webp",
+    "label": "straight view"
+   },
+   {
+    "src": "assets/pieces/coaraci/02.webp",
+    "w": 1600,
+    "h": 900,
+    "s1200": "assets/shop/1200/pieces__coaraci__02.webp",
+    "label": "The punched holes"
+   }
+  ],
+  "side": "both",
+  "category": "belts",
+  "details": {
+   "Delivery": "We email your delivery date once production is confirmed. Cancel for a full refund any time before production starts.",
+   "Returns": "Exchanges within 14 days of delivery, unused and with tags.",
+   "Care": "Wipe with a soft dry cloth. Keep from rain and heat; if it gets wet, let it dry slowly away from a radiator. Store in its dust bag, stuffed with tissue, out of the light. Leather cleaning by a specialist only."
+  },
+  "fit": null,
+  "walkaround": ""
+ },
+ {
+  "id": "ofusca",
+  "name": "ÖFUSCA",
+  "type": "SUNGLASSES",
+  "specs": [
+   "GLOSSY BLACK ACETATE",
+   "CAT-EYE, GRADIENT LENSES",
+   "BRASS PLATES, THE Ö",
+   "BLACK LEATHER CASE"
+  ],
+  "price": "USD 495",
+  "href": "https://www.phaora.com/",
+  "tile": {
+   "src": "assets/catalogue/full/sunglasses.webp",
+   "w": 1405,
+   "h": 568,
+   "s1200": "assets/shop/1200/catalogue__full__sunglasses.webp"
+  },
+  "stack": [
+   {
+    "src": "assets/pieces/ofusca/00.webp",
+    "w": 1332,
+    "h": 638,
+    "s1200": "assets/shop/1200/pieces__ofusca__00.webp",
+    "label": "front view"
+   },
+   {
+    "src": "assets/pieces/ofusca/01.webp",
+    "w": 1467,
+    "h": 596,
+    "s1200": "assets/shop/1200/pieces__ofusca__01.webp",
+    "label": "flat view"
+   },
+   {
+    "src": "assets/catalogue/full/sunglasses_side.webp",
+    "w": 1018,
+    "h": 370,
+    "label": "side view"
+   },
+   {
+    "src": "assets/pieces/ofusca/02.webp",
+    "w": 1600,
+    "h": 900,
+    "s1200": "assets/shop/1200/pieces__ofusca__02.webp",
+    "label": "The brass plate"
+   },
+   {
+    "src": "assets/pieces/ofusca/03.webp",
+    "w": 1600,
+    "h": 900,
+    "s1200": "assets/shop/1200/pieces__ofusca__03.webp",
+    "label": "The case"
+   }
+  ],
+  "side": "women",
+  "category": "eyewear",
+  "details": {
+   "Delivery": "We email your delivery date once production is confirmed. Cancel for a full refund any time before production starts.",
+   "Returns": "Exchanges within 14 days of delivery, unused and with tags.",
+   "Care": "Keep it in its pouch, apart from other pieces. Wipe with a soft dry cloth."
+  },
+  "fit": null,
+  "walkaround": ""
+ },
+ {
+  "id": "heliodora",
+  "name": "HELIODORA",
+  "type": "KNIT HOODIE",
+  "specs": [
+   "28-GAUGE DOUBLE JACQUARD",
+   "300 GSM",
+   "30S COMBED COTTON",
+   "BLACK / CREAM"
+  ],
+  "price": "USD 400",
+  "href": "https://www.phaora.com/",
+  "tile": {
+   "src": "assets/catalogue/full/muse_allover.webp",
+   "w": 1600,
+   "h": 1072,
+   "s1200": "assets/shop/1200/catalogue__full__muse_allover.webp"
+  },
+  "stack": [
+   {
+    "src": "assets/catalogue/full/muse_allover.webp",
+    "w": 1600,
+    "h": 1072,
+    "s1200": "assets/shop/1200/catalogue__full__muse_allover.webp",
+    "label": "front view"
+   },
+   {
+    "src": "assets/walk/muse_allover_three-quarter.webp",
+    "w": 804,
+    "h": 1027,
+    "label": "three quarter view"
+   },
+   {
+    "src": "assets/walk/muse_allover_back.webp",
+    "w": 930,
+    "h": 976,
+    "label": "back view"
+   },
+   {
+    "src": "assets/pieces/heliodora/01.webp",
+    "w": 1600,
+    "h": 900,
+    "s1200": "assets/shop/1200/pieces__heliodora__01.webp",
+    "label": "The kiss on the back"
+   },
+   {
+    "src": "assets/pieces/heliodora/02.webp",
+    "w": 1600,
+    "h": 900,
+    "s1200": "assets/shop/1200/pieces__heliodora__02.webp",
+    "label": "The knit at stitch scale"
+   },
+   {
+    "src": "assets/pieces/heliodora/03.webp",
+    "w": 1600,
+    "h": 900,
+    "s1200": "assets/shop/1200/pieces__heliodora__03.webp",
+    "label": "The cuff, where her hair thins to single dots"
+   }
+  ],
+  "side": "both",
+  "category": "knit",
+  "details": {
+   "Delivery": "We email your delivery date once production is confirmed. Cancel for a full refund any time before production starts.",
+   "Returns": "Size exchanges within 14 days of delivery, unworn and with tags.",
+   "Care": "Wash cold, inside out, on a gentle cycle. Dry flat. No tumble dryer, no bleach."
+  },
+  "fit": {
+   "p": [
+    "Measured flat, in centimetres. The block is cut at size M; the other sizes follow when the block is graded."
+   ],
+   "m": [
+    [
+     "Body length, shoulder to hem",
+     "72 cm"
+    ],
+    [
+     "Front, knitted width",
+     "65.6 cm"
+    ],
+    [
+     "Front, knitted length",
+     "64.4 cm"
+    ],
+    [
+     "Back, knitted width",
+     "65.3 cm"
+    ],
+    [
+     "Shoulder, seam to seam",
+     "71.5 cm"
+    ],
+    [
+     "Shoulder drop",
+     "16.3 cm"
+    ],
+    [
+     "Sleeve length",
+     "55.4 cm"
+    ],
+    [
+     "Hem band, flat",
+     "51.5 cm"
+    ]
+   ],
+   "e": "M is the block. S, L, XL and XXL follow when it is graded.",
+   "sizes": "S · M · L · XL · XXL"
+  },
+  "walkaround": ""
+ },
+ {
+  "id": "cordel",
+  "name": "CORDEL",
+  "type": "SILK SCARF",
+  "specs": [
+   "SILK TWILL",
+   "90 × 90 CM",
+   "BLACK / CREAM"
+  ],
+  "price": "USD 395",
+  "href": "https://www.phaora.com/",
+  "tile": {
+   "src": "assets/catalogue/full/silk_scarf.webp",
+   "w": 1600,
+   "h": 1132,
+   "s1200": "assets/shop/1200/catalogue__full__silk_scarf.webp"
+  },
+  "stack": [
+   {
+    "src": "assets/pieces/cordel/00.webp",
+    "w": 1597,
+    "h": 1335,
+    "s1200": "assets/shop/1200/pieces__cordel__00.webp",
+    "label": "front view"
+   },
+   {
+    "src": "assets/pieces/cordel/01.webp",
+    "w": 1600,
+    "h": 1600,
+    "s1200": "assets/shop/1200/pieces__cordel__01.webp",
+    "label": "The print"
+   },
+   {
+    "src": "assets/pieces/cordel/02.webp",
+    "w": 1600,
+    "h": 1600,
+    "s1200": "assets/shop/1200/pieces__cordel__02.webp",
+    "label": "The rolled hem"
+   }
+  ],
+  "side": "both",
+  "category": "scarves",
+  "details": {
+   "Delivery": "We email your delivery date once production is confirmed. Cancel for a full refund any time before production starts.",
+   "Returns": "Exchanges within 14 days of delivery, unused and with tags.",
+   "Care": "Dry clean. Steam on low from the inside; no direct iron on the satin. Keep out of strong light."
+  },
+  "fit": null,
+  "walkaround": ""
+ },
+ {
+  "id": "carbonado-trousers",
+  "name": "CARBONADO",
+  "type": "TROUSERS",
+  "specs": [
+   "BLACK KNIT",
+   "HIGH WAIST, WIDE LEG",
+   "WORN LONG",
+   "BRASS DRAWCORD TIPS"
+  ],
+  "price": "USD 325",
+  "href": "https://www.phaora.com/",
+  "tile": {
+   "src": "assets/catalogue/full/quiet_black_trousers.webp",
+   "w": 700,
+   "h": 761
+  },
+  "stack": [
+   {
+    "src": "assets/catalogue/full/quiet_black_trousers.webp",
+    "w": 700,
+    "h": 761,
+    "label": "front view"
+   }
+  ],
+  "side": "both",
+  "category": "knit",
+  "details": {
+   "Returns": "Size exchanges within 14 days of delivery, unworn and with tags.",
+   "Care": "Wash cold, inside out, on a gentle cycle. Dry flat. No tumble dryer, no bleach."
+  },
+  "fit": {
+   "p": [
+    "Measured flat, in centimetres. The block is cut at size M; the other sizes follow when the block is graded."
+   ],
+   "m": [
+    [
+     "Hem, all round",
+     "63 cm"
+    ],
+    [
+     "Waistband, 1x1 rib, deep",
+     "4 cm"
+    ],
+    [
+     "Hem turned inside",
+     "2.5 cm"
+    ]
+   ],
+   "e": "M is the block. S, L, XL and XXL follow when it is graded.",
+   "sizes": "XS · S · M · L · XL"
+  },
+  "walkaround": ""
+ },
+ {
+  "id": "obolo",
+  "name": "ÖBOLO",
+  "type": "CARD HOLDER",
+  "specs": [
+   "BLACK CALFSKIN",
+   "FINE MATTE PEBBLE",
+   "THREE SLOTS A SIDE",
+   "A BRASS DISC, THE Ö"
+  ],
+  "price": "USD 295",
+  "href": "https://www.phaora.com/",
+  "tile": {
+   "src": "assets/catalogue/full/card_holder.webp",
+   "w": 1600,
+   "h": 556,
+   "s1200": "assets/shop/1200/catalogue__full__card_holder.webp"
+  },
+  "stack": [
+   {
+    "src": "assets/pieces/obolo/00.webp",
+    "w": 1600,
+    "h": 744,
+    "s1200": "assets/shop/1200/pieces__obolo__00.webp",
+    "label": "front view"
+   },
+   {
+    "src": "assets/pieces/obolo/01.webp",
+    "w": 1383,
+    "h": 578,
+    "s1200": "assets/shop/1200/pieces__obolo__01.webp",
+    "label": "back view"
+   },
+   {
+    "src": "assets/pieces/obolo/02.webp",
+    "w": 1600,
+    "h": 1200,
+    "s1200": "assets/shop/1200/pieces__obolo__02.webp",
+    "label": "The painted edge"
+   },
+   {
+    "src": "assets/pieces/obolo/03.webp",
+    "w": 1600,
+    "h": 900,
+    "s1200": "assets/shop/1200/pieces__obolo__03.webp",
+    "label": "The pebble"
+   }
+  ],
+  "side": "both",
+  "category": "small leather goods",
+  "details": {
+   "Delivery": "We email your delivery date once production is confirmed. Cancel for a full refund any time before production starts.",
+   "Returns": "Exchanges within 14 days of delivery, unused and with tags.",
+   "Care": "Wipe with a soft dry cloth. Keep from rain and heat; if it gets wet, let it dry slowly away from a radiator. Store in its dust bag, stuffed with tissue, out of the light. Leather cleaning by a specialist only."
+  },
+  "fit": null,
+  "walkaround": ""
+ },
+ {
+  "id": "lustre",
+  "name": "LUSTRE",
+  "type": "NECKLACE",
+  "specs": [
+   "FACETED ROCK CRYSTAL, 37",
+   "18K GOLD, POLISHED",
+   "A 20.8 MM DISC, THE Ö",
+   "A LAB DIAMOND",
+   "ABOUT 420 MM"
+  ],
+  "price": "",
+  "href": "https://www.phaora.com/",
+  "tile": {
+   "src": "assets/catalogue/full/lustre_pad.webp",
+   "w": 1600,
+   "h": 1155,
+   "s1200": "assets/shop/1200/catalogue__full__lustre_pad.webp"
+  },
+  "stack": [
+   {
+    "src": "assets/catalogue/full/lustre_pad.webp",
+    "w": 1600,
+    "h": 1155,
+    "s1200": "assets/shop/1200/catalogue__full__lustre_pad.webp",
+    "label": "front view"
+   }
+  ],
+  "side": "both",
+  "category": "jewellery",
+  "details": {
+   "Care": "Keep it in its pouch, apart from other pieces. Wipe with a soft dry cloth."
+  },
+  "fit": null,
+  "walkaround": ""
+ }
+]
