@@ -11,7 +11,7 @@ button{font:inherit;color:inherit}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* the header: the logo centred (the lettering, inlined, never typed) */
-.hd{position:sticky;top:0;z-index:30;height:var(--head);display:flex;align-items:center;justify-content:center;background:#fff}
+.hd{position:relative;z-index:30;height:var(--head);display:flex;align-items:center;justify-content:center}
 .hd .logo{display:block;width:120px;line-height:0;color:var(--ink)}
 .hd .logo svg{display:block;width:100%;height:auto}
 .hd .burger{position:absolute;left:16px;top:50%;transform:translateY(-50%);display:none;width:40px;height:40px;padding:0;border:0;background:none;cursor:pointer;font-size:20px;line-height:40px;text-align:left}
@@ -24,25 +24,25 @@ button{font:inherit;color:inherit}
 .mn a{display:inline-block;padding:2px 0;border-bottom:1px solid transparent}
 .mn a:hover,.mn a[aria-current=page]{border-bottom-color:currentColor}
 .mn .x{display:none}
-.wrap{display:grid;grid-template-columns:var(--menu) minmax(0,1fr);align-items:start}
-.wrap>.mn{position:sticky;top:var(--head);padding:18px 0 0 24px}
-.wrap.full{display:block}                      /* the piece page: the pictures run to the left edge; the menu from the ☰ */
-.wrap.full>.mn{display:none}
+.wrap{display:block;padding-left:var(--menu)}
+.wrap.full{padding-left:0}
+.wrap>.mn{position:fixed;top:0;left:0;z-index:32;width:var(--menu);padding:26px 0 0 24px}
+.wrap.full>.mn{display:none}                   /* the piece page: the pictures run to the left edge; the menu from the ☰ */
 .hd.burgered .burger{display:block}
 
-/* the grid: really big pictures (David, 18 Nov), 3 across on a desk, 1 on a phone; seamless, one white ground (the
-   renders' own ground is #ffffff and the cut-outs are transparent: measured, AUDIT.md), the pieces on a common baseline */
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin:0;padding:0;list-style:none;background:var(--ground)}
+/* the grid (David, 18 Nov: "CLEANNN. Use edge to edge, 4 fit"): 4 across beside the menu, 2 on a phone, no gaps; the
+   pictures cropped to the piece so it fills its tile; nothing but the piece, its name, its price and PRE-ORDER */
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin:0;padding:0;list-style:none}
 .tl{min-width:0}
-.tl .im{position:relative;display:flex;align-items:flex-end;justify-content:center;height:max(85vh,560px);padding:5vh 10% 4vh;background:var(--ground)}
-.tl .im img{display:block;width:auto;height:auto;object-fit:contain;transition:transform .6s ease}
+.tl .im{position:relative;display:block;width:100%;aspect-ratio:3/4;overflow:hidden}
+.tl .im img{position:absolute;left:0;right:0;bottom:5%;margin:0 auto;width:82%;height:89%;object-fit:contain;object-position:50% 100%;transition:transform .6s ease}
 .tl .im:hover img{transform:scale(1.02)}
-.tl .cap{display:block;padding:10px 16px 34px;text-align:left}
+.tl .cap{display:block;padding:8px 9% 30px;text-align:left}
 .tl .nm{display:block;font:400 10px/1.4 'Jost','DejaVu Sans',sans-serif;letter-spacing:.2em;text-transform:uppercase}
 .tl .pr{display:block;margin-top:2px;font:400 14px/1.4 'Cormorant Garamond','DejaVu Serif',serif;letter-spacing:.06em;color:var(--grey)}
-.gh{padding:18px 16px 6px;margin:0;font:400 10px/1.4 'Jost','DejaVu Sans',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--grey)}
-.btn.ol{display:inline-block;width:180px;margin-top:12px;padding:11px 10px;background:none;color:var(--ink);border:1px solid var(--ink);font-size:9px}
+.btn.ol{display:inline-block;width:160px;max-width:100%;margin-top:10px;padding:10px 8px;background:none;color:var(--ink);border:1px solid var(--ink);font-size:9px}
 .btn.ol:hover{background:var(--ink);color:#fff}
+img.bl{mix-blend-mode:multiply}   /* the white renders: their #ffffff ground takes the page's ground (or the room) */
 
 /* the piece page: the walkaround first (pieces at WALKAROUND_MIN_USD and up), then the pictures stacked down the left
    (up to 66%), each a full screen tall; the details sticky on the right */
@@ -56,13 +56,13 @@ button{font:inherit;color:inherit}
 .wa .note.ink-light p{color:#fbf7ee;text-shadow:0 0 1px rgba(8,7,5,.9),0 0 6px rgba(8,7,5,.75),0 1px 16px rgba(8,7,5,.7)}
 .wa .note.ph p{font-size:27px;font-weight:400;letter-spacing:.02em;line-height:1.32;max-width:86%}
 .wa .wa-nm{position:absolute;left:16px;bottom:14px;margin:0;color:#fbf7ee;opacity:.8}
-.pc{display:grid;grid-template-columns:66% 34%;align-items:start;background:var(--ground)}
+.pc{display:grid;grid-template-columns:66% 34%;align-items:start}
 .pc .st{display:flex;flex-direction:column;gap:0;margin:0;padding:0;list-style:none}
-.pc .st li{display:flex;align-items:center;justify-content:center;min-height:100vh;min-height:100svh;padding:4vh 4%;background:var(--ground)}
+.pc .st li{display:flex;align-items:center;justify-content:center;min-height:100vh;min-height:100svh;padding:4vh 4%}
 .pc .st li img{display:block;width:auto;height:auto;max-height:92vh!important;object-fit:contain}
 .pc .st li.cu{min-height:0;padding:0}
 .pc .st li.cu img{width:100%;max-height:none!important}
-.pc .dt{position:sticky;top:var(--head);padding:48px clamp(24px,3.4vw,56px) 40px;max-height:calc(100vh - var(--head));overflow-y:auto}
+.pc .dt{position:sticky;top:0;padding:48px clamp(24px,3.4vw,56px) 40px;max-height:100vh;overflow-y:auto}
 .dt .ty{margin:0 0 10px;color:var(--grey)}
 .dt h1{margin:0;font:400 28px/1.15 'Cormorant Garamond','DejaVu Serif',serif;letter-spacing:.2em;text-transform:uppercase}
 .dt .pr{margin:10px 0 0;font:400 18px/1.3 'Cormorant Garamond','DejaVu Serif',serif;letter-spacing:.06em}
@@ -87,7 +87,7 @@ button{font:inherit;color:inherit}
 .bar{display:none}
 
 /* you may also like (celine.com): the grid's big tiles, 3 across, a lone tile left-aligned */
-.ml{padding:56px 0 0;background:var(--ground)}
+.ml{padding:56px 0 0}
 .ml h2{margin:0;padding:0 16px 18px;font:400 11px/1.4 'Jost','DejaVu Sans',sans-serif;letter-spacing:.22em;text-transform:uppercase;text-align:left}
 
 /* the footer: the house footer, as live on maison/rhztw6 (site.css, 18 Nov), kept as it is */
@@ -132,8 +132,10 @@ button{font:inherit;color:inherit}
   .hd .burger{display:block}
   .wrap{display:block}
   .wrap>.mn{display:none}
-  .grid{grid-template-columns:1fr}
-  .tl .im{height:80vh;height:80svh;padding:4vh 10% 3vh}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .wrap{padding-left:0}
+  .tl .cap{padding:6px 8% 24px}
+  .btn.ol{width:100%}
   .pc{display:block}
   .pc .st li{min-height:100svh;padding:3vh 0}
   .pc .st li img{max-width:100%!important}
@@ -155,3 +157,12 @@ button{font:inherit;color:inherit}
 .mn.open ul+ul{margin-top:36px}
 html.lock,html.lock body{overflow:hidden}
 
+
+/* the room look (salon/r0r7lx/): the pieces in the one room from before, its pinned wall fixed behind them
+   (assets/room/stage-*.webp, the room's own stills); the clean look (salon/r0r7lx/clean/) is one white ground */
+body.room-look{background:transparent}
+.room-look .room{position:fixed;inset:0;z-index:-1;background:#efeff1 url(../room/stage-desktop.webp) center/cover no-repeat}
+.room-look .room::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 62% 66% at 50% 54%,rgba(242,242,244,.9),rgba(242,242,244,.72) 60%,rgba(242,242,244,0) 100%)}
+.room-look .foot{background:transparent}
+.room-look .bar,.room-look .nl,.room-look .mn.open{background:#f2f2f4}
+@media (max-width:820px){.room-look .room{background-image:url(../room/stage-phone.webp)}}

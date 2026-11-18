@@ -4,6 +4,8 @@
 (function () {
   var D = document, H = D.documentElement, B = D.body;
   var BASE = (D.querySelector('meta[name="salon-base"]') || { content: './' }).content;
+  var HOME = (D.querySelector('meta[name="salon-home"]') || { content: BASE }).content;   // the grid this look lives at
+  if ((D.querySelector('meta[name="salon-look"]') || {}).content === 'room') { B.classList.add('room-look'); var rm = D.createElement('div'); rm.className = 'room'; rm.setAttribute('aria-hidden', 'true'); B.insertBefore(rm, B.firstChild); }
   var ls = { get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
              set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
 
@@ -23,9 +25,9 @@
   var Q = new URLSearchParams(location.search), side = Q.get('side'), cat = Q.get('cat');
   var li = function (on, href, t) { return '<li><a href="' + href + '"' + (on ? ' aria-current="page"' : '') + '>' + t + '</a></li>'; };
   var menu = '<button class="x" type="button">Close</button>' +
-    '<ul>' + li(side === 'men', BASE + '?side=men', 'Men') + li(side === 'women', BASE + '?side=women', 'Women') +
-      li(cat === 'accessories', BASE + '?cat=accessories', 'Accessories') +
-      C.map(function (c) { return li(cat === c[0], BASE + '?cat=' + encodeURIComponent(c[0]), c[1]); }).join('') + '</ul>' +
+    '<ul>' + li(side === 'men', HOME + '?side=men', 'Men') + li(side === 'women', HOME + '?side=women', 'Women') +
+      li(cat === 'accessories', HOME + '?cat=accessories', 'Accessories') +
+      C.map(function (c) { return li(cat === c[0], HOME + '?cat=' + encodeURIComponent(c[0]), c[1]); }).join('') + '</ul>' +
     '<ul>' + li(/service/.test(location.pathname) && location.hash === '#contact', BASE + 'service.html#contact', 'Contact') + '</ul>';
   [].forEach.call(D.querySelectorAll('nav.mn'), function (n) { n.innerHTML = menu; n.setAttribute('aria-label', 'Menu'); });
   var mn = D.querySelector('nav.mn'), burger = D.querySelector('.hd .burger');
@@ -41,9 +43,9 @@
   // three columns, the quiet line. Every link goes to a real page; Delivery and Newsletter added to the middle column.
   var ft = D.querySelector('footer.ft');
   if (ft) { ft.className = 'foot'; ft.innerHTML =
-    '<a class="mark" href="' + BASE + '" aria-label="PHAÖRA"><img src="' + BASE + 'assets/brand/mark-ink.png" alt="" width="40" height="40"></a>' +
+    '<a class="mark" href="' + HOME + '" aria-label="PHAÖRA"><img src="' + BASE + 'assets/brand/mark-ink.png" alt="" width="40" height="40"></a>' +
     '<nav class="flist" aria-label="The house">' +
-      '<p class="fcol"><a href="' + BASE + '">The line</a><a href="/maison/rhztw6/house.html">The house</a><a href="https://www.phaora.com/">Register</a></p>' +
+      '<p class="fcol"><a href="' + HOME + '">The line</a><a href="/maison/rhztw6/house.html">The house</a><a href="https://www.phaora.com/">Register</a></p>' +
       '<p class="fcol"><a href="' + BASE + 'service.html#care">Care</a><a href="' + BASE + 'service.html#sizes">Measurements</a><a href="' + BASE + 'service.html#delivery">Delivery</a><a href="' + BASE + 'service.html#returns">Returns</a><a href="' + BASE + 'service.html#contact">Contact</a><a href="#" data-nl>Newsletter</a></p>' +
       '<p class="fcol"><a href="/maison/rhztw6/poem.html">The poem</a><a href="' + BASE + 'service.html#privacy">Privacy</a><a href="' + BASE + 'service.html#terms">Terms</a></p>' +
     '</nav><p class="fline">PHAÖRA · Chapter I · MMXXVI</p>'; }

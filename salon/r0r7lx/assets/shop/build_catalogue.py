@@ -57,21 +57,53 @@ for p in out:
 for p in out:
     w = ACTS.get(p['id'], {}).get('world')
     p['walkaround'] = w if w and os.path.exists(os.path.join(ROOT, w)) else ''
-# srcset: a 1200-wide copy of every source wider than 1300 (never an upscale; no source in the repo is 2400 wide)
-from PIL import Image
-def variant(src):
-    im = Image.open(os.path.join(ROOT, src)); w, h = im.size
-    r = {'src': src, 'w': w, 'h': h}
+# the pictures, prepared (18 Nov review): each whole-piece picture cropped to the piece with a little air; on the cut-outs
+# the offset side shadow is dropped and only the contact shadow under the piece kept; on the white renders the ground
+# connected to the border is set to exactly #ffffff (it measured 252-255). The piece's own pixels are never touched.
+# Close-ups are photographs and are used as they are. Every prepared file is a copy in assets/shop/img/.
+import numpy as np
+from PIL import Image, ImageDraw
+WHOLE_SRC = re.compile(r' view$', re.I)
+def prep(src, whole):
+    path = os.path.join(ROOT, src); im = Image.open(path)
+    if not whole: return src, im
+    dst = 'assets/shop/img/' + src.replace('assets/', '').replace('/', '__').rsplit('.', 1)[0] + '.webp'
+    if im.mode == 'RGBA':
+        A = np.asarray(im).copy(); al = A[..., 3].astype(int); H, W = al.shape
+        solid = al >= 200
+        keep = solid.copy()
+        for dy in (-2, -1, 0, 1, 2):
+            for dx in (-2, -1, 0, 1, 2): keep |= np.roll(np.roll(solid, dy, 0), dx, 1)
+        cols = np.where(solid.any(0))[0]
+        if len(cols):
+            low = H - 1 - np.argmax(solid[::-1], axis=0)        # the lowest solid pixel in each column
+            band = max(4, int(H * .015)); ys = np.arange(H)[:, None]
+            contact = solid.any(0)[None, :] & (ys > low[None, :]) & (ys <= low[None, :] + band)
+            keep |= contact
+        A[..., 3] = np.where(keep, A[..., 3], 0)
+        out = Image.fromarray(A, 'RGBA'); bb = Image.fromarray(np.where(A[..., 3] > 8, 255, 0).astype('uint8')).getbbox()
+    else:
+        out = im.convert('RGB')
+        for xy in [(0, 0), (out.width - 1, 0), (0, out.height - 1), (out.width - 1, out.height - 1)]:
+            if min(out.getpixel(xy)) >= 240: ImageDraw.floodfill(out, xy, (255, 255, 255), thresh=6)
+        g = np.asarray(out).min(2); bb = Image.fromarray(np.where(g < 250, 255, 0).astype('uint8')).getbbox()
+    if bb:
+        x0, y0, x1, y1 = bb; air = int(max(x1 - x0, y1 - y0) * .04)
+        out = out.crop((max(0, x0 - air), max(0, y0 - air), min(out.width, x1 + air), min(out.height, y1 + air)))
+    os.makedirs(os.path.join(ROOT, 'assets/shop/img'), exist_ok=True)
+    out.save(os.path.join(ROOT, dst), 'WEBP', quality=90, method=6); return dst, out
+def variant(src, whole=True):
+    src, im = prep(src, whole); w, h = im.size
+    r = {'src': src, 'w': w, 'h': h, 'blend': im.mode != 'RGBA' and whole}
     if w > 1300:
         dst = 'assets/shop/1200/' + src.replace('assets/', '').replace('/', '__')
-        if not os.path.exists(os.path.join(ROOT, dst)):
-            os.makedirs(os.path.dirname(os.path.join(ROOT, dst)), exist_ok=True)
-            im.resize((1200, round(h * 1200 / w)), Image.LANCZOS).save(os.path.join(ROOT, dst), 'WEBP', quality=88, method=6)
+        os.makedirs(os.path.join(ROOT, 'assets/shop/1200'), exist_ok=True)
+        im.resize((1200, round(h * 1200 / w)), Image.LANCZOS).save(os.path.join(ROOT, dst), 'WEBP', quality=88, method=6)
         r['s1200'] = dst
     return r
 for p in out:
     p['tile'] = variant(p['tile'])
-    p['stack'] = [dict(variant(s['src']), label=s['label']) for s in p['stack']]
+    p['stack'] = [dict(variant(s['src'], bool(WHOLE_SRC.search(s['label']))), label=s['label']) for s in p['stack']]
     t, f = p['tile'], p['stack'][0]   # the front: the larger of the room's cut-out and the piece's own front render
     if f['label'] == 'front view' and t['w'] * t['h'] > f['w'] * f['h'] * 1.15: p['stack'][0] = dict(t, label='front view')
 json.dump(out, open(os.path.join(HERE, 'catalogue.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)

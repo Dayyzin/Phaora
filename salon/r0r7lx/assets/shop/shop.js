@@ -5,10 +5,12 @@
 //   ./?piece=<id>           the piece: the walkaround first where it has one and is priced at WALKAROUND_MIN_USD or
 //                           more, then its pictures stacked on the left, the details sticky on the right
 var WALKAROUND_MIN_USD = 3000;   // David, 18 Nov: final
+var WALKAROUND_ENABLED = false;  // off until David approves the 1600 px re-render (the live frames are 256 x 144)
 (function () {
   var app = document.getElementById('app'); if (!app) return;
   var q = new URLSearchParams(location.search), side = q.get('side'), cat = q.get('cat'), pid = q.get('piece');
   var E = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+  var HOME = (document.querySelector('meta[name="salon-home"]') || { content: './' }).content;
   var title0 = document.title, CAT = window.SALON_CATS || {};
   var usd = function (p) { return +String(p.price).replace(/[^\d]/g, '') || 0; };
   var sides = function (p) { return p.side === 'both' ? ['women', 'men'] : [p.side]; };
@@ -16,12 +18,12 @@ var WALKAROUND_MIN_USD = 3000;   // David, 18 Nov: final
   var img = function (v, alt, sizes, lazy, extra) {
     var ss = v.s1200 ? ' srcset="' + E(v.s1200) + ' 1200w, ' + E(v.src) + ' ' + v.w + 'w" sizes="' + sizes + '"' : '';
     return '<img src="' + E(v.src) + '"' + ss + ' width="' + v.w + '" height="' + v.h + '" alt="' + E(alt) + '"' +
-      (lazy ? ' loading="lazy"' : ' fetchpriority="high"') + ' decoding="async"' + (extra || '') + ' style="max-width:min(100%,' + v.w + 'px);max-height:min(100%,' + v.h + 'px)">';
+      (lazy ? ' loading="lazy"' : ' fetchpriority="high"') + ' decoding="async"' + (v.blend ? ' class="bl"' : '') + (extra || '') + ' style="max-width:min(100%,' + v.w + 'px);max-height:min(100%,' + v.h + 'px)">';
   };
   var tile = function (p, k) {
-    return '<li class="tl"><a class="im" href="./?piece=' + encodeURIComponent(p.id) + '">' +
-      img(p.tile, p.name + ', ' + p.type.toLowerCase(), '(max-width: 820px) 80vw, 27vw', k > 2) + '</a>' +
-      '<div class="cap"><a href="./?piece=' + encodeURIComponent(p.id) + '"><span class="nm">' + E(p.name) + '</span>' +
+    return '<li class="tl"><a class="im" href="' + HOME + '?piece=' + encodeURIComponent(p.id) + '">' +
+      img(p.tile, p.name + ', ' + p.type.toLowerCase(), '(max-width: 820px) 45vw, 20vw', k > 2) + '</a>' +
+      '<div class="cap"><a href="' + HOME + '?piece=' + encodeURIComponent(p.id) + '"><span class="nm">' + E(p.name) + '</span>' +
       (p.price ? '<span class="pr">' + E(p.price) + '</span>' : '') + '</a>' +
       '<a class="btn ol" href="' + E(p.href) + '">Pre-order</a></div></li>';
   };
@@ -33,9 +35,9 @@ var WALKAROUND_MIN_USD = 3000;   // David, 18 Nov: final
     if (side === 'women' || side === 'men') { list = C.filter(function (x) { return sides(x).indexOf(side) >= 0; }); head = side; }
     else if (cat && CAT[cat]) { list = C.filter(function (x) { return CAT[cat].has(x.category); }); head = CAT[cat].label; }
     if (head) document.title = head.charAt(0).toUpperCase() + head.slice(1) + ' · ' + title0;
-    app.innerHTML = (head ? '<h1 class="gh">' + E(head) + '</h1>' : '<h1 class="vh">Chapter I</h1>') +
+    app.innerHTML = '<h1 class="vh">' + E(head || 'Chapter I') + '</h1>' +
       '<ul class="grid">' + list.map(tile).join('') + '</ul>';
-  }).catch(function () { app.innerHTML = '<p class="gh">The pieces did not load. <a href="./">Try again</a>.</p>'; });
+  }).catch(function () { app.innerHTML = '<p class="gh">The pieces did not load. <a href="' + HOME + '">Try again</a>.</p>'; });
 
   function fold(id, label, body) {
     return '<div class="fd"><button type="button" aria-expanded="false" aria-controls="fd-' + id + '" id="fb-' + id + '"><span class="sc">' + label + '</span><i aria-hidden="true">+</i></button>' +
@@ -47,7 +49,7 @@ var WALKAROUND_MIN_USD = 3000;   // David, 18 Nov: final
     var hd = document.querySelector('.hd'); if (hd) hd.classList.add('burgered');
     var mine = sides(p);
     var rel = C.filter(function (x) { return x.id !== p.id && x.category === p.category && mine.every(function (s) { return sides(x).indexOf(s) >= 0; }); }).slice(0, 3);
-    var walk = p.walkaround && usd(p) >= WALKAROUND_MIN_USD;
+    var walk = WALKAROUND_ENABLED && p.walkaround && usd(p) >= WALKAROUND_MIN_USD;
     var buy = '<a class="btn" href="' + E(p.href) + '">Pre-order</a>';
     var care = p.details.Care ? '<p>' + E(p.details.Care) + '</p>' : '';
     var fit = p.fit ? '<p class="sz sc">' + E(p.fit.sizes) + '</p>' + p.fit.p.map(function (x) { return '<p>' + E(x) + '</p>'; }).join('') +
@@ -65,7 +67,6 @@ var WALKAROUND_MIN_USD = 3000;   // David, 18 Nov: final
           var close = !/ view$/i.test(s.label);
           return '<li' + (close ? ' class="cu"' : '') + '>' + img(s, p.name + ', ' + s.label, '(max-width: 820px) 100vw, 66vw', k > 0) + '</li>'; }).join('') + '</ul>' +
         '<div class="dt">' +
-          '<p class="ty sc">' + E(p.type) + ' · Chapter I</p>' +
           '<h1>' + E(p.name) + '</h1>' +
           (p.price ? '<p class="pr">' + E(p.price) + '</p>' : '') +
           '<p class="po"><b class="sc">Pre-order</b><span>Made to order.</span></p>' + buy + rows +

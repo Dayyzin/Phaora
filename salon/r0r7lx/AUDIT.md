@@ -209,3 +209,45 @@ column. Every link goes to a real page:
 | The poem | /maison/rhztw6/poem.html (the book was removed from this salon, so this goes to the maison's) |
 
 I couldn't place "the THE LINE heading band above it" on this page, which has no such band. Nothing was added for it.
+
+---
+
+# Review of 2e3910c, and "CLEANNN", 18 Nov
+
+## Two looks, one code (`<meta name="salon-look">`)
+
+| Link | Look |
+|---|---|
+| https://www.phaora.com/salon/r0r7lx/ | A, WITH the room: the one room from before, its pinned wall fixed behind the grid and the piece pages (`assets/room/stage-desktop.webp` / `stage-phone.webp` and the room's veil, used as they are) |
+| https://www.phaora.com/salon/r0r7lx/clean/ | B, WITHOUT: one exact #ffffff ground |
+
+Both are noindex. `clean/index.html` is the same page with `<base href="/salon/r0r7lx/">` and the look set to clean. Its
+grid and piece links stay under `/clean/`.
+
+## What changed
+
+- Grid: 4 across beside the fixed menu (2 on a phone), no gaps, 3:4 tiles. Each piece sits on a common baseline.
+  Under it: name, price and PRE-ORDER, and nothing else. The filter headings are gone.
+- Menu: a fixed column at the top left, MEN on the logo's line. The grid starts right under the logo, with no band
+  above it.
+- Pictures: every whole-piece picture is cropped to the piece with 4% air.
+  - On the cut-outs, the offset side shadow is dropped. Only the solid piece (alpha ≥ 200, plus 2 px) and a contact band
+    under it (1.5% of its height) are kept.
+  - On the white renders, the ground joined to the border is set to exactly #ffffff (it measured 252–255; Itaoca's open
+    view was 255,253,252). These renders also use multiply, so their ground takes the page's (or the room's).
+  - The piece's own pixels are never touched. Close-ups are used as they are.
+  - All prepared files are copies in `assets/shop/img/`, built by `build_catalogue.py`.
+- Walkaround: `WALKAROUND_ENABLED = false` until David approves the 1600 px re-render. The code is kept, and the piece
+  pages show the stacked pictures.
+- Categories: the menu lists only categories that have pieces. Eyewear stays because Öfusca is eyewear.
+- The poem pages stay removed. David asked for it in this session, sending the audit screenshot with the poem page
+  circled in red and the word "Remove".
+
+## Seams, re-sampled (clean look, 100%)
+
+| Shot | Points | Values |
+|---|---|---|
+| Desktop grid | tile edges x 498/499, 812/813, 1126/1127; above the grid (1300,60); between rows (1300,500) | all (255,255,255) |
+| Desktop Itaoca page | the image's edges and the column edge (948/951, 500) | all (255,255,255) |
+| Desktop related row | (5,400), (960,400) | (255,255,255). 480/481 fell on the bag itself |
+| Phone grid | tile edge x 194/195/196 at y 300; (5,600) | all (255,255,255) |

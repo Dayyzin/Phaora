@@ -12,35 +12,38 @@
   "price": "USD 5,400",
   "href": "https://www.phaora.com/",
   "tile": {
-   "src": "assets/catalogue/full/veil_coat.webp",
-   "w": 1419,
-   "h": 1346,
-   "s1200": "assets/shop/1200/catalogue__full__veil_coat.webp"
+   "src": "assets/shop/img/catalogue__full__veil_coat.webp",
+   "w": 702,
+   "h": 1272,
+   "blend": false
   },
   "stack": [
    {
-    "src": "assets/catalogue/full/veil_coat.webp",
-    "w": 1419,
-    "h": 1346,
-    "s1200": "assets/shop/1200/catalogue__full__veil_coat.webp",
+    "src": "assets/shop/img/pieces__gelosia__00.webp",
+    "w": 658,
+    "h": 1261,
+    "blend": true,
     "label": "front view"
    },
    {
-    "src": "assets/walk/veil_coat_three-quarter.webp",
+    "src": "assets/shop/img/walk__veil_coat_three-quarter.webp",
     "w": 526,
     "h": 1244,
+    "blend": false,
     "label": "three quarter view"
    },
    {
-    "src": "assets/walk/veil_coat_back.webp",
+    "src": "assets/shop/img/walk__veil_coat_back.webp",
     "w": 597,
     "h": 1202,
+    "blend": false,
     "label": "back view"
    },
    {
     "src": "assets/pieces/gelosia/01.webp",
     "w": 1600,
     "h": 900,
+    "blend": false,
     "s1200": "assets/shop/1200/pieces__gelosia__01.webp",
     "label": "The net closing to solid leather"
    },
@@ -48,6 +51,7 @@
     "src": "assets/pieces/gelosia/02.webp",
     "w": 1600,
     "h": 900,
+    "blend": false,
     "s1200": "assets/shop/1200/pieces__gelosia__02.webp",
     "label": "A button and the belt"
    },
@@ -55,6 +59,7 @@
     "src": "assets/pieces/gelosia/03.webp",
     "w": 1600,
     "h": 900,
+    "blend": false,
     "s1200": "assets/shop/1200/pieces__gelosia__03.webp",
     "label": "The cuff strap"
    }
@@ -87,29 +92,31 @@
   "price": "USD 3,800",
   "href": "https://www.phaora.com/",
   "tile": {
-   "src": "assets/catalogue/full/oitava_2048.webp",
-   "w": 1600,
-   "h": 1343,
-   "s1200": "assets/shop/1200/catalogue__full__oitava_2048.webp"
+   "src": "assets/shop/img/catalogue__full__oitava_2048.webp",
+   "w": 853,
+   "h": 1298,
+   "blend": false
   },
   "stack": [
    {
-    "src": "assets/catalogue/full/oitava_2048.webp",
-    "w": 1600,
-    "h": 1343,
-    "s1200": "assets/shop/1200/catalogue__full__oitava_2048.webp",
+    "src": "assets/shop/img/catalogue__full__oitava_2048.webp",
+    "w": 853,
+    "h": 1298,
+    "blend": false,
     "label": "front view"
    },
    {
-    "src": "assets/walk/oitava_three-quarter.webp",
+    "src": "assets/shop/img/walk__oitava_three-quarter.webp",
     "w": 280,
     "h": 484,
+    "blend": false,
     "label": "three quarter view"
    },
    {
-    "src": "assets/walk/oitava_back.webp",
+    "src": "assets/shop/img/walk__oitava_back.webp",
     "w": 336,
     "h": 488,
+    "blend": false,
     "label": "back view"
    }
   ],
@@ -136,38 +143,40 @@
   "price": "USD 3,200",
   "href": "https://www.phaora.com/",
   "tile": {
-   "src": "assets/catalogue/full/muse_bomber.webp",
-   "w": 1600,
-   "h": 1126,
-   "s1200": "assets/shop/1200/catalogue__full__muse_bomber.webp"
+   "src": "assets/shop/img/catalogue__full__muse_bomber.webp",
+   "w": 991,
+   "h": 1067,
+   "blend": false
   },
   "stack": [
    {
-    "src": "assets/pieces/odara/00.webp",
-    "w": 1350,
+    "src": "assets/shop/img/pieces__odara__00.webp",
+    "w": 1342,
     "h": 1380,
-    "s1200": "assets/shop/1200/pieces__odara__00.webp",
+    "blend": true,
+    "s1200": "assets/shop/1200/shop__img__pieces__odara__00.webp",
     "label": "front view"
    },
    {
-    "src": "assets/pieces/odara/01.webp",
-    "w": 1355,
+    "src": "assets/shop/img/pieces__odara__01.webp",
+    "w": 1283,
     "h": 1392,
-    "s1200": "assets/shop/1200/pieces__odara__01.webp",
+    "blend": true,
     "label": "three quarter view"
    },
    {
-    "src": "assets/pieces/odara/02.webp",
-    "w": 1372,
+    "src": "assets/shop/img/pieces__odara__02.webp",
+    "w": 1332,
     "h": 1383,
-    "s1200": "assets/shop/1200/pieces__odara__02.webp",
+    "blend": true,
+    "s1200": "assets/shop/1200/shop__img__pieces__odara__02.webp",
     "label": "back view"
    },
    {
-    "src": "assets/pieces/odara/03.webp",
-    "w": 1600,
-    "h": 900,
-    "s1200": "assets/shop/1200/pieces__odara__03.webp",
+    "src": "assets/shop/img/pieces__odara__03.webp",
+    "w": 846,
+    "h": 818,
+    "blend": true,
     "label": "open view"
    }
   ],
@@ -201,37 +210,38 @@
   "price": "USD 2,900",
   "href": "https://www.phaora.com/",
   "tile": {
-   "src": "assets/catalogue/full/po_tophandle.webp",
-   "w": 1540,
-   "h": 965,
-   "s1200": "assets/shop/1200/catalogue__full__po_tophandle.webp"
+   "src": "assets/shop/img/catalogue__full__po_tophandle.webp",
+   "w": 1043,
+   "h": 917,
+   "blend": false
   },
   "stack": [
    {
-    "src": "assets/pieces/itaoca/00.webp",
-    "w": 1600,
-    "h": 1600,
-    "s1200": "assets/shop/1200/pieces__itaoca__00.webp",
+    "src": "assets/shop/img/pieces__itaoca__00.webp",
+    "w": 1236,
+    "h": 1030,
+    "blend": true,
     "label": "front view"
    },
    {
-    "src": "assets/pieces/itaoca/01.webp",
-    "w": 1600,
-    "h": 1600,
-    "s1200": "assets/shop/1200/pieces__itaoca__01.webp",
+    "src": "assets/shop/img/pieces__itaoca__01.webp",
+    "w": 1122,
+    "h": 1030,
+    "blend": true,
     "label": "three quarter view"
    },
    {
-    "src": "assets/pieces/itaoca/02.webp",
-    "w": 1600,
-    "h": 1600,
-    "s1200": "assets/shop/1200/pieces__itaoca__02.webp",
+    "src": "assets/shop/img/pieces__itaoca__02.webp",
+    "w": 1110,
+    "h": 1110,
+    "blend": true,
     "label": "open view"
    },
    {
     "src": "assets/pieces/itaoca/03.webp",
     "w": 1600,
     "h": 900,
+    "blend": false,
     "s1200": "assets/shop/1200/pieces__itaoca__03.webp",
     "label": "The PÖ on the flap"
    },
@@ -239,6 +249,7 @@
     "src": "assets/pieces/itaoca/04.webp",
     "w": 1600,
     "h": 900,
+    "blend": false,
     "s1200": "assets/shop/1200/pieces__itaoca__04.webp",
     "label": "The clasp"
    },
@@ -246,6 +257,7 @@
     "src": "assets/pieces/itaoca/05.webp",
     "w": 1600,
     "h": 900,
+    "blend": false,
     "s1200": "assets/shop/1200/pieces__itaoca__05.webp",
     "label": "The rolled handle"
    }
@@ -273,29 +285,31 @@
   "price": "USD 2,600",
   "href": "https://www.phaora.com/",
   "tile": {
-   "src": "assets/catalogue/full/matinee.webp",
-   "w": 1600,
-   "h": 892,
-   "s1200": "assets/shop/1200/catalogue__full__matinee.webp"
+   "src": "assets/shop/img/catalogue__full__matinee.webp",
+   "w": 1129,
+   "h": 847,
+   "blend": false
   },
   "stack": [
    {
-    "src": "assets/pieces/coema/00.webp",
-    "w": 1274,
+    "src": "assets/shop/img/pieces__coema__00.webp",
+    "w": 1267,
     "h": 1021,
+    "blend": true,
     "label": "front view"
    },
    {
-    "src": "assets/pieces/coema/01.webp",
-    "w": 1600,
+    "src": "assets/shop/img/pieces__coema__01.webp",
+    "w": 960,
     "h": 900,
-    "s1200": "assets/shop/1200/pieces__coema__01.webp",
+    "blend": true,
     "label": "open view"
    },
    {
     "src": "assets/pieces/coema/02.webp",
     "w": 1600,
     "h": 900,
+    "blend": false,
     "s1200": "assets/shop/1200/pieces__coema__02.webp",
     "label": "The pressed row"
    },
@@ -303,6 +317,7 @@
     "src": "assets/pieces/coema/03.webp",
     "w": 1600,
     "h": 900,
+    "blend": false,
     "s1200": "assets/shop/1200/pieces__coema__03.webp",
     "label": "The charm"
    },
@@ -310,6 +325,7 @@
     "src": "assets/pieces/coema/04.webp",
     "w": 1600,
     "h": 900,
+    "blend": false,
     "s1200": "assets/shop/1200/pieces__coema__04.webp",
     "label": "The couple on the suede"
    }
@@ -337,30 +353,32 @@
   "price": "USD 2,200",
   "href": "https://www.phaora.com/",
   "tile": {
-   "src": "assets/catalogue/full/the_reel.webp",
-   "w": 1334,
-   "h": 1074,
-   "s1200": "assets/shop/1200/catalogue__full__the_reel.webp"
+   "src": "assets/shop/img/catalogue__full__the_reel.webp",
+   "w": 758,
+   "h": 1018,
+   "blend": false
   },
   "stack": [
    {
-    "src": "assets/pieces/voluta/00.webp",
-    "w": 1600,
-    "h": 2845,
-    "s1200": "assets/shop/1200/pieces__voluta__00.webp",
+    "src": "assets/shop/img/pieces__voluta__00.webp",
+    "w": 1521,
+    "h": 1898,
+    "blend": true,
+    "s1200": "assets/shop/1200/shop__img__pieces__voluta__00.webp",
     "label": "front view"
    },
    {
-    "src": "assets/pieces/voluta/01.webp",
-    "w": 1600,
-    "h": 1600,
-    "s1200": "assets/shop/1200/pieces__voluta__01.webp",
+    "src": "assets/shop/img/pieces__voluta__01.webp",
+    "w": 968,
+    "h": 1336,
+    "blend": true,
     "label": "three quarter view"
    },
    {
     "src": "assets/pieces/voluta/02.webp",
     "w": 1600,
     "h": 900,
+    "blend": false,
     "s1200": "assets/shop/1200/pieces__voluta__02.webp",
     "label": "The calfskin"
    }
@@ -388,29 +406,33 @@
   "price": "USD 1,050",
   "href": "https://www.phaora.com/",
   "tile": {
-   "src": "assets/catalogue/full/opera_gloves.webp",
-   "w": 1600,
+   "src": "assets/shop/img/catalogue__full__opera_gloves.webp",
+   "w": 1347,
    "h": 1096,
-   "s1200": "assets/shop/1200/catalogue__full__opera_gloves.webp"
+   "blend": false,
+   "s1200": "assets/shop/1200/shop__img__catalogue__full__opera_gloves.webp"
   },
   "stack": [
    {
-    "src": "assets/pieces/ritornelo/00.webp",
+    "src": "assets/shop/img/pieces__ritornelo__00.webp",
     "w": 1375,
     "h": 1164,
-    "s1200": "assets/shop/1200/pieces__ritornelo__00.webp",
+    "blend": true,
+    "s1200": "assets/shop/1200/shop__img__pieces__ritornelo__00.webp",
     "label": "front view"
    },
    {
-    "src": "assets/walk/opera_gloves_three-quarter.webp",
+    "src": "assets/shop/img/walk__opera_gloves_three-quarter.webp",
     "w": 352,
     "h": 1433,
+    "blend": false,
     "label": "three quarter view"
    },
    {
     "src": "assets/pieces/ritornelo/01.webp",
     "w": 1600,
     "h": 900,
+    "blend": false,
     "s1200": "assets/shop/1200/pieces__ritornelo__01.webp",
     "label": "The net opening up the arm"
    },
@@ -418,6 +440,7 @@
     "src": "assets/pieces/ritornelo/02.webp",
     "w": 1600,
     "h": 900,
+    "blend": false,
     "s1200": "assets/shop/1200/pieces__ritornelo__02.webp",
     "label": "The snap"
    }
@@ -451,16 +474,18 @@
   "price": "USD 950",
   "href": "https://www.phaora.com/",
   "tile": {
-   "src": "assets/catalogue/full/silk_slip.webp",
+   "src": "assets/shop/img/catalogue__full__silk_slip.webp",
    "w": 1209,
-   "h": 2576
+   "h": 2576,
+   "blend": true
   },
   "stack": [
    {
-    "src": "assets/pieces/alvor/00.webp",
-    "w": 1600,
-    "h": 2845,
-    "s1200": "assets/shop/1200/pieces__alvor__00.webp",
+    "src": "assets/shop/img/pieces__alvor__00.webp",
+    "w": 1312,
+    "h": 2680,
+    "blend": true,
+    "s1200": "assets/shop/1200/shop__img__pieces__alvor__00.webp",
     "label": "front view"
    }
   ],
@@ -493,30 +518,33 @@
   "price": "USD 595",
   "href": "https://www.phaora.com/",
   "tile": {
-   "src": "assets/catalogue/full/cantilena.webp",
-   "w": 1578,
-   "h": 1068,
-   "s1200": "assets/shop/1200/catalogue__full__cantilena.webp"
+   "src": "assets/shop/img/catalogue__full__cantilena.webp",
+   "w": 996,
+   "h": 1012,
+   "blend": false
   },
   "stack": [
    {
-    "src": "assets/pieces/cantilena/00.webp",
-    "w": 1600,
-    "h": 1600,
-    "s1200": "assets/shop/1200/pieces__cantilena__00.webp",
+    "src": "assets/shop/img/pieces__cantilena__00.webp",
+    "w": 1305,
+    "h": 1301,
+    "blend": true,
+    "s1200": "assets/shop/1200/shop__img__pieces__cantilena__00.webp",
     "label": "front view"
    },
    {
-    "src": "assets/pieces/cantilena/01.webp",
-    "w": 1600,
-    "h": 2845,
-    "s1200": "assets/shop/1200/pieces__cantilena__01.webp",
+    "src": "assets/shop/img/pieces__cantilena__01.webp",
+    "w": 1573,
+    "h": 2029,
+    "blend": true,
+    "s1200": "assets/shop/1200/shop__img__pieces__cantilena__01.webp",
     "label": "back view"
    },
    {
     "src": "assets/pieces/cantilena/02.webp",
     "w": 1600,
     "h": 900,
+    "blend": false,
     "s1200": "assets/shop/1200/pieces__cantilena__02.webp",
     "label": "The checker at stitch scale"
    },
@@ -524,6 +552,7 @@
     "src": "assets/pieces/cantilena/03.webp",
     "w": 1600,
     "h": 900,
+    "blend": false,
     "s1200": "assets/shop/1200/pieces__cantilena__03.webp",
     "label": "Cream on cream"
    },
@@ -531,6 +560,7 @@
     "src": "assets/pieces/cantilena/04.webp",
     "w": 1600,
     "h": 900,
+    "blend": false,
     "s1200": "assets/shop/1200/pieces__cantilena__04.webp",
     "label": "The brass eyelet and tip"
    }
@@ -597,30 +627,34 @@
   "price": "USD 550",
   "href": "https://www.phaora.com/",
   "tile": {
-   "src": "assets/pieces/coaraci/00.webp",
+   "src": "assets/shop/img/pieces__coaraci__00.webp",
    "w": 1375,
-   "h": 751,
-   "s1200": "assets/shop/1200/pieces__coaraci__00.webp"
+   "h": 742,
+   "blend": true,
+   "s1200": "assets/shop/1200/shop__img__pieces__coaraci__00.webp"
   },
   "stack": [
    {
-    "src": "assets/pieces/coaraci/00.webp",
+    "src": "assets/shop/img/pieces__coaraci__00.webp",
     "w": 1375,
-    "h": 751,
-    "s1200": "assets/shop/1200/pieces__coaraci__00.webp",
+    "h": 742,
+    "blend": true,
+    "s1200": "assets/shop/1200/shop__img__pieces__coaraci__00.webp",
     "label": "front view"
    },
    {
-    "src": "assets/pieces/coaraci/01.webp",
-    "w": 1563,
+    "src": "assets/shop/img/pieces__coaraci__01.webp",
+    "w": 1549,
     "h": 1084,
-    "s1200": "assets/shop/1200/pieces__coaraci__01.webp",
+    "blend": true,
+    "s1200": "assets/shop/1200/shop__img__pieces__coaraci__01.webp",
     "label": "straight view"
    },
    {
     "src": "assets/pieces/coaraci/02.webp",
     "w": 1600,
     "h": 900,
+    "blend": false,
     "s1200": "assets/shop/1200/pieces__coaraci__02.webp",
     "label": "The punched holes"
    }
@@ -648,36 +682,40 @@
   "price": "USD 495",
   "href": "https://www.phaora.com/",
   "tile": {
-   "src": "assets/catalogue/full/sunglasses.webp",
-   "w": 1405,
+   "src": "assets/shop/img/catalogue__full__sunglasses.webp",
+   "w": 1276,
    "h": 568,
-   "s1200": "assets/shop/1200/catalogue__full__sunglasses.webp"
+   "blend": false
   },
   "stack": [
    {
-    "src": "assets/pieces/ofusca/00.webp",
-    "w": 1332,
+    "src": "assets/shop/img/pieces__ofusca__00.webp",
+    "w": 1309,
     "h": 638,
-    "s1200": "assets/shop/1200/pieces__ofusca__00.webp",
+    "blend": true,
+    "s1200": "assets/shop/1200/shop__img__pieces__ofusca__00.webp",
     "label": "front view"
    },
    {
-    "src": "assets/pieces/ofusca/01.webp",
+    "src": "assets/shop/img/pieces__ofusca__01.webp",
     "w": 1467,
     "h": 596,
-    "s1200": "assets/shop/1200/pieces__ofusca__01.webp",
+    "blend": true,
+    "s1200": "assets/shop/1200/shop__img__pieces__ofusca__01.webp",
     "label": "flat view"
    },
    {
-    "src": "assets/catalogue/full/sunglasses_side.webp",
-    "w": 1018,
+    "src": "assets/shop/img/catalogue__full__sunglasses_side.webp",
+    "w": 904,
     "h": 370,
+    "blend": false,
     "label": "side view"
    },
    {
     "src": "assets/pieces/ofusca/02.webp",
     "w": 1600,
     "h": 900,
+    "blend": false,
     "s1200": "assets/shop/1200/pieces__ofusca__02.webp",
     "label": "The brass plate"
    },
@@ -685,6 +723,7 @@
     "src": "assets/pieces/ofusca/03.webp",
     "w": 1600,
     "h": 900,
+    "blend": false,
     "s1200": "assets/shop/1200/pieces__ofusca__03.webp",
     "label": "The case"
    }
@@ -712,35 +751,38 @@
   "price": "USD 400",
   "href": "https://www.phaora.com/",
   "tile": {
-   "src": "assets/catalogue/full/muse_allover.webp",
-   "w": 1600,
-   "h": 1072,
-   "s1200": "assets/shop/1200/catalogue__full__muse_allover.webp"
+   "src": "assets/shop/img/catalogue__full__muse_allover.webp",
+   "w": 1010,
+   "h": 1019,
+   "blend": false
   },
   "stack": [
    {
-    "src": "assets/catalogue/full/muse_allover.webp",
-    "w": 1600,
-    "h": 1072,
-    "s1200": "assets/shop/1200/catalogue__full__muse_allover.webp",
+    "src": "assets/shop/img/pieces__heliodora__00.webp",
+    "w": 1116,
+    "h": 1136,
+    "blend": true,
     "label": "front view"
    },
    {
-    "src": "assets/walk/muse_allover_three-quarter.webp",
+    "src": "assets/shop/img/walk__muse_allover_three-quarter.webp",
     "w": 804,
     "h": 1027,
+    "blend": false,
     "label": "three quarter view"
    },
    {
-    "src": "assets/walk/muse_allover_back.webp",
+    "src": "assets/shop/img/walk__muse_allover_back.webp",
     "w": 930,
     "h": 976,
+    "blend": false,
     "label": "back view"
    },
    {
     "src": "assets/pieces/heliodora/01.webp",
     "w": 1600,
     "h": 900,
+    "blend": false,
     "s1200": "assets/shop/1200/pieces__heliodora__01.webp",
     "label": "The kiss on the back"
    },
@@ -748,6 +790,7 @@
     "src": "assets/pieces/heliodora/02.webp",
     "w": 1600,
     "h": 900,
+    "blend": false,
     "s1200": "assets/shop/1200/pieces__heliodora__02.webp",
     "label": "The knit at stitch scale"
    },
@@ -755,6 +798,7 @@
     "src": "assets/pieces/heliodora/03.webp",
     "w": 1600,
     "h": 900,
+    "blend": false,
     "s1200": "assets/shop/1200/pieces__heliodora__03.webp",
     "label": "The cuff, where her hair thins to single dots"
    }
@@ -821,23 +865,26 @@
   "price": "USD 395",
   "href": "https://www.phaora.com/",
   "tile": {
-   "src": "assets/catalogue/full/silk_scarf.webp",
-   "w": 1600,
+   "src": "assets/shop/img/catalogue__full__silk_scarf.webp",
+   "w": 1393,
    "h": 1132,
-   "s1200": "assets/shop/1200/catalogue__full__silk_scarf.webp"
+   "blend": false,
+   "s1200": "assets/shop/1200/shop__img__catalogue__full__silk_scarf.webp"
   },
   "stack": [
    {
-    "src": "assets/pieces/cordel/00.webp",
+    "src": "assets/shop/img/pieces__cordel__00.webp",
     "w": 1597,
     "h": 1335,
-    "s1200": "assets/shop/1200/pieces__cordel__00.webp",
+    "blend": true,
+    "s1200": "assets/shop/1200/shop__img__pieces__cordel__00.webp",
     "label": "front view"
    },
    {
     "src": "assets/pieces/cordel/01.webp",
     "w": 1600,
     "h": 1600,
+    "blend": false,
     "s1200": "assets/shop/1200/pieces__cordel__01.webp",
     "label": "The print"
    },
@@ -845,6 +892,7 @@
     "src": "assets/pieces/cordel/02.webp",
     "w": 1600,
     "h": 1600,
+    "blend": false,
     "s1200": "assets/shop/1200/pieces__cordel__02.webp",
     "label": "The rolled hem"
    }
@@ -872,15 +920,17 @@
   "price": "USD 325",
   "href": "https://www.phaora.com/",
   "tile": {
-   "src": "assets/catalogue/full/quiet_black_trousers.webp",
-   "w": 700,
-   "h": 761
+   "src": "assets/shop/img/catalogue__full__quiet_black_trousers.webp",
+   "w": 283,
+   "h": 720,
+   "blend": false
   },
   "stack": [
    {
-    "src": "assets/catalogue/full/quiet_black_trousers.webp",
-    "w": 700,
-    "h": 761,
+    "src": "assets/shop/img/catalogue__full__quiet_black_trousers.webp",
+    "w": 283,
+    "h": 720,
+    "blend": false,
     "label": "front view"
    }
   ],
@@ -926,30 +976,34 @@
   "price": "USD 295",
   "href": "https://www.phaora.com/",
   "tile": {
-   "src": "assets/catalogue/full/card_holder.webp",
-   "w": 1600,
+   "src": "assets/shop/img/catalogue__full__card_holder.webp",
+   "w": 1446,
    "h": 556,
-   "s1200": "assets/shop/1200/catalogue__full__card_holder.webp"
+   "blend": false,
+   "s1200": "assets/shop/1200/shop__img__catalogue__full__card_holder.webp"
   },
   "stack": [
    {
-    "src": "assets/pieces/obolo/00.webp",
+    "src": "assets/shop/img/pieces__obolo__00.webp",
     "w": 1600,
     "h": 744,
-    "s1200": "assets/shop/1200/pieces__obolo__00.webp",
+    "blend": true,
+    "s1200": "assets/shop/1200/shop__img__pieces__obolo__00.webp",
     "label": "front view"
    },
    {
-    "src": "assets/pieces/obolo/01.webp",
+    "src": "assets/shop/img/pieces__obolo__01.webp",
     "w": 1383,
     "h": 578,
-    "s1200": "assets/shop/1200/pieces__obolo__01.webp",
+    "blend": true,
+    "s1200": "assets/shop/1200/shop__img__pieces__obolo__01.webp",
     "label": "back view"
    },
    {
     "src": "assets/pieces/obolo/02.webp",
     "w": 1600,
     "h": 1200,
+    "blend": false,
     "s1200": "assets/shop/1200/pieces__obolo__02.webp",
     "label": "The painted edge"
    },
@@ -957,6 +1011,7 @@
     "src": "assets/pieces/obolo/03.webp",
     "w": 1600,
     "h": 900,
+    "blend": false,
     "s1200": "assets/shop/1200/pieces__obolo__03.webp",
     "label": "The pebble"
    }
@@ -985,17 +1040,17 @@
   "price": "",
   "href": "https://www.phaora.com/",
   "tile": {
-   "src": "assets/catalogue/full/lustre_pad.webp",
-   "w": 1600,
-   "h": 1155,
-   "s1200": "assets/shop/1200/catalogue__full__lustre_pad.webp"
+   "src": "assets/shop/img/catalogue__full__lustre_pad.webp",
+   "w": 975,
+   "h": 1094,
+   "blend": false
   },
   "stack": [
    {
-    "src": "assets/catalogue/full/lustre_pad.webp",
-    "w": 1600,
-    "h": 1155,
-    "s1200": "assets/shop/1200/catalogue__full__lustre_pad.webp",
+    "src": "assets/shop/img/catalogue__full__lustre_pad.webp",
+    "w": 975,
+    "h": 1094,
+    "blend": false,
     "label": "front view"
    }
   ],
