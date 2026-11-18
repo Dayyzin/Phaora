@@ -1040,17 +1040,18 @@
   "price": "",
   "href": "https://www.phaora.com/",
   "tile": {
-   "src": "assets/shop/img/catalogue__full__lustre_pad.webp",
-   "w": 975,
-   "h": 1094,
-   "blend": false
+   "src": "assets/shop/img/lustre_2k.webp",
+   "w": 1536,
+   "h": 2048,
+   "blend": true
   },
   "stack": [
    {
-    "src": "assets/shop/img/catalogue__full__lustre_pad.webp",
-    "w": 975,
-    "h": 1094,
-    "blend": false,
+    "src": "assets/shop/img/lustre_2k.webp",
+    "w": 1536,
+    "h": 2048,
+    "blend": true,
+    "s1200": "assets/shop/1200/lustre_2k.webp",
     "label": "front view"
    }
   ],
