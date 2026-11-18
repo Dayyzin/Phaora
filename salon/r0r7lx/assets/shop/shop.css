@@ -524,3 +524,8 @@ html,body{overflow-x:clip!important;overflow-y:visible}
 .sh .q4{aspect-ratio:auto!important;height:100%;gap:4px}
 .sh .rl,.sh .q4{min-height:0}
 @media (max-width:820px){.sh{grid-template-columns:1fr 1fr!important}}
+/* each piece on its own ground, a shade off the page (David, 18 Nov; as celine.com) */
+.grid .tl .im{background:#f1f0ee}
+.pc .st li:not(.cu){background:#f1f0ee}
+.gifts .grid .tl .im{background:#e8e0d2}
+.grid{gap:4px!important}
