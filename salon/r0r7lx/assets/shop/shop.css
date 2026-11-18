@@ -391,3 +391,5 @@ html,body{overflow-x:hidden}
 /* the suggested categories slimmer (David, 18 Nov): the three doors and for her / for him at 1:1 */
 .dets.three .dl img{aspect-ratio:1/1!important}
 .gifts .g2 img{aspect-ratio:1/1!important}
+/* the landscape details slimmer (David, 18 Nov: "slim this down"): half the height, 32:9 on a desk */
+@media (min-width:821px){.dets .one img{aspect-ratio:32/9!important;object-position:50% 50%}}
