@@ -24,10 +24,14 @@
   window.SALON_CATS = CATS;
   var Q = new URLSearchParams(location.search), side = Q.get('side'), cat = Q.get('cat');
   var li = function (on, href, t) { return '<li><a href="' + href + '"' + (on ? ' aria-current="page"' : '') + '>' + t + '</a></li>'; };
+  // David, 18 Nov: tight like celine.com - the lines close together, a gap only between the groups
+  var cl = function (k) { var c = C.filter(function (x) { return x[0] === k; })[0]; return li(cat === k, HOME + '?cat=' + encodeURIComponent(k), c[1]); };
   var menu = '<button class="x" type="button">Close</button>' +
-    '<ul>' + li(side === 'men', HOME + '?side=men', 'Men') + li(side === 'women', HOME + '?side=women', 'Women') +
-      li(cat === 'accessories', HOME + '?cat=accessories', 'Accessories') +
-      C.map(function (c) { return li(cat === c[0], HOME + '?cat=' + encodeURIComponent(c[0]), c[1]); }).join('') + '</ul>' +
+    '<ul>' + li(false, HOME + '#gifts', 'Gifts') + '</ul>' +
+    '<ul>' + li(side === 'women', HOME + '?side=women', 'Women') + li(side === 'men', HOME + '?side=men', 'Men') + '</ul>' +
+    '<ul>' + cl('outerwear') + cl('dresses') + cl('knit') + '</ul>' +
+    '<ul>' + cl('bags') + cl('small leather goods') + cl('belts') + cl('gloves') + cl('scarves') + '</ul>' +
+    '<ul>' + cl('eyewear') + cl('jewellery') + li(cat === 'accessories', HOME + '?cat=accessories', 'All accessories') + '</ul>' +
     '<ul>' + li(/service/.test(location.pathname) && location.hash === '#contact', BASE + 'service.html#contact', 'Contact') + '</ul>';
   [].forEach.call(D.querySelectorAll('nav.mn'), function (n) { n.innerHTML = menu; n.setAttribute('aria-label', 'Menu'); });
   var mn = D.querySelector('nav.mn'), burger = D.querySelector('.hd .burger');

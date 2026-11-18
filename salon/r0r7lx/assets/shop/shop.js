@@ -35,8 +35,36 @@ var WALKAROUND_ENABLED = true;   // David, 18 Nov: "Walkaround comes back, it's 
     if (side === 'women' || side === 'men') { list = C.filter(function (x) { return sides(x).indexOf(side) >= 0; }); head = side; }
     else if (cat && CAT[cat]) { list = C.filter(function (x) { return CAT[cat].has(x.category); }); head = CAT[cat].label; }
     if (head) document.title = head.charAt(0).toUpperCase() + head.slice(1) + ' · ' + title0;
-    app.innerHTML = '<h1 class="vh">' + E(head || 'Chapter I') + '</h1>' +
-      '<ul class="grid">' + list.map(tile).join('') + '</ul>';
+    if (head) { app.innerHTML = '<h1 class="vh">' + E(head) + '</h1><ul class="grid">' + list.map(tile).join('') + '</ul>'; return; }
+    // the front page (David, 18 Nov): one long page - the 360 opening, catalogue, a detail, catalogue, the film, details in
+    // three squares, then the footer
+    var find = function (id, lab) { var q = byId[id]; if (!q) return null; for (var i = 0; i < q.stack.length; i++) if (q.stack[i].label === lab) return { p: q, v: q.stack[i] }; return null; };
+    var det = function (d, cls) { return d ? '<a class="dl ' + cls + '" href="' + HOME + '?piece=' + encodeURIComponent(d.p.id) + '">' + img(d.v, d.p.name + ', ' + d.v.label.toLowerCase(), cls === 'one' ? '100vw' : '(max-width: 820px) 100vw, 33vw', true) + '<span class="sc">' + E(d.p.name) + '</span></a>' : ''; };
+    var big = find('itaoca', 'The PÖ on the flap');
+    var GIFTS = ['oitava', 'lustre', 'cordel', 'obolo'];   // the gift suggestions, first, before the catalogue (David, 18 Nov)
+    var three = [find('gelosia', 'A button and the belt'), find('coema', 'The charm'), find('cantilena', 'The brass eyelet and tip')];
+    var phone = matchMedia('(max-width: 820px)').matches;
+    app.innerHTML = '<h1 class="vh">Chapter I</h1>' +
+      '<section class="op" aria-label="Itaoca"><a href="' + HOME + '?piece=itaoca"><img class="tn" alt="Itaoca, turning" src="assets/turn/itaoca/f000.webp" width="1200" height="1200"></a><p class="sc">Itaoca</p></section>' +
+      '<section class="gifts" id="gifts"><h2 class="sc">Gifts</h2><ul class="grid">' + GIFTS.map(function (id) { return byId[id]; }).filter(Boolean).map(tile).join('') + '</ul></section>' +
+      '<ul class="grid">' + C.slice(0, 8).map(tile).join('') + '</ul>' +
+      '<section class="dets">' + det(big, 'one') + '</section>' +
+      '<ul class="grid">' + C.slice(8).map(function (x, k) { return tile(x, 9); }).join('') + '</ul>' +
+      '<section class="fm" aria-label="The film"><video playsinline preload="none" src="assets/film/' + (phone ? 'film-phone.mp4' : 'film-desktop.mp4') + '"></video>' +
+        '<button class="snd sc" type="button" aria-pressed="false">Sound</button></section>' +
+      '<section class="dets three">' + three.map(function (d) { return det(d, 'sq3'); }).join('') + '</section>';
+    // the 360: Itaoca turns, slowly, a frame every 90 ms
+    (function () { var tn = app.querySelector('.op .tn'), F = [], i = 0;
+      for (var k = 0; k < 72; k++) { var im = new Image(); im.src = 'assets/turn/itaoca/f' + ('00' + k).slice(-3) + '.webp'; F.push(im); }
+      setInterval(function () { i = (i + 1) % 72; if (F[i].complete) tn.src = F[i].src; }, 90); })();
+    // the film: stay on it a second or two and the room dims and it plays; leave and it pauses, the room comes back
+    (function () { var fm = app.querySelector('.fm'), v = fm.querySelector('video'), sb = fm.querySelector('.snd'), t = null;
+      v.muted = true;
+      sb.addEventListener('click', function () { v.muted = !v.muted; sb.setAttribute('aria-pressed', v.muted ? 'false' : 'true'); sb.textContent = v.muted ? 'Sound' : 'Sound off'; if (v.paused) v.play().catch(function () {}); });
+      new IntersectionObserver(function (es) { es.forEach(function (e) {
+        if (e.intersectionRatio > 0.6) { clearTimeout(t); t = setTimeout(function () { document.body.classList.add('dim'); v.play().catch(function () {}); }, 1500); }
+        else { clearTimeout(t); document.body.classList.remove('dim'); if (!v.paused) v.pause(); } }); }, { threshold: [0, 0.6] }).observe(fm);
+    })();
   }).catch(function () { app.innerHTML = '<p class="gh">The pieces did not load. <a href="' + HOME + '">Try again</a>.</p>'; });
 
   function fold(id, label, body) {
@@ -50,7 +78,7 @@ var WALKAROUND_ENABLED = true;   // David, 18 Nov: "Walkaround comes back, it's 
     var mine = sides(p);
     var rel = C.filter(function (x) { return x.id !== p.id && x.category === p.category && mine.every(function (s) { return sides(x).indexOf(s) >= 0; }); }).slice(0, 3);
     var walk = WALKAROUND_ENABLED && p.walkaround && usd(p) >= WALKAROUND_MIN_USD;
-    // David, 18 Nov: the whole piece big, its pictures as tiny squares in a column beside it, specs and Pre-order on the right;
+    // David, 18 Nov: big pictures, scrolled, seamless (as dior.com and celine.com), specs and Pre-order sticky on the right;
     // only real pictures (no 144p, no numbered-marker sheets); under it the rest of the line as a sideways carousel
     var pics = p.stack.filter(function (x) { return x.w >= 600 && !/marker|numbered/i.test(x.label); }); if (!pics.length) pics = p.stack.slice(0, 1);
     var at = C.indexOf(p), line = C.slice(at + 1).concat(C.slice(0, at));
@@ -66,10 +94,10 @@ var WALKAROUND_ENABLED = true;   // David, 18 Nov: "Walkaround comes back, it's 
       '<a class="ln" href="service.html#returns"><span class="sc">Returns</span><i aria-hidden="true">&gt;</i></a></div>';
     app.innerHTML =
       (walk ? '<section class="wa" data-src="' + E(p.walkaround) + '" aria-label="' + E(p.name) + ', the walkaround"><div class="wa-in"><canvas aria-hidden="true"></canvas><div class="wn"></div><p class="wa-nm sc">' + E(p.name) + '</p></div></section>' : '') +
-      '<article class="pc gal">' +
-        '<div class="big">' + img(pics[0], p.name + ', ' + pics[0].label, '(max-width: 820px) 80vw, 58vw', false) + '</div>' +
-        '<ul class="sq" role="tablist" aria-label="' + E(p.name) + ', pictures">' + pics.map(function (s, k) {
-          return '<li><button type="button" role="tab" aria-selected="' + (k ? 'false' : 'true') + '" data-k="' + k + '" aria-label="' + E(s.label) + '">' + img(s, '', '72px', k > 3) + '</button></li>'; }).join('') + '</ul>' +
+      '<article class="pc">' +
+        '<ul class="st">' + pics.map(function (v, k) {
+          var close = !/ view$/i.test(v.label);
+          return '<li' + (close ? ' class="cu"' : '') + '>' + img(v, p.name + ', ' + v.label, '(max-width: 820px) 100vw, 66vw', k > 0) + '</li>'; }).join('') + '</ul>' +
         '<div class="dt">' +
           '<h1>' + E(p.name) + '</h1>' +
           (p.price ? '<p class="pr">' + E(p.price) + '</p>' : '') +
@@ -87,12 +115,6 @@ var WALKAROUND_ENABLED = true;   // David, 18 Nov: "Walkaround comes back, it's 
         var on = x === b && open; x.setAttribute('aria-expanded', on ? 'true' : 'false');
         x.querySelector('i').textContent = on ? '−' : '+'; document.getElementById(x.getAttribute('aria-controls')).hidden = !on;
       });
-    });
-    app.addEventListener('click', function (e) {
-      var b = e.target.closest('.sq button'); if (!b) return;
-      var k = +b.getAttribute('data-k'), v = pics[k];
-      app.querySelector('.gal .big').innerHTML = img(v, p.name + ', ' + v.label, '(max-width: 820px) 80vw, 58vw', false);
-      [].forEach.call(app.querySelectorAll('.sq button'), function (x) { x.setAttribute('aria-selected', x === b ? 'true' : 'false'); });
     });
     if (walk && window.SalonWalkaround) window.SalonWalkaround(app.querySelector('.wa'));
   }

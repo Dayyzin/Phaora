@@ -18,11 +18,11 @@ button{font:inherit;color:inherit}
 .hd .burger{position:absolute;left:16px;top:50%;transform:translateY(-50%);display:none;width:40px;height:40px;padding:0;border:0;background:none;cursor:pointer;font-size:20px;line-height:40px;text-align:left}
 
 /* the menu (celine.com): small capitals, stacked, in groups with space between them */
-.mn{font:300 9px/1 'Jost','DejaVu Sans',sans-serif;letter-spacing:.26em;text-transform:uppercase}
+.mn{font:400 10px/1.3 'Jost','DejaVu Sans',sans-serif;letter-spacing:.06em;text-transform:uppercase}
 .mn ul{list-style:none;margin:0;padding:0}
-.mn ul+ul{margin-top:44px}
-.mn li+li{margin-top:20px}
-.mn a{display:inline-block;padding:2px 0;border-bottom:1px solid transparent}
+.mn ul+ul{margin-top:22px}
+.mn li+li{margin-top:1px}
+.mn a{display:inline-block;padding:0;border-bottom:1px solid transparent}
 .mn a:hover,.mn a[aria-current=page]{border-bottom-color:currentColor}
 .mn .x{display:none}
 .wrap{display:block;padding-left:var(--menu)}
@@ -154,9 +154,9 @@ img.bl{mix-blend-mode:multiply}   /* the white renders: their #ffffff ground tak
 /* the menu, full screen from the ☰ (a phone; the piece page on a desk) */
 .mn.open{display:block!important;position:fixed;inset:0;width:auto!important;z-index:40;background:#fff;padding:calc(var(--head) + 56px) 40px 40px;overflow-y:auto}
 .mn.open .x{display:block;position:fixed;top:0;left:16px;height:var(--head);padding:0;border:0;background:none;cursor:pointer;font:400 10px/1 'Jost','DejaVu Sans',sans-serif;letter-spacing:.22em;text-transform:uppercase}
-.mn.open{font-size:10px}
-.mn.open li+li{margin-top:24px}
-.mn.open ul+ul{margin-top:52px}
+.mn.open{font-size:12px}
+.mn.open li+li{margin-top:3px}
+.mn.open ul+ul{margin-top:26px}
 html.lock,html.lock body{overflow:hidden}
 
 
@@ -190,3 +190,42 @@ body.room-look{background:transparent}
   .gal .dt{grid-column:1 / -1;position:static}
   .car .tl{flex:0 0 46%}
 }
+
+/* the front page (David, 18 Nov): the 360 opening, details, the film */
+.op{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:calc(100vh - var(--head));min-height:calc(100svh - var(--head));padding:0 0 4vh}
+.op a{display:flex;justify-content:center;width:100%;line-height:0}
+.op .tn{display:block;width:min(72vh,80%);height:auto;mix-blend-mode:multiply}
+.op p{margin:10px 0 0;font:400 10px/1.4 'Jost','DejaVu Sans',sans-serif;letter-spacing:.24em;text-transform:uppercase}
+.dets{display:block;padding:72px 24px}
+.dets .dl{position:relative;display:block;line-height:0;color:inherit;text-decoration:none}
+.dets .dl img{display:block;width:100%!important;height:auto!important;max-width:none!important;max-height:none!important}
+.dets .dl span{display:block;margin-top:10px;line-height:1.4;font:400 10px/1.4 'Jost','DejaVu Sans',sans-serif;letter-spacing:.22em;text-transform:uppercase}
+.dets.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.dets.three .dl img{aspect-ratio:1/1;object-fit:cover}
+.fm{position:relative;z-index:3;display:flex;align-items:center;justify-content:center;min-height:100vh;min-height:100svh;padding:6vh 24px}
+.fm video{display:block;width:100%;max-width:1200px;max-height:88vh;background:#000}
+.fm .snd{position:absolute;right:28px;bottom:28px;padding:6px 0;border:0;border-bottom:1px solid currentColor;background:none;color:var(--ink);cursor:pointer;font:400 9px/1 'Jost','DejaVu Sans',sans-serif;letter-spacing:.24em;text-transform:uppercase;transition:color 1.2s}
+body::after{content:"";position:fixed;inset:0;z-index:2;background:#000;opacity:0;pointer-events:none;transition:opacity 1.6s ease}
+body.dim::after{opacity:.9}
+body.dim .fm .snd{color:#ddd}
+@media (max-width:820px){
+  .op .tn{width:92%}
+  .dets{padding:48px 12px}
+  .dets.three{grid-template-columns:1fr;gap:28px}
+  .fm{padding:4vh 0}
+  .fm video{max-height:92svh;width:auto;max-width:100%}
+}
+
+/* David, 18 Nov: never a single small picture - the opening and the single detail run edge to edge, landscape */
+.op{min-height:0;height:calc(100vh - var(--head));height:calc(100svh - var(--head));padding:0;overflow:hidden}
+.op a{height:100%;align-items:center}
+.op .tn{width:auto;height:96%;max-width:none}
+.op p{position:absolute;bottom:18px;left:0;right:0;text-align:center}
+.op{position:relative}
+.dets{padding:72px 0}
+.dets.three{padding:72px 24px}
+.dets .one img{aspect-ratio:16/9;object-fit:cover}
+.dets .one span{padding-left:24px}
+.gifts{padding:40px 0 24px}
+.gifts h2{margin:0 0 6px;padding:0 24px;font:400 11px/1.4 'Jost','DejaVu Sans',sans-serif;letter-spacing:.22em;text-transform:uppercase}
+@media (max-width:820px){.op .tn{height:auto;width:100%}.dets.three{padding:48px 12px}.gifts h2{padding:0 12px}}
