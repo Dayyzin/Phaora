@@ -477,14 +477,14 @@
    "src": "assets/shop/img/catalogue__full__silk_slip.webp",
    "w": 1209,
    "h": 2576,
-   "blend": true
+   "blend": false
   },
   "stack": [
    {
     "src": "assets/shop/img/pieces__alvor__00.webp",
     "w": 1312,
     "h": 2680,
-    "blend": true,
+    "blend": false,
     "s1200": "assets/shop/1200/shop__img__pieces__alvor__00.webp",
     "label": "front view"
    }

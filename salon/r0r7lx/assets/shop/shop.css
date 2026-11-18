@@ -168,3 +168,25 @@ body.room-look{background:transparent}
 .room-look .foot{background:transparent}
 .room-look .bar,.room-look .nl,.room-look .mn.open{background:#f2f2f4}
 @media (max-width:820px){.room-look .room{background-image:url(../room/stage-phone.webp)}}
+
+/* David, 18 Nov: the piece page - the whole piece big, tiny squares in a column beside it, specs and Pre-order on the right */
+.pc.gal{display:grid;grid-template-columns:minmax(0,1fr) 76px 34%;gap:0 18px;align-items:start;padding:24px 0 0 24px}
+.gal .big{display:flex;align-items:center;justify-content:center;height:calc(100vh - var(--head) - 48px);min-height:420px}
+.gal .big img{display:block;width:auto!important;height:auto!important;max-width:100%!important;max-height:100%!important;object-fit:contain}
+.gal .sq{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;max-height:calc(100vh - var(--head) - 48px);overflow-y:auto}
+.gal .sq button{display:block;width:76px;height:76px;padding:4px;border:1px solid transparent;background:none;cursor:pointer}
+.gal .sq button[aria-selected=true]{border-color:var(--ink)}
+.gal .sq img{display:block;width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;object-fit:contain}
+.gal .dt{position:sticky;top:0}
+.ml h2{padding-left:24px}
+.car{display:flex;gap:0;list-style:none;margin:0;padding:0 0 8px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.car::-webkit-scrollbar{display:none}
+.car .tl{flex:0 0 22%;scroll-snap-align:start}
+@media (max-width:820px){
+  .pc.gal{grid-template-columns:minmax(0,1fr) 52px;gap:0 10px;padding:12px 12px 0}
+  .gal .big{height:62svh;min-height:0}
+  .gal .sq{max-height:62svh;gap:8px}
+  .gal .sq button{width:52px;height:52px;padding:2px}
+  .gal .dt{grid-column:1 / -1;position:static}
+  .car .tl{flex:0 0 46%}
+}
