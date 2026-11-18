@@ -18,7 +18,7 @@
   // the menu (David, 18 Nov): MEN, WOMEN, ACCESSORIES, then each category that has pieces; THE HOUSE (no page exists now that
   // the book is gone, so it is left out), CONTACT. No NEW (no piece is marked new); no search (the site has none).
   var C = [['outerwear', 'Outerwear'], ['dresses', 'Dresses'], ['knit', 'Knitwear'], ['bags', 'Bags'], ['small leather goods', 'Small leather goods'],
-           ['belts', 'Belts'], ['gloves', 'Gloves'], ['scarves', 'Scarves'], ['eyewear', 'Eyewear'], ['jewellery', 'Jewellery']];
+           ['belts', 'Belts'], ['gloves', 'Gloves'], ['scarves', 'Scarves'], ['eyewear', 'Eyewear'], ['jewellery', 'Jewelry']];
   var CATS = { accessories: { label: 'Accessories', has: function (c) { return ['bags', 'small leather goods', 'belts', 'gloves', 'scarves', 'jewellery'].indexOf(c) >= 0; } } };
   C.forEach(function (c) { CATS[c[0]] = { label: c[1], has: function (x) { return x === c[0]; } }; });
   window.SALON_CATS = CATS;

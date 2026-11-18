@@ -229,3 +229,6 @@ body.dim .fm .snd{color:#ddd}
 .gifts{padding:40px 0 24px}
 .gifts h2{margin:0 0 6px;padding:0 24px;font:400 11px/1.4 'Jost','DejaVu Sans',sans-serif;letter-spacing:.22em;text-transform:uppercase}
 @media (max-width:820px){.op .tn{height:auto;width:100%}.dets.three{padding:48px 12px}.gifts h2{padding:0 12px}}
+
+.also .cap{padding-bottom:18px}
+.ml h2{font-size:11px}

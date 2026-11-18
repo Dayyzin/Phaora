@@ -82,6 +82,9 @@ var WALKAROUND_ENABLED = true;   // David, 18 Nov: "Walkaround comes back, it's 
     // only real pictures (no 144p, no numbered-marker sheets); under it the rest of the line as a sideways carousel
     var pics = p.stack.filter(function (x) { return x.w >= 600 && !/marker|numbered/i.test(x.label); }); if (!pics.length) pics = p.stack.slice(0, 1);
     var at = C.indexOf(p), line = C.slice(at + 1).concat(C.slice(0, at));
+    // you may also like (David, 18 Nov, as celine.com): four, seamless on the page - same category first, then the next pieces
+    var also = C.filter(function (x) { return x.id !== p.id && x.category === p.category; });
+    line.forEach(function (x) { if (also.length < 4 && also.indexOf(x) < 0) also.push(x); }); also = also.slice(0, 4);
     var buy = '<a class="btn" href="' + E(p.href) + '">Pre-order</a>';
     var care = p.details.Care ? '<p>' + E(p.details.Care) + '</p>' : '';
     var fit = p.fit ? '<p class="sz sc">' + E(p.fit.sizes) + '</p>' + p.fit.p.map(function (x) { return '<p>' + E(x) + '</p>'; }).join('') +
@@ -104,7 +107,7 @@ var WALKAROUND_ENABLED = true;   // David, 18 Nov: "Walkaround comes back, it's 
           buy + rows +
         '</div>' +
       '</article>' +
-      '<section class="ml"><h2>The line</h2><ul class="car">' + line.map(function (x) { return tile(x, 9); }).join('') + '</ul></section>' +
+      '<section class="ml"><h2>You may also like</h2><ul class="grid also">' + also.map(function (x) { return '<li class="tl"><a class="im" href="' + HOME + '?piece=' + encodeURIComponent(x.id) + '">' + img(x.tile, x.name, '(max-width: 820px) 45vw, 22vw', true) + '</a><div class="cap"><a href="' + HOME + '?piece=' + encodeURIComponent(x.id) + '"><span class="nm">' + E(x.name) + '</span>' + (x.price ? '<span class="pr">' + E(x.price) + '</span>' : '') + '</a></div></li>'; }).join('') + '</ul></section>' +
       '<div class="bar">' + '<span class="pr">' + E(p.price || '') + '</span>' + buy + '</div>';
     document.body.classList.add('has-bar');
     // the folding rows: one open at a time, closed by default
