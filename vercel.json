@@ -4,7 +4,13 @@
     {
       "source": "/",
       "destination": "/salon/r0r7lx/",
-      "permanent": false
+      "permanent": false,
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?phaora\\.com"
+        }
+      ]
     },
     {
       "source": "/salon/r0r7lx/poem.html",
@@ -88,6 +94,16 @@
     }
   ],
   "rewrites": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?phaoralandscape\\.com"
+        }
+      ],
+      "destination": "/home-landscape.html"
+    },
     {
       "source": "/salon/r0r7lx/poem",
       "destination": "/salon/r0r7lx/film.html"
