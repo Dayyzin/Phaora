@@ -83,3 +83,6 @@ body.scrolled .hint{opacity:0}
 /* embedded in the front page: the room and its film only; the page above holds the sound */
 html.embed,html.embed body{overflow:hidden;scroll-snap-type:none}
 html.embed .navband,html.embed .hint,html.embed .ctl,html.embed .track{display:none}
+/* on the front page the projector brighter (David, 18 Nov: "too dim") */
+html.embed .room .film{mix-blend-mode:normal!important;filter:brightness(1.6) contrast(1.05) saturate(1.05)}
+html.embed .room .dark{opacity:0}
