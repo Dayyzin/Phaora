@@ -599,3 +599,4 @@ body.lights::after{background:#fff;opacity:.85!important;transition:opacity 1.4s
   .op2 .opm li+li{margin-top:2px!important}
   .op2 .opm ul+ul{margin-top:14px!important}
 }
+@media (max-width:820px){.op2 .tx{padding-left:18px!important;padding-right:16px!important}.op2{grid-template-columns:36% 64%!important}}
