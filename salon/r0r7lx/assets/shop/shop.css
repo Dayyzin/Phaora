@@ -531,3 +531,10 @@ html,body{overflow-x:clip!important;overflow-y:visible}
 .grid{gap:4px!important}
 /* no lift on hover: the piece stays still, only its pictures change (David, 18 Nov) */
 .tl .im img,.tl .im:hover img{transform:none!important;transition:none!important}
+/* when the film begins, the menu slides away to the left and the film takes the whole width (David, 18 Nov) */
+.wrap>.mn{transition:transform .9s cubic-bezier(.4,0,.2,1),opacity .9s ease}
+body.dim .wrap>.mn{transform:translateX(-100%);opacity:0;pointer-events:none}
+@media (min-width:821px){
+  .fm{transition:margin-left .9s cubic-bezier(.4,0,.2,1),width .9s cubic-bezier(.4,0,.2,1)}
+  body.dim .fm{margin-left:calc(-1 * var(--menu));width:calc(100% + var(--menu))}
+}
