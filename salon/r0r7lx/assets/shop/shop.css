@@ -668,3 +668,8 @@ body.lights::after{background:#fff;opacity:.85!important;transition:opacity 1.4s
   .foot{padding-bottom:calc(14px + env(safe-area-inset-bottom))!important}
 }
 @media (max-width:820px){.ml{margin-top:14px!important}}
+/* phone: for her / for him at 4:3, a little border round them (David, 18 Nov) */
+@media (max-width:820px){
+  .gifts .g2{padding:0 8px;gap:8px!important;background:#efe9de}
+  .gifts .g2 img{aspect-ratio:4/3!important}
+}
