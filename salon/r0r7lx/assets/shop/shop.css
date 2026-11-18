@@ -374,3 +374,10 @@ html,body{overflow-x:hidden}
 .gifts .g2 .lb::after{content:"";display:block;width:3.2em;height:1px;margin:5px auto 0;background:currentColor}
 .op2 .pic img{width:100%!important;margin:0!important}
 @media (max-width:820px){.op2 .pic{padding:4vh 0 4vh!important}}
+
+/* the Voluta reel: a 3:4 picture, never the whole screen (David, 18 Nov) */
+.sh{position:relative;padding:0}
+.sh a{height:auto!important;width:min(100%,560px)!important;aspect-ratio:3/4!important}
+.sh video{object-fit:cover;object-position:50% 50%}
+.sh .snd{position:absolute;z-index:4;right:22px;bottom:22px;padding:6px 0;border:0;border-bottom:1px solid currentColor;background:none;color:#efe6d4;cursor:pointer;font:400 9px/1 'Jost','DejaVu Sans',sans-serif;letter-spacing:.24em;text-transform:uppercase}
+@media (max-width:820px){.sh a{width:100%!important}}

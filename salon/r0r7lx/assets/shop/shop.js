@@ -5,7 +5,7 @@
 //   ./?piece=<id>           the piece: the walkaround first where it has one and is priced at WALKAROUND_MIN_USD or
 //                           more, then its pictures stacked on the left, the details sticky on the right
 var WALKAROUND_MIN_USD = 0;   // David, 18 Nov: "Walkaround needs to be ADDED" - every piece that has one
-var V = '?v=1118p';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
+var V = '?v=1118q';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
 var WALKAROUND_ENABLED = false;   // David, 18 Nov: "Sharp yes" - every piece walks around on its own sharp views, never the 144p world walk   // David, 18 Nov: "Walkaround comes back, it's too strong and worked on to throw away"
 (function () {
   var app = document.getElementById('app'); if (!app) return;
@@ -73,9 +73,11 @@ var WALKAROUND_ENABLED = false;   // David, 18 Nov: "Sharp yes" - every piece wa
       '<ul class="grid">' + C.slice(8).map(function (x, k) { return tile(x, 9); }).join('') + '</ul>' +
       '<section class="fm" aria-label="The film"><iframe src="film.html?embed=1&baked=1" title="A seat is kept for you, the film" loading="lazy" tabindex="-1"></iframe>' +
         '<button class="snd sc" type="button" aria-pressed="false">Sound</button></section>' +
-      '<section class="sh" aria-label="Voluta, the short"><a href="' + HOME + '?piece=voluta"><video src="assets/film/voluta-reel-2k.mp4' + V + '" poster="assets/film/voluta-reel-2k.jpg' + V + '" muted playsinline loop autoplay preload="metadata"></video><span class="lb">Voluta</span></a></section>' +
+      '<section class="sh" aria-label="Voluta, the short"><a href="' + HOME + '?piece=voluta"><video src="assets/film/voluta-reel.mp4' + V + '" poster="assets/film/voluta-reel.jpg' + V + '" muted playsinline loop autoplay preload="metadata"></video><span class="lb">Voluta</span></a><button class="snd sc" type="button">Sound</button></section>' +
       '<section class="dets three">' + three.map(function (d) { return det(d[0], 'sq3', d[1], d[2]); }).join('') + '</section>' +
       '<section class="dets end">' + det(last, 'one', 'Knitwear', 'knit') + '</section>';
+    (function () { var sh = app.querySelector('.sh'); if (!sh) return; var v = sh.querySelector('video'), b = sh.querySelector('.snd');
+      b.addEventListener('click', function () { v.muted = !v.muted; b.textContent = v.muted ? 'Sound' : 'Sound off'; if (v.paused) v.play().catch(function () {}); }); })();
     // the opening (David, 18 Nov): the menu stays open down the left of it, and slides back out to the left as you scroll on
     (function () { var op = app.querySelector('.op2'), om = op && op.querySelector('.opm'), src = document.querySelector('.wrap>.mn');
       if (om && src) om.innerHTML = src.innerHTML;
