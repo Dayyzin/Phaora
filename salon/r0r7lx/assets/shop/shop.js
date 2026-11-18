@@ -5,7 +5,7 @@
 //   ./?piece=<id>           the piece: the walkaround first where it has one and is priced at WALKAROUND_MIN_USD or
 //                           more, then its pictures stacked on the left, the details sticky on the right
 var WALKAROUND_MIN_USD = 0;   // David, 18 Nov: "Walkaround needs to be ADDED" - every piece that has one
-var V = '?v=1118k';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
+var V = '?v=1118n';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
 var WALKAROUND_ENABLED = false;   // David, 18 Nov: "Sharp yes" - every piece walks around on its own sharp views, never the 144p world walk   // David, 18 Nov: "Walkaround comes back, it's too strong and worked on to throw away"
 (function () {
   var app = document.getElementById('app'); if (!app) return;
@@ -45,29 +45,47 @@ var WALKAROUND_ENABLED = false;   // David, 18 Nov: "Sharp yes" - every piece wa
     // the front page (David, 18 Nov): one long page - the 360 opening, catalogue, a detail, catalogue, the film, details in
     // three squares, then the footer
     var find = function (id, lab) { var q = byId[id]; if (!q) return null; for (var i = 0; i < q.stack.length; i++) if (q.stack[i].label === lab) return { p: q, v: q.stack[i] }; return null; };
-    var det = function (d, cls) { return d ? '<a class="dl ' + cls + '" href="' + HOME + '?piece=' + encodeURIComponent(d.p.id) + '">' + img(d.v, d.p.name + ', ' + d.v.label.toLowerCase(), cls === 'one' ? '100vw' : '(max-width: 820px) 100vw, 33vw', true) + '<span class="sc">' + E(d.p.name) + '</span></a>' : ''; };
+    // every detail is a door (David, 18 Nov, after dior.com): its picture, and one word over it, underlined, to where it leads
+    var det = function (d, cls, lab, cat) { if (!d) return ''; var href = cat ? HOME + '?cat=' + encodeURIComponent(cat) : HOME + '?piece=' + encodeURIComponent(d.p.id);
+      return '<a class="dl ' + cls + '" href="' + href + '">' + img(d.v, d.p.name + ', ' + d.v.label.toLowerCase(), cls === 'one' ? '100vw' : '(max-width: 820px) 34vw, 33vw', true) + '<span class="lb">' + E(lab || d.p.name) + '</span></a>'; };
     var big = find('itaoca', 'The PÖ on the flap');
     var GIFTS = ['oitava', 'lustre', 'cordel', 'obolo'];   // the gift suggestions, first, before the catalogue (David, 18 Nov)
-    var three = [find('gelosia', 'A button and the belt'), find('coema', 'The charm'), find('cantilena', 'The brass eyelet and tip')];
+    var three = [[find('gelosia', 'The belt and its holes'), 'Outerwear', 'outerwear'], [find('coema', 'The charm'), 'Bags', 'bags'], [find('ofusca', 'The brass plate'), 'Eyewear', 'eyewear']];
+    var last = find('heliodora', 'The kiss on the back');   // the page ends on one landscape, edge to edge (David, 18 Nov)
     var phone = matchMedia('(max-width: 820px)').matches;
     app.innerHTML = '<h1 class="vh">Chapter I</h1>' +
-      (byId.itaoca ? '<section class="op2" aria-label="Itaoca">' +
-        '<a class="pic" href="' + HOME + '?piece=itaoca"><img src="assets/shop/img/itaoca_cut.webp' + V + '" width="968" height="866" alt="Itaoca, the top-handle bag" fetchpriority="high"></a>' +
+      (byId.itaoca ? '<section class="op2" aria-label="Itaoca"><nav class="mn opm" aria-label="Menu"></nav>' +
+        '<a class="pic" href="' + HOME + '?piece=itaoca"><img class="turn" src="assets/turn/' + (phone ? 'itaoca-g8' : 'itaoca-g') + '/f000.webp' + V + '" width="1200" height="1200" alt="Itaoca, the top-handle bag, turning" fetchpriority="high"></a>' +
         '<div class="tx"><p class="k">Chapter I</p><h2>Itaoca</h2><p class="ty">Top-handle bag</p>' +
         '<p class="d">Black calfskin, the PÖ pressed into the flap, a rolled handle and the house disc in brass. Inside, cream suede.</p>' +
         '<p class="pr">' + E(byId.itaoca.price || '') + '</p>' +
         '<div class="ac"><a class="b1" href="' + E(byId.itaoca.href) + '">Pre-order</a><a class="b2" href="' + HOME + '?piece=itaoca">Discover</a></div></div></section>' : '') +
-      '<section class="gifts" id="gifts"><h2 class="sc">Gifts</h2><ul class="grid">' + GIFTS.map(function (id) { return byId[id]; }).filter(Boolean).map(tile).join('') + '</ul></section>' +
+      '<section class="gifts" id="gifts"><a class="gb" href="#gifts-list"><img src="assets/shop/img/gift_box_open.webp' + V + '" srcset="assets/shop/1200/gift_box_open.webp' + V + ' 800w, assets/shop/img/gift_box_open.webp' + V + ' 1000w" sizes="(max-width: 820px) 100vw, 50vw" width="1000" height="1050" alt="The house box, open: black, the cream tissue, the brass Ö" loading="lazy">' +
+        '<span class="gt"><span class="k">Chapter I</span><span class="h">Gifts</span><span class="s">Every piece arrives in the house box: black, the cream band and the brass Ö.</span></span></a><ul class="grid" id="gifts-list">' + GIFTS.map(function (id) { return byId[id]; }).filter(Boolean).map(tile).join('') + '</ul></section>' +
       '<ul class="grid">' + C.slice(0, 8).map(tile).join('') + '</ul>' +
-      '<section class="dets">' + det(big, 'one') + '</section>' +
+      '<section class="dets">' + det(big, 'one', 'Itaoca') + '</section>' +
       '<ul class="grid">' + C.slice(8).map(function (x, k) { return tile(x, 9); }).join('') + '</ul>' +
-      '<section class="fm" aria-label="The film"><video playsinline preload="none" src="assets/film/' + (phone ? 'film-phone.mp4' : 'film-desktop.mp4') + '"></video>' +
+      '<section class="fm" aria-label="The film"><iframe src="film.html?embed=1&baked=1" title="A seat is kept for you, the film" loading="lazy" tabindex="-1"></iframe>' +
         '<button class="snd sc" type="button" aria-pressed="false">Sound</button></section>' +
-      '<section class="dets three">' + three.map(function (d) { return det(d, 'sq3'); }).join('') + '</section>';
+      '<section class="sh" aria-label="Voluta, the short"><a href="' + HOME + '?piece=voluta"><video src="assets/film/voluta-short.mp4' + V + '" poster="assets/film/voluta-short.jpg' + V + '" muted playsinline loop autoplay preload="metadata"></video><span class="lb">Voluta</span></a></section>' +
+      '<section class="dets three">' + three.map(function (d) { return det(d[0], 'sq3', d[1], d[2]); }).join('') + '</section>' +
+      '<section class="dets end">' + det(last, 'one', 'Knitwear', 'knit') + '</section>';
+    // the opening (David, 18 Nov): the menu stays open down the left of it, and slides back out to the left as you scroll on
+    (function () { var op = app.querySelector('.op2'), om = op && op.querySelector('.opm'), src = document.querySelector('.wrap>.mn');
+      if (om && src) om.innerHTML = src.innerHTML;
+      var go = function () { if (!om) return; var k = Math.min(1, Math.max(0, scrollY / (op.offsetHeight * 0.45))); om.style.transform = 'translateX(' + (-110 * k) + '%)'; om.style.opacity = String(1 - k); };
+      addEventListener('scroll', go, { passive: true }); go();
+      // the turn: Itaoca's 72 views, cut onto the green, once all are in
+      var im = op && op.querySelector('img.turn'); if (!im) return; var dir = 'assets/turn/' + (phone ? 'itaoca-g8' : 'itaoca-g') + '/', F = [], n = 0, i = 0;
+      for (var k = 0; k < 72; k++) { var u = dir + 'f' + ('00' + k).slice(-3) + '.webp' + V; F.push(u); var pre = new Image(); pre.onload = pre.onerror = function () { if (++n === 72) start(); }; pre.src = u; }
+      function start() { setInterval(function () { var r = im.getBoundingClientRect(); if (r.bottom < 0 || document.hidden) return; i = (i + 1) % 72; im.src = F[i]; }, 90); }
+    })();
     // the film: stay on it a second or two and the room dims and it plays; leave and it pauses, the room comes back
-    (function () { var fm = app.querySelector('.fm'), v = fm.querySelector('video'), sb = fm.querySelector('.snd'), t = null;
-      v.muted = true;
-      sb.addEventListener('click', function () { v.muted = !v.muted; sb.setAttribute('aria-pressed', v.muted ? 'false' : 'true'); sb.textContent = v.muted ? 'Sound' : 'Sound off'; if (v.paused) v.play().catch(function () {}); });
+    (function () { var fm = app.querySelector('.fm'), fr = fm.querySelector('iframe'), sb = fm.querySelector('.snd'), t = null;
+      var say = function (m) { try { fr.contentWindow.postMessage(m, '*'); } catch (e) {} };
+      var v = { play: function () { say('play'); return { catch: function () {} }; }, pause: function () { say('pause'); }, paused: false };
+      addEventListener('message', function (e) { if (e.data && e.data.film) { sb.setAttribute('aria-pressed', e.data.muted ? 'false' : 'true'); sb.textContent = e.data.muted ? 'Sound' : 'Sound off'; } });
+      sb.addEventListener('click', function () { say('sound'); });
       new IntersectionObserver(function (es) { es.forEach(function (e) {
         if (e.intersectionRatio > 0.6) { clearTimeout(t); t = setTimeout(function () { document.body.classList.add('dim'); v.play().catch(function () {}); }, 1500); }
         else { clearTimeout(t); document.body.classList.remove('dim'); if (!v.paused) v.pause(); } }); }, { threshold: [0, 0.6] }).observe(fm);

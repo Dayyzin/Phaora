@@ -51,20 +51,11 @@
     "label": "The net closing to solid leather"
    },
    {
-    "src": "assets/pieces/gelosia/02.webp",
-    "w": 1600,
-    "h": 900,
+    "src": "assets/pieces/gelosia/belt_holes.webp",
+    "w": 720,
+    "h": 960,
     "blend": false,
-    "s1200": "assets/shop/1200/pieces__gelosia__02.webp",
-    "label": "A button and the belt"
-   },
-   {
-    "src": "assets/pieces/gelosia/03.webp",
-    "w": 1600,
-    "h": 900,
-    "blend": false,
-    "s1200": "assets/shop/1200/pieces__gelosia__03.webp",
-    "label": "The cuff strap"
+    "label": "The belt and its holes"
    }
   ],
   "side": "women",
@@ -560,14 +551,6 @@
     "blend": false,
     "s1200": "assets/shop/1200/pieces__cantilena__03.webp",
     "label": "Cream on cream"
-   },
-   {
-    "src": "assets/pieces/cantilena/04.webp",
-    "w": 1600,
-    "h": 900,
-    "blend": false,
-    "s1200": "assets/shop/1200/pieces__cantilena__04.webp",
-    "label": "The brass eyelet and tip"
    }
   ],
   "side": "both",
