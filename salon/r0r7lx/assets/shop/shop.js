@@ -5,8 +5,8 @@
 //   ./?piece=<id>           the piece: the walkaround first where it has one and is priced at WALKAROUND_MIN_USD or
 //                           more, then its pictures stacked on the left, the details sticky on the right
 var WALKAROUND_MIN_USD = 0;   // David, 18 Nov: "Walkaround needs to be ADDED" - every piece that has one
-var V = '?v=1118y';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
-var WALKAROUND_ENABLED = false;   // David, 18 Nov: "Sharp yes" - every piece walks around on its own sharp views, never the 144p world walk   // David, 18 Nov: "Walkaround comes back, it's too strong and worked on to throw away"
+var V = '?v=1118z';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
+var WALKAROUND_ENABLED = true;   // David, 18 Nov 14:39: "THE WALKAROUND STILL ISNT THERE" - the world walk on every piece that has one;   // David, 18 Nov: "Sharp yes" - every piece walks around on its own sharp views, never the 144p world walk   // David, 18 Nov: "Walkaround comes back, it's too strong and worked on to throw away"
 (function () {
   var app = document.getElementById('app'); if (!app) return;
   var q = new URLSearchParams(location.search), side = q.get('side'), cat = q.get('cat'), pid = q.get('piece');
@@ -27,7 +27,7 @@ var WALKAROUND_ENABLED = false;   // David, 18 Nov: "Sharp yes" - every piece wa
     return '<a class="' + cls + '" href="' + E(p.href) + '">Pre-order</a>';
   };
   var tile = function (p, k) {
-    return '<li class="tl"><a class="tn2" href="' + HOME + '?piece=' + encodeURIComponent(p.id) + '">' + E(p.name) + '</a><a class="im" data-cy="' + E(JSON.stringify(p.stack.filter(function (x) { return x.w >= 600 && / view$/i.test(x.label) && x.blend !== false; }).map(function (x) { return x.src + V; }))) + '" href="' + HOME + '?piece=' + encodeURIComponent(p.id) + '">' +
+    return '<li class="tl">' + (k === 'gift' ? '' : '<a class="tn2" href="' + HOME + '?piece=' + encodeURIComponent(p.id) + '">' + E(p.name) + '</a>') + '<a class="im" data-cy="' + E(JSON.stringify(p.stack.filter(function (x) { return x.w >= 600 && / view$/i.test(x.label) && x.blend !== false; }).map(function (x) { return x.src + V; }))) + '" href="' + HOME + '?piece=' + encodeURIComponent(p.id) + '">' +
       img(p.tile, p.name + ', ' + p.type.toLowerCase(), '(max-width: 820px) 45vw, 20vw', k > 2) + '</a>' +
       '<div class="cap"><a href="' + HOME + '?piece=' + encodeURIComponent(p.id) + '"><span class="nm">' + E(p.name) + '</span>' +
       (p.price ? '<span class="pr">' + E(p.price) + '</span>' : '') + '</a>' +
@@ -67,7 +67,7 @@ var WALKAROUND_ENABLED = false;   // David, 18 Nov: "Sharp yes" - every piece wa
       '<section class="gifts" id="gifts"><div class="gt"><span class="k">Chapter I</span><span class="h">Gifts</span><span class="s">Every piece arrives in the house box: black, the cream band and the brass Ö.</span></div>' +
         '<div class="g2"><a class="dl" href="' + HOME + '?gift=her"><img src="assets/shop/img/gift_her.webp' + V + '" width="960" height="1100" alt="The house box, open" loading="lazy"><span class="lb">For her</span></a>' +
         '<a class="dl" href="' + HOME + '?gift=him"><img src="assets/shop/img/gift_him.webp' + V + '" width="960" height="1100" alt="The house bag and box" loading="lazy"><span class="lb">For him</span></a></div>' +
-        '<ul class="grid" id="gifts-list">' + GIFTS.map(function (id) { return byId[id]; }).filter(Boolean).map(tile).join('') + '</ul></section>' +
+        '<ul class="grid" id="gifts-list">' + GIFTS.map(function (id) { return byId[id]; }).filter(Boolean).map(function (x) { return tile(x, 'gift'); }).join('') + '</ul></section>' +
       '<ul class="grid">' + C.slice(0, 8).map(tile).join('') + '</ul>' +
       '<section class="strip" aria-label="Itaoca">' + (function () {   // the bag whole between two of its details (David, 18 Nov)
         var c = function (lab, cls) { var d = find('itaoca', lab); return d ? '<a class="cl ' + (cls || '') + '" href="' + HOME + '?piece=itaoca"><img src="' + E(d.v.src + V) + '" alt="Itaoca, ' + E(lab.toLowerCase()) + '" loading="lazy"></a>' : ''; };

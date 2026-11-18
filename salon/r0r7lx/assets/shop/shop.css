@@ -433,3 +433,13 @@ html,body{overflow-x:hidden}
 /* the film locks in place when you reach it */
 html{scroll-snap-type:y proximity}
 .fm{scroll-snap-align:start;scroll-snap-stop:always}
+
+/* the details follow you down the piece page (overflow clip keeps sticky working; hidden broke it) */
+html,body{overflow-x:clip!important;overflow-y:visible}
+.pc .dt{position:sticky!important;top:var(--head);align-self:start}
+/* tiles tighter: the name close above the piece, less empty ground (David, 18 Nov) */
+.grid .tl .im{aspect-ratio:1/1}
+.grid .tl .im img{top:4%;bottom:4%;height:92%;width:86%;object-position:50% 50%}
+.tl .tn2{padding:14px 16px 0}
+.gifts .tl .cap .nm{display:block!important}
+.tl .cap{padding-bottom:22px}
