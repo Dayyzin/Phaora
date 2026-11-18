@@ -56,6 +56,13 @@
     "h": 960,
     "blend": false,
     "label": "The belt and its holes"
+   },
+   {
+    "src": "assets/pieces/gelosia/cuff_v3.webp",
+    "w": 1600,
+    "h": 900,
+    "blend": false,
+    "label": "The cuff strap and its holes"
    }
   ],
   "side": "women",
@@ -537,6 +544,13 @@
     "blend": false,
     "s1200": "assets/shop/1200/pieces__cantilena__03.webp",
     "label": "Cream on cream"
+   },
+   {
+    "src": "assets/pieces/cantilena/eyelet_v7.webp",
+    "w": 1600,
+    "h": 900,
+    "blend": false,
+    "label": "The brass eyelet and the cord"
    }
   ],
   "side": "both",
