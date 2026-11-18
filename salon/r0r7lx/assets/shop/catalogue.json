@@ -693,11 +693,12 @@
     "label": "flat view"
    },
    {
-    "src": "assets/shop/img/catalogue__full__sunglasses_side.webp",
-    "w": 904,
-    "h": 370,
+    "src": "assets/shop/img/ofusca_side_2k.webp",
+    "w": 1656,
+    "h": 820,
     "blend": false,
-    "label": "side view"
+    "label": "side view",
+    "s1200": "assets/shop/1200/ofusca_side_2k.webp"
    },
    {
     "src": "assets/pieces/ofusca/02.webp",
