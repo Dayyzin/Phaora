@@ -658,3 +658,6 @@ body.lights::after{background:#fff;opacity:.85!important;transition:opacity 1.4s
   .ml{margin-top:0!important;padding-top:0!important}
 }
 @media (max-width:820px){.also .tl .cap{padding-bottom:12px!important}.foot{margin-top:16px!important}}
+/* the walkaround's words: no glow of another colour (David, 18 Nov); only a faint halo in the text's own colour */
+.wa .note.ink-dark p{text-shadow:0 0 1px rgba(20,18,13,.35)!important}
+.wa .note.ink-light p{text-shadow:0 0 1px rgba(251,247,238,.35)!important}
