@@ -5,7 +5,7 @@
 //   ./?piece=<id>           the piece: the walkaround first where it has one and is priced at WALKAROUND_MIN_USD or
 //                           more, then its pictures stacked on the left, the details sticky on the right
 var WALKAROUND_MIN_USD = 0;   // David, 18 Nov: "Walkaround needs to be ADDED" - every piece that has one
-var V = '?v=1119w';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
+var V = '?v=1119x';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
 var WALKAROUND_ENABLED = true;   // David, 18 Nov 14:39: "THE WALKAROUND STILL ISNT THERE" - the world walk on every piece that has one;   // David, 18 Nov: "Sharp yes" - every piece walks around on its own sharp views, never the 144p world walk   // David, 18 Nov: "Walkaround comes back, it's too strong and worked on to throw away"
 (function () {
   var app = document.getElementById('app'); if (!app) return;
@@ -161,25 +161,32 @@ var WALKAROUND_ENABLED = true;   // David, 18 Nov 14:39: "THE WALKAROUND STILL I
       '<div class="bar">' + '<span class="pr">' + E(p.price || '') + '</span>' + buy + '</div>';
     document.body.classList.add('has-bar');
     // the folding rows: one open at a time, closed by default
-    // zoom (David, 18 Nov, as gucci.com): on a desk, hover a picture and it magnifies under the pointer at full resolution;
-    // click (or tap) and it opens full screen at its own size, to pan across the grain and the stitches
+    // the viewer (David, 18 Nov, as gucci.com): click a picture and every picture of the piece opens full screen, stacked,
+    // at the one clicked; each click goes in further where it is clicked (x2, x3.5, x5), the next goes back out
     (function () {
-      var hov = matchMedia('(hover: hover)').matches;
-      app.querySelectorAll('.pc .st li img').forEach(function (im) {
-        var full = im.getAttribute('src'); im.style.cursor = 'zoom-in';
-        if (hov) {
-          im.addEventListener('mouseenter', function () { im.removeAttribute('srcset'); im.src = full; im.classList.add('zm-on'); });
-          im.addEventListener('mousemove', function (e) { var r = im.getBoundingClientRect(); im.style.transformOrigin = ((e.clientX - r.left) / r.width * 100) + '% ' + ((e.clientY - r.top) / r.height * 100) + '%'; });
-          im.addEventListener('mouseleave', function () { im.classList.remove('zm-on'); });
-        }
-        im.addEventListener('click', function () {
-          var o = document.createElement('div'); o.className = 'zm'; o.innerHTML = '<button type="button" class="zx" aria-label="Close">Close</button><div class="zw"><img alt=""></div>';
-          var z = o.querySelector('img'); z.src = full; z.alt = im.alt; document.body.appendChild(o); document.documentElement.classList.add('lock');
-          var close = function () { o.remove(); document.documentElement.classList.remove('lock'); };
-          o.querySelector('.zx').addEventListener('click', close);
-          addEventListener('keydown', function k(e) { if (e.key === 'Escape') { close(); removeEventListener('keydown', k); } });
-          z.addEventListener('load', function () { var w = o.querySelector('.zw'); w.scrollLeft = (w.scrollWidth - w.clientWidth) / 2; w.scrollTop = (w.scrollHeight - w.clientHeight) / 2; });
-          if (hov) o.querySelector('.zw').addEventListener('mousemove', function (e) { var w = this; w.scrollLeft = (w.scrollWidth - w.clientWidth) * e.clientX / innerWidth; w.scrollTop = (w.scrollHeight - w.clientHeight) * e.clientY / innerHeight; });
+      var ims = [].slice.call(app.querySelectorAll('.pc .st:not([hidden]) li img, .pc .st[data-c="0"] li img'));
+      var LV = [1, 2, 3.5, 5];
+      app.addEventListener('click', function (e) {
+        var im = e.target.closest('.pc .st li img'); if (!im) return; e.preventDefault();
+        var list = [].slice.call(im.closest('.st').querySelectorAll('li img')), at = list.indexOf(im);
+        var o = document.createElement('div'); o.className = 'zm';
+        o.innerHTML = '<button type="button" class="zx" aria-label="Close">Close</button><div class="zw">' +
+          list.map(function (x) { return '<figure class="zf"><img src="' + E(x.getAttribute('src')) + '" alt="' + E(x.alt) + '" data-l="0"></figure>'; }).join('') + '</div>';
+        document.body.appendChild(o); document.documentElement.classList.add('lock');
+        var w = o.querySelector('.zw'), figs = o.querySelectorAll('.zf');
+        requestAnimationFrame(function () { figs[at].scrollIntoView({ block: 'start' }); });
+        var close = function () { o.remove(); document.documentElement.classList.remove('lock'); removeEventListener('keydown', key); };
+        var key = function (e) { if (e.key === 'Escape') close(); };
+        addEventListener('keydown', key); o.querySelector('.zx').addEventListener('click', close);
+        var org = function (z, x, y) { var r = z.getBoundingClientRect(); z.style.transformOrigin = ((x - r.left) / r.width * 100) + '% ' + ((y - r.top) / r.height * 100) + '%'; };
+        o.querySelectorAll('.zf img').forEach(function (z) {
+          z.addEventListener('click', function (e) {
+            var l = (+z.dataset.l + 1) % LV.length; z.dataset.l = l;
+            if (l === 1) org(z, e.clientX, e.clientY);
+            z.style.transform = l ? 'scale(' + LV[l] + ')' : ''; z.parentNode.classList.toggle('in', l > 0); z.parentNode.classList.toggle('max', l === LV.length - 1);
+          });
+          z.addEventListener('mousemove', function (e) { if (+z.dataset.l > 0) { var f = z.parentNode.getBoundingClientRect();
+            z.style.transformOrigin = ((e.clientX - f.left) / f.width * 100) + '% ' + ((e.clientY - f.top) / f.height * 100) + '%'; } });
         });
       });
     })();
