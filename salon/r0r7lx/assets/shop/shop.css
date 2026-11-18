@@ -529,3 +529,5 @@ html,body{overflow-x:clip!important;overflow-y:visible}
 .pc .st li:not(.cu){background:#f1f0ee}
 .gifts .grid .tl .im{background:#e8e0d2}
 .grid{gap:4px!important}
+/* no lift on hover: the piece stays still, only its pictures change (David, 18 Nov) */
+.tl .im img,.tl .im:hover img{transform:none!important;transition:none!important}

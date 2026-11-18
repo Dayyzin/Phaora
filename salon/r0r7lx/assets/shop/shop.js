@@ -5,7 +5,7 @@
 //   ./?piece=<id>           the piece: the walkaround first where it has one and is priced at WALKAROUND_MIN_USD or
 //                           more, then its pictures stacked on the left, the details sticky on the right
 var WALKAROUND_MIN_USD = 0;   // David, 18 Nov: "Walkaround needs to be ADDED" - every piece that has one
-var V = '?v=1118zx';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
+var V = '?v=1118zy';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
 var WALKAROUND_ENABLED = true;   // David, 18 Nov 14:39: "THE WALKAROUND STILL ISNT THERE" - the world walk on every piece that has one;   // David, 18 Nov: "Sharp yes" - every piece walks around on its own sharp views, never the 144p world walk   // David, 18 Nov: "Walkaround comes back, it's too strong and worked on to throw away"
 (function () {
   var app = document.getElementById('app'); if (!app) return;
@@ -27,7 +27,7 @@ var WALKAROUND_ENABLED = true;   // David, 18 Nov 14:39: "THE WALKAROUND STILL I
     return '<a class="' + cls + '" href="' + E(p.href) + '">Pre-order</a>';
   };
   var tile = function (p, k) {
-    return '<li class="tl"><a class="im" data-cy="' + E(JSON.stringify(p.stack.filter(function (x) { return x.w >= 600 && / view$/i.test(x.label) && x.blend !== false; }).map(function (x) { return x.src + V; }))) + '" href="' + HOME + '?piece=' + encodeURIComponent(p.id) + '">' +
+    return '<li class="tl"><a class="im" data-cy="' + E(JSON.stringify(p.stack.filter(function (x) { return x.w >= 600 && / view$/i.test(x.label); }).map(function (x) { return x.src + V; }))) + '" href="' + HOME + '?piece=' + encodeURIComponent(p.id) + '">' +
       img(p.tile, p.name + ', ' + p.type.toLowerCase(), '(max-width: 820px) 45vw, 20vw', k > 2) + '</a>' +
       '<div class="cap"><a href="' + HOME + '?piece=' + encodeURIComponent(p.id) + '"><span class="nm">' + E(p.name) + '</span>' +
       (p.price ? '<span class="pr">' + E(p.price) + '</span>' : '') + '</a>' +
