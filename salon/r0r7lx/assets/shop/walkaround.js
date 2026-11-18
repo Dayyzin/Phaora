@@ -30,7 +30,9 @@ window.SalonWalkaround = function (sec) {
     return 'matrix3d(' + s[0] + ',' + s[3] + ',0,' + s[6] + ',' + s[1] + ',' + s[4] + ',0,' + s[7] + ',0,0,1,0,' + s[2] + ',' + s[5] + ',0,1)';
   }
   function draw(i) {
-    if (!WS) return; var im = imgs[i]; if (!im || !im.complete || !im.naturalWidth) return;
+    if (!WS) return; var ok = function (j) { var m = imgs[j]; return m && m.complete && m.naturalWidth; };
+    if (!ok(i)) { for (var d = 1; d < imgs.length; d++) { if (ok(i - d)) { i = i - d; break; } if (ok(i + d)) { i = i + d; break; } } }   // never a blank screen: the nearest frame that has loaded
+    var im = imgs[i]; if (!ok(i)) return;
     var dpr = Math.min(devicePixelRatio || 1, 2), W = innerWidth, H = innerHeight;
     if (cv.width !== Math.round(W * dpr) || cv.height !== Math.round(H * dpr)) { cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); }
     var sc = Math.max(W / WS.w, H / WS.h), ox = (W - WS.w * sc) / 2, oy = (H - WS.h * sc) / 2;

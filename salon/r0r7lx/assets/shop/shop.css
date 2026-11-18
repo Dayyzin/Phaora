@@ -364,7 +364,7 @@ body.dim .fm .snd{color:#ddd}
 @media (max-width:820px){.op2 .pic{padding:3vh 0 0}.op2 .pic img.turn{width:112%;max-width:none;margin-left:-6%}}
 
 /* Gifts: for her / for him, two pictures side by side, edge to edge (David, 18 Nov) */
-html,body{overflow-x:hidden}
+/* (overflow-x hidden on html/body removed: it breaks the sticky walkaround on older iPhones; clip below) */
 .gifts .gt{position:static!important;display:flex;flex-direction:column;align-items:center;text-align:center;padding:44px 22px 30px!important;color:#1d1b19}
 .gifts .g2{display:grid;grid-template-columns:1fr 1fr;gap:0}
 .gifts .g2 .dl{position:relative;display:block;line-height:0;overflow:hidden;color:#fff;text-decoration:none}
