@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" class="stage"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mock · the garment page · Gelosia</title><meta name="robots" content="noindex, nofollow, noarchive">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/stage.css">
+<style>
+/* The garment page (proposal, 18 Nov): clothes on a body, not circling alone. One act a screen, in the same room. */
+html.stage{scroll-snap-type:y mandatory}
+.g{position:relative;z-index:1}
+.act{height:100vh;height:100svh;scroll-snap-align:start;box-sizing:border-box;position:relative;display:flex;align-items:center;justify-content:center}
+.slot{position:absolute;left:50%;transform:translateX(-50%);bottom:5vh;font:400 9px/1.3 'Jost',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#8a6d3b;background:rgba(242,242,244,.85);padding:4px 8px}
+.head{position:absolute;left:0;right:0;top:4.5vh;text-align:center}
+.head .t{font:500 24px/1.15 'Cormorant Garamond',serif;letter-spacing:.3em;padding-left:.3em;margin:0}
+.head .s{font:300 9px/1.5 'Jost',sans-serif;letter-spacing:.3em;margin:6px 0 0}
+.look img{height:76vh;width:auto;max-width:46vw;object-fit:cover;-webkit-mask:radial-gradient(ellipse 60% 62% at 50% 50%,#000 62%,transparent 100%);mask:radial-gradient(ellipse 60% 62% at 50% 50%,#000 62%,transparent 100%)}
+.look .specs{position:absolute;left:8vw;top:47%;list-style:none;margin:0;padding:0;font:300 9px/1.9 'Jost',sans-serif;letter-spacing:.16em;color:#4c4c50}
+.look .buyb{position:absolute;right:8vw;top:45%;text-align:right}
+.views{gap:5vw}.views figure{margin:0;text-align:center}.views img{height:70vh;width:auto;display:block}
+.views figcaption,.close figcaption{margin-top:10px;font:500 10px/1 'Cormorant Garamond',serif;letter-spacing:.3em;text-transform:uppercase;color:#2a2622}
+.close{gap:3vw}.close figure{margin:0;text-align:center}.close img{width:26vw;height:26vw;object-fit:cover;display:block;
+  -webkit-mask:radial-gradient(circle at 50% 50%,#000 60%,transparent 72%);mask:radial-gradient(circle at 50% 50%,#000 60%,transparent 72%)}
+.det .box{max-width:560px;width:84vw;font:300 11px/1.8 'Jost',sans-serif;letter-spacing:.06em;color:#3c3c40}
+.det h2{font:500 22px/1.2 'Cormorant Garamond',serif;letter-spacing:.3em;margin:0 0 4px}
+.det .s{font:300 9px/1.5 'Jost',sans-serif;letter-spacing:.3em;margin:0 0 22px}
+.det dl{display:grid;grid-template-columns:auto 1fr;gap:6px 22px;margin:0 0 26px}.det dt{font:500 10px/1.8 'Cormorant Garamond',serif;letter-spacing:.24em;text-transform:uppercase;color:#2a2622}.det dd{margin:0}
+.sizes{display:flex;gap:8px;margin:0 0 22px}.sizes span{min-width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:1px solid #9a9a9e;font:500 12px 'Cormorant Garamond',serif;letter-spacing:.1em}
+.det .buy{min-height:48px;width:100%;font-size:14px}
+.arrow{position:fixed;top:50%;z-index:5;width:14px;height:14px;border-left:1px solid #3a3a3e;border-bottom:1px solid #3a3a3e;opacity:.4}
+.arrow.l{left:2.4vw;transform:rotate(45deg)}.arrow.r{right:2.4vw;transform:rotate(-135deg)}
+.drawer{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:5;font:500 8px/1 'Cormorant Garamond',serif;letter-spacing:.32em;text-transform:uppercase}
+.floor{opacity:.75}
+@media (max-width:820px){
+  .look img{height:56vh;max-width:96vw;margin-top:-6vh}.look .specs{display:none}.slot{bottom:auto;top:15vh;font-size:7px;max-width:84vw;text-align:center}
+  .look .buyb{left:6vw;right:6vw;top:auto;bottom:9vh;text-align:center}.look .buyb .buy{width:100%}
+  .views{justify-content:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;gap:0}.views figure{flex:0 0 100vw;scroll-snap-align:center}.views img{height:62vh;margin:0 auto}
+  .close{flex-direction:column;gap:2vh}.close img{width:28vh;height:28vh;margin:0 auto}.close figcaption{margin-top:2px}
+  .arrow{display:none}
+}
+</style></head>
+<body class="stage">
+<div class="room" aria-hidden="true"></div><div class="veil" aria-hidden="true" style="opacity:1"></div>
+<main class="g">
+ <section class="act look"><div class="head"><h1 class="t cut">GELOSIA</h1><p class="s cut">BLACK LEATHER COAT &nbsp;·&nbsp; CHAPTER I</p></div>
+  <img src="../img/gelosia/world-full/w854.webp" alt="Gelosia on a figure">
+  <ul class="specs cut"><li>BLACK LEATHER</li><li><i>BELTED,</i> DOUBLE-BREASTED</li><li>MID-CALF</li></ul>
+  <div class="buyb"><a class="buy" href="#">Reserve · USD 5,400</a><p class="mto" style="font:italic 400 12px/1.35 'Cormorant Garamond',serif;color:#4c4c50;margin-top:8px">Made to order. Delivery date confirmed by email.</p></div>
+  <span class="slot">1 · the look: a figure walking (clip), still for now · stand-in</span></section>
+ <section class="act views"><figure><img src="../img/gelosia/front/w658.webp" alt=""><figcaption>Front</figcaption></figure><figure><img src="../img/gelosia/three-quarter/w563.webp" alt=""><figcaption>Side</figcaption></figure><figure><img src="../img/gelosia/back/w641.webp" alt=""><figcaption>Back</figcaption></figure>
+  <span class="slot">2 · front, side, back on the figure · stand-in: the form</span></section>
+ <section class="act close"><figure><img src="c/net.webp" alt=""><figcaption>The net</figcaption></figure><figure><img src="c/buttons.webp" alt=""><figcaption>Buttons and belt</figcaption></figure><figure><img src="c/cuff.webp" alt=""><figcaption>The cuff strap</figcaption></figure>
+  <span class="slot">3 · close: fabric, a detail, hardware · stand-in crops</span></section>
+ <section class="act det"><div class="box"><h2 class="cut">GELOSIA</h2><p class="s cut">BLACK LEATHER COAT</p>
+  <dl><dt>Leather</dt><dd>Black lambskin, 1.0 to 1.2 mm</dd><dt>Lining</dt><dd>Cream silk, opaque</dd><dt>Closure</dt><dd>Eight brass buttons, a belt, a strap at each cuff</dd><dt>Length</dt><dd>Mid-calf</dd></dl>
+  <div class="sizes"><span>XS</span><span>S</span><span>M</span><span>L</span><span>XL</span></div>
+  <a class="buy" href="#">Reserve · USD 5,400</a><p class="mto" style="font:italic 400 12px/1.35 'Cormorant Garamond',serif;color:#4c4c50;margin-top:8px">Made to order. Delivery date confirmed by email.</p></div>
+  <span class="slot">4 · details and reserve</span></section>
+</main>
+<i class="arrow l"></i><i class="arrow r"></i><span class="drawer cut">Details</span>
+<nav class="floor" style="opacity:.75;pointer-events:auto"><a>Register</a><a>Care</a><a>Sizes</a><a>Returns</a></nav>
+</body></html>
