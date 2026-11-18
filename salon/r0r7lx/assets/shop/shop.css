@@ -592,3 +592,10 @@ body.lights::after{background:#fff;opacity:.85!important;transition:opacity 1.4s
   .op2 .ac{grid-column:1/-1;margin-top:14px!important}
   .op2 .ac a{padding:11px 8px!important;font-size:9px!important}
 }
+/* the menu on a phone: light and small (David, 18 Nov) */
+@media (max-width:820px){
+  .op2 .opm,.op2 .opm a,.mn.open,.mn.open a{font-weight:400!important;letter-spacing:.06em!important}
+  .op2 .opm{font-size:8.5px!important;padding:26px 0 0 14px!important}
+  .op2 .opm li+li{margin-top:2px!important}
+  .op2 .opm ul+ul{margin-top:14px!important}
+}
