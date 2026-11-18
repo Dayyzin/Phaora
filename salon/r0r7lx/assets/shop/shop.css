@@ -454,3 +454,6 @@ html,body{overflow-x:clip!important;overflow-y:visible}
 .ml .mlmn .x{display:none!important}
 .ml .also{grid-template-columns:repeat(3,minmax(0,1fr))!important}
 @media (max-width:820px){.ml{grid-template-columns:1fr}.ml .mlside{padding:36px 12px 12px}.ml .mlmn{display:none!important}.ml .mlside h2{text-align:center!important}}
+/* prices readable everywhere (David, 18 Nov): the ink, not grey, a touch larger */
+.tl .pr,.cap .pr,.dt .pr,.op2 .pr{color:var(--ink)!important;opacity:1!important;font-size:15px;font-weight:500}
+.op2 .pr{color:#efe9de!important}
