@@ -446,3 +446,11 @@ html,body{overflow-x:clip!important;overflow-y:visible}
 /* "You may also like" set large, like the Gifts heading (David, 18 Nov) */
 .ml h2{margin:0!important;padding:64px 24px 28px!important;text-align:center;font:400 40px/1.1 'Cormorant Garamond','DejaVu Serif',serif!important;letter-spacing:.18em!important;padding-left:calc(24px + .18em)!important;text-transform:uppercase}
 @media (max-width:820px){.ml h2{font-size:26px!important;padding:44px 12px 20px!important}}
+/* You may also like: the menu down the left, three pieces beside it (David, 18 Nov) */
+.ml{display:grid;grid-template-columns:248px 1fr;align-items:start}
+.ml .mlside{padding:56px 0 40px 44px}
+.ml .mlside h2{padding:0 0 28px!important;text-align:left!important;font-size:26px!important;letter-spacing:.14em!important;line-height:1.15!important}
+.ml .mlmn{display:block!important;position:static!important;width:auto!important;padding:0!important;background:none!important}
+.ml .mlmn .x{display:none!important}
+.ml .also{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+@media (max-width:820px){.ml{grid-template-columns:1fr}.ml .mlside{padding:36px 12px 12px}.ml .mlmn{display:none!important}.ml .mlside h2{text-align:center!important}}

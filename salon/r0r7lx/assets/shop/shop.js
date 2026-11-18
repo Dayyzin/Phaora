@@ -5,7 +5,7 @@
 //   ./?piece=<id>           the piece: the walkaround first where it has one and is priced at WALKAROUND_MIN_USD or
 //                           more, then its pictures stacked on the left, the details sticky on the right
 var WALKAROUND_MIN_USD = 0;   // David, 18 Nov: "Walkaround needs to be ADDED" - every piece that has one
-var V = '?v=1118zc';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
+var V = '?v=1118zd';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
 var WALKAROUND_ENABLED = true;   // David, 18 Nov 14:39: "THE WALKAROUND STILL ISNT THERE" - the world walk on every piece that has one;   // David, 18 Nov: "Sharp yes" - every piece walks around on its own sharp views, never the 144p world walk   // David, 18 Nov: "Walkaround comes back, it's too strong and worked on to throw away"
 (function () {
   var app = document.getElementById('app'); if (!app) return;
@@ -119,7 +119,7 @@ var WALKAROUND_ENABLED = true;   // David, 18 Nov 14:39: "THE WALKAROUND STILL I
     var at = C.indexOf(p), line = C.slice(at + 1).concat(C.slice(0, at));
     // you may also like (David, 18 Nov, as celine.com): four, seamless on the page - same category first, then the next pieces
     var also = C.filter(function (x) { return x.id !== p.id && x.category === p.category; });
-    line.forEach(function (x) { if (also.length < 4 && also.indexOf(x) < 0) also.push(x); }); also = also.slice(0, 4);
+    line.forEach(function (x) { if (also.length < 3 && also.indexOf(x) < 0) also.push(x); }); also = also.slice(0, 3);
     var paid = /buy\.stripe\.com/.test(p.href || '');
     var APPLE = '<svg viewBox="0 0 17 20" width="15" height="18" aria-hidden="true"><path fill="currentColor" d="M14.1 10.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9-.7 0-1.8-.9-3-.8C4.6 5.4 3.1 6.3 2.3 7.8c-1.7 2.9-.4 7.2 1.2 9.6.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.1.8 1.3 0 2.1-1.2 2.9-2.3.9-1.3 1.3-2.6 1.3-2.7 0 0-2.6-1-2.8-4.2zM11.8 3.8c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1 .1 2.1-.5 2.7-1.3z"/></svg>';
     var buy = (paid ? '<a class="btn ap" href="' + E(p.href) + '" aria-label="Pre-order with Apple Pay">' + APPLE + '<span>Pay</span></a>' : '') +
@@ -147,10 +147,11 @@ var WALKAROUND_ENABLED = true;   // David, 18 Nov 14:39: "THE WALKAROUND STILL I
           buy + rows +
         '</div>' +
       '</article>' +
-      '<section class="ml"><h2>You may also like</h2><ul class="grid also">' + also.map(function (x) { return '<li class="tl"><a class="im" href="' + HOME + '?piece=' + encodeURIComponent(x.id) + '">' + img(x.tile, x.name, '(max-width: 820px) 45vw, 22vw', true) + '</a><div class="cap"><a href="' + HOME + '?piece=' + encodeURIComponent(x.id) + '"><span class="nm">' + E(x.name) + '</span>' + (x.price ? '<span class="pr">' + E(x.price) + '</span>' : '') + '</a></div></li>'; }).join('') + '</ul></section>' +
+      '<section class="ml"><div class="mlside"><h2>You may also like</h2><nav class="mn mlmn" aria-label="Menu"></nav></div><ul class="grid also">' + also.map(function (x) { return '<li class="tl"><a class="im" href="' + HOME + '?piece=' + encodeURIComponent(x.id) + '">' + img(x.tile, x.name, '(max-width: 820px) 45vw, 22vw', true) + '</a><div class="cap"><a href="' + HOME + '?piece=' + encodeURIComponent(x.id) + '"><span class="nm">' + E(x.name) + '</span>' + (x.price ? '<span class="pr">' + E(x.price) + '</span>' : '') + '</a></div></li>'; }).join('') + '</ul></section>' +
       '<div class="bar">' + '<span class="pr">' + E(p.price || '') + '</span>' + buy + '</div>';
     document.body.classList.add('has-bar');
     // the folding rows: one open at a time, closed by default
+    (function () { var m = app.querySelector('.mlmn'), src = document.querySelector('.wrap>.mn'); if (m && src) m.innerHTML = src.innerHTML; })();
     app.addEventListener('click', function (e) {
       var b = e.target.closest('.fd > button'); if (!b) return;
       var open = b.getAttribute('aria-expanded') !== 'true';
