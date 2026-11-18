@@ -92,17 +92,18 @@
   "price": "USD 3,800",
   "href": "https://buy.stripe.com/7sY4greTx7vj1kC9BT2ZO08",
   "tile": {
-   "src": "assets/shop/img/catalogue__full__oitava_2048.webp",
-   "w": 853,
-   "h": 1298,
-   "blend": false
+   "src": "assets/shop/img/oitava_2k.webp",
+   "w": 1536,
+   "h": 2048,
+   "blend": true
   },
   "stack": [
    {
-    "src": "assets/shop/img/catalogue__full__oitava_2048.webp",
-    "w": 853,
-    "h": 1298,
-    "blend": false,
+    "src": "assets/shop/img/oitava_2k.webp",
+    "w": 1536,
+    "h": 2048,
+    "blend": true,
+    "s1200": "assets/shop/1200/oitava_2k.webp",
     "label": "front view"
    },
    {
@@ -920,17 +921,18 @@
   "price": "USD 325",
   "href": "https://buy.stripe.com/7sYfZ97r53f3d3k8xP2ZO0k",
   "tile": {
-   "src": "assets/shop/img/catalogue__full__quiet_black_trousers.webp",
-   "w": 283,
-   "h": 720,
-   "blend": false
+   "src": "assets/shop/img/carbonado_2k.webp",
+   "w": 1536,
+   "h": 2048,
+   "blend": true
   },
   "stack": [
    {
-    "src": "assets/shop/img/catalogue__full__quiet_black_trousers.webp",
-    "w": 283,
-    "h": 720,
-    "blend": false,
+    "src": "assets/shop/img/carbonado_2k.webp",
+    "w": 1536,
+    "h": 2048,
+    "blend": true,
+    "s1200": "assets/shop/1200/carbonado_2k.webp",
     "label": "front view"
    }
   ],
