@@ -85,7 +85,11 @@ var WALKAROUND_ENABLED = true;   // David, 18 Nov: "Walkaround comes back, it's 
     // you may also like (David, 18 Nov, as celine.com): four, seamless on the page - same category first, then the next pieces
     var also = C.filter(function (x) { return x.id !== p.id && x.category === p.category; });
     line.forEach(function (x) { if (also.length < 4 && also.indexOf(x) < 0) also.push(x); }); also = also.slice(0, 4);
-    var buy = '<a class="btn" href="' + E(p.href) + '">Pre-order</a>';
+    var paid = /buy\.stripe\.com/.test(p.href || '');
+    var APPLE = '<svg viewBox="0 0 17 20" width="15" height="18" aria-hidden="true"><path fill="currentColor" d="M14.1 10.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9-.7 0-1.8-.9-3-.8C4.6 5.4 3.1 6.3 2.3 7.8c-1.7 2.9-.4 7.2 1.2 9.6.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.1.8 1.3 0 2.1-1.2 2.9-2.3.9-1.3 1.3-2.6 1.3-2.7 0 0-2.6-1-2.8-4.2zM11.8 3.8c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1 .1 2.1-.5 2.7-1.3z"/></svg>';
+    var buy = (paid ? '<a class="btn ap" href="' + E(p.href) + '" aria-label="Pre-order with Apple Pay">' + APPLE + '<span>Pay</span></a>' : '') +
+      '<a class="btn" href="' + E(p.href) + '">Pre-order</a>' +
+      (paid ? '<p class="tc">Pre-order: made to order. We email your delivery date once production is confirmed. Cancel for a full refund before production starts.</p>' : '');
     var care = p.details.Care ? '<p>' + E(p.details.Care) + '</p>' : '';
     var fit = p.fit ? '<p class="sz sc">' + E(p.fit.sizes) + '</p>' + p.fit.p.map(function (x) { return '<p>' + E(x) + '</p>'; }).join('') +
       (p.fit.m ? '<table><thead><tr><th></th><th class="sc">M</th></tr></thead><tbody>' + p.fit.m.map(function (r) { return '<tr><td>' + E(r[0]) + '</td><td>' + E(r[1]) + '</td></tr>'; }).join('') + '</tbody></table><p>' + E(p.fit.e) + '</p>' : '') : '';

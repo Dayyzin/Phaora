@@ -232,3 +232,10 @@ body.dim .fm .snd{color:#ddd}
 
 .also .cap{padding-bottom:18px}
 .ml h2{font-size:11px}
+
+/* Apple Pay above Pre-order (David, 18 Nov, as celine.com): both open the piece's Stripe checkout, where Apple Pay is offered */
+.btn.ap{display:flex;align-items:center;justify-content:center;gap:4px;background:#fff;color:#000;border:1px solid #000;font:500 17px/1 -apple-system,'Helvetica Neue',Arial,sans-serif;letter-spacing:0;text-transform:none}
+.btn.ap:hover{background:#f4f4f4}
+.btn.ap+.btn{margin-top:10px}
+.dt .tc{margin:12px 0 0;font:400 10px/1.5 'Jost','DejaVu Sans',sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--grey)}
+.bar .btn.ap,.bar .tc{display:none}
