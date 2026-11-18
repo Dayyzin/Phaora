@@ -651,3 +651,10 @@ body.lights::after{background:#fff;opacity:.85!important;transition:opacity 1.4s
   cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cpath d='M16 5v22M5 16h22' stroke='%2314161b' stroke-width='1.4'/%3E%3C/svg%3E") 16 16,zoom-in}
 .zm .zf.max img{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cpath d='M5 16h22' stroke='%2314161b' stroke-width='1.4'/%3E%3C/svg%3E") 16 16,zoom-out}
 .zm .zx{position:fixed;z-index:61;top:14px;right:16px;padding:8px 0;border:0;border-bottom:1px solid currentColor;background:none;cursor:pointer;font:500 10px/1 'Jost','DejaVu Sans',sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#14161b}
+/* phone: You may also like small, to the left, with no empty space above it (David, 18 Nov) */
+@media (max-width:820px){
+  .ml .mlside{display:none!important}
+  .ml .mlmain h2{text-align:left!important;font-size:15px!important;letter-spacing:.16em!important;padding:22px 12px 12px!important;margin:0!important}
+  .ml{margin-top:0!important;padding-top:0!important}
+}
+@media (max-width:820px){.also .tl .cap{padding-bottom:12px!important}.foot{margin-top:16px!important}}
