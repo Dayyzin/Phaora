@@ -498,3 +498,6 @@ html,body{overflow-x:clip!important;overflow-y:visible}
 .split .sp .lb::after{content:"";display:block;width:3.2em;height:1px;margin:5px auto 0;background:currentColor}
 @media (max-width:820px){.split{grid-template-columns:1fr}.split .sp{aspect-ratio:3/4}}
 .room-look .wrap>.mn{background:#fff!important}
+/* the room's dots gone from behind the pictures: plain white ground (David, 18 Nov) */
+.room-look .room{background:#fff!important}
+.room-look body,.room-look{background:#fff}
