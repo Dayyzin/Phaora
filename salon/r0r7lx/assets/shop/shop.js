@@ -4,8 +4,8 @@
 //   ./?cat=<category>       one category; ./?cat=accessories the accessories together
 //   ./?piece=<id>           the piece: the walkaround first where it has one and is priced at WALKAROUND_MIN_USD or
 //                           more, then its pictures stacked on the left, the details sticky on the right
-var WALKAROUND_MIN_USD = 3000;
-var V = '?v=1118b';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
+var WALKAROUND_MIN_USD = 0;   // David, 18 Nov: "Walkaround needs to be ADDED" - every piece that has one
+var V = '?v=1118c';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
 var WALKAROUND_ENABLED = true;   // David, 18 Nov: "Walkaround comes back, it's too strong and worked on to throw away"
 (function () {
   var app = document.getElementById('app'); if (!app) return;
@@ -85,6 +85,8 @@ var WALKAROUND_ENABLED = true;   // David, 18 Nov: "Walkaround comes back, it's 
     var mine = sides(p);
     var rel = C.filter(function (x) { return x.id !== p.id && x.category === p.category && mine.every(function (s) { return sides(x).indexOf(s) >= 0; }); }).slice(0, 3);
     var walk = WALKAROUND_ENABLED && p.walkaround && usd(p) >= WALKAROUND_MIN_USD;
+    // the walk around from the piece's own sharp views, where it has no world walk: front, three-quarter, back, turning slowly
+    var views = p.stack.filter(function (x) { return / view$/i.test(x.label) && x.w >= 600; });
     // David, 18 Nov: big pictures, scrolled, seamless (as dior.com and celine.com), specs and Pre-order sticky on the right;
     // only real pictures (no 144p, no numbered-marker sheets); under it the rest of the line as a sideways carousel
     var pics = p.stack.filter(function (x) { return x.w >= 600 && !/marker|numbered/i.test(x.label); }); if (!pics.length) pics = p.stack.slice(0, 1);
@@ -107,6 +109,7 @@ var WALKAROUND_ENABLED = true;   // David, 18 Nov: "Walkaround comes back, it's 
       '<a class="ln" href="service.html#delivery"><span class="sc">Delivery</span><i aria-hidden="true">&gt;</i></a>' +
       '<a class="ln" href="service.html#returns"><span class="sc">Returns</span><i aria-hidden="true">&gt;</i></a></div>';
     app.innerHTML =
+      (!walk && views.length > 1 ? '<section class="vw" aria-label="' + E(p.name) + ', walk around">' + views.map(function (v, k) { return '<img class="' + (k ? '' : 'on') + '" src="' + E(v.src + V) + '" alt="' + E(p.name + ', ' + v.label) + '"' + (k ? ' loading="lazy"' : '') + '>'; }).join('') + '<p class="sc">' + E(p.name) + '</p></section>' : '') +
       (walk ? '<section class="wa" data-src="' + E(p.walkaround) + '" aria-label="' + E(p.name) + ', the walkaround"><div class="wa-in"><canvas aria-hidden="true"></canvas><div class="wn"></div><p class="wa-nm sc">' + E(p.name) + '</p></div></section>' : '') +
       '<article class="pc">' +
         '<ul class="st">' + pics.map(function (v, k) {
@@ -130,6 +133,8 @@ var WALKAROUND_ENABLED = true;   // David, 18 Nov: "Walkaround comes back, it's 
         x.querySelector('i').textContent = on ? '−' : '+'; document.getElementById(x.getAttribute('aria-controls')).hidden = !on;
       });
     });
+    (function () { var vw = app.querySelector('.vw'); if (!vw) return; var L = vw.querySelectorAll('img'), i = 0;
+      setInterval(function () { L[i].classList.remove('on'); i = (i + 1) % L.length; L[i].classList.add('on'); }, 3200); })();
     if (walk && window.SalonWalkaround) window.SalonWalkaround(app.querySelector('.wa'));
   }
   // hover a piece and its pictures play (David, 18 Nov); on a phone, the card in the middle of the screen plays
