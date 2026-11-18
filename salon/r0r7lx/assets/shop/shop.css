@@ -388,3 +388,6 @@ html,body{overflow-x:hidden}
 .sh .snd{color:var(--ink)!important;right:auto;left:calc(50% + min(15vw,200px) + 14px);bottom:56px}
 .dets:not(.three){background:transparent!important;color:var(--ink)!important}
 @media (max-width:820px){.sh{padding:36px 0!important}.sh a{width:64%!important}.sh .snd{left:auto;right:12px;bottom:36px}}
+/* the suggested categories slimmer (David, 18 Nov): the three doors and for her / for him at 1:1 */
+.dets.three .dl img{aspect-ratio:1/1!important}
+.gifts .g2 img{aspect-ratio:1/1!important}
