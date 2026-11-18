@@ -7,8 +7,8 @@
   var ls = { get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
              set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
 
-  // the logo: the wordmark the salon already uses (assets/logo), in the page's ink
-  fetch(BASE + 'assets/logo/wordmark-dark.svg').then(function (r) { return r.text(); }).then(function (t) {
+  // the logo: David's wordmark (assets/brand/wordmark-david.png, traced to wordmark-david-ink.svg; never typed)
+  fetch(BASE + 'assets/brand/wordmark-david-ink.svg').then(function (r) { return r.text(); }).then(function (t) {
     var svg = t.replace(/<!--[\s\S]*?-->/g, '').replace(/fill="#000000"/g, 'fill="currentColor"').replace(/\s(width|height)="[^"]*"/g, '');
     [].forEach.call(D.querySelectorAll('.logo'), function (l) { if (!l.closest('.navband')) l.innerHTML = svg; });   // the book fills its own, light
   }).catch(function () {});
@@ -37,22 +37,16 @@
   if (burger) burger.addEventListener('click', function () { menuOpen(!mn.classList.contains('open')); });
   if (mn) mn.addEventListener('click', function (e) { if (e.target.closest('.x')) menuOpen(false); });
 
-  // the footer
+  // the footer: the house footer as it is live (maison/rhztw6), kept as David asked ("Keep this footer"): the Ö mark,
+  // three columns, the quiet line. Every link goes to a real page; Delivery and Newsletter added to the middle column.
   var ft = D.querySelector('footer.ft');
-  if (ft) ft.innerHTML =
-    '<div class="cols">' +
-      '<section><h2>Client Care</h2><p>Write to the house</p><ul>' +
-        '<li><a href="mailto:hello@phaora.com">hello@phaora.com</a></li>' +
-        '<li><button class="lk" type="button" data-nl>Newsletter</button></li></ul>' +
-        '<p style="margin-top:14px">Every letter is answered by a person.</p></section>' +
-      '<section><h2>Support</h2><ul>' +
-        '<li><a href="' + BASE + 'service.html#faq">Frequently asked questions</a></li>' +
-        '<li><a href="' + BASE + 'service.html#delivery">Delivery</a></li>' +
-        '<li><a href="' + BASE + 'service.html#returns">Returns</a></li>' +
-        '<li><a href="' + BASE + 'service.html#care">Care</a></li>' +
-        '<li><a href="' + BASE + 'service.html#contact">Contact</a></li></ul></section>' +
-    '</div>' +
-    '<div class="bt"><span>©2026 PHAÖRA</span><a href="' + BASE + 'service.html#terms">Terms</a><a href="' + BASE + 'service.html#privacy">Privacy</a></div>';
+  if (ft) { ft.className = 'foot'; ft.innerHTML =
+    '<a class="mark" href="' + BASE + '" aria-label="PHAÖRA"><img src="' + BASE + 'assets/brand/mark-ink.png" alt="" width="40" height="40"></a>' +
+    '<nav class="flist" aria-label="The house">' +
+      '<p class="fcol"><a href="' + BASE + '">The line</a><a href="/maison/rhztw6/house.html">The house</a><a href="https://www.phaora.com/">Register</a></p>' +
+      '<p class="fcol"><a href="' + BASE + 'service.html#care">Care</a><a href="' + BASE + 'service.html#sizes">Measurements</a><a href="' + BASE + 'service.html#delivery">Delivery</a><a href="' + BASE + 'service.html#returns">Returns</a><a href="' + BASE + 'service.html#contact">Contact</a><a href="#" data-nl>Newsletter</a></p>' +
+      '<p class="fcol"><a href="/maison/rhztw6/poem.html">The poem</a><a href="' + BASE + 'service.html#privacy">Privacy</a><a href="' + BASE + 'service.html#terms">Terms</a></p>' +
+    '</nav><p class="fline">PHAÖRA · Chapter I · MMXXVI</p>'; }
 
   // the sign-up panel: once per visitor, after about 8 s or half a screen of scrolling, never on the opening page's first
   // screen; never again after Close or a sign-up. The address goes to the register the site already has.

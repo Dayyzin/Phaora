@@ -171,3 +171,41 @@ of the opening grid, and never again after Close or a sign-up (`localStorage` ke
 
 #1 logo file (still `assets/logo/wordmark-dark.svg`), #3 Lustre price, #5 where Pre-order points (still
 `https://www.phaora.com/`).
+
+---
+
+# Logo and footer, 18 Nov
+
+## Logo (audit #1, answered by David)
+
+- Source: `assets/brand/wordmark-david.png` (1080×1080, black on white), fetched from `claude/new-session-3zfqdr` at
+  e35afe7, kept beside the SVGs.
+- Traced, not drawn. The trace follows the 50% grey edge of his pixels (marching squares, simplified at 0.2 px), and gives
+  13 outlines: P, H, A, Ö with its two dots, R, A. I couldn't install potracer here (the install was blocked), so the
+  tracer is a short numpy script.
+- Cropped to the letters with 24 px of even padding: viewBox 890×349, from PNG x 95, y 366.
+- Two files: `assets/brand/wordmark-david-ink.svg` (#2a2622, for light grounds) and `wordmark-david-offwhite.svg`
+  (#efe6d6, for dark grounds).
+- Overlay check: the SVG was rendered at 1:1 in Chromium over the PNG crop and both were thresholded at 50%. Ink pixels:
+  93,618 in the PNG, 93,734 in the SVG. Pixels that differ: 3,526, and all of them lie within 1 px of the PNG's own
+  outline. 0 differ by more than 1 px.
+- Header: centred, 120 px wide on desk, 88 px on phone. `assets/logo/wordmark-dark.svg` (the casino wordmark) is no
+  longer used.
+
+## Footer ("Keep this footer")
+
+The live house footer from `maison/rhztw6`, as it is: the Ö mark (`mark-ink.png`, on this white ground), three columns,
+and "PHAÖRA · Chapter I · MMXXVI". It replaces the Margiela-style footer. Delivery and Newsletter are added to the middle
+column. Every link goes to a real page:
+
+| Link | Goes to |
+|---|---|
+| The line | the grid |
+| The house | /maison/rhztw6/house.html (no house page in this salon) |
+| Register | https://www.phaora.com/ |
+| Care, Delivery, Returns, Contact, Privacy, Terms | service.html sections |
+| Measurements | service.html#sizes (the measurements page's text, word for word) |
+| Newsletter | opens the sign-up panel |
+| The poem | /maison/rhztw6/poem.html (the book was removed from this salon, so this goes to the maison's) |
+
+I couldn't place "the THE LINE heading band above it" on this page, which has no such band. Nothing was added for it.

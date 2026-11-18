@@ -12,7 +12,7 @@ button{font:inherit;color:inherit}
 
 /* the header: the logo centred (the lettering, inlined, never typed) */
 .hd{position:sticky;top:0;z-index:30;height:var(--head);display:flex;align-items:center;justify-content:center;background:#fff}
-.hd .logo{display:block;width:92px;line-height:0;color:var(--ink)}
+.hd .logo{display:block;width:120px;line-height:0;color:var(--ink)}
 .hd .logo svg{display:block;width:100%;height:auto}
 .hd .burger{position:absolute;left:16px;top:50%;transform:translateY(-50%);display:none;width:40px;height:40px;padding:0;border:0;background:none;cursor:pointer;font-size:20px;line-height:40px;text-align:left}
 
@@ -90,18 +90,15 @@ button{font:inherit;color:inherit}
 .ml{padding:56px 0 0;background:var(--ground)}
 .ml h2{margin:0;padding:0 16px 18px;font:400 11px/1.4 'Jost','DejaVu Sans',sans-serif;letter-spacing:.22em;text-transform:uppercase;text-align:left}
 
-/* the footer (maison margiela): quiet columns, small headings, a lot of space */
-.ft{margin-top:96px;padding:64px clamp(16px,4vw,56px) 28px;border-top:1px solid var(--line);background:#fff;font:400 14px/1.6 'Cormorant Garamond','DejaVu Serif',serif}
-.ft .cols{display:grid;grid-template-columns:repeat(3,minmax(0,220px));gap:48px clamp(32px,6vw,96px);justify-content:start}
-.ft h2{margin:0 0 16px;font:400 10px/1.4 'Jost','DejaVu Sans',sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--grey)}
-.ft ul{list-style:none;margin:0;padding:0}
-.ft li+li{margin-top:8px}
-.ft a::before,.ft .lk::before{content:'▸';display:inline-block;margin-right:.55em;font-size:.7em;transform:translateY(-.1em)}
-.ft .lk{background:none;border:0;padding:0;cursor:pointer;font:inherit;text-align:left}
-.ft p{margin:0 0 8px;color:#4c4b50}
-.ft .bt{display:flex;flex-wrap:wrap;gap:8px 28px;align-items:center;margin-top:72px;padding-top:20px;border-top:1px solid var(--line);font:400 10px/1.4 'Jost','DejaVu Sans',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--grey)}
-.ft .bt a::before{display:none}
-.ft .bt a:hover{color:var(--ink)}
+/* the footer: the house footer, as live on maison/rhztw6 (site.css, 18 Nov), kept as it is */
+.foot{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;text-align:center;margin-top:96px;padding:60px 48px 48px;border-top:1px solid rgba(127,127,127,.22);background:#fff;color:#14161b}
+.foot .mark img{display:block;width:40px;height:40px}
+.foot .flist{display:flex;justify-content:center;gap:0 44px;text-align:left}
+.fcol{display:flex;flex-direction:column;gap:2px;margin:0;font:500 9px/1.7 'Cormorant Garamond','DejaVu Serif',Georgia,serif;letter-spacing:.12em;text-transform:uppercase;opacity:.8}
+.fcol a,.fcol a:hover{color:inherit;text-decoration:none;border:0;white-space:nowrap}
+.fline{margin:14px 0 0;text-align:center;font:500 9px/1.7 'Cormorant Garamond','DejaVu Serif',Georgia,serif;letter-spacing:.12em;text-transform:uppercase;opacity:.55}
+@media (max-width:820px){.foot{padding:44px 20px 40px}.foot .flist{gap:0 26px}}
+@media (max-width:330px){.foot .flist{flex-direction:column;align-items:center;text-align:center;gap:14px}.fcol{align-items:center}}
 
 /* the sign-up panel (celine.com): from the right, full height, the page visible beside it */
 .nl{position:fixed;top:0;right:0;bottom:0;z-index:50;width:40vw;max-width:620px;min-width:380px;background:#fff;box-shadow:-1px 0 0 var(--line),-24px 0 60px rgba(0,0,0,.06);
@@ -126,11 +123,12 @@ button{font:inherit;color:inherit}
 .hp h3{margin:22px 0 4px;font:400 10px/1.4 'Jost','DejaVu Sans',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--grey)}
 .hp p{margin:0 0 10px;font-size:17px;line-height:1.6}
 .hp .for{margin-top:-4px;font:italic 400 14px/1.5 'Cormorant Garamond','DejaVu Serif',serif;color:var(--grey)}
+.hp .ms{width:100%;border-collapse:collapse;margin:6px 0 12px;font-size:15px}.hp .ms td,.hp .ms th{padding:5px 0;border-bottom:1px solid var(--line);text-align:left;font-weight:400}.hp .ms td+td,.hp .ms th+th{text-align:right}
 .hp a{text-decoration:underline;text-underline-offset:3px}
 
 @media (max-width:820px){
   :root{--head:56px}
-  .hd .logo{width:62px}
+  .hd .logo{width:88px}
   .hd .burger{display:block}
   .wrap{display:block}
   .wrap>.mn{display:none}
@@ -145,9 +143,6 @@ button{font:inherit;color:inherit}
   .bar .pr{flex:1;font:400 16px/1.2 'Cormorant Garamond','DejaVu Serif',serif;letter-spacing:.06em}
   .bar .btn{width:auto;margin:0;padding:14px 22px}
   body.has-bar{padding-bottom:72px}
-  .ft{margin-top:64px;padding:48px 16px 24px}
-  .ft .cols{grid-template-columns:1fr;gap:40px}
-  .ft .bt{margin-top:48px}
   .nl{width:100vw;max-width:none;min-width:0}
   .nl h2{margin-top:18vh}
   .hp{padding:28px 16px 0}
