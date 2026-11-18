@@ -40,13 +40,13 @@
   if (mn) mn.addEventListener('click', function (e) { if (e.target.closest('.x')) menuOpen(false); });
 
   // the footer: the house footer as it is live (maison/rhztw6), kept as David asked ("Keep this footer"): the Ö mark,
-  // three columns, the quiet line. Every link goes to a real page; Delivery and Newsletter added to the middle column.
+  // three columns, the quiet line, exactly as David approved (no Delivery, no Newsletter).
   var ft = D.querySelector('footer.ft');
   if (ft) { ft.className = 'foot'; ft.innerHTML =
     '<a class="mark" href="' + HOME + '" aria-label="PHAÖRA"><img src="' + BASE + 'assets/brand/mark-ink.png" alt="" width="40" height="40"></a>' +
     '<nav class="flist" aria-label="The house">' +
       '<p class="fcol"><a href="' + HOME + '">The line</a><a href="/maison/rhztw6/house.html">The house</a><a href="https://www.phaora.com/">Register</a></p>' +
-      '<p class="fcol"><a href="' + BASE + 'service.html#care">Care</a><a href="' + BASE + 'service.html#sizes">Measurements</a><a href="' + BASE + 'service.html#delivery">Delivery</a><a href="' + BASE + 'service.html#returns">Returns</a><a href="' + BASE + 'service.html#contact">Contact</a><a href="#" data-nl>Newsletter</a></p>' +
+      '<p class="fcol"><a href="' + BASE + 'service.html#care">Care</a><a href="' + BASE + 'service.html#sizes">Measurements</a><a href="' + BASE + 'service.html#returns">Returns</a><a href="' + BASE + 'service.html#contact">Contact</a></p>' +
       '<p class="fcol"><a href="/maison/rhztw6/poem.html">The poem</a><a href="' + BASE + 'service.html#privacy">Privacy</a><a href="' + BASE + 'service.html#terms">Terms</a></p>' +
     '</nav><p class="fline">PHAÖRA · Chapter I · MMXXVI</p>'; }
 

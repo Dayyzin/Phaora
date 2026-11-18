@@ -1,7 +1,7 @@
 /* The salon as a house shop (David, 18 Nov): an edge-to-edge grid (dior.com), the piece page as a stack of pictures
    beside a sticky column (dior.com), a plain stacked menu (celine.com), a quiet footer (maison margiela), a sign-up panel
    from the right (celine.com). The salon's own type and colours: Cormorant Garamond and Jost, ink #2a2622 on #efeff1. */
-:root{--ink:#2a2622;--grey:#6b6a6e;--ground:#ffffff;--tile:#ffffff;--line:#d9d8dc;--menu:184px;--head:64px}
+:root{--ink:#2a2622;--grey:#6b6a6e;--ground:#ffffff;--tile:#ffffff;--line:#d9d8dc;--menu:248px;--head:64px}
 *{box-sizing:border-box}
 html,body{margin:0;background:#fff;color:var(--ink);-webkit-font-smoothing:antialiased}
 body{font:400 15px/1.55 'Cormorant Garamond','DejaVu Serif',serif}
@@ -11,22 +11,24 @@ button{font:inherit;color:inherit}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* the header: the logo centred (the lettering, inlined, never typed) */
-.hd{position:relative;z-index:30;height:var(--head);display:flex;align-items:center;justify-content:center}
+.hd{position:relative;z-index:33;height:var(--head);display:flex;align-items:center;justify-content:flex-start;padding-left:44px}
+.hd.burgered{padding-left:64px}
 .hd .logo{display:block;width:120px;line-height:0;color:var(--ink)}
 .hd .logo svg{display:block;width:100%;height:auto}
 .hd .burger{position:absolute;left:16px;top:50%;transform:translateY(-50%);display:none;width:40px;height:40px;padding:0;border:0;background:none;cursor:pointer;font-size:20px;line-height:40px;text-align:left}
 
 /* the menu (celine.com): small capitals, stacked, in groups with space between them */
-.mn{font:400 11px/1 'Jost','DejaVu Sans',sans-serif;letter-spacing:.2em;text-transform:uppercase}
+.mn{font:300 9px/1 'Jost','DejaVu Sans',sans-serif;letter-spacing:.26em;text-transform:uppercase}
 .mn ul{list-style:none;margin:0;padding:0}
-.mn ul+ul{margin-top:26px}
-.mn li+li{margin-top:12px}
+.mn ul+ul{margin-top:44px}
+.mn li+li{margin-top:20px}
 .mn a{display:inline-block;padding:2px 0;border-bottom:1px solid transparent}
 .mn a:hover,.mn a[aria-current=page]{border-bottom-color:currentColor}
 .mn .x{display:none}
 .wrap{display:block;padding-left:var(--menu)}
 .wrap.full{padding-left:0}
-.wrap>.mn{position:fixed;top:0;left:0;z-index:32;width:var(--menu);padding:26px 0 0 24px}
+.wrap>.mn{position:fixed;top:0;left:0;bottom:0;z-index:32;width:var(--menu);padding:120px 0 0 44px;background:var(--ground)}
+.room-look .wrap>.mn{background:#f2f2f4}
 .wrap.full>.mn{display:none}                   /* the piece page: the pictures run to the left edge; the menu from the ☰ */
 .hd.burgered .burger{display:block}
 
@@ -40,8 +42,8 @@ button{font:inherit;color:inherit}
 .tl .cap{display:block;padding:8px 9% 30px;text-align:left}
 .tl .nm{display:block;font:400 10px/1.4 'Jost','DejaVu Sans',sans-serif;letter-spacing:.2em;text-transform:uppercase}
 .tl .pr{display:block;margin-top:2px;font:400 14px/1.4 'Cormorant Garamond','DejaVu Serif',serif;letter-spacing:.06em;color:var(--grey)}
-.btn.ol{display:inline-block;width:160px;max-width:100%;margin-top:10px;padding:10px 8px;background:none;color:var(--ink);border:1px solid var(--ink);font-size:9px}
-.btn.ol:hover{background:var(--ink);color:#fff}
+.btn.ol{display:inline-block;width:160px;max-width:100%;margin-top:10px;padding:10px 8px;background:var(--ink);color:#fff;border:1px solid var(--ink);font-size:9px}
+.btn.ol:hover{background:#000;color:#fff}
 img.bl{mix-blend-mode:multiply}   /* the white renders: their #ffffff ground takes the page's ground (or the room) */
 
 /* the piece page: the walkaround first (pieces at WALKAROUND_MIN_USD and up), then the pictures stacked down the left
@@ -150,11 +152,11 @@ img.bl{mix-blend-mode:multiply}   /* the white renders: their #ffffff ground tak
   .hp{padding:28px 16px 0}
 }
 /* the menu, full screen from the ☰ (a phone; the piece page on a desk) */
-.mn.open{display:block!important;position:fixed;inset:0;z-index:40;background:#fff;padding:calc(var(--head) + 24px) 24px 24px;overflow-y:auto}
+.mn.open{display:block!important;position:fixed;inset:0;width:auto!important;z-index:40;background:#fff;padding:calc(var(--head) + 56px) 40px 40px;overflow-y:auto}
 .mn.open .x{display:block;position:fixed;top:0;left:16px;height:var(--head);padding:0;border:0;background:none;cursor:pointer;font:400 10px/1 'Jost','DejaVu Sans',sans-serif;letter-spacing:.22em;text-transform:uppercase}
-.mn.open{font-size:13px}
-.mn.open li+li{margin-top:18px}
-.mn.open ul+ul{margin-top:36px}
+.mn.open{font-size:10px}
+.mn.open li+li{margin-top:24px}
+.mn.open ul+ul{margin-top:52px}
 html.lock,html.lock body{overflow:hidden}
 
 
