@@ -503,150 +503,6 @@
   "walkaround": ""
  },
  {
-  "id": "cantilena",
-  "name": "CANTILENA",
-  "type": "MONOGRAM KNIT HOODIE",
-  "specs": [
-   "28-GAUGE DOUBLE JACQUARD",
-   "THE PÖ CHECKER",
-   "30S COMBED COTTON",
-   "CREAM / BLACK AND CREAM"
-  ],
-  "price": "USD 595",
-  "href": "https://buy.stripe.com/28E6oz7r56rfe7o6pH2ZO0f",
-  "tile": {
-   "src": "assets/shop/img/catalogue__full__cantilena.webp",
-   "w": 996,
-   "h": 1012,
-   "blend": false
-  },
-  "stack": [
-   {
-    "src": "assets/shop/img/pieces__cantilena__00.webp",
-    "w": 1305,
-    "h": 1301,
-    "blend": false,
-    "s1200": "assets/shop/1200/shop__img__pieces__cantilena__00.webp",
-    "label": "front view"
-   },
-   {
-    "src": "assets/shop/img/pieces__cantilena__01.webp",
-    "w": 1573,
-    "h": 2029,
-    "blend": false,
-    "s1200": "assets/shop/1200/shop__img__pieces__cantilena__01.webp",
-    "label": "back view"
-   },
-   {
-    "src": "assets/pieces/cantilena/02.webp",
-    "w": 1600,
-    "h": 900,
-    "blend": false,
-    "s1200": "assets/shop/1200/pieces__cantilena__02.webp",
-    "label": "The checker at stitch scale"
-   },
-   {
-    "src": "assets/pieces/cantilena/03.webp",
-    "w": 1600,
-    "h": 900,
-    "blend": false,
-    "s1200": "assets/shop/1200/pieces__cantilena__03.webp",
-    "label": "Cream on cream"
-   },
-   {
-    "src": "assets/pieces/cantilena/eyelet_v7.webp",
-    "w": 1600,
-    "h": 900,
-    "blend": false,
-    "label": "The brass eyelet and the cord"
-   }
-  ],
-  "side": "both",
-  "category": "knit",
-  "details": {
-   "Delivery": "We email your delivery date once production is confirmed. Cancel for a full refund any time before production starts.",
-   "Returns": "Size exchanges within 14 days of delivery, unworn and with tags.",
-   "Care": "Wash cold, inside out, on a gentle cycle. Dry flat. No tumble dryer, no bleach."
-  },
-  "fit": {
-   "p": [
-    "Measured flat, in centimetres. The block is cut at size M; the other sizes follow when the block is graded."
-   ],
-   "m": [
-    [
-     "Body length, shoulder to hem",
-     "72 cm"
-    ],
-    [
-     "Front, knitted width",
-     "65.6 cm"
-    ],
-    [
-     "Front, knitted length",
-     "64.4 cm"
-    ],
-    [
-     "Back, knitted width",
-     "65.3 cm"
-    ],
-    [
-     "Shoulder, seam to seam",
-     "71.5 cm"
-    ],
-    [
-     "Shoulder drop",
-     "16.3 cm"
-    ],
-    [
-     "Sleeve length",
-     "55.4 cm"
-    ],
-    [
-     "Hem band, flat",
-     "51.5 cm"
-    ]
-   ],
-   "e": "M is the block. S, L, XL and XXL follow when it is graded.",
-   "sizes": "S · M · L · XL · XXL"
-  },
-  "walkaround": "",
-  "colours": [
-   {
-    "name": "Black and cream",
-    "sw": "linear-gradient(135deg,#111 50%,#efe6d4 50%)"
-   },
-   {
-    "name": "Cream",
-    "sw": "#efe6d4",
-    "stack": [
-     {
-      "src": "assets/shop/img/cantilena_cream_front.webp",
-      "w": 1276,
-      "h": 1250,
-      "s1200": "assets/shop/1200/cantilena_cream_front.webp",
-      "blend": false,
-      "label": "front view"
-     },
-     {
-      "src": "assets/shop/img/cantilena_cream_back.webp",
-      "w": 1272,
-      "h": 1249,
-      "s1200": "assets/shop/1200/cantilena_cream_back.webp",
-      "blend": false,
-      "label": "back view"
-     },
-     {
-      "src": "assets/pieces/cantilena/cream_detail.webp",
-      "w": 1600,
-      "h": 900,
-      "blend": false,
-      "label": "Cream on cream"
-     }
-    ]
-   }
-  ]
- },
- {
   "id": "coaraci",
   "name": "COARACI",
   "type": "BELT",
@@ -783,9 +639,9 @@
   "price": "USD 400",
   "href": "https://buy.stripe.com/cNi6ozfXBg1Pe7o4hz2ZO0i",
   "tile": {
-   "src": "assets/shop/img/catalogue__full__muse_allover.webp",
-   "w": 1010,
-   "h": 1019,
+   "src": "assets/shop/img/pieces__heliodora__00.webp",
+   "w": 1116,
+   "h": 1136,
    "blend": false
   },
   "stack": [
