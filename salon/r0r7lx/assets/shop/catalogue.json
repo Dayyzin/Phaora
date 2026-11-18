@@ -220,13 +220,6 @@
     "label": "three quarter view"
    },
    {
-    "src": "assets/shop/img/pieces__itaoca__02.webp",
-    "w": 1110,
-    "h": 1110,
-    "blend": false,
-    "label": "open view"
-   },
-   {
     "src": "assets/pieces/itaoca/03.webp",
     "w": 1600,
     "h": 900,
