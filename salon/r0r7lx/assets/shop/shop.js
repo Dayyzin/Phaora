@@ -5,7 +5,7 @@
 //   ./?piece=<id>           the piece: the walkaround first where it has one and is priced at WALKAROUND_MIN_USD or
 //                           more, then its pictures stacked on the left, the details sticky on the right
 var WALKAROUND_MIN_USD = 0;   // David, 18 Nov: "Walkaround needs to be ADDED" - every piece that has one
-var V = '?v=1118n';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
+var V = '?v=1118p';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
 var WALKAROUND_ENABLED = false;   // David, 18 Nov: "Sharp yes" - every piece walks around on its own sharp views, never the 144p world walk   // David, 18 Nov: "Walkaround comes back, it's too strong and worked on to throw away"
 (function () {
   var app = document.getElementById('app'); if (!app) return;
@@ -38,7 +38,11 @@ var WALKAROUND_ENABLED = false;   // David, 18 Nov: "Sharp yes" - every piece wa
     var p = pid && byId[pid];
     if (p) return piecePage(p, C);
     var list = C, head = '';
-    if (side === 'women' || side === 'men') { list = C.filter(function (x) { return sides(x).indexOf(side) >= 0; }); head = side; }
+    var gift = q.get('gift');   // gifts for her / for him (David, 18 Nov): her side's pieces, the gifts first
+    if (gift === 'her' || gift === 'him') { side = gift === 'her' ? 'women' : 'men'; var G0 = ['oitava', 'lustre', 'cordel', 'obolo', 'coaraci', 'ofusca', 'ritornelo'];
+      list = C.filter(function (x) { return sides(x).indexOf(side) >= 0; }).sort(function (a, b) { var i = G0.indexOf(a.id), j = G0.indexOf(b.id); return (i < 0 ? 99 : i) - (j < 0 ? 99 : j); });
+      head = 'Gifts for ' + gift; }
+    else if (side === 'women' || side === 'men') { list = C.filter(function (x) { return sides(x).indexOf(side) >= 0; }); head = side; }
     else if (cat && CAT[cat]) { list = C.filter(function (x) { return CAT[cat].has(x.category); }); head = CAT[cat].label; }
     if (head) document.title = head.charAt(0).toUpperCase() + head.slice(1) + ' · ' + title0;
     if (head) { app.innerHTML = '<h1 class="vh">' + E(head) + '</h1><ul class="grid">' + list.map(tile).join('') + '</ul>'; return; }
@@ -55,13 +59,15 @@ var WALKAROUND_ENABLED = false;   // David, 18 Nov: "Sharp yes" - every piece wa
     var phone = matchMedia('(max-width: 820px)').matches;
     app.innerHTML = '<h1 class="vh">Chapter I</h1>' +
       (byId.itaoca ? '<section class="op2" aria-label="Itaoca"><nav class="mn opm" aria-label="Menu"></nav>' +
-        '<a class="pic" href="' + HOME + '?piece=itaoca"><img class="turn" src="assets/turn/' + (phone ? 'itaoca-g8' : 'itaoca-g') + '/f000.webp' + V + '" width="1200" height="1200" alt="Itaoca, the top-handle bag, turning" fetchpriority="high"></a>' +
+        '<a class="pic" href="' + HOME + '?piece=itaoca"><img src="assets/shop/img/itaoca_cut.webp' + V + '" width="968" height="868" alt="Itaoca, the top-handle bag" fetchpriority="high"></a>' +
         '<div class="tx"><p class="k">Chapter I</p><h2>Itaoca</h2><p class="ty">Top-handle bag</p>' +
         '<p class="d">Black calfskin, the PÖ pressed into the flap, a rolled handle and the house disc in brass. Inside, cream suede.</p>' +
         '<p class="pr">' + E(byId.itaoca.price || '') + '</p>' +
         '<div class="ac"><a class="b1" href="' + E(byId.itaoca.href) + '">Pre-order</a><a class="b2" href="' + HOME + '?piece=itaoca">Discover</a></div></div></section>' : '') +
-      '<section class="gifts" id="gifts"><a class="gb" href="#gifts-list"><img src="assets/shop/img/gift_box_open.webp' + V + '" srcset="assets/shop/1200/gift_box_open.webp' + V + ' 800w, assets/shop/img/gift_box_open.webp' + V + ' 1000w" sizes="(max-width: 820px) 100vw, 50vw" width="1000" height="1050" alt="The house box, open: black, the cream tissue, the brass Ö" loading="lazy">' +
-        '<span class="gt"><span class="k">Chapter I</span><span class="h">Gifts</span><span class="s">Every piece arrives in the house box: black, the cream band and the brass Ö.</span></span></a><ul class="grid" id="gifts-list">' + GIFTS.map(function (id) { return byId[id]; }).filter(Boolean).map(tile).join('') + '</ul></section>' +
+      '<section class="gifts" id="gifts"><div class="gt"><span class="k">Chapter I</span><span class="h">Gifts</span><span class="s">Every piece arrives in the house box: black, the cream band and the brass Ö.</span></div>' +
+        '<div class="g2"><a class="dl" href="' + HOME + '?gift=her"><img src="assets/shop/img/gift_her.webp' + V + '" width="960" height="1100" alt="The house box, open" loading="lazy"><span class="lb">For her</span></a>' +
+        '<a class="dl" href="' + HOME + '?gift=him"><img src="assets/shop/img/gift_him.webp' + V + '" width="960" height="1100" alt="The house bag and box" loading="lazy"><span class="lb">For him</span></a></div>' +
+        '<ul class="grid" id="gifts-list">' + GIFTS.map(function (id) { return byId[id]; }).filter(Boolean).map(tile).join('') + '</ul></section>' +
       '<ul class="grid">' + C.slice(0, 8).map(tile).join('') + '</ul>' +
       '<section class="dets">' + det(big, 'one', 'Itaoca') + '</section>' +
       '<ul class="grid">' + C.slice(8).map(function (x, k) { return tile(x, 9); }).join('') + '</ul>' +
@@ -75,10 +81,7 @@ var WALKAROUND_ENABLED = false;   // David, 18 Nov: "Sharp yes" - every piece wa
       if (om && src) om.innerHTML = src.innerHTML;
       var go = function () { if (!om) return; var k = Math.min(1, Math.max(0, scrollY / (op.offsetHeight * 0.45))); om.style.transform = 'translateX(' + (-110 * k) + '%)'; om.style.opacity = String(1 - k); };
       addEventListener('scroll', go, { passive: true }); go();
-      // the turn: Itaoca's 72 views, cut onto the green, once all are in
-      var im = op && op.querySelector('img.turn'); if (!im) return; var dir = 'assets/turn/' + (phone ? 'itaoca-g8' : 'itaoca-g') + '/', F = [], n = 0, i = 0;
-      for (var k = 0; k < 72; k++) { var u = dir + 'f' + ('00' + k).slice(-3) + '.webp' + V; F.push(u); var pre = new Image(); pre.onload = pre.onerror = function () { if (++n === 72) start(); }; pre.src = u; }
-      function start() { setInterval(function () { var r = im.getBoundingClientRect(); if (r.bottom < 0 || document.hidden) return; i = (i + 1) % 72; im.src = F[i]; }, 90); }
+      // the 360 left (its edges did not come clean on the green): one front, still (David, 18 Nov)
     })();
     // the film: stay on it a second or two and the room dims and it plays; leave and it pauses, the room comes back
     (function () { var fm = app.querySelector('.fm'), fr = fm.querySelector('iframe'), sb = fm.querySelector('.snd'), t = null;
