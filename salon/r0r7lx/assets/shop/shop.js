@@ -5,7 +5,7 @@
 //   ./?piece=<id>           the piece: the walkaround first where it has one and is priced at WALKAROUND_MIN_USD or
 //                           more, then its pictures stacked on the left, the details sticky on the right
 var WALKAROUND_MIN_USD = 0;   // David, 18 Nov: "Walkaround needs to be ADDED" - every piece that has one
-var V = '?v=1118f';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
+var V = '?v=1118g';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
 var WALKAROUND_ENABLED = false;   // David, 18 Nov: "Sharp yes" - every piece walks around on its own sharp views, never the 144p world walk   // David, 18 Nov: "Walkaround comes back, it's too strong and worked on to throw away"
 (function () {
   var app = document.getElementById('app'); if (!app) return;
@@ -150,11 +150,17 @@ var WALKAROUND_ENABLED = false;   // David, 18 Nov: "Sharp yes" - every piece wa
     function stop() { if (timer) clearInterval(timer); timer = null; if (cur && cur._reset) cur._reset(); cur = null; }
     document.addEventListener('mouseover', function (e) { var a = e.target.closest('.tl .im[data-cy]'); if (a) play(a); else if (cur && !e.target.closest('.tl')) stop(); });
     document.addEventListener('mouseleave', stop);
+    // phones (David, 18 Nov): press and hold a piece and its pictures play; let go and they keep playing, until the next
+    // press and hold on another piece, or until it is scrolled away. A plain tap still opens the piece.
     if (matchMedia('(hover: none)').matches) {
-      var tick = function () { var best = null, d = 1e9, mid = innerHeight / 2;
-        [].forEach.call(document.querySelectorAll('.tl .im[data-cy]'), function (a) { var r = a.getBoundingClientRect(), c = Math.abs(r.top + r.height / 2 - mid); if (c < d && r.bottom > 0 && r.top < innerHeight) { d = c; best = a; } });
-        if (best && d < innerHeight * 0.25) play(best); else stop(); };
-      addEventListener('scroll', function () { clearTimeout(tick.t); tick.t = setTimeout(tick, 150); }, { passive: true });
+      var hold = null, held = false;
+      document.addEventListener('touchstart', function (e) { var a = e.target.closest('.tl .im[data-cy]'); if (!a) return; held = false;
+        clearTimeout(hold); hold = setTimeout(function () { held = true; play(a); }, 350); }, { passive: true });
+      document.addEventListener('touchmove', function () { clearTimeout(hold); }, { passive: true });
+      document.addEventListener('touchend', function () { clearTimeout(hold); }, { passive: true });
+      document.addEventListener('click', function (e) { if (held && e.target.closest('.tl .im')) { e.preventDefault(); held = false; } }, true);
+      document.addEventListener('contextmenu', function (e) { if (e.target.closest('.tl .im')) e.preventDefault(); });
+      addEventListener('scroll', function () { if (!cur) return; var r = cur.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) stop(); }, { passive: true });
     }
   })();
 })();
