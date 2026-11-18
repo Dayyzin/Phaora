@@ -52,7 +52,21 @@
       '<p class="fcol"><a href="' + HOME + '">The line</a><a href="/maison/rhztw6/house.html">The house</a><a href="https://www.phaora.com/">Register</a></p>' +
       '<p class="fcol"><a href="' + BASE + 'service.html#care">Care</a><a href="' + BASE + 'service.html#sizes">Measurements</a><a href="' + BASE + 'service.html#returns">Returns</a><a href="' + BASE + 'service.html#contact">Contact</a></p>' +
       '<p class="fcol"><a href="/maison/rhztw6/poem.html">The poem</a><a href="' + BASE + 'service.html#privacy">Privacy</a><a href="' + BASE + 'service.html#terms">Terms</a></p>' +
-    '</nav><p class="fline">PHAÖRA · Chapter I · MMXXVI</p>'; }
+    '</nav><form class="fsign" novalidate><p class="fsh">The register</p><p class="fst">News of the house, by email.</p>' +
+      '<div class="frow"><input type="email" name="email" placeholder="Email" autocomplete="email" aria-label="Email" required><button type="submit">Sign up</button></div>' +
+      '<input type="text" name="website" tabindex="-1" autocomplete="off" class="vh" aria-hidden="true"><p class="fmsg" aria-live="polite"></p></form>' +
+    '<p class="fline">PHAÖRA · Chapter I · MMXXVI</p>';
+    // the footer's sign-up (David, 18 Nov): the same register as the panel
+    var fs = ft.querySelector('.fsign'), fe = fs.querySelector('input[type=email]'), fm = fs.querySelector('.fmsg'), fb = fs.querySelector('button'), fh = fs.querySelector('input[name=website]'), fsend = false;
+    fs.addEventListener('submit', function (e) { e.preventDefault(); var v = fe.value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) { fm.textContent = 'An email address, please.'; return; } if (fsend) return;
+      if (!/(^|\.)phaora\.com$/.test(location.hostname)) { fm.textContent = 'This is the preview. Sign-ups are kept on phaora.com.'; return; }
+      fsend = true; fb.disabled = true; fm.textContent = '';
+      fetch('https://crm.phaora.com/api/public/waitlist', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: v, list: 'chapter-1', website: fh.value || '' }) })
+        .then(function (r) { return r.json().catch(function () { return null; }); })
+        .then(function (j) { fsend = false; if (j && j.ok) { ls.set(KEY, 'done'); fs.innerHTML = '<p class="fsh">Thank you.</p>'; return; } fb.disabled = false; fm.textContent = (j && j.error) || "That address didn't take. Try it once more."; },
+              function () { fsend = false; fb.disabled = false; fm.textContent = "The register didn't answer. Try it once more."; }); });
+  }
 
   // the sign-up panel: once per visitor, after about 8 s or half a screen of scrolling, never on the opening page's first
   // screen; never again after Close or a sign-up. The address goes to the register the site already has.
