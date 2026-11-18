@@ -5,7 +5,7 @@
 //   ./?piece=<id>           the piece: the walkaround first where it has one and is priced at WALKAROUND_MIN_USD or
 //                           more, then its pictures stacked on the left, the details sticky on the right
 var WALKAROUND_MIN_USD = 0;   // David, 18 Nov: "Walkaround needs to be ADDED" - every piece that has one
-var V = '?v=1118zs';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
+var V = '?v=1118zt';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
 var WALKAROUND_ENABLED = true;   // David, 18 Nov 14:39: "THE WALKAROUND STILL ISNT THERE" - the world walk on every piece that has one;   // David, 18 Nov: "Sharp yes" - every piece walks around on its own sharp views, never the 144p world walk   // David, 18 Nov: "Walkaround comes back, it's too strong and worked on to throw away"
 (function () {
   var app = document.getElementById('app'); if (!app) return;
@@ -79,7 +79,7 @@ var WALKAROUND_ENABLED = true;   // David, 18 Nov 14:39: "THE WALKAROUND STILL I
       '<ul class="grid">' + C.slice(12).map(tile).join('') + '</ul>' +
       '<section class="sh" aria-label="Voluta, the short, and the bags">' + (function () {   // the reel in a collage (David, 18 Nov): one big picture, the reel, four small
         var c = function (id, lab, cls) { var d = find(id, lab); return d ? '<a class="cl ' + (cls || '') + '" href="' + HOME + '?piece=' + id + '"><img src="' + E(d.v.src + V) + '" alt="' + E(d.p.name + ', ' + lab.toLowerCase()) + '" loading="lazy"></a>' : ''; };
-        return '<div class="rl"><a href="' + HOME + '?piece=voluta"><video src="assets/film/voluta-reel.mp4' + V + '" poster="assets/film/voluta-reel.jpg' + V + '" muted playsinline loop autoplay preload="metadata"></video><span class="lb">Voluta</span></a></div>' + c('voluta', 'The calfskin', 'big') + '<div class="q4">' + c('coema', 'The pressed row') + c('itaoca', 'The rolled handle') + c('coema', 'The couple on the suede') + c('itaoca', 'The clasp') + '</div>'; })() + '</section>' +
+        return '<div class="rl"><a href="' + HOME + '?piece=voluta"><video src="assets/film/voluta-reel.mp4' + V + '" poster="assets/film/voluta-reel.jpg' + V + '" muted playsinline loop autoplay preload="metadata"></video><span class="lb">Voluta</span></a></div>' + '<div class="q4">' + c('coema', 'The pressed row') + c('itaoca', 'The rolled handle') + c('coema', 'The couple on the suede') + c('itaoca', 'The clasp') + '</div>'; })() + '</section>' +
       '<section class="dets three">' + three.map(function (d) { return det(d[0], 'sq3', d[1], d[2]); }).join('') + '</section>' +
       '<section class="dets end">' + det(last, 'one', 'Knitwear', 'knit') + '</section>';
     // the opening (David, 18 Nov): the menu stays open down the left of it, and slides back out to the left as you scroll on
