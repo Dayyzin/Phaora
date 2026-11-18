@@ -4,7 +4,8 @@
 //   ./?cat=<category>       one category; ./?cat=accessories the accessories together
 //   ./?piece=<id>           the piece: the walkaround first where it has one and is priced at WALKAROUND_MIN_USD or
 //                           more, then its pictures stacked on the left, the details sticky on the right
-var WALKAROUND_MIN_USD = 3000;   // David, 18 Nov: final
+var WALKAROUND_MIN_USD = 3000;
+var V = '?v=1118b';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
 var WALKAROUND_ENABLED = true;   // David, 18 Nov: "Walkaround comes back, it's too strong and worked on to throw away"
 (function () {
   var app = document.getElementById('app'); if (!app) return;
@@ -16,8 +17,8 @@ var WALKAROUND_ENABLED = true;   // David, 18 Nov: "Walkaround comes back, it's 
   var sides = function (p) { return p.side === 'both' ? ['women', 'men'] : [p.side]; };
   // an image at its own size or smaller, never larger: srcset 1200 and the source's own width
   var img = function (v, alt, sizes, lazy, extra) {
-    var ss = v.s1200 ? ' srcset="' + E(v.s1200) + ' 1200w, ' + E(v.src) + ' ' + v.w + 'w" sizes="' + sizes + '"' : '';
-    return '<img src="' + E(v.src) + '"' + ss + ' width="' + v.w + '" height="' + v.h + '" alt="' + E(alt) + '"' +
+    var ss = v.s1200 ? ' srcset="' + E(v.s1200 + V) + ' 1200w, ' + E(v.src + V) + ' ' + v.w + 'w" sizes="' + sizes + '"' : '';
+    return '<img src="' + E(v.src + V) + '"' + ss + ' width="' + v.w + '" height="' + v.h + '" alt="' + E(alt) + '"' +
       (lazy ? ' loading="lazy"' : ' fetchpriority="high"') + ' decoding="async"' + (v.blend ? ' class="bl"' : '') + (extra || '') + ' style="max-width:min(100%,' + v.w + 'px);max-height:min(100%,' + v.h + 'px)">';
   };
   // a piece without a price (Lustre): one Request button, a letter to the house (David, 18 Nov)
@@ -26,13 +27,13 @@ var WALKAROUND_ENABLED = true;   // David, 18 Nov: "Walkaround comes back, it's 
     return '<a class="' + cls + '" href="' + E(p.href) + '">Pre-order</a>';
   };
   var tile = function (p, k) {
-    return '<li class="tl"><a class="im" data-cy="' + E(JSON.stringify(p.stack.filter(function (x) { return x.w >= 600 && / view$/i.test(x.label) && x.blend !== false; }).map(function (x) { return x.src; }))) + '" href="' + HOME + '?piece=' + encodeURIComponent(p.id) + '">' +
+    return '<li class="tl"><a class="im" data-cy="' + E(JSON.stringify(p.stack.filter(function (x) { return x.w >= 600 && / view$/i.test(x.label) && x.blend !== false; }).map(function (x) { return x.src + V; }))) + '" href="' + HOME + '?piece=' + encodeURIComponent(p.id) + '">' +
       img(p.tile, p.name + ', ' + p.type.toLowerCase(), '(max-width: 820px) 45vw, 20vw', k > 2) + '</a>' +
       '<div class="cap"><a href="' + HOME + '?piece=' + encodeURIComponent(p.id) + '"><span class="nm">' + E(p.name) + '</span>' +
       (p.price ? '<span class="pr">' + E(p.price) + '</span>' : '') + '</a>' +
       cta(p, 'btn ol') + '</div></li>';
   };
-  fetch('assets/shop/catalogue.json').then(function (r) { return r.json(); }).then(function (C) {
+  fetch('assets/shop/catalogue.json' + V).then(function (r) { return r.json(); }).then(function (C) {
     var byId = {}; C.forEach(function (p) { byId[p.id] = p; });
     var p = pid && byId[pid];
     if (p) return piecePage(p, C);
