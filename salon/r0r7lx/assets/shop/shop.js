@@ -5,7 +5,7 @@
 //   ./?piece=<id>           the piece: the walkaround first where it has one and is priced at WALKAROUND_MIN_USD or
 //                           more, then its pictures stacked on the left, the details sticky on the right
 var WALKAROUND_MIN_USD = 0;   // David, 18 Nov: "Walkaround needs to be ADDED" - every piece that has one
-var V = '?v=1118u';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
+var V = '?v=1118v';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
 var WALKAROUND_ENABLED = false;   // David, 18 Nov: "Sharp yes" - every piece walks around on its own sharp views, never the 144p world walk   // David, 18 Nov: "Walkaround comes back, it's too strong and worked on to throw away"
 (function () {
   var app = document.getElementById('app'); if (!app) return;
@@ -59,7 +59,7 @@ var WALKAROUND_ENABLED = false;   // David, 18 Nov: "Sharp yes" - every piece wa
     var phone = matchMedia('(max-width: 820px)').matches;
     app.innerHTML = '<h1 class="vh">Chapter I</h1>' +
       (byId.itaoca ? '<section class="op2" aria-label="Itaoca"><nav class="mn opm" aria-label="Menu"></nav>' +
-        '<a class="pic" href="' + HOME + '?piece=itaoca"><img src="assets/shop/img/itaoca_cut.webp' + V + '" width="968" height="868" alt="Itaoca, the top-handle bag" fetchpriority="high"></a>' +
+        '<a class="pic" href="' + HOME + '?piece=itaoca"><img src="assets/shop/img/itaoca_cut.webp' + V + '" width="1129" height="942" alt="Itaoca, the top-handle bag" fetchpriority="high"></a>' +
         '<div class="tx"><p class="k">Chapter I</p><h2>Itaoca</h2><p class="ty">Top-handle bag</p>' +
         '<p class="d">Black calfskin, the PÖ pressed into the flap, a rolled handle and the house disc in brass. Inside, cream suede.</p>' +
         '<p class="pr">' + E(byId.itaoca.price || '') + '</p>' +
