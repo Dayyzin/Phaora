@@ -601,7 +601,42 @@
    "e": "M is the block. S, L, XL and XXL follow when it is graded.",
    "sizes": "S · M · L · XL · XXL"
   },
-  "walkaround": ""
+  "walkaround": "",
+  "colours": [
+   {
+    "name": "Black and cream",
+    "sw": "linear-gradient(135deg,#111 50%,#efe6d4 50%)"
+   },
+   {
+    "name": "Cream",
+    "sw": "#efe6d4",
+    "stack": [
+     {
+      "src": "assets/shop/img/cantilena_cream_front.webp",
+      "w": 1276,
+      "h": 1250,
+      "s1200": "assets/shop/1200/cantilena_cream_front.webp",
+      "blend": false,
+      "label": "front view"
+     },
+     {
+      "src": "assets/shop/img/cantilena_cream_back.webp",
+      "w": 1272,
+      "h": 1249,
+      "s1200": "assets/shop/1200/cantilena_cream_back.webp",
+      "blend": false,
+      "label": "back view"
+     },
+     {
+      "src": "assets/pieces/cantilena/cream_detail.webp",
+      "w": 1600,
+      "h": 900,
+      "blend": false,
+      "label": "Cream on cream"
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "coaraci",

@@ -480,3 +480,11 @@ html,body{overflow-x:clip!important;overflow-y:visible}
 /* prices bold (David, 18 Nov) */
 .tl .pr,.cap .pr,.dt .pr,.op2 .pr{font-family:'Jost','DejaVu Sans',sans-serif!important;font-weight:600!important;letter-spacing:.04em!important;font-size:14px!important}
 .dt .pr,.op2 .pr{font-size:17px!important}
+/* colours (David, 18 Nov): a swatch per colour under the price; the pictures change with it */
+.cw{margin:16px 0 18px}
+.cwn{margin:0 0 8px;font:400 10px/1.4 'Jost','DejaVu Sans',sans-serif;letter-spacing:.18em;text-transform:uppercase}
+.cwn span{opacity:.7}
+.cws{display:flex;gap:10px}
+.cws .sw{width:26px;height:26px;border-radius:50%;border:1px solid rgba(20,22,27,.35);padding:0;cursor:pointer;outline-offset:3px}
+.cws .sw.on{outline:1px solid #14161b}
+.sts .st[hidden]{display:none!important}

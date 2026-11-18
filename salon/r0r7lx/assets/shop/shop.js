@@ -5,7 +5,7 @@
 //   ./?piece=<id>           the piece: the walkaround first where it has one and is priced at WALKAROUND_MIN_USD or
 //                           more, then its pictures stacked on the left, the details sticky on the right
 var WALKAROUND_MIN_USD = 0;   // David, 18 Nov: "Walkaround needs to be ADDED" - every piece that has one
-var V = '?v=1118zk';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
+var V = '?v=1118zl';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
 var WALKAROUND_ENABLED = true;   // David, 18 Nov 14:39: "THE WALKAROUND STILL ISNT THERE" - the world walk on every piece that has one;   // David, 18 Nov: "Sharp yes" - every piece walks around on its own sharp views, never the 144p world walk   // David, 18 Nov: "Walkaround comes back, it's too strong and worked on to throw away"
 (function () {
   var app = document.getElementById('app'); if (!app) return;
@@ -138,12 +138,16 @@ var WALKAROUND_ENABLED = true;   // David, 18 Nov 14:39: "THE WALKAROUND STILL I
       (!walk && views.length > 1 ? '<section class="vw" aria-label="' + E(p.name) + ', walk around">' + views.map(function (v, k) { return '<img class="' + (k ? '' : 'on') + '" src="' + E(v.src + V) + '" alt="' + E(p.name + ', ' + v.label) + '"' + (k ? ' loading="lazy"' : '') + '>'; }).join('') + '<p class="sc">' + E(p.name) + '</p></section>' : '') +
       (walk ? '<section class="wa" data-src="' + E(p.walkaround) + '" aria-label="' + E(p.name) + ', the walkaround"><div class="wa-in"><canvas aria-hidden="true"></canvas><div class="wn"></div><p class="wa-nm sc">' + E(p.name) + '</p></div></section>' : '') +
       '<article class="pc">' +
-        '<ul class="st">' + pics.map(function (v, k) {
-          var close = !/ view$/i.test(v.label);
-          return '<li' + (close ? ' class="cu"' : '') + '>' + img(v, p.name + ', ' + v.label, '(max-width: 820px) 100vw, 66vw', k > 0) + '</li>'; }).join('') + '</ul>' +
+        (function () {   // the pictures; a piece in more than one colour has one list per colour (David, 18 Nov: Cantilena in cream)
+          var list = function (L, ci) { return '<ul class="st"' + (ci ? ' data-c="' + ci + '" hidden' : ' data-c="0"') + '>' + L.map(function (v, k) {
+            var close = !/ view$/i.test(v.label);
+            return '<li' + (close ? ' class="cu"' : '') + '>' + img(v, p.name + ', ' + v.label, '(max-width: 820px) 100vw, 66vw', k > 0) + '</li>'; }).join('') + '</ul>'; };
+          return '<div class="sts">' + list(pics, 0) + (p.colours || []).slice(1).map(function (c, i) { return list(c.stack, i + 1); }).join('') + '</div>'; })() +
         '<div class="dt">' +
           '<h1>' + E(p.name) + '</h1>' +
           (p.price ? '<p class="pr">' + E(p.price) + '</p>' : '') +
+          (p.colours ? '<div class="cw"><p class="cwn sc">Colour: <span>' + E(p.colours[0].name) + '</span></p><div class="cws">' + p.colours.map(function (c, i) {
+            return '<button type="button" class="sw' + (i ? '' : ' on') + '" data-c="' + i + '" aria-label="' + E(c.name) + '" style="background:' + E(c.sw) + '"></button>'; }).join('') + '</div></div>' : '') +
           buy + rows +
         '</div>' +
       '</article>' +
@@ -153,6 +157,10 @@ var WALKAROUND_ENABLED = true;   // David, 18 Nov 14:39: "THE WALKAROUND STILL I
     // the folding rows: one open at a time, closed by default
     (function () { var m = app.querySelector('.mlmn'), src = document.querySelector('.wrap>.mn'); if (m && src) m.innerHTML = src.innerHTML; })();
     app.addEventListener('click', function (e) {
+      var w = e.target.closest('.cws .sw'); if (w) { var ci = w.getAttribute('data-c');
+        [].forEach.call(app.querySelectorAll('.sts .st'), function (u) { u.hidden = u.getAttribute('data-c') !== ci; });
+        [].forEach.call(app.querySelectorAll('.cws .sw'), function (b) { b.classList.toggle('on', b === w); });
+        app.querySelector('.cwn span').textContent = w.getAttribute('aria-label'); return; }
       var b = e.target.closest('.fd > button'); if (!b) return;
       var open = b.getAttribute('aria-expanded') !== 'true';
       [].forEach.call(app.querySelectorAll('.fd > button'), function (x) {
