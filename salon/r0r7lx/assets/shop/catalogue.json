@@ -22,7 +22,7 @@
     "src": "assets/shop/img/pieces__gelosia__00.webp",
     "w": 658,
     "h": 1261,
-    "blend": true,
+    "blend": false,
     "label": "front view"
    },
    {
@@ -95,14 +95,14 @@
    "src": "assets/shop/img/oitava_2k.webp",
    "w": 1536,
    "h": 2048,
-   "blend": true
+   "blend": false
   },
   "stack": [
    {
     "src": "assets/shop/img/oitava_2k.webp",
     "w": 1536,
     "h": 2048,
-    "blend": true,
+    "blend": false,
     "s1200": "assets/shop/1200/oitava_2k.webp",
     "label": "front view"
    },
@@ -154,7 +154,7 @@
     "src": "assets/shop/img/pieces__odara__00.webp",
     "w": 1342,
     "h": 1380,
-    "blend": true,
+    "blend": false,
     "s1200": "assets/shop/1200/shop__img__pieces__odara__00.webp",
     "label": "front view"
    },
@@ -162,14 +162,14 @@
     "src": "assets/shop/img/pieces__odara__01.webp",
     "w": 1283,
     "h": 1392,
-    "blend": true,
+    "blend": false,
     "label": "three quarter view"
    },
    {
     "src": "assets/shop/img/pieces__odara__02.webp",
     "w": 1332,
     "h": 1383,
-    "blend": true,
+    "blend": false,
     "s1200": "assets/shop/1200/shop__img__pieces__odara__02.webp",
     "label": "back view"
    },
@@ -177,7 +177,7 @@
     "src": "assets/shop/img/pieces__odara__03.webp",
     "w": 846,
     "h": 818,
-    "blend": true,
+    "blend": false,
     "label": "open view"
    }
   ],
@@ -221,21 +221,21 @@
     "src": "assets/shop/img/pieces__itaoca__00.webp",
     "w": 1236,
     "h": 1030,
-    "blend": true,
+    "blend": false,
     "label": "front view"
    },
    {
     "src": "assets/shop/img/pieces__itaoca__01.webp",
     "w": 1122,
     "h": 1030,
-    "blend": true,
+    "blend": false,
     "label": "three quarter view"
    },
    {
     "src": "assets/shop/img/pieces__itaoca__02.webp",
     "w": 1110,
     "h": 1110,
-    "blend": true,
+    "blend": false,
     "label": "open view"
    },
    {
@@ -296,14 +296,14 @@
     "src": "assets/shop/img/pieces__coema__00.webp",
     "w": 1267,
     "h": 1021,
-    "blend": true,
+    "blend": false,
     "label": "front view"
    },
    {
     "src": "assets/shop/img/pieces__coema__01.webp",
     "w": 960,
     "h": 900,
-    "blend": true,
+    "blend": false,
     "label": "open view"
    },
    {
@@ -364,7 +364,7 @@
     "src": "assets/shop/img/pieces__voluta__00.webp",
     "w": 1521,
     "h": 1898,
-    "blend": true,
+    "blend": false,
     "s1200": "assets/shop/1200/shop__img__pieces__voluta__00.webp",
     "label": "front view"
    },
@@ -372,7 +372,7 @@
     "src": "assets/shop/img/pieces__voluta__01.webp",
     "w": 968,
     "h": 1336,
-    "blend": true,
+    "blend": false,
     "label": "three quarter view"
    },
    {
@@ -418,7 +418,7 @@
     "src": "assets/shop/img/pieces__ritornelo__00.webp",
     "w": 1375,
     "h": 1164,
-    "blend": true,
+    "blend": false,
     "s1200": "assets/shop/1200/shop__img__pieces__ritornelo__00.webp",
     "label": "front view"
    },
@@ -529,7 +529,7 @@
     "src": "assets/shop/img/pieces__cantilena__00.webp",
     "w": 1305,
     "h": 1301,
-    "blend": true,
+    "blend": false,
     "s1200": "assets/shop/1200/shop__img__pieces__cantilena__00.webp",
     "label": "front view"
    },
@@ -537,7 +537,7 @@
     "src": "assets/shop/img/pieces__cantilena__01.webp",
     "w": 1573,
     "h": 2029,
-    "blend": true,
+    "blend": false,
     "s1200": "assets/shop/1200/shop__img__pieces__cantilena__01.webp",
     "label": "back view"
    },
@@ -631,7 +631,7 @@
    "src": "assets/shop/img/pieces__coaraci__00.webp",
    "w": 1375,
    "h": 742,
-   "blend": true,
+   "blend": false,
    "s1200": "assets/shop/1200/shop__img__pieces__coaraci__00.webp"
   },
   "stack": [
@@ -639,7 +639,7 @@
     "src": "assets/shop/img/pieces__coaraci__00.webp",
     "w": 1375,
     "h": 742,
-    "blend": true,
+    "blend": false,
     "s1200": "assets/shop/1200/shop__img__pieces__coaraci__00.webp",
     "label": "front view"
    },
@@ -647,7 +647,7 @@
     "src": "assets/shop/img/pieces__coaraci__01.webp",
     "w": 1549,
     "h": 1084,
-    "blend": true,
+    "blend": false,
     "s1200": "assets/shop/1200/shop__img__pieces__coaraci__01.webp",
     "label": "straight view"
    },
@@ -693,7 +693,7 @@
     "src": "assets/shop/img/pieces__ofusca__00.webp",
     "w": 1309,
     "h": 638,
-    "blend": true,
+    "blend": false,
     "s1200": "assets/shop/1200/shop__img__pieces__ofusca__00.webp",
     "label": "front view"
    },
@@ -701,7 +701,7 @@
     "src": "assets/shop/img/pieces__ofusca__01.webp",
     "w": 1467,
     "h": 596,
-    "blend": true,
+    "blend": false,
     "s1200": "assets/shop/1200/shop__img__pieces__ofusca__01.webp",
     "label": "flat view"
    },
@@ -762,7 +762,7 @@
     "src": "assets/shop/img/pieces__heliodora__00.webp",
     "w": 1116,
     "h": 1136,
-    "blend": true,
+    "blend": false,
     "label": "front view"
    },
    {
@@ -877,7 +877,7 @@
     "src": "assets/shop/img/pieces__cordel__00.webp",
     "w": 1597,
     "h": 1335,
-    "blend": true,
+    "blend": false,
     "s1200": "assets/shop/1200/shop__img__pieces__cordel__00.webp",
     "label": "front view"
    },
@@ -924,14 +924,14 @@
    "src": "assets/shop/img/carbonado_2k.webp",
    "w": 1536,
    "h": 2048,
-   "blend": true
+   "blend": false
   },
   "stack": [
    {
     "src": "assets/shop/img/carbonado_2k.webp",
     "w": 1536,
     "h": 2048,
-    "blend": true,
+    "blend": false,
     "s1200": "assets/shop/1200/carbonado_2k.webp",
     "label": "front view"
    }
@@ -989,7 +989,7 @@
     "src": "assets/shop/img/pieces__obolo__00.webp",
     "w": 1600,
     "h": 744,
-    "blend": true,
+    "blend": false,
     "s1200": "assets/shop/1200/shop__img__pieces__obolo__00.webp",
     "label": "front view"
    },
@@ -997,7 +997,7 @@
     "src": "assets/shop/img/pieces__obolo__01.webp",
     "w": 1383,
     "h": 578,
-    "blend": true,
+    "blend": false,
     "s1200": "assets/shop/1200/shop__img__pieces__obolo__01.webp",
     "label": "back view"
    },
@@ -1045,14 +1045,14 @@
    "src": "assets/shop/img/lustre_2k.webp",
    "w": 1536,
    "h": 2048,
-   "blend": true
+   "blend": false
   },
   "stack": [
    {
     "src": "assets/shop/img/lustre_2k.webp",
     "w": 1536,
     "h": 2048,
-    "blend": true,
+    "blend": false,
     "s1200": "assets/shop/1200/lustre_2k.webp",
     "label": "front view"
    }
