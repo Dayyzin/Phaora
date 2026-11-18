@@ -50,7 +50,12 @@ var WALKAROUND_ENABLED = true;   // David, 18 Nov: "Walkaround comes back, it's 
     var three = [find('gelosia', 'A button and the belt'), find('coema', 'The charm'), find('cantilena', 'The brass eyelet and tip')];
     var phone = matchMedia('(max-width: 820px)').matches;
     app.innerHTML = '<h1 class="vh">Chapter I</h1>' +
-      '<section class="op" aria-label="Itaoca"><a href="' + HOME + '?piece=itaoca"><img class="tn" alt="Itaoca, turning" src="assets/turn/itaoca/f000.webp" width="1200" height="1200"></a><p class="sc">Itaoca</p></section>' +
+      (byId.itaoca ? '<section class="op2" aria-label="Itaoca">' +
+        '<a class="pic" href="' + HOME + '?piece=itaoca"><img src="assets/shop/img/itaoca_cut.webp" width="968" height="866" alt="Itaoca, the top-handle bag" fetchpriority="high"></a>' +
+        '<div class="tx"><p class="k">Chapter I</p><h2>Itaoca</h2><p class="ty">Top-handle bag</p>' +
+        '<p class="d">Black calfskin, the PÖ pressed into the flap, a rolled handle and the house disc in brass. Inside, cream suede.</p>' +
+        '<p class="pr">' + E(byId.itaoca.price || '') + '</p>' +
+        '<div class="ac"><a class="b1" href="' + E(byId.itaoca.href) + '">Pre-order</a><a class="b2" href="' + HOME + '?piece=itaoca">Discover</a></div></div></section>' : '') +
       '<section class="gifts" id="gifts"><h2 class="sc">Gifts</h2><ul class="grid">' + GIFTS.map(function (id) { return byId[id]; }).filter(Boolean).map(tile).join('') + '</ul></section>' +
       '<ul class="grid">' + C.slice(0, 8).map(tile).join('') + '</ul>' +
       '<section class="dets">' + det(big, 'one') + '</section>' +
@@ -58,10 +63,6 @@ var WALKAROUND_ENABLED = true;   // David, 18 Nov: "Walkaround comes back, it's 
       '<section class="fm" aria-label="The film"><video playsinline preload="none" src="assets/film/' + (phone ? 'film-phone.mp4' : 'film-desktop.mp4') + '"></video>' +
         '<button class="snd sc" type="button" aria-pressed="false">Sound</button></section>' +
       '<section class="dets three">' + three.map(function (d) { return det(d, 'sq3'); }).join('') + '</section>';
-    // the 360: Itaoca turns, slowly, a frame every 90 ms
-    (function () { var tn = app.querySelector('.op .tn'), F = [], i = 0;
-      for (var k = 0; k < 72; k++) { var im = new Image(); im.src = 'assets/turn/itaoca/f' + ('00' + k).slice(-3) + '.webp'; F.push(im); }
-      setInterval(function () { i = (i + 1) % 72; if (F[i].complete) tn.src = F[i].src; }, 90); })();
     // the film: stay on it a second or two and the room dims and it plays; leave and it pauses, the room comes back
     (function () { var fm = app.querySelector('.fm'), v = fm.querySelector('video'), sb = fm.querySelector('.snd'), t = null;
       v.muted = true;
