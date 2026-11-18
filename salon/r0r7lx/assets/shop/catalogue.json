@@ -1073,12 +1073,29 @@
   "price": "",
   "href": "",
   "tile": {
-   "src": "assets/shop/img/lustre_2k.webp",
+   "src": "assets/shop/img/lustre_head.webp",
    "w": 1536,
    "h": 2048,
-   "blend": false
+   "blend": false,
+   "s1200": "assets/shop/1200/lustre_head.webp"
   },
   "stack": [
+   {
+    "src": "assets/shop/img/lustre_head.webp",
+    "w": 1536,
+    "h": 2048,
+    "s1200": "assets/shop/1200/lustre_head.webp",
+    "blend": false,
+    "label": "worn view"
+   },
+   {
+    "src": "assets/shop/img/lustre_head_close.webp",
+    "w": 1536,
+    "h": 2048,
+    "s1200": "assets/shop/1200/lustre_head_close.webp",
+    "blend": false,
+    "label": "worn, close"
+   },
    {
     "src": "assets/shop/img/lustre_2k.webp",
     "w": 1536,
