@@ -8,7 +8,7 @@
     },
     {
       "source": "/salon/r0r7lx/poem.html",
-      "destination": "/salon/r0r7lx/poem",
+      "destination": "/salon/r0r7lx/film.html",
       "permanent": false
     },
     {
@@ -90,7 +90,7 @@
   "rewrites": [
     {
       "source": "/salon/r0r7lx/poem",
-      "destination": "/salon/r0r7lx/poem.html"
+      "destination": "/salon/r0r7lx/film.html"
     },
     {
       "source": "/blog",
