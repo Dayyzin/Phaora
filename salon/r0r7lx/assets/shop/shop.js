@@ -20,12 +20,17 @@ var WALKAROUND_ENABLED = true;   // David, 18 Nov: "Walkaround comes back, it's 
     return '<img src="' + E(v.src) + '"' + ss + ' width="' + v.w + '" height="' + v.h + '" alt="' + E(alt) + '"' +
       (lazy ? ' loading="lazy"' : ' fetchpriority="high"') + ' decoding="async"' + (v.blend ? ' class="bl"' : '') + (extra || '') + ' style="max-width:min(100%,' + v.w + 'px);max-height:min(100%,' + v.h + 'px)">';
   };
+  // a piece without a price (Lustre): one Request button, a letter to the house (David, 18 Nov)
+  var cta = function (p, cls) {
+    if (!p.price) return '<a class="' + cls + '" href="mailto:hello@phaora.com?subject=' + encodeURIComponent('Request: ' + p.name) + '">Request</a>';
+    return '<a class="' + cls + '" href="' + E(p.href) + '">Pre-order</a>';
+  };
   var tile = function (p, k) {
     return '<li class="tl"><a class="im" data-cy="' + E(JSON.stringify(p.stack.filter(function (x) { return x.w >= 600 && / view$/i.test(x.label) && x.blend !== false; }).map(function (x) { return x.src; }))) + '" href="' + HOME + '?piece=' + encodeURIComponent(p.id) + '">' +
       img(p.tile, p.name + ', ' + p.type.toLowerCase(), '(max-width: 820px) 45vw, 20vw', k > 2) + '</a>' +
       '<div class="cap"><a href="' + HOME + '?piece=' + encodeURIComponent(p.id) + '"><span class="nm">' + E(p.name) + '</span>' +
       (p.price ? '<span class="pr">' + E(p.price) + '</span>' : '') + '</a>' +
-      '<a class="btn ol" href="' + E(p.href) + '">Pre-order</a></div></li>';
+      cta(p, 'btn ol') + '</div></li>';
   };
   fetch('assets/shop/catalogue.json').then(function (r) { return r.json(); }).then(function (C) {
     var byId = {}; C.forEach(function (p) { byId[p.id] = p; });
@@ -88,7 +93,7 @@ var WALKAROUND_ENABLED = true;   // David, 18 Nov: "Walkaround comes back, it's 
     var paid = /buy\.stripe\.com/.test(p.href || '');
     var APPLE = '<svg viewBox="0 0 17 20" width="15" height="18" aria-hidden="true"><path fill="currentColor" d="M14.1 10.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9-.7 0-1.8-.9-3-.8C4.6 5.4 3.1 6.3 2.3 7.8c-1.7 2.9-.4 7.2 1.2 9.6.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.1.8 1.3 0 2.1-1.2 2.9-2.3.9-1.3 1.3-2.6 1.3-2.7 0 0-2.6-1-2.8-4.2zM11.8 3.8c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1 .1 2.1-.5 2.7-1.3z"/></svg>';
     var buy = (paid ? '<a class="btn ap" href="' + E(p.href) + '" aria-label="Pre-order with Apple Pay">' + APPLE + '<span>Pay</span></a>' : '') +
-      '<a class="btn" href="' + E(p.href) + '">Pre-order</a>' +
+      cta(p, 'btn') +
       (paid ? '<p class="tc">Pre-order: made to order. We email your delivery date once production is confirmed. Cancel for a full refund before production starts.</p>' : '');
     var care = p.details.Care ? '<p>' + E(p.details.Care) + '</p>' : '';
     var fit = p.fit ? '<p class="sz sc">' + E(p.fit.sizes) + '</p>' + p.fit.p.map(function (x) { return '<p>' + E(x) + '</p>'; }).join('') +
