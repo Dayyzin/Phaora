@@ -1,0 +1,25 @@
+{
+ "vertices": 12949,
+ "triangles": 24000,
+ "index": "u16",
+ "bounds": [
+  [
+   -0.388,
+   0.902,
+   -0.0874
+  ],
+  [
+   0.388,
+   1.6111,
+   0.1177
+  ]
+ ],
+ "key_share": 0.5932,
+ "ext": 1.8,
+ "hull": {
+  "vertices": 750,
+  "triangles": 1496,
+  "index": "u16"
+ },
+ "source": "tee-realism/renders/muse_front/web/muse_tee_settled.glb (e84a93a3), decimated by shadow_study.py"
+}

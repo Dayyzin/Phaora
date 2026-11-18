@@ -1,0 +1,18 @@
+{
+ "vertices": 8018,
+ "triangles": 14484,
+ "index": "u16",
+ "bounds": [
+  [
+   -0.29440000653266907,
+   0.9624000191688538,
+   -0.13500000536441803
+  ],
+  [
+   0.2897999882698059,
+   1.4500000476837158,
+   0.13500000536441803
+  ]
+ ],
+ "source": "assets/room/opera_gloves.webp silhouette, a soft volume (build_room.py)"
+}
