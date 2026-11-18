@@ -5,7 +5,7 @@
 //   ./?piece=<id>           the piece: the walkaround first where it has one and is priced at WALKAROUND_MIN_USD or
 //                           more, then its pictures stacked on the left, the details sticky on the right
 var WALKAROUND_MIN_USD = 0;   // David, 18 Nov: "Walkaround needs to be ADDED" - every piece that has one
-var V = '?v=1118x';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
+var V = '?v=1118y';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
 var WALKAROUND_ENABLED = false;   // David, 18 Nov: "Sharp yes" - every piece walks around on its own sharp views, never the 144p world walk   // David, 18 Nov: "Walkaround comes back, it's too strong and worked on to throw away"
 (function () {
   var app = document.getElementById('app'); if (!app) return;
@@ -27,7 +27,7 @@ var WALKAROUND_ENABLED = false;   // David, 18 Nov: "Sharp yes" - every piece wa
     return '<a class="' + cls + '" href="' + E(p.href) + '">Pre-order</a>';
   };
   var tile = function (p, k) {
-    return '<li class="tl"><a class="im" data-cy="' + E(JSON.stringify(p.stack.filter(function (x) { return x.w >= 600 && / view$/i.test(x.label) && x.blend !== false; }).map(function (x) { return x.src + V; }))) + '" href="' + HOME + '?piece=' + encodeURIComponent(p.id) + '">' +
+    return '<li class="tl"><a class="tn2" href="' + HOME + '?piece=' + encodeURIComponent(p.id) + '">' + E(p.name) + '</a><a class="im" data-cy="' + E(JSON.stringify(p.stack.filter(function (x) { return x.w >= 600 && / view$/i.test(x.label) && x.blend !== false; }).map(function (x) { return x.src + V; }))) + '" href="' + HOME + '?piece=' + encodeURIComponent(p.id) + '">' +
       img(p.tile, p.name + ', ' + p.type.toLowerCase(), '(max-width: 820px) 45vw, 20vw', k > 2) + '</a>' +
       '<div class="cap"><a href="' + HOME + '?piece=' + encodeURIComponent(p.id) + '"><span class="nm">' + E(p.name) + '</span>' +
       (p.price ? '<span class="pr">' + E(p.price) + '</span>' : '') + '</a>' +
@@ -69,7 +69,9 @@ var WALKAROUND_ENABLED = false;   // David, 18 Nov: "Sharp yes" - every piece wa
         '<a class="dl" href="' + HOME + '?gift=him"><img src="assets/shop/img/gift_him.webp' + V + '" width="960" height="1100" alt="The house bag and box" loading="lazy"><span class="lb">For him</span></a></div>' +
         '<ul class="grid" id="gifts-list">' + GIFTS.map(function (id) { return byId[id]; }).filter(Boolean).map(tile).join('') + '</ul></section>' +
       '<ul class="grid">' + C.slice(0, 8).map(tile).join('') + '</ul>' +
-      '<section class="dets">' + det(big, 'one', 'Itaoca') + '</section>' +
+      '<section class="strip" aria-label="Itaoca">' + (function () {   // the bag whole between two of its details (David, 18 Nov)
+        var c = function (lab, cls) { var d = find('itaoca', lab); return d ? '<a class="cl ' + (cls || '') + '" href="' + HOME + '?piece=itaoca"><img src="' + E(d.v.src + V) + '" alt="Itaoca, ' + E(lab.toLowerCase()) + '" loading="lazy"></a>' : ''; };
+        return c('The PÖ on the flap') + c('three quarter view', 'whole') + c('The clasp') + '<span class="lb">Itaoca</span>'; })() + '</section>' +
       '<ul class="grid">' + C.slice(8, 12).map(tile).join('') + '</ul>' +
       '<section class="fm" aria-label="The film"><iframe src="film.html?embed=1&baked=1" title="A seat is kept for you, the film" loading="lazy" tabindex="-1"></iframe>' +
         '<button class="snd sc" type="button" aria-pressed="false">Sound</button></section>' +
