@@ -641,3 +641,12 @@ body.lights::after{background:#fff;opacity:.85!important;transition:opacity 1.4s
 .also .btn.po{display:inline-block!important;width:auto!important;margin-top:8px!important;padding:7px 12px!important;font-size:8px!important;font-weight:500!important;letter-spacing:.16em!important;white-space:nowrap;text-align:left}
 .also .tl .cap{padding-left:0!important;padding-right:0!important}
 @media (min-width:821px){.also .btn.po{padding:12px 26px!important;font-size:10px!important;letter-spacing:.2em!important;margin-top:12px!important}}
+/* zoom: hover magnifies under the pointer; click opens the picture full screen at its own size */
+.pc .st li{overflow:hidden}
+.pc .st li img{transition:transform .25s ease}
+.pc .st li img.zm-on{transform:scale(2.2)}
+.zm{position:fixed;inset:0;z-index:60;background:#f1f0ee}
+.zm .zw{position:absolute;inset:0;overflow:auto;-webkit-overflow-scrolling:touch;cursor:zoom-out}
+.zm .zw img{display:block;width:auto;height:auto;min-width:100%;max-width:none;max-height:none}
+@media (max-width:820px){.zm .zw img{width:250%;min-width:0}}
+.zm .zx{position:fixed;z-index:61;top:14px;right:16px;padding:8px 0;border:0;border-bottom:1px solid currentColor;background:none;cursor:pointer;font:500 10px/1 'Jost','DejaVu Sans',sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#14161b}

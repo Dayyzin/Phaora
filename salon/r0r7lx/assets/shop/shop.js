@@ -5,7 +5,7 @@
 //   ./?piece=<id>           the piece: the walkaround first where it has one and is priced at WALKAROUND_MIN_USD or
 //                           more, then its pictures stacked on the left, the details sticky on the right
 var WALKAROUND_MIN_USD = 0;   // David, 18 Nov: "Walkaround needs to be ADDED" - every piece that has one
-var V = '?v=1119v';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
+var V = '?v=1119w';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
 var WALKAROUND_ENABLED = true;   // David, 18 Nov 14:39: "THE WALKAROUND STILL ISNT THERE" - the world walk on every piece that has one;   // David, 18 Nov: "Sharp yes" - every piece walks around on its own sharp views, never the 144p world walk   // David, 18 Nov: "Walkaround comes back, it's too strong and worked on to throw away"
 (function () {
   var app = document.getElementById('app'); if (!app) return;
@@ -161,6 +161,28 @@ var WALKAROUND_ENABLED = true;   // David, 18 Nov 14:39: "THE WALKAROUND STILL I
       '<div class="bar">' + '<span class="pr">' + E(p.price || '') + '</span>' + buy + '</div>';
     document.body.classList.add('has-bar');
     // the folding rows: one open at a time, closed by default
+    // zoom (David, 18 Nov, as gucci.com): on a desk, hover a picture and it magnifies under the pointer at full resolution;
+    // click (or tap) and it opens full screen at its own size, to pan across the grain and the stitches
+    (function () {
+      var hov = matchMedia('(hover: hover)').matches;
+      app.querySelectorAll('.pc .st li img').forEach(function (im) {
+        var full = im.getAttribute('src'); im.style.cursor = 'zoom-in';
+        if (hov) {
+          im.addEventListener('mouseenter', function () { im.removeAttribute('srcset'); im.src = full; im.classList.add('zm-on'); });
+          im.addEventListener('mousemove', function (e) { var r = im.getBoundingClientRect(); im.style.transformOrigin = ((e.clientX - r.left) / r.width * 100) + '% ' + ((e.clientY - r.top) / r.height * 100) + '%'; });
+          im.addEventListener('mouseleave', function () { im.classList.remove('zm-on'); });
+        }
+        im.addEventListener('click', function () {
+          var o = document.createElement('div'); o.className = 'zm'; o.innerHTML = '<button type="button" class="zx" aria-label="Close">Close</button><div class="zw"><img alt=""></div>';
+          var z = o.querySelector('img'); z.src = full; z.alt = im.alt; document.body.appendChild(o); document.documentElement.classList.add('lock');
+          var close = function () { o.remove(); document.documentElement.classList.remove('lock'); };
+          o.querySelector('.zx').addEventListener('click', close);
+          addEventListener('keydown', function k(e) { if (e.key === 'Escape') { close(); removeEventListener('keydown', k); } });
+          z.addEventListener('load', function () { var w = o.querySelector('.zw'); w.scrollLeft = (w.scrollWidth - w.clientWidth) / 2; w.scrollTop = (w.scrollHeight - w.clientHeight) / 2; });
+          if (hov) o.querySelector('.zw').addEventListener('mousemove', function (e) { var w = this; w.scrollLeft = (w.scrollWidth - w.clientWidth) * e.clientX / innerWidth; w.scrollTop = (w.scrollHeight - w.clientHeight) * e.clientY / innerHeight; });
+        });
+      });
+    })();
     (function () { var m = app.querySelector('.mlmn'), src = document.querySelector('.wrap>.mn'); if (m && src) m.innerHTML = src.innerHTML; })();
     app.addEventListener('click', function (e) {
       var w = e.target.closest('.cws .sw'); if (w) { var ci = w.getAttribute('data-c');
