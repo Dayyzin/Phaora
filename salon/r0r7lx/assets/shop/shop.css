@@ -457,3 +457,8 @@ html,body{overflow-x:clip!important;overflow-y:visible}
 /* prices readable everywhere (David, 18 Nov): the ink, not grey, a touch larger */
 .tl .pr,.cap .pr,.dt .pr,.op2 .pr{color:var(--ink)!important;opacity:1!important;font-size:15px;font-weight:500}
 .op2 .pr{color:#efe9de!important}
+/* You may also like on top of its pieces, left-aligned; the menu starts level with it (David, 18 Nov) */
+.ml .mlside{padding:64px 0 40px 44px!important}
+.ml .mlmain h2{text-align:left!important;padding:56px 24px 22px!important;font-size:30px!important}
+.ml .mlmn{padding-top:0!important}
+@media (max-width:820px){.ml .mlmain h2{text-align:center!important;padding:36px 12px 16px!important;font-size:24px!important}}
