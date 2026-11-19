@@ -687,3 +687,5 @@ body.lights::after{background:#fff;opacity:.85!important;transition:opacity 1.4s
   .ml .also{grid-template-columns:1fr!important}
   .ml .mlmain h2{text-align:left!important;padding:22px 12px 12px 0!important;font-size:15px!important}
 }
+/* the header follows the page as it scrolls (David, 19 Nov) */
+.hd{position:sticky!important;top:0}
