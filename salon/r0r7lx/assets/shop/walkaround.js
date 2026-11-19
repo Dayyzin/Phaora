@@ -7,7 +7,7 @@ window.SalonWalkaround = function (sec) {
   var E = function (t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
   var WD = null, WS = null, kind = '', imgs = [], f = 0, raf = 0;
   function pick() {
-    if (!WD) return; var k = innerWidth / innerHeight < 1 && !(WD.desk.src_half && WD.phone && WD.phone.w < 400) ? 'phone' : 'desk'; sec.classList.toggle('capt', innerWidth / innerHeight < 1 && k === 'desk'); if (k === kind) return;   // a 2K walk plays its sharp frames on a phone too, until its own portrait frames exist
+    if (!WD) return; var k = innerWidth / innerHeight < 1 && !(WD.desk.src_half && WD.phone && WD.phone.w < 400) ? 'phone' : 'desk'; sec.classList.toggle('capt', innerWidth / innerHeight < 1);   // phones: every line as a caption on a dark foot, readable over any detail (David, 19 Nov) if (k === kind) return;   // a 2K walk plays its sharp frames on a phone too, until its own portrait frames exist
     kind = k; WS = WD[k];
     var L = WS.src_half && innerWidth * (devicePixelRatio || 1) < 1800 ? WS.src_half : WS.src;   // the 2K walk: half size on smaller screens
     imgs = L.map(function (src, i) { var im = new Image(); im.decoding = 'async'; im.src = src; im.onload = function () { if (i === Math.round(f)) draw(i); }; return im; });
