@@ -5,7 +5,7 @@
 //   ./?piece=<id>           the piece: the walkaround first where it has one and is priced at WALKAROUND_MIN_USD or
 //                           more, then its pictures stacked on the left, the details sticky on the right
 var WALKAROUND_MIN_USD = 0;   // David, 18 Nov: "Walkaround needs to be ADDED" - every piece that has one
-var V = '?v=1121c';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
+var V = '?v=1121d';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
 var WALKAROUND_ENABLED = true;   // David, 18 Nov 14:39: "THE WALKAROUND STILL ISNT THERE" - the world walk on every piece that has one;   // David, 18 Nov: "Sharp yes" - every piece walks around on its own sharp views, never the 144p world walk   // David, 18 Nov: "Walkaround comes back, it's too strong and worked on to throw away"
 (function () {
   var app = document.getElementById('app'); if (!app) return;
@@ -237,4 +237,29 @@ var WALKAROUND_ENABLED = true;   // David, 18 Nov 14:39: "THE WALKAROUND STILL I
       addEventListener('scroll', function () { if (!cur) return; var r = cur.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) stop(); }, { passive: true });
     }
   })();
+})();
+
+// Gifts at Christmas (David, 19 Nov: "so it's not naked solid color"): the house green, and snow falling slowly
+// through it - soft round flakes, nearer ones larger and faster, nothing else. Still for reduced motion.
+(function () {
+  function start(gt) {
+    if (gt.querySelector('canvas.gsnow')) return;
+    var cv = document.createElement('canvas'); cv.className = 'gsnow'; cv.setAttribute('aria-hidden', 'true'); gt.insertBefore(cv, gt.firstChild);
+    var cx = cv.getContext('2d'), F = [], W = 0, H = 0, dpr = Math.min(2, window.devicePixelRatio || 1), on = false, last = 0;
+    var still = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function size() { var r = gt.getBoundingClientRect(); W = r.width; H = r.height; cv.width = W * dpr; cv.height = H * dpr; var n = Math.round(W * H / 5200); F = []; for (var i = 0; i < n; i++) F.push(mk(true)); }
+    function mk(any) { var z = Math.pow(Math.random(), 1.6); return { x: Math.random() * W, y: any ? Math.random() * H : -6, r: 0.6 + z * 2.2, v: 9 + z * 26, a: 0.25 + z * 0.55, s: Math.random() * 6.28, w: 0.4 + Math.random() * 0.8 }; }
+    function frame(ts) {
+      if (!on) return; var dt = Math.min(0.05, (ts - (last || ts)) / 1000); last = ts;
+      cx.setTransform(dpr, 0, 0, dpr, 0, 0); cx.clearRect(0, 0, W, H);
+      for (var i = 0; i < F.length; i++) { var f = F[i];
+        if (!still) { f.y += f.v * dt; f.s += dt * f.w; f.x += Math.sin(f.s) * 6 * dt; if (f.y > H + 6) { F[i] = mk(false); continue; } }
+        var g = cx.createRadialGradient(f.x, f.y, 0, f.x, f.y, f.r * 1.8); g.addColorStop(0, 'rgba(244,239,228,' + f.a + ')'); g.addColorStop(1, 'rgba(244,239,228,0)');
+        cx.fillStyle = g; cx.beginPath(); cx.arc(f.x, f.y, f.r * 1.8, 0, 6.2832); cx.fill(); }
+      if (!still) requestAnimationFrame(frame);
+    }
+    size(); addEventListener('resize', size);
+    new IntersectionObserver(function (e) { var v = e[0].isIntersecting; if (v && !on) { on = true; last = 0; requestAnimationFrame(frame); } on = v; }).observe(gt);
+  }
+  setInterval(function () { var gt = document.querySelector('.gifts .gt'); if (gt) start(gt); }, 600);
 })();
