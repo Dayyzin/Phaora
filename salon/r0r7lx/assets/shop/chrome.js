@@ -32,7 +32,7 @@
     '<ul>' + cl('outerwear') + cl('dresses') + cl('knit') + '</ul>' +
     '<ul>' + cl('bags') + cl('small leather goods') + cl('belts') + cl('gloves') + cl('scarves') + '</ul>' +
     '<ul>' + cl('eyewear') + cl('jewellery') + li(cat === 'accessories', HOME + '?cat=accessories', 'All accessories') + '</ul>' +
-    '<ul>' + li(/service/.test(location.pathname) && location.hash === '#contact', BASE + 'service.html#contact', 'Contact') + '</ul>';
+    '<ul>' + li(/service/.test(location.pathname) && location.hash === '#house', BASE + 'service.html#house', 'The house') + li(/service/.test(location.pathname) && location.hash === '#contact', BASE + 'service.html#contact', 'Contact') + '</ul>';
   [].forEach.call(D.querySelectorAll('nav.mn'), function (n) { n.innerHTML = menu; n.setAttribute('aria-label', 'Menu'); });
   var mn = D.querySelector('nav.mn'), burger = D.querySelector('.hd .burger');
   function menuOpen(on) {
@@ -49,7 +49,7 @@
   if (ft) { ft.className = 'foot'; ft.innerHTML =
     '<a class="mark" href="' + HOME + '" aria-label="PHAÖRA"><img src="' + BASE + 'assets/brand/mark-ink.png" alt="" width="40" height="40"></a>' +
     '<nav class="flist" aria-label="The house">' +
-      '<p class="fcol"><a href="' + HOME + '">The line</a></p>' +
+      '<p class="fcol"><a href="' + BASE + 'service.html#house">The house</a><a href="' + HOME + '">The line</a></p>' +
       '<p class="fcol"><a href="' + BASE + 'service.html#care">Care</a><a href="' + BASE + 'service.html#sizes">Measurements</a><a href="' + BASE + 'service.html#returns">Returns</a><a href="' + BASE + 'service.html#contact">Contact</a></p>' +
       '<p class="fcol"><a href="' + BASE + 'film.html?baked=1">The poem</a><a href="' + BASE + 'service.html#privacy">Privacy</a><a href="' + BASE + 'service.html#terms">Terms</a></p>' +
     '</nav><form class="fsign" novalidate><p class="fsh">The register</p><p class="fst">News of the house, by email.</p>' +
