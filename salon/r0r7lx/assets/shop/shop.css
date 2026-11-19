@@ -674,3 +674,16 @@ body.lights::after{background:#fff;opacity:.85!important;transition:opacity 1.4s
   .gifts .g2 img{aspect-ratio:4/3!important}
 }
 @media (max-width:820px){.strip{margin:0!important}.strip .cl{aspect-ratio:1/2!important}}
+/* phone: the menu beside You may also like, as on the desk (David, 19 Nov): menu down the left, two pieces beside it */
+@media (max-width:820px){
+  .ml{display:grid!important;grid-template-columns:34% 1fr!important;align-items:start}
+  .ml .mlside{display:block!important;padding:52px 8px 20px 14px!important}
+  .ml .mlmn{display:block!important}
+  .ml .mlmn a{font-size:11px!important;letter-spacing:.12em!important;line-height:2.2!important}
+  .ml .also{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .ml .also>li:nth-child(n+3){display:none!important}
+}
+@media (max-width:820px){
+  .ml .also{grid-template-columns:1fr!important}
+  .ml .mlmain h2{text-align:left!important;padding:22px 12px 12px 0!important;font-size:15px!important}
+}
