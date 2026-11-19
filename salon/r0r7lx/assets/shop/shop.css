@@ -699,3 +699,6 @@ body.lights::after{background:#fff;opacity:.85!important;transition:opacity 1.4s
 .strip .lb{background:#2b2a28!important}
 /* the price on the piece page: half the size, not bold (David, 19 Nov) */
 .dt .pr{font-size:10px!important;font-weight:400!important;letter-spacing:.12em!important}
+/* the prices under the pictures: smaller, not bold, as on the piece page (David, 19 Nov) */
+.tl .pr,.tl .cap .pr,.cap .pr{font-size:9.5px!important;font-weight:400!important;letter-spacing:.12em!important}
+@media (min-width:821px){.tl .pr,.tl .cap .pr,.cap .pr{font-size:10.5px!important}}
