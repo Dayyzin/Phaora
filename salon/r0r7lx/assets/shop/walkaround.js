@@ -8,7 +8,8 @@ window.SalonWalkaround = function (sec) {
   var WD = null, WS = null, kind = '', imgs = [], f = 0, raf = 0;
   function pick() {
     if (!WD) return; var k = innerWidth / innerHeight < 1 ? 'phone' : 'desk'; if (k === kind) return; kind = k; WS = WD[k];
-    imgs = WS.src.map(function (src, i) { var im = new Image(); im.decoding = 'async'; im.src = src; im.onload = function () { if (i === Math.round(f)) draw(i); }; return im; });
+    var L = WS.src_half && innerWidth * (devicePixelRatio || 1) < 1800 ? WS.src_half : WS.src;   // the 2K walk: half size on smaller screens
+    imgs = L.map(function (src, i) { var im = new Image(); im.decoding = 'async'; im.src = src; im.onload = function () { if (i === Math.round(f)) draw(i); }; return im; });
     wn.innerHTML = WD.notes.map(function (t, i) { return '<div class="note ' + WS.ink[i] + (k === 'phone' ? ' ph' : '') + '" style="width:' + WS.box[0] + 'px;height:' + WS.box[1] + 'px"><p>' + E(t) + '</p></div>'; }).join('');
   }
   function solve(A, b) {
