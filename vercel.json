@@ -18,18 +18,423 @@
       "permanent": false
     },
     {
+      "source": "/maison/rhztw6/gelosia.html",
+      "destination": "/salon/r0r7lx/?piece=gelosia",
+      "permanent": true
+    },
+    {
+      "source": "/maison/rhztw6/oitava.html",
+      "destination": "/salon/r0r7lx/?piece=oitava",
+      "permanent": true
+    },
+    {
+      "source": "/maison/rhztw6/odara.html",
+      "destination": "/salon/r0r7lx/?piece=odara",
+      "permanent": true
+    },
+    {
+      "source": "/maison/rhztw6/itaoca.html",
+      "destination": "/salon/r0r7lx/?piece=itaoca",
+      "permanent": true
+    },
+    {
+      "source": "/maison/rhztw6/coema.html",
+      "destination": "/salon/r0r7lx/?piece=coema",
+      "permanent": true
+    },
+    {
+      "source": "/maison/rhztw6/voluta.html",
+      "destination": "/salon/r0r7lx/?piece=voluta",
+      "permanent": true
+    },
+    {
+      "source": "/maison/rhztw6/ritornelo.html",
+      "destination": "/salon/r0r7lx/?piece=ritornelo",
+      "permanent": true
+    },
+    {
+      "source": "/maison/rhztw6/alvor.html",
+      "destination": "/salon/r0r7lx/?piece=alvor",
+      "permanent": true
+    },
+    {
+      "source": "/maison/rhztw6/coaraci.html",
+      "destination": "/salon/r0r7lx/?piece=coaraci",
+      "permanent": true
+    },
+    {
+      "source": "/maison/rhztw6/ofusca.html",
+      "destination": "/salon/r0r7lx/?piece=ofusca",
+      "permanent": true
+    },
+    {
+      "source": "/maison/rhztw6/heliodora.html",
+      "destination": "/salon/r0r7lx/?piece=heliodora",
+      "permanent": true
+    },
+    {
+      "source": "/maison/rhztw6/cordel.html",
+      "destination": "/salon/r0r7lx/?piece=cordel",
+      "permanent": true
+    },
+    {
+      "source": "/maison/rhztw6/carbonado-trousers.html",
+      "destination": "/salon/r0r7lx/?piece=carbonado-trousers",
+      "permanent": true
+    },
+    {
+      "source": "/maison/rhztw6/obolo.html",
+      "destination": "/salon/r0r7lx/?piece=obolo",
+      "permanent": true
+    },
+    {
+      "source": "/maison/rhztw6/lustre.html",
+      "destination": "/salon/r0r7lx/?piece=lustre",
+      "permanent": true
+    },
+    {
+      "source": "/maison/rhztw6/carbonado.html",
+      "destination": "/salon/r0r7lx/?piece=carbonado-trousers",
+      "permanent": true
+    },
+    {
+      "source": "/maison/rhztw6/care.html",
+      "destination": "/salon/r0r7lx/service.html#care",
+      "permanent": true
+    },
+    {
+      "source": "/maison/rhztw6/contact.html",
+      "destination": "/salon/r0r7lx/service.html#contact",
+      "permanent": true
+    },
+    {
+      "source": "/maison/rhztw6/privacy.html",
+      "destination": "/salon/r0r7lx/service.html#privacy",
+      "permanent": true
+    },
+    {
+      "source": "/maison/rhztw6/returns.html",
+      "destination": "/salon/r0r7lx/service.html#returns",
+      "permanent": true
+    },
+    {
+      "source": "/maison/rhztw6/sizes.html",
+      "destination": "/salon/r0r7lx/service.html#sizes",
+      "permanent": true
+    },
+    {
+      "source": "/maison/rhztw6/terms.html",
+      "destination": "/salon/r0r7lx/service.html#terms",
+      "permanent": true
+    },
+    {
+      "source": "/maison/rhztw6/film.html",
+      "destination": "/salon/r0r7lx/film.html",
+      "permanent": true
+    },
+    {
+      "source": "/maison/rhztw6/poem.html",
+      "destination": "/salon/r0r7lx/film.html",
+      "permanent": true
+    },
+    {
+      "source": "/maison/rhztw6/poem-room.html",
+      "destination": "/salon/r0r7lx/film.html",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/house/gelosia.html",
+      "destination": "/salon/r0r7lx/?piece=gelosia",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/house/oitava.html",
+      "destination": "/salon/r0r7lx/?piece=oitava",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/house/odara.html",
+      "destination": "/salon/r0r7lx/?piece=odara",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/house/itaoca.html",
+      "destination": "/salon/r0r7lx/?piece=itaoca",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/house/coema.html",
+      "destination": "/salon/r0r7lx/?piece=coema",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/house/voluta.html",
+      "destination": "/salon/r0r7lx/?piece=voluta",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/house/ritornelo.html",
+      "destination": "/salon/r0r7lx/?piece=ritornelo",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/house/alvor.html",
+      "destination": "/salon/r0r7lx/?piece=alvor",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/house/coaraci.html",
+      "destination": "/salon/r0r7lx/?piece=coaraci",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/house/ofusca.html",
+      "destination": "/salon/r0r7lx/?piece=ofusca",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/house/heliodora.html",
+      "destination": "/salon/r0r7lx/?piece=heliodora",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/house/cordel.html",
+      "destination": "/salon/r0r7lx/?piece=cordel",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/house/carbonado-trousers.html",
+      "destination": "/salon/r0r7lx/?piece=carbonado-trousers",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/house/obolo.html",
+      "destination": "/salon/r0r7lx/?piece=obolo",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/house/lustre.html",
+      "destination": "/salon/r0r7lx/?piece=lustre",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/house/carbonado.html",
+      "destination": "/salon/r0r7lx/?piece=carbonado-trousers",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/house/care.html",
+      "destination": "/salon/r0r7lx/service.html#care",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/house/contact.html",
+      "destination": "/salon/r0r7lx/service.html#contact",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/house/privacy.html",
+      "destination": "/salon/r0r7lx/service.html#privacy",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/house/returns.html",
+      "destination": "/salon/r0r7lx/service.html#returns",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/house/sizes.html",
+      "destination": "/salon/r0r7lx/service.html#sizes",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/house/terms.html",
+      "destination": "/salon/r0r7lx/service.html#terms",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/house/film.html",
+      "destination": "/salon/r0r7lx/film.html",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/house/poem.html",
+      "destination": "/salon/r0r7lx/film.html",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/house/poem-room.html",
+      "destination": "/salon/r0r7lx/film.html",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/gelosia.html",
+      "destination": "/salon/r0r7lx/?piece=gelosia",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/oitava.html",
+      "destination": "/salon/r0r7lx/?piece=oitava",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/odara.html",
+      "destination": "/salon/r0r7lx/?piece=odara",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/itaoca.html",
+      "destination": "/salon/r0r7lx/?piece=itaoca",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/coema.html",
+      "destination": "/salon/r0r7lx/?piece=coema",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/voluta.html",
+      "destination": "/salon/r0r7lx/?piece=voluta",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/ritornelo.html",
+      "destination": "/salon/r0r7lx/?piece=ritornelo",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/alvor.html",
+      "destination": "/salon/r0r7lx/?piece=alvor",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/coaraci.html",
+      "destination": "/salon/r0r7lx/?piece=coaraci",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/ofusca.html",
+      "destination": "/salon/r0r7lx/?piece=ofusca",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/heliodora.html",
+      "destination": "/salon/r0r7lx/?piece=heliodora",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/cordel.html",
+      "destination": "/salon/r0r7lx/?piece=cordel",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/carbonado-trousers.html",
+      "destination": "/salon/r0r7lx/?piece=carbonado-trousers",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/obolo.html",
+      "destination": "/salon/r0r7lx/?piece=obolo",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/lustre.html",
+      "destination": "/salon/r0r7lx/?piece=lustre",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/carbonado.html",
+      "destination": "/salon/r0r7lx/?piece=carbonado-trousers",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/care.html",
+      "destination": "/salon/r0r7lx/service.html#care",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/contact.html",
+      "destination": "/salon/r0r7lx/service.html#contact",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/privacy.html",
+      "destination": "/salon/r0r7lx/service.html#privacy",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/returns.html",
+      "destination": "/salon/r0r7lx/service.html#returns",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/sizes.html",
+      "destination": "/salon/r0r7lx/service.html#sizes",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/terms.html",
+      "destination": "/salon/r0r7lx/service.html#terms",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/film.html",
+      "destination": "/salon/r0r7lx/film.html",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/poem.html",
+      "destination": "/salon/r0r7lx/film.html",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/poem-room.html",
+      "destination": "/salon/r0r7lx/film.html",
+      "permanent": true
+    },
+    {
+      "source": "/maison/:path*",
+      "destination": "/salon/r0r7lx/",
+      "permanent": true
+    },
+    {
+      "source": "/maison",
+      "destination": "/salon/r0r7lx/",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/:path*",
+      "destination": "/salon/r0r7lx/",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d",
+      "destination": "/salon/r0r7lx/",
+      "permanent": true
+    },
+    {
+      "source": "/salon/r0r7lx/clean/:path*",
+      "destination": "/salon/r0r7lx/",
+      "permanent": true
+    },
+    {
+      "source": "/salon/r0r7lx/clean",
+      "destination": "/salon/r0r7lx/",
+      "permanent": true
+    },
+    {
+      "source": "/drop/:path*",
+      "destination": "/salon/r0r7lx/",
+      "permanent": true
+    },
+    {
       "source": "/drop",
-      "destination": "/",
+      "destination": "/salon/r0r7lx/",
       "permanent": true
     },
     {
-      "source": "/drop/",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/drop/index.html",
-      "destination": "/",
+      "source": "/register.html",
+      "destination": "/salon/r0r7lx/",
       "permanent": true
     },
     {
