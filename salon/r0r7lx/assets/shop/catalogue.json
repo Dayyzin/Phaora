@@ -93,12 +93,36 @@
   "price": "USD 3,800",
   "href": "https://buy.stripe.com/7sY4greTx7vj1kC9BT2ZO08",
   "tile": {
-   "src": "assets/shop/img/oitava_2k.webp",
+   "src": "assets/shop/img/oitava_head.webp",
    "w": 1536,
    "h": 2048,
    "blend": false
   },
   "stack": [
+   {
+    "src": "assets/shop/img/oitava_head.webp",
+    "w": 1536,
+    "h": 2048,
+    "blend": false,
+    "s1200": "assets/shop/1200/oitava_head.webp",
+    "label": "worn, on the clay head"
+   },
+   {
+    "src": "assets/shop/img/oitava_head_close.webp",
+    "w": 1536,
+    "h": 2048,
+    "blend": false,
+    "s1200": "assets/shop/1200/oitava_head_close.webp",
+    "label": "worn, close"
+   },
+   {
+    "src": "assets/shop/img/oitava_hero.webp",
+    "w": 3072,
+    "h": 2048,
+    "blend": false,
+    "s1200": "assets/shop/1200/oitava_hero.webp",
+    "label": "worn, three angles"
+   },
    {
     "src": "assets/shop/img/oitava_2k.webp",
     "w": 1536,
