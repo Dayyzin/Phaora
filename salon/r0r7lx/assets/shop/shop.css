@@ -717,3 +717,20 @@ body.lights::after{background:#fff;opacity:.85!important;transition:opacity 1.4s
 .wa.capt .wa-nm{z-index:3}
 .wa.capt .note{bottom:7%!important}
 .wa.capt .note p{color:#f4efe4!important;font-size:16px!important;font-weight:500!important;line-height:1.4!important;text-shadow:none!important}
+
+/* phone legibility floor (David, 19 Nov: "Text reads clearly") */
+@media (max-width:820px){
+  .dt .tc,.foot .fline{font-size:11px!important;line-height:1.5!important}
+  .dt .btn,.also .btn.po,.btn.ol,.op2 .ac a{font-size:10.5px!important;letter-spacing:.12em!important}
+  .dt .rows .fd button,.dt .rows .ln,.sc,.wa-nm{font-size:10.5px!important}
+  .ml .mlmn a,.foot .fcol a,.op2 .opm,.op2 .k,.op2 .ty{font-size:10px!important}
+  .ml .mlmn a{letter-spacing:.06em!important}
+  .tl .pr,.tl .cap .pr,.cap .pr,.dt .pr{font-size:10px!important}
+  .tl .tn2{font-size:10px!important}
+  h3{font-size:11px}
+}
+@media (max-width:820px){
+  .ml .mlmn a{white-space:normal!important;line-height:1.35!important;margin:0 0 6px!important}
+  .dets .dl::before,.gifts .g2 .dl::before,.split .sp::before{content:"";position:absolute;left:0;right:0;bottom:0;height:38%;background:linear-gradient(to top,rgba(10,9,8,.55),rgba(10,9,8,0));pointer-events:none;z-index:0}
+  .dets .dl .lb,.gifts .g2 .lb,.split .sp .lb{z-index:1;text-shadow:0 1px 6px rgba(0,0,0,.35)}
+}

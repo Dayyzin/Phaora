@@ -86,3 +86,9 @@ html.embed .navband,html.embed .hint,html.embed .ctl,html.embed .track{display:n
 /* on the front page the projector brighter (David, 18 Nov: "too dim") */
 html.embed .room .film{filter:brightness(1.5) contrast(1.05)}
 html.embed .room .dark{filter:brightness(2.1) contrast(1.05)}
+
+/* phone legibility floor (19 Nov) */
+@media (max-width:820px){
+  .navband .nl{font-size:10px!important;gap:1em!important}
+  .chap{font-size:10px!important}
+}
