@@ -56,6 +56,33 @@ window.SalonWalkaround = function (sec) {
       sec.classList.toggle('done', t >= 1);
     });
   }
+  // one scroll per sentence (David, 19 Nov): inside the walkaround each wheel flick, swipe or arrow key glides to the next
+  // sentence (its frame fully shown), and back; the first gesture past the last sentence lets the page carry on
+  function stops() {
+    var n = WS.n, out = [0];
+    WD.notes.forEach(function (_, k) { var a = -1, b = -1; for (var i = 0; i < n; i++) if (WS.a[i][k] >= .999) { if (a < 0) a = i; b = i; } if (a >= 0) out.push((a + b) / 2 / (n - 1)); });
+    return out;
+  }
+  var busy = 0, ty = 0;
+  function step(dir) {
+    if (!WS) return false;
+    var top = sec.getBoundingClientRect().top + scrollY, span = Math.max(1, sec.offsetHeight - innerHeight), t = (scrollY - top) / span;
+    if (t < -0.002 || t > 1.002) return false;            // not pinned: the page scrolls as normal
+    if ((dir > 0 && t >= 0.999) || (dir < 0 && t <= 0.001)) return false;   // past the ends: let the page go on
+    if (busy) return true;
+    var S = stops(), next = dir > 0 ? S.find(function (v) { return v > t + 0.004; }) : S.slice().reverse().find(function (v) { return v < t - 0.004; });
+    if (next === undefined && dir < 0) return false;
+    var y = next === undefined ? top + sec.offsetHeight : top + next * span;   // after the last sentence: straight on to the pictures
+    busy = 1; scrollTo({ top: Math.round(y), behavior: 'smooth' }); setTimeout(function () { busy = 0; }, 750);
+    return true;
+  }
+  addEventListener('wheel', function (e) { if (Math.abs(e.deltaY) < 4) return; if (step(e.deltaY > 0 ? 1 : -1)) e.preventDefault(); }, { passive: false });
+  addEventListener('touchstart', function (e) { ty = e.touches[0].clientY; }, { passive: true });
+  addEventListener('touchmove', function (e) {
+    var dy = ty - e.touches[0].clientY; if (Math.abs(dy) < 12) return;
+    if (step(dy > 0 ? 1 : -1) || busy) { e.preventDefault(); ty = e.touches[0].clientY; }
+  }, { passive: false });
+  addEventListener('keydown', function (e) { var d = { ArrowDown: 1, PageDown: 1, ' ': 1, ArrowUp: -1, PageUp: -1 }[e.key]; if (d && step(d)) e.preventDefault(); });
   fetch(sec.dataset.src).then(function (r) { return r.json(); }).then(function (d) { WD = d; pick(); onScroll(); });
   addEventListener('scroll', onScroll, { passive: true });
   addEventListener('resize', function () { pick(); onScroll(); });
