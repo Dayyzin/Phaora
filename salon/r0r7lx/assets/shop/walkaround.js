@@ -7,7 +7,8 @@ window.SalonWalkaround = function (sec) {
   var E = function (t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
   var WD = null, WS = null, kind = '', imgs = [], f = 0, raf = 0;
   function pick() {
-    if (!WD) return; var k = innerWidth / innerHeight < 1 ? 'phone' : 'desk'; if (k === kind) return; kind = k; WS = WD[k];
+    if (!WD) return; var k = innerWidth / innerHeight < 1 && !(WD.desk.src_half && WD.phone && WD.phone.w < 400) ? 'phone' : 'desk'; sec.classList.toggle('capt', innerWidth / innerHeight < 1 && k === 'desk'); if (k === kind) return;   // a 2K walk plays its sharp frames on a phone too, until its own portrait frames exist
+    kind = k; WS = WD[k];
     var L = WS.src_half && innerWidth * (devicePixelRatio || 1) < 1800 ? WS.src_half : WS.src;   // the 2K walk: half size on smaller screens
     imgs = L.map(function (src, i) { var im = new Image(); im.decoding = 'async'; im.src = src; im.onload = function () { if (i === Math.round(f)) draw(i); }; return im; });
     wn.innerHTML = WD.notes.map(function (t, i) { return '<div class="note ' + WS.ink[i] + (k === 'phone' ? ' ph' : '') + '" style="width:' + WS.box[0] + 'px;height:' + WS.box[1] + 'px"><p>' + E(t) + '</p></div>'; }).join('');
@@ -41,6 +42,7 @@ window.SalonWalkaround = function (sec) {
     ctx.drawImage(im, ox, oy, WS.w * sc, WS.h * sc);
     [].forEach.call(wn.children, function (n, k) {
       var a = WS.a[i][k]; if (!(a > 0.001)) { n.style.visibility = 'hidden'; return; }
+      if (sec.classList.contains('capt')) { n.style.transform = 'none'; n.style.filter = 'none'; n.style.opacity = a.toFixed(3); n.style.visibility = 'visible'; return; }
       var Q = WS.q[i][k].map(function (uv) { return [ox + uv[0] * WS.w * sc, oy + uv[1] * WS.h * sc]; });
       n.style.transform = homography(WS.box[0], WS.box[1], Q);
       var s2 = Math.hypot(Q[1][0] - Q[0][0], Q[1][1] - Q[0][1]) / WS.box[0], bl = WS.blur[i][k] * WS.w * sc * .5 / Math.max(s2, .05);
