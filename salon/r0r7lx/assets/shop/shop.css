@@ -689,3 +689,6 @@ body.lights::after{background:#fff;opacity:.85!important;transition:opacity 1.4s
 }
 /* the header follows the page as it scrolls (David, 19 Nov) */
 .hd{position:sticky!important;top:0}
+/* the Itaoca label on a solid band, the house green, across the foot of the middle picture (David, 19 Nov) */
+.strip .lb{left:33.333%!important;right:33.333%!important;bottom:0!important;padding:16px 0 14px;background:#1d3328;color:#efe9de!important}
+@media (max-width:820px){.strip .lb{padding:11px 0 10px}}
