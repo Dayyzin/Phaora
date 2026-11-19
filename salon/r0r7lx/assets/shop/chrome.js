@@ -49,7 +49,7 @@
   if (ft) { ft.className = 'foot'; ft.innerHTML =
     '<a class="mark" href="' + HOME + '" aria-label="PHAÖRA"><img src="' + BASE + 'assets/brand/mark-ink.png" alt="" width="40" height="40"></a>' +
     '<nav class="flist" aria-label="The house">' +
-      '<p class="fcol"><a href="' + HOME + '">The line</a><a href="/register.html">Register</a></p>' +
+      '<p class="fcol"><a href="' + HOME + '">The line</a></p>' +
       '<p class="fcol"><a href="' + BASE + 'service.html#care">Care</a><a href="' + BASE + 'service.html#sizes">Measurements</a><a href="' + BASE + 'service.html#returns">Returns</a><a href="' + BASE + 'service.html#contact">Contact</a></p>' +
       '<p class="fcol"><a href="' + BASE + 'film.html?baked=1">The poem</a><a href="' + BASE + 'service.html#privacy">Privacy</a><a href="' + BASE + 'service.html#terms">Terms</a></p>' +
     '</nav><form class="fsign" novalidate><p class="fsh">The register</p><p class="fst">News of the house, by email.</p>' +
