@@ -18,6 +18,66 @@
       "permanent": false
     },
     {
+      "source": "/maison/rhztw6/",
+      "destination": "/salon/r0r7lx/",
+      "permanent": true
+    },
+    {
+      "source": "/maison/rhztw6/index.html",
+      "destination": "/salon/r0r7lx/",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/house/",
+      "destination": "/salon/r0r7lx/",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/house/index.html",
+      "destination": "/salon/r0r7lx/",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/",
+      "destination": "/salon/r0r7lx/",
+      "permanent": true
+    },
+    {
+      "source": "/salon/imml6d/index.html",
+      "destination": "/salon/r0r7lx/",
+      "permanent": true
+    },
+    {
+      "source": "/salon/r0r7lx/clean/",
+      "destination": "/salon/r0r7lx/",
+      "permanent": true
+    },
+    {
+      "source": "/salon/r0r7lx/clean/index.html",
+      "destination": "/salon/r0r7lx/",
+      "permanent": true
+    },
+    {
+      "source": "/maison/",
+      "destination": "/salon/r0r7lx/",
+      "permanent": true
+    },
+    {
+      "source": "/maison/index.html",
+      "destination": "/salon/r0r7lx/",
+      "permanent": true
+    },
+    {
+      "source": "/drop/",
+      "destination": "/salon/r0r7lx/",
+      "permanent": true
+    },
+    {
+      "source": "/drop/index.html",
+      "destination": "/salon/r0r7lx/",
+      "permanent": true
+    },
+    {
       "source": "/maison/rhztw6/gelosia.html",
       "destination": "/salon/r0r7lx/?piece=gelosia",
       "permanent": true
