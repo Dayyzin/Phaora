@@ -652,11 +652,10 @@
     "label": "back view"
    },
    {
-    "src": "assets/pieces/heliodora/01.webp",
-    "w": 1600,
-    "h": 900,
+    "src": "assets/pieces/heliodora/01_2560.webp",
+    "w": 2560,
+    "h": 1440,
     "blend": false,
-    "s1200": "assets/shop/1200/pieces__heliodora__01.webp",
     "label": "The kiss on the back"
    },
    {

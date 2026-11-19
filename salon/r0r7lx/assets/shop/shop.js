@@ -5,7 +5,7 @@
 //   ./?piece=<id>           the piece: the walkaround first where it has one and is priced at WALKAROUND_MIN_USD or
 //                           more, then its pictures stacked on the left, the details sticky on the right
 var WALKAROUND_MIN_USD = 0;   // David, 18 Nov: "Walkaround needs to be ADDED" - every piece that has one
-var V = '?v=1120m';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
+var V = '?v=1120n';   // a new picture set: phones and the CDN fetch it fresh   // David, 18 Nov: final
 var WALKAROUND_ENABLED = true;   // David, 18 Nov 14:39: "THE WALKAROUND STILL ISNT THERE" - the world walk on every piece that has one;   // David, 18 Nov: "Sharp yes" - every piece walks around on its own sharp views, never the 144p world walk   // David, 18 Nov: "Walkaround comes back, it's too strong and worked on to throw away"
 (function () {
   var app = document.getElementById('app'); if (!app) return;
@@ -55,7 +55,7 @@ var WALKAROUND_ENABLED = true;   // David, 18 Nov 14:39: "THE WALKAROUND STILL I
     var big = find('itaoca', 'The PÖ on the flap');
     var GIFTS = ['oitava', 'cordel', 'obolo', 'coaraci'];
     C = C.filter(function (x) { return GIFTS.indexOf(x.id) < 0; }).concat(C.filter(function (x) { return GIFTS.indexOf(x.id) >= 0; }));   // no piece twice in a row (David, 18 Nov)   // the gift suggestions, first, before the catalogue (David, 18 Nov)
-    var three = [[find('gelosia', 'The belt and its holes'), 'Outerwear', 'outerwear'], [find('coema', 'The charm'), 'Bags', 'bags'], [find('ofusca', 'The brass plate'), 'Eyewear', 'eyewear']];
+    var three = [[find('gelosia', 'The belt and its holes'), 'Outerwear', 'outerwear'], [find('coema', 'The pressed row'), 'Bags', 'bags'], [find('ofusca', 'The brass plate'), 'Eyewear', 'eyewear']];
     var last = find('heliodora', 'The kiss on the back');   // the page ends on one landscape, edge to edge (David, 18 Nov)
     var phone = matchMedia('(max-width: 820px)').matches;
     app.innerHTML = '<h1 class="vh">Chapter I</h1>' +
