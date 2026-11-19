@@ -288,27 +288,12 @@
     "label": "front view"
    },
    {
-    "src": "assets/shop/img/pieces__coema__01.webp",
-    "w": 960,
-    "h": 900,
-    "blend": false,
-    "label": "open view"
-   },
-   {
     "src": "assets/pieces/coema/02.webp",
     "w": 1600,
     "h": 900,
     "blend": false,
     "s1200": "assets/shop/1200/pieces__coema__02.webp",
     "label": "The pressed row"
-   },
-   {
-    "src": "assets/pieces/coema/03.webp",
-    "w": 1600,
-    "h": 900,
-    "blend": false,
-    "s1200": "assets/shop/1200/pieces__coema__03.webp",
-    "label": "The charm"
    },
    {
     "src": "assets/pieces/coema/04.webp",
@@ -327,7 +312,7 @@
    "Care": "Wipe with a soft dry cloth. Keep from rain and heat; if it gets wet, let it dry slowly away from a radiator. Store in its dust bag, stuffed with tissue, out of the light. Leather cleaning by a specialist only."
   },
   "fit": null,
-  "walkaround": "assets/world/coema/walk.json"
+  "walkaround": ""
  },
  {
   "id": "voluta",
