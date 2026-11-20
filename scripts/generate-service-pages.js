@@ -29,8 +29,8 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const SITE = 'https://phaora.com';
-const FALLBACK_OG_IMAGE = 'https://phaora.com/assets/og/phaora-share.jpg';
+const SITE = 'https://phaoralandscape.com';
+const FALLBACK_OG_IMAGE = 'https://phaoralandscape.com/assets/og/phaora-share.jpg';
 
 const NAV_BODY = fs.readFileSync(path.join(__dirname, '_town-template-nav.html'), 'utf8');
 const STYLE_BLOCK = fs.readFileSync(path.join(__dirname, '_town-template-style.css'), 'utf8');
@@ -322,9 +322,9 @@ ${SCRIPT_BLOCK}
  * otherwise be dropped from the sitemap every time this runs.
  */
 function rewriteSitemap() {
-  const file = path.join(ROOT, 'sitemap.xml');
+  const file = path.join(ROOT, 'landscape-sitemap.xml');
   if (!fs.existsSync(file)) {
-    console.log('no sitemap.xml — skipped');
+    console.log('no landscape-sitemap.xml — skipped');
     return;
   }
   const slugs = SERVICES.map((s) => s.slug)
@@ -343,7 +343,7 @@ function rewriteSitemap() {
 
   // Ahead of the town block: these are the pages paid traffic lands on.
   const firstTown = kept.findIndex((line) =>
-    /<loc>https:\/\/phaora\.com\/masonry-[a-z-]+-(ma|ri|nh|me|ct)\//.test(line)
+    /<loc>https:\/\/phaoralandscape\.com\/masonry-[a-z-]+-(ma|ri|nh|me|ct)\//.test(line)
   );
   const at = firstTown === -1 ? kept.findIndex((l) => l.includes('</urlset>')) : firstTown;
   if (at === -1) {
