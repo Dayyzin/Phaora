@@ -131,7 +131,7 @@ const HERO_IMAGES = [
 // Reused, real, already-existing OG image — these towns don't have their own
 // photographed OG card yet, and a URL pointing at a file that doesn't exist
 // is worse than a generic real one. Swap in a per-town photo when one exists.
-const FALLBACK_OG_IMAGE = 'https://phaora.com/assets/og/phaora-share.jpg';
+const FALLBACK_OG_IMAGE = 'https://phaoralandscape.com/assets/og/phaora-share.jpg';
 
 /**
  * coastal: true marks the four Cape Cod towns, whose "Working in X" paragraph
@@ -765,7 +765,7 @@ function render(town, heroImage) {
   // The figures block, from scripts/town-data.json; inject-town-data.js writes the same.
   const dataPage = { slug: town.slug, st, name: town.name, county: town.county, coastal: Boolean(town.coastal) };
   const title = `Masonry &amp; Hardscape Contractor in ${town.name}, ${st.toUpperCase()} | PHAÖRA`;
-  const url = `https://phaora.com/masonry-${town.slug}-${st}/`;
+  const url = `https://phaoralandscape.com/masonry-${town.slug}-${st}/`;
 
   // Every one of these states adopts the IRC, so Table R301.2(1) is accurate
   // everywhere — the STATE's name on the code is not. Naming the Massachusetts
@@ -988,14 +988,14 @@ ${SCRIPT_BLOCK}
  * exactly as it is.
  */
 function rewriteSitemap() {
-  const file = path.join(ROOT, 'sitemap.xml');
+  const file = path.join(ROOT, 'landscape-sitemap.xml');
   if (!fs.existsSync(file)) {
-    console.log('no sitemap.xml — skipped');
+    console.log('no landscape-sitemap.xml — skipped');
     return;
   }
   const xml = fs.readFileSync(file, 'utf8');
   const lines = xml.split('\n');
-  const isTown = (line) => /<loc>https:\/\/phaora\.com\/masonry-[a-z-]+-(ma|ri|nh|me|ct|tx|co|wy|in)\//.test(line);
+  const isTown = (line) => /<loc>https:\/\/phaoralandscape\.com\/masonry-[a-z-]+-(ma|ri|nh|me|ct|tx|co|wy|in)\//.test(line);
 
   const firstTown = lines.findIndex(isTown);
   if (firstTown === -1) {
@@ -1014,7 +1014,7 @@ function rewriteSitemap() {
 
   const entries = slugs.map(
     (dir) =>
-      `  <url><loc>https://phaora.com/${dir}/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>`
+      `  <url><loc>https://phaoralandscape.com/${dir}/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>`
   );
 
   // Re-insert where the town block used to start, counting only kept lines.

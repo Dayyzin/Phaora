@@ -2,6 +2,105 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
     {
+      "source": "/home-landscape.html",
+      "destination": "https://phaoralandscape.com/",
+      "permanent": true,
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?phaora\\.com"
+        }
+      ]
+    },
+    {
+      "source": "/index.newdesign.html",
+      "destination": "https://phaoralandscape.com/",
+      "permanent": true,
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?phaora\\.com"
+        }
+      ]
+    },
+    {
+      "source": "/:town(masonry-[a-z0-9-]+)",
+      "destination": "https://phaoralandscape.com/:town/",
+      "permanent": true,
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?phaora\\.com"
+        }
+      ]
+    },
+    {
+      "source": "/:town(masonry-[a-z0-9-]+)/:rest(.*)",
+      "destination": "https://phaoralandscape.com/:town/:rest",
+      "permanent": true,
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?phaora\\.com"
+        }
+      ]
+    },
+    {
+      "source": "/:dir(patios|paver-driveways|retaining-walls|walkways-and-steps|stone-veneer|drainage|seawalls-and-shore-protection|service-area|estimate|hardscape-index|portfolio|projects|hs|uploads)",
+      "destination": "https://phaoralandscape.com/:dir/",
+      "permanent": true,
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?phaora\\.com"
+        }
+      ]
+    },
+    {
+      "source": "/:dir(patios|paver-driveways|retaining-walls|walkways-and-steps|stone-veneer|drainage|seawalls-and-shore-protection|service-area|estimate|hardscape-index|portfolio|projects|hs|uploads)/:rest(.*)",
+      "destination": "https://phaoralandscape.com/:dir/:rest",
+      "permanent": true,
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?phaora\\.com"
+        }
+      ]
+    },
+    {
+      "source": "/:file(gallery\\.html|hardscape-gallery\\.html|contact\\.html|llms\\.txt|landscape-sitemap\\.xml|robots-landscape\\.txt)",
+      "destination": "https://phaoralandscape.com/:file",
+      "permanent": true,
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?phaora\\.com"
+        }
+      ]
+    },
+    {
+      "source": "/:old(quote|affiliate|affiliates|referral|referrals|partners|blog|journal)",
+      "destination": "https://phaoralandscape.com/:old",
+      "permanent": true,
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?phaora\\.com"
+        }
+      ]
+    },
+    {
+      "source": "/:crm(partners|blog)/:rest(.*)",
+      "destination": "https://phaoralandscape.com/:crm/:rest",
+      "permanent": true,
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?phaora\\.com"
+        }
+      ]
+    },
+    {
       "source": "/",
       "destination": "/salon/r0r7lx/",
       "permanent": false,
@@ -559,6 +658,34 @@
     }
   ],
   "rewrites": [
+    {
+      "source": "/sitemap.xml",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?phaoralandscape\\.com|phaora\\.vercel\\.app"
+        }
+      ],
+      "destination": "/landscape-sitemap.xml"
+    },
+    {
+      "source": "/robots.txt",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?phaoralandscape\\.com|phaora\\.vercel\\.app"
+        }
+      ],
+      "destination": "/robots-landscape.txt"
+    },
+    {
+      "source": "/sitemap.xml",
+      "destination": "/sitemap-house.xml"
+    },
+    {
+      "source": "/robots.txt",
+      "destination": "/robots-house.txt"
+    },
     {
       "source": "/",
       "has": [

@@ -197,7 +197,7 @@ function plan(page) {
   const key = `${ST}|${sourceTown}`;
   const label = isCounty ? `${page.county} County` : page.name;
   const place = `${label}, ${STATE_NAMES[st]}`;
-  const url = `https://phaora.com/masonry-${page.slug}-${st}/`;
+  const url = `https://phaoralandscape.com/masonry-${page.slug}-${st}/`;
   const f = figures(key);
   const rank = st === 'ma' && !f.skip ? index().find((r) => r.town === sourceTown) : null;
   return { page, st, isCounty, key, label, place, url, f, rank };
@@ -353,7 +353,7 @@ function datasetLd(p) {
     temporalCoverage: f.sales ? `${ym(f.sales.from)}/${ym(f.sales.through)}` : ym(COMPUTED_ON),
     dateModified: COMPUTED_ON,
     isAccessibleForFree: true,
-    creator: { '@type': 'Organization', name: 'PHAÖRA', url: 'https://phaora.com/' },
+    creator: { '@type': 'Organization', name: 'PHAÖRA', url: 'https://phaoralandscape.com/' },
     isBasedOn: { '@type': 'CreativeWork', name: f.source.name, publisher: { '@type': 'Organization', name: f.source.publisher } },
   };
 }
@@ -443,7 +443,7 @@ const read = (f) => fs.readFileSync(path.join(__dirname, f), 'utf8');
 
 function indexPage(pageSlugs) {
   const rows = index();
-  const url = 'https://phaora.com/hardscape-index/';
+  const url = 'https://phaoralandscape.com/hardscape-index/';
   const title = 'Massachusetts Hardscape Replacement Index | PHAÖRA';
   const n = rows.length;
   const top = rows.slice(0, 3).map((r) => `${r.town === 'Manchester' ? 'Manchester-by-the-Sea' : r.town} (${(r.f.pre1980 * 100).toFixed(1)}%)`);
@@ -471,7 +471,7 @@ function indexPage(pageSlugs) {
     temporalCoverage: ym(COMPUTED_ON),
     dateModified: COMPUTED_ON,
     isAccessibleForFree: true,
-    creator: { '@type': 'Organization', name: 'PHAÖRA', url: 'https://phaora.com/' },
+    creator: { '@type': 'Organization', name: 'PHAÖRA', url: 'https://phaoralandscape.com/' },
     isBasedOn: { '@type': 'CreativeWork', name: 'MassGIS statewide property tax parcels', publisher: { '@type': 'Organization', name: 'MassGIS' } },
   };
 
@@ -488,11 +488,11 @@ function indexPage(pageSlugs) {
 <meta property="og:title" content="${title}">
 <meta property="og:description" content="${esc(desc)}">
 <meta property="og:url" content="${url}">
-<meta property="og:image" content="https://phaora.com/assets/og/phaora-share.jpg">
+<meta property="og:image" content="https://phaoralandscape.com/assets/og/phaora-share.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${title}">
 <meta name="twitter:description" content="${esc(desc)}">
-<meta name="twitter:image" content="https://phaora.com/assets/og/phaora-share.jpg">
+<meta name="twitter:image" content="https://phaoralandscape.com/assets/og/phaora-share.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">

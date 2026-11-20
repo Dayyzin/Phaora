@@ -83,7 +83,7 @@ function chrome() {
    * so it is pinned to the site's own host.
    */
   const css = parts.join("\n").replace(/url\('(?!https?:|\/|data:)([^']+)'\)/g,
-                                       "url('https://phaora.com/$1')");
+                                       "url('https://phaoralandscape.com/$1')");
 
   /* ---------- the markup ---------- */
   const cut = (open, close) => {

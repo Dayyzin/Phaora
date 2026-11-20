@@ -53,7 +53,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;display:grid;grid-template-c
 .mobile-menu .m-rule{width:32px;height:1px;background:linear-gradient(90deg,transparent,rgba(169,233,240,.3),transparent);margin:20px 0}
 .mobile-menu .m-enquire{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(14px,3vw,18px);font-style:italic;color:rgba(169,233,240,.6);border:none;background:none}
 @media(max-width:768px){.nav-links{display:none}.nav-right a{display:none}.nav-burger{display:flex}}
-footer{position:relative;padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);border-top:1px solid rgba(79,181,190,.08);background:linear-gradient(rgba(2,6,16,.94),rgba(2,6,16,.94)),url('https://phaora.com/assets/misc/slate-texture.jpg');background-size:cover;background-position:center}
+footer{position:relative;padding:clamp(40px,6vw,80px) clamp(24px,5vw,80px);border-top:1px solid rgba(79,181,190,.08);background:linear-gradient(rgba(2,6,16,.94),rgba(2,6,16,.94)),url('https://phaoralandscape.com/assets/misc/slate-texture.jpg');background-size:cover;background-position:center}
 .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid rgba(234,239,245,.05)}
 .footer-wm{font-family:'Cormorant Garamond',serif;font-size:22px;letter-spacing:.42em;text-transform:uppercase;color:rgba(234,239,245,.7);margin-bottom:16px}
 .footer-wm .o{color:var(--teal-d)}

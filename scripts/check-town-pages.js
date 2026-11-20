@@ -66,7 +66,7 @@ function main() {
     // nothing about the page looks broken.
     const canon = /<link rel="canonical" href="([^"]+)"/.exec(html)
     if (!canon) say('no canonical')
-    else if (canon[1] !== `https://phaora.com/${dir}/`) {
+    else if (canon[1] !== `https://phaoralandscape.com/${dir}/`) {
       say(`canonical points at ${canon[1]}, not /${dir}/`)
     }
 
@@ -105,9 +105,9 @@ function main() {
 
   // Every page on disk should be in the sitemap, and nothing should be in the
   // sitemap that is not on disk.
-  const sitemap = fs.readFileSync(path.join(ROOT, 'sitemap.xml'), 'utf8')
+  const sitemap = fs.readFileSync(path.join(ROOT, 'landscape-sitemap.xml'), 'utf8')
   const listed = new Set(
-    [...sitemap.matchAll(/phaora\.com\/(masonry-[a-z-]+-(?:ma|ri|nh|me|ct|tx|co|wy|in))\//g)].map((m) => m[1]),
+    [...sitemap.matchAll(/phaoralandscape\.com\/(masonry-[a-z-]+-(?:ma|ri|nh|me|ct|tx|co|wy|in))\//g)].map((m) => m[1]),
   )
   for (const d of onDisk) if (!listed.has(d)) problems.push(`sitemap: /${d}/ is missing`)
   for (const d of listed) if (!onDisk.has(d)) problems.push(`sitemap: /${d}/ has no directory`)

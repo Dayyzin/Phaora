@@ -24,3 +24,27 @@ relative path (`images/…`), which from `/portfolio` resolves to `/images/…` 
 the URL the pages were written for. `trailingSlash` is not set site-wide
 because it would also add a slash to the paths rewritten to crm.phaora.com,
 whose Next.js app strips it again.
+
+## phaora.com is the house; the landscaping site is phaoralandscape.com
+
+phaoralandscape.com is attached to the canon-crm project, which proxies every
+path to this deployment. Its origin must be **https://phaora.vercel.app** (this
+project's production alias), not www.phaora.com: every landscaping path on host
+`(www.)?phaora.com` now 308s to the same path on https://phaoralandscape.com, so
+a proxy reading from www.phaora.com would loop.
+
+- Redirected (host phaora.com only): `/home-landscape.html` and
+  `/index.newdesign.html` (to the landscape root), `/masonry-*`, the service
+  folders, `/service-area`, `/estimate`, `/hardscape-index`, `/portfolio`,
+  `/projects`, `/hs`, `/uploads`, `/partners`, `/blog`, `/journal`, the old
+  `/quote` and referral aliases, `gallery.html`, `hardscape-gallery.html`,
+  `contact.html`, `llms.txt`.
+- Not redirected: `/assets`, `/tag.js`, `/api/*`, `/_next/*` and the CRM short
+  links (`/l /a /r /rate /p /m`) — shared or not indexed, and redirecting a POST
+  to another host breaks forms.
+- Sitemaps: Vercel serves a file on disk before any rewrite, so there is no
+  `sitemap.xml` or `robots.txt` file. `/sitemap.xml` and `/robots.txt` rewrite
+  by host: phaoralandscape.com and phaora.vercel.app get
+  `landscape-sitemap.xml` / `robots-landscape.txt`; everything else gets
+  `sitemap-house.xml` / `robots-house.txt`. The town and service generators
+  write to `landscape-sitemap.xml`.
