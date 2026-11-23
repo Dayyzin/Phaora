@@ -529,18 +529,23 @@
     },
     {
       "source": "/portfolio/currently-building",
-      "destination": "/portfolio/cream-ridge-nj/",
-      "permanent": false
+      "destination": "/portfolio/",
+      "permanent": true
     },
     {
       "source": "/portfolio/currently-building/",
-      "destination": "/portfolio/cream-ridge-nj/",
-      "permanent": false
+      "destination": "/portfolio/",
+      "permanent": true
     },
     {
-      "source": "/portfolio/currently-building/:path*",
-      "destination": "/portfolio/cream-ridge-nj/:path*",
-      "permanent": false
+      "source": "/portfolio/cream-ridge-nj/:path*",
+      "destination": "/portfolio/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/cream-ridge-nj",
+      "destination": "/portfolio/",
+      "permanent": true
     }
   ],
   "rewrites": [
