@@ -545,17 +545,35 @@
     {
       "source": "/portfolio",
       "destination": "/portfolio/",
-      "permanent": true
+      "permanent": true,
+      "missing": [
+        {
+          "type": "host",
+          "value": "(www\\.)?phaoralandscape\\.com"
+        }
+      ]
     },
     {
       "source": "/portfolio/:slug([a-z0-9-]+)",
       "destination": "/portfolio/:slug/",
-      "permanent": true
+      "permanent": true,
+      "missing": [
+        {
+          "type": "host",
+          "value": "(www\\.)?phaoralandscape\\.com"
+        }
+      ]
     },
     {
       "source": "/estimate",
       "destination": "/estimate/",
-      "permanent": true
+      "permanent": true,
+      "missing": [
+        {
+          "type": "host",
+          "value": "(www\\.)?phaoralandscape\\.com"
+        }
+      ]
     }
   ],
   "rewrites": [
