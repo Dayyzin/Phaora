@@ -541,42 +541,21 @@
       "source": "/portfolio/currently-building/:path*",
       "destination": "/portfolio/cream-ridge-nj/:path*",
       "permanent": false
-    },
-    {
-      "source": "/portfolio",
-      "destination": "/portfolio/",
-      "permanent": true,
-      "missing": [
-        {
-          "type": "host",
-          "value": "(www\\.)?phaoralandscape\\.com"
-        }
-      ]
-    },
-    {
-      "source": "/portfolio/:slug([a-z0-9-]+)",
-      "destination": "/portfolio/:slug/",
-      "permanent": true,
-      "missing": [
-        {
-          "type": "host",
-          "value": "(www\\.)?phaoralandscape\\.com"
-        }
-      ]
-    },
-    {
-      "source": "/estimate",
-      "destination": "/estimate/",
-      "permanent": true,
-      "missing": [
-        {
-          "type": "host",
-          "value": "(www\\.)?phaoralandscape\\.com"
-        }
-      ]
     }
   ],
   "rewrites": [
+    {
+      "source": "/portfolio",
+      "destination": "/portfolio/index.html"
+    },
+    {
+      "source": "/portfolio/:slug([a-z0-9-]+)",
+      "destination": "/portfolio/:slug/index.html"
+    },
+    {
+      "source": "/estimate",
+      "destination": "/estimate/index.html"
+    },
     {
       "source": "/",
       "has": [

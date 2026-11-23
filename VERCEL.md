@@ -16,11 +16,8 @@ have, on the day the domain moved and this file finally had a job to do.
 
 ## Trailing slashes on /portfolio and /estimate
 
-GitHub Pages sent `/portfolio` to `/portfolio/` on its own; Vercel serves the
-folder's `index.html` at `/portfolio` as is. Those pages load their photos by
-relative path (`images/…`), which from `/portfolio` resolves to `/images/…` and
-404s: every photo in the portfolio emails went blank. The redirects send
-`/portfolio`, `/portfolio/<job>` and `/estimate` to the slash form, which is
-the URL the pages were written for. `trailingSlash` is not set site-wide
-because it would also add a slash to the paths rewritten to crm.phaora.com,
-whose Next.js app strips it again.
+These pages once loaded their photos by relative path (`images/…`), which needs the slash, so `/portfolio`,
+`/portfolio/<job>` and `/estimate` were redirected to the slash form. phaoralandscape.com strips the trailing slash
+before the site sees it, so the two redirected each other forever (23 Nov 2026). The pages now use root paths
+(`/portfolio/images/…`), the redirects are gone, and rewrites serve each folder's `index.html` with or without the
+slash. `trailingSlash` is still not set site-wide: it would add a slash to the paths rewritten to crm.phaora.com.
