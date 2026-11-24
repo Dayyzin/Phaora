@@ -13,6 +13,28 @@
       ]
     },
     {
+      "source": "/sertanejo/",
+      "destination": "https://music.phaora.com/",
+      "permanent": false,
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?phaora\\.com"
+        }
+      ]
+    },
+    {
+      "source": "/sertanejo/index.html",
+      "destination": "https://music.phaora.com/",
+      "permanent": false,
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?phaora\\.com"
+        }
+      ]
+    },
+    {
       "source": "/sertanejo/:path*",
       "destination": "https://music.phaora.com/",
       "permanent": false,
