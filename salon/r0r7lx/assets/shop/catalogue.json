@@ -649,29 +649,29 @@
   "href": "https://buy.stripe.com/cNi6ozfXBg1Pe7o4hz2ZO0i",
   "tile": {
    "src": "assets/shop/img/pieces__heliodora__00.webp",
-   "w": 1116,
-   "h": 1136,
+   "w": 986,
+   "h": 1008,
    "blend": false
   },
   "stack": [
    {
     "src": "assets/shop/img/pieces__heliodora__00.webp",
-    "w": 1116,
-    "h": 1136,
+    "w": 986,
+    "h": 1008,
     "blend": false,
     "label": "front view"
    },
    {
     "src": "assets/shop/img/walk__muse_allover_three-quarter.webp",
     "w": 804,
-    "h": 1027,
+    "h": 1015,
     "blend": false,
     "label": "three quarter view"
    },
    {
     "src": "assets/shop/img/walk__muse_allover_back.webp",
     "w": 930,
-    "h": 976,
+    "h": 958,
     "blend": false,
     "label": "back view"
    },
