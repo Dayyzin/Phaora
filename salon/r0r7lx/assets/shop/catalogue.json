@@ -79,7 +79,7 @@
    ],
    "sizes": "XS · S · M · L · XL"
   },
-  "walkaround": ""
+  "walkaround": "assets/world/gelosia/walk.json"
  },
  {
   "id": "oitava",
@@ -122,20 +122,6 @@
     "blend": false,
     "s1200": "assets/shop/1200/oitava_hero.webp",
     "label": "worn, three angles"
-   },
-   {
-    "src": "assets/shop/img/walk__oitava_three-quarter.webp",
-    "w": 280,
-    "h": 484,
-    "blend": false,
-    "label": "three quarter view"
-   },
-   {
-    "src": "assets/shop/img/walk__oitava_back.webp",
-    "w": 336,
-    "h": 488,
-    "blend": false,
-    "label": "back view"
    }
   ],
   "side": "both",
